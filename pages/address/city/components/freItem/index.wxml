@@ -1,2 +1,0 @@
-
-<view bindtap="chooseCity" data-code="{{code}}" data-city="{{name}}" class="fre-item" aria-hidden="true">{{name}}</view>

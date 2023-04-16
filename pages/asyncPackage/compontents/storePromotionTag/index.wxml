@@ -1,8 +1,0 @@
-<view class="promotion_tag flex-row">
-  <view class="line_four_tag" aria-label="{{tagItem.iconText}}" aria-role='text' style="background: linear-gradient(135deg, {{tagItem.startColorCode || '#55D85E'}} 0%, {{tagItem.endColorCode || '#48C151'}} 100%);">
-    {{tagItem.iconText}}
-  </view>
-  <view aria-label="{{tagItem.words}}" aria-role='text' class="line_four_txt ellipsis">
-    {{tagItem.words}}
-  </view>
-</view>

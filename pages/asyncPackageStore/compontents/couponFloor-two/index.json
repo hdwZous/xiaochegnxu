@@ -1,6 +1,0 @@
-{
-  "compontent": true,
-  "usingComponents": {
-    "coupon-yhy-member": "../coupon-yhe-member/index"
-  }
-}

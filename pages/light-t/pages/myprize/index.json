@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "edit-info": "../../components/EditInfo/index"
-  },
-  "navigationBarTitleText": "我的奖品",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black",
-  "onReachBottomDistance": 50
-}

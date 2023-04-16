@@ -1,8 +1,0 @@
-{
-    "navigationBarTextStyle": "white",
-    "component": true,
-    "usingComponents": {
-        "fre-item": "./components/freItem/index",
-        "new-default": "/components/newDefault/index"
-    }
-}

@@ -1,3 +1,0 @@
-<view class='leftTopWrapper'>
-  <image src="{{leftTopIcon}}" />
-</view>

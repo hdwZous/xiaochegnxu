@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "coupon-price": "/components-b/couponPrice/index"
-  }
-}
