@@ -1,1 +1,0 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[7],{46:function(e,t,n){"use strict";n.d(t,"a",(function(){return s}));var r=n(5),c=n(18),a=n(76),s=function requestAdpter(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t={xcxVersion:a.c,appVersion:a.a};return Object(c.request)(Object(r.a)(Object(r.a)({},e),t))}}}]);

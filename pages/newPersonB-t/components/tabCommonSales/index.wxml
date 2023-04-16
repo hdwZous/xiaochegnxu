@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{style.wrapper}}"><tab compid="{{$compid__294}}"></tab><view class="{{style.saleWrap}}"><common-sales compid="{{$compid__295}}"></common-sales></view></view></block>
