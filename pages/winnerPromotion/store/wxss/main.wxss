@@ -1,0 +1,45 @@
+
+.main {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  margin-top: 420rpx;
+  z-index: 3;
+  background: #f8f8f8;
+  font: status-bar;
+  width: 100%;
+
+  display: flex;
+}
+.no-coupon {
+  margin-top: 360rpx;
+}
+.right-content {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  background: #ffffff;
+}
+.exception-box{
+  height: 80vh;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+.exception-box .exception-box__button{
+  background: linear-gradient(to right, #FF9248, #FF5C37);
+  color: #ffffff;
+  width: 180rpx;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+}
+
+.bottom-cart {
+  position: fixed;
+  bottom: 0;
+  z-index: 20;
+  width: 100%;
+}

@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{[style.white_box, style[classNameByF]]}}" style="{{anonymousState__temp}}"><view hidden="{{true}}" class="{{style.guideStep}}"></view></view></block>

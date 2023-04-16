@@ -1,0 +1,62 @@
+page {
+    height: 100%;
+    background-color: #f6f6f6;
+}
+.storelist_main_layout {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.shopcart-by-position-poi-wrap {
+    display: inline-block;
+    vertical-align: top;
+    padding: 12rpx 14rpx;
+    border-radius: 64rpx;
+    background-color: #d1e7d3;
+    margin: 30rpx 0 30rpx 0;
+}
+
+.shopcart-by-position-poi {
+    display: flex;
+    vertical-align: top;
+    line-height: 45rpx;
+    padding: 0 20rpx 0 20rpx;
+    border-radius: 444rpx;
+    font-size: 24rpx;
+    color: #fff;
+    background: #47b34f 26rpx center no-repeat;
+    background-size: 20rpx 24rpx;
+}
+
+.right_i {
+    font-size: 20rpx;
+    position: relative;
+    height: 100%;
+    padding-left: 2rpx;
+}
+
+.left_location {
+    margin-top: 10rpx;
+    margin-right: 8rpx;
+    height: 25rpx;
+    width: 19rpx;
+}
+
+.load-tip {
+    font-size: 24rpx;
+    line-height: 120rpx;
+    color: #999;
+    margin: 10rpx 0;
+    text-align: center;
+}
+.medicine_case {
+    padding-top: 20%;
+    height: 100vh;
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+.medicine_img {
+    width: 100%;
+}

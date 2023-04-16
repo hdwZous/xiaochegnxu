@@ -1,0 +1,58 @@
+@import "../../../common/css/global";
+.pageCont {
+  background: #FFFFFF;
+  min-height: 100vh;
+}
+
+.tab {
+  margin-bottom: 10rpx;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: #666666;
+  font-size: 36rpx;
+  background: #FFFFFF;
+  text-align: center;
+  border-bottom: 1rpx solid #f9f9f9
+}
+
+.tab .txt {
+  padding: 20rpx 0 20rpx;
+  font-weight: 500
+}
+
+.tab .txt text {
+  padding-bottom: 20rpx;
+}
+
+.tab .active {
+  position: relative;
+  color: #333333;
+  font-weight: bold;
+}
+
+.tab .active ::after {
+  content: "";
+  position: absolute;
+  width: 180rpx;
+  height: 2px;
+  background: #f95521;
+  border-radius: 1px 1px 0px 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0rpx;
+}
+
+.section {
+  position: relative;
+  margin-top: 100rpx;
+  background: #FAFAFA
+}
+.load-tip {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #666;
+  margin: 10rpx 0;
+  text-align: center;
+}

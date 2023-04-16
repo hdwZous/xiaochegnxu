@@ -1,0 +1,17 @@
+<view class="module_box d-flex flex-row justify-content-between">
+   <view class="mb_title">{{infos.title}}</view>
+   <view class="d-flex flex-row align-items-center" bindtap="getBeans" data-status="{{infos.data.arrowStatus}}">
+    <text-list infos="{{infos.data.discountMoneyText.textItemList}}"></text-list>
+    <view wx:if="{{infos.data.arrowStatus==1}}" class="dj_icon ts_next" style="margin-top:2rpx"></view>
+   </view>
+</view>
+<jd-beans-layer 
+  show="{{showLayer}}"
+  infos="{{infos.data}}"
+  isIpx="{{isIPX}}"
+  bgType="{{bgType}}"
+  storeId="{{storeId}}"
+  orderPageId="{{orderPageId}}"
+  buriedObj="{{buriedObj}}"
+>
+</jd-beans-layer>

@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "tip": "../components/Tip/index",
+    "loading": "../components/Loading/index",
+    "shop-coupon": "./components/shopCoupon/index",
+    "get-more": "./components/getMore/index",
+    "platform-coupon": "./components/platformCoupon/index",
+    "none-dog": "./components/noneDog/index"
+  },
+  "navigationBarTitleText": "京东到家会员日",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

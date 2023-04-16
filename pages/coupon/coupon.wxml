@@ -1,0 +1,85 @@
+
+<view wx:if="{{isEmpty}}" class="no no-coupon">暂无可用的优惠券</view>
+<block wx:else>
+  <view >
+    <view wx:for="{{voucherList}}" wx:for-index="index" wx:key="key" class="coupon-list-item {{item.use}}">
+      <view class="coupon-content">
+        <view class="coupon-container" bindtap="selectCouponHandle" data-coupon-code="{{item.couponCode}}" data-use="{{item.use}}" data-coupon-text="{{item.couponModeDesc.text||'其它'}}" data-selected="{{item.selected}}">
+          <view wx:if="{{item.couponLeftIcon}}" class="coupon-left-icon-layout">
+            <view class="coupon-left-icon" style="background: linear-gradient(315deg, {{item.couponLeftIcon.startColor}} 0%, {{item.couponLeftIcon.endColor}} 100%);">
+              {{item.couponLeftIcon.title}}
+            </view>
+          </view>
+          <view style="display:flex;align-items: center;">
+            <view class="coupon-amount">
+              <view class="amount">
+                <span class="amount-unit1" wx:if="{{item.amountUnit == '元'}}">¥</span>
+                <span class = "coupon-desc">{{item.amount}}</span>
+                <span class="amount-unit" wx:if="{{item.amountUnit != '元'}}">{{item.amountUnit}}</span>
+              </view>
+              <view class = "coupon-desc" style="display: block;text-align: center;width: 100%;color:rgb(51, 51, 51);font-size:22rpx;"> 
+                {{item.limitRule}}
+              </view>
+            </view>
+            <view class="coupon-info">
+              <view class="coupon-title">{{item.couponTitle}}</view>
+              <view class="coupon-type" style="{{item.styles && item.styles.couponLabelStyle.length>0 ? 'margin-top: 24rpx;height: 32rpx;' : 'margin-top: 40rpx;' }}  ">
+                  <view wx:for="{{item.styles.couponLabelStyle}}" wx:for-item="sumItem" wx:for-index="index" wx:key="key" class="coupon-feight-layout" style="color:{{sumItem.titleColor}};border-color:{{tool.changeColor(sumItem.borderOpacity || 0.3, sumItem.borderColor || '#999999') || '#999'}}">
+                    {{sumItem.title}}
+                  </view>
+              </view>
+              <view class="coupon-date" style="font-size:22rpx;">{{item.avilableDate}}</view>
+              <text wx:if="{{item.selected}}" class="coupon-selected"></text>
+            </view>
+          </view>
+          <view wx:if="{{item.couponMode==2||item.couponModeDesc.text=='可叠加'}}" class="coupon-right-layout">
+            <image style="width: 100%; height: 100%;" src="https://img30.360buyimg.com/mobilecms/jfs/t1/77725/29/1071/2166/5cf50ddeEe70234ca/c502906f301e6454.png" />
+          </view>
+          <view wx:if="{{item.needToUse}}" class="btn-wrapper" catchtap="toUseCoupon" data-item="{{item}}">
+            <view  class="conpon-get-btn">
+              去使用
+            </view>
+          </view>
+          <!-- 右上角的标签 -->
+          <view class="right_tag" wx:if="{{item.couponRightIcon}}">
+              <image class="right_tag_img" src="{{item.couponRightIcon}}"/>
+                
+          </view>
+          <view wx:if="{{item.mostDiscountDesc&&item.mostDiscountDesc.text}}" class="most-favorable">
+            {{item.mostDiscountDesc.text}}
+          </view>
+        </view>
+        <view class="couponDetail" wx:if="{{item.couponDetail}}" data-index="{{index}}" bindtap="showAllMsg">
+          <view class="line border-top"></view>
+         
+          <view class="detailTitle" wx:if="{{!item.showAll}}">
+            <view>{{item.couponDetail}}</view>
+          </view>
+          <view class="detailList" wx:if="{{item.showAll}}">
+            <view wx:for="{{item.couponDesc}}" wx:key="index">{{item}}</view>
+          </view>
+          <view class="tapArea"  >
+            <view class="icon_arrow {{item.showAll ? 'icon_arrow_up' : ''}}"></view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{item.use=='UNAVAILABLE'}}" class="coupon-reason">
+        <view class="flex-row disabled" bindtap="disableReason" data-coupon-code="{{item.couponCode }}" data-unavailable-Reason="{{item.unavailableReason}}">
+          <view class="coupon-reason-title">不可用原因</view>
+          <image class="disable_reson-icon" mode="aspectFit" src="{{!item.unavailableReason?'https://storage.360buyimg.com/wximg/common/icon_more_down.png':'https://storage.360buyimg.com/wximg/common/icon_more_up.png'}}"></image>
+        </view>
+        <text class="coupon-reason-desc">{{item.unavailableReason}}</text>
+      </view>
+    </view>
+    <view wx:if="{{loadTip}}" class="load-tip">{{loadTip}}</view>
+  </view>
+  <view style="height:120rpx;"></view>
+</block>
+<view class="coupon-bottom-layout">
+  <button class="coupon-bottom-item"  bindtap="showChangePop">
+      <view class="coupon-bottom-mark-layout">
+          <view>使用兑换码</view>
+      </view>
+  </button>
+  <view style="width: 100%; height: {{isIPX ? '48rpx' : '0rpx'}}"></view>
+</view>

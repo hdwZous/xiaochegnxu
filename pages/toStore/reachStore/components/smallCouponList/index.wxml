@@ -1,0 +1,54 @@
+<wxs module="tool" src="../../../../../common/util/tools.wxs"></wxs>
+<scroll-view class='coupon-scroll' 
+            scroll-x="{{true}}" 
+            enable-flex
+            aria-hidden="true">
+<view style="margin-left: 24rpx; height: 44rpx"></view>
+<block wx:for="{{couponSimpleInfo}}" 
+        wx:key="couponIndex" 
+        wx:for-item="couponItem">
+  <!-- 膨胀券 -->
+  <block wx:if="{{couponItem.couponShowType == 6}}">
+    <!-- 已膨胀 -->
+    <block wx:if="{{couponItem.inflateStatus == 1}}">
+      <include src="./common/smallPengCouponHas.wxml" />
+    </block>
+    <!-- 未膨胀 -->
+    <block wx:else>
+      <include src="./common/smallPengCoupon.wxml" />
+    </block>
+  </block>
+  <!-- 红包 || v+ -->
+  <block wx:elif="{{couponItem.couponShowType == 5}}">
+    <include src="./common/smallVipCoupon.wxml" />
+  </block>
+  <!-- 助力 -->
+  <block wx:elif="{{couponItem.couponShowType == '3'}}">
+    <!-- 分享领 -->
+    <block wx:if="{{couponItem.helpActivityStatus==2}}">
+      <include src="./common/smallHelpCoupon.wxml" />
+    </block>
+    <!-- 已抢光 || 明天抢 -->
+    <block wx:else>
+      <include src="./common/smallHelpCouponNothing.wxml" />
+    </block>
+  </block>
+  <!-- 普通 -->
+  <block wx:else>
+    <!-- 未领取 -->
+    <block wx:if="{{couponItem.markState == 2}}">
+      <include src="./common/smallCoupon.wxml" />
+    </block>
+    <!-- 已领取 -->
+    <block wx:elif="{{couponItem.markState == 3}}">
+      <include src="./common/smallCouponHas.wxml" />
+    </block>
+    <!-- 已抢光和明天抢 -->
+    <block wx:else>
+      <include src="./common/smallCoupon.wxml" />
+    </block>
+  </block>
+</block>
+<view class="coupon-more" wx:if="{{showCouponMore}}" aria-hidden="true">查看更多</view>
+<view style="padding-left: 12rpx; height: 44rpx" aria-hidden="true"></view>
+</scroll-view>

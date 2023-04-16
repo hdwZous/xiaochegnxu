@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "store-list-pop": "../StoreListPop/index",
+    "pop": "../../commonComponents/Pop/index"
+  }
+}

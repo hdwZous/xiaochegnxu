@@ -1,0 +1,22 @@
+<view class="wrap" wx:if="{{!showDefault}}">
+    <block wx:for="{{couponList}}"
+      wx:for-item="item"
+      wx:for-index="index"
+      wx:key="{{item.id}}"
+    >
+        <card data="{{item}}"/>
+    </block>
+    <view class="rules"
+          bindtap="goToRules"
+    >红包说明</view>
+</view>
+<view wx:else>
+    <newDefault 
+      type="{{defaultType}}" 
+      defaultObj="{{defaultObj}}"
+      buriedObj="{{recommendObj}}"
+      bind:defaultBtnEvent="onDefaultBtnEvent">
+    </newDefault>
+</view>
+
+

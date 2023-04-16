@@ -1,0 +1,98 @@
+@import "/common/css/global.wxss";
+.reach_box {
+    min-height: 784rpx;
+    width: 100%;
+    background: #FAFAFA;
+    z-index: 100;
+    margin-top: 16rpx;
+    border-bottom-left-radius: 24rpx;
+    border-bottom-right-radius: 24rpx;
+}
+.content_box{
+    width: 750rpx;
+    height: 680rpx;
+    background: #FAFAFA;
+    position: relative;
+    border-radius: 24rpx;
+    overflow: hidden;
+}
+.line_one{
+    max-width: 208rpx;
+    height: 90rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    line-height: 90rpx;
+}
+.active{
+    color: #00CF3D;
+    background: #fff;
+}
+.sub_box{
+    width: -webkit-fill-available;
+    height: 100%;
+    position: absolute;
+    left: 200rpx;
+    top: 0;
+    background-color: #ffffff;
+    overflow: scroll;
+}
+.filter_name{
+    padding-left: 32rpx;
+    border-bottom-right-radius: 4rpx;
+    border-top-right-radius: 4rpx;
+}
+.filter_name_sub{
+    padding-left: 40rpx;
+}
+.third_box{
+    position: absolute;
+    top: 0;
+    left: 400rpx;
+    z-index: 111;
+    overflow: scroll;
+    height: 100%;
+}
+.btn_case {
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    justify-content: center;
+    align-items: center;
+}
+.btn_item {
+    width: 334rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    background: #EDEDED;
+    border-radius: 42rpx;
+    text-align: center;
+}
+.btn_gray {
+    color: rgb(204, 204, 204);
+    font-size: 28rpx;
+    border-top: 1px solid rgb(245, 245, 245);
+}
+.btn_black {
+    color: rgb(51, 51, 51);
+    font-size: 28rpx;
+    border-top: 1px solid rgb(245, 245, 245);
+}
+.btn_green {
+    background: linear-gradient(
+        135deg,
+        rgb(85, 216, 94) 0%,
+        rgb(72, 193, 81) 100%
+    );
+    color: rgb(255, 255, 255);
+    font-size: 28rpx;
+    margin-left: 20rpx;
+}
+.btn_green_active {
+    background: linear-gradient(
+        135deg,
+        rgb(170, 170, 170) 0%,
+        rgb(204, 204, 204) 100%
+    );
+    margin-left: 20rpx;
+}

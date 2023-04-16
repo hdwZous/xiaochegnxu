@@ -1,0 +1,14 @@
+{
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "优惠套装",
+    "usingComponents": {
+      "new-default": "/components/newDefault/index",
+      "mini-cart": "../../../asyncPackage/compontents/miniCart/index",
+      "add-min-controller": "/components-b/addMinControllerV1/index",
+      "webp-img": "/components/webpImg/index"
+    },
+    "componentPlaceholder": {
+      "mini-cart": "/components-b/placeholdCart/index"
+    }
+}

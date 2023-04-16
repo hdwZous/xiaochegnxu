@@ -1,0 +1,8 @@
+<view catchtouchmove="preventD" style='height:100%;'>
+  <view class="settlement-remark-page-container">
+    <textarea class="settlement-remark-page-input" placeholder="订单备注（30字以内）" value="{{remarkContent}}"
+              maxlength="30" focus="true" bindinput="onRemarkInput" bindconfirm="onRemarkCompleted"/>
+  </view>
+
+  <view class="settlement-remark-page-ok" bindtap="onRemarkCompleted">完成</view>
+</view>

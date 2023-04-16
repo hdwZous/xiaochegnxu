@@ -1,0 +1,12 @@
+<view class="added-service">
+  <block wx:for="{{serviceList}}" wx:key="added">
+    <view class="adds-items d-flex flex-row align-items-start justify-content-between">
+      <text class="adds-items-txt">{{item.serviceName}} x {{item.serviceNum}}</text>
+      <text class="adds-items-price">{{item.servicePrice}}</text>
+    </view>
+  </block>
+  <view class="list-more d-flex flex-row align-items-center" wx:if="{{service.length > 4}}" catchtap="loadmore">
+    <text class="more-txt">展开服务</text>
+    <text class="dj_icon ts_next {{isFold ? '' : 'more'}}"></text>
+  </view>
+</view>

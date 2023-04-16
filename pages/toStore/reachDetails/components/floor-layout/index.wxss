@@ -1,0 +1,48 @@
+.floor-layout {
+    background-color: #fff;
+    border-radius: 32rpx;
+}
+
+.floor-layout__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 24rpx 0;
+    color: #333;
+}
+
+.floot-layout__title {
+    font-size: 32rpx;
+    font-weight: 600;
+    margin-left: 24rpx;
+}
+
+.floot-layout__more-text {
+    margin-right: 32rpx;
+    font-size: 24rpx;
+    position: relative;
+    padding-right: 20rpx;
+}
+
+.floot-layout__more-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 22rpx;
+    height: 40rpx;
+    margin-top: -20rpx;
+    background: url("https://storage.360buyimg.com/wximg/order/order_right_arrow.png") no-repeat center center;
+    background-size: contain;
+}
+
+.floor-layout__content {
+    padding: 0 24rpx;
+}
+
+.floot-layout__footer {
+    margin: 0 24rpx;
+    border-top: 1rpx solid #eaeaea;
+}

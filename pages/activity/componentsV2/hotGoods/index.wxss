@@ -1,0 +1,7 @@
+.lists_box {
+  margin-bottom: 20rpx;
+}
+
+.lists_box:last-child {
+  margin-bottom: 0;
+}

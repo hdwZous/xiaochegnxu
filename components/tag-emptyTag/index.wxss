@@ -1,0 +1,16 @@
+.pro-sale-slogan {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  padding: 0rpx 6rpx;
+  color: #fff;
+  font-size: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 0 8rpx 0 8rpx;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,24 @@
+<view class="recomList-wrapper  recomList-container {{pageSource == 'storeSearchResult' ? 'storeSearchResult' : ''}}" wx:if="{{products.length > 0}}">
+    <view class='rec-title' aria-label="{{title}}" aria-role='text'>{{title}}</view>
+    <view class='{{products.length <= 3 ? "rec-list" : "rec-list1"}}'>
+      <block wx:for="{{products}}" 
+             wx:for-item="item" 
+             wx:key="index">
+        <good item="{{item}}" traceId="{{traceId}}" length="{{products.length}}" buriedObj="{{buriedObj}}"  NeedExposure="{{true}}" tabName="{{tabName}}" />
+      </block>
+    </view>
+</view>
+<block wx:elif="{{couponList.length > 0}}">
+    <coupon title="{{title}}"  
+            coupon="{{couponList[0]}}"
+            storeId="{{storeId}}"
+            orgCode="{{orgCode}}"
+            isFollow="{{isFollow}}"
+            addCarPushCoupon="{{addCarPushCoupon}}"
+            brandCoupon="{{brandCoupon}}"
+            traceId="{{traceId}}"
+            buriedObj="{{buriedObj}}"
+            NeedExposure="{{true}}"
+    >
+    </coupon>
+</block>

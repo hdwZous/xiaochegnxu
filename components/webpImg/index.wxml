@@ -1,0 +1,17 @@
+<view class="webp-box">
+  <block wx:if="{{hookLazy}}">
+    <image 
+      class="webp-img" 
+      webp="true"
+      src="{{websrc}}" 
+      mode="{{mode}}" 
+      style="width: {{width}};height: {{height}}" 
+      bindload="getTime"
+      aria-role='link'
+      aria-label="{{skuName}}"
+    />
+    <view class="webp-img overlay" wx:if="{{needOverlay}}" aria-role='link'
+      aria-label="{{skuName}}"></view>
+  </block>
+  <view wx:else class="webp-img gray" mode="{{mode}}" style="width: {{width}};height: {{height}}"  />
+</view>

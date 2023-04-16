@@ -1,0 +1,74 @@
+@import "/common/css/global.wxss";
+
+.goodCont {
+  width: 354rpx;
+  padding-bottom: 18rpx;
+  margin-bottom: 8rpx;
+}
+
+.goodCont image {
+  display: block;
+}
+
+.goodCont .goodImg {
+  display: block;
+  width: 354rpx;
+  height: 354rpx;
+  background: #f0f0f0;
+}
+
+.goodCont .goodName {
+  font-size: 28rpx;
+  color: #333;
+  margin-top: 23rpx;
+}
+
+.goodCont .goodPrice {
+  align-items: center;
+  margin-top: 14rpx;
+}
+
+.goodCont .goodPrice  .nowPrice {
+  font-size: 36rpx;
+  color: #ff5757;
+}
+
+.goodCont .goodPrice  .nowPrice  .flag {
+  font-size: 26rpx;
+}
+
+.goodCont .goodPrice  .oldPrice {
+  font-size: 26rpx;
+  color: #999;
+  padding-left: 20rpx;
+  text-decoration: line-through;
+}
+
+.goodCont  .groupNum {
+  margin-top: 10rpx;
+  margin-bottom: 18rpx;
+  color: #999;
+  font-size: 22rpx;
+}
+
+.goodCont  .storeCont {
+  align-items: center;
+}
+
+.goodCont .storeCont .storeImg {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 100%;
+  background: #ccc;
+}
+
+.goodCont .infoCont {
+  padding-left: 10rpx;
+  box-sizing: border-box;
+}
+
+.goodCont  .storeCont .storeName {
+  padding-left: 10rpx;
+  font-size: 26rpx;
+  color: #666;
+}

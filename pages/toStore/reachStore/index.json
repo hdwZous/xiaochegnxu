@@ -1,0 +1,22 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "new-default": "/components/newDefaultV2/index",
+    "store-bg": "./components/storeBg/index",
+    "store-head": "./components/storeHead/index",
+    "header": "./components/header/index",
+    "cash-coupon-yhy": "./components/cashCouponYhy/index",
+    "package-yhy": "./components/packageYhy/index",
+    "org-service-half": "../../asyncPackageStore/compontents/orgServiceHalfV5/index",
+    "store-float-ball": "./components/storeFloatBall/index",
+    "store-education": "../../../components/storeEducation/index",
+    "coupon-list-half-v6": "../../asyncPackageStore/compontents/couponListHalfV6/index"
+
+  },
+  "componentPlaceholder": {
+    "org-service-half": "view",
+    "coupon-list-half-v6": "view"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "list-item": "./components/ListItem/index",
+    "browse-store-coupon-pop": "../BrowseStoreCouponPop/index"
+  }
+}

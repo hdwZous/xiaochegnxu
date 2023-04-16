@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "store-item": "../../../asyncPackage/compontents/storeItem/index",
+    "select-address": "./components/halfScreen/index",
+    "over-step-top": "./components/overStepTop/index",
+    "rest-top": "./components/restTop/index"
+  },
+  "componentPlaceholder": {
+    "store-item": "/components-b/storeItemPlaceHolder/index"
+  }
+}

@@ -1,0 +1,18 @@
+<view class="search-wrapper">
+  <view class="search-container">
+    <image
+      class="input-search__icon"
+      mode="aspectFit"
+      src="https://s.360buyimg.com/wximg/common/icon_search.png"
+    />
+    <view
+      wx:if="{{searchKey}}"
+      class="search-content"
+      bindtap="handleToSearch"
+    >
+      <view class="search-key__box">
+        <view class="search-key">{{searchKey}}</view>
+      </view>
+    </view>
+  </view>
+</view>

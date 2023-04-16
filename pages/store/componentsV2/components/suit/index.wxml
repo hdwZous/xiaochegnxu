@@ -1,0 +1,105 @@
+<view class="suit-wrapper" style="background: linear-gradient(to bottom, {{floor.bgColor}}, #F8F8F8);">
+  <view class='store-floor-tit'>
+      <view class='logo-title'>
+        <image aria-hidden="true" wx:if="{{floor.titleIcon}}" class="title-icon" src="{{floor.titleIcon}}"></image>
+        <view aria-role="text" aria-label="{{floor.floorTitle}}" class="title">{{floor.floorTitle}}</view>
+    </view>
+    <view class='tomore'  
+          wx:if="{{floor.moreBtnDesc}}"
+          data-to="{{floor.to}}"
+          data-params="{{floor.params}}"
+          bindtap="clickMoreBtn"
+          aria-role='link' 
+          aria-label="{{floor.moreBtnDesc}}">
+      <view  class='more-text' aria-hidden="true">{{floor.moreBtnDesc}}</view>
+      <image aria-hidden="true" class='more-icon' src="https://storage.360buyimg.com/wximg/common/store-next.png" />
+    </view>
+  </view>
+
+  <view class='suit-content-wrapper' aria-role="tabpanel">
+    <view class="suit-name-list" aria-role="tablist">
+      <scroll-view class='suit-scroll' 
+                   scroll-x="true"  
+                   enable-flex  
+                   scroll-into-view="_{{curIndex}}"
+                   scroll-with-animation="true">
+        <block wx:for="{{totalData}}"
+               wx:for-item="item"
+               wx:key="index">
+            <view class='suit-name-item {{curIndex == index ? "current-suit" : ""}} ep_suit'
+                  data-index="{{index}}"
+                  data-activity-id="{{item.activityId}}"
+                  data-store-id="{{floor.params.storeId}}"
+                  data-org-code="{{floor.params.orgCode}}"
+                  data-user-action="{{item.userAction}}"
+                  data-trace-id="{{traceId}}"
+                  data-page-id="{{buriedObj.pageIdFirstPage}}"
+                  data-current-page-name="{{buriedObj.currentPageName}}"
+                  data-pre-page-name="{{buriedObj.prePageName}}"
+                  bindtap="clickSuitName"
+                  id="_{{index}}">
+
+              <view class="suit-radius" aria-hidden="true">
+                <image  wx:if="{{curIndex == index && curIndex != 0}}" 
+                        class="img"
+                        style="left: -12rpx; z-index:2" 
+                        src="https://storage.360buyimg.com/wximg/common/suit-left.png" />
+              </view>
+              <view class='suit-name-wrapper'>
+                <view class='suit-name' aria-role="button"
+                  aria-label="{{curIndex == index ? '已选定' : ''}}{{item.suitTitle}}">{{item.suitTitle}}</view>
+                <view class='{{curIndex == index ? "current-suit-line" : ""}}'></view>
+              </view>
+              <view class="suit-radius" aria-hidden="true">
+                <image  wx:if="{{curIndex == index && curIndex != (totalData.length - 1)}}"
+                        class="img" 
+                        style="right: -12rpx; z-index:2"
+                        src="https://storage.360buyimg.com/wximg/common/suit-right.png" />
+              </view>
+
+            </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class='pro-list-wrapper' aria-role='tabpanel'>
+      <scroll-view class="scroll-wrapper" scroll-x="true">
+        <view class="scroll-block">
+          <block wx:for="{{totalData[curIndex].skuInfoList}}"
+                 wx:key="index"
+                 wx:for-item="pro">
+            <good pro="{{pro}}" 
+                  traceId="{{traceId}}"  
+                  curIndex="{{curIndex}}"
+                  buriedObj="{{buriedObj}}" />
+          </block>
+        </view>
+      </scroll-view>
+      <view class='dividing-line'></view>
+      <view class="suit-price-btn" aria-role='button' aria-label="{{totalData[curIndex].priceTitle}}{{totalData[curIndex].price}}元，原价{{totalData[curIndex].basePrice}}元，点击后加入购物车">
+        <view class='price-wrapper'>
+          <view class='suit-price'>{{totalData[curIndex].priceTitle}}</view>
+          <view class='main-price'>¥{{totalData[curIndex].price}}</view>
+          <view class='mino-price'>¥{{totalData[curIndex].basePrice}}</view>
+        </view>
+        <view class="add-car">
+          <add-min-controller   count="{{totalData[curIndex].cartNum}}" 
+                                activityId="{{totalData[curIndex].activityId}}"
+                                skuList="{{totalData[curIndex].skuInfoList}}" 
+                                orgCode="{{floor.params.orgCode}}" 
+                                storeId="{{floor.params.storeId}}"
+                                isAddCart="{{totalData[curIndex].isAddCart}}"
+                                showType="2"
+                                addCartText="立即购买"
+                                biPageName="storeinfo"
+                                pageId="{{buriedObj.pageIdFirstPage}}" 
+                                currentPageName="{{buriedObj.currentPageName}}" 
+                                prePageName="{{buriedObj.prePageName}}"
+                                traceId="{{traceId}}"
+                                tabName="{{tabName}}"
+                                size="large">
+          </add-min-controller>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

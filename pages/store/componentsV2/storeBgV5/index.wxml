@@ -1,0 +1,24 @@
+<view class="bg" 
+     wx:if="{{url}}" 
+     aria-hidden="true"
+     style="height: {{(tags.length || couponSimpleInfo.length || storeMemberName) ? '400rpx' : height + 'px'}}">
+  <view class="logo_bg">
+    <image wx:if="{{url}}" src="{{url}}"></image>
+  </view>
+  <view class='mask'></view>
+  <view class="glass"
+        style="bottom: {{(promotionList.length || tags.length || couponSimpleInfo.length || storeMemberName) ? '-2rpx' : '50rpx' }}"></view>
+</view>
+
+<!-- 兜底样式 -->
+<view class="bg1" 
+      aria-hidden="true"
+      wx:else>
+  <view class="logo_bg1">
+    <image class='logo_bg1_image filter1' src="{{logo}}"></image>
+  </view>
+  <view class='gradient'>
+    <view class="glass1"></view>
+    <view class='blank'></view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+module.exports = {
+  "dialog": "index-module__dialog___1G0x-",
+  "dialog_bg": "index-module__dialog_bg___1ETfN",
+  "container": "index-module__container___1UCuB",
+  "title": "index-module__title___bAtTC",
+  "hots_category": "index-module__hots_category___9mdqc",
+  "category": "index-module__category___3hzBn",
+  "image": "index-module__image___GUU3w",
+  "category_image": "index-module__category_image___1XJLP",
+  "info": "index-module__info___2RdX1",
+  "name": "index-module__name___2Dpn-",
+  "hots_category_btn": "index-module__hots_category_btn___2lz6D",
+  "money": "index-module__money___1v1r6",
+  "money_text": "index-module__money_text___1gIc8",
+  "current": "index-module__current___2Zq0W",
+  "symbol": "index-module__symbol___2L9xV",
+  "original": "index-module__original___a0pwV",
+  "hots_brn": "index-module__hots_brn___1HOmE",
+  "light": "index-module__light___2Gk9j",
+  "btn": "index-module__btn___3TAvP",
+  "return_btn": "index-module__return_btn___3_QKJ",
+  "leave_btn": "index-module__leave_btn___2Ovvd"
+};

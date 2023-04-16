@@ -1,0 +1,221 @@
+@import "/common/css/iconfont.wxss";
+
+.auth-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+}
+
+.user_cont {
+    padding: 58rpx 0 44rpx;
+    position: absolute;
+    top: 50%;
+    left: 80rpx;
+    right: 80rpx;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border-radius: 12rpx;
+}
+
+.auth_txt {
+    color: #030303;
+    font-size: 28rpx;
+    max-height: 438rpx;
+    overflow: scroll;
+    padding: 0 38rpx 40rpx 38rpx;
+}
+
+.result_tips {
+    padding: 20rpx 38rpx 30rpx 38rpx;
+    text-align: center;
+}
+
+.user_title {
+    font-size: 32rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 47rpx;
+}
+
+.user_center {
+    padding: 0 64rpx;
+    font-size: 26rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #858585;
+    line-height: 40rpx;
+    box-sizing: border-box;
+}
+
+.input_cont {
+    margin-bottom: 10rpx;
+    background: #F0F0F0;
+    padding: 0 17rpx;
+    border-radius: 16rpx;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    font-size: 26rpx;
+    color: #858585;
+}
+
+.input_txt {
+    height: 89rpx;
+    color: #333333;
+    font-size: 26rpx;
+    text-align: left;
+    font-weight: bold;
+}
+
+.has_name {
+    color: #333333;
+    font-size: 26rpx;
+    font-weight: bold;
+}
+
+
+.user_btns {
+    display: flex;
+    padding-top: 60rpx;
+    font-size: 34rpx;
+    color: #FF6767;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.user_btns .cancle,
+.user_btns .ok {
+    width: 200rpx;
+    height: 70rpx;
+    border: 2rpx solid #FF6767;
+    border-radius: 35rpx;
+    line-height: 70rpx;
+	margin: 0;
+}
+
+.user_btns .know {
+    color: #FF6767;
+    text-align: center;
+    width: 100%;
+}
+
+.user_btns .ok {
+    background: #FF6767;
+    color: #ffffff;
+}
+
+.pop_wrap {
+    padding: 0 40rpx 40rpx;
+    box-sizing: border-box;
+}
+
+.scroll {
+    height: 300rpx;
+}
+
+.pop_title {
+    padding: 40rpx 0 20rpx;
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    border-radius: 24rpx 24rpx 0 0;
+}
+
+.rich_txt {
+    color: #333333;
+    font-size: 28rpx;
+    line-height: 1.5;
+}
+
+.withdraw_cont {
+    text-align: center;
+}
+
+.withdraw_title {
+    font-size: 34rpx;
+    font-weight: bold;
+    color: #333333;
+}
+
+.withdraw_gray {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #858585;
+    margin-top: 22rpx;
+}
+
+.withdraw_btns {
+    width: 392rpx;
+    height: 80rpx;
+    background: linear-gradient(180deg, #19E05B, #1CB00F);
+    box-shadow: 0 6rpx 20rpx 0 rgba(27, 125, 1, 0.3);
+    border-radius: 40rpx;
+    font-size: 34rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 80rpx;
+    margin: 0 auto;
+}
+
+.withdraw_center {
+    background: url("https://storage.360buyimg.com/wxmini/cash/lightTwo.png") no-repeat center;
+    background-size: 524rpx 534rpx;
+    height: 475rpx;
+}
+
+.withdraw_punch {
+    background: #1CB00F;
+    border-radius: 12rpx;
+    width: 186rpx;
+    margin: 52rpx auto 0;
+    padding: 12rpx;
+}
+
+.wx_cont {
+    background: #FFFFFF;
+    border-radius: 12rpx;
+    padding: 20rpx 24rpx 24rpx;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #1CB00F;
+}
+
+.wx_icon {
+    width: 54rpx;
+    height: 47rpx;
+    display: block;
+    margin: 0 auto 22rpx;
+}
+
+.withdraw_money {
+    background: #5DD052;
+    border-radius: 4rpx;
+    font-size: 28rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top: 15rpx;
+}
+
+.red {
+    color: #EB0D0D;
+}
+
+.retain_center {
+    text-align: center;
+    color: #333;
+    font-size: 32rpx;
+}

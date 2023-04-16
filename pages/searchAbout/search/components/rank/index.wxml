@@ -1,0 +1,113 @@
+<rank-layout
+  title="{{searchFloor.title}}"
+  logo="{{searchFloor.logo}}"
+  titleColor="{{searchFloor.titleColor}}"
+  bgStartColor="{{searchFloor.bgStartColor}}"
+  bgEndColor="{{searchFloor.bgEndColor}}"
+  bottomText="{{searchFloor.bottomText}}"
+>
+  <block wx:for="{{searchFloor.data}}" wx:for-item="item" wx:key="title">
+    <thing-layout
+      imgUrl="{{item.imgUrl}}"
+      cornerImage="{{item.cornerImage}}"
+      data-to="{{item.to}}"
+      data-params="{{item.params}}"
+      data-user-action="{{item.userAction}}"
+      data-pre-obj="{{buriedObj}}"
+      bind:tapEvent="onTap"
+    >
+      <view
+        class="rank__content rank__item__ep"
+        data-user-action="{{item.userAction}}"
+        data-trace-id="{{traceId}}"
+        data-page-id="{{buriedObj.pageIdFirstPage}}"
+        data-current-page-name="{{buriedObj.currentPageName}}"
+        data-pre-page-name="{{buriedObj.prePageName}}"
+      >
+        <view class="rank__title rank__title--{{searchFloor.rankType}} ellipsis" style="{{item.suffixImage ? 'padding-right: 28rpx;' : ''}}">
+          <text>{{item.title}}</text>
+          <image wx:if="{{item.suffixImage}}" aria-role="img" class="rank__title__icon" mode="aspectFit" src="{{item.suffixImage}}" lazy-load />
+        </view>
+        <block wx:if="{{searchFloor.rankType == 1}}">
+          <view class="rank__popular">
+            <view class="flex-row align-items-center">
+              <image wx:if="{{item.icon}}" aria-role="img" class="rank__popular__icon" mode="aspectFit" src="{{item.icon}}" lazy-load />
+              <text class="rank__popular__text rank__popular__text--{{item.icon ? 'hasIcon' : 'noIcon'}} ellipsis">{{item.iconText}}</text>
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{searchFloor.rankType == 2}}">
+          <view class="rank__bottom">
+            <view class="rank__info ellipsis">
+              <text>{{item.deliveryTimeliness}}</text>
+              <text wx:if="{{item.deliveryTimeliness && item.distance}}" class="rank__info__line">|</text>
+              <text>{{item.distance}}</text>
+            </view>
+            <view class="rank__single">
+              <block wx:if="{{item.coupons && item.coupons.length > 0}}">
+                <tag
+                  text="{{item.coupons[0].words}}"
+                  lineColor="{{item.coupons[0].outLineColor}}"
+                  backgroundColor="{{item.coupons[0].backgroundColor}}"
+                  textColor="{{item.coupons[0].frontColor}}"
+                  isCoupon
+                />
+              </block>
+            </view>
+          </view>
+        </block>
+        <block wx:elif="{{searchFloor.rankType == 3}}">
+          <view class="rank__tags">
+            <view class="rank__tags__inner">
+              <block wx:if="{{item.disabledTags && item.disabledTags.length > 0}}">
+                <view class="rank__tag">
+                  <tag
+                    wx:for="{{item.disabledTags}}"
+                    wx:for-item="tag"
+                    wx:key="iconText"
+                    text="{{tag.iconText}}"
+                    lineColor="{{tag.strokeColorCode}}"
+                    textColor="{{tag.iconTextColorCode}}"
+                    disabled
+                    isCoupon
+                  />
+                </view>
+              </block>
+              <block wx:if="{{item.tags && item.tags.length > 0}}">
+                <view class="rank__tag">
+                  <tag
+                    wx:for="{{item.tags}}"
+                    wx:for-item="tag"
+                    wx:key="iconText"
+                    text="{{tag.iconText}}"
+                    lineColor="{{tag.strokeColorCode}}"
+                    textColor="{{tag.strokeNameColorCode}}"
+                  />
+                </view>
+              </block>
+              <block wx:if="{{item.couponVOList && item.couponVOList.length > 0}}">
+                <block wx:for="{{item.couponVOList}}" wx:for-item="coupon" wx:key="couponId">
+                  <view class="rank__tag">
+                    <tag
+                      wx:if="{{coupon.couponTagVOMap && coupon.couponTagVOMap[coupon.markState] && coupon.couponTagVOMap[coupon.markState].iconText}}"
+                      text="{{coupon.couponTagVOMap[coupon.markState].iconText}}"
+                      lineColor="{{coupon.couponTagVOMap[coupon.markState].strokeColorCode}}"
+                      textColor="{{coupon.couponTagVOMap[coupon.markState].iconTextColorCode}}"
+                      isCoupon
+                    />
+                  </view>
+                </block>
+              </block>
+            </view>
+          </view>
+          <view class="rank__price">
+            <view class="flex-row align-items-baseline">
+              <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="24rpx" />
+              <coupon-price minorPrice="{{item.minorPrice}}" minorPriceFz="24rpx" minorPriceFamily="{{item.minorPrice && item.minorPrice.deleteLine ? 'light' : 'regular'}}" style="margin-left: 8rpx;" />
+            </view>
+          </view>
+        </block>
+      </view>
+    </thing-layout>
+  </block>
+</rank-layout>

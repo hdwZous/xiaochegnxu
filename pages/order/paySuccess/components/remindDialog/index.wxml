@@ -1,0 +1,8 @@
+<view class="remind_dialog d-flex flex-row align-items-center justify-content-center" wx:if="{{show}}">
+  <view class="remind_content">
+    <view class="remind_title">{{tips}}</view>
+    <view class="btn-box d-flex flex-row">
+      <view class="btn_right btn" bindtap="close" >我知道了</view>
+    </view>
+  </view>
+</view>

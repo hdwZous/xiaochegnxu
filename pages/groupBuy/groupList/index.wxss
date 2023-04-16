@@ -1,0 +1,79 @@
+@import "/common/css/global";
+.banner .image {
+    position: relative;
+}
+
+.banner .image>image {
+    width: 100vw;
+    height: 26.7vw;
+}
+
+.banner .buttons {
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 15rpx;
+}
+
+.banner .rule {
+    width: 94rpx;
+    height: 68rpx;
+}
+
+.banner .btn {
+    width: 178rpx;
+    height: 72rpx;
+}
+
+.tab {
+    margin-bottom: 10rpx;
+    z-index: 10;
+    position: sticky;
+    top: 0;
+    color: #666666;
+    font-size: 36rpx;
+    background: #FFFFFF;
+    text-align: center;
+    border-bottom: 1rpx solid #f9f9f9
+}
+
+.tab .txt {
+    padding: 20rpx 0 20rpx;
+    font-weight: 500
+}
+
+.tab .txt text {
+    padding-bottom: 20rpx;
+}
+
+.tab .active text {
+    position: relative;
+    color: #333333;
+    font-weight: 600
+}
+
+.tab .active text ::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #f95521;
+    border-radius: 1px 1px 0px 0px;
+    left: 0;
+    bottom: 0rpx;
+    /* border-bottom: 2px solid #F95521; */
+}
+.collectionShowRuleDialog .title {
+    font-size: 36rpx;
+    text-align: center;
+    font-weight: 600;
+}
+.collectionShowRuleDialog .subTitle {
+  font-size:32rpx;
+  font-weight:600;
+  margin:20rpx 0;
+}
+.collectionShowRuleDialog .content  {
+  font-size:28rpx;
+  margin-bottom:10rpx;
+}

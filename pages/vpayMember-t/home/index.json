@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "tip": "../components/Tip/index",
+    "member-box-new": "./components/memberBoxNew/index",
+    "exchange-shop-coupon": "./components/exchangeShopCoupon/index",
+    "loading": "../components/Loading/index",
+    "swipe": "../commonComponents/Swipe/index",
+    "rights-area": "./components/rightsArea/index",
+    "vip-day": "./components/vipDay/index",
+    "merchant-envelopes-new": "./components/merchantEnvelopesNew/index",
+    "return-to-store": "../components/returnToStore/index",
+    "goods": "./components/Goods/index"
+  },
+  "navigationBarTitleText": "会员中心",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black"
+}

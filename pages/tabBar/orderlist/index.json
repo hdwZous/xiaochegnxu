@@ -1,0 +1,22 @@
+{
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "我的订单",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "share-to-moments-dialog": "/components/singlePicWithSave/index",
+        "share-to-wx-dialog": "/components/share2WxDialog/index",
+        "newDefault": "/components/newDefaultV2/index",
+        "overtime": "/components/overtime/index",
+        "add-my-mp-pop": "/components/addMyMpPop/index",
+        "list-item": "./components/listItem/index",
+        "skeleton":"./components/skeleton/skeleton",
+        "offen-buy-store":"/components/offenBuyStore/index",
+        "feeds": "./components/feeds/index",
+        "middle-number-modal":"/components/middleNumberModal/index",
+        "back-top": "/components/backTop/index",
+        "topTips":"./components/topTips/index",
+        "tab-switch":"/components/tabSwitch/index",
+        "check-code-pop":"./components/checkCodePop/index",
+        "new-pay-pop": "/components/newPayPop/index"
+    }
+}

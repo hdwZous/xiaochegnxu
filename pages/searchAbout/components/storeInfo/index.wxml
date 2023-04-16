@@ -1,0 +1,121 @@
+<view
+  class='store-info'
+  wx:if="{{storeInfo.storeName}}"
+  data-store-id="{{storeInfo.storeId || ''}}"
+  data-org-code="{{storeInfo.orgCode || ''}}"
+  data-user-action="{{storeInfo.userActionStore}}"
+  data-trace-id="{{traceId}}"
+  data-page-id='{{pageId}}'
+  data-current-page-name='{{currentPageName}}'
+  data-pre-page-name='{{prePageName}}'
+  bindtap="jumpStore"
+  aria-role='link'
+  aria-label="{{storeInfo.storeName}}{{storeInfo.scoreAvg && storeInfo.scoreAvg != '0.0' ?  storeInfo.scoreAvg + '分.' : '.'}}{{storeInfo.monthSale}}.配送时长{{storeInfo.deliveryFirst}}.配送距离{{storeInfo.distance}}.{{storeInfo.ferightDesc}}.{{storeInfo.carrierNo != 9966 ? '商家自送' : '达达快送'}}{{promitions.length > 0 ? '.' + promitions[0].words : ''}}{{promitions.length > 1 ? '.' + promitions[1].words : ''}}">
+  <!-- 左侧 -->
+  <view class='store-pic' aria-hidden="true">
+    <image src="{{storeInfo.logo}}" />
+    <view class="closed" wx:if="{{storeInfo.closeStatus}}">门店休息中</view>
+  </view>
+  <!-- 右侧 -->
+  <view class='store-content' style="opacity: {{storeInfo.closeStatus ? 0.6 : 1}}"  aria-hidden="true">
+    <view class="store-name-and-tag">
+      <view class='store-name'>{{storeInfo.storeName}}</view>
+      <view class="store-logo-icon" wx:if="{{storeInfo.storeBrandLogo}}">
+        <image mode="heightFix" src="{{storeInfo.storeBrandLogo}}" class="tag-img"></image>
+      </view>
+      <view wx:if="{{tabType <= 0}}">
+        <biz-tag bizType="vertical" wx:if="{{storeInfo.businessTag}}" businessTag="{{storeInfo.businessTag}}"></biz-tag>
+      </view>
+    </view>
+    
+    <!-- 评星、月售、距离等信息 -->
+    <view class='star-monthsale-distance-time'>
+      <view class='star-monthsale'>
+        <!-- 星级评分 -->
+        <view wx:if="{{starList.length > 0}}">    
+          <view
+            class="rating {{starItem}}"
+            wx:for="{{starList}}"
+            wx:for-item="starItem"
+            wx:key="index"
+          ></view>
+        </view>
+        <!-- 综合评分 -->
+        <view class='stargrade'
+              style="color: {{storeInfo.scoreAvg && storeInfo.scoreAvg != '0.0' ? '#ff9415' : '#999'}}"
+        >
+          {{storeInfo.scoreAvg && storeInfo.scoreAvg != "0.0" ?  storeInfo.scoreAvg : '暂无评价'}}
+        </view>
+        <!-- 月销量 -->
+        <view class='month-sale'>{{storeInfo.monthSale}}</view>
+      </view>
+      <view class='distance-time'>
+        <!-- 配送时间 -->
+        <view class='time'>{{storeInfo.deliveryFirst}}</view>
+        <!-- 距离 -->
+        <view class='distance'>{{storeInfo.distance}}</view>
+      </view>
+    </view>
+    <view class='ferightdesc-wrapper'>
+      <!-- 起送价 -->
+      <view class='ferightdesc'>{{storeInfo.ferightDesc}}</view>
+      <view 
+        class="summary"
+        style="color: {{storeInfo.carrierTag && storeInfo.carrierTag.iconTextColorCode || '#777'}};border-color:{{storeInfo.carrierTag && storeInfo.carrierTag.strokeColorCode || '#777'}}">
+        <view class="flex-none" 
+          wx:if="{{storeInfo.carrierTag}}" 
+          aria-label="{{storeInfo.storeName}}.{{storeInfo.carrierTag && storeInfo.carrierTag.iconText}}{{storeInfo.deliveryFirst}}{{storeInfo.freightWords}}" 
+          aria-role="button" 
+          aria-haspopup="true">
+          {{storeInfo.carrierTag.iconText}}
+        </view>
+        </view>
+    </view>
+    <view class='coupons_and_promition'>
+      <!-- 膨胀券 -->
+      <block wx:if="{{storeInfo.expansionCoupon && storeInfo.expansionCoupon.iconUrl}}">
+        <view 
+          class="expansion_coupon"
+          style="background: linear-gradient({{storeInfo.expansionCoupon.startColorCode}} 0%,{{storeInfo.expansionCoupon.endColorCode}} 100%);">
+          <image class="expansion_coupon_icon" src="{{storeInfo.expansionCoupon.iconUrl}}"/>
+          <text class="expansion_coupon_max">{{storeInfo.expansionCoupon.iconText}}</text>
+          <text>{{storeInfo.expansionCoupon.price}}</text>
+        </view>
+      </block>
+      <!-- 优惠券标 -->
+      <view 
+        class='coupons'
+        wx:if="{{coupons && coupons.length > 0}}">
+        <view class="coupon" 
+              wx:for="{{coupons}}" wx:key="index" 
+              wx:for-item="item"
+              hidden="{{item.hide}}">
+                {{item.word}}
+        </view>
+      </view>
+      
+      <!-- 促销标 -->
+      <view 
+        class='promotions'
+        wx:if="{{promitions && promitions.length > 0}}">
+          <view
+            wx:for="{{promitions}}"
+            wx:key="index"
+            wx:for-item="item"
+            class='promition-item'
+            hidden="{{item.hide}}">
+            <!-- 普通满减 -->
+              <view
+                class='tag-title'
+                style="background: linear-gradient({{item.startColorCode}} 0%,{{item.endColorCode}} 100%);">
+                  {{item.iconText}}
+              </view>
+              <view class='tag-content'>{{item.words}}</view>
+            
+          </view>
+      </view>
+      <!-- 展开箭头 -->
+      <view wx:if="{{isShowArrowUp}}" class="arrow_icon {{(couponTagsArrowUp || promitionArrowUp) ? 'arrow_icon_up' : ''}}" catchtap="clickArrowUp"></view>
+    </view>
+  </view>
+</view>

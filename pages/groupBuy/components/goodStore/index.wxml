@@ -1,0 +1,13 @@
+<!-- 店铺名称商品名称 -->
+<view class='goodStore'>
+  <!-- 商品名 -->
+  <view class='goodNameCont flex-row'>
+    <view class='groupName flex-none'>{{totalMembersDesc}}</view>
+    <view class='goodName flex-auto ellipsis2'>{{skuName}}</view>
+  </view>
+  <!-- 店铺名 -->
+  <view class='storeNameCont flex-row'>
+    <image src='{{logoUrl}}'></image>
+    <view class='storeName'>{{orgName}}</view>
+  </view>
+</view>

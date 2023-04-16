@@ -1,0 +1,41 @@
+<view wx:if="{{data}}" class="content {{showPop?'show_cont':''}}"   catchtouchmove="catchtouchmove">
+        <!-- title -->
+        <view class="header">
+            <view aria-label="{{data.title || '优惠明细'}}">{{data.title || '优惠明细'}}</view>
+            <view class="icon_close icon dj_icon ts_close" 
+                  bindtap="hidePop"
+                  aria-role='button'
+                  aria-label='收起弹层'></view>
+        </view>
+        <view aria-role='text' aria-label="{{data.reminder}}.{{data.discountDesc}}.{{data.toHandPrice}}">
+            <view class='reminder' wx:if="{{data.reminder}}" aria-hidden="true">{{data.reminder}}</view>
+            <view class='sale_desc_box' wx:if="{{data.discountDesc}}" aria-hidden="true">
+                <view aria-hidden="true" class='sale_desc' wx:if="{{data.discountDesc}}">{{data.discountDesc}}</view>
+                <view aria-hidden="true" class='sale_price' wx:if="{{data.toHandPrice}}">{{data.toHandPrice}}</view>
+            </view>
+        </view>
+        <scroll-view class="sale_detail_box"
+                     scroll-y="{{true}}" 
+                     wx:if="{{data.preferentialList &&  data.preferentialList.length}}">
+            <block wx:for="{{data.preferentialList}}"
+                    wx:key="index"
+                    wx:for-item="item">
+                <view class='detail_item'
+                      aria-role='text'
+                      aria-label="{{item.preferentialDesc}}.{{item.preferentialAmount}}">
+                    <view class='detail_left' aria-hidden="true">
+                        <view class="tag"
+                            wx:if="{{item.tag.iconText}}"
+                            style="color: {{item.tag.iconColor}};  background: linear-gradient(129deg, {{item.tag.startColorCode}} 0%, {{item.tag.endColorCode}} 100%);">
+                            {{item.tag.iconText}}
+                        </view>
+                        <view class="desc">{{item.preferentialDesc}}</view>
+                    </view>
+                    <view class="amount" aria-hidden="true">{{item.preferentialAmount}}</view>
+                </view>
+            </block>
+        </scroll-view>
+        <view wx:if="{{data.subTitle}}" class='sub-title' style="bottom: {{isIpx ? '88rpx' : '48rpx'}}" aria-label="{{data.subTitle}}" aria-role='text'>{{data.subTitle}}</view>
+</view>
+<!-- 背景 -->
+<view class="gray gray-bg" bindtap="hidePop" wx:if="{{showPop}}" aria-role="button" aria-label='收起弹层' aria-haspopup="false"></view>

@@ -1,0 +1,120 @@
+.vnl-box {
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.vnl-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .7);
+}
+
+.vnl-box .vnl-body {
+  background: #F6F6F6;
+  border-radius: 20rpx 20rpx 0 0;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -1000px;
+  width: 100%;
+  height: 80vh;
+  transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+}
+
+.vnl-body .title-box {
+  text-align: center;
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #333333;
+  line-height: 48rpx;
+  padding: 32rpx 24rpx;
+  /* position: relative; */
+}
+
+.vnl-body .vnl-close {
+  position: absolute;
+  right: 0;
+  width: 80rpx;
+  height: 112rpx;
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/settle-vnl-close.png");
+  background-repeat: no-repeat;
+  background-size: 32rpx 32rpx;
+  background-position: center center;
+}
+
+.vnl_scroll {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.vnl_content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+  height: calc(80vh - 224rpx);
+  height: -webkit-calc(80vh - 224rpx);
+  -webkit-overflow-scrolling: touch;
+}
+
+.vnl_content.ipx {
+  height: calc(80vh - 284rpx);
+  height: -webkit-calc(80vh - 284rpx);
+}
+
+.list-title {
+  font-size: 28rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #333333;
+  line-height: 36rpx;
+  padding-top: 32rpx;
+}
+
+.coupon-items {
+  margin-top: 16rpx;
+}
+
+.vnlb-bt {
+  margin: 0 24rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background: linear-gradient(270deg, #00CF37 0%, #0FDF46 100%);
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.vnl_explain {
+  padding-top: 32rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #777777;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.coupon_empty {
+  width: 320rpx;
+  height: 320rpx;
+}
+
+.empty_tip {
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #666666;
+  margin-top: 32rpx;
+}
+

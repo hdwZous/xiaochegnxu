@@ -1,0 +1,95 @@
+@import "/common/css/global";
+page {
+    background: #fafafa;
+}
+
+.wrap {
+    height: 100vh;
+}
+
+.wrap .section {
+    position: relative;
+}
+
+.wrap .scroll {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wrap .btn {
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    background: #FFFFFF;
+    color: #333333;
+    font-size: 36rpx;
+}
+
+.wrap .border_right {
+    border-right: 1rpx solid #E8E8E8;
+    width: 67%;
+    background: linear-gradient(270deg, rgba(243, 33, 37, 1) 0%, rgba(253, 130, 29, 1) 100%);
+    color: #fff;
+}
+
+.recommand-cont .title,
+.groupRule .title {
+    font-size: 28rpx;
+    color: #333333;
+    font-weight: 600;
+    text-align: center;
+    margin: 40rpx 0;
+}
+
+.groupRule {
+    margin: 0 20rpx
+}
+
+.recommand-cont image {
+    width: 100%;
+    display: block
+}
+
+.recommand-cont .title {
+    margin: 60rpx 20rpx 20rpx;
+}
+
+.horseLamp {
+    position: absolute;
+    top: -20rpx;
+    left: -20rpx;
+}
+
+.groupRule .title image,
+.recommand-cont .title image {
+    width: 706rpx;
+    height: 28rpx;
+}
+
+.groupRule image {
+    width: 676rpx;
+    height: 108rpx;
+    display: block;
+    margin: 0 auto
+}
+
+.goHomeBtn {
+    padding: 15rpx 35rpx;
+    background: #47b34f;
+    color: #fff;
+    font-size: 30rpx;
+    display: inline-block;
+    border-radius: 8rpx;
+    margin: 0 auto
+}
+
+.contentTxt {
+    color: #333333;
+    font-size: 32rpx;
+    text-align: center;
+    padding-top: 20rpx;
+    line-height: 60rpx;
+}

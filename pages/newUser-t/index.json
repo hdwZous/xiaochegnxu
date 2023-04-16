@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "custom": "./components/custom/index",
+    "order-btn": "./components/orderBtn/index",
+    "dialog": "./components/dialog/index",
+    "default": "./components/default/index",
+    "coupons": "./components/coupons/index",
+    "hots": "./components/hots/index",
+    "shops": "./components/shops/index"
+  },
+  "navigationBarTitleText": "新人专区",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "custom"
+}

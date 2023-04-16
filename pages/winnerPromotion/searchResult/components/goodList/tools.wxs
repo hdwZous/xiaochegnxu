@@ -1,0 +1,11 @@
+
+
+
+var getDefaultObj = function (value) {
+  return value || {}
+}
+
+module.exports = {
+  getDefaultObj: getDefaultObj,
+}
+

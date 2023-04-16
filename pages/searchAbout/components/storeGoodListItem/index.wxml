@@ -1,0 +1,20 @@
+<view
+  class='good-item-log'
+  data-item="{{item}}"
+  data-sku-id="{{item.skuId}}"
+  data-store-id="{{item.storeId}}"
+  data-state="{{item.isJianyun ? 'Reduce_freight_commodity' : ''}}"
+  data-user-action="{{item.userActionSku}}"
+  data-page-id='{{pageId}}'
+  data-current-page-name='{{currentPageName}}'
+  data-pre-page-name='{{prePageName}}'
+  data-trace-id="{{traceId}}"
+  bindtap="goToDetail">
+  <!-- 第一个列表顶部空隙，UI ab实验结束后删除 -->
+  <view wx:if="{{index === 0}}" class="good-con-outer"></view>
+  <view class="good-con-outer">
+    <view class="good-con-inner">
+      <include src="../SkuYhySearch/index.wxml" />
+    </view>
+  </view>
+</view>

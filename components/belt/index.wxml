@@ -1,0 +1,62 @@
+<view
+  class="{{currentPage == 'home' ? 'belt_cover2' : 'belt_cover'}} belt_stack"
+  data-user-action='{{content.userAction}}'
+  data-trace-id="{{traceId}}"
+  data-page-id='{{pageId}}'
+  data-current-page-name='{{currentPageName}}'
+  data-pre-page-name='{{prePageName}}'
+  style="z-index: {{zIndex}}"
+  wx:if="{{isShow && isShowInside && content.contentText.length > 0}}">
+  <view class="belt" style="background-image: url({{content.bgImage}}); opacity: {{ fading ? '0.7' : '1'}};bottom: {{currentPage == 'home' ? '24rpx' : '40rpx'}}">
+    <view class="belt_icon">
+      <image
+        aria-label='腰带图标'
+        aria-role='text'
+        src="{{content.iconImage || 'https://storage.360buyimg.com/wxmini/cash/belt_icon.png'}}"
+      ></image>
+    </view>
+    <view
+      class="belt_content"
+      bind:tap="jumpTo">
+      <view class="belt_text_left">
+        <text
+          aria-label='{{content.contentText[0].text}}'
+          aria-role='text'
+          class="belt_text"
+          style="color: {{content.contentText[0].color}}"
+        >{{content.contentText[0].text}}</text>
+        <text
+          aria-label='{{content.contentText[1].text}}'
+          aria-role='text'
+          class="belt_text"
+          style="color: {{content.contentText[1].color}}"
+        >{{content.contentText[1].text}}</text>
+        <text
+          aria-label='{{content.contentText[2].text}}'
+          aria-role='text'
+          class="belt_text"
+          style="color: {{content.contentText[2].color}}"
+        >{{content.contentText[2].text}}</text>
+      </view>
+      <view wx:if="{{content.countDownFlag}}" class="belt_timeDown">
+        <view class="belt_countDown">
+          <view class="belt_time" style="background: {{content.countDownBgColor}}; color: {{content.countDownNumberColor}}">{{hour}}</view>
+          <view class="belt_time2" style="color: {{content.countDownBgColor}}">:</view>
+          <view class="belt_time" style="background: {{content.countDownBgColor}};color: {{content.countDownNumberColor}}">{{minute}}</view>
+          <view class="belt_time2" style="color: {{content.countDownBgColor}}">:</view>
+          <view class="belt_time" style="background: {{content.countDownBgColor}};color: {{content.countDownNumberColor}}">{{second}}</view>
+        </view>
+        <view
+          class="belt_text_right"
+          style="color: {{ content.countDownTextColor }}"
+        >{{content.countDownText}}</view>
+      </view>
+    </view>
+    <view
+      aria-label='关闭腰带'
+      aria-role='text'
+      class="belt_close"
+      bind:tap="closePop"
+    ></view>
+  </view>
+</view>

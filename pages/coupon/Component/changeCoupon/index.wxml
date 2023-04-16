@@ -1,0 +1,16 @@
+<view wx:if="{{isShow}}" class='change-pop-content'>
+    <view class='change-pop-title'>请输入您的兑换码</view>
+    <view class="change-pop-input-wrap {{warn ? 'border-red' : ''}}">
+        <input class='input' 
+               type="text" 
+               placeholder="请输入兑换码"
+               placeholder-class='input-placeholder'
+               value="{{value}}"
+               bindinput="handleInput" />
+    </view>
+    <view class='button-wrap'>
+        <view class='cancel' bindtap="cancel">取消</view>
+        <view class='confirm' bindtap="confirm">确定</view>
+    </view>
+</view>
+<view class='mask' wx:if="{{isShow}}"></view>

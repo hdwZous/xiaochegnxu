@@ -1,0 +1,36 @@
+<view  
+  style="padding-top:{{ topMargin ? topMargin*2 +'rpx' : '240rpx'}};"
+  class="default flex-col container align-items-center">
+  <block wx:if="{{src}}">
+    <image 
+      style="width:{{imgSize ? imgSize*2+'rpx' : '320rpx'}};height:{{imgSize ? imgSize*2+'rpx' : '320rpx'}}"
+      class="net_error" src="{{src}}"></image>
+  </block>
+  <block wx:if="{{type!=0}}">
+    <rich-text 
+      style="margin-top:{{imgSize ? '16rpx' : '40rpx'}}"
+      wx:if="{{defaultObj.title}}" 
+      class="text" 
+      nodes="{{defaultObj.title}}"></rich-text>
+    <rich-text  wx:if="{{defaultObj.msg}}" class="subtext" nodes="{{defaultObj.msg}}"></rich-text>
+    <rich-text  wx:if="{{defaultObj.errorCode}}" class="subtext" nodes="{{ defaultObj.errorCode  }}"></rich-text>
+    <block >
+     <view 
+      wx:if="{{defaultObj.btnArr && defaultObj.btnArr.length > 0}}"
+      class="box d-flex  justify-content-center " >
+      
+        <view 
+          wx:for="{{defaultObj.btnArr}}"
+          wx:for-item="item" 
+          wx:for-index="index" 
+          data-item="{{item}}" 
+          bindtap="clickBtn"
+          wx:key="item"  
+          class="btn ">
+          {{item.btnName}}
+        </view>
+        
+      </view>
+    </block>
+  </block>
+</view>

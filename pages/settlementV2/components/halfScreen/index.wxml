@@ -1,0 +1,12 @@
+<view class="half_bg" wx:if="{{show}}" style="z-index:{{zIndex}}" catchtap="_hide"></view>
+<view catchtouchmove="preventD" class="half_content flex_col {{show?'show_content':''}}"
+      style="{{'height:'+height+';transform:translateY('+height+');-webkit-transform: translateY('+height+');z-index:12;'}}">
+    <view class="title flex_none">
+        <view aria-role="text" aria-label="{{title}}">{{title}}</view>
+        <view class="dj_icon ts_close close" bindtap="_hide" aria-role="button" aria-label="关闭弹窗"></view>
+    </view>
+    <view class="slot_content flex_auto">
+        <!--外部自定义内容插槽-->
+        <slot></slot>
+    </view>
+</view>

@@ -1,0 +1,168 @@
+<wxs module="tool" src="../../common/util/tools.wxs"></wxs>
+<!-- priceUnit价格单位 0-无单位 1-单位'￥' 2-单位'折' -->
+
+<view class="all_wrap">
+    <view class="old-coupon-one-wrap boxShadow eb_pub-coupon" 
+          style="background:{{item.couponBgColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgColor}};height:{{type==1?'160rpx':'auto'}}" 
+          bind:tap="handleSelectClick"
+          data-page-id="{{pageId}}"
+          data-current-page-name="{{currentPageName}}"
+          data-pre-page-name='{{prePageName}}'
+          data-user-action="{{item.userAction}}"
+          data-trace-id="{{traceId}}"
+          data-no-need-exposure="{{noNeedExposure}}">
+        <view class="old-coupon-one-left boxShadow01" 
+             style="border-color:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor}};border-width:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor?'1rpx':0}};border-bottom-width:{{type==2?0:'1rpx'}};border-radius:6rpx 0 0 {{type==2?0:'6rpx'}};"  
+             aria-label="{{item.couponTitle}},{{item.couponExpire}},{{item.price}}{{item.priceUnit==1 ? '元' : '折'}},{{item.couponLimit}}" 
+             aria-role='text'>
+            <view aria-hidden="true">
+                <view class="money flex-row" 
+                      style="color:{{item.priceColor || item.styles && item.styles.couponContentStyle && item.styles.couponContentStyle.priceColor}}" 
+                      aria-hidden="true">
+                    <view wx:if="{{item.priceUnit==1}}" class="unit">¥</view>
+                    <block wx:if="{{item.renderDataByFE && item.renderDataByFE.price && item.renderDataByFE.price.length > 1}}">
+                        <view class="cent flex-row">{{item.renderDataByFE.price[0]}}</view>
+                        <view class="unit">.{{item.renderDataByFE.price[1]}}</view>
+                    </block>
+                    <view wx:else class="cent flex-row">{{item.price}}</view>
+                    <view wx:if="{{item.priceUnit==2}}" class="unit">折</view>
+                </view>
+                <view class="limit ellipsis" 
+                      style="color: {{item.couponLimitColor || item.styles && item.styles.couponContentStyle && item.styles.couponContentStyle.couponLimitColor}};" 
+                      aria-hidden="true">
+                    {{item.couponLimit}}
+                </view>
+            </view>
+        </view>
+        <view class="old-coupon-one-center boxShadow02" 
+              style="width:{{item.couponButton || item.styles && item.styles.couponButStyle && item.styles.couponButStyle.title ?'42%':'80%'}};padding-right:{{item.couponButton || item.styles && item.styles.couponButStyle && item.styles.couponButStyle.title?'10rpx':'20rpx'}};border-width:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor ? '1rpx':0}};border-bottom-width:{{type==2?0:'1rpx'}};border-right-width:{{item.couponButton || item.styles && item.styles.couponButStyle  && item.styles.couponButStyle.title ? 0 : '1rpx'}};border-color:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor}};border-radius:0rpx {{item.couponButton || item.styles && item.styles.couponButStyle && item.styles.couponButStyle.title ? 0:'6rpx'}} 0rpx {{item.couponButton || item.styles && item.styles.couponButStyle && item.styles.couponButStyle.title ? 0 :'6rpx'}};"
+              aria-label="{{item.couponTitle}},,{{item.couponExpire}},{{item.price}}{{item.priceUnit==1 ? '元' : '折'}},{{item.couponLimit}}" 
+              aria-role='text'>
+            <view style="width:100%" aria-hidden="true">
+                <view class="title ellipsis {{type==3 && 'maxWidth'}}" style="color:{{item.couponTitleColor || item.styles && item.styles.couponContentStyle && item.styles.couponContentStyle.couponTitleColor }};">
+                    {{item.couponTitle}}
+                </view>
+                <view class="center_bottom">
+                  <!-- 券标 优先取styles里的，couponsigns作为兜底 -->
+                    <view wx:if="{{item.styles && item.styles.couponLabelStyle.length}}"
+                          class="tags-container {{type==3 && 'maxWidth'}}">
+                      <block wx:for="{{item.styles.couponLabelStyle}}" wx:for-item="tagItem" wx:key="index" wx:for-index="index">
+                        <view class="tags flex-row" wx:if="{{tagItem.title}}">
+                          <view class="tagItem" 
+                                style="color: {{tagItem.titleColor}};">
+                              <text style="white-space:nowrap">{{tagItem.title}}</text>  
+                              <view class="oneBorder" style="border-color:{{tool.changeColor(tagItem.borderOpacity || 0.3, tagItem.borderColor || '#999999') || '#999'}};"></view>
+                          </view>
+                        </view>
+                      </block>
+                    </view>
+                    <!-- <view wx:elif="{{item.couponSigns && item.couponSigns.length}}"
+                          class="tags-container {{type==3 && 'maxWidth'}}" >
+                      <block wx:for="{{item.couponSigns}}" 
+                             wx:for-item="tagItem" 
+                             wx:key="index" 
+                             wx:for-index="index">
+                        <view class="tags flex-row" wx:if="{{tagItem.title}}">
+                          <view class="tagItem" style="color: {{tagItem.titleColor || ''}};">
+                            <text style="white-space:nowrap">{{tagItem.title}}</text>
+                            <view class="oneBorder" style="border-color:{{tool.changeColor(tagItem.borderOpacity || 0.3, tagItem.borderColor || '#999999') || '#999'}};"></view>
+                          </view>
+                        </view>
+                      </block>
+                    </view> -->
+                    
+                    <view class="date {{type!=2 && 'ellipsis'}} {{type==3 && 'maxWidth'}}" 
+                         style="color:{{item.couponExpireColor || item.styles && item.styles.couponContentStyle && item.styles.couponContentStyle.couponExpireColor}}">{{item.couponExpire}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="line" wx:if="{{type==1 && (item.couponButton || item.styles && item.styles.couponButStyle && item.styles.couponButStyle.title)}}">
+            <view class="line_top" 
+                  style="background:{{circleBgColor}};border-color:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor}}"></view>
+            <view class="line_bottom" style="background:{{circleBgColor}};border-color:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor}}"></view>
+            <view class="dashed"></view>
+        </view>
+        <view class="old-coupon-one-right boxShadow03 log_help_coupon_right_btn" 
+              data-item="{{item}}" 
+              bind:tap="handleBtnClick" 
+              style="border-width:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor ? '1rpx':0}};border-color:{{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor}};border-bottom-width:{{type==2?0:'1rpx'}};border-radius:0 6rpx {{type==2?0:'6rpx'}} 0;align-items:{{type==2?'flex-end':'center'}}" 
+              hidden="{{!(item.couponButton || item.styles && item.styles.couponButStyle && item.styles.couponButStyle.title)}}" 
+              aria-label="{{item.couponButton.title}}" 
+              aria-role='button'>
+            <view class="rightWrap">
+                <view class="rightBtn {{item.markState == 3 ? 'btn-has-grap' : ''}}"  
+                      style="borderColor: {{item.couponButton.borderColor || item.styles && item.styles.couponButStyle.borderColor}}; color: {{item.couponButton.titleColor || item.styles && item.styles.couponButStyle.titleColor}}; background: -webkit-linear-gradient(315deg, {{item.couponButton.startColor || item.styles && item.styles.couponButStyle.startColor}} 0%, {{item.couponButton.endColor || item.styles && item.styles.couponButStyle.endColor}} 100%);">
+                    {{item.couponButton.title  || item.styles && item.styles.couponButStyle.title}}
+                </view>
+            </view>
+        </view>
+        <!-- 左边标识 门店券-优惠券后端说这个标识在styles里已经没有配置了 -->
+        <view class="leftIcon" 
+              wx:if="{{(item.couponLeftIcon && item.couponLeftIcon.title)}}" 
+              bind:tap="handleLeftIconClick" 
+              style="color:{{item.couponLeftIcon.titleColor}};background:linear-gradient(135deg,{{item.couponLeftIcon.startColor}} 0%,{{item.couponLeftIcon.endColor}} 100%);">
+            <text>{{item.couponLeftIcon.title}}</text>
+            <image wx:if="{{item.couponLeftIcon.icon}}" class="leftArrow" src="{{item.couponLeftIcon.icon || 'https://s.360buyimg.com/wximg/settlement/yellow_arrow02.png'}}" lazy-load="{{true}}" />
+        </view>
+        <!-- 可叠加 -->
+        <image class="flag" hidden="{{!(item.couponRightIcon || item.styles && item.styles.couponLconStyle && item.styles.couponLconStyle.couponRightIcon)}}" src="{{item.couponRightIcon || item.styles && item.styles.couponLconStyle && item.styles.couponLconStyle.couponRightIcon}}" />
+        <!-- 过期标识  门店券-优惠券后端说这个标识不确定有没有，在styles里没有配置-->
+        <view class="cricle_icon" wx:if="{{item.couponCircleIcon}}">
+            <image src="{{item.couponCircleIcon}}" mode="widthFix"/>
+        </view>
+        <!-- 选择按钮 -->
+        <view class="ration_wrap" wx:if="{{type==3}}">
+            <image src="{{item.selectedState==20?'https://storage.360buyimg.com/wximg/settlement/20.png':item.selectedState==10?'https://storage.360buyimg.com/wximg/settlement/10.png':'https://storage.360buyimg.com/wximg/settlement/30.png'}}" mode="widthFix" style="width:100%;"/>
+        </view>
+    </view>
+    <view class="desc_wrap" 
+          style="border:1rpx solid {{item.couponBgBorderColor || item.styles && item.styles.couponBgStyle && item.styles.couponBgStyle.couponBgBorderColor}};border-radius:0 0 6rpx 6rpx" 
+          wx:if="{{item.couponDesc}}">
+        <view class="desc_left"></view>
+        <view class="desc_right">
+            <view class="desc_join ellipsis" wx:if="{{fold}}">
+                <text wx:for="{{item.couponDesc}}" wx:for-item="descItem" wx:key="index">{{descItem}}</text>
+            </view>
+            <view wx:if="{{!fold}}">
+               <view wx:for="{{item.couponDesc}}" wx:for-item="descItem" wx:key="index">{{descItem}}</view> 
+            </view>
+            <view class="desc_arrow {{!fold&&'arrow_up'}}" bind:tap="handleFolderClick">
+                <image src="https://storage.360buyimg.com/wximg/common/icon_more_down.png" mode="widthFix" />
+            </view>
+        </view>
+    </view>
+</view>
+
+<block wx:if="{{hasSkuImg}}">
+  <view class="mask" bind:tap="handleMaskClick" wx:if="{{showTips}}" catchtouchmove="true">
+    <view class="{{isFirst?'trigle03':'trigle'}}" style="{{isFirst?'left:'+left+'px;top:'+(top-5)+'px':'left:'+trigleL+'px;bottom:'+trigleT+'px;'}}"></view>
+    <view class="tips-wrap" wx:if="{{item.couponUnusableReason}}" style="{{isFirst?'left:'+left+'px;top:'+top+'px':'left:'+left+'px;bottom:'+bottom+'px'}}">
+      <scroll-view class="tips_new" scroll-y>
+        <view class="tips_title">不可用原因</view> 
+        <text class="tips_content">{{item.couponUnusableReason.unusableReasonText}}</text>
+        <view class="unusableSku_box d-flex flex-row flex-wrap" wx:if="{{item.couponUnusableReason.unusableSkuList}}">
+          <block wx:for="{{item.couponUnusableReason.unusableSkuList}}" wx:key="items">
+            <view class="unusableSku">
+              <image class="unusableSku_img" src="{{item.imageUrl}}" />
+              <view class="unusableSku_gray"></view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view class="mask" bind:tap="handleMaskClick" wx:if="{{showTips}}" catchtouchmove="true" >
+    <view class="couponItem_tips" wx:if="{{item.unusableReason && showTips && !isFirst}}" style="left:{{left}}px;bottom:{{bottom}}px">
+        <view class="trigle" style="left:{{trigleL}}px;bottom:{{trigleT}}px;"></view>
+        <view class="tips_title">不可用原因</view> 
+        <text class="tips_content">{{item.unusableReason}}</text>
+    </view>
+        <view class="couponItem_tips" wx:if="{{item.unusableReason && showTips && isFirst}}" style="left:{{left}}px;top:{{top}}px">
+        <view class="trigle02"></view>
+        <view class="tips_title">不可用原因</view> 
+        <text class="tips_content">{{item.unusableReason}}</text>
+    </view>
+  </view>
+</block>

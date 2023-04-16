@@ -1,0 +1,261 @@
+
+<default type="0" wx:if="{{showLoading}}"></default>
+<block wx:elif="{{showDefault}}">
+  <default type="{{type}}" 
+          tips="{{tips}}"  
+          src="{{defaultSrc}}"
+          recommendObj="{{recommendObj}}">
+  </default>
+</block>
+<block wx:else>
+  <view class='container flex-auto flex-row product_box'>
+    <view class="flex-none left_cate">
+      <!-- 一级分类 -->
+      <scroll-view scroll-anchoring 
+                    enable-flex 
+                    scroll-with-animation 
+                    scroll-y 
+                    class="cate_scroll flex-auto"  
+                    scroll-top="{{leftScrollTop}}rpx">
+        <view wx:for="{{leftCateList}}" 
+              wx:key="index" 
+              wx:for-item="item" 
+              class="cate_item_view {{(item.code != 1 && item.code == anchorInfo.firstBiCode) || (item.code == 1 && anchorInfo.secondPromotionId ==  item.promotionInfoList[0].promotionId) ?'par_cate_item_checked' : ''}}">
+          <view wx:if="{{item.code == 1}}"
+                class="cate_item {{item.code == anchorInfo.firstBiCode &&  item.promotionInfoList[0].promotionId == anchorInfo.secondPromotionId ? 'cate_item_checked' : ''}}" 
+                data-index="{{index}}" 
+                data-item="{{item}}" 
+                bindtap="clickClassify">
+            <view class="cate_title_wrap">
+              <view class="cate_title ellipsis" 
+                    aria-label="{{item.name}}" 
+                    aria-role='button'>
+                {{item.promotionInfoList[0].firstName}}
+              </view>
+              <view class='cate_desc'>
+                <image class='cate_desc_img' src="{{item.promotionInfoList[0].imgUrl}}" />
+                <view class='desc_text ellipsis'>
+                  {{item.promotionInfoList[0].secondName }}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view wx:else
+                class="cate_item {{anchorInfo.firstBiCode == item.code ?'cate_item_checked':''}}" 
+                data-index="{{index}}" 
+                data-item="{{item}}" 
+                data-user-action="{{item.userAction}}" 
+                bindtap="clickClassify">
+            <view class="cate_title_wrap">
+              <view class="cate_title ellipsis" 
+                    aria-label="{{item.name}}" 
+                    aria-role='button'>
+                {{item.name}}
+              </view>
+              <view class='cate_desc'>
+                <view class='desc_text ellipsis'>
+                  {{item.firstText}}
+                </view>
+              </view>
+            </view>
+            <view class="cate_arrow {{item.showAll ? 'cate_arrow_up' : 'cate_arrow_down'}}" 
+                  wx:if="{{index==curIndex && item.promotionInfoList.length}}">
+            </view>
+          </view>
+          <!-- 二级分类 -->
+          <scroll-view  
+                      scroll-anchoring 
+                      enable-flex 
+                      scroll-with-animation 
+                      scroll-y
+                      wx:if="{{item.showAll && item.code != 1}}">
+            <block wx:for="{{item.promotionInfoList}}"   
+                    wx:for-item="subItem" 
+                    wx:key="subIndex" 
+                    wx:for-index="subIndex">
+              <view class="sec_cate_item {{anchorInfo.secondPromotionId == subItem.promotionId ?'sec_cate_item_checked' : ''}}" 
+                    data-sub-index="{{subIndex}}" 
+                    data-item="{{subItem}}"
+                    data-code="{{item.code}}"
+                    data-name="{{item.name}}"
+                    bindtap="clickSubClassify">
+                <view aria-hidden="true" 
+                      class="sec_item_checked"></view>
+                <view class="sec_cate_title ellipsis" 
+                      aria-role='button' 
+                      aria-label="{{subItem.firstName}}">
+                  {{subItem.firstName}}
+                </view>
+                <view class='sec_cate_desc'>
+                  <view class='sec_desc_text ellipsis'>
+                    {{subItem.secondName}}
+                  </view>
+                </view>
+              </view>
+            </block>
+          </scroll-view>
+        </view>
+        <view class="blank_white_item" style="height:{{ipx ? '108rpx':'48rpx'}}"></view>
+      </scroll-view>
+    </view>
+    <view class="flex-auto right_product flex-col">
+      <view wx:if="{{redBar && redBar.promotionSecondName}}"
+            class='red_tip'
+            style="background: url({{redBar.backImgUrl}}) no-repeat; background-size: 100% 100%">
+        <view class='sub-title ellipsis'>{{redBar.promotionSecondName}}</view>
+        <!--  style="font-size: {{redBar.descSize == '1' ? '32rpx': '24rpx'}};" -->
+        <view class='desc ellipsis'>
+          <text wx:for="{{redBar.promotionDescList}}"
+                wx:key="index"
+                wx:for-item="item"
+                style="color: {{item.color}}">{{item.desc}}</text>
+        </view>
+        
+      </view>
+      <!-- 三级分类 -->
+      <view wx:if="{{topBIList.length > 1}}" 
+          class="flex-none flex-row subCateBox">
+        <scroll-view scroll-anchoring 
+                    enable-flex 
+                    scroll-with-animation 
+                    scroll-left="{{scrollLeft}}" 
+                    scroll-into-view="_{{curThirdIndex}}" 
+                    enable-flex 
+                    scroll-x 
+                    scroll-with-animation="{{true}}" 
+                    class="flex-auto sub_cate flex-row">
+          <block wx:for="{{topBIList}}" 
+                wx:for-item="thirdItem" 
+                wx:for-index="thirdIndex" 
+                wx:key="thirdIndex">
+            <view class="flex-none ellipsis sub_cate_item {{thirdCode == thirdItem.code ? 'sub_cate_item_checked' : ''}}" 
+                data-item="{{thirdItem}}"
+                data-third-index="{{thirdIndex}}"
+                bindtap="clickThirdClassify" 
+                id="_{{thirdIndex}}" 
+                aria-role='button' 
+                aria-label="{{thirdItem.name}}">
+              {{thirdItem.name}}
+            </view>
+          </block>
+        </scroll-view>
+        <view class="flex-none more_sub_cate" 
+              wx:if="{{topBIList.length > 3}}" 
+              data-type="{{true}}" 
+              bindtap="showThirdCateMask" 
+              aria-role="button" 
+              aria-haspopup="true" 
+              aria-label="展示三级分类弹层"></view>
+      </view>
+      <!-- 三级分类弹层 -->
+      <view class="sub_cat_wrap flex-none" 
+            wx:if="{{showAllThirdCate}}" 
+            catchtap="showThirdCateMask" 
+            data-type="{{false}}">
+        <view class="second_cat_down flex-col">
+          <view class="second_cat_title flex-row" aria-label="全部分类" aria-role='text'>
+            <text>全部分类</text>
+            <view class="up_wrap" aria-hidden="true">
+              <view class="up"></view>
+            </view>
+          </view>
+          <view class="second_cat_content flex-row">
+            <view wx:for="{{topBIList}}" 
+                  wx:for-item="thirdItem" 
+                  wx:for-index="thirdIndex" 
+                  wx:key="thirdIndex" 
+                  class="down_box">
+              <view class="down_item flex-none {{thirdCode == thirdItem.code ? 'down_item_checked' : ''}}" 
+                  data-item="{{thirdItem}}"
+                  data-third-index="{{thirdIndex}}" 
+                  bindtap="clickThirdClassify" 
+                  aria-role='button' 
+                  aria-label='{{thirdItem.name}}'>
+                {{thirdItem.name}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 商品列表 -->
+      <view class="swiper_box flex-auto flex-col">
+        <swiper class='scroll_swiper' 
+                circular="{{true}}" 
+                vertical="{{true}}" 
+                skip-hidden-item-layout="{{true}}" 
+                current="{{productSwiperIndex}}" 
+                duration="{{300}}" 
+                easing-function="easeInCubic" 
+                bindchange="swiperChange">
+                    <block wx:for="{{[0,1,2]}}" 
+                          wx:key="index" 
+                          wx:for-item="item" 
+                          wx:for-index="index">
+                      <swiper-item data-index="{{index}}">
+                        <!-- curIndex==index-1 下一个，index==curIndex-1 上一个  || index == curIndex-1 ||index == curIndex + 1 -->
+                        <block wx:if="{{index == productSwiperIndex}}">
+                          <block wx:if="{{topBIList.length > 0 && productList.length > 0}}">
+                            <good-list list="{{productList}}" 
+                                       traceId="{{traceId}}"
+                                       recommendObj="{{recommendObj}}"
+                                       isCart="{{isCart}}"
+                                       options="{{options}}">
+                              <view slot="before">
+                                <view class='top-tips' wx:if="{{topImgUrl && topBIList.length > 1 && index ==  productSwiperIndex}}">
+                                  <image class='top-image' src="{{topImgUrl}}" />
+                                </view>
+                              </view>
+                              <view slot="after">
+                                <view class="product_bottom_text" wx:if="{{lastSecondPromotionId == anchorInfo.secondPromotionId && curThirdIndex == topBIList.length - 1}}">已经到底啦</view>
+                                <view class="product_bottom_text">
+                                  ↑上拉，切换下一个活动
+                                </view>
+                                <view  class='blank'></view>
+                              </view>
+                            </good-list>
+                          </block>
+                          <block wx:else>
+                            <default type="7" 
+                                     tips="暂无商品信息" 
+                                     src="{{defaultSrc}}" 
+                                     isRest="true"
+                                     height="70vh"
+                                     recommendObj="{{recommendObj}}">
+                            </default>
+                          </block>
+                        </block>
+                      </swiper-item>
+                    </block>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</block>
+
+ <!-- 购物车 -->
+ <view class="footer flex-none" wx:if="{{isCart}}">
+   <view class="minicart">
+     <mini-cart id="minicart" cart-skuId="{{cartSkuId}}" cart-type="{{cartType}}" store-id="{{storeId}}" org-code="{{orgCode || storeInfo.orgCode}}" longitude="{{longitude}}" latitude="{{latitude}}" refreshMiniCartData="{{refreshMiniCartData}}" catAnimation="{{catAnimation}}" showCart="{{showCart}}" isIphoneX="{{ipx}}" pageSource="promotionGoodsList" pageId="{{recommendObj.pageIdFirstPage}}" prePageId="{{recommendObj.pageIdFirstPage}}"  currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" preBuried="{{recommendObj}}" refPar="{{refPar}}" optionsPos="{{options}}" biPageName="couponTogether"></mini-cart>
+   </view>
+ </view>
+
+  <!-- spu选择器 -->
+ <spu-selector toggle="{{toggle}}" 
+                orgCode="{{spuData.orgCode}}" 
+                storeId="{{spuData.storeId}}" 
+                skuId="{{spuData.skuId}}" 
+                spuId="{{spuData.spuId}}" 
+                couponId="{{couponId}}" 
+                userAction="{{spuData.userAction}}" 
+                refPar="{{refPar}}" 
+                pageId="{{recommendObj.pageIdFirstPage}}"
+                buriedObj="{{recommendObj}}" 
+                id="spu-selector" 
+                biPageName="couponTogether" 
+                pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+                transmitData="{{spuData.transmitData}}"
+                carNumber="{{spuData.cartNum}}"
+                showModel="{{spuData.showModel}}"
+                weighting="{{spuData.weighting}}"
+                bind:spuSelectorEvent="onSpuSelectorEvent">
+</spu-selector>

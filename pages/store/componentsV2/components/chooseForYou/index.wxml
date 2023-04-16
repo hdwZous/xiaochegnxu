@@ -1,0 +1,10 @@
+<view class="choose-for-you-wrapper" wx:if="{{list.length >= 2}}">
+  <view class="floor-title" aria-role='text' aria-label="{{floor.floorTitle}}">{{floor.floorTitle}}</view>
+  <view class="pro-list-wrapper">
+    <block wx:for="{{list}}"
+           wx:key="index"
+           wx:for-item="item">
+      <sky-yhe-one item="{{item}}" traceId="{{traceId}}" buriedObj="{{buriedObj}}" options="{{options}}" />
+    </block>
+  </view>
+</view>

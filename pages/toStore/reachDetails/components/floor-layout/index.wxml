@@ -1,0 +1,12 @@
+<view class="floor-layout">
+    <view class="floor-layout__header">
+        <view aria-role="text" aria-label="{{title}}" class="floot-layout__title">{{title}}</view>
+        <view aria-role="link" aria-label="{{moreText}}" wx:if="{{moreText}}" class="floot-layout__more-text" bindtap="onTapMore">{{moreText}}</view>
+    </view>
+    <view class="floor-layout__content my-class">
+        <slot name="content"></slot>
+    </view>
+    <view class="floot-layout__footer" wx:if="{{enableFooterSlot}}">
+        <slot name="footer"></slot>
+    </view>
+</view>

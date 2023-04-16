@@ -1,0 +1,174 @@
+.suit-list-wrapper {
+  margin-top: 20rpx;
+  width: 100%;
+  background: #fff;
+  border-radius: 32rpx;
+  box-sizing: border-box;
+  font-size: 0;
+}
+
+.wrap_sku_title {
+  color: #333333;
+  font-size: 32rpx;
+  padding: 24rpx 0;
+  line-height: 40rpx;
+  padding-left: 24rpx;
+  font-weight: bold;
+}
+
+.suitTitle_box {
+  overflow-x: auto;
+  padding-left: 24rpx;
+}
+
+.suitTitle_box .suitTitle {
+  height: 40rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  padding-right: 40rpx;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.suitTitle_box .suitTitle.active {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #00CF37;
+}
+
+.suitTitle .suitTitle_item {
+  max-width: 310rpx;
+  height: 100%;
+  position: relative;
+}
+
+.suitTitle_box .suitTitle.active .suitTitle_item::after {
+  position: absolute;
+  content: '';
+  width: 48rpx;
+  height: 6rpx;
+  background: #00CF37;
+  border-radius: 4rpx;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
+
+.suit-item {
+  padding-top: 24rpx;
+  padding-bottom: 24rpx;
+}
+
+.scroll-view {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 296rpx;
+}
+
+.scroll-view.special {
+  box-sizing: border-box;
+  padding: 0 48rpx;
+}
+
+.scroll-view .four-item {
+  width: 180rpx;
+  height: 100%;
+  padding-right: 24rpx;
+}
+
+.scroll-view .four-item.special {
+  padding-left: 24rpx;
+}
+
+.scroll-view .four-item.no-padding {
+  padding-right: 0;
+}
+
+.four-item .four-pic-wrapper {
+  border-radius: 8rpx;
+  position: relative;
+}
+
+.four-item .four-pic-wrapper .img {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 8rpx;
+}
+
+.four-item .four-pic-wrapper .pic-back {
+  position: absolute;
+  top: 0;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 8rpx;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.four-item .four-pro-title {
+  height: 72rpx;
+  margin-top: 8rpx;
+  margin-bottom: 4rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 36rpx;
+}
+
+.four-item .price-box {
+  font-size: 24rpx;
+  font-family: 'regular';
+  font-weight: 400;
+  color: #666666;
+  line-height: 32rpx;
+}
+
+.suit-price-btn {
+  display: flex;
+  align-items: center;
+  margin: 24rpx 24rpx 0;
+  justify-content: flex-end;
+}
+
+.price-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.suit-price-btn .suit-price {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #666;
+}
+
+.suit-price-btn .main-price {
+  font-size: 36rpx;
+  font-family: regular;
+  line-height: 36rpx;
+  color: #ff1e19;
+  margin-right: 8rpx;
+}
+
+.suit-price-btn .mino-price {
+  font-family: light;
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+  margin-right: 16rpx;
+}
+
+.suit-price-btn .tobuy {
+  font-size: 28rpx;
+  color: #fff;
+  width: 176rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  border-radius: 32rpx;
+  background: linear-gradient(to right, #00cb1e, #00be34);
+  margin-right: 24rpx;
+}

@@ -1,0 +1,43 @@
+.hintContainer {
+    width: 710rpx;
+    border-radius: 24rpx;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.hintItem {
+    padding: 28rpx;
+    border-bottom: 1rpx solid #F5F5F5;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    display: flex;
+}
+
+.itemTitle {
+    min-width: 160rpx;
+}
+
+.hintText {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    flex: 1;
+}
+
+.viewMore {
+    border-bottom: none;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewMore .down {
+    width: 20rpx;
+    margin-left: 10rpx;
+}

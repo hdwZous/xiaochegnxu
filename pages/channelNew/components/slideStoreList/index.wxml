@@ -1,0 +1,105 @@
+<view class="store-list">
+  <view class="store-list-header">
+    <view
+      aria-label='附近商家'
+      aria-role='text'
+      class="title">{{floorName}}</view>
+    <view
+      wx:if="{{data.moreBtnDesc}}"
+      class="look-more"
+      aria-label='查看更多商家，点击跳转到附近商家列表'
+      aria-role='link'
+      data-to="{{data.to}}"
+      data-params="{{data.params}}"
+      data-user-action="{{data.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name='{{prePageName}}'
+      bindtap="jumper">
+      {{data.moreBtnDesc}}
+      <view class="more-arrow"></view>
+    </view>
+  </view>
+  <scroll-view
+    class="store-wrapper"
+    scroll-x
+    scroll-anchoring="true"
+    scroll-with-animation>
+    <view
+      wx:for="{{storeList}}"
+      wx:for-index="index"
+      wx:for-item="item"
+      wx:key="item"
+      class="store-item channel_comp_ep"
+      data-type="{{item.storeName}}"
+      data-to="{{item.to}}"
+      data-params="{{item.params}}"
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name='{{prePageName}}'
+      bindtap="jumper"
+      aria-label='{{item.storeName}}{{item.coupons[0].words}}，点击跳转门店使用优惠'
+      aria-role='link'>
+      <view class="store-img">
+        <view style="background-image: url({{item.storeBrandLogo}})" class="store-img_logo"></view>
+        <webp-img src="{{item.backgroundImage}}" webp-img='store-img_image round-top'></webp-img>
+        <view class="dj_tag" wx:if="{{item.businessTag}}">
+          <biz-tag bizType="horizontal" businessTag="{{item.businessTag}}"/>
+        </view>
+      </view>
+      <view class="store-logo">
+        <!-- <image src="{{item.imgUrl}}" class="image round" lazy-load></image> -->
+        <webp-img src="{{item.imgUrl}}" webp-img='store-logo_image round'></webp-img>
+        <!-- <view class="store-tags">常逛</view> -->
+      </view>
+      <view class="store-name ellipsis">{{item.storeName}}</view>
+      <!-- 膨胀劵 -->
+      <view
+        class="expand channel_comp_ep"
+        bind:tap="expandCouponJump"
+        data-item='{{item}}'
+        data-user-action="{{item.userAction}}"
+        data-trace-id="{{traceId}}"
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        wx:if="{{item.expansionCoupon.iconText}}">
+        <view style="background-image: url({{item.expansionCoupon.iconUrl}});" class="expand-image"></view>
+        <text class="expand-text">{{item.expansionCoupon.iconText}}</text>
+        <text class="expand-price">{{item.expansionCoupon.price}}</text>
+      </view>
+      <block wx:else>
+        <!-- 优惠券 -->
+        <view
+          class="store-coupon"
+          wx:if="{{item.coupons && item.coupons.length > 0}}"
+          style="background-color:{{item.coupons[0].backgroundColor || ''}} ;color: {{item.coupons[0].frontColor}};border-color:{{item.coupons[0].outLineColor}}">
+          {{item.coupons[0].words}}
+        </view>
+        <!-- 星级 -->
+        <view class="store-start" wx:elif="{{item.storeStar > 0}}">
+          <rating rating="{{item.storeStar}}"/>
+          <view class="store-score">{{item.scoreAvg}}</view>
+        </view>
+        <view wx:else class="store-default">暂无评价</view>
+      </block>
+    </view>
+    <view
+      wx:if="{{data.moreBtnDesc}}"
+      class="more-store log_slide_store_more"
+      data-to="{{data.to}}"
+      data-params="{{data.params}}"
+      data-user-action="{{data.userAction}}"
+      bindtap="jumper"
+      aria-label='链接：{{data.moreBtnDesc}}'
+      aria-role='link'>
+      <view class="more-icon">
+        <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtBAMAAADINP+pAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAkUExURUdwTJiYmJmZmZmZmZiYmJmZmZmZmZmZmZiYmJmZmZiYmJiYmCITlyQAAAALdFJOUwDyFeJ7RcetLluRG1l5wwAAAYBJREFUOMuFVLFKA0EQHZZEg5VFIsg1MRqDVqYwItcYIbGwCQTBUgRBucbEJpImKkTsktpGG0XSOLmYQObnvL29vb3duDjN7r6bffNmduYAhLGdzzJWvgqgW7ruELe1mgZn7igyv5OA2ZCwUiuwYr1MeKzwZ8L7XrjbadGsF5N7dJOP9kWP9iXepKy6m3L8RuTu+oNEsKa80KdrTZvniwhdv6eJ3qR2SEjrRo7uhC8PdGQkf4qcoDs1YFii2yCMmzPxtJPj9G1xOlcfunOAEgr6FCpVw2keNiKVVWwopYHPqwi74szyMb5MAxhNhDYZRqT0Bt4P320l3SFNF+COQ/akOzDaA2ccXowtG+KrQN/BZlvhPucLQJu/4H9f4Bd6Ugt6hH42QkN/nO9cz9dWnxKKZtg16hnX/0zxj+b297K9r7UfbP3DzH7r02W4PkWrLI7sT1s/G/3v4iAORFeJ2Tn8b76AVQkP+Dye6PMImZZ8Ruzog/33vAdULx/8//Aoz7/RBq8QTUsZEAAAAABJRU5ErkJggg==" class="image" lazy-load />
+      </view>
+      <view class="more-text">{{data.moreBtnDesc}}</view>
+    </view>
+  </scroll-view>
+</view>

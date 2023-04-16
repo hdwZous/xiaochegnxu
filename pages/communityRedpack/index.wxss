@@ -1,0 +1,280 @@
+.community-redpack {
+    padding-bottom: 100rpx;
+}
+
+.header {
+    height: 502rpx;
+    width: 100vw;
+    background: url("https://storage.360buyimg.com/wximg/communityRedpack/community-bg.png") center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.amount-money {
+    display: flex;
+    justify-content: center;
+    height: 77rpx;
+    line-height: 77rpx;
+    font-size: 104rpx;
+    font-family: JDDJ-1;
+    font-weight: 400;
+    color: #FD3F42;
+    padding-top: 194rpx;
+}
+
+.unit {
+    height: 48rpx;
+    font-size: 65rpx;
+    position: relative;
+    top: 18rpx;
+}
+
+.header-tips {
+    position: absolute;
+    right: 0;
+    top: 292rpx;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 24rpx 0px 0px 24rpx;
+    padding-left: 29rpx;
+    height: 47rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tips-item {
+    font-size: 22rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FFF;
+    height: 47rpx;
+    line-height: 47rpx;
+    padding-right: 10rpx;
+}
+
+.tips-wrapper {
+    animation: roll 3s infinite;
+    position: relative;
+}
+
+.withdrawal-button {
+    width: 494rpx;
+    height: 104rpx;
+    margin: 160rpx auto 0;
+    background: url("https://storage.360buyimg.com/wximg/storewin/tixian.png") center no-repeat;
+    background-size: cover;
+}
+
+.disable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("https://storage.360buyimg.com/wximg/communityRedpack/disabledButton.png") center no-repeat;
+    background-size: cover;
+    font-size: 42rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #FFF;
+}
+
+.record-button {
+    position: absolute;
+    top: 135rpx;
+    left: 533rpx;
+    height: 52rpx;
+    width: 144rpx;
+    padding: 11rpx 0 0 24rpx;
+    font-size: 22rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #FFF;
+    background: url("https://storage.360buyimg.com/wximg/communityRedpack/recordButton.png") center no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+.rule-button {
+    position: absolute;
+    top: 18rpx;
+    left: 635rpx;
+    font-size: 24rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    text-decoration: underline;
+    color: #FEF9F9;
+}
+
+.resource-wrapper {
+    white-space: nowrap;
+    padding: 50rpx 0 25rpx 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.resource-item {
+    display: inline-block;
+    height: 180rpx;
+    width: 280rpx;
+    margin-left: 15rpx;
+    border-radius: 20rpx;
+    overflow: hidden;
+}
+
+.record-msg {
+    padding: 64rpx 0;
+    width: 280rpx;
+    margin: 0 auto;
+    font-size: 26rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #8B2A04;
+    text-align: center;
+}
+
+.resource-image {
+    height: 100%;
+    width: 100%;
+}
+
+.resource-item:first-child {
+    margin-left: 36rpx;
+}
+
+.resource-item:last-child {
+    margin-right: 36rpx;
+}
+
+.records {
+    width: 678rpx;
+    min-height: 318rpx;
+    margin: 0 auto;
+    background: #FCF0EC;
+    border-radius: 24rpx;
+    padding: 34rpx;
+    box-sizing: border-box;
+}
+
+.record-title {
+    font-size: 32rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #333;
+    padding-left: 9rpx;
+}
+
+.redpack-record-item {
+    display: flex;
+    height: 102rpx;
+}
+
+.record-item-image {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    margin-top: 19rpx;
+    box-sizing: border-box;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.record-item-detail {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 21rpx 6rpx 21rpx 19rpx;
+    border-bottom: 1rpx dashed rgba(206, 206, 206, 0.3);
+}
+
+.item-nickname {
+    width: 208rpx;
+    font-size: 24rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-time {
+    font-size: 24rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #999;
+}
+
+.item-amount {
+    font-size: 26rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #870E02;
+}
+
+@keyframes roll {
+    0% {
+        top: 0
+    }
+
+    50% {
+        top: -47rpx;
+    }
+
+    100% {
+        top: -94rpx;
+    }
+}
+
+.subscribe-message-wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+}
+
+.subscribe-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    top: 20%;
+    z-index: 2000;
+}
+
+.subscribe-icon {
+    height: 131rpx;
+    width: 104rpx;
+}
+
+.subscribe-text {
+    padding-left: 24rpx;
+    font-size: 40rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.text-flex {
+    display: flex;
+    padding-bottom: 10rpx;
+}
+
+.text-sp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110rpx;
+    height: 50rpx;
+    background: #4BC755;
+    line-height: 50rpx;
+    margin: 0 18rpx;
+    border-radius: 5rpx;
+}

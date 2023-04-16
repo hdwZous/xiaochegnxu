@@ -1,0 +1,44 @@
+<view class="wrap" wx:if="{{actPrice}}">
+  <slot></slot>
+  <view class="store-name ">{{storeName}}</view>
+  <view>
+    <!-- 商品 -->
+    <view class="goods flex-row" data-promotionId="{{promotionId}}" data-storeId="{{storeId}}" data-orgCode="{{orgCode}}" data-skuId="{{skuId}}" bindtap='goGoodDetail'>
+      <view class="image flex-none">
+        <image class="img" mode="aspectFill" src="{{skuImgUrl}}"></image>
+        <view class="num flex-none">{{totalMembers}}</view>
+      </view>
+      <view class="info flex-auto flex-col">
+        <view class="case flex-col ">
+          <view class="name flex-auto ellipsis2">{{skuName}}</view>
+          <view class="flex-row flag">
+            <view wx:if="{{groupType==3}}" class="pre-flag flex-none">预售团</view>
+            <view wx:if="{{groupMode==1}}" class="deliver-to-leader-flag flex-none">团长代收</view>
+          </view>
+        </view>
+        <view class="price_case flex-row">
+          <view class="promotion flex-none">
+            <text class="symbol">￥</text>
+            <text class="money">{{actPrice}}</text>
+          </view>
+          <view class="base flex-none">
+            ￥
+            <text>{{basicPrice}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="product-price border-top flex-col" wx:if="{{productPrice!=null}}">
+      <view class="flex-row product-price-line" wx:for="{{productPrice}}" wx:for-item="price" wx:key="key" wx:for-index="index" style="margin-top:{{index!=0?'10rpx':0}} ">
+        <view class="flex-none">{{price.title||price.name||""}}</view>
+        <view class="flex-auto text-right">{{price.value}}</view>
+      </view>
+    </view>
+    <!-- 实付金额 -->
+    <view class="amount border-top" wx:if="{{price}}">
+      <text>实付金额</text>
+      <text>￥</text>
+      <text class="price">{{price}}</text>
+    </view>
+  </view>
+</view>

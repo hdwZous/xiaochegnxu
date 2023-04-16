@@ -1,0 +1,76 @@
+/* pages/order/components/deliveryInfo/index.wxss */
+@import '/common/css/light.wxss';
+
+.container{
+    background: #fff;
+    border-radius: 12rpx;
+}
+.title{
+    padding:0 30rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    color:#333;
+    font-size: 32rpx;
+    border-bottom: 1px solid #F8F8F8;
+    font-weight: bold;
+    display: flex;
+}
+.item_wrap{
+    background: #fff;
+    padding: 0 30rpx;
+    color: #333;
+    border-radius: 0 0 12rpx 12rpx;
+}
+.item{
+    display: flex;
+    font-size: 28rpx;
+    background: #fff;
+    border-bottom: 1px solid #F8F8F8;
+    padding: 30rpx 0rpx;
+}
+.item:last-child{
+    border-bottom: 0;
+}
+.left{
+    min-width:140rpx;
+}
+.right{
+    margin-left: 14rpx;
+}
+.username{
+    margin-right: 10rpx;
+}
+.username,.site{
+    font-family: normal;
+}
+.order_num{
+    position: relative;
+    top:6rpx;
+    font-family: light;
+}
+.desc{
+  min-width: 400rpx;
+  padding-left: 28rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #999999;
+  line-height: 106rpx;
+}
+.dis {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.container image{
+  width: 32rpx;
+  height: 34rpx;
+}
+.contact{
+  font-size: 28rpx;
+  color: #333333;
+  margin-left: 4rpx;
+}
+.contact_con{
+  display: flex;
+  align-items: center;
+}

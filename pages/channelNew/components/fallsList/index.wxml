@@ -1,0 +1,94 @@
+<view class="container" wx:if="{{!isRefersh && !noData}}">
+  <view class="left" id="left" wx:if="{{leftList.length>0}}">
+    <view wx:for="{{leftList}}"  wx:key="index">
+      <view wx:if="{{item.type === '1'}}" class="goods-wrapper">
+        <goods
+          item="{{item.data}}"
+          traceId="{{traceId}}"
+          pageId="{{pageId}}"
+          prePageName="{{prePageName}}"
+          currentPageName="{{currentPageName}}"
+          buriedObj="{{recommendObj}}"
+        ></goods>
+      </view>
+      <!-- 推荐店铺 -->
+      <block wx:if="{{item.type==2}}">
+        <view class='goods-wrapper'>
+          <hot-store
+            fromPositon="channel-fallslist"
+            traceId="{{traceId}}"
+            buriedObj="{{recommendObj}}"
+            NeedExposure="{{true}}"  
+            item="{{item.data}}"
+          ></hot-store>
+        </view>
+      </block>
+      <!-- 轮播banner type:7 -->
+      <view class="cpmp_item log_feed " wx:if="{{item.type === '7'}}" >
+        <pic-swiper
+          list="{{item.data.resources}}"
+          traceId="{{traceId}}"
+          buriedObj="{{recommendObj}}"
+          pageId="{{pageId}}"
+          prePageName="{{prePageName}}"
+          currentPageName="{{currentPageName}}"
+        ></pic-swiper>
+      </view>
+      <!-- 图文宫格 type:9 -->
+      <view class="cpmp_item log_feed " wx:if="{{item.type === '9'}}" >
+        <grid-little fromPositon="channel-fallsList" list="{{item.data.resources}}" buriedObj="{{recommendObj}}" />
+      </view>
+    </view>
+  </view>
+  <view class="right" id="right" wx:if="{{rightList.length>0}}">
+    <view wx:for="{{rightList}}"  wx:key="index">
+      <view wx:if="{{item.type === '1'}}" class="goods-wrapper">
+        <goods
+          item="{{item.data}}"
+          traceId="{{traceId}}"
+          pageId="{{pageId}}"
+          fromPositon="channel-fallsList"
+          buriedObj="{{recommendObj}}"
+          prePageName="{{prePageName}}"
+          currentPageName="{{currentPageName}}"
+        ></goods>
+      </view>
+      <!-- 推荐店铺 -->
+      <block wx:if="{{item.type==2}}">
+        <view class='goods-wrapper'>
+          <hot-store 
+            fromPositon="channel-fallslist"
+            traceId="{{traceId}}"
+            buriedObj="{{recommendObj}}"
+            NeedExposure="{{true}}"  
+            item="{{item.data}}"
+          ></hot-store>
+        </view>
+      </block>
+      <!-- 轮播banner type:7 -->
+      <view class="cpmp_item log_feed " wx:if="{{item.type === '7'}}" >
+        <pic-swiper
+          list="{{item.data.resources}}"
+          traceId="{{traceId}}"
+          buriedObj="{{recommendObj}}"
+          pageId="{{pageId}}"
+          prePageName="{{prePageName}}"
+          currentPageName="{{currentPageName}}"
+        ></pic-swiper>
+      </view>
+      <!-- 图文宫格 type:9 -->
+      <view class="cpmp_item log_feed " wx:if="{{item.type === '9'}}" >
+        <grid-little fromPositon="channel-fallsList" list="{{item.data.resources}}" buriedObj="{{recommendObj}}" />
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:elif="{{noData}}" style="padding-bottom: 200rpx">
+  <new-default-v2
+    type="{{defaultType}}"
+    defaultObj="{{defaultObj}}"
+    imgSize="160"
+    topMargin="20"
+    bind:defaultBtnEvent="defaultBtnEvent"
+  ></new-default-v2>
+</view>

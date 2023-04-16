@@ -1,0 +1,37 @@
+<view class="common-search">
+  <view class="edit-box">
+    <image
+      class="edit-box__left"
+      mode="aspectFit"
+      src="https://storage.360buyimg.com/wxapp/iconsearch.png"
+    />
+    <input
+      class="edit-box__input"
+      bindconfirm="handleSearch"
+      bindinput="handleChange"
+      placeholder="{{searchPlaceholder}}"
+      focus="{{autoFocus}}"
+      value="{{searchValue}}"
+    />
+    <image
+      wx:if="{{showClearBtn}}"
+      class="edit-box__right"
+      bindtap="handleDelete"
+      mode="aspectFit"
+      src="https://storage.360buyimg.com/wximg/common/edit_delete_btn.png"
+    />
+    <!-- 占位用，以免叉号显示、隐藏造成输入框长度变化 -->
+    <image
+      wx:else
+      class="edit-box__right"
+      bindtap="handleDelete"
+      mode="aspectFit"
+    />
+  </view>
+  <text
+    class="edit-box__button"
+    size="mini"
+    type="default"
+    bindtap="handleSearch"
+  >搜索</text>
+</view>

@@ -1,0 +1,22 @@
+{
+    "navigationBarTitleText": "搜索结果",
+    "navigationBarBackgroundColor": "#f6f6f6",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "mini-cart": "../../asyncPackage/compontents/miniCart/index",
+        "add-min-controller": "/components-b/addMinControllerV1/index",
+        "spu-selector": "../../asyncPackage/compontents/spuSelector/index",
+        "newDefault": "/components/newDefaultV2/index",
+        "result-searchbox": "../components/result-searchbox/index",
+        "sort-new": "../components/sortNew/index",
+        "store-good-list": "../components/storeGoodList/index",
+        "recommend-good": "../components/recommendGood/index",
+        "category-filter": "../components/categoryFilter/index",
+        "category-filter-new": "../components/categoryFilterNew/index",
+        "back-top": "/components/backTop/index"
+      },
+      "componentPlaceholder": {
+        "spu-selector": "view",
+        "mini-cart": "/components-b/placeholdCart/index"
+      }
+ }

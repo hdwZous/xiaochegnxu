@@ -1,0 +1,26 @@
+<view class="rule-modal" bind:tap="closeModal" catchtouchmove='true'>
+    <view class="rule-wrapper" catchtap="stopBubble">
+        <view class="rule-title">
+            <view class="title-text">活动规则</view>
+        </view>
+        <scroll-view
+            class="rule-content"
+            scroll-y
+            scroll-with-animation
+            enable-flex
+        >
+            <view
+                class="rule-item"
+                wx:for="{{ruleList}}"
+                wx:for-item="item" 
+                wx:for-index="index"
+            >
+                {{ item }}
+            </view>
+        </scroll-view>
+        <view class="close-button-wrapper" bindtap="closeModal">
+            <view class="dj_icon ts_close close-button"></view>
+        </view>
+    </view>
+</view>
+  

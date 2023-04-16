@@ -1,0 +1,31 @@
+<view class="suit-item-wrapper ep_suit-good" 
+      data-item="{{pro}}" 
+      data-sku-id="{{pro.skuId}}" 
+      data-user-action="{{pro.userAction}}" 
+      data-store-id="{{floor.params.storeId}}" 
+      data-org-code="{{floor.params.orgCode}}" 
+      data-trace-id="{{traceId}}" 
+      data-page-id="{{buriedObj.pageIdFirstPage}}"
+      data-current-page-name="{{buriedObj.currentPageName}}"
+      data-pre-page-name="{{buriedObj.prePageName}}"
+      bindtap="goDetail">
+  <view class='pro-pic'>
+    <webp-img webp-img="img" src="{{pro.imageUrl}}" mode="widthFix" needOverlay="{{true}}" skuName="{{pro.skuName}}"></webp-img>
+    <view class="pro-sale-slogan" aria-hidden="true">
+      <text>x</text>
+      <text class="pro-num">{{pro.skuCount}}</text>
+    </view>
+    <!-- 冷冻or冷藏 -->
+    <view class='freeze-wrap' aria-hidden="true">
+      <freeze-tag topLeftCornerTag="{{pro.topLeftCornerTag}}" />
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="pro-title" aria-role="link" aria-label="{{pro.skuName}}">
+      <view class='pro-logo' wx:if="{{pro.skuNameTag &&  pro.skuNameTag.iconText}}" style="color: {{pro.skuNameTag.iconTextColorCode}};background: linear-gradient(135deg, {{pro.skuNameTag.startColorCode}} 0%,  {{pro.skuNameTag.endColorCode}} 100%);">
+        {{pro.skuNameTag.iconText}}
+      </view>
+      {{pro.skuName}}
+    </view>
+  </view>
+</view>

@@ -1,0 +1,96 @@
+
+.store-rec-item {
+  width: 164rpx;
+  height: 286rpx;
+  background-color: #fff;
+  padding-bottom: 20rpx;
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-left: 8rpx;
+  flex-shrink: 0;
+}
+.store-rec-item1 {
+  width: 152rpx;
+  height: 286rpx;
+  background-color: #fff;
+  padding-bottom: 20rpx;
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+
+.store-rec-img-box {
+  width: 100%;
+  height: 164rpx;
+  border-radius: 8rpx 8rpx 0 0;
+  position: relative;
+}
+.store-rec-img-1 {
+  width: 100%;
+  height: 100%;
+}
+.store-rec-tag-1 {
+  max-width: 95%;
+  /* max-width: 144rpx; */
+  /* width: 106rpx; */
+  height: 32rpx;
+  color: #FFF;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 4rpx;
+  position: absolute;
+  left: 8rpx;
+  bottom: 0;
+  padding: 0 4rpx;
+  box-sizing: border-box;
+}
+.store-rec-img-box .store-rec-freeze-wrap {
+  position: absolute;
+  left: 4rpx;
+  top: 4rpx;
+}
+.store-rec-freeze-wrap .store-rec-component-tag {
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 32rpx;
+  height: 32rpx;
+  padding: 0 6rpx;
+  border-radius: 4rpx;
+  font-weight: 400;
+  display: flex;
+  align-items: center
+}
+.store-rec-freeze-wrap .store-rec-freeze-icon {
+  width: 18rpx;
+  height: 21rpx;
+}
+.store-rec-sku-name {
+  position: relative;
+  width: 136rpx;
+  height: 64rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  margin-top: 12rpx;
+  padding-left: 8rpx;
+  padding-right: 8rpx;
+  color: #333;
+  word-break: break-all;
+}
+.store-rec-price {
+  position: relative;
+  font-size: 24rpx;
+  font-family: regular;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+}
+.store-rec-add-cart {
+  position: absolute;
+  right: 16rpx;
+  bottom: 12rpx;
+}

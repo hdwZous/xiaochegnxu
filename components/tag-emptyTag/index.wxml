@@ -1,0 +1,6 @@
+ <view aria-hidden="true" 
+       wx:if="{{tag}}" 
+       class="pro-sale-slogan" 
+       style="background: linear-gradient(to bottom right, {{tag.startColorCode}} 0%,{{tag.endColorCode}} 100%);">
+   {{tag.iconText}}
+ </view>

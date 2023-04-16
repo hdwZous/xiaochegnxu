@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "barrage-move-view": "./barrageView/index"
+  }
+}

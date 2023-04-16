@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "envelopes-component": "../../../components/envelopesComponentNew/index"
+  }
+}

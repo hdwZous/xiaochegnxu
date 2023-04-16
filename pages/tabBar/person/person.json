@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "",
+    "initialRenderingCache": "static",
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": false,
+    "backgroundColor":"#FAFAFA",
+    "usingComponents": {
+      "feeds": "./components/feeds/index",
+      "add-mp":"/components-b/addMp/index",
+      "back-top": "/components/backTop/index"
+    },
+    "componentPlaceholder": {
+    }
+}

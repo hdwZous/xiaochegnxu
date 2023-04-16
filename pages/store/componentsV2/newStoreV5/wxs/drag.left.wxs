@@ -1,0 +1,134 @@
+var startY = 0, diff = 0;
+var y,//滑动区距离顶部的高度
+  touchTop,//左侧是否滑动到了顶部
+  position = "bottom",//默认在下面
+  showCoupon = false, //展示优惠券标
+  navHeight; // 滑动区还原时距离顶部的距离
+var moveDistance = 0;//移动的距离
+
+function touchstart(event, ins) {
+  var touch = event.touches[0] || event.changedTouches[0]
+  var target = ins.selectComponent('.drag')
+  startY = touch.pageY
+  //赋值
+  y = event.currentTarget.dataset.y
+  navHeight = event.currentTarget.dataset.navHeight;
+  touchTop = event.currentTarget.dataset.touchTop
+  moveDistance = 0 //重置移动距离
+  position = target.hasClass('position_bottom') ? 'bottom' : 'top'
+}
+
+function touchmove(event, ins) {
+  var touch = event.touches[0] || event.changedTouches[0]
+  var pageY = touch.pageY
+  touchTop = event.currentTarget.dataset.touchTop
+  moveDistance = pageY - startY
+  //向下滚动
+  if (moveDistance > diff) {
+    //在顶部
+    if (position == 'top') {
+      if (touchTop) {
+        return false
+      }
+      return true
+    }
+    //在底部
+    if (position == 'bottom') {
+      return true
+    }
+    return true
+  }
+  // //向上滚动
+  if (moveDistance < diff) {
+    //当前位置不在顶部的时候透传
+    if (position == 'top') {
+      return true
+    } else {
+      return false
+    }
+  }
+}
+
+function touchend(event, ins) {
+  touchTop = event.currentTarget.dataset.touchTop
+  var target = ins.selectComponent('.drag')
+  var navTarget = ins.selectComponent(".navigate_box");
+  var mainBoxTarget = ins.selectComponent(".main_box");
+  //向下滚动
+  if (moveDistance > diff) {
+    //位置在顶部
+    if (position == 'top') {
+      //分类在顶部
+      if (touchTop) {
+        target.removeClass('position_top')
+        navTarget.removeClass("position-top");
+        target.addClass('position_bottom')
+        navTarget.addClass("position-bottom");
+        // target.setStyle({
+        //     transform: 'translateY(0px)'
+        // })
+        mainBoxTarget.setStyle({
+          transform: "translateY(" + navHeight + "px)",
+        });
+        ins.callMethod("refreshShowCoupon", {
+          showCoupon: false,
+          navBackColor: "white",
+        });
+        showCoupon = false
+        position = 'bottom'
+        return false
+      }
+      return true
+    }
+    //位置在底部
+    else if (position == 'bottom') {
+      //是否展示优惠券的标
+      if (showCoupon) {
+        // target.setStyle({
+        //     transform: 'translateY(0px)'
+        // })
+        mainBoxTarget.setStyle({
+          transform: "translateY(" + navHeight + "px)",
+        });
+        ins.callMethod("refreshShowCoupon", {
+          showCoupon: false,
+          navBackColor: "white",
+        });
+        showCoupon = false
+        return false
+      }
+      return true
+    }
+  }
+  //向上滚动
+  if (moveDistance < diff) {
+    if (position == 'top') {
+      return true
+    } else if (position == 'bottom') {
+      target.removeClass('position_bottom')
+      navTarget.removeClass("position-bottom");
+      target.addClass('position_top')
+      navTarget.addClass("position-top");
+      // target.setStyle({
+      //     transform: 'translateY(-' + y + 'px)'
+      // })
+      mainBoxTarget.setStyle({
+        transform: "translateY(-" + y + "px)",
+      });
+      console.log('ttttttt====>', 'translateY(-' + y + 'px)')
+      ins.callMethod("refreshShowCoupon", {
+        showCoupon: true,
+        navBackColor: "black",
+      });
+      showCoupon = true
+      position = 'top'
+      return false;
+    }
+  }
+}
+
+module.exports = {
+  touchstart: touchstart,
+  touchmove: touchmove,
+  touchend: touchend,
+}

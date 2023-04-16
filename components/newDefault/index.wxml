@@ -1,0 +1,28 @@
+<view style="{{height? 'min-height: 40vh':'min-height: 80vh'}}" class="default flex-col">
+  <block wx:if="{{src}}">
+    <image class="net_error {{type==0?'loading':''}}" src="{{src}}"></image>
+  </block>
+  <block wx:if="{{type!=0}}">
+    <rich-text wx:if="{{tips}}" class="text" nodes="{{tips}}"></rich-text>
+    <rich-text  wx:if="{{subtips}}" class="subtext" nodes="{{subtips}}"></rich-text>
+    <block wx:if="{{btnType}}">
+      <button  class="btn" open-type="{{btnType}}">{{btnText}}</button>
+    </block>
+    <block wx:else>
+     <view class="box d-flex justify-content-center" >
+        <view 
+          wx:if="{{btnText}}" 
+          bindtap="dealDefault" 
+          class="btn {{fromsource == 'home' ? 'main' : ''}}">
+          {{btnText}}
+        </view>
+        <view 
+            class="btn " 
+            wx:if="{{fromsource == 'home'}}"
+            bindtap="goToAddress">
+            手动选择地址
+        </view>
+      </view>
+    </block>
+  </block>
+</view>

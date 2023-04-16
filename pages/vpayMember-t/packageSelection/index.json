@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "tip": "../components/Tip/index",
+    "skeleton": "./components/skeleton/index",
+    "package-item": "./components/packageItem/index",
+    "none-data": "./components/none/index",
+    "interests": "./components/interests/index",
+    "bottom-btn-plus-wrap-new": "../components/bottomBtnPlusWrapNew/index",
+    "pay-list": "./components/payList/index",
+    "rights-area": "../home/components/rightsArea/index",
+    "h-5-pay-result": "./components/h5PayResult/index",
+    "pop": "../../../common-mp/components/Pop/index"
+  },
+  "navigationBarTitleText": "开通会员",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

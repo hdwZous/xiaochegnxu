@@ -1,0 +1,47 @@
+<view class="omd_wrap d-flex flex-column align-items-center justify-content-center" wx:if="{{show}}"> 
+  <view class="content_box d-flex flex-column align-items-center">
+    <view class="content_title">
+      <block wx:for="{{info.topTitle}}" wx:key="title">
+        <text style="color: {{item.color}}">{{item.text}}</text>
+      </block>
+    </view>
+    <!-- 门店页调用这个弹窗不展示这个描述 -->
+    <view class="content_desc" wx:if="{{fromSource != 'storeInfo'}}">{{info.title}}</view>
+    <!-- 门店页调用这个弹窗高度不同 -->
+    <view class="coupon_wrap {{fromSource == 'storeInfo' ? 'coupon_wrap_height1' : 'coupon_wrap_height2'}}" >
+      <block wx:for="{{info.popUpBenefitInfoList}}" wx:key="items">
+        <view class="coupon-box d-flex flex-row">
+          <view class="coupon_left">
+            <view class="left_top_icon" wx:if="{{item.leftTagText}}">{{item.leftTagText}}</view>
+            <view class="price ellipsis {{!item.quotaUnit ? 'small' : ''}}"><text class="price-symbol" wx:if="{{item.quotaUnit}}">{{item.quotaUnit}}</text>{{item.quota}}</view>
+          </view>
+          <view class="coupon_right d-flex flex-row align-items-center">
+            <view class="right_detail">
+              <view class="right_des">{{item.condition}}</view>
+              <view class="right_tag_box" wx:if="{{item.centerTagText}}">
+                <view class="tag shin-border-wrap">
+                  {{item.centerTagText}}
+                  <view class="shin-border-box" style="border-color: #FF9191;border-radius: 8rpx"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- <image class="open-btn log_freight_member" 
+           src="{{openMemberBtnUrl}}" 
+           bindtap="openMbmber" 
+           data-store-id="{{storeId}}" 
+           data-type="freightMember" 
+           data-btnName="freeOpen" /> -->
+    <view  class="open-btn log_freight_member"
+           bindtap="openMbmber" 
+           data-store-id="{{storeId}}" 
+           data-type="freightMember" 
+           data-btnName="freeOpen">
+           {{info.buttonName}}</view>
+    <view class="open-agreement" bindtap="goagrement" data-to="{{info.to}}" data-params="{{info.params}}" >{{info.bottomDesc}}<view class="txt">{{info.toName}}</view></view>
+  </view>
+  <image class="close_icon" src="https://storage.360buyimg.com/wximg/bargain/close.png" bindtap="close" />
+</view>

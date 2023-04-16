@@ -1,0 +1,167 @@
+<block wx:if="{{!showEmpty}}">
+    <!-- 返回app -->
+    <back-to-app />
+    <view class="pageCont flex-col" style="height:{{isIphoneX?'96vh':'100vh'}}">
+        <view class='goodCont flex-auto'>
+            <scroll-view class="content" scroll-y>
+                <!-- 轮播图 -->
+                <good-img goodImg="{{groupDetailData.bigImgUrls}}" />
+                <!-- 商品价格，倒计时 -->
+                <view class='priceTime flex-row'>
+                    <!-- 价格 -->
+                    <view class='priceDetail flex-row'>
+                        <view class='nowpPrice'>
+                            <label>￥</label>
+                            <text>{{groupDetailData.actPrice}}</text>
+                        </view>
+                        <view class='oldPrice flex-col'>
+                            <view class='old'>
+                                <label>￥</label>
+                                <text>{{groupDetailData.basicPrice}}</text>
+                            </view>
+                            <view class='groupNum'>{{groupDetailData.joinNumDesc}}</view>
+                        </view>
+                    </view>
+                    <view class='verLine'></view>
+                    <!-- 倒计时 -->
+                    <view class='cutTimeCont flex-col'>
+                        <view class='timeTxt'>距活动结束仅剩</view>
+                        <view wx:if="{{!actTime.timeEnd}}" class="cutdown-warp flex-row">
+                            <text>{{actTime.day+"天"}}</text>
+                            <label>:</label>
+                            <text>{{actTime.hour}}</text>
+                            <label>:</label>
+                            <text>{{actTime.minute}}</text>
+                            <label>:</label>
+                            <text>{{actTime.second}}</text>
+                        </view>
+                        <view wx:else class='timeTxt'>活动结束</view>
+                    </view>
+                </view>
+                <!-- 店铺名称商品名称 -->
+                <good-store orgName="{{groupDetailData.orgName}}" logoUrl="{{groupDetailData.logoUrl}}" totalMembersDesc="{{groupDetailData.totalMembersDesc}}" skuName="{{groupDetailData.skuName}}" />
+                <!-- 参加拼团 -->
+                <view class='joinGroup' wx:if="{{recommendGroupInfo.groupId}}">
+                    <view class='headTitle'>{{"巧了！有人在拼，可直接参团。"}}</view>
+                    <view class='groupMember flex-row'>
+                        <!-- 团长 -->
+                        <view class='leadCont flex-row'>
+                            <view class='leadImg'>
+                                <image class='leader' src='{{recommendGroupInfo.imgUrl}}' />
+                                <view>团长</view>
+                            </view>
+                            <view class='groupInfo'>
+                                <view class='needNum'>
+                                    <label>差</label>
+                                    <text>{{recommendGroupInfo.leftMembers}}</text>
+                                    <label>人</label>
+                                </view>
+                                <view wx:if="{{!leftTime.timeEnd}}" class='timeLeft'>
+                                    剩余{{leftTime.hour+":"+leftTime.minute+":"+leftTime.second}}
+                                </view>
+                                <view wx:else class='timeLeft'>活动结束</view>
+                            </view>
+                        </view>
+                        <!-- 去参团 -->
+                        <view class='goGroup {{!leftTime.timeEnd?"":"goGrouNo"}}' bindtap='goGroup'>
+                            去参团
+                        </view>
+                    </view>
+                </view>
+                <!-- 自提拼团流程 -->
+                <view class="pregroup" wx:if="{{groupDetailData.deliveryType==1}}">
+                    <view class="pregroup-title flex-row">
+                        <view class="title">自提拼团流程</view>
+                    </view>
+                    <view class="pregroup-rule">
+                        <image src="https://storage.360buyimg.com/wximg/groupbuy/openGroup_store.png" mode="widthFix" />
+                    </view>
+                </view>
+                <!-- 非预售非团长代收拼团流程 -->
+                <view class="pregroup" wx:elif="{{groupDetailData.deliveryType==2 && groupDetailData.groupMode!=1}}">
+                    <view class="pregroup-title flex-row">
+                        <view class="title">拼团流程</view>
+                    </view>
+                    <view class="pregroup-rule">
+                        <image src="https://storage.360buyimg.com/wximg/groupbuy/openGroup_default.png" mode="widthFix" />
+                    </view>
+                </view>
+                <!-- 非预售团长代收拼团流程 -->
+                <view class="pregroup" wx:elif="{{groupDetailData.deliveryType==2 && groupDetailData.groupMode==1}}">
+                    <view class="pregroup-title flex-row">
+                        <view class="title">团长代收流程</view>
+                    </view>
+                    <view class="pregroup-rule">
+                        <image src="https://storage.360buyimg.com/wximg/groupbuy/deliver_to_leader_rule.png" mode="widthFix" />
+                    </view>
+                </view>
+                <!-- 预售非团长代收流程 -->
+                <view class="pregroup" wx:elif="{{groupDetailData.deliveryType==3 && groupDetailData.groupMode!=1}}">
+                    <view class="pregroup-title flex-row">
+                        <view class="title">预售团流程</view>
+                        <view class="pregroup-time">
+                            该批预售起始发货时间:
+                            <text class="red">{{groupDetailData.deliveryBeginTime}}</text>
+                        </view>
+                    </view>
+                    <view class="pregroup-rule">
+                        <image src="https://storage.360buyimg.com/wximg/groupbuy/presale.png" mode="widthFix" />
+                    </view>
+                </view>
+                <!-- 预售团长代收拼团流程 -->
+                <view class="pregroup" wx:elif="{{groupDetailData.deliveryType==3 && groupDetailData.groupMode==1}}">
+                    <view class="pregroup-title flex-row">
+                        <view class="title">预售团流程</view>
+                        <view class="pregroup-time">
+                            该批预售起始发货时间:
+                            <text class="red">{{groupDetailData.deliveryBeginTime}}</text>
+                        </view>
+                    </view>
+                    <view class="pregroup-rule">
+                        <image src="https://storage.360buyimg.com/wximg/groupbuy/presell_deliver_to_leader_rule.png" mode="widthFix" />
+                    </view>
+                </view>
+                <!-- 商品详情 -->
+                <view wx:if="{{groupDetailData.productDetailHtml}}" class='goodDetail'>
+                    <view class="detailCont">
+                        <view class="good_detail_Title">商品详情</view>
+                        <richtext detailInfo="{{groupDetailData.productDetailHtml}}"></richtext>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 拼团失败提示 -->
+        <view wx:if="{{!canOpenGroup||actTime.timeEnd}}" class='tips  flex-none'>
+            {{!actTime.timeEnd?groupDetailData.failReason:"活动结束"}}
+        </view>
+        <!-- 首页，一键开团 -->
+        <view class='bottomBtns flex-none flex-row'>
+            <view class='home  {{groupDetailData.vendibility!==0?"homeW":""}}' bindtap='goHome'>
+                首页
+            </view>
+            <!-- vendibility:0可售，1：不可售 -->
+            <view wx:if='{{groupDetailData.vendibility==0}}' class='originalPrice flex-col' bindtap='originalPriceBuy'>
+                <view class="price">
+                    <text>￥</text>
+                    <text class="num">{{groupDetailData.basicPrice}}</text>
+                </view>
+                <view class="mode">单独购买</view>
+            </view>
+            <view wx:if="{{isLogin}}" class='{{canOpenGroup&&!actTime.timeEnd?"startGroupYes":"startGroupNO"}} startGroup flex-auto flex-col' bindtap='startGroup'>
+                <view wx:if='{{groupDetailData.vendibility==0}}' class="price">
+                    <text>￥</text>
+                    <text class="num">{{groupDetailData.actPrice}}</text>
+                </view>
+                <view class="mode  {{groupDetailData.vendibility!==0?'modeLine':''}}">一键开团</view>
+            </view>
+            <button wx:else  class='{{canOpenGroup&&!actTime.timeEnd?"startGroupYes":"startGroupNO"}} button-cont startGroup  flex-auto  flex-col' bindtap='startGroup'>
+                <view wx:if='{{groupDetailData.vendibility==0}}' class="price">
+                    <text>￥</text>
+                    <text class="num">{{groupDetailData.actPrice}}</text>
+                </view>
+                <view class="mode  {{groupDetailData.vendibility!==0?'modeLine':''}}">一键开团</view>
+            </button>
+        </view>
+    </view>
+</block>
+<new-default wx:else type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" buriedObj="{{recommendObj}}" bind:defaultBtnEvent="onDefaultBtnEvent" fromPostion="grounpBuy-grounpBuyDetail"></new-default>

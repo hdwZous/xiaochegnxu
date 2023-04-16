@@ -1,0 +1,50 @@
+.cart-controller__wrapper {
+  height: 56rpx;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.subtract {
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://image3.imdada.cn/a0a377817aa84c66b4952f510532f1ad.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.subtract.disabled {
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/min2.png");
+}
+
+.add {
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://image3.imdada.cn/b8ac19807ab04bbe97b21150d8935409.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.add.disabled {
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/add2.png");
+}
+
+.count {
+  width: 64rpx;
+  line-height: 44rpx;
+  color: #666666;
+  font-size: 32rpx;
+  text-align: center;
+  font-family: regular;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.count.weighting {
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-size: 24rpx;
+}

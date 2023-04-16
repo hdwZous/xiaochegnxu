@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "default": "./components/default/index",
+    "rule-dia": "./components/ruleDia/index",
+    "send-coupon": "plugin://sendCoupon/send-coupon"
+  },
+  "navigationBarTitleText": "到家会员",
+  "navigationBarBackgroundColor": "#fff"
+}

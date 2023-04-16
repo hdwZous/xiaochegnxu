@@ -1,0 +1,49 @@
+<block wx:if="{{showEmpty}}">
+  <new-default type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" bind:defaultBtnEvent="onDefaultBtnEvent" />
+</block>
+<view class="container" wx:else>
+  <view class="store_header_wrap" bind:tap="handleHeaderClick">
+    <view class="header_left">
+      <view>
+        <image class="store_logo" src="{{storeSimpleInfo.storeLogo}}" />
+      </view>
+      <view>
+        <view class="store_name">{{storeSimpleInfo.storeName}}</view>
+        <view class="store_friegth">
+          <text>{{storeSimpleInfo.freightWords}}</text>
+          <text wx:if="{{storeSimpleInfo.freightDescForLine}}" style="color:rgb(153, 153, 153);text-decoration:line-through;">
+            {{storeSimpleInfo.freightDescForLine}}
+          </text>
+        </view>
+      </view>
+    </view>
+    <view class="header_right">
+      <image src="https://storage.360buyimg.com/wximg/landpage/store.png" class="store_icon" />
+    </view>
+  </view>
+  <view class="list_wrap">
+    <view
+      class="list"
+      wx:for="{{skus}}"
+      wx:key="index"
+      bind:tap="handleJump"
+      data-index="{{index}}">
+      <goods
+        item="{{item}}"
+        traceId="{{traceId}}"
+        longitude="{{longitude}}"
+        latitude="{{latitude}}"
+        recommendObj="{{recommendObj}}"
+      ></goods>
+    </view>
+    <view class="bottom-line">已经到底了</view>
+  </view>
+  <view class="footer flex-none">
+    <view class="minicart">
+      <mini-cart id="minicart" cart-skuId="{{cartSkuId}}" cart-type="{{cartType}}" store-id="{{storeId}}" org-code="{{orgCode}}" prePageId="{{recommendObj.pageIdFirstPage}}" longitude="{{longitude}}" latitude="{{latitude}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" preBuried="{{recommendObj}}" bind:miniCartWidgetEvent="onMiniCartWidgetEvent" refreshMiniCartData="{{refreshMiniCartData}}" catAnimation="{{catAnimation}}" showCart="{{showCart}}" pageSource="feedRecGoods" refPar="{{refPar}}" biPageName="feedRecGoods"></mini-cart>
+    </view>
+  </view>
+  <!-- 多规格商品 spu选择器 -->
+  <spu-selector id="spu-selector" toggle="{{toggle}}" orgCode="{{spuData.orgCode}}" storeId="{{spuData.storeId}}" skuId="{{spuData.skuId}}" spuId="{{spuData.spuId}}" transmitData="{{spuData.transmitData}}" buriedObj="{{recommendObj}}" pageId="{{recommendObj.pageIdFirstPage}}" refPar="{{refPar}}" biPageName="feedRecGoods" pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}" carNumber="{{spuData.cartNum}}"
+        showModel="{{spuData.showModel}}" weighting="{{spuData.weighting}}" bind:spuSelectorEvent="onSpuSelectorEvent"/>
+</view>

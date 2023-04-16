@@ -1,0 +1,115 @@
+<view class="ep_product-goods scroll_item flex-auto flex-row {{(item.anchoredProduct || options.anchorCateId == catId) ? 'anchored_product' : ''}} {{item.first ? 'first' : ''}}" 
+      bindtap="goToDetail" 
+      data-item="{{item}}"
+      data-user-action="{{item.userActionSku}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{buriedObj.pageIdFirstPage}}"
+      data-current-page-name="{{buriedObj.currentPageName}}"
+      data-pre-page-name="{{buriedObj.prePageName}}"
+      wx:if="{{item.skuId || item.spuId}}">
+  <!-- 左侧 -->
+  <view class="flex-none left">
+    <webp-img webp-img="sku_img" src="{{(item.showModel && item.spuImg) ? item.spuImg : item.imgUrl}}" mode="widthFix" needOverlay="{{true}}" skuName="{{item.skuName}}"></webp-img>
+    <!-- 业务标 -->
+    <view class='sky-yhe-one-business-tag'>
+      <biz-tag bizType="horizontal" businessTag="{{item.businessTag}}"/>
+    </view>
+    <view wx:if="{{!item.fixedStatus && item.skuType != 1}}" class="store_stockCount_tag" aria-label="{{item.skuName}}.已下架" aria-role='link'>
+      已下架
+    </view>
+    <view wx:if="{{item.stockCount === 0 && item.skuType != 1}}" class="store_stockCount_tag" aria-label="{{item.skuName}}.已抢光" aria-role='link'>
+      已抢光
+    </view>
+    <!-- 底部资源位  新人和仅剩几件判断-->
+    <bottom-corner-tag wx:if="{{item.bottomCornerTag && item.bottomCornerTag.type == 2}}" infos="{{item.bottomCornerTag}}" moduleId="SkuYhyOne" showHandle="{{false}}" />
+    <!-- 新人和仅剩几件判断-->
+    <view wx:elif="{{ item.stockCount <= 3 && item.stockCount>0 && item.skuType != 1 }}" class="store-sku-remain" aria-label="{{item.skuName}}.仅剩{{item.stockCount}}件" aria-role='link'>
+      仅剩
+      <text>{{item.stockCount}}</text>
+      件
+    </view>
+  </view>
+  <!-- 右侧 -->
+  <view class="flex-auto right flex-col">
+    <view class="flex-auto coupon_case">
+      <view class="name ellipsis2" aria-label="{{item.skuName}}" aria-role='link'>
+        <sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+        {{item.skuName}}
+      </view>
+      <view class='description  ellipsis' wx:if="{{item.skuDesc}}">
+        <image class='desc-icon' wx:if="{{item.skuDescIcon}}" src="{{item.skuDescIcon}}" />
+        {{item.skuDesc}}
+      </view>
+      <!-- 广告语 -->
+      <view class='description ellipsis' wx:elif="{{item.aword}}">{{item.aword}}</view>
+      <!-- 榜单 -->
+      <view wx:if="{{item.recWordsVO && item.recWordsVO.recWords}}" class='bangdan' style="background: {{item.recWordsVO.bgColor}}" data-item="{{item.recWordsVO}}" data-sku-id="{{item.skuId}}" bindtap="clickTopSku">
+        <image src="{{item.recWordsVO.leftIconUrl || 'https://storage.360buyimg.com/wximg/common/TOP.png'}}" />
+        <view class='text ellipsis' style="color: {{item.recWordsVO.fontColor}}">
+          {{item.recWordsVO.recWords}}
+        </view>
+      </view>
+      <!-- 销量和好评 -->
+      <view class="month_sales flex-row" wx:if="{{item.monthSales|| item.highOpinion}}" aria-role='link' aria-label="月售{{item.monthSales}}.{{item.highOpinion}}">
+        <view aria-hidden="true" wx:if="{{item.monthSales}}" style="margin-right:4rpx">
+          月售{{item.monthSales}}
+        </view>
+        <view aria-hidden="true" wx:if="{{item.highOpinion}}">{{item.highOpinion}}</view>
+      </view>
+      <!-- 属性 -->
+      <view style="margin-top: 8rpx" wx:if="{{item.personlizedCateAttritemList && item.personlizedCateAttritemList.length}}">
+        <goods-attribute buriedObj="{{buriedObj}}" info="{{item.personlizedCateAttritemList}}" fromPosition="store-oneInRow" optionsPos="{{options}}"></goods-attribute>
+      </view>
+      <!-- 标签 -->
+      <scroll-view class="scroll_view" scroll-x wx:if="{{item.tags && item.tags.length > 0 || (item.couponVOList && item.couponVOList.length > 0 || item.disabledTags && item.disabledTags.length)}}">
+        <view class="tags flex-row" aria-role='link' aria-label="{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}">
+          <!-- 有黑名单不可用券 -->
+          <view class="flex-none disable-tag" 
+                wx:for="{{item.disabledTags}}" 
+                wx:for-item="disabledTag" 
+                wx:key="disabledTag" 
+                wx:for-index="index" 
+                aria-hidden="true"
+                wx:if="{{item.disabledTags && item.disabledTags.length}}">
+            <disabled-tag data="{{disabledTag}}" />
+          </view>
+          <!-- 有促销标 -->
+          <block wx:for="{{item.tags}}" 
+                  wx:for-item="tagItem" 
+                  wx:for-index="index" 
+                  wx:key="tags"
+                  wx:if="{{item.tags && item.tags.length}}">
+            <!-- 有减运tab，展示减运标签 -->
+            <view class="tag flex-none" style="color: {{tagItem.strokeNameColorCode}};border: solid 2rpx {{tagItem.strokeNameColorCode}}">
+              {{tagItem.iconText}}
+            </view>
+          </block>
+          <!-- 有优惠券 -->
+          <view class="flex-none" 
+                style="margin-right:8rpx" 
+                wx:for="{{item.couponVOList}}" 
+                wx:for-item="couponItem" 
+                wx:key="couponItem" 
+                wx:for-index="index" 
+                aria-hidden="true">
+            <coupon-go-tag data="{{couponItem}}" sku-id="{{item.skuId || ''}}" org-code="{{item.orgCode || ''}}" store-id="{{item.storeId || ''}}" from="store" source="{{0}}" user-action="{{item.userActionSku}}" traceId="{{traceId}}" buriedObj="{{buriedObj}}" fromPosition="store-oneInRow" optionsPos="{{options}}" ></coupon-go-tag>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="shadow_box" wx:if="{{item.couponVOList.length+item.tags.length>3}}"></view>
+    </view>
+    <view class="price flex-col" aria-role='link' aria-label="现价{{item.majorPrice.price}}元，{{item.toHandPrice && item.toHandPrice.rightText ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' :  item.minorPrice &&  item.minorPrice.price ? '原价' + item.minorPrice.price + '元' : ''}} ">
+      <!-- major-price -->
+      <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="28rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}" />
+      <!-- minor-price  预估到手价 -->
+      <coupon-price minorPrice="{{item.minorPrice}}" toHandPrice="{{item.toHandPrice}}" />
+    </view>
+  </view>
+  <view class="add_cart_box" data-item="{{item}}" data-index="{{productIndex}}" count="{{item.incartCount}}" wx:if="{{item.showCartButton}}">
+    <add-min-controller count="{{item.showModel ? item.spuCartCount :  item.incartCount}}" skuId="{{item.skuId}}" spuId="{{item.spuId}}" orgCode="{{item.orgCode}}" storeId="{{item.storeId}}" longitude="{{longitude}}" latitude="{{latitude}}" isAddCart="{{item.isAddCart}}" floorName="productList" weighting="{{item.weighting}}" weight="{{item.cartWeight}}" userAction="{{item.userActionSku}}" biPageName="storeinfo"  addCartText="{{item.weightPriceStr}}" showType="2" pageId="{{buriedObj.pageIdFirstPage}}" currentPageName="{{buriedObj.currentPageName}}" prePageName="{{buriedObj.prePageName}}"  traceId="{{traceId}}" iconType="{{item.iconType}}" transmitData="{{item.transmitData}}" to="{{item.to}}" params="{{item.params}}" tabName="{{tabName}}" showModel="{{item.showModel}}"></add-min-controller>
+  </view>
+  <view wx:else class="go-detail-wrapper">
+    <image class='go-detail' src="https://storage.360buyimg.com/wximg/common/next_green.png" />
+  </view>
+  
+</view>

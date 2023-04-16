@@ -1,0 +1,146 @@
+<view>
+<!-- 单个商品 -->
+  <view
+    class="dd-good-item"
+    data-user-action="{{item.userActionSku}}"
+    data-page-id='{{pageId}}'
+    data-current-page-name='{{currentPageName}}'
+    data-pre-page-name='{{prePageName}}'
+    data-trace-id="{{traceId}}"
+    data-item="{{item}}"
+    data-to="{{item.to}}"
+    data-params="{{item.params}}"
+    data-user-action="{{item.userActionSku}}"
+    bindtap="jumpStore">
+    <!-- 左侧 -->
+    <view class="good-pic">
+      <image class="image" src="{{item.imgUrl}}" aria-role='link'
+              aria-label="{{item.skuName}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}.现价{{item.majorPrice.price}}元，{{item.toHandPrice && item.toHandPrice.rightText ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' :  item.minorPrice &&  item.minorPrice.price ? '原价' + item.minorPrice.price + '元' : ''}},{{item.couponVOList.length && item.couponVOList[0]['couponTagVOMap']['2'].iconText}}" />
+      <view class="logo-layer"></view>
+      <!-- 到店标 -->
+      <view class="biz_tag_search">
+        <biz-tag bizType="image" businessTag="{{item.businessTag}}"/>
+      </view>
+    </view>
+    <!-- 右侧 -->
+    <view class="good-content">
+        <view  aria-role='link' class="con-inner"
+                aria-label="{{item.skuName}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}.现价{{item.majorPrice.price}}元.{{item.toHandPrice ? item.toHandPrice.rightText  + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' : '原价' + item.minorPrice.price + '元'}},{{item.couponVOList.length && item.couponVOList[0]['couponTagVOMap']['2'].iconText}}">
+            <view class='sku-name' aria-hidden="true">
+                <view class="sku-tag" wx:if="{{item.skuNameTag}}" style="color: {{item.skuNameTag.iconTextColorCode}};background: linear-gradient(135deg, {{item.skuNameTag.startColorCode}} 0%, {{item.skuNameTag.endColorCode}} 100%);">
+                {{item.skuNameTag.iconText}}
+                </view>
+                {{item.skuName}}
+            </view>
+          
+            <view class='des' aria-hidden="true">
+                <view class="ellipsis" wx:if="{{item.storeCategoryName}}">{{item.storeCategoryName}}</view>
+                <view class="line" wx:if="{{item.businessAreaName && item.storeCategoryName}}">|</view>
+                <view class="ellipsis" wx:if="{{item.businessAreaName}}">{{item.businessAreaName}}</view>
+            </view>
+            <view style="flex: 1;min-height: 26rpx" aria-hidden="true"></view>
+
+            <view class="bottom-box">
+              <!-- 价格 & 月售数量 -->
+              <view class="flex-row price_case pos">
+                <view class="flex-auto">
+                  <view class="price-flex-row"
+                        aria-hidden="true">
+                    <!-- major-price -->
+                    <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="36rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}" />
+                    <!-- minor-price -->
+                    <view class="mg1">
+                      <coupon-price minorPrice="{{item.minorPrice}}"/>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="tagAndMore">
+                <disabled-tag
+                  wx:if="{{item.disabledTags && item.disabledTags.length > 0}}"
+                  dataItem="{{item.disabledTags}}"
+                ></disabled-tag>
+                <!-- 标签 -->
+                <block wx:if="{{item.tags.length > 0}}">
+                  <view class='flex-none tag-wrapper' wx:if="{{item.tags.length > 0}}">
+                    <view
+                      class='tag' 
+                      aria-role="text"
+                      aria-label="{{subItem.iconText}}"
+                      wx:for="{{item.tags}}" 
+                      wx:key="index" 
+                      wx:for-item="subItem" 
+                      style="color: {{subItem.strokeNameColorCode}};border: solid 2rpx {{subItem.strokeNameColorCode}}">
+                        {{subItem.iconText}}
+                    </view>
+                  </view>
+                </block>
+                <view wx:for="{{item.couponVOList}}" wx:for-item="subItem" class="dd-mgR8">
+                  <coupon-go-tag 
+                    data="{{subItem}}"
+                    sku-id="{{item.skuId || ''}}"
+                    org-code="{{item.orgCode || ''}}"
+                    store-id="{{item.storeId || ''}}"
+                    from="{{formTmp === 'store'? 'storeSearchResult':'storeListByKey'}}"
+                    traceId="{{traceId}}"
+                    user-action="{{item.userActionSku}}"
+                    currentPageName="{{currentPageName}}"
+                    prePageName="{{prePageName}}"
+                    pageId="{{pageId}}"
+                    buriedObj="{{recommendObj}}">
+                  </coupon-go-tag>
+                </view>
+              </view>
+            </view>
+        </view>
+        
+    </view>
+  </view>
+<!-- 门店信息 -->
+  <view class="dd-store-name-freight flex-row" 
+        wx:if="{{item.storeName}}"
+        aria-role='link'
+        aria-label="{{item.storeName}}{{item.freightWords}}.配送时长{{item.deliveryTime}}{{item.distance ? '.配送距离' + item.distance : ''}}"
+        data-item="{{item}}"
+        data-user-action="{{item.userActionSku}}"
+        catchtap="goStore">
+    <!-- 品牌logo -->
+    <image aria-hidden="true" class="dd-store-brand" src="{{item.storeLogo || defaultLogo}}" alt=""/>
+    <view aria-hidden='true' style="display: flex;flex-direction: column;flex: 1; max-width: 350rpx">
+      <!-- 门店名称 -->
+      <view class='dd-store-name-wrap' data-item="{{item}}" data-user-action="{{item.userActionSku}}" catchtap="goStore">
+        <view class=" dd-store-name">{{item.storeName}}</view>
+        <view class="dd-store-arrow">
+          <image src="https://storage.360buyimg.com/wxmini/cash/arrow.png"></image>
+        </view>
+      </view>
+
+      <view class='d-flex dd-mgT8' wx:if="{{item.storeStar != '-1'}}">
+      <!-- 星级评分 -->
+        <view wx:if="{{starList.length > 0}}">    
+          <view
+            class="dd-rating dd_{{starItem}}"
+            wx:for="{{starList}}"
+            wx:for-item="starItem"
+            wx:key="index"
+          ></view>
+        </view>
+        <!-- 综合评分 -->
+        <view 
+          class='dd-starGrade'
+          style="color: {{item.storeStar && item.storeStar != '0.0' ? '#ff9415' : '#999'}}"
+        >
+          {{item.storeStar && item.storeStar != "0.0" ?  item.storeStar : '暂无评价'}}
+        </view>
+      </view>
+    </view>
+    <!-- 时间、距离 -->
+    <view aria-hidden="true" class='distance-deliveryTime'>
+      <view class="d-flex">
+        <view wx:if="{{item.businessTimeStatus}}">{{item.businessTimeStatus}}</view>
+        <view wx:if="{{item.businessTimeStatus && item.distance}}" class="line">|</view>
+        <view wx:if="{{item.distance}}">{{item.distance}}</view>
+      </view>
+    </view>
+  </view>
+</view>

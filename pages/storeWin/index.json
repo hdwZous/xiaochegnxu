@@ -1,0 +1,11 @@
+{
+  "enablePullDownRefresh":false,
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "default",
+  "usingComponents": {
+	"row": "./components/row/index",
+	"subscribe": "/components/subscribe/index",
+  "new-default": "/components/newDefault/index"
+  }
+}

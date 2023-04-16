@@ -1,0 +1,33 @@
+<view class="middle-wrap">
+   <view wx:if="{{state==='modify'}}" class="modify-wrap">
+      <view class="box-title">{{title}}</view>
+      <input bindblur="updateMobile" class="box-input" type="number" focus maxlength="11" minlength='11' placeholder="{{placeholderText}}"/>
+      <view class="btn-wrap">
+         <view catchtap='complete' data-action='cancelModify' class="btn btn-cancel" style="color:{{cancelColor}}">{{cancelText}}</view>
+         <view catchtap='complete' data-action='confirmModify' class="btn btn-confirm" style="color:{{confirmColor}}">{{confirmText}}</view>
+      </view>
+   </view>
+   <view wx:if="{{state==='invalid'}}" class="invalid-wrap">
+      <view class="box-title">{{title}}</view>
+      <view class="box-text">{{text}}</view>
+      <view class="btn-wrap">
+         <view catchtap='complete' wx:for="{{btnList}}" wx:key="index" data-index='{{index}}' data-action='{{item.action}}' class="btn {{index ? 'btn-confirm' : 'btn-cancel'}}" style="color:{{item.color}}">{{item.text}}</view>
+      </view>
+   </view>
+   <block wx:if="{{state==='normal'}}">
+      <view class="middle">
+         <image class="box-img" src="{{box.imageUrl}}" mode="aspectFill"/>
+         <view class="box-tip">{{box.text1}}</view>
+         <view class="box-phone">{{box.text2}}</view>
+         <view class="btn-modify" catchtap='{{box.clickJump? "modifyPhone":""}}'>
+            {{box.text3}}
+            <text class="icon-right" wx:if="{{box.clickJump}}"></text>
+         </view>
+         <view class="btn-wrap">
+            <view catchtap='complete' data-action='call' class="btn {{item.text=='加密呼叫' ? 'btn-call': ''}}" wx:for="{{box.buttonList}}" wx:key="index">{{item.text}}</view>
+         </view>
+         <rich-text class="box-desc" nodes="{{box.desc}}"></rich-text>
+      </view>
+      <image catchtap='closeModal' class="btn-close" src="https://storage.360buyimg.com/wximg/common/home_close.png" mode="aspectFill"/>
+   </block>
+</view>

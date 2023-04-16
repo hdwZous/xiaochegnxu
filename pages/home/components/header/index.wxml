@@ -1,0 +1,84 @@
+<view class="wrap box exposure" data-user-action="{{config.userAction}}" style="padding-top: {{capsule.top+capsule.height+2 || 58}}px;background-color:{{bgActiveColor || 'linear-gradient(270deg, #00CF37 0%, #45DC6D 100%)'}};{{(!bgActiveColor && config.borderImg) ? 'background-image: url('+config.borderImg+');background-repeat: no-repeat; background-position:center bottom;background-size: 100% 100%' : ''}}">
+    <!-- title 搜索 -->
+    <view class="title_box" 
+         style="opacity: {{opacity}};padding-top: {{capsule.top-2 || 24}}px; background-color:#ffffff ;{{config.topImg ? 'background-image: url('+config.topImg+');background-repeat: no-repeat; background-position:center top;background-size: 100% auto;' : ''}}"
+         aria-hidden="{{opacity<1}}">
+        <view class="title_search flex-row" style="height:{{capsule.height+4 || 36}}px;margin-right: {{capsule.width+10}}px">
+            <view class="flex-none title_icon_search dj_icon ts_location" style="color: {{config.topImg ? '#ffffff' : '#000000'}}" bindtap="goToAddress" aria-label="切换地址" aria-role="link"></view>
+            <view class="input_box flex-auto flex-row" aria-role="link" bindtap="goToSearch"  aria-label="搜索框">
+                <view aria-hidden="true" class="flex-none dj_icon ts_search1 icon_search"></view>
+                <view aria-hidden="true" class="flex-auto " data-user-action="{{config.userAction}}">
+                    <view class="flex-auto input">{{config.searchWordList[0].searchWords}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- title 文案 -->
+    <view aria-label="京东到家" aria-role="text" class="title_box" style="padding-top: {{capsule.top-2 || 24}}px; background: transparent;opacity: {{1-opacity}};display: {{opacity === 1 ? 'none' : 'block'}}">
+        <view class="text" style="height:{{capsule.height+4}}px;line-height: {{capsule.height+6}}px">
+            京东到家
+        </view>
+    </view>
+    <!-- location -->
+    <view class="location flex-row">
+        <view class="flex-average location_left log_address" bindtap="goToAddress">
+            <view class="location_txt ellipsis" aria-label="当前地址{{poi}}" aria-role="link">
+                {{poi}}
+                <view class="icon_location1 dj_icon ts_location"></view>
+                <view class="icon_arrow dj_icon ts_arrow_down"></view>
+            </view>
+        </view>
+        <view class="flex-average location_right flex-row">
+            <!-- 顶部大图 -->
+            <view 
+                class="aaa ad_pos exposure" 
+                wx:if="{{ceilingAnimationConfig.bigImgUrl}}"
+                bindtap="goToBigImg"
+                data-user-action="{{ceilingAnimationConfig.userAction}}"
+                data-item="{{ceilingAnimationConfig}}"
+            >
+                 <image class="img " src="{{ceilingAnimationConfig.bigImgUrl ? ceilingAnimationConfig.bigImgUrl: 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" ></image> 
+            </view>
+            <view class="dj_icon ts_announcement icon_announcement " bindtap="goToLicense" aria-role="link" aria-label="平台政策及协议"></view>
+        </view>
+    </view>
+    <!-- search -->
+    <view class="search " 
+          bindtap="goToSearch" 
+          aria-role="link"  
+          aria-label="{{config.searchWordList && config.searchWordList.length>0 ? '当前搜索词' + config.searchWordList[0].searchWords : '搜索框'}}" >
+        <view class="input_box flex-row" aria-hidden="true">
+            <view class="flex-none dj_icon ts_search1 icon_search"></view>
+            <view class="flex-auto input" wx:if="{{config.searchWordList && config.searchWordList.length>0}}">{{config.searchWordList[0].searchWords}}</view>
+        </view>
+    </view>
+    <!-- 热词 -->
+    <view class="hot_words_wrap" wx:if="{{config.recommendKeyList && config.recommendKeyList.length>0}}" aria-label="搜索热词,共{{config.recommendKeyList.length}}个" >
+        <scroll-view 
+            class="" 
+            scroll-x="true" 
+            scroll-with-animation="true" 
+            scroll-top="0">
+            <view class="hot_words_case flex-row">
+                <block 
+                    wx:for="{{config.recommendKeyList}}" 
+                    wx:for-item="item" 
+                    wx:for-index="index" 
+                    wx:key="item">
+                    <view 
+                        class="hot_words_case_item home_header flex-none" bind:tap="clickHotWords" 
+                        data-item="{{item}}" 
+                        data-user-action="{{item.userAction}}" 
+                        data-trace-id="{{pageDataTraceId}}"
+                        data-page-id="{{buriedObj.pageIdFirstPage}}"
+                        data-current-page-name="{{buriedObj.currentPageName}}"
+                        data-pre-page-name='{{buriedObj.prePageName}}'
+                        aria-role="link" 
+                        aria-label="推荐搜索词{{item.recommendKey}}">
+                        {{item.recommendKey}}
+                    </view>
+                </block>
+            </view>
+        </scroll-view>
+    </view>
+</view>

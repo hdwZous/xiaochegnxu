@@ -1,0 +1,21 @@
+<view class="notes-wrapper">
+  <floor-layout title="{{title}}" enable-footer-slot="{{ruleList.length > limit && limit < 99}}">
+    <view class="notes__container" slot="content">
+      <block wx:for="{{ruleList}}" wx:for-item="rule" wx:key="id">
+        <view class="notes__item" wx:if="{{index < limit}}">
+          <view aria-role="text" aria-label="{{rule.name}}" class="notes__name">{{rule.name}}</view>
+          <view class="notes__texts">
+            <block wx:for="{{rule.ruleInfoList}}" wx:key="text" wx:for-item="item">
+              <view aria-role="button" aria-label="{{item.text}}" class="notes__text {{item.popupInfo ? 'notes__text--clickable' : ''}}" data-popup-info="{{item.popupInfo}}" bindtap="showDetailHtml">
+                {{item.text}}
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view aria-hidden="{{!(ruleList.length > limit && limit < 99)}}" class="notes__footer" slot="footer">
+      <view aria-role="button" aria-label="查看更多" class="notes__more" bindtap="showMore">查看更多</view>
+    </view>
+  </floor-layout>
+</view>

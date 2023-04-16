@@ -1,0 +1,89 @@
+
+<view wx:if="{{!isOpenAccessibility}}"
+      class="content {{showPop ? 'show_cont':'hide_cont'}}"
+      catchtouchmove="true">
+<!-- 是超区的头部 -->
+<block wx:if="{{popType == 1}}">
+  <over-step-top mainTitle="{{mainTitle}}" subtitle="{{subtitle}}" poi="{{poi}}" isLogin="{{isLogin}}" bind:popEvent="popEvent" />
+</block>
+<!-- 休息中或者控单的头部 -->
+<view wx:if="{{popType == 2 || popType == 3}}" class='blank'>
+  <view class="close_icon" bindtap="handleCloseOverHalf" aria-label="关闭弹窗" aria-role='button'></view>
+</view>
+<scroll-view scroll-with-animation="{{true}}" 
+             scroll-y="{{true}}"
+             style="height: 100%">
+   <!-- 休息中和控单的头部 -->
+  <block wx:if="{{popType == 2 || popType == 3}}">
+    <rest-top wx:if="{{!showDefault}}" mainTitle="{{mainTitle}}" subtitle="{{subtitle}}" imageUrl="https://storage.360buyimg.com/wximg/common/errorbar_icon_noclosedV1.png" bind:popEvent="popEvent" />
+  </block>
+  <!-- 门店列表 -->
+  <view style="padding-top: {{paddingTop}}rpx" wx:if="{{!showDefault}}">
+    <view class="store-wrap" wx:if="{{sameBrandStoreList.storeList && sameBrandStoreList.storeList.length > 0}}">
+      <view class="list_title" aria-label="{{sameBrandStoreList.tips}}" aria-role='text'>
+        {{sameBrandStoreList.tips  || ''}}
+      </view>
+      <view wx:for="{{sameBrandStoreList.storeList}}" 
+            wx:for-index="index" 
+            wx:for-item="item" 
+            wx:key="item"
+            class="store-item-wrap">
+        <store-item item="{{item}}" 
+                    buriedObj="{{recommendObj}}"
+                    traceId="{{currentTraceId}}"
+                    noNeedExposure="{{true}}"
+                    options="{{options}}"
+                    fromWherePosition="outRange" />
+      </view>
+    </view>
+    <view class="store-wrap" wx:if="{{nearbyStoreList.storeList && nearbyStoreList.storeList.length > 0}}"
+          >
+      <view class="list_title sub" aria-label="{{nearbyStoreList.tips}}" aria-role='text'>
+        {{nearbyStoreList.tips  || ''}}
+      </view>
+      <view wx:for="{{nearbyStoreList.storeList}}" 
+             wx:for-index="index" 
+             wx:for-item="item"
+             wx:key="item"
+             class="store-item-wrap">
+        <store-item item="{{item}}" 
+                    buriedObj="{{recommendObj}}"
+                    traceId="{{currentTraceId}}"
+                    noNeedExposure="{{true}}"
+                    options="{{options}}"
+                    fromWherePosition="outRange" />
+      </view>
+    </view>
+    <view style="height: 40rpx"></view>
+  </view>
+  <!-- 空白页 -->
+  <view wx:else class="default-wrap" style="background: {{default.bgColor}}">
+    <view class="default-content">
+      <image class="no_data_img" wx:if="{{default.src}}" src="{{default.src}}" aria-label="图片" aria-role='img'  />
+      <view class="default-title" wx:if="{{default.title}}">{{default.title}}</view>
+      <view class="default-subtitle" wx:if="{{default.subTitle}}">{{default.subTitle}}</view>
+      <view class="no_data_btn" wx:if="{{default.btnText}}" bindtap="handleCloseOverHalf" aria-label="知道了" aria-role='button'>
+        {{default.btnText}}
+      </view>
+    </view> 
+  </view>
+</scroll-view>
+</view>
+<!-- 蒙层 -->
+<view class="bg" 
+      wx:if="{{showPop && !isOpenAccessibility}}" 
+      catchtouchmove="true"  
+      bindtap="handleCloseOverHalf">
+</view>
+<!-- 选择地址弹框 -->
+<block wx:if="{{showAddressPop}}">
+  <select-address 
+      isShow="{{showAddress}}" 
+      storeId="{{storeId}}"
+      bind:selectdAddressOver="selectdAddressOver" 
+      bind:handleCloseStoreAddres="handleCloseStoreAddres"
+      id="select-address"
+      options="{{options}}"
+      pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}">  
+  </select-address>
+</block>

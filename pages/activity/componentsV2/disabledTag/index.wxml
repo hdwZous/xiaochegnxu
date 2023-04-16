@@ -1,0 +1,7 @@
+<view class="disabledTags">
+  <view class="disabledTags_warp" style="border-color: {{dataItem[0].strokeColorCode}};background-color: {{dataItem[0].codeColor}}">
+    <view class="disabledTags_before" style="border-color: {{dataItem[0].strokeColorCode}}"></view>
+    <view class="disabledTags_after" style="border-color: {{dataItem[0].strokeColorCode}}"></view>
+    <view class="disabledTags_text" style="color: {{dataItem[0].iconTextColorCode}}">{{dataItem[0].iconText}}</view>
+  </view>
+</view>

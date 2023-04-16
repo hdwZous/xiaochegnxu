@@ -1,0 +1,17 @@
+<view class="module_box d-flex flex-row justify-content-between">
+  <view class="mb_title">{{infos.title}}</view>
+  <view class="d-flex flex-row align-items-center" bindtap="getCoupon" data-status="{{infos.data.arrowStatus}}">
+    <text-list infos="{{infos.data.discountMoneyText.textItemList}}"></text-list>
+    <view wx:if="{{infos.data.arrowStatus==1}}" class="dj_icon ts_next" style="margin-top:2rpx"></view>
+  </view>
+</view>
+<coupon-layer 
+  show="{{showLayer}}"
+  infos="{{infos}}"
+  isIpx="{{isIPX}}"
+  bgType="{{bgType}}"
+  storeId="{{storeId}}"
+  orderPageId="{{orderPageId}}"
+  buriedObj="{{buriedObj}}"
+>
+</coupon-layer>

@@ -1,0 +1,43 @@
+<view wx:if="{{showEmpty}}">
+  <view class="header_wrap">
+    <view class="detail_header1" style="padding-top: {{capsule.top}}px;">
+      <view class="flex-row head_title" style="height: {{capsule.height}}px">
+        <view class="ellipsis" style="padding: 0 {{capsule.width}}px 0 76rpx" aria-label="{{title}}">
+          京东到家
+        </view>
+        <view aria-role='link' aria-label="返回" class="nav_close" bind:tap="closeCurrentPage"></view>
+      </view>
+    </view>
+    <view class="close_active" bind:tap="closeCurrentPage" wx:if="{{opacity<0.5}}" style="margin-top: {{capsule.top/2-5}}px;opacity: {{1-opacity}}" aria-role="link" aria-label="返回"></view>
+  </view>
+  <view style="padding-top: 100rpx">
+    <new-default type="{{defaultType}}" defaultObj="{{defaultObj}}" bind:defaultBtnEvent="onDefaultBtnEvent" />
+  </view>
+</view>
+<view wx:else class="log_container" catchtap="elementTracker">
+  <!-- 头部导航 -->
+  <view class="header_wrap">
+    <view class="detail_header" style="padding-top: {{capsule.top}}px;opacity: {{opacity}}" aria-hidden="{{opacity <= 0.3}}">
+      <view class="flex-row head_title" style="height: {{capsule.height}}px">
+        <view class="ellipsis" style="padding: 0 {{capsule.width}}px 0 76rpx" aria-label="{{title}}">
+          {{title}}
+        </view>
+        <view aria-role='link' aria-label="返回" class="nav_close" bind:tap="closeCurrentPage"></view>
+      </view>
+    </view>
+    <view class="close_active" bind:tap="closeCurrentPage" wx:if="{{opacity<0.5}}" style="margin-top: {{capsule.top/2-5}}px;opacity: {{1-opacity}}" aria-role="link" aria-label="返回"></view>
+  </view>
+  <!-- 渲染各楼层 -->
+  <view class="floor-wrapper">
+    <block wx:for="{{floors}}" wx:key="type" wx:for-item="item">
+      <floor type="{{item.type}}" info="{{item.data}}" config="{{config}}" traceId="{{traceId}}" buriedObj="{{recommendObj}}" />
+    </block>
+  </view>
+  <!-- 立即购买 -->
+  <view class="details__bottom">
+    <button class="details__buy" style="background: linear-gradient(90deg, {{bottomButton.bgColorStart}}, {{bottomButton.bgColorEnd}}); color: {{bottomButton.textColor}};" bindtap="onPurchase" disabled="{{bottomButton.action == -1}}" data-user-action="{{bottomButton.userAction}}">
+      {{bottomButton.name}}
+    </button>
+  </view>
+</view>
+<popup title="{{popupInfo.title}}" html="{{popupInfo.html}}" showPopup="{{showPopup}}" bindclose="onPopupClose" />

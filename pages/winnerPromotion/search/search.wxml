@@ -1,0 +1,68 @@
+<view
+  class="wrapper"
+  catchtap="elementTracker"
+>
+  <search-box
+    searchKey="{{searchKey}}"
+    bind:search="handleInputSearch"
+  ></search-box>
+  <view class="keywords-box">
+    <!-- 搜索历史 -->
+    <view
+      class="search-group"
+      wx:if="{{searchHistories.length > 0}}"
+    >
+      <view class="title">
+        <text>搜索历史</text>
+        <text
+          class="clear"
+          catchtap="handleClearHistories"
+        >清除搜索历史</text>
+      </view>
+      <view class="words">
+        <view
+          class="item"
+          wx:for="{{searchHistories}}"
+          wx:key="index"
+          wx:for-item="item"
+          id="{{item.keyWord}}"
+          bindtap="handleHistorySearch"
+        >
+          <text class="search_text">{{item.keyWord}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 热门搜索 -->
+    <view
+      class="search-group"
+      wx:if="{{searchHotWords.length > 0}}"
+    >
+      <view class="type">
+        <text>热门搜索</text>
+      </view>
+      <view class="words">
+        <view
+          class="item"
+          wx:for="{{searchHotWords}}"
+          wx:key="index"
+          wx:for-item="item"
+          bindtap="handleHotSearch"
+          data-id="{{item.hotWords}}"
+          data-tagtype="{{item.keyType}}"
+          style="background:{{item.backgroundColor}}"
+          data-item="{{item}}"
+        >
+          <image
+            class="icon"
+            src="{{item.wordIcon}}"
+            wx:if="{{item.wordIcon}}"
+          />
+          <text
+            class="hot-text"
+            style="color:{{item.wordColor}}"
+          >{{item.hotWords}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

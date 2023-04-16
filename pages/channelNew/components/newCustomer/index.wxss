@@ -1,0 +1,11 @@
+
+.customer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.image {
+    width: 700rpx;
+}

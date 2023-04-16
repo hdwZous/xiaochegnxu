@@ -1,0 +1,34 @@
+<view class="goStoreQrCode">
+    <view class="codeCount">
+        <view class="codeTitle">{{locCodeFloorInfo.title}}</view>
+        <view class="cardItem">
+            <block wx:for="{{locCodeFloorInfo.locCodeInfoList}}">
+                <view class="item" wx:if="{{index == 0 || isUnfold}}">
+                    <view class="cardNumber" wx:if="{{item.cardNum}}">{{item.cardNum}}</view>
+                    <view class="cardPassWord" style="margin-top:{{item.cardNum ? '16rpx' : 0}}" wx:if="{{item.pwdNum}}">
+                        {{item.pwdNum}}
+                    </view>
+                    <view class="unfold" catchtap="unfoldCode" wx:if="{{!isUnfold && index == 0 && locCodeFloorInfo.locCodeInfoList.length > 1}}">
+                        展开
+                        <image class="unfoldIcon" src="https://storage.360buyimg.com/wximg/order/unfold-icon1.png" mode="widthFix" />
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="qrCode">
+        <view class="qrCodeBg">
+            <image class="qrCodeBgImage" src="https://storage.360buyimg.com/wximg/order/qrCodeBg1.png" mode="widthFix"/>
+        </view>
+        <view class="codeInfo">
+            <view class="codeBox">
+                <slot name="qrcode" class="qrcode"></slot>
+                <slot name="barcode" class="barcode"></slot>
+            </view>
+            <view class="reloadBtn" catchtap="reloadCode">
+                <image class="reloadIcon" src="https://storage.360buyimg.com/wximg/order/reload.png" mode="widthFix" />
+                刷新
+            </view>
+        </view>
+    </view>
+</view>

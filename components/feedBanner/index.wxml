@@ -1,0 +1,12 @@
+<!-- feed中的banner -->
+<view
+  class="feed_banner"
+  data-user-action="{{item.data.resources[0].userAction || ''}}"
+  data-trace-id="{{traceId}}"
+  data-page-id="{{pageId}}"
+  data-current-page-name="{{currentPageName}}"
+  data-pre-page-name='{{prePageName}}'
+  data-item="{{item.data.resources[0]}}"
+  bind:tap="clickBanner">
+  <image src='{{item.data.resources[0].imgUrl}}' />
+</view>

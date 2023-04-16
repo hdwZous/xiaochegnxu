@@ -1,0 +1,8 @@
+<view
+  class="{{ isIphoneX ? 'back_top_IphoneX back_top' : 'back_top'}} {{showMinicar && 'showMinicar'}} {{ hideBackTop ? 'back_top_hidden' : ''}} {{ pageMoving ? 'moveIn' : 'moveOut'}}"
+  bind:tap="goBackTop">
+<image class="back_top_img" 
+  aria-role="button"
+  aria-label="返回顶部"
+  src="https://storage.360buyimg.com/wxmini/search/djBackTop_backToTop.7df61db0.png" />
+</view>

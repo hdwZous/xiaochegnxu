@@ -1,0 +1,1 @@
+{"usingComponents":{"picture-download":"../components/picture_download/index","navigator-bar":"./components/NavigatorBar/index","search-result":"./components/SearchResult/index"},"navigationBarBackgroundColor":"#ffffff","backgroundColorTop":"#ffffff","navigationStyle":"custom","component":true}

@@ -1,0 +1,48 @@
+<scroll-view>
+<view wx:if="{{orderState}}" id='order-detialNew-status-content'>
+        <view class="order-detial-orderStatus-box">
+            <!--循环orderStateList-->
+            <view class='order-detial-orderStatus-items'>
+                <text class="order-detial-orderStatus-item-line"></text>
+                <text class="order-detial-orderStatus-item-lineMask"></text>
+                <text class="order-detial-orderStatus-item-lineMask"></text>
+                <view wx:for="{{orderState.orderStateList}}" wx:key="key" class="order-detial-orderStatus-item" wx:if="{{item.stateId != '-200'}}">
+                <!--stateId -200分享有礼过滤掉-->
+                    <image class="status-icon" src="{{index === 0 ? iconStateObj[item.stateIcon].selected_icon : iconStateObj[item.stateIcon].icon}}" />
+                    <text class="firstLine"></text>
+                    <view class="order-detial-orderStatus-item-Fir">
+                        <text class="order-state-title">{{item.stateTitle}}</text>
+                        <text class='order-detial-orderStatus-item-phone'>{{item.stateTime}}</text>
+                    </view>
+                    <view class="order-detial-orderStatus-item-Sec">
+                      <view class="order-detail-state-desc">
+                          {{item.stateDesc}}
+                      </view>
+                      <view
+                        wx:if="{{item.reFillInfo && item.reFillInfo.title}}"
+                        class="order-detail-state-button"
+                        style="color:{{item.reFillInfo.fontColor}};border-color:{{item.reFillInfo.borderColor}};background:{{item.reFillInfo.backGroundColor}};"
+                        data-params="{{item.reFillInfo.params}}"
+                        data-to="{{item.reFillInfo.to}}"
+                        bindtap="jumpHandler"
+                      >
+                        {{item.reFillInfo.title}}
+                      </view>
+                        
+                    </view>
+
+                   <text wx:if="{{item.functionNumber}}" class="order-status-icon order-state-phone-new"  id="{{item.functionNumber}}" data-state-title="{{item.stateTitle}}" data-middle='{{item.isMiddleNumber}}'  bindtap="calling"> </text>
+                    <!--支付没打通屏蔽此功能-->
+                   <view wx:if="{{item.stateId == '90'&& item.hrefUrl && false}}" class = "reward-deliveryman" bindtap="rewardDeliveryman" data-url="{{item.hrefUrl}}">
+                       ¥ 鼓励配送员
+                   </view>
+                    <text wx:if="{{item.functionNumber}}" class="order-status-icon order-state-phone-new"  id="{{item.functionNumber}}" data-state-title="{{item.stateTitle}}" data-middle='{{item.isMiddleNumber}}'  bindtap="calling"> </text>
+                </view>
+            </view>
+        </view>
+
+    </view>
+</scroll-view>
+
+<!-- 中间号弹窗 -->
+<middle-number-modal fromPositon="order-orderstatus" bind:closeModal='closeModal' wx:if="{{isShowMiddleModal}}" order-id="{{orderId}}" store-id="{{orderInfo.storeId}}" share-token='{{shareToken}}' recommendObj="{{recommendObj}}" buriedObj="{{recommendObj}}"></middle-number-modal>

@@ -1,0 +1,422 @@
+.newUser {
+  width: 700rpx;
+  /* height: 628rpx; */
+  border-radius: 24rpx;
+  padding: 24rpx 16rpx;
+  box-sizing: border-box;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.newUser-title-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+.newUser-title-name {
+  color: #fff;
+  display: flex;
+}
+.newUser-title-name3 {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.newUser-title-name image {
+  width: 166rpx;
+  height: 64rpx;
+}
+.newUser-timeDown {
+  width: 240rpx;
+  height: 46rpx;
+  opacity: 0.83;
+  box-sizing: border-box;
+  line-height: 46rpx;
+  padding-left: 24rpx;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 0px 24rpx 24rpx 0px;
+  background: linear-gradient(270deg, #FF7780 0%, #FD4654 100%);
+}
+.newUser-coupon {
+  width: 670rpx;
+  height: 112rpx;
+}
+.newUser-coupon image {
+  width: 100%;
+  height: 100%;
+}
+.newUser-item-list {
+  width: 670rpx;
+  /* height: 380rpx; */
+  border-radius: 16rpx;
+  background-color: #fff;
+  padding: 16rpx 12rpx;
+  box-sizing: border-box;
+}
+.newUser-friend-feed {
+  border-radius: 12rpx;
+  overflow: hidden;
+  width: 200rpx;
+  margin-right: 12rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+.newUser-friend-list {
+    white-space: nowrap;
+}
+.newUser-friend-bottom {
+  padding-top: 12rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.newUser-friend-name {
+  font-size: 22rpx;
+  color: #333333;
+  width: 180rpx;
+  height: 56rpx;
+  margin-bottom: 8rpx;
+  white-space: normal;
+  overflow: hidden;
+  line-height: 28rpx;
+}
+.newUser-friend-price1 {
+  height: 78rpx;
+  line-height: 78rpx;
+}
+.newUser-friend-more {
+    align-items: center;
+    vertical-align: top;
+    height: 200rpx;
+    display: inline-flex;
+}
+.newUser-friend-checkmore {
+  color: #616161;
+  width: 18rpx;
+  height: 96rpx;
+  font-size: 18rpx;
+  white-space: normal;
+}
+.newUser-friend-imagemore {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 12rpx;
+  display: block;
+}
+.newUser-friend-top {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  position: relative;
+}
+.newUser-friend-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+.newUser-friend-price {
+  font-size: 32rpx;
+  color: #FF3F4C;
+  font-family: 'regular';
+  font-weight: 400;
+}
+.newUser-friend-price2 {
+  font-size: 28rpx;
+  color: #999999;
+  font-family: 'light'
+}
+.newUser-flex-one {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.newUser-friend-arrow {
+  width: 14rpx;
+  height: 22rpx;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-image: url(https://storage.360buyimg.com/wxmini/cash/oldfriend_arrow.png);
+  background-size: contain;
+}
+.newUser-friend-arrowContent {
+  width: 64rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.newUser-subTitle image {
+  width: 306rpx;
+  height: 38rpx;
+}
+.newUser-friend-yugu {
+  font-size: 24rpx;
+  color: #E43D3D;
+  white-space: normal;
+  width: 50rpx;
+  line-height: 28rpx;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.newUser-friend-yugu3 {
+  font-size: 16rpx;
+  color: #E43D3D;
+  white-space: normal;
+  line-height: 28rpx;
+  height: 24rpx;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.newUser-friend-yugu32 {
+  font-size: 14rpx;
+  color: #E43D3D;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.newUser-friend-yugu2 {
+  font-size: 14rpx;
+  color: #E43D3D;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.newUser-friend-leftpic {
+  width: 74rpx;
+  height: 68rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 12rpx 0 12rpx;
+  background: linear-gradient(41deg, #FFE9C6 0%, #FFF0D7 46%, #FFF7EC 75%, #FFF3E1 100%);
+}
+.newUser-friend-bottom-text {
+  width: 100%;
+  height: 36rpx;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-right: 6rpx;
+  padding-bottom: 4rpx;
+  font-size: 26rpx;
+  box-sizing: border-box;
+  color: #fff;
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  background: linear-gradient(154deg, #FD2F4F 0%, #FF3272 47%, #FF3372 47%, #FE7864 100%);
+}
+.newUser-friend-type2 {
+  width: 56rpx;
+  height: 64rpx;
+  position: absolute;
+  top: 0;
+  color: #fff;
+  font-size: 20rpx;
+  left: 20rpx;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url(https://storage.360buyimg.com/wxmini/cash/sku_show_type2.png);
+}
+.newUser-friend-typeText {
+    white-space: normal;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    line-height: 24rpx;
+    margin-top: 4rpx;
+    font-family: JDDJ-1-Regular, JDDJ-1;
+}
+.newUser-friend-leftpic3 {
+  width: 92rpx;
+  height: 48rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 12rpx 0 12rpx;
+  background: linear-gradient(41deg, #FFE9C6 0%, #FFF0D7 46%, #FFF7EC 75%, #FFF3E1 100%);
+}
+.newUser-subTitle {
+  margin-top: 20rpx;
+}
+.newUser-expand-container {
+  width: 670rpx;
+  margin: 0 auto;
+  height: 104rpx;
+  padding: 12rpx;
+  padding-right: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background-color: #D52F30;
+  border-radius: 12rpx;
+}
+.newUser-expand-coupon {
+    margin: 0 auto;
+    width: 670rpx;
+    height: 104rpx;
+    border-radius: 12rpx;
+    padding-left: 12rpx;
+    box-sizing: border-box;
+    white-space: nowrap;
+    position: relative;
+    padding-top: 10rpx;
+}
+.newUser-expand-arrow {
+  margin-top: 8rpx;
+  height: 12rpx;
+  width: 100%;
+}
+.newUser-expand-arrow image {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+.newUser-expand-logo {
+  min-width: 78rpx;
+  height: 78rpx;
+  border-top-left-radius: 12rpx;
+  overflow: hidden;
+  border-bottom-left-radius: 12rpx;
+  border: 1px solid #fff;
+  border-right: none;
+}
+.newUser-expand-logo image {
+    width: 100%;
+    height: 100%;
+}
+.newUser-expand-cover {
+  margin-right: 16rpx;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+}
+.newUser-expand-cover1 {
+  margin-right: 16rpx;
+  display: inline-flex;
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  width: 316rpx;
+}
+.newUser-expand-content {
+  font-size: 24rpx;
+  width: 170rpx;
+  height: 82rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 12rpx;
+  box-sizing: border-box;
+  border-top-right-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  background: linear-gradient(305deg, #FFE5E3 0%, #FFF1F0 28%, #FFEEED 64%, #FFE6E7 100%);
+  color: #FF1149;
+  border: 1px solid #fff;
+  padding-right: 2rpx;
+  padding-bottom: 4rpx;
+}
+.newUser-expand-content1 {
+  font-size: 24rpx;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-top-right-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  background: linear-gradient(305deg, #FFE5E3 0%, #FFF1F0 28%, #FFEEED 64%, #FFE6E7 100%);
+  color: #FF1149;
+  padding-left: 16rpx;
+  border: 1px solid #fff;
+  padding-bottom: 4rpx;
+}
+.newUser-expand-content2 {
+  font-size: 24rpx;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-top-right-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  background: linear-gradient(305deg, #FFE5E3 0%, #FFF1F0 28%, #FFEEED 64%, #FFE6E7 100%);
+  color: #FF1149;
+  padding-left: 16rpx;
+  padding-right: 48rpx;
+  border: 1px solid #fff;
+}
+.newUser-expand-text {
+  width: 100rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 48rpx;
+  line-height: 58rpx
+}
+.newUser-expand-price {
+  font-size: 40rpx;
+  flex: 1;
+  font-family: 'regular';
+}
+.newUser-expand-topdot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 100%;
+  position: absolute;
+  top: -6rpx;
+  left: 72rpx;
+  background: #D52F30;
+  border: 1px solid #fff;
+}
+.newUser-expand-bottomdot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 100%;
+  position: absolute;
+  bottom: -6rpx;
+  left: 72rpx;
+  background: #D52F30;
+  border: 1px solid #fff;
+}
+.newUser-expand-button {
+  width: 134rpx;
+  height: 48rpx;
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: 500;
+  line-height: 48rpx; 
+  text-align: center;
+  background-image: url(https://storage.360buyimg.com/wxmini/newuser/pengzhangcoupon.png);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  border-radius: 30rpx;
+}
+.newUser-expand-button image {
+  width: 100%;
+  height: 100%;
+}
+.newUser-checkmore {
+    display: inline-flex;
+    align-items: center;
+    padding-right: 28rpx;
+    vertical-align: top;
+}
+.newUser-checkmore-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+  background-image: url(https://storage.360buyimg.com/wxmini/newuser/newuser_checkmore.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+.newUser-checkmore-text {
+    width: 18rpx;
+    font-size: 18rpx;
+    writing-mode: vertical-lr;
+    letter-spacing: 4rpx;
+    color: #fff;
+    height: 85rpx;
+    display: inline-flex;
+}

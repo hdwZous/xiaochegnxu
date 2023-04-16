@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "cash-list": "../cashList/index"
+  }
+}

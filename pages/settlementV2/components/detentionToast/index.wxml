@@ -1,0 +1,83 @@
+<view class="dt_wrap d-flex flex-row align-items-center justify-content-center" wx:if="{{show}}"> 
+  <view class="content_box" wx:if="{{info.type == 0}}">
+    <view class="content_top">
+      <view class="top_title">
+        <block wx:for="{{info.title}}">
+          <text style="color: {{item.color}}">{{item.text}}</text>
+        </block>
+      </view>
+      <view class="top_desc">{{info.desc}}</view>
+    </view>
+    <view class="content_bottom d-flex flex-row">
+      <view class="bottom_btn left" data-store-id="{{storeId}}" data-type="retain" data-btnName="abstain" bindtap="goback" >残忍离开</view>
+      <view class="shin-border"></view>
+      <view class="bottom_btn right" data-store-id="{{storeId}}" data-type="retain" data-btnName="order" bindtap="getCoupon">领券下单</view>
+    </view>
+  </view>
+  <!-- 8.9.5新挽留弹层 -->
+  <view class="new_layer_wrap d-flex flex-column {{(info.coupons && info.coupons.length == 2) || (info.products && info.products.length == 2) ? 'two' : ''}}" wx:if="{{info.type == 1}}">
+    <view class="layer_title_box d-flex flex-row align-items-end">
+      <view class="layer_title_content ellipsis3">
+        <block wx:for="{{info.title}}" wx:key="title">
+          <text class="layer_title_txt" style="color: {{item.color}}">{{item.text}}</text>
+        </block>
+      </view>
+    </view>
+    <view class="layer_coupon_box">
+      <block wx:if="{{info.coupons && info.coupons.length}}">
+        <block wx:for="{{info.coupons}}" wx:key="coupons">
+          <view class="coupon_item coupon_item_seckill d-flex flex-row align-items-center">
+            <view class="item_seckill_left">
+              <view class="item_seckill_title">{{item.couponTitle}}</view>
+              <view class="item_seckill_timer" wx:if="{{item.couponExpire}}">
+                <block wx:if="{{item.period}}">
+                  <count-down info="{{item.couponExpire}}" binddownover="downover"></count-down>
+                </block>
+                <block wx:else>{{item.couponExpire}}</block>
+              </view>
+            </view>
+            <view class="item_seckill_line"></view>
+            <view class="item_seckill_right">
+              <text class="seckill_right_symbol">{{item.priceUnit == 0 ? '' : item.priceUnit == 1 ? '¥' : item.priceUnit == 2 ? '折' : ''}}</text>
+              <text class="seckill_right_money">{{item.price}}</text>
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:if="{{info.products && info.products.length}}">
+        <block wx:for="{{info.products}}" wx:key="products">
+          <view class="coupon_item coupon_item_goods d-flex flex-row">
+            <image class="item_goods_img" src="{{item.img}}" />
+            <view class="item_goods_content">
+              <view class="item_goods_title d-flex flex-row align-items-center">
+                <view class="goods_title_tag" wx:if="{{item.flagName}}" style="background: linear-gradient(135deg, {{item.flagStartColor}} 0%, {{item.flagEndColor}} 100%);color: {{item.flagColor}}">{{item.flagName}}</view>
+                <text class="ellipsis">{{item.productTitle}}</text>
+              </view>
+              <view class="item_goods_price" wx:if="{{item.price || item.storePrice}}">
+                <text class="txt goods_price_normal" wx:if="{{item.price}}">¥{{item.price}}</text>
+                <text class="txt goods_price_delete" wx:if="{{item.storePrice}}">¥{{item.storePrice}}</text>
+              </view>
+              <view class="item_goods_tag" wx:if="{{item.note}}">
+                <view class="goods_tags">
+                  {{item.note}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </view>
+    <view class="layer_btn_box d-flex flex-row justify-content-between">
+      <view class="btn btn_left" bindtap="goback">{{info.leftButtonCopy}}</view>
+      <view class="btn btn_right" bindtap="thinkAgain" >{{info.rightButtonCopy}}</view>
+    </view>
+  </view>
+</view>
+<subscribe 
+  tmplIds="{{tmplIds}}" 
+  showSubscribeMessage="{{showSubscribe}}" 
+  subscribeMessageImageUrl="{{subscribeImg}}"
+  bindsubscribeOk="subscribeOk"
+  bindsubscribeFail="subscribeFail"
+>
+</subscribe>

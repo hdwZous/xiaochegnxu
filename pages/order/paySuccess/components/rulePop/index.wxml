@@ -1,0 +1,25 @@
+<view class="container">
+  <view class='wrap' >
+    <view class='title'>活动规则</view>
+    <scroll-view class='content' scroll-y="{{true}}">
+      <block wx:for="{{rules}}"
+            wx:key="index"
+            wx:for-item="item">
+        <view class="name" 
+              wx:if="{{item.type == 1 && item.text && item.text.title}}">
+              {{item.text.title}}
+        </view>
+        <view class="text" 
+              wx:if="{{item.type == 2 && item.text.title}}"> 
+              {{item.text.title}}
+        </view>
+        <view class="text" 
+              wx:if="{{item.type == 4 && item.text.content}}">
+              {{item.text.content}}
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <image class='close' bindtap="hidePop" src="https://storage.360buyimg.com/wximg/common/popDelete.png" />
+</view>
+<view class="mask"></view>

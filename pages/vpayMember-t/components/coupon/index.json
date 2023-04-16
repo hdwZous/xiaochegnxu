@@ -1,0 +1,16 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dj-tag": "./components/djTag",
+    "amount": "./components/amount",
+    "limit-rule": "./components/limitRule",
+    "coupon-title": "./components/couponTitle",
+    "tags": "./components/tags",
+    "coupon-expire": "./components/couponExpire",
+    "coupon-btn": "./components/couponBtn",
+    "share_wx_dialog": "../../../../components/share2WxDialog/index",
+    "share-to-moments-dialog": "../../../../components/singlePicWithSave/index"
+  },
+  "navigationBarTitleText": "V+会员",
+  "navigationStyle": "custom"
+}

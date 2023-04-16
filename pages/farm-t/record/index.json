@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index"
+  },
+  "navigationBarTitleText": "我的兑换"
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "门店优惠券",
+  "usingComponents": {
+    "dialog": "/components/dialog/index",
+    "default": "/components/default/index"
+  }
+}

@@ -1,0 +1,301 @@
+@import "/common/css/global.wxss";
+.pageCont {
+    background: #fafafa;
+    height: 100vh;
+}
+
+.goodCont {
+    position: relative;
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.priceTime {
+    height: 102rpx;
+    background: linear-gradient(-90deg, rgba(243, 33, 37, 1), rgba(253, 130, 29, 1));
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.priceTime .priceDetail {
+    flex: 1.5;
+    padding-left: 20rpx;
+}
+
+.priceTime .priceDetail .nowpPrice {
+    font-size: 28rpx;
+    line-height: 102rpx;
+    font-weight: bold;
+}
+
+.priceTime .priceDetail .nowpPrice text {
+    font-size: 60rpx;
+}
+
+.priceTime .priceDetail .oldPrice {
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 10rpx;
+}
+
+.priceTime .priceDetail .oldPrice .old {
+    font-size: 26rpx;
+    text-decoration: line-through;
+}
+
+.priceTime .priceDetail .oldPrice .groupNum {
+    font-size: 22rpx;
+}
+
+.priceTime .verLine {
+    width: 1rpx;
+    height: 70rpx;
+    background: rgba(255, 255, 255, 0.8);
+    margin-top: 16rpx;
+}
+
+.priceTime .cutTimeCont {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+}
+
+.priceTime .cutTimeCont .timeTxt {
+    font-size: 22rpx;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.priceTime .cutTimeCont .cutdown-warp {
+    justify-content: center;
+    margin-top: 8rpx;
+    font-size: 22rpx;
+}
+
+.priceTime .cutTimeCont .cutdown-warp text {
+    display: inline-block;
+    /* height: 36rpx;
+  width: 36rpx; */
+    padding: 0rpx 6rpx;
+    line-height: 36rpx;
+    color: #ff5757;
+    background: #fff;
+    border-radius: 4rpx;
+}
+
+.priceTime .cutTimeCont .cutdown-warp label {
+    color: rgba(255, 255, 255, 0.7);
+    width: 22rpx;
+    display: inline-block;
+    height: 32rpx;
+}
+
+.joinGroup {
+    margin-top: 20rpx;
+    background: #fff;
+    padding: 30rpx 20rpx;
+}
+
+.joinGroup .headTitle {
+    font-size: 28rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #333;
+    font-weight: bold;
+    padding-bottom: 20rpx;
+}
+
+.joinGroup .groupMember {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.joinGroup .groupMember .leadCont {
+    align-items: center;
+}
+
+.joinGroup .groupMember .leadCont .leadImg {
+    width: 144rpx;
+    height: 144rpx;
+    border-radius: 144rpx;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+}
+
+.joinGroup .groupMember .leadCont .leadImg image {
+    width: 144rpx;
+    height: 144rpx;
+    display: block;
+    margin: 0 auto;
+    border-radius: 144rpx;
+    background: #ccc;
+}
+
+.joinGroup .groupMember .leadCont .leadImg view {
+    position: absolute;
+    bottom: 0;
+    left: 8rpx;
+    width: 130rpx;
+    line-height: 40rpx;
+    font-size: 22rpx;
+    height: 40rpx;
+    /* background: rgba(51, 51, 51, 0.5); */
+    color: #fff;
+    text-align: center;
+    background: url("data:image/png;base64,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") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.joinGroup .groupMember .leadCont .groupInfo {
+    color: #333;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    margin-left: 22rpx;
+}
+
+.joinGroup .groupMember .leadCont .groupInfo .needNum text {
+    color: #f66;
+}
+
+.joinGroup .groupMember .leadCont .timeLeft {
+    color: #666;
+    font-size: 24rpx;
+    line-height: 34rpx;
+}
+
+.joinGroup .groupMember .goGroup {
+    width: 130rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    text-align: center;
+    background: #ff5757;
+    border-radius: 4rpx;
+    font-size: 24rpx;
+    color: #fff;
+}
+
+.joinGroup .groupMember .goGrouNo {
+    background: #d9d9d9;
+}
+
+.tips {
+    font-size: 24rpx;
+    color: #d97900;
+    background: #fef5d1;
+    text-align: center;
+    height: 68rpx;
+    line-height: 68rpx;
+}
+
+.bottomBtns {
+    height: 100rpx;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+.bottomBtns .home {
+    background: #fff;
+    width: 16.8%;
+    line-height: 100rpx
+}
+
+.bottomBtns .homeW {
+    width: 33.3%
+}
+
+.bottomBtns .originalPrice {
+    background: linear-gradient(270deg, rgba(254, 184, 0, 1) 0%, rgba(255, 170, 0, 1) 100%);
+    width: 41.6%;
+    box-sizing: border-box;
+    color: #ffffff;
+    justify-content: center
+}
+
+.bottomBtns .originalPrice .num, .bottomBtns .startGroup .num {
+    font-size: 40rpx;
+    font-weight: 500
+}
+.button-cont{
+    font-size: 28rpx;
+    line-height: normal
+}
+.button-cont .num{
+    font-size: 40rpx;
+} 
+.bottomBtns .startGroup {
+    color: #fff;
+    border-radius: 0;
+    justify-content: center
+}
+
+.bottomBtns .startGroup::after {
+    border: none;
+    outline: none;
+}
+
+.bottomBtns .startGroupYes {
+    background: linear-gradient(-90deg, rgba(243, 33, 37, 1), rgba(253, 130, 29, 1));
+}
+
+.bottomBtns .startGroupNO {
+    background: #d9d9d9;
+}
+
+.bottomBtns .modeLine {
+    line-height: 100rpx
+}
+
+.goodDetail {
+    background: #fafafa;
+    padding-top: 20rpx;
+}
+
+.detailCont {
+    padding: 25rpx 15rpx;
+    background: #fff;
+}
+
+.good_detail_Title {
+    font-size: 30rpx;
+    padding-bottom: 25rpx
+}
+
+/* 预售团 */
+
+.pregroup {
+    margin-top: 20rpx;
+    background: #fff;
+    padding: 30rpx 20rpx 40rpx;
+}
+
+.pregroup-title {
+    align-items: baseline;
+}
+
+.pregroup-title .title {
+    font-size: 28rpx;
+    color: #333333
+}
+
+.pregroup-title .pregroup-time {
+    font-size: 24rpx;
+    color: #999999;
+    margin-left: 10rpx;
+}
+
+.pregroup-title .pregroup-time .red {
+    color: #ff5757
+}
+
+.pregroup-rule image {
+    width: 606rpx;
+    height: 142rpx;
+    display: block;
+    margin: 40rpx auto 0
+}

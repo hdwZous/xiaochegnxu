@@ -1,0 +1,93 @@
+@import "../../../../common/css/regular.wxss";
+@import "../../../../common/css/light.wxss";
+
+::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+	color: transparent;
+}
+
+.container {
+	height: 100vh;
+	background: #f2f2f2;
+}
+
+.blank {
+	background: #fff;
+}
+
+/* 当前选择的分类的名称和数量 */
+.select-promotion {
+	padding: 0rpx 0 0 24rpx;
+	background: #fff;
+}
+
+.select-promotion .promotion-name {
+	font-size: 36rpx;
+	font-weight: bold;
+	color: #333333;
+}
+
+.select-promotion .promotion-ladder {
+	font-size: 24rpx;
+	color: #666;
+	margin-top: 16rpx;
+}
+.baopin-ladder {
+	font-size: 26rpx;
+	text-align: center;
+	padding: 14rpx;
+	color: #333;
+}
+.good-list-wrapper {
+	padding: 6rpx 0rpx 0 0rpx;
+	background: #fff;
+}
+
+.good-list-wrapper .reach-bottom {
+	padding: 30rpx 0 260rpx 0;
+	background: #f2f2f2;
+	text-align: center;
+	font-size: 24rpx;
+	color: #333;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0rpx;
+	width: 100%;
+	background: #fff;
+	z-index: 3;
+}
+
+.tag_case {
+	align-items: center;
+	margin-top: 5rpx;
+}
+
+.filters {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 3;
+	background: #fff;
+}
+
+.empty-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.empty-image {
+	width: 321rpx;
+  	height: 321rpx;
+}
+
+.empty-text {
+	font-size: 30rpx;
+    margin-top: 40rpx;
+	color: rgb(102, 102, 102);
+}

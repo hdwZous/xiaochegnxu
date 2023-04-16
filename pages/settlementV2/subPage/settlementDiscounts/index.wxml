@@ -1,0 +1,83 @@
+<block wx:if="{{showEmpty}}">
+  <!-- 获取门店接口无结果 || 接口异常 -->
+  <new-default fromPositon="settlementv2_subpage_settlementdiscounts" type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" src="{{defaultSrc}}" bind:defaultBtnEvent="onDefaultBtnEvent"></new-default>
+</block>
+<view wx:else class="container">
+  <view class="promotion-wrapper" wx:if="{{classifyResult.length}}">
+    <view class="d-flex flex-row align-items-center">
+      <view class='left-scroll'>
+        <scroll-view class="scroll-view" scroll-x="true" scroll-with-animation scroll-anchoring scroll-into-view="_{{checkIndex}}" enable-flex>
+          <block wx:for="{{classifyResult}}" wx:key="index" wx:for-item="promote">
+            <view id="_{{index}}" class='promotion-item {{checkIndex == index ? "cur-promotion-item" : ""}}' bindtap="clickPromo" data-index="{{index}}" data-ids="{{promote.firstCategorId}}" data-name="{{promote.classifyName}}" data-layer="{{false}}" aria-role="button" aria-label="{{(checkIndex == index?'已选定':'')+promote.classifyName}}">
+              {{promote.classifyName}}
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+      <view class='right-arrow' data-is-show="{{true}}" bindtap="showPop" wx:if="{{classifyResult.length > 4}}" aria-role="button" aria-label="展开筛选弹层">
+        <image class='arrow-icon' src="https://storage.360buyimg.com/wximg/common/arrow-bottom.png" />
+      </view>
+    </view>
+    <view class="sort-wrap">
+      <block wx:for="{{sortLabelList}}" wx:key="sortType">
+        <view class='sortType-item {{sortIndex == index ? "active" : ""}}' bindtap="clickSort" data-index="{{index}}" data-type="{{item.sortType}}" data-name="{{item.enName}}" aria-role="button" aria-label="{{item.title}}">
+          {{item.title}}
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="good-list-wrapper" wx:if="{{skuList.length && !listError}}">
+    <block wx:for="{{skuList}}" wx:for-item="item" wx:key="index">
+      <lists item="{{item}}" longitude="{{longitude}}" latitude="{{latitude}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" traceId="{{traceId}}" buriedObj="{{recommendObj}}" ></lists>
+    </block>
+    <view class="reach-bottom" aria-role="text" aria-label="已经到底啦">已经到底啦</view>
+  </view>
+  <view class='mask' wx:if="{{showMask}}" data-is-show="{{false}}" bindtap="showPop" animation="{{animationData}}">
+    <view class="content-wrapper" catchtap="stopBubble">
+      <view class="mask-title d-flex flex-row align-items-center justify-content-between">
+        <view class="title" aria-role="text" aria-label="全部分类">全部分类</view>
+        <view class="arrow-box" bindtap="showPop" data-is-show="{{false}}" aria-role="button" aria-label="关闭弹层">
+          <image class='arrow-icon' src="https://storage.360buyimg.com/wximg/common/arrow-bottom.png" />
+        </view>
+      </view>
+      <view class="promotion-names">
+        <block wx:for="{{classifyResult}}" wx:key="index" wx:for-item="promote">
+          <view class='promotion-name {{checkIndex == index ? "cur-promotion-name" : ""}}' bindtap="clickPromo" data-index="{{index}}" data-ids="{{promote.firstCategorId}}" data-name="{{promote.classifyName}}" data-layer="{{true}}" aria-role="button" aria-label="{{promote.classifyName}}">
+            {{promote.classifyName}}
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!-- 获取商品接口无结果 || 接口异常 -->
+  <new-default fromPositon="settlementv2_subpage_settlementdiscounts" wx:if="{{listError || !skuList.length}}" type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" src="{{defaultSrc}}" bind:defaultBtnEvent="onDefaultBtnEvent"></new-default>
+  <view class="footer d-flex flex-row justify-content-end align-items-center" style="padding-bottom: {{isIpx ? 64 : 0}}rpx">
+    <view class="text-list-box">
+      <block wx:for="{{freeFreightTextList}}" wx:key="key">
+        <view class="text-item {{item.no == 2 ? 'inline2' : ''}}" style="color: {{item.color}}">
+          {{item.text}}
+        </view>
+      </block>
+    </view>
+    <view class="footer-button {{buttonState ? 'disabled' : ''}}" bindtap="goBack" aria-role="button" aria-label="返回结算页">{{buttonState ? buttonName : '返回结算页'}}</view>
+  </view>
+  <!-- 多规格商品 spu选择器 -->
+  <spu-selector 
+    fromPositon="settlementv2_subpage_settlementdiscounts" 
+    id="spu-selector" 
+    toggle="{{toggle}}" 
+    orgCode="{{spuData.orgCode}}" 
+    storeId="{{spuData.storeId}}" 
+    skuId="{{spuData.skuId}}" 
+    spuId="{{spuData.spuId}}" 
+    userAction="{{spuData.userAction}}" 
+    transmitData="{{spuData.transmitData}}" 
+    buriedObj="{{recommendObj}}" 
+    pageId="{{recommendObj.pageIdFirstPage}}" 
+    biPageName="freightreduction" 
+    pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}" 
+    bind:spuSelectorEvent="onSpuSelectorEvent"
+    carNumber="{{spuData.cartNum}}"
+    showModel="{{spuData.showModel}}"
+    weighting="{{spuData.weighting}}" />
+</view>

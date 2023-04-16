@@ -1,0 +1,287 @@
+<wxs src="../../util/tools.wxs" module="tools" />
+<view class="package-box">
+  <block wx:for="{{lists}}" wx:key="items" wx:for-item="lisItems">
+     <!-- 运费 -->
+    <!-- 采用这种写法完全是因为之前的一个线上问题，数组没有完全显示完，不想过于大改字段 -->
+    <block wx:if="{{lisItems.moneyType == 'freight' || lisItems.name == '运费'}}">
+      <view class="freight" wx:if="{{freight}}">
+        <view class="d-flex flex-row justify-content-between align-items-center">
+
+          <!-- 运费 -->
+          <view class="d-flex flex-row align-items-center">
+            <text class="package-name" aria-role="text" aria-label="{{freight.name}}">{{freight.name}}</text>
+            <text class="package-name" aria-role="text" aria-label="{{freight.secondTitle}}">{{freight.secondTitle}}</text>
+            <image
+              aria-role="link"
+              aria-label="运费说明"
+              bindtap='onDeliverFeeClick'
+              wx:if="{{freight.childMoneyList && freight.childMoneyList.length}}"
+              data-items="{{lisItems}}"
+              data-icon-name="运费"
+              class="settlement-delivery-fee-icon"
+              mode="aspectFit"
+              src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+          </view>
+          <!-- 右边点我省运费 -->
+          <view class="right-box d-flex flex-row justify-content-end align-items-center">
+            <view class="member-wrap d-flex flex-row align-items-center justify-content-end">
+              <!-- 文案左边部分 -->
+              <view
+                class="yet-reduce-freight shin-border-wrap {{freight.freightMoreSaved ? 'member' : ''}}"
+                aria-role="text"
+                aria-label="{{freight.freightSavedTag.name}}"
+                style="color: {{freight.freightSavedTag.strokeNameColorCode}};max-width: {{freight.freightMoreSaved ? '50%' : '98%'}}"
+                wx:if="{{freight.freightSavedTag}}">
+                <text class="txt ellipsis">{{freight.freightSavedTag.name}}</text>
+                <view
+                  class="shin-border-box"
+                  style="border-color: {{freight.freightSavedTag.strokeColorCode}}"
+                ></view>
+              </view>
+              <!-- 文案右边部分 -->
+              <view
+                class="open-member ellipsis log_reduce_Freight d-flex flex-row align-items-center {{freight.freightSavedTag?'save':''}}"
+                bindtap="openMember"
+                aria-role="button"
+                data-to="{{freight.freightMoreSaved.to}}"
+                data-params="{{freight.freightMoreSaved.params}}"
+                data-click-event-type="{{freight.freightMoreSaved.text.clickEventType}}"
+                aria-label="{{btnName}}"
+                wx:if="{{freight.freightMoreSaved}}"
+                style="background: linear-gradient(90deg, {{freight.freightMoreSaved.backgroundStartColor}} 0%, {{freight.freightMoreSaved.backgroundEndColor}} 100%);max-width: {{freight.freightSavedTag ? '50%' : '100%'}}"> 
+                <text
+                  class="open-member-text"
+                  wx:for="{{freight.freightMoreSaved.text.textList}}"
+                  wx:if="{{item.type == 1 || item.type == 2}}"
+                  style="color: {{item.fontColor}};font-size: {{item.fontSize * 2}}rpx;"
+                >{{item.text}}</text>
+                <text class="dj_icon ts_next" style="color:#fff;margin-left:0;font-size:20rpx;"></text>
+              </view>
+            </view>
+            <!-- 运费金额 -->
+            <view
+              class="price-wrap d-flex flex-row align-items-center"
+              aria-role="link"
+              aria-label="{{(freight.receivableMoney?freight.receivableMoney:'')+(freight.value?freight.value:'')+(freight.deliveryDiscountResp.optimalMarkingDesc?',运费优惠':'')}}"
+              bindtap="showDiscount"
+              data-flag="{{freight.deliveryDiscountResp.freightDiscountDescNew ? true : false}}">
+              <view class="line_money" wx:if="{{freight.receivableMoney}}">
+                {{freight.receivableMoney}}
+              </view>
+              <view class="money" wx:if="{{freight.value}}">{{freight.value}}</view>
+              <view class="dj_icon ts_next" style="margin-top:3rpx;margin-left:0" wx:if="{{freight.deliveryDiscountResp.freightDiscountDescNew}}"></view>
+            </view>
+          </view>
+
+        </view>
+        <view class="freightIncrease" wx:if="{{freight.deliveryDiscountResp && freight.deliveryDiscountResp.freightIncreaseDesc}}" aria-role="text" aria-label="{{freight.deliveryDiscountResp.freightIncreaseDesc}}">
+          {{freight.deliveryDiscountResp.freightIncreaseDesc}}
+        </view>
+        <view class="jianyun-wrap" wx:if="{{freight.freeFreightProductsDto || freight.deliveryDiscountResp || freight.tipFeeNew}}">
+          <!-- 减 flag -->
+          <view class="d-flex flex-row" wx:if="{{freight.freeFreightProductsDto && freight.freeFreightProductsDto.tagName}}" aria-role="text" aria-label="{{freight.freeFreightProductsDto.tagName+freight.freeFreightProductsDto.freeFreightTextList[0].text}}">
+            <view class="line-box d-flex flex-row align-items-center justify-content-center">
+              <view class="line-box-shin-line"></view>
+              <view class="line-box-circle"></view>
+            </view>
+            <view class="jianyun-detail d-flex flex-row align-items-center">
+              <view class="jianyun-tags" style="background: linear-gradient(135deg, {{tools.checkColor(freight.freeFreightProductsDto.startColorCode)}} 0%, {{tools.checkColor(freight.freeFreightProductsDto.endColorCode)}} 100%);">
+                {{freight.freeFreightProductsDto.tagName}}
+              </view>
+              <view class="jianyun-tags-desc ellipsis">
+                <block wx:for="{{freight.freeFreightProductsDto.freeFreightTextList}}" wx:key="key">
+                  <text style="color: {{item.color}}">{{item.text}}</text>
+                </block>
+              </view>
+            </view>
+          </view>
+          <!-- 减运商品列表 -->
+          <view class="d-flex flex-row productlist-wrap" wx:if="{{freight.freeFreightProductsDto && freight.freeFreightProductsDto.freeFreightProductsList && freight.freeFreightProductsDto.freeFreightProductsList.length}}">
+            <view class="line-box d-flex flex-row justify-content-center" style="margin-bottom: -12rpx;">
+              <view class="line-box-shin-line"></view>
+            </view>
+            <view class="jianyun-productlist d-flex flex-row align-items-center justify-content-between" bindtap="goDiscounts">
+              <view class="d-flex flex-row align-items-center">
+                <block wx:for="{{freight.freeFreightProductsDto.freeFreightProductsList}}" wx:key="img">
+                  <block wx:if="{{freight.freeFreightProductsDto.freeFreightProductsList.length > 1}}">
+                    <view class="product-box">
+                      <image src="{{item.img}}" class="product-img" />
+                      <view aria-role="text" aria-label="{{item.tagName}}" class="product-tags ellipsis" style="background: linear-gradient(135deg, {{tools.checkColor(item.startColorCode)}} 0%, {{tools.checkColor(item.endColorCode)}} 100%);">
+                        {{item.tagName}}
+                      </view>
+                      <view class="cold-tag" aria-role="text" aria-label="{{item.componentTag.iconText}}" wx:if="{{item.componentTag}}" style="color: {{item.componentTag.iconTextColorCode}};background: linear-gradient(135deg, {{item.componentTag.startColorCode}} 0%, {{item.componentTag.endColorCode}} 100%);">{{item.componentTag.iconText}}</view>
+                    </view>
+                  </block>
+                  <block wx:if="{{freight.freeFreightProductsDto.freeFreightProductsList.length == 1}}">
+                    <view class="product-box product-box-one d-flex flex-row">
+                      <view class="product-img-wrap" aria-hidden="true">
+                        <image src="{{item.img}}" class="product-img" />
+                        <view class="cold-tag" aria-role="text" aria-label="{{item.componentTag.iconText}}" wx:if="{{item.componentTag}}" style="color: {{item.componentTag.iconTextColorCode}};background: linear-gradient(135deg, {{item.componentTag.startColorCode}} 0%, {{item.componentTag.endColorCode}} 100%);">{{item.componentTag.iconText}}</view>
+                      </view>
+                      <view class="product-detail-wrap d-flex flex-row align-items-center">
+                        <view>
+                          <view class="product-detail-txt ellipsis2" aria-role="text" aria-label="{{item.name}}" >{{item.name}}</view>
+                          <view class="product-tags ellipsis" aria-role="text" aria-label="{{item.tagName}}" style="background: linear-gradient(135deg, {{tools.checkColor(item.startColorCode)}} 0%, {{tools.checkColor(item.endColorCode)}} 100%);">
+                            {{item.tagName}}
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                </block>
+              </view>
+              <view class="more" aria-role="button" aria-label="更多">
+                <view class="more-txt" wx:if="{{freight.freeFreightProductsDto.freeFreightProductsList.length > 1}}">更多</view>
+                <text class="iconfont dj_icon ts_next arrow-right"></text>
+              </view>
+            </view>
+          </view>
+          <!-- 占位 -->
+          <!-- <view class="d-flex flex-row space-box" style="height: 16rpx" wx:if="{{freight.deliveryDiscountResp.optimalMarkingDesc}}">
+            <view class="line-box d-flex flex-row align-items-center justify-content-center">
+              <view class="line-box-shin-line"></view>
+            </view>
+          </view> -->
+          <!-- 惠 flag -->
+          <!-- <view class="d-flex flex-row log_show_discount_dialog" wx:if="{{freight.deliveryDiscountResp.optimalMarkingDesc}}" bindtap="showDiscount">
+            <view class="line-box d-flex flex-row align-items-center justify-content-center">
+              <view class="line-box-shin-line"></view>
+              <view class="line-box-circle"></view>
+            </view>
+            <view class="hui-detail ohidden d-flex flex-row align-items-center">
+              <view class="jianyun-tags" style="background: linear-gradient(135deg, {{tools.checkColor(freight.deliveryDiscountResp.startColorCode)}} 0%, {{tools.checkColor(freight.deliveryDiscountResp.endColorCode)}} 100%);">
+                {{freight.deliveryDiscountResp.optimalMarkingDesc}}
+              </view>
+              <view class="jianyun-tags-desc ellipsis" style="color: {{freight.deliveryDiscountResp.freightDiscountDescColor}}">
+                {{freight.deliveryDiscountResp.freightDiscountDescNew}}
+              </view>
+              <text class="iconfont dj_icon ts_next arrow-right" style="margin-left: 0;margin-top: 1rpx"></text>
+            </view>
+          </view> -->
+          <!-- 凑单小黄条 -->
+          <view class="d-flex flex-row" wx:if="{{freight.freeFreightInfo}}">
+            <view class="line-box d-flex flex-row align-items-center justify-content-center">
+              <view class="line-box-shin-line"></view>
+              <view class="line-box-circle" style="margin-top: -6rpx"></view>
+            </view>
+            <view class="add-goods-wrap ohidden d-flex flex-row align-items-center">
+              <view class="add_on_tips d-flex flex-row align-items-center justify-content-center" data-to="{{freight.freeFreightInfo.to}}" data-params="{{freight.freeFreightInfo.params}}" bindtap="goToAddOn" aria-role="button" aria-label="{{freight.freeFreightInfo.descInfoList[0].text+freight.freeFreightInfo.descInfoList[1].text+freight.freeFreightInfo.descInfoList[2].text+freight.freeFreightInfo.descInfoList[3].text+freight.freeFreightInfo.toName}}">
+                <view class="tips_box ellipsis2">
+                  <block wx:for="{{freight.freeFreightInfo.descInfoList}}" wx:for-item="item" wx:for-index="index" wx:key="discountTipsKey">
+                    <text style="color: {{item.color ? item.color : ' #724102'}};">{{item.text}}</text>
+                  </block>
+                </view>
+                <view class="go_add_on_btn_container d-flex flex-row align-items-center" wx:if="{{freight.freeFreightInfo.toName}}">
+                    <text class="go_add_on_btn">{{freight.freeFreightInfo.toName}}</text>
+                    <text class="iconfont dj_icon ts_next arrow-right"></text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 辛苦费 -->
+          <view class="d-flex flex-row" wx:if="{{freight.tipFeeNew}}">
+            <view class="line-box d-flex flex-row align-items-center justify-content-center">
+              <view class="line-box-shin-line"></view>
+              <view class="line-box-circle"></view>
+            </view>
+            <view class="hui-detail ohidden d-flex flex-row align-items-center">
+              <image class="tea-icon" src="{{freight.tipFeeNew.icon}}" />
+              <view class="tea-desc ellipsis" aria-role="text" aria-label="{{freight.tipFeeNew.feeTip}}">{{freight.tipFeeNew.feeTip}}</view>
+              <view bindtap="selectFeeId" aria-role="button" aria-label="{{freight.tipFeeNew.check ? '取消' : '选中'}}" data-check="{{freight.tipFeeNew.check}}" class="tea-check {{freight.tipFeeNew.check ? 'unify-roll-btn-on' : 'unify-roll-btn-off'}}"></view>
+            </view>
+          </view>
+          <view class="d-flex flex-row" wx:if="{{freight.tipFeeNew.check && freight.tipFeeNew.tipFeeNewVOList.length > 1}}">
+            <view class="line-box d-flex flex-row align-items-center justify-content-center">
+              <view class="line-box-shin-line"></view>
+            </view>
+            <view class="feeid-detail d-flex flex-row align-items-center flex-wrap">
+              <block wx:for="{{freight.tipFeeNew.tipFeeNewVOList}}" wx:key="feeId">
+                <view aria-role="button" aria-label="{{item.price}}" class="feeId-tags {{item.check ? 'select-active' : 'shin-border'}}" data-fee-id="{{item.feeId}}" data-check="{{item.check}}" bindtap="selectTags">
+                  {{item.price}}
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 时段运费 -->
+    <block wx:elif="{{lisItems.moneyType == 'periodFreight' || lisItems.name == '时段运费'}}">
+      <view class="timer-freight d-flex flex-row align-items-center justify-content-between" wx:if="{{periodFreight}}" aria-role="text" aria-label="{{periodFreight.name}}{{periodFreight.value}}" >
+        <text class="timer-freight-txt">{{periodFreight.name}}</text>
+        <text class="timer-freight-price" style="color: {{periodFreight.color}}">{{periodFreight.value}}</text>
+      </view>
+      <!-- 享特惠 -->
+      <view class="jianyun-wrap d-flex flex-row" style="padding: 4rpx 0;height: 20rpx" wx:if="{{periodFreight.showConnectingLine}}">
+        <view class="line-box d-flex flex-row align-items-center justify-content-center">
+          <view class="line-box-shin-line"></view>
+        </view>
+      </view>
+    </block>
+    <!-- 满19元享特惠 -->
+    <block wx:elif="{{lisItems.moneyType == 'addItemDiscount' || lisItems.name == '满19元享特惠'}}">
+      <view class="enjoy-preferential d-flex flex-row align-items-center justify-content-between" wx:if="{{preferential}}" aria-role="text" aria-label="{{preferential.name + '' + preferential.value}}" >
+        <text class="enjoy-preferential-txt">{{preferential.name}}</text>
+        <text class="enjoy-preferential-price" style="color: {{preferential.color}}">{{preferential.value}}</text>
+      </view>
+    </block>
+    <!-- 包装服务费 -->
+    <block wx:elif="{{lisItems.moneyType == 'packaging' || lisItems.name == '包装费'}}">
+      <view class="packaging d-flex flex-row justify-content-between align-items-center" wx:if="{{pack}}" style="padding-top: {{freight || periodFreight || preferential ? 40 : 0}}rpx">
+        <view class="d-flex flex-row align-items-center">
+          <text class="package-name" aria-role="text" aria-label="{{pack.name}}">{{pack.name}}</text>
+          <text class="package-name" aria-role="text" aria-label="{{pack.secondTitle}}" >{{pack.secondTitle}}</text>
+          <view class="left_tip_box"  >
+            <image bindtap='onDeliverFeeClick' aria-role="button" aria-label="包装服务说明" wx:if="{{pack.childMoneyList && pack.childMoneyList.length}}" data-items="{{lisItems}}" data-icon-name="包装费" class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+            <view class="left_pack_tip" wx:if="{{pickTipShow}}"><text class="tip_txt">规则有更新哦~</text></view>
+          </view>
+          <image class="package-mark" wx:if="{{pack.packageMarkVo && pack.packageMarkVo.markUrl}}" src="{{pack.packageMarkVo.markUrl}}" />
+          <text class="package-mark-txt" aria-role="text" aria-label="{{pack.packageMarkVo.markText}}" wx:if="{{pack.packageMarkVo && pack.packageMarkVo.markText}}" style="color: {{tools.checkColor(pack.packageMarkVo.markColor)}}">{{pack.packageMarkVo.markText}}</text>
+        </view>
+        <view class="price-wrap  d-flex flex-row align-items-center">
+          <view class="line_money" wx:if="{{pack.receivableMoney}}" aria-role="text" aria-label="{{pack.receivableMoney}}">
+            {{pack.receivableMoney}}
+          </view>
+          <view class="money" aria-role="text" aria-label="{{pack.value}}" style="color: {{pack.color || '#333333'}}" wx:if="{{pack.value}}">{{pack.value}}</view>
+          <view bindtap="selectPack" aria-role="button" aria-label="{{pack.selectedButtonFlag ? '取消包装费' : '选择包装费'}}" wx:if="{{pack.choiceButtonFlag}}" class="pack_check {{pack.selectedButtonFlag ? 'unify-roll-btn-on' : 'unify-roll-btn-off'}}"></view>
+        </view>
+      </view>
+    </block>
+     <!-- 服务费 -->
+    <view class="module_item d-flex flex-row justify-content-between align-items-center" wx:else>
+      <view class="d-flex flex-row align-items-center">
+        <text class="package-name" aria-role="text" aria-label="{{lisItems.name}}">{{lisItems.name}}</text>
+        <image bindtap='onDeliverFeeClick' aria-role="button" aria-label="{{lisItems.title}}" wx:if="{{lisItems.descText || lisItems.childMoneyList}}" data-items="{{lisItems}}" data-icon-name="{{lisItems.name}}" class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+      </view>
+      <view class="price-wrap" aria-role="text" aria-label="{{lisItems.value}}">
+        <text class="money" wx:if="{{lisItems.value}}" style="color: {{lisItems.color}}">{{lisItems.value}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+<notice-dialog visible="{{noticeDialogVisible}}" initData="{{noticeDialogData}}" binddialogClose="dialogClose"></notice-dialog>
+<delivery-discount
+  unique="{{unique}}"
+  storeId="{{storeId}}"
+  orgCode="{{orgCode}}"
+  pageId="{{pageId}}"
+  prePageName="{{prePageName}}"
+  orderPageId="{{orderPageId}}"
+  show="{{showDeliveryDiscount}}"
+  requestFlag="{{freight.requestFlag}}"
+  data="{{freight.deliveryDiscountResp}}"
+  currentPageName="{{currentPageName}}"
+  initSettleParams="{{initSettleParams}}"
+  buriedObj="{{buriedObj}}"
+  binddiscountClose="discountClose"
+  bindresetDelivery="resetDelivery"
+></delivery-discount>
+<!-- 8.23运费模块优化-弹层 -->
+<freight-pop
+  bind:closeFreight="closeFreight"
+  bind:checkBusiness="checkBusiness"
+  freight="{{freight}}"
+  storeId='{{storeId}}'
+  isShowFreightPop="{{isShowFreightPop}}"
+  buriedObj="{{buriedObj}}"
+></freight-pop>

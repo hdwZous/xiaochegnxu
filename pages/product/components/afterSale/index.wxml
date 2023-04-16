@@ -1,0 +1,28 @@
+<view class="aftersale_case">
+  <view class="aftersale_content">
+    <view wx:for="{{afterSale}}"
+          wx:key="index"
+          wx:for-item="item"
+          class="aftersale_item">
+      <view class="aftersale_item_title"
+            aria-label="{{item.hintMsg}}"
+            aria-role="text">{{item.hintMsg}}</view>
+      <!-- <view class="aftersale_item_icon"
+            wx:if="{{item.explanationUrl}}" 
+            bindtap="showAfterSale"
+            data-title="{{item.explainTitle}}"
+            data-content="{{item.explainDetails}}"
+            aria-hidden="true"
+            style="background: url({{item.explanationUrl}}) no-repeat;background-size: contain;background-position: center">
+        <image class='icon_url' src="{{item.explanationUrl}}" />
+      </view> -->
+      <image class='icon_url' 
+             src="{{item.explanationUrl}}"
+             wx:if="{{item.explanationUrl}}" 
+             bindtap="showAfterSale"
+             data-title="{{item.explainTitle}}"
+             data-content="{{item.explainDetails}}"
+             aria-hidden="true" />
+    </view>
+  </view>
+</view>

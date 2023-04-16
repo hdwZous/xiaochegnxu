@@ -1,0 +1,39 @@
+.payStatus {
+  text-align: center;
+  margin-top: 50rpx;
+}
+
+.payStatus image {
+  display: block;
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 auto;
+}
+
+.payStatus .statusTxt {
+  color: #333333;
+  font-size: 36rpx;
+  line-height: 28rpx;
+  margin-top: 40rpx;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  color: white;
+  font-size: 36rpx;
+  margin-top: 120rpx;
+}
+
+.button view {
+  width: 280rpx;
+  height: 80rpx;
+  border: 1rpx solid #47b34f;
+  border-radius: 4rpx;
+  background-color:#47b34f;
+  text-align: center;
+  line-height:80rpx;
+  vertical-align: middle;
+}
+

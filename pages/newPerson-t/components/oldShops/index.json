@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "module-title": "../moduleTitle/index",
+    "star": "../star/index"
+  }
+}

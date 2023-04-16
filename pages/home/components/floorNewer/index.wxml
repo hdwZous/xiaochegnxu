@@ -1,0 +1,105 @@
+<block  
+      wx:if="{{newerData.data &&  newerData.data.length && newerData.data[0].floorCellData.imgUrl}}"
+      wx:for="{{newerData.data}}"
+      wx:key="index"
+      wx:for-item="item">
+      <view class=" newer-container exposure  {{item.floorCellData.userAction ? 'home_floorNewer' : ''}}"
+            style="background: {{newerData.needFloorBackground && newerData.floorBgColor || ''}} url({{newerData.floorBgImg}}) no-repeat; background-size: 100% 100%;padding-top:{{item.floorCellData.imgHeight}}"
+            data-item="{{item.floorCellData}}"
+            data-user-action="{{item.floorCellData.userAction}}"
+            data-trace-id="{{pageDataTraceId}}"
+            data-page-id="{{buriedObj.pageIdFirstPage}}"
+            data-current-page-name="{{buriedObj.currentPageName}}"
+            data-pre-page-name='{{buriedObj.prePageName}}'
+            aria-role="button"
+            aria-label="新人专享福利"
+      >
+            <image 
+                  src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                  data-lazy-img-id="{{floorId+index}}"
+                  style="width: {{item.floorCellData.imgWidth}}; height: {{item.floorCellData.imgHeight}};"
+                  class="img lazy-load top_img" 
+                  data-item="{{item.floorCellData}}"
+                  data-user-action="{{item.floorCellData.userAction}}"
+                  bindtap="jump"
+            />
+            <view 
+                  class="foods-container" 
+                  style="width: {{item.floorCellData.imgWidth}};"
+                  wx:if="{{item.floorCellData.skuList && item.floorCellData.skuList.length }}"
+            >
+                  <view class="box" >
+                        <view class="list_box" >
+                              <view 
+                                    class="food-item exposure" 
+                                    wx:for="{{item.floorCellData.skuList}}"
+                                    wx:key="index"
+                                    wx:for-item="subitem">
+                                    <view class="up_clickbox  {{subitem.userAction ? 'home_floorNewer' :''}}" 
+                                          data-item="{{subitem}}"
+                                          data-trace-id="{{pageDataTraceId}}"
+                                          data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                          data-current-page-name="{{buriedObj.currentPageName}}"
+                                          data-pre-page-name='{{buriedObj.prePageName}}'
+                                          data-user-action="{{subitem.userAction}}"
+                                          bindtap="clickGoods">
+                                          <view class="pic-box" >
+                                                <image 
+                                                      src="{{subitem.imgUrl ? subitem.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                                                      class="img" 
+                                                />
+                                                <view class="tag "
+                                                      wx:if="{{subitem.tags[0].iconText}}"
+                                                      style="background:url(https://storage.360buyimg.com/wximg/home/home_tag2.png);background-size: 100% 100%;">
+                                                      <view class="" >
+                                                            {{subitem.tags[0].iconTextUp}}
+                                                      </view>
+                                                      <view class="" >
+                                                            {{subitem.tags[0].iconTextDown}}
+                                                      </view>
+                                                </view>
+                                          </view>
+                                          <view class="name-text ellipsis2"
+                                          >
+                                                {{subitem.skuName ? subitem.skuName : ''}}
+                                          </view>
+                                          <view class="price-text1 ellipsis" 
+                                                style="text-decoration:{{subitem.minorPrice.deleteLine ? 'line-through' :'none' }};color:{{subitem.minorPrice.priceColor ? subitem.minorPrice.priceColor : '#FF3E4C'}}">
+                                                {{subitem.minorPrice.price ? '¥'+ subitem.minorPrice.price : ''}}
+                                          </view>
+                                    </view>
+                                    <view class="price-text2"
+                                          data-item="{{subitem}}"
+                                          data-user-action="{{subitem.userAction}}"
+                                          bindtap="clickSingleBtn">
+                                          <view class="imgbtn"  style="background:url(https://storage.360buyimg.com/wximg/home/home_price_btn2.png);background-size: 100% 100%;">  
+                                                <view class="left ellipsis" 
+                                                      style="color:{{subitem.majorPrice.priceColor ? subitem.majorPrice.priceColor : '#FFFFFF'}}"
+                                                      wx:if="{{subitem.majorPrice.price}}"
+                                                >
+                                                      {{subitem.majorPrice.price ? '¥'+subitem.majorPrice.price : ''}}
+                                                </view>
+                                                <view class="right" >
+                                                      抢
+                                                </view>
+                                          </view>
+                                    </view>
+                              </view>
+                        </view>
+                        <view class="btnbox" 
+                              wx:if="{{item.floorCellData.skuList && item.floorCellData.skuList.length == 6}}"
+                        >
+                              <view class="gobtn" 
+                                    data-item="{{item.floorCellData.goNowBtnVO}}"
+                                    data-user-action="{{item.floorCellData.goNowBtnVO.userAction}}"
+                                    style="color:{{item.floorCellData.goNowBtnVO.btnTextColor ? item.floorCellData.goNowBtnVO.btnTextColor: '#FF1E19'}};background-color:{{item.floorCellData.goNowBtnVO.btnBackgroundColor ? item.floorCellData.goNowBtnVO.btnBackgroundColor: '#FFFADE'}}"
+                                    bindtap="clickGoNow"
+                              >
+                                    {{item.floorCellData.goNowBtnVO.btnText ? item.floorCellData.goNowBtnVO.btnText : '立即前往'}}
+                              </view>
+                        </view>
+                  </view>
+            </view>
+           
+      </view>
+</block>

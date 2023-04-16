@@ -1,0 +1,341 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+
+<view class='store-head-bg' style="background: {{storeMemberInfo.backgroundColor + '14' || '#ff6a1814'}}">
+  <view class="store-info-wrap">
+    <!-- 基础信息 -->
+    <view class='flex-row basic-info'>
+      <view class='store-logo' bindtap="showOrgServiceHalf">
+        <image class="store-logo-url" src="{{storeInfo.logoUrl}}" aria-label="{{storeInfo.storeName}}.{{storeInfo.carrierNo && storeInfo.carrierNo===9966?'达达快送':'商家自送'}}{{storeInfo.deliveryFirst}}{{storeInfo.freightWords}}" aria-role="button" aria-haspopup="true" />
+      </view>
+      <view class='name-freight'>
+        <view class='store-name' 
+              aria-label="{{storeInfo.storeName}}.{{storeInfo.carrierNo && storeInfo.carrierNo===9966?'达达快送':'商家自送'}}{{storeInfo.deliveryFirst}}{{storeInfo.freightWords}}" 
+              aria-role="button" 
+              aria-haspopup="true"
+              bindtap="showOrgServiceHalf">
+          <view class='head-store-name ellipsis'>{{storeInfo.storeName}}</view>
+          <view class='store-icon-bg'></view>
+        </view>
+        <view class="flex-none deliver flex-row" 
+              style="color: {{storeInfo.carrierTag && storeInfo.carrierTag.iconTextColorCode || '#777'}}"
+              bindtap="clickDelivery">
+          <view class="flex-none" 
+                wx:if="{{storeInfo.carrierTag}}" 
+                aria-label="{{storeInfo.storeName}}.{{storeInfo.carrierTag && storeInfo.carrierTag.iconText}}{{storeInfo.deliveryFirst}}{{storeInfo.freightWords}}" 
+                aria-role="button" 
+                aria-haspopup="true">
+            {{storeInfo.carrierTag.iconText}}
+          </view>
+          <!--横杠必须配送方式和配送失效都下发才展示 -->
+          <view class="flex-none" wx:if="{{storeInfo.carrierTag && storeInfo.deliveryFirst}}">-</view>
+          <view class="flex-none" wx:if="{{storeInfo.deliveryFirst}}" aria-label="{{storeInfo.storeName}}.{{storeInfo.carrierNo && storeInfo.carrierNo===9966?'达达快送':'商家自送'}}{{storeInfo.deliveryFirst}}{{storeInfo.freightWords}}" aria-role="button" aria-haspopup="true">
+            {{storeInfo.deliveryFirst}}
+          </view>
+          <view class="flex-none freight" wx:if="{{storeInfo.freightWords}}" style="color: {{storeInfo.freightWordsColor}}" aria-label="{{storeInfo.storeName}}.{{storeInfo.carrierNo && storeInfo.carrierNo===9966?'达达快送':'商家自送'}}{{storeInfo.deliveryFirst}}{{storeInfo.freightWords}}" aria-role="button" aria-haspopup="true">
+            {{storeInfo.freightWords}}
+          </view>
+          <view class='flex-none freight-line' wx:if="{{storeInfo.freightWords}}" aria-label="{{storeInfo.storeName}}.{{storeInfo.carrierNo && storeInfo.carrierNo===9966?'达达快送':'商家自送'}}{{storeInfo.deliveryFirst}}{{storeInfo.freightWords}}" aria-role="button" aria-haspopup="true">
+            {{storeInfo.freightDescForLine}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 新结构的小券 -->
+    <block wx:if="{{storeCouponPopAb && storeCouponPopAb != 'D' && storeCouponPopAb != 'E' }}">
+      <view class='coupon-wrap flex-row' 
+            wx:if="{{couponSimpleInfo.length}}" 
+            bindtap="showCouponHalf">
+        <scroll-view class='coupon-scroll' 
+                     scroll-x="{{true}}" 
+                     enable-flex>
+          <view style="margin-left: 24rpx; height: 44rpx"></view>
+          <block wx:for="{{couponSimpleInfo}}" 
+                 wx:key="couponIndex" 
+                 wx:for-item="couponItem">
+            <!-- 膨胀券 -->
+            <block wx:if="{{couponItem.couponShowType == 6}}">
+              <!-- 已膨胀 -->
+              <block wx:if="{{couponItem.inflateStatus == 1}}">
+                <include src="./common/smallPengCouponHas.wxml" />
+              </block>
+              <!-- 未膨胀 -->
+              <block wx:else>
+                <include src="./common/smallPengCoupon.wxml" />
+              </block>
+            </block>
+            <!-- 红包 || v+ -->
+            <block wx:elif="{{couponItem.couponShowType == 5}}">
+              <include src="./common/smallVipCoupon.wxml" />
+            </block>
+            <!-- 助力 -->
+            <block wx:elif="{{couponItem.couponShowType == '3'}}">
+              <!-- 分享领 -->
+              <block wx:if="{{couponItem.helpActivityStatus==2}}">
+                <include src="./common/smallHelpCoupon.wxml" />
+              </block>
+              <!-- 已抢光 || 明天抢 -->
+              <block wx:else>
+                <include src="./common/smallHelpCouponNothing.wxml" />
+              </block>
+            </block>
+            <!-- 普通 -->
+            <block wx:else>
+              <!-- 未领取 -->
+              <block wx:if="{{couponItem.markState == 2}}">
+                <include src="./common/smallCoupon.wxml" />
+              </block>
+              <!-- 已领取 -->
+              <block wx:elif="{{couponItem.markState == 3}}">
+                <include src="./common/smallCouponHas.wxml" />
+              </block>
+              <!-- 已抢光和明天抢 -->
+              <block wx:else>
+                <include src="./common/smallCoupon.wxml" />
+              </block>
+            </block>
+          </block>
+          <view class="coupon-more" wx:if="{{showCouponMore}}" aria-hidden="true">查看更多</view>
+          <view style="padding-left: 12rpx; height: 44rpx" aria-hidden="true"></view>
+        </scroll-view>
+      </view>
+    </block>
+    <!-- 老结构的小券 -->
+    <block wx:else>
+      <!-- 优惠券 -->
+      <view class='coupon-wrap flex-row' wx:if="{{couponSimpleInfo.length}}" bindtap="showCouponHalf">
+        <scroll-view class='coupon-scroll' scroll-x="{{true}}" enable-flex>
+          <view style="margin-left: 24rpx; height: 44rpx"></view>
+          <block wx:for="{{couponSimpleInfo}}" wx:key="couponIndex" wx:for-item="couponItem">
+            <!-- 红包 || v+ -->
+            <block wx:if="{{couponItem.couponShowType == 5}}">
+              <view class="coupon-item bg1" aria-hidden="true">
+                <view class="coupon-left left-bg1" aria-hidden="true">
+                  <image class='v' src="https://storage.360buyimg.com/wximg/common/v2.png" />
+                </view>
+                <view class="coupon-center color1" aria-hidden="true">
+                  <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+                  <view class='price' wx:if="{{couponItem.price}}">
+                    {{tool.turnPrice(couponItem.price)[0]}}
+                  </view>
+                  <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+                    .{{tool.turnPrice(couponItem.price)[1]}}
+                  </view>
+                </view>
+                <view class="coupon-line" aria-hidden="true">
+                  <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg1.png" />
+                </view>
+                <view class="coupon-right color1" aria-hidden="true">
+                  {{couponItem.couponButton.title}}
+                </view>
+              </view>
+            </block>
+            <!-- 助力 -->
+            <block wx:elif="{{couponItem.couponShowType == '3'}}">
+              <!-- 分享领 -->
+              <block wx:if="{{couponItem.helpActivityStatus==2}}">
+                <view class="coupon-item bg2" aria-hidden="true">
+                  <view class="coupon-left left-bg2 color2" aria-hidden="true">
+                    <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+                    <view class='price' wx:if="{{couponItem.price}}">
+                      {{tool.turnPrice(couponItem.price)[0]}}
+                    </view>
+                    <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+                      .{{tool.turnPrice(couponItem.price)[1]}}
+                    </view>
+                  </view>
+                  <view class="coupon-center color2" aria-hidden="true">
+                    {{couponItem.couponLimit}}
+                  </view>
+                  <view class="coupon-line" aria-hidden="true">
+                    <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg2.png" />
+                  </view>
+                  <view class="coupon-right color2" aria-hidden="true">
+                    {{couponItem.couponButton.title}}
+                  </view>
+                </view>
+              </block>
+              <!-- 已抢光 || 明天抢 -->
+              <block wx:else>
+                <view class="coupon-item bg4" aria-hidden="true">
+                  <view class="color4  border-radius-left" aria-hidden="true">
+                    <view class="left-bg4  coupon-left1">
+                      <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+                      <view class='price' wx:if="{{couponItem.price}}">
+                        {{tool.turnPrice(couponItem.price)[0]}}
+                      </view>
+                      <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+                        .{{tool.turnPrice(couponItem.price)[1]}}
+                      </view>
+                    </view>
+                  </view>
+                  <view class="coupon-center color5" aria-hidden="true">
+                    {{couponItem.couponLimit}}
+                  </view>
+                  <view class="coupon-line" aria-hidden="true">
+                    <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg3.png" />
+                  </view>
+                  <view class="coupon-right color5 border-radius-right" aria-hidden="true">
+                    {{couponItem.couponButton.title}}
+                  </view>
+                </view>
+              </block>
+            </block>
+            <!-- 普通 -->
+            <block wx:else>
+              <!-- 未领取 -->
+              <block wx:if="{{couponItem.markState == 2}}">
+                <view class="coupon-item bg2" aria-hidden="true">
+                  <view class="coupon-left left-bg2 color2" aria-hidden="true">
+                    <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+                    <view class='price' wx:if="{{couponItem.price}}">
+                      {{tool.turnPrice(couponItem.price)[0]}}
+                    </view>
+                    <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+                      .{{tool.turnPrice(couponItem.price)[1]}}
+                    </view>
+                  </view>
+                  <!-- 券标，门店头只展示范围标，不展示身份标 -->
+                  <block wx:if="{{couponItem.styles && couponItem.styles.couponLabelStyle &&  couponItem.styles.couponLabelStyle.length  && tool.searchItem( couponItem.styles.couponLabelStyle, 'scopeType', 1).length}}">
+                    <view class='coupon-center color2' 
+                          aria-hidden="true">
+                      {{tool.searchItem(couponItem.styles.couponLabelStyle, 'scopeType', 1)[0].title || ''}}
+                    </view>
+                  </block>
+                  <!-- 兜底展示满减 -->
+                  <view wx:else class="coupon-center color2" aria-hidden="true">
+                    {{couponItem.couponLimit}}
+                  </view>
+                  <view class="coupon-line" aria-hidden="true">
+                    <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg2.png" />
+                  </view>
+                  <view class="coupon-right color2" aria-hidden="true">
+                    {{couponItem.couponButton.title}}
+                  </view>
+                </view>
+              </block>
+              <!-- 已领取 -->
+              <block wx:elif="{{couponItem.markState == 3}}">
+                <view class="coupon-item bg3" aria-hidden="true">
+                  <view class="color3  border-radius-left" aria-hidden="true">
+                    <view class="left-bg3  coupon-left1">
+                      <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+                      <view class='price' wx:if="{{couponItem.price}}">
+                        {{tool.turnPrice(couponItem.price)[0]}}
+                      </view>
+                      <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+                        .{{tool.turnPrice(couponItem.price)[1]}}
+                      </view>
+                    </view>
+                  </view>
+                  <!-- 券标，门店头只展示范围标，不展示身份标 -->
+                  <block wx:if="{{couponItem.styles && couponItem.styles.couponLabelStyle &&  couponItem.styles.couponLabelStyle.length  && tool.searchItem( couponItem.styles.couponLabelStyle, 'scopeType', 1).length}}">
+                    <view class='coupon-center  color3' 
+                          aria-hidden="true">
+                      {{tool.searchItem(couponItem.styles.couponLabelStyle, 'scopeType', 1)[0].title || ''}}
+                    </view>
+                  </block>
+                  <!-- 兜底展示满减 -->
+                  <view wx:else class="coupon-center color3" aria-hidden="true">
+                    {{couponItem.couponLimit}}
+                  </view>
+                  <view class="coupon-line" aria-hidden="true">
+                    <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg3.png" />
+                  </view>
+                  <view class="coupon-right color3 border-radius-right" aria-hidden="true">
+                    {{couponItem.couponButton.title}}
+                  </view>
+                </view>
+              </block>
+              <!-- 已抢光和明天抢 -->
+              <block wx:else>
+                <view class="coupon-item bg4" aria-hidden="true">
+                  <view class="color4  border-radius-left" aria-hidden="true">
+                    <view class="left-bg4  coupon-left1">
+                      <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+                      <view class='price' wx:if="{{couponItem.price}}">
+                        {{tool.turnPrice(couponItem.price)[0]}}
+                      </view>
+                      <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+                        .{{tool.turnPrice(couponItem.price)[1]}}
+                      </view>
+                    </view>
+                  </view>
+                  <block wx:if="{{couponItem.styles && couponItem.styles.couponLabelStyle &&  couponItem.styles.couponLabelStyle.length  && tool.searchItem( couponItem.styles.couponLabelStyle, 'scopeType', 1).length}}">
+                    <view class='coupon-center color5' aria-hidden="true">
+                      {{tool.searchItem(couponItem.styles.couponLabelStyle, 'scopeType', 1)[0].title || ''}}
+                    </view>
+                  </block>
+                  <view wx:else class="coupon-center color5" aria-hidden="true">
+                    {{couponItem.couponLimit}}
+                  </view>
+                  <view class="coupon-line" aria-hidden="true">
+                    <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg4.png" />
+                  </view>
+                  <view class="coupon-right color5 border-radius-right" aria-hidden="true">
+                    {{couponItem.couponButton.title}}
+                  </view>
+                </view>
+              </block>
+            </block>
+          </block>
+          <view class="coupon-more" wx:if="{{showCouponMore}}" aria-hidden="true">查看更多</view>
+          <view style="padding-left: 12rpx; height: 44rpx" aria-hidden="true"></view>
+        </scroll-view>
+      </view>
+    </block>
+    <!-- 新满减 -->
+    <block wx:if="{{storeCouponPopAb && storeCouponPopAb != 'D' && storeCouponPopAb != 'E'}}">
+      <view wx:if="{{promotionFloor.promotionList && promotionFloor.promotionList.length}}" 
+            class="store-tag flex-row align-items-center" 
+            bindtap="showCouponHalf">
+        <view class="flex-none" aria-hidden="true">
+          <view class="sale-item-tag border-all" 
+                style="color: {{promotionFloor.promotionList[0].colorCode}}; border-color: {{tool.changeColor(promotionFloor.promotionList[0].strokeColorOpacity,  promotionFloor.promotionList[0].strokeColorCode || '#FF1E19')}};">
+            {{promotionFloor.promotionList[0].iconText}}
+          </view>
+        </view>
+        <view class="sale-item-msg ellipsis flex-auto" aria-label="{{tool.repChart(promotionFloor.promotionList[0].words, '###', '，')}}.全部{{promotionFloor.promotionList.length}}个优惠" aria-role='button'>
+          {{tool.repChart(promotionFloor.promotionList[0].words, '###', '，')}}
+        </view>
+        <view class="sale-item-msg flex-none flex-row align-items-center" aria-label="{{tool.repChart(storeInfo.tags[0].words, '###', '，')}}.全部{{storeInfo.tags.length}}个优惠" aria-role='button'>
+          <view class="dis-num" aria-hidden="true">全部{{promotionFloor.promotionList.length}}个优惠</view>
+          <view class="more_icon" aria-hidden="true"></view>
+        </view>
+      </view>
+    </block>
+    <!-- 老满减 -->
+    <block wx:else>
+      <view wx:if="{{storeInfo.tags.length}}" class="store-tag flex-row align-items-center" bindtap="showCouponHalf">
+        <view class="flex-none" aria-hidden="true">
+          <view class="sale-item-tag" style="background-image:linear-gradient(135deg,  {{storeInfo.tags[0].startColorCode}} 0%, {{storeInfo.tags[0].endColorCode}} 100%)">
+            {{storeInfo.tags[0].iconText}}
+          </view>
+        </view>
+        <view class="sale-item-msg ellipsis flex-auto" aria-label="{{tool.repChart(storeInfo.tags[0].words, '###', '，')}}.全部{{storeInfo.tags.length}}个优惠" aria-role='button'>
+          {{tool.repChart(storeInfo.tags[0].words, '###', '，')}}
+        </view>
+        <view class="sale-item-msg flex-none flex-row align-items-center" aria-label="{{tool.repChart(storeInfo.tags[0].words, '###', '，')}}.全部{{storeInfo.tags.length}}个优惠" aria-role='button'>
+          <view class="dis-num" aria-hidden="true">全部{{storeInfo.tags.length}}个优惠</view>
+          <view class="more_icon" aria-hidden="true"></view>
+        </view>
+      </view>
+    </block>
+    <!-- 好店标 -->
+    <view class="good-store-tag" wx:if="{{storeInfo.storeLabel && storeInfo.storeLabel.storeLabelLogo}}" bindtap="jumpGoodStoreDetail" data-info="{{storeInfo.storeLabel}}">
+      <image class="good-store-tag-image" src="{{storeInfo.storeLabel.storeLabelLogo}}" aria-role='button' aria-label="好店标" />
+    </view>
+  </view>
+  <!-- 商家信息 -->
+  <view wx:if="{{storeMemberInfo &&  storeMemberInfo.memberName}}" class="store-member-wrap flex-row" style="color: {{storeMemberInfo.txtColor || '#7a3433'}}" bindtap="jumpStoreMember" data-info="{{storeMemberInfo}}">
+    <view class="memer-name" aria-role="button" aria-label="{{storeMemberInfo.memberName}}.{{storeMemberInfo.resourceTxt}}.{{storeMemberInfo.buttonTxt ? storeMemberInfo.buttonTxt : ''}}">
+      {{storeMemberInfo.memberName}}
+    </view>
+    <view class="memer-desc ell" aria-role="button" aria-label="{{storeMemberInfo.memberName}}.{{storeMemberInfo.resourceTxt}}.{{storeMemberInfo.buttonTxt ? storeMemberInfo.buttonTxt : ''}}">
+      {{storeMemberInfo.resourceTxt}}
+    </view>
+    <view class="memer-desc memer-btn" wx:if="{{storeMemberInfo.buttonTxt}}" aria-role="button" aria-label="{{storeMemberInfo.memberName}}.{{storeMemberInfo.resourceTxt}}.{{storeMemberInfo.buttonTxt ? storeMemberInfo.buttonTxt : ''}}">
+      {{storeMemberInfo.buttonTxt}}
+      <view class="icon_next icon dj_icon ts_next" aria-hidden="true"></view>
+    </view>
+  </view>
+</view>

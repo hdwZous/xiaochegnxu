@@ -1,0 +1,40 @@
+<view class="jd_beans_box d-flex flex-column justify-content-center align-items-center" wx:if="{{show}}" catchtouchmove='true'>
+  <view class="jd_beans-bg" wx:if="{{show}}" bindtap="hide"></view>
+  <view class="jd_beans-body d-flex flex-column" style="bottom:{{showDialog?0:'-1000px'}}">
+    <view class="title-box d-flex flex-row align-items-center justify-content-center">
+      <text>京豆</text>
+      <view class="jd_beans-close" bindtap="hide"></view>
+    </view>
+    <view class="res_layer_content {{isIpx?'ipx':''}}">
+      <view class="d-flex flex-column align-items-center">
+        <view class="rlc_top d-flex flex-row align-items-center">
+          <image class="rlct_img flex-none" src="https://storage.360buyimg.com/peibanjia/dj_wx/re_settle_red.png" />
+          <view class="rlct_red">剩余：<text class="rlct_num">{{infos.points}}</text></view>
+          <view class="jd_beans_explain" bindtap="explain" wx:if="{{infos.useRule}}">使用规则</view>
+        </view>
+        <image class="rlct_arrow" src="https://storage.360buyimg.com/peibanjia/dj_wx/re_settle_red_arrow.png" />
+      </view>
+      <view class="jd_beans_select d-flex flex-row justify-content-between">
+        <text>暂不使用京东</text>
+        <image class="rls_check" bindtap="selectRed" data-status="0" src="{{infos.useType==0?'https://storage.360buyimg.com/wximg/settleV2/check-true-green.png':'https://storage.360buyimg.com/wximg/settleV2/check-false.png'}}" />
+      </view>
+      <view class="jd_beans_select no_margin d-flex flex-row justify-content-between">
+        <text>自定义使用京豆数量</text>
+        <image class="rls_check" bindtap="selectRed" data-status="1" src="{{infos.useType==1?'https://storage.360buyimg.com/wximg/settleV2/check-true-green.png':'https://storage.360buyimg.com/wximg/settleV2/check-false.png'}}" />
+      </view>
+      <view class="beans_exchage d-flex flex-column align-items-center justify-content-center" wx:if="{{infos.useType==1}}">
+        <view class="be_detail d-flex flex-row align-items-center">
+          <text>使用</text>
+          <input class="be_input" type="number" value="{{jdNums}}" bindinput="changeNums" bindfocus="inFocus" />
+          <text>京豆，抵扣</text>
+          <text class="be_count">¥{{exchange}}</text>
+        </view>
+        <view class="be_tip">{{infos.inputTips}}</view>
+        <view class="shin-border-box beans_shin"></view>
+      </view>
+    </view>
+    <view class="jd_beansb-bt" bindtap="confirm">确定</view>
+    <view style="height: 60rpx;background: #fff;" wx:if="{{isIpx}}"></view>
+  </view>
+</view>
+<tip-dialog types="{{tipDialog.types}}" show="{{tipDialog.show}}" title="{{tipDialog.title}}" desc="{{tipDialog.desc}}" readmeList="{{tipDialog.readmeList}}" bindtipClose="tipClose"></tip-dialog>

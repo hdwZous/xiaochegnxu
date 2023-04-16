@@ -1,0 +1,53 @@
+<view class='flex-col item'>
+  <view class="flex-row">
+    <view class="flex-row item_title_wrap">
+      <view class="item_title log_enterstore" data-type="1" bindtap="enterStore" data-store-id="{{item.storeId}}" data-org-code="{{item.orgCode}}" data-sku-id="{{item.skuId}}" data-promotion-id="{{item.promotionId}}">
+        {{item.storeName}}
+      </view>
+      <view class="item_title_arrow">
+        <image src="https://storage.360buyimg.com/wximg/groupbuy/next-step.png" />
+      </view>
+    </view>
+    <view wx:if="{{item.status == 0}}" class="item_status_going">拼团中</view>
+    <view wx:elif="{{item.status == 2}}" class="item_status_failed">拼团失败</view>
+    <view wx:elif="{{item.status == 1}}" class="item_status_success">拼团成功</view>
+  </view>
+  <view bindtap="goToResult" class="log_result" data-type="1" data-promotion-Id="{{item.promotionId}}" data-group-Id="{{item.groupId}}" data-org-code="{{item.orgCode}}" data-sku-id="{{item.skuId}}" data-status="{{item.status}}" data-store-Id="{{item.storeId}}">
+    <view class="item_create_time">{{item.groupCreateTime}}</view>
+    <view class="flex-row middle">
+      <view class="flex-col item_img_zone">
+        <image class="item_img" src="{{item.skuImgUrl}}" />
+        <view class="item_total_member_desc">{{item.totalMembersDesc}}</view>
+      </view>
+      <view class="placeholder" />
+      <view class="flex-col item_price_zone">
+        <view class="flex-row">
+          <view class="item_group_price_prefix">¥</view>
+          <view class="item_group_price">{{item.groupPrice}}</view>
+        </view>
+        <view class="flex-row">
+          <view class="item_basic_price_prefix">¥</view>
+          <view class="item_basic_price">{{item.basicPrice}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="middle_divider" />
+  </view>
+  <view class="flex-row">
+    <view class="flex-col item_people_time_info">
+      <view wx:if="{{item.status != 1}}" class="flex-row">
+        <view>{{item.totalMembersDesc}}</view>
+        <view class="divider" />
+        <view>还差{{item.leftMembers}}人</view>
+      </view>
+      <view wx:if="{{item.status == 0}}" class="item_left_time">成团剩余时间:{{countDownStr}}</view>
+    </view>
+    <view class="placeholder" />
+    <button wx:if="{{item.status == 0}}" class="item_action_btn" open-type="share" data-promotion-Id="{{item.promotionId}}" data-group-Id="{{item.groupId}}" data-group-Price="{{item.groupPrice}}" data-basic-Price="{{item.basicPrice}}" data-sku-Name="{{item.skuName}}" data-share-Img-Url="{{item.shareImgUrl}}" data-store-Id="{{item.storeId}}" data-org-code="{{item.orgCode}}" data-sku-id="{{item.skuId}}" data-status="{{item.status}}">
+      邀请好友
+    </button>
+    <view wx:else class="item_action_btn log_launchother" bindtap="launchOther" data-type="1" data-promotion-Id="{{item.promotionId}}" data-store-Id="{{item.storeId}}" data-org-code="{{item.orgCode}}" data-sku-id="{{item.skuId}}" data-status="{{item.status}}">
+      再团一个
+    </view>
+  </view>
+</view>

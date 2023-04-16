@@ -1,0 +1,12 @@
+.tostore-qualification-wrap {
+  background: #f4f4f4;
+  padding: 24rpx;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: auto;
+}
+.tostore-qualification-img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 24rpx;
+}

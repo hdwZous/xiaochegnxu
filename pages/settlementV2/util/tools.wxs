@@ -1,0 +1,38 @@
+var checkColor = function (color) {
+  if (color) {
+    if (color.match('#')) {
+      return color
+    } else {
+      return '#' + color
+    }
+  } else {
+    return color
+  }
+}
+
+var checkAddressType = function (type) {
+  var typetext = "";
+  switch (type) {
+    case "1":
+      typetext = "detail";
+      break;
+    case "2":
+      typetext = "add_new";
+      break;
+    case "3":
+      typetext = "add_exists";
+      break;
+    case "4":
+      typetext = "select";
+      break;
+    case "5":
+      typetext = "add_exp20";
+      break;
+  }
+  return typetext
+}
+
+module.exports = {
+  checkColor: checkColor,
+  checkAddressType: checkAddressType
+}

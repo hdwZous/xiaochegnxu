@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "filter-reach": "../../../asyncPackage/compontents/filterReach/index",
+    "tabSwitch":"/components/tabSwitch/index"
+  },
+  "componentPlaceholder": {
+      "filter-reach": "view"
+  }
+}

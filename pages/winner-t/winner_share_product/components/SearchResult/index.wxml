@@ -1,0 +1,21 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.content}}">
+        <view class="{{styles.content_search}}">
+            <block>
+                <block wx:if="{{showList.length === 0}}">
+                    <not-fund></not-fund>
+                </block>
+                <block wx:else>
+                    <scroll-view class="{{styles.search_product}}" scroll-into-view="{{scrollInto}}" scroll-y="{{true}}" bindscrolltolower="anonymousFunc0" scroll-with-animation="{{true}}">
+                        <view class="{{styles.productBox}}">
+                            <view id="product_first"></view>
+                            <view id="{{i.$original.skuId}}" class="observer-search" wx:key="skuId" data-product="{{i.$original}}" wx:for="{{loopArray10}}" wx:for-item="i" wx:for-index="index">
+                                <product compid="{{i.$compid__26}}"></product>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </block>
+            </block>
+        </view>
+    </view>
+</block>

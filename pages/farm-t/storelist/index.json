@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index"
+  },
+  "navigationBarTitleText": "附近门店列表"
+}

@@ -1,0 +1,45 @@
+.back_to_app_wrap {
+    padding-left: 5rpx;
+    z-index: 1001;
+    position: fixed;
+    left: 0;
+    bottom: 182rpx;
+    height: 62rpx;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.06);
+    border-radius: 0 34rpx 34rpx 0;
+}
+.back_to_app_icon_arrow {
+    font-size: 20rpx;
+    color: #ffffff;
+}
+.back_to_app_middle {
+    padding: 0 10rpx;
+}
+.back_to_app_txt {
+    font-size: 24rpx;
+    color: #ffffff;
+}
+.back_to_app_icon_close {
+    font-size: 18rpx;
+    color: #ffffff;
+}
+.back_to_app_split {
+    color: rgba(240, 240, 240, 0.3);
+    font-weight: 100;
+    font-size: 40rpx;
+}
+.back_to_app_right {
+    padding: 0 26rpx 0 14rpx;
+}
+button {
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 4rpx;
+    background: transparent;
+}
+
+button:after {
+    border: 0;
+}

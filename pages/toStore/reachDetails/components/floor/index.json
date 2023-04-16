@@ -1,0 +1,13 @@
+{
+    "component": true,
+    "usingComponents": {
+        "banner": "../banner/index",
+        "set-meal": "../set-meal/index",
+        "notes": "../notes/index",
+        "store": "../store/index",
+        "evaluate": "../evaluate/index",
+        "recommend": "../recommend/index",
+        "essential": "../essential/index",
+        "coupon": "../coupon/index"
+    }
+}

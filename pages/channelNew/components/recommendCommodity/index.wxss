@@ -1,0 +1,134 @@
+.commodity-list {
+    border-radius: 24rpx;
+    overflow: hidden;
+}
+
+.background {
+    background: #fff;
+    padding: 16rpx 0;
+}
+
+.brand-title {
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    padding: 16rpx 0 16rpx 26rpx;
+}
+
+.commodity-group {
+    display: flex;
+}
+
+.brand-group {
+    display: flex;
+    padding: 16rpx 0;
+}
+
+.brand-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-img {
+    width: 118rpx;
+    height: 68rpx;
+}
+
+.brand-name {
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 8rpx;
+}
+
+.commodity-item {
+    flex: 1;
+    height: 220rpx;
+}
+
+.commodity-img {
+    height: 100%;
+    width: 100%;
+}
+
+/* 四宫格 */
+.wrap{
+    background: #fff;
+}
+.container{
+    display: flex;
+}
+.commodity-list-item{
+    flex: 1;
+    text-align: center;
+    padding: 32rpx 0;
+    position: relative;
+}
+.item_img_src{
+    width: 96rpx;
+    height: 96rpx;
+    border-radius: 8rpx;
+}
+.item_img{
+    height: 96rpx;
+}
+
+.item-bg-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+}
+.img_title{
+    font-size: 28rpx;
+    color: #333;
+    margin-top: 20rpx;
+}
+.img_subtitle{
+    font-size: 24rpx;
+    color: #999;
+}
+.item02{
+    width: 100%;
+    display: flex;
+    padding: 20rpx 40rpx;
+    justify-content: space-between;
+    position: relative;
+}
+
+.item-bg-image02 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+}
+.container02{
+    display: flex;
+    /* padding: 20rpx 40rpx; */
+    align-items: center;
+}
+/* .item02:nth-child(1){
+    margin-right: 40rpx;
+}
+.item02:nth-child(2){
+    margin-left: 40rpx;
+} */
+.item02_left{
+    display: flex;
+    align-items: center;
+}
+.item_right{
+    height: 96rpx;
+}

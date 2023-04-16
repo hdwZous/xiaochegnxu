@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "half-screen": "../halfScreen/index",
+    "lack-good": "../lackgood/index"
+  }
+}

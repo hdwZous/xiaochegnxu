@@ -1,0 +1,30 @@
+
+<view class="wrap" wx:if="{{isShow}}">
+  <view class="container" style="background: {{initData.backGround}}">
+      <view class="head-img" style="width: {{initData.width * 2}}rpx; height: {{initData.height * 2}}rpx">
+        <image src="{{initData.headImg}}" />
+      </view>
+
+      <view wx:if="{{initData.awardList && initData.awardList.length > 0}}" class='result-wrap'>
+        <block wx:for="{{initData.awardList}}" wx:key="index" wx:for-item="item">
+          <view
+            wx:if="{{index < 3}}"
+            class='item'
+            data-item="{{item}}"
+            bindtap="clickItem"
+            style="width: {{item.width * 2}}rpx; height: {{item.height * 2}}rpx">
+            <image src="{{item.awardImg}}" />
+          </view>
+        </block>
+      </view>
+      <!-- 未中奖 -->
+      <view class="no-result" wx:else>
+        <view class='tip-img'>
+          <image src="{{initData.demotionInfo.imgUrl}}" />
+        </view>
+        <view class='tip-text'>{{initData.demotionInfo.title}}</view>
+      </view>
+  </view>
+  <image class='close' bindtap="hidePop" src="https://storage.360buyimg.com/wximg/common/popDelete.png" />
+</view>
+<view class="mask" wx:if="{{isShow}}"  bindtap="hidePop"></view>

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "add-service": "/components/addService/index",
+    "webp-img": "/components/webpImg/index",
+    "drug-sku-title":"/components/drugSkuTItle/index"
+  }
+}

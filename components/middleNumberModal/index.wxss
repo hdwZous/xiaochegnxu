@@ -1,0 +1,125 @@
+.middle-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: rgba(0, 0, 0, .7);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.middle, .modify-wrap, .invalid-wrap {
+    box-sizing: border-box;
+    color: #333;
+    font-size: 28rpx;
+    text-align: center;
+    width: 640rpx;
+    max-height: 1000rpx;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 40rpx 32rpx;
+    margin-bottom: 48rpx;
+    overflow: hidden;
+}
+.modify-wrap {
+    padding: 40rpx 40rpx 0;
+    width: 540rpx;
+}
+.invalid-wrap {
+    padding: 36rpx 36rpx 0;
+    width: 540rpx;
+}
+.box-text {
+    font-size: 28rpx;
+    font-family: PingFangSC-Light, PingFang SC;
+    font-weight: 300;
+    color: #666666;
+    margin: 24rpx 0 40rpx;
+    text-align: left;
+}
+.box-img {
+    width: 296rpx;
+    height: 296rpx;
+}
+.box-tip {
+    margin-top: 48rpx;
+}
+.box-phone {
+    font-size: 64rpx;
+    font-family: JDDJ-1-Regular, JDDJ-1;
+    font-weight: 600;
+}
+.btn-modify {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #43A9FF;
+    margin: 16rpx 0 44rpx;
+}
+.icon-right {
+    display: inline-block;
+    width: 14rpx;
+    height: 14rpx;
+    border-top: 1px solid #43A9FF;
+    border-right: 1px solid #43A9FF;
+    transform: rotateZ(45deg);
+}
+.box-title {
+    font-size: 36rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+}
+.box-input {
+    background: #FAFAFA;
+    border-radius: 2px;
+    padding: 20rpx;
+    color: #333;
+    text-align: left;
+    margin: 20rpx 0 40rpx;
+}
+.modify-wrap .btn, .invalid-wrap .btn {
+    padding: 30rpx;
+    font-size: 36rpx;
+}
+.modify-wrap .btn-cancel, .invalid-wrap .btn-cancel {
+    border-right: 1rpx solid #F5F5F5;
+}
+.modify-wrap .btn-wrap, .invalid-wrap .btn-wrap {
+    border-top: 1rpx solid #F5F5F5;
+    margin: 0 -40rpx;
+}
+.btn-confirm {
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+}
+.btn-wrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.btn-call {
+    background: linear-gradient(270deg, #00CF37 0%, #45DC6D 100%);
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+.btn {
+    flex: 1;
+}
+
+.box-desc {
+    text-align: left;
+    font-size: 20rpx;
+    color: #999;
+}
+.btn-close {
+    width: 76rpx;
+    height: 76rpx;
+}

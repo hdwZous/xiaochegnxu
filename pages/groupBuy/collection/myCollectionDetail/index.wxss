@@ -1,0 +1,361 @@
+page {
+    background:#F6F6F6;
+}
+.myCollectionDetail {
+  padding-bottom: 100rpx;
+}
+.myCollectionDetail .noticeMsg{
+    height:68rpx;
+    background:rgba(255,246,205,0.9);
+    font-size:24rpx;
+    color:#713F00;
+    line-height:68rpx;
+    position:relative;
+    padding:0 20rpx;
+}
+.myCollectionDetail .noticeMsg image {
+    width:26rpx;
+    height:26rpx;
+    position:absolute;
+    right:20rpx;
+    top:23rpx;
+}
+.myCollectionDetail .box {
+    margin: 20rpx;
+    background: #fff;
+    border-radius: 12rpx;
+    box-shadow:0px 2px 8px 0px rgba(0,0,0,0.06);
+}
+.myCollectionDetail .orderStatus {
+    padding-top: 30rpx;
+    margin-left: 20rpx;
+    margin-bottom: 30rpx;
+    margin-right: 20rpx;
+    color: #333;
+    font-size: 40rpx;
+}
+.myCollectionDetail .orderStatus .collectionFail {
+    font-size:30rpx;
+    color:#666;
+    display:flex;
+    margin-top:20rpx;
+}
+.myCollectionDetail .orderStatus .collectionFail .line {
+    height:24rpx;
+    margin:8rpx 10rpx;
+    background:#E8E8E8;
+    width:2rpx;
+}
+.myCollectionDetail  .waitForPay {
+    color:#FF5757;
+    font-weight: bold;
+}
+.myCollectionDetail  .left-time {
+    font-size:30rpx;
+    color:#666;
+}
+.myCollectionDetail .storeName {
+    font-size: 32rpx;
+    color: #333;
+    margin: 30rpx 20rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+.goodsBox {
+    display: flex;
+    margin-top: 30rpx;
+    margin-bottom: 30rpx;
+}
+.goodsBox .leftBox {
+    margin-right: 20rpx;
+    margin-left: 20rpx;
+    position: relative;
+}
+.goodsBox  .rightBox  {
+    flex: auto;
+}
+.goodsBox .leftBox  image{
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 8rpx;
+    -webkit-border-radius: 8rpx;
+}
+.goodsBox  .rightBox .des{
+    font-size: 32rpx;
+    color: #333;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-right: 20rpx;
+}
+.goodsBox  .rightBox .type  {
+    height: 30rpx;
+    display: inline-block;
+    font-size: 20rpx;
+    border-radius: 2rpx;
+    line-height: 30rpx;
+    font-weight: 400;
+    margin-right: 10rpx;
+    text-align: center;
+    padding: 0 6rpx;
+}
+.goodsBox  .rightBox .presale {
+    color: #FF5757;
+    background:rgba(255,87,87,0.1);
+}
+
+.goodsBox  .rightBox .to_leader {
+    background: rgba(71,179,79,0.1);
+    color: #47B34F;
+}
+
+.goodsBox  .rightBox .price .activityPrice{
+    font-size: 15rpx;
+    color: #FF5757;
+    font-weight: 600;
+}
+.goodsBox  .rightBox .price {
+  display: flex;
+  line-height:40rpx;
+  align-items: baseline;
+}
+.goodsBox  .rightBox .price .activityPrice text {
+    font-size: 28rpx;
+    margin-right: 10rpx;
+}
+.goodsBox  .rightBox .price .basicPrice {
+    font-size: 24rpx;
+    color: #999;
+    text-decoration:line-through;
+}
+.group_tips {
+    background:-webkit-linear-gradient(135deg, rgba(254, 106, 72, 1), rgba(255, 63, 63, 1));
+    background:linear-gradient(135deg, rgba(254, 106, 72, 1), rgba(255, 63, 63, 1));
+    border-radius:8rpx 2rpx 8rpx 2rpx;
+    font-size:20rpx;
+    color:#fff;
+    height:35rpx;
+    line-height:35rpx;
+    width:84rpx;
+    display:inline-block;
+    text-align:center;
+    position:absolute;
+}
+
+.goodsMoney, .freightMoney {
+    display: flex;
+    justify-content: space-between;
+    font-size: 28rpx;
+    color: #333;
+    margin: 30rpx 20rpx;
+}
+.goodsMoney text, .freightMoney text {
+    font-size: 20rpx;
+}
+.realPayMoney {
+    display: flex;
+    justify-content: flex-end;
+    line-height: 58rpx;
+    align-items: baseline;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    margin-top: 30rpx;
+    padding-bottom: 20rpx;
+}
+.realPayMoney .label {
+  font-size: 28rpx;
+  color: 333;
+}
+.realPayMoney .payNum {
+    font-size: 40rpx;
+}
+.realPayMoney .payNum text {
+    font-size: 24rpx;
+}
+.setMsg  {
+    font-size: 28rpx;
+    padding:30rpx 0rpx 30rpx 20rpx;
+    color: #333;
+}
+.setMsg .title {
+    margin-bottom: 30rpx;
+    font-weight: 600;
+}
+.setMsg .setTime {
+    margin-top: 30rpx;
+    margin-bottom:30rpx;
+}
+.setMsg .setTime text {
+    padding-right:20rpx;
+}
+.setMsg  .address  {
+    margin-top: 30rpx;
+    display: flex;
+}
+.setMsg  .address  .label {
+    padding-right: 20rpx;
+}
+.setMsg  .address .addressDeatil  text:nth-child(1){
+    padding-right: 10rpx;
+}
+.setMsg .address {
+    margin-bottom: 30rpx;
+}
+.setWay{
+  margin-top: 30rpx;
+}
+.setWay text:nth-child(1) {
+    padding-right: 20rpx;
+}
+.setWay text:nth-child(2) {
+    font-size:20rpx;
+    background:#2486FF;
+    color:#fff;
+    padding:0rpx 4rpx;
+    line-height:40rpx;
+    border-radius:4rpx;
+}
+.orderMsg  {
+    color:#333;
+    font-size:28rpx;
+    padding:30rpx 0rpx 0 20rpx;
+}
+.orderMsg .orderTitle {
+    font-weight: 600;
+    padding-bottom: 30rpx;
+}
+.orderMsg  view.line , .orderMsg .orderTime{
+    padding: 30rpx 0;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.orderMsg .loadMore  {
+    display:flex;
+    justify-content:center;
+    margin-top: 30rpx;
+}
+.orderMsg .loadMore  .btn  {
+    width:240rpx;
+    height:64rpx;
+    line-height:64rpx;
+    text-align:center;
+    border-radius:100rpx;
+    border:1px solid rgba(218,218,218,1);
+    font-size:28rpx;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+.orderMsg .loadMore .icon_arrow {
+    width: 10rpx;
+    height: 10rpx;
+    border: 1rpx solid #666666;
+    border-top-width: 0;
+    border-left-width: 0;
+    -webkit-transform-origin: center center;
+    -webkit-transform: rotate(45deg);
+    -webkit-transition: all ease-in 400ms;
+    margin-left:10rpx;
+}
+
+.orderMsg .loadMore .icon_arrow_up {
+    -webkit-transform: rotate(225deg);
+}
+.myCollectionDetail .btnSuccess {
+    width:100%;
+    position:fixed;
+    font-size:36rpx;
+    color:#fff;
+    background:linear-gradient(270deg,rgba(243,33,37,1) 0%,rgba(253,130,29,1) 100%);
+    bottom:0;
+    height:100rpx;
+    line-height:100rpx;
+    text-align:center;
+}
+.btnWaitPay,.btnWaitUnit {
+    font-weight: 600;
+    width:100%;
+    position:fixed;
+    font-size:36rpx;
+    color:#333;
+    display:flex;
+    bottom:0;
+    height:100rpx;
+    line-height:100rpx;
+    text-align:center;
+}
+.btnWaitPay .btnCandle,.btnWaitUnit .btnCandle {
+    width: 250rpx;
+    text-align: center;
+    background: #fff;
+}
+.btnWaitPay .btnPay, .btnWaitUnit .btnUnit {
+    flex:auto;
+    background:linear-gradient(270deg,rgba(243,33,37,1) 0%,rgba(253,130,29,1) 100%);
+    color: #fff;
+}
+
+.redNotice {
+    color: #FF5757;
+    font-weight: bold;
+}
+.divider{
+    height: 4rpx;
+    background-color: #f5f5f5;
+    width: 100%;
+    margin-left: 20rpx;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    -webkit-transform: scale(1,0.25);
+    transform: scale(1,0.25);
+}
+.divider_{
+    height: 4rpx;
+    background-color: #f5f5f5;
+    width: 100%;
+    /*margin-left: 20rpx;*/
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    -webkit-transform: scale(1,0.25);
+    transform: scale(1,0.25);
+}
+.group-11 {
+    color: #666;
+    font-size: 30rpx;
+    line-height: 32rpx;
+    margin-bottom: 35rpx;
+    margin-top: 10rpx;
+}
+.align-center{
+    align-items: center;
+}
+
+.left-time {
+    display: inline-block;
+    line-height: 42rpx;
+}
+.left-members {
+    display: inline-block;
+    line-height:42rpx;
+}
+.mid-line{
+    display: inline-block;
+    width:1px;
+    height:10px;
+    opacity:0.08;
+    background:black;
+    margin-left: 10rpx;
+    margin-right:10rpx;
+}
+
+.left-members-text {
+    color: #ff5757;
+    font-size: 30rpx;
+    line-height: 32rpx;
+}
+@import "/common/css/global.wxss";

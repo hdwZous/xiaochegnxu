@@ -1,0 +1,17 @@
+<view class="seckill flex-row" 
+      wx:if="{{info.miaoshaRemainTime}}"
+      aria-role="text"
+      aria-label="{{info.miaoshaRemainName + '.'}}{{day ? day + '天' : ''}}{{hour}}时{{minute}}分{{second}}秒.结束">
+    <view class="txt start">{{info.miaoshaRemainName}}</view>
+    <block wx:if="{{day}}">
+        <view class="box">{{day}}</view>
+        <view class="txt">天</view>
+    </block>
+    <view class="box">{{hour}}</view>
+    <view class="txt">时</view>
+    <view class="box">{{minute}}</view>
+    <view class="txt">分</view>
+    <view class="box">{{second}}</view>
+    <view class="txt">秒</view>
+    <view class="txt end">{{info.miaoshaRemainEndWords}}</view>
+</view>

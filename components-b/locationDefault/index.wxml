@@ -1,0 +1,38 @@
+<view class="login_default" style="padding-top: 100rpx">
+  <image class="login_default_img" src="https://storage.360buyimg.com/wximg/common/errorbar_icon_noaddressV1.png"></image>
+  <!-- 提示文案 -->
+  <rich-text nodes="{{tipsMsg}}" class="login_default_tips"></rich-text>
+  <!-- 按钮 -->
+  <view class="login_default_btns flex-row">
+    <view class="flex-auto">
+      <view class="login_default_btn" bindtap="goToAddress">手动选择地址</view>
+    </view>
+    <view class="flex-auto">
+      <view class="login_default_btn" bindtap="goToSetting">直接授权定位</view>
+    </view>
+  </view>
+</view>
+
+<!--登录未授权地理位置默认页-->
+<!-- <block wx:if="{{status === 1}}">
+  <new-address
+    tipsMsg="{{tipsMsg}}"
+    bind:getStatus="getStatus">
+  </new-address>
+</block> -->
+
+<!--未登录未授权地理位置默认页-->
+<!-- <block wx:else>
+  <block wx:if="{{strategyName == 'old'}}">
+    <old-address
+      tipsMsg="{{tipsMsg}}"
+      bind:getStatus="getStatus"
+    ></old-address>
+  </block>
+  <block wx:else>
+    <new-address
+      tipsMsg="{{tipsMsg}}"
+      bind:getStatus="getStatus"
+    ></new-address>
+  </block>
+</block> -->

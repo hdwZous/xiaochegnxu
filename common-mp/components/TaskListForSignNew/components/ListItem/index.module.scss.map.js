@@ -1,0 +1,20 @@
+module.exports = {
+  "itemWrapper": "index-module__itemWrapper___1_2T5",
+  "taskIcon": "index-module__taskIcon___30Byh",
+  "msg": "index-module__msg___2c89T",
+  "taskName": "index-module__taskName___N8Opz",
+  "tagWords": "index-module__tagWords___1UddX",
+  "endTimeLimit": "index-module__endTimeLimit___VnsKj",
+  "btn": "index-module__btn___GmNRv",
+  "taskBtnfinnsh": "index-module__taskBtnfinnsh___DAf99",
+  "taskBtnAgainTo": "index-module__taskBtnAgainTo___xnC3m",
+  "taskBtnOrange": "index-module__taskBtnOrange___3f_oI",
+  "taskBtnRecieve": "index-module__taskBtnRecieve___GyLSC",
+  "beansNumWrap": "index-module__beansNumWrap___125Cq",
+  "beansImg": "index-module__beansImg___1XmLR",
+  "beansNum": "index-module__beansNum___1Kxks",
+  "buttonTextCont": "index-module__buttonTextCont___1JaXb",
+  "listItemButtonBreath": "index-module__listItemButtonBreath___2Q8SH",
+  "breaths": "index-module__breaths___2ODJo",
+  "v31_hand": "index-module__v31_hand___2DlRc"
+};

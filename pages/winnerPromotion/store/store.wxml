@@ -1,0 +1,104 @@
+<view class="winner-store">
+  <!-- 背景 -->
+  <view class="bg">
+    <image
+      src="{{store.storeInfo.logoUrl}}"
+      mode="heightFix"
+      class="filter"
+    />
+    <view class="glass"></view>
+  </view>
+  <view style="height:{{isIpX?'48px':'25px'}}"></view>
+  <view
+    class="top-nav"
+  >
+    <view
+      class="to-search"
+      bind:tap="handleToSearch"
+    >
+      <image
+        class="search-icon"
+        src="https://image3.imdada.cn/5c26a3326fac4b8387b47f488ec3c65c.png"
+        mode="widthFix"
+      />
+      <text class="search-text">搜索店内商品</text>
+    </view>
+
+    <image
+      wx:if="{{store.storeCouponInfo.couponModelList.length > 0}}"
+      class="coupon-icon"
+      src="https://image3.imdada.cn/46bcba5f91224948b14e03d44c9072b0.png"
+      mode="widthFix"
+      bind:tap="handleShowCouponPopup"
+    />
+  </view>
+
+  <!-- 门店信息 -->
+  <store-info
+    storeInfo="{{store.storeInfo}}"
+    storeCouponInfo="{{store.storeCouponInfo}}"
+    bind:handleShowCouponPopup="handleShowCouponPopupImpl"
+  ></store-info>
+
+  <!-- 分类及商品 -->
+  <view class="{{store.storeCouponInfo.couponModelList.length > 0? 'main' : 'main no-coupon'}}" wx:if="{{!showExceptionButton}}">
+    <main-category
+      cateList="{{cateList}}"
+      cateIndex="{{cateIndex}}"
+      bind:clickClassify="clickClassify"
+      bind:clickSubClassify="clickSubClassify"
+    ></main-category>
+    <view
+      class="right-content"
+      hover-stop-propagation="false"
+    >
+      <second-category
+        secondList="{{secondList}}"
+        secondIndex="{{secondIndex}}"
+        showAllSecondCate="{{showAllSecondCate}}"
+        bind:clickSubClassify="clickSubClassify"
+        bind:showSecondCateMask="showSecondCateMask"
+      ></second-category>
+      <product-box
+        storeId="{{store.storeInfo.storeId}}"
+        orgCode="{{store.storeInfo.orgCode}}"
+        curIndex="{{curIndex}}"
+        currentCate="{{currentCate}}"
+        preSwiperIndex="{{preSwiperIndex}}"
+        curSwiperIndex="{{curSwiperIndex}}"
+        bind:changeSwiper="changeSwiper"
+      ></product-box>
+    </view>
+  </view>
+  <view class="exception-box" wx:else>
+    <button class="exception-box__button" bindtap="onReLunch">
+      重新加载
+    </button>
+  </view>
+  <!-- 购物车弹层 -->
+  <view class="bottom-cart">
+    <shop-cart
+      storeId="{{query.storeId}}"
+      orgCode="{{query.orgCode}}"
+      showScanBtn
+    ></shop-cart>
+  </view>
+</view>
+<!-- 优惠券弹层 -->
+<page-container
+  show="{{showCouponPopup}}"
+  overlay="{{true}}"
+  duration="{{300}}"
+  position="bottom"
+  custom-style="background-color: transparent;z-index:30"
+  overlay-style="background-color: rgba(0, 0, 0, 0.6);z-index:30"
+>
+  <coupon-popup
+    storeId="{{query.storeId}}"
+    orgCode="{{query.orgCode}}"
+    title="{{store.storeCouponInfo.mainTitle}}"
+    coupons="{{store.storeCouponInfo.couponModelList}}"
+    bind:changeCoupon="handleChangeCoupon"
+    bind:close="handleCloseCouponPopup"
+  />
+</page-container>

@@ -1,0 +1,33 @@
+<view class="pageCont">
+  <view class='imgCont'>
+    <!--活动头图  -->
+    <view class='headImg'>
+      <image mode='widthFix' src='{{headImg}}'></image>
+    </view>
+    <!--利益点图  -->
+    <view class='profitImg'>
+      <image mode='widthFix' src='{{profitImg}}'></image>
+    </view>
+    <!--活动规则  -->
+    <view class='ruleImg'>
+      <image mode='widthFix' src='{{ruleImg}}'></image>
+    </view>
+    <!--领取人滚动图案  -->
+    <view class='scrollCont'>
+      <swiper style='height:44rpx'  autoplay="true" vertical="true" circular="true" interval="3000">
+        <block wx:for="{{scrollData}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+          <swiper-item style="height:44rpx">
+            <view class="scrollItem ">
+              <image src='https://static-o2o.360buyimg.com/activity/invite/images/head/timg_{{idx}}.jpg'></image>
+              <view class='text'>{{item}}</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <!--分享按钮图  -->
+  <button open-type='share' class='shareImg'>
+    <image mode='widthFix' src='{{shareButtonImg}}'></image>
+  </button>
+</view>

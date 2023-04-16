@@ -1,0 +1,5 @@
+<view class="estimate-price" style="color: {{info.leftFontColor}};background: linear-gradient(90deg, {{info.leftStartColor}} 0%, {{info.leftEndColor}} 100%);">
+  <view class="d-flex flex-row align-items-center">
+    <text class="txt">{{info.leftText}}</text><text class="price">{{info.rightText}}</text>
+  </view>
+</view>

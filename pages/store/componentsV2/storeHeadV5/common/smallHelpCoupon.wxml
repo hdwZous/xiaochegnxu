@@ -1,0 +1,15 @@
+<!-- 助力券分享领 -->
+<view class="coupon-item bg2" aria-hidden="true">
+  <view class="coupon-left left-bg2 color2" aria-hidden="true">
+    <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+    <view class='price' wx:if="{{couponItem.price}}">{{tool.turnPrice(couponItem.price)[0]}}</view>
+    <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+      .{{tool.turnPrice(couponItem.price)[1]}}
+    </view>
+  </view>
+  <view class="coupon-center color2" aria-hidden="true">{{couponItem.couponLimit}}</view>
+  <view class="coupon-line" aria-hidden="true">
+    <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg2.png" />
+  </view>
+  <view class="coupon-right color2" aria-hidden="true">{{couponItem.couponButton.title}}</view>
+</view>

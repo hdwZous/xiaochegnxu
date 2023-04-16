@@ -1,0 +1,32 @@
+<view class="banner-wrapper">
+    <swiper class="swiper-box"
+          style="height: {{height}}rpx"
+          next-margin="{{ list.length > 1 ? '46rpx' : '0rpx' }}"
+          circular="true"
+    >
+      <block wx:for="{{list}}"
+             wx:key="index"
+             wx:for-item="item">
+          <swiper-item>
+             <view class="act-banner-box ep_banner" 
+                  style="width: {{list.length > 1 ? width + 'rpx' : '730rpx'}}; height: {{height + 'rpx'}}"
+                  data-item="{{item}}"
+                  data-user-action="{{item.userAction}}"
+                  data-trace-id="{{traceId}}"
+                  data-page-id="{{buriedObj.pageIdFirstPage}}"
+                  data-current-page-name="{{buriedObj.currentPageName}}"
+                  data-pre-page-name="{{buriedObj.prePageName}}"
+                  bindtap="jumpPage">
+                  <view class="img-view"
+                        style="width: {{list.length > 1 ? width + 'rpx' : '710rpx'}}">
+                        <webp-img width="{{list.length > 1 ? width : '710'}}" 
+                                  height="{{height}}"
+                                  src="{{item.imgUrl}}"
+                                  skuName="促销广告图{{index+1}}">
+                        </webp-img>
+                  </view>
+             </view>
+           </swiper-item>
+      </block>
+  </swiper>
+</view>

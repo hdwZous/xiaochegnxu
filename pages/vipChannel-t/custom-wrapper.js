@@ -1,0 +1,1 @@
+(wx["webpackJsonp/pages/vipChannel-t/"]=wx["webpackJsonp/pages/vipChannel-t/"]||[]).push([[1],[],[[288,0,3]]]);

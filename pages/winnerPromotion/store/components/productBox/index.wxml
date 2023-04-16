@@ -1,0 +1,80 @@
+<scroll-view class="product-box">
+  <!-- 商品列表 -->
+  <swiper
+    class="scroll_swiper"
+    circular="{{true}}"
+    vertical="{{true}}"
+    skip-hidden-item-layout="{{true}}"
+    current="{{curSwiperIndex}}"
+    duration="{{300}}"
+    easing-function="easeInCubic"
+    bindchange="changeSwiper"
+    capture-bind:touchstart="beforeMove"
+    catch:touchmove="preventMove"
+    capture-bind:touchend="afterMove"
+  >
+    <block
+      wx:for="{{[0,1,2]}}"
+      wx:key="index"
+      wx:for-item="item"
+      wx:for-index="index"
+    >
+      <swiper-item data-index="{{index}}">
+        <view
+          wx:if="{{index == curSwiperIndex}}"
+          class="swiper_box"
+          data-cate-index="{{curIndex}}"
+        >
+          <scroll-view
+            class="product-list"
+            scroll-y="{{true}}"
+            lower-threshold="400"
+            bindscrolltolower="addList"
+          >
+            <view class="sort-box">
+              <view class="product-title">{{currentCate.catIds.catName}}</view>
+              <view class="right-sort">
+                <view class="month-sale-sort">
+                  <!-- <text class="{{sortKey=='monthSaleSortIndex'?'sort_item_checked':''}}" bindtap="handleClickSaleSort">销量</text> -->
+                </view>
+                <view class="price-sort">
+                  <text
+                    class="{{sortKey=='priceSortIndex'?'sort_item_checked':''}}"
+                    bindtap="handleClickPriceSort"
+                  >价格</text>
+                  <view class="img_group">
+                    <view
+                      class="triangle-up"
+                      style="border-bottom-color: {{priceWay == 1 ? '#fe6f41' : '#999'}}"
+                    ></view>
+                    <view
+                      class="triangle-down"
+                      style="border-top-color: {{priceWay == 0 ? '#fe6f41' : '#999'}}"
+                    ></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <product
+              wx:for="{{showList}}"
+              wx:if="{{!item.spuId}}"
+              wx:key="skuId"
+              wx:for-item="item"
+              wx:for-index="index"
+              productItem="{{item}}"
+              storeId="{{storeId}}"
+              orgCode="{{orgCode}}"
+            ></product>
+            <view
+              class="blank_white_item"
+              style="height:250rpx"
+            >
+              {{bottomText}}
+            </view>
+          </scroll-view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</scroll-view>

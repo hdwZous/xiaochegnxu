@@ -1,0 +1,43 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.RepurchaseCoupon}}">
+        <view class="{{styles.top}}"></view>
+        <view class="{{styles.bottom}}">
+            <block>
+                <block wx:if="{{!step}}">
+                    <view>
+                        <view class="{{styles.inputSection}}">
+                            <rule-title compid="{{$compid__21}}"></rule-title>
+                            <button type="primary" disabled="{{!loginInfo.PDJ_H5_PIN && !params.mobile}}" bindtap="getCoupon">立即领取</button>
+                        </view>
+                        <view class="{{styles.ruleSection}}">
+                            <rule-title compid="{{$compid__22}}"></rule-title>
+                            <view class="{{styles.ruleItem}}" wx:for="{{rules}}" wx:for-item="item" wx:for-index="_anonIdx2">{{item}}</view>
+                        </view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="{{styles.couponSection}}">
+                        <block>
+                            <block wx:if="{{couponInfo.length > 0}}">
+                                <rule-title compid="{{$compid__23}}"></rule-title>
+                            </block>
+                            <block wx:else>
+                                <view class="{{styles.errorMsg}}">
+                                    <rule-title compid="{{$compid__24}}"></rule-title>{{errorMsg}}</view>
+                            </block>
+                        </block>
+                        <re-pur-coupon wx:for="{{loopArray9}}" wx:for-item="item" wx:for-index="_anonIdx4" compid="{{item.$compid__20}}"></re-pur-coupon>
+                    </view>
+                </block>
+            </block>
+        </view>
+        <block>
+            <block wx:if="{{step}}">
+                <button class="{{styles.bottomButton}}" type="primary" bindtap="gotoDj">去逛逛</button>
+            </block>
+            <block wx:else>
+                <view></view>
+            </block>
+        </block>
+    </view>
+</block>

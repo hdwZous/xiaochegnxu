@@ -1,0 +1,145 @@
+.pay-img{
+    text-align: center;
+    padding-top: 50rpx;
+    padding-bottom: 10rpx;
+}
+.pay-img .pay-picture {
+    width: 240rpx;
+    height: 120rpx;
+}
+
+.pay-tips {
+    height: 28rpx;
+    font-size: 28rpx;
+    color: #47B34F;
+    line-height: 28rpx;
+    text-align: center;
+}
+
+.pay-way{
+    margin-top: 40rpx;
+    text-align: center;
+    font-size:24rpx;
+    color:#666;
+    line-height:28rpx;
+    margin-bottom: 40rpx;
+}
+.pay-num{
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    flex-direction: column;
+    -webkit-flex-direction:column;
+    text-align: left;
+}
+.line{
+    width:690rpx;
+    border-top:2rpx #E8E8E8 dashed;
+    margin: 0 auto;
+}
+.pay-foot{
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  display: inline-flex;
+  display: -webkit-inline-flex;
+  flex-direction: row;
+  -webkit-flex-direction:row;
+}
+.pay-btn{
+    width:200rpx;
+    height:64rpx;
+    border-radius:4rpx;
+    border: 1px solid #47B34F;
+    text-align: center;
+    color:#47B34F;
+    font-size:26rpx;
+    line-height:64rpx;
+    vertical-align: middle;
+    margin: 0 15rpx;
+}
+.foot-line{
+    height:20rpx;
+    background:#F4F4F4;
+}
+.pay-order{
+    text-align: center;
+}
+.pay-button{
+    color: #fff;
+    background-color:#47B34F;
+    width: 690rpx;
+    height: 90rpx;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 34rpx;
+    border-radius: 8rpx ;
+    margin: 50rpx auto 0;
+}
+.fail{
+    color: #666;
+}
+.success{
+    color: #47B34F;
+}
+.pay-jd .pay-picture{
+    width: 80rpx;
+    height: 80rpx;
+}
+.pay-no-password{
+    font-size:28rpx;
+    color:#666;
+    line-height:28rpx;
+    text-align: center;
+    margin-top: 60rpx;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content:center;
+    -webkit-justify-content:center;
+
+
+}
+.pay-jd{
+    height: 80rpx;
+    margin: 20rpx 40rpx;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    border: solid 1rpx #E8E8E8;
+    border-radius: 8rpx;
+    align-items: center;
+    -webkit-align-items: center;
+    padding: 20rpx;
+}
+.pay-jd-tips{
+    height:32rpx;
+    font-size:32rpx;
+    color:#333;
+    line-height:32rpx;
+}
+.pay-jd-money{
+  font-size:26rpx;
+  color:#FF5757;
+  line-height:26rpx;
+}
+.pay-jd-mid{
+    flex: 1;
+    -webkit-flex: 1;
+}
+.pay-jd-btn{
+    font-size:26rpx;
+    color:#333333;
+    line-height:36rpx;
+}
+.pay-jd-line{
+    width:70rpx;
+    height:2rpx;
+    border-top: 2rpx solid #999;
+}
+.share-warp{
+    margin-top:60rpx;
+}
+.discount{
+    color: red;
+}

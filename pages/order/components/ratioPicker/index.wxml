@@ -1,0 +1,191 @@
+
+<view class="mask" catchtouchmove='stopPropagation' bind:tap="colseMask" wx:if="{{visible}}"></view>
+<!--弹窗类型1-->
+<view class="container" style="bottom:{{bottom}}px" catchtouchmove='stopPropagation' wx:if="{{pickerType==1 && visible}}">
+  <view class="title_wrap" catchtap="colseMask">
+     <view class="title"> {{title}} </view>
+     <view class="close_wrap">
+        <image 
+        class="close_icon"
+        src="https://storage.360buyimg.com/wximg/order/close.png"
+        lazy-load="{{true}}"
+        /> 
+     </view>
+  </view>
+  <scroll-view 
+    scroll-y="{{true}}"
+    scroll-top="{{scrollTop}}px"
+    scroll-anchoring="{{true}}"
+    style="-max-height:{{40}}vh;overflow:auto;height:75vh;" 
+  >
+  <view class="select_wrap">
+  <!-- 申请取消订单提示 -->
+      <view class="cancel_tip" wx:if="{{cancelTip && cancelTip.title}}">
+        <view class='cancel_tip_title' bind:tap="showCancelTipHandle">
+          <text>{{cancelTip.title}}</text>
+          <view class="cancel_tip_title_btn">
+            <image src="https://storage.360buyimg.com/wxmini/order/open_tip.png" wx:if="{{!showCancelTip}}"/>
+            <image src="https://storage.360buyimg.com/wxmini/order/close_tip.png" wx:if="{{showCancelTip}}"/>
+          </view>
+        </view>
+        <text class='tip_text' wx:if="{{showCancelTip}}">
+          {{cancelTip.content}}
+        </text>
+      </view>
+      <view class="select_list" 
+          wx:for="{{initData}}" 
+          wx:key="index" 
+          bind:tap="handleSelect"
+          data-item="{{item}}"
+          wx:if="{{item.canSelect == 1}}"
+      >
+          <view class="select_list_content">
+              {{item.name}}
+          </view>
+          <view class="ration_select" wx:if="{{!item.checked}}">
+              <image src="https://storage.360buyimg.com/wximg/icon/ration_no_selected.png" lazy-load="{{true}}"/>
+          </view>
+          <view class="ration_select_active" wx:else>
+              <image src="https://storage.360buyimg.com/wximg/icon/ratio_selected.png" lazy-load="{{true}}"/>
+          </view>
+      </view>
+  </view>
+  <view style="padding-bottom:160rpx;">
+  <view 
+      class="textarea_wrap {{selectItem.code != -1 && txtValue.length>0 && 'textarea_wrap_noactive'}}" 
+      wx:if="{{ selectItem.code == -1 || txtValue.length>0 }}"
+  >
+      <textarea 
+      disabled="{{selectItem.code != -1}}"
+      class="ttaa"
+      maxlength="50"
+      placeholder="请告诉我们您的反馈意见"
+      placeholder-style="font-size:14px;color:#666;font-weight:nomal"
+      show-confirm-bar="{{false}}"
+      adjust-position="{{false}}"
+      value="{{txtValue}}"
+      bindkeyboardheightchange="handleKeyboardheightchange"
+      bindinput="handleInputChange"
+      style="padding:{{isIOS?10:20}}rpx;padding-top:{{isIOS?6:20}}rpx;"
+      ></textarea>
+      <view class="min_num" wx:if="{{txtValue.length<6}}"> 最少6个字 </view>
+      <view class="current_num_wrap" wx:else> 
+          <text class="current_num">{{txtValue.length}}</text>
+          <text style="font-family:normal;font-size:12px">/</text>
+          <text style="font-family:light">50</text>
+      </view>
+  </view>
+  </view>
+  </scroll-view>
+    <view class="submit_wrap" style="margin-bottom:{{marginBottom}}">
+        <button 
+        bind:tap="handleSubmit"
+        class="submit_btn {{ submitBtnActive && 'submit_btn_active'}}"> 
+        提交 
+       </button>
+    </view>
+</view>
+<!-- 弹窗类型2  带副标题的那种 -->
+<view class="container" style="bottom:{{bottom}}px;" catchtouchmove='stopPropagation' wx:if="{{pickerType==2 && visible}}">
+  <view class="title_wrap" catchtap="colseMask">
+     <view class="title"> {{title}} </view>
+    <view class="close_wrap" >
+     <image 
+       class="close_icon"
+       src="https://storage.360buyimg.com/wximg/order/close.png"
+       lazy-load="{{true}}"
+     /> 
+    </view>
+  </view>
+  <scroll-view 
+    scroll-y="{{true}}"
+    scroll-top="{{scrollTop}}px"
+    scroll-anchoring="{{true}}"
+    style="-max-height:{{maxHeightRatio}}vh;overflow:auto;height:75vh;" 
+    class="scrollViewContainer">
+    <view class="select_wrap02" style="padding-bottom:160rpx;">
+      <!-- 申请取消订单提示 -->
+      <view class="cancel_tip" wx:if="{{cancelTip && cancelTip.title}}">
+        <view class='cancel_tip_title' bind:tap="showCancelTipHandle">
+          <text>{{cancelTip.title}}</text>
+          <view class="cancel_tip_title_btn">
+            <image src="https://storage.360buyimg.com/wxmini/order/open_tip.png" wx:if="{{!showCancelTip}}"/>
+            <image src="https://storage.360buyimg.com/wxmini/order/close_tip.png" wx:if="{{showCancelTip}}"/>
+          </view>
+        </view>
+        <text class='tip_text' wx:if="{{showCancelTip}}">
+          {{cancelTip.content}}
+        </text>
+      </view>
+        <view 
+            class="select_item_warp" 
+            wx:for="{{initData}}" 
+            wx:key="index"
+        >
+            <view class="select_item_title" wx:if="{{item.canSelect == 0}}">
+               {{item.name}}
+            </view>
+            <view 
+               class="select_item" 
+               wx:if="{{item.canSelect == 1 && item.code != -1}}"
+               bind:tap="handleSelect"
+               data-item="{{item}}"
+            >
+                <view class="select_item_content">{{item.name}}</view>
+                <view class="ration_select" wx:if="{{!item.checked}}">
+                    <image src="https://storage.360buyimg.com/wximg/icon/ration_no_selected.png" lazy-load="{{true}}"/>
+                </view>
+                <view class="ration_select_active" wx:else>
+                    <image src="https://storage.360buyimg.com/wximg/icon/ratio_selected.png" lazy-load="{{true}}"/>
+                </view>
+            </view>
+            <view 
+               class="select_item select_item_other" 
+               wx:if="{{item.code == -1}}"
+               bind:tap="handleSelect"
+               data-item="{{item}}"
+            >
+                <view class="select_item_content">{{item.name}}</view>
+                <view class="ration_select" wx:if="{{!item.checked}}">
+                    <image src="https://storage.360buyimg.com/wximg/icon/ration_no_selected.png" lazy-load="{{true}}"/>
+                </view>
+                <view class="ration_select_active" wx:else>
+                     <image src="https://storage.360buyimg.com/wximg/icon/ratio_selected.png" lazy-load="{{true}}"/>
+                </view>
+            </view>
+        </view>
+        <view 
+            class="textarea_wrap {{selectItem.code != -1 && txtValue.length>0 && 'textarea_wrap_noactive'}}" 
+            style="padding-left:0rpx;padding-right:0rpx;"
+            wx:if="{{ selectItem.code == -1 || txtValue.length>0 }}"
+        >
+            <textarea 
+            disabled="{{selectItem.code != -1}}"
+            class="ttaa"
+            maxlength="50"
+            placeholder="请告诉我们您的反馈意见"
+            placeholder-style="font-size:14px;color:#666;font-weight:nomal"
+            show-confirm-bar="{{false}}"
+            adjust-position="{{false}}"
+            value="{{txtValue}}"
+            bindkeyboardheightchange="handleKeyboardheightchange"
+            bindinput="handleInputChange"
+            style="padding:{{isIOS?10:20}}rpx;padding-top:{{isIOS?6:20}}rpx;"
+            ></textarea>
+            <view class="min_num" wx:if="{{txtValue.length<6}}"> 最少6个字 </view>
+            <view class="current_num_wrap" wx:else> 
+                <text class="current_num">{{txtValue.length}}</text>
+                <text style="font-family:normal;font-size:12px">/</text>
+                <text>50</text>
+            </view>
+        </view>
+    </view>
+  </scroll-view>
+    <view class="submit_wrap" style="margin-left:0;margin-right:0;margin-bottom:{{marginBottom}}">
+        <button 
+            bind:tap="handleSubmit"
+            class="submit_btn {{ submitBtnActive && 'submit_btn_active'}}" style="width:94%;"> 
+            提交 
+        </button>
+    </view>
+</view>

@@ -1,0 +1,49 @@
+.added-service .adds-items {
+  margin-bottom: 12rpx;
+}
+
+.added-service .adds-items:last-of-type {
+  margin-bottom: 0;
+}
+
+.added-service .adds-items .adds-items-txt {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 30rpx;
+  max-width: 70%;
+}
+
+.added-service .adds-items .adds-items-price {
+  font-size: 28rpx;
+  font-family: 'regular';
+  font-weight: 400;
+  color: #333333;
+  line-height: 26rpx;
+}
+
+.added-service .list-more {
+  margin-top: 16rpx;
+}
+
+.added-service .list-more .more-txt {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  line-height: 26rpx;
+}
+
+.added-service .list-more .ts_next {
+  font-size: 18rpx;
+  color: #333333;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transition: all 0.3s;
+}
+
+.added-service .list-more .ts_next.more {
+  transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+}

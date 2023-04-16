@@ -1,0 +1,36 @@
+.wrap{
+    position: fixed;
+    right: 0;
+    transition: right ease 1s,opacity ease 1s;
+    bottom: 60px;
+    width: 75px;
+    height: 75px;
+    z-index: 99;
+}
+.sider_img{
+    width: 75px;
+    height: 75px;
+}
+
+
+.movearea{
+    position: fixed;
+    right: 0;
+    width: 5px;
+    bottom:0rpx;
+    /* height: 850rpx; */
+    height: 100vh;
+}
+.movearea_img{
+    width: 75px;
+    height: 75px;
+    transition: left ease 1s,opacity ease 1s;
+    position: relative;
+    left: -70px;
+    opacity:1;
+    /* background: #000; */
+}
+.hide{
+    left: -10px;
+    opacity:0.4;
+}

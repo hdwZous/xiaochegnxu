@@ -1,0 +1,72 @@
+.grid_wrap {
+    width: 344rpx;
+    height: 254rpx;
+    border-radius: 24rpx;
+    background: #ffffff;
+    justify-content: space-around;
+}
+.grid_wrap  .grid_item {
+    width: 172rpx;
+}
+.grid_wrap  .grid_item:nth-child(1) {
+    border-radius: 24rpx 0 0 24rpx;
+}
+.grid_wrap  .grid_item:nth-child(2) {
+    border-radius: 0 24rpx 24rpx 0;
+}
+.grid_subitem {
+    width: 140rpx;
+}
+.grid_title {
+    padding-top: 16rpx;
+    color: rgba(51, 51, 51, 1);
+    font-size: 32rpx;
+    font-weight: bold;
+    line-height: 32rpx;
+}
+.grid_sub_title {
+    font-size: 24rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    margin-top: 6rpx;
+}
+.grid_img_case {
+    width: 120rpx;
+    height: 120rpx;
+    margin-top: 28rpx;
+}
+.grid_img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+.grid_img_case.boder_box .grid_img{
+    border-radius: 8rpx;
+}
+/* 图文4宫格 */
+.grid_wrap_4{
+    width: 344rpx;
+    height: 520rpx;
+    background: #D8D8D8;
+    border-radius: 16rpx;
+    box-sizing: border-box;
+    padding: 52rpx 8rpx 8rpx;
+}
+.grid_box_4{
+    width: 328rpx;
+    height: 460rpx;
+    background-color: #FFFFFF;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    padding: 12rpx;
+}
+.grid_img_case_4 {
+    width: 152rpx;
+    height: 218rpx;
+    float: left;
+}
+.grid_img_4 {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}

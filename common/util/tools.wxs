@@ -1,0 +1,111 @@
+var checkColor = function (color) {
+  if (color) {
+    if (color.match('#')) {
+      return color
+    } else {
+      return '#' + color
+    }
+  } else {
+    return color
+  }
+}
+var checkPrice = function (price) {
+  if (price) {
+    if (price == '暂无报价') {
+        return price
+    } else {
+      if ( price.match('¥') || price.match('￥')) {
+        return price
+      } else {
+        return '¥' + price
+      }
+    }
+  } else {
+    return price
+  }
+}
+
+// 将数组转化成字符串
+var arrToStr = function (arr) {
+  if (arr.length) {
+    return arr.join('，')
+  }
+}
+
+// 字符串截断 
+var checkStr = function (str,num){
+  if(str &&  str.length > num){
+    return str.slice(0,num)
+  }else{
+    return str
+  }
+}
+// 处理特殊字符, 例如门店的促销标签文案里带###号的改成，号
+var repChart = function (str, target, content) {
+  if (str && str.length > 0) {
+    return str.split(target).join(content)
+  } else {
+    return str
+  }
+}
+
+// 查找skuid
+var findSkuId = function (arr, item = {}) {
+  if (arr && arr.length) {
+    return arr.indexOf(item.spuId ? item.spuId : item.skuId) > -1
+  } else {
+    return false
+  }
+}
+
+var filterStr = function (str) {
+  // console.log('----->11111111111111',str)
+  // return 500
+  return str.replace('/','')
+}
+
+var turnPrice = function (str) {
+  var price = str + ''
+  var arr = price.split(".");
+  return arr
+}
+// 取中间值
+var calidx = function (num) {
+  return Math.ceil(num / 2);
+}
+// 根据key查找对应目标元素
+var searchItem = function (list, key, keyValue) {
+  if (list && list.length && key != undefined) {
+    var target = list.filter(function (item) {
+      return item[key] == keyValue;
+    });
+    return target;
+  }
+  return [];
+};
+
+// 根据透明度和十六进制色值转换成带透明度的十六进制
+// 例 透明度0.15  颜色： #ffffff 转换成#ffffff26
+var changeColor = function (opacity = 1, color) {
+  var c = Math.ceil(255 * opacity)
+  c = c.toString(16)
+  return '#' + color.slice(1) + c
+}
+var formatStarScore = function(starScore) {
+  return starScore > 0 ? starScore.toFixed(1) : starScore
+}
+
+module.exports = {
+  checkPrice: checkPrice,
+  checkColor: checkColor,
+  arrToStr: arrToStr,
+  checkStr: checkStr,
+  repChart: repChart,
+  findSkuId: findSkuId,
+  filterStr: filterStr,
+  turnPrice: turnPrice,
+  calidx: calidx,
+  searchItem: searchItem,
+  changeColor: changeColor,
+  formatStarScore: formatStarScore,
+};

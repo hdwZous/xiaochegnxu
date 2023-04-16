@@ -1,0 +1,24 @@
+<view class="navigation" style="background: {{background}}" wx:if="{{compatible}}">
+  <!-- 状态栏高度 -->
+  <view class="status_bar" style="height:{{capsule.top}}px"></view>
+  <!-- 导航 与 标题 -->
+  <view class="nav_bar flex_row align_item_center" style="width:{{capsule.left}}px;height:{{capsule.height + 8}}px">
+    <!-- 返回 首页 -->
+    <view class="nav_left flex align_item_center">
+      <view wx:if="{{showBack}}" class="back_{{color}}" bindtap="goBack"></view>
+      <view wx:if="{{showHome}}" class="home_box" style="border:.5px solid {{color}};" bindtap="goHome">
+        <view class="home_{{color}}"></view>
+      </view>
+    </view>
+    <!-- 标题 -->
+    <view wx:if="{{color == 'white'}}" class="flex_auto title" style="color: rgba(255, 255, 255, {{opacity}})">{{pageName}}</view>
+    <view wx:else class="flex_auto title" style="color: #000">
+      {{pageName}}
+    </view>
+  </view>
+</view>
+<!-- 因为上边用的fixed, 占位用的 -->
+<view wx:if="{{compatible}}">
+  <view style="height:{{statusBarHeight}}px"></view>
+  <view style="height:{{capsule.height}}px"></view>
+</view>

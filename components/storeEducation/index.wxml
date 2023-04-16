@@ -1,0 +1,7 @@
+<view wx:if="{{show}}" class='education-mask'></view>
+<vieww wx:if="{{show}}" class="education-content" style="top:{{top}}px">
+  <view class='education-imgurl'
+        style="background-image: url({{imgUrl}});">
+    <view class="education-btn" bindtap="hidePop"></view>
+  </view>
+</vieww>

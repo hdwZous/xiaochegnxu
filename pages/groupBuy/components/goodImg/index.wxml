@@ -1,0 +1,14 @@
+<!-- 轮播图 -->
+<view class="swiper-warp goodImg">
+  <swiper circular autoplay interval="3000" indicator-active-color="#666666" bindchange="swiperChange">
+    <block wx:for="{{goodImg}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='dots flex-row'>
+    <view class='item {{currentIndex==index?"current":"item"}}' wx:for="{{goodImg}}" wx:for-index="index" wx:key="index"></view>
+  </view>
+</view>
+<!-- <view> 图片</view> -->

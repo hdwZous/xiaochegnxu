@@ -1,0 +1,9 @@
+<!--  flex-wrap d-flex flex-row -->
+<view class="goods-attribute  ellipsis"
+      aria-role="tab"
+      aria-label="{{info.length >=2  ? '商品属性:' + info[0].cateAttrValue  + '、' + info[1].cateAttrValue :  info.length > 0 ?  '商品属性:' + info[0].cateAttrValue : ''}}">
+  <block wx:for="{{info}}" wx:key="tag">
+    <text class="goods-attribute-items" 
+          style="background: {{item.backGroundColor || 'F6F6F6'}};color: {{item.fontColor || '#666666'}}">{{item.cateAttrValue}}</text>
+  </block>
+</view>

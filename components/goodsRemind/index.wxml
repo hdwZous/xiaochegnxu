@@ -1,0 +1,3 @@
+<view class="product-detail-add-btn {{showState==10||!buttonEnable?'gray':''}}" bindtap="goodRemind">
+  {{title}}
+</view>

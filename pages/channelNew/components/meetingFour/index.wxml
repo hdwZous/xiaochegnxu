@@ -1,0 +1,24 @@
+<view
+  class="meeting-container"
+  style="background-color: {{meetingFourObj.needFloorBackground && meetingFourObj.floorBgColor || '#fff'}}; background-image: url({{meetingFourObj.floorBgImg || ''}}); background-repeat:no-repeat; background-size: 100% 100%;"
+  wx:if="{{meetingFourObj.data && meetingFourObj.data.length >= 4}}">
+  <view wx:if="{{meetingFourObj.imgTitle &&  meetingFourObj.imgTitle.imgUrl}}" class='top-bg'  style="width: auto; height: {{meetingFourObj.imgTitle.imgHeight}}rpx; background: url('{{meetingFourObj.frontImg}}'); background-size: 100% 100%"></view>
+  <view wx:else class='title'>{{meetingFourObj.floorTitle.floorName}}</view>
+  <view class='list-wrapper'>
+    <view
+      class='log_meeting_four item-wrapper  channel_comp_ep' 
+      style="background:{{imgLazyLoad[floorId+index] ? '' : '#D8D8D8'}};"
+      wx:for="{{list}}" 
+      wx:key="index" 
+      wx:item="{{item}}" 
+      data-user-action="{{item.userAction}}" 
+      data-trace-id="{{traceId}}" 
+      data-item="{{item}}" 
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name='{{prePageName}}'
+      bindtap="jump">
+      <image src="{{item.imgUrl ? item.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" class="pic "></image>
+    </view>
+  </view>
+</view>

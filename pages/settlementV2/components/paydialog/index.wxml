@@ -1,0 +1,19 @@
+<view class="confirm-dialog-bg flex-col" wx:if="{{showDialog}}" catchtap="hide">
+  <view class="confirm-dialog-body" style="height:{{height}}rpx;width: {{width}}rpx;background: {{backgroundColor ? backgroundColor : ''}}" catchtap="prevent">
+    <view class="pay-content flex-col">
+      <view class="pay-title">{{title}}</view>
+      <view class="pay-tips error" wx:if="{{errorTips}}">{{errorTips}}</view>
+      <view class="pay-tips" wx:else>{{tips}}</view>
+      <view class="pay-password flex-row" catchtap="focusInput">
+        <view class=" pay-box {{index+1==maxLength?'pay-box-last-child':''}}" wx:for="{{maxLength}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <view class="top-line"></view>
+          <view class="pay-box-black" wx:if="{{index<inputPwd.length}}"></view>
+        </view>
+      </view>
+      <view class="forget-pwd" bindtap="forgetGiftPwd">忘记密码？</view>
+      <view class="pay-real-input">
+        <input type="number" bindinput="inputPwd" bindblur="inputBlur" maxlength="{{maxLength}}" cursor-spacing="40px" focus="{{focus}}" value="{{inputPwd}}" />
+      </view>
+    </view>
+  </view>
+</view>

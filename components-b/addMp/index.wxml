@@ -1,0 +1,13 @@
+<!--components-b/addMp/index.wxml-->
+<view class="wrap01" style="top:{{top}}px"  wx:if="{{status==1}}" >
+    <image class="first" src="https://storage.360buyimg.com/wximg/home/add_mp04.png" />
+    <view class="close-icon" bind:tap="handleClickClose" >
+        
+    </view>
+    <view class="add-icon" bind:tap="handleClick">
+        
+    </view>
+</view>
+<view class="wrap02" style="top:{{top}}px" bind:tap="handleClose" wx:if="{{status==2}}">
+    <image class="second" src="https://storage.360buyimg.com/wximg/home/add_mp02.png"/>
+</view>

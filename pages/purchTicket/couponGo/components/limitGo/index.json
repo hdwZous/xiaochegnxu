@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+      "add-min-controller": "/components-b/addMinControllerV1/index"
+    }
+}

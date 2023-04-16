@@ -1,0 +1,23 @@
+<view class="coupon-item bg3" aria-hidden="true">
+  <view class="color3  border-radius-left" aria-hidden="true">
+    <view class="left-bg3 coupon-left_p">
+      <image class='p' src="https://storage.360buyimg.com/wximg/common/store-expanded-icon.png" />
+    </view>
+  </view>
+  <!-- 金额 -->
+  <view class='coupon-center  color3' aria-hidden="true">
+    <view class='price-unit' wx:if="{{couponItem.priceUnit == 1}}">¥</view>
+    <view class='price' wx:if="{{couponItem.price}}">
+      {{tool.turnPrice(couponItem.price)[0]}}
+    </view>
+    <view class='price-small' wx:if="{{tool.turnPrice(couponItem.price).length > 1}}">
+      .{{tool.turnPrice(couponItem.price)[1]}}
+    </view>
+  </view>
+  <view class="coupon-line" aria-hidden="true">
+    <image class="coupon-line-img" src="https://storage.360buyimg.com/wximg/common/couponbg3.png" />
+  </view>
+  <view class="coupon-right color3 border-radius-right" aria-hidden="true">
+    {{couponItem.couponButton.title}}
+  </view>
+</view>

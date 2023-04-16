@@ -1,0 +1,59 @@
+<view class="vnl-box d-flex flex-column justify-content-center align-items-center" wx:if="{{show}}" catchtouchmove='true'>
+  <view class="vnl-bg" wx:if="{{show}}" bindtap="confirm"></view>
+  <view class="vnl-body d-flex flex-column" style="bottom:{{showDialog?0:'-1000px'}}">
+    <view class="title-box d-flex flex-row align-items-center justify-content-center">
+      <text>{{infos.title}}</text>
+      <view class="vnl-close" bindtap="hide"></view>
+    </view>
+    <block wx:if="{{couponList.length||notCanUsedCouponList.length}}">
+      <scroll-view scroll-y class="vnl_content {{isIpx?'ipx':''}}" catchtouchmove="true">
+        <block wx:if="{{couponList.length}}">
+          <view class="list-floor">
+            <view class="coupon-wrap">
+              <view wx:for="{{couponList}}" wx:key="items" class="coupon-items">
+                <coupon-yhy-one 
+                  item="{{item}}"
+                  fromWhere="settle"
+                  bgType="{{bgType}}"
+                  buriedObj="{{buriedObj}}"
+                  orderPageId="{{orderPageId}}"
+                  noNeedExposure="{{true}}"
+                  isFirst="{{index==0?true:false}}"
+                  bindhandleCheck="handleCheck" 
+                />
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{notCanUsedCouponList.length}}">
+          <view class="list-floor">
+            <view class="list-title">不可用优惠券</view>
+            <view class="coupon-wrap">
+              <view wx:for="{{notCanUsedCouponList}}" wx:key="items" class="coupon-items">
+                <coupon-yhy-one 
+                  item="{{item}}" 
+                  fromWhere="settle"
+                  bgType="{{bgType}}"
+                  buriedObj="{{buriedObj}}"
+                  orderPageId="{{orderPageId}}"
+                  noNeedExposure="{{true}}"
+                  isFirst="{{!couponList.length&&index==0?true:false}}"
+                  bindhandleCheck="handleCheck" 
+                />
+              </view>
+            </view>
+          </view>
+        </block>
+        <view class="vnl_explain" bindtap="explain" wx:if="{{couponExplainLayer}}">使用说明</view>
+        <view style="height:64rpx"></view>
+      </scroll-view>
+      <view class="vnlb-bt" bindtap="confirm">确定</view>
+      <view style="height: 60rpx;" wx:if="{{isIpx}}"></view>
+    </block>
+    <view class="d-flex flex-auto flex-column align-items-center justify-content-center" wx:else>
+      <image class="coupon_empty" src="https://storage.360buyimg.com/peibanjia/dj_wx/re_settle_coupon_empty.png" />
+      <view class="empty_tip">您暂无可以使用的优惠券</view>
+    </view>
+  </view>
+</view>
+<tip-dialog types="{{tipDialog.types}}" show="{{tipDialog.show}}" title="{{tipDialog.title}}" desc="{{tipDialog.desc}}" readmeList="{{tipDialog.readmeList}}" bindtipClose="tipClose"></tip-dialog>

@@ -1,0 +1,705 @@
+<wxs module="dragLeft" src="./wxs/drag.left.wxs"></wxs>
+<wxs module="dragRight" src="./wxs/drag.right.wxs"></wxs>
+<wxs module="dragAll" src="./wxs/drag.all.wxs"></wxs>
+
+<!-- 默认页  ||defaultErrorKey=='storeOffline'-->
+<default wx:if="{{defaultErrorKey=='loading'||defaultErrorKey=='storeNetError'||defaultErrorKey=='cateError'}}" 
+        type="{{defaultError.type}}" 
+        btnText="{{defaultError.btnText}}" 
+        tips="{{defaultError.tips}}" 
+        src="{{defaultError.src}}" 
+        bind:defaultBtnEvent="onDefaultBtnEvent"
+        fromPosition="store=newStoreV5"
+        optionsPos="{{options}}">
+</default>
+
+<!-- logo背景 z-index:-1 -->
+<block  wx:if="{{defaultErrorKey==''|| defaultErrorKey=='goodsError' || defaultErrorKey=='storeOffline'}}">
+    <store-bg url="{{storeInfo.backgroundImage}}" 
+              logo="{{storeInfo.logoUrl}}"
+              storeMemberName="{{storeMemberInfo.memberName}}"
+              couponSimpleInfo="{{couponSimpleInfo}}"
+              tags="{{storeInfo.tags}}"
+              navigateBarHeight="{{navigateBarHeight}}"
+              promotionList="{{storeCouponPop.promotionFloor.promotionList}}"
+              ></store-bg>
+</block>
+<!--  aria-hidden：优惠券弹层弹出或者膨胀券弹层弹出时，为了防止穿透 -->
+<view class="navigate_box" aria-hidden="{{showCouponMap || popupPosition}}">
+    <navigation bgColor="" 
+                color="{{navBackColor}}" 
+                navTitle="{{storeInfo.storeName}}" 
+                storeInfo="{{storeInfo}}"  
+                bind:navEvent="navEvent" 
+                headCouponList="{{couponSimpleInfo}}" 
+                storeId="{{storeId}}"
+                showCoupon="{{showCoupon}}"
+                buriedObj="{{buriedObj}}"
+                options="{{options}}"
+                isCart="{{isCart}}">
+    </navigation>
+</view>
+<view  hidden="{{!(defaultErrorKey==''|| defaultErrorKey=='goodsError' || defaultErrorKey=='storeOffline')}}" 
+      id="mainMovale" 
+      class="main_box flex-col" 
+      style="transform:translateY({{bottomMovableView}}px);"
+      aria-hidden="{{showCouponMap}}">
+
+    <!-- 门店头卡片 -->
+    <view id="store-head-wrap">
+      <view class='store-head-wrap'>
+        <store-head storeInfo="{{storeInfo}}"
+                    couponSimpleInfo="{{couponSimpleInfo}}"
+                    storeMemberInfo="{{storeMemberInfo}}"
+                    showCouponMore="{{showCouponMore}}"
+                    bind:pageEvent="widgetEvent"
+                    storeCouponPopAb="{{storeCouponPopAb}}"
+                    traceId="{{traceId}}"
+                    buriedObj="{{buriedObj}}"
+                    promotionFloor="{{storeCouponPop.promotionFloor}}"
+                    options="{{options}}">
+        </store-head>
+      </view>
+    </view>
+    <!-- 下发门店tab导航 -->
+    <view  wx:if="{{tabData}}" class="tabview page-top drag position_bottom">
+      <view class="contain" style="{{curTab == 1 ? 'background: #f8f8f8' : 'background: #fff'}}">
+        <view class="tab clearfix" wx:if="{{!(tabData.length==1 && tabData[0].type == 'storeGoods')}}"> 
+          <view wx:for="{{tabData}}" 
+                wx:key="item" 
+                wx:for-index="idx" 
+                class="tab-son {{curTab == item.anchorTarget ? 'targetText' : ''}}"
+                bindtap="onTabClick" 
+                data-index="{{item.anchorTarget}}"
+                data-type="{{item.type}}"
+                data-tab-name="{{item.title}}"
+                data-activity-id="{{item.activityId}}"
+                aria-role="button"
+                aria-label="{{curTab == item.anchorTarget ? '已选定' : ''}}{{item.title}}">
+              {{item.title}}
+              
+          </view>    
+        </view>
+        <!--  wx:if="{{curTab != storeGoodsIndex}}" -->
+        <view  class="tab_border"></view>
+        <view class="tab-content">
+          <view wx:for="{{tabData}}" wx:key="item" wx:for-index="index" class="tab-contents {{curTab == item.anchorTarget ? 'on' : ''}}">
+                <!-- 全部商品tab -->
+                <view wx:if="{{item.type == 'storeGoods'}}"
+                      class="flex-auto flex-row product_box" 
+                      style="height:{{movableViewHeight}}px;">
+                    <view class="flex-none left_cate" 
+                          capture-bind:touchmove="{{dragLeft.touchmove}}" 
+                          capture-bind:touchstart="{{dragLeft.touchstart}}" 
+                          capture-bind:touchend="{{dragLeft.touchend}}" 
+                          data-from="left" 
+                          data-y="{{y}}" 
+                          data-nav-height="{{navigateBarHeight}}"
+                          data-cate-index="{{curIndex}}" 
+                          data-touch-top="{{leftTouchTop}}">
+                        <!-- 一级分类 -->
+                        <scroll-view scroll-anchoring 
+                                    enable-flex 
+                                    scroll-with-animation 
+                                    scroll-y 
+                                    class="cate_scroll flex-auto" 
+                                    bindscroll="leftCateScroll" 
+                                    bindscrolltoupper="leftCateTouchTop"
+                                    scroll-top="{{leftScrollTop}}rpx">
+                            <view wx:for="{{cateList}}" 
+                                  wx:key="index"
+                                  wx:for-item="item"
+                                  class="cate_item_view  {{index==cateIndex?'par_cate_item_checked':''}}">
+                                <!-- 虚拟分类： 活动入店或搜索入店 -->
+                                <view wx:if="{{item.cateActivityName}}"
+                                      class="ep_product-cate virtual_item {{index==cateIndex?'cate_item_checked':''}}"
+                                      style="color: {{index == cateIndex ? item.cateTitleColor : '#333'}}"
+                                      data-index="{{index}}"
+                                      data-item="{{item}}"
+                                      data-user-action="{{item.user_action}}"
+                                      data-store-id="{{storeId}}" 
+                                      data-select="1"
+                                      bindtap="clickClassify"
+                                      data-trace-id="{{traceId}}"
+                                      data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                      data-current-page-name="{{buriedObj.currentPageName}}"
+                                      data-pre-page-name="{{buriedObj.prePageName}}">
+                                    <view class="virtual_icon">
+                                      <image class='icon' src="{{item.cateIcon}}" />
+                                    </view>
+                                    <view class="virtual_title ellipsis2">{{item.title}}{{item.catId}}</view>
+                                </view>
+                                <view wx:else
+                                      class="cate_item {{index==cateIndex?'cate_item_checked':''}}" 
+                                      data-index="{{index}}" 
+                                      data-item="{{item}}"
+                                      data-user-action="{{item.user_action}}"
+                                      bindtap="clickClassify"
+                                      data-store-id="{{storeId}}" 
+                                      data-select="1"
+                                      data-trace-id="{{traceId}}">
+                                  <!-- <view class="cate_title_wrap">
+                                    <view class="cate_title ellipsis2"
+                                          aria-label="{{item.title}}"
+                                          aria-role='button'>
+                                      {{item.title}}
+                                    </view>
+                                  </view> -->
+                                  <cate-item item="{{item}}" 
+                                            checked="{{index==cateIndex}}"
+                                            trace-id="{{traceId}}"
+                                            userAction="{{item.user_action}}"
+                                            buriedObj="{{buriedObj}}"
+                                            isClickBlist="{{isClickBlist}}" />
+                                  <view aria-hidden="true"  wx:if="{{item.showAll &&  item.childCategoryList.length}}" class='cate_item_line'></view>
+                                  <view class="cate_arrow {{item.showAll ? 'cate_arrow_down' : 'cate_arrow_up'}}" wx:if="{{index==cateIndex && item.childCategoryList.length}}"></view>
+                                </view>
+                                <!-- 二级分类 -->
+                                <scroll-view  wx:if="{{item.showAll}}"
+                                              scroll-anchoring 
+                                              enable-flex 
+                                              scroll-with-animation 
+                                              scroll-y>
+                                            <block wx:for="{{item.childCategoryList}}"
+                                                  wx:for-item="subItem"
+                                                  wx:key="subIndex"
+                                                  wx:for-index="subIndex">
+                                              <view data-sub-index="{{subIndex}}" 
+                                                    data-item="{{subItem}}"
+                                                    data-user-action="{{subItem.user_action}}"
+                                                    bindtap="clickSubClassify"
+                                                    data-trace-id="{{traceId}}" data-level="2">
+                                                <second-cate-item subItem="{{subItem}}" 
+                                                                checked="{{secondIndex==subIndex}}"
+                                                                trace-id="{{traceId}}"
+                                                                userAction="{{subItem.user_action}}"
+                                                                buriedObj="{{buriedObj}}"
+                                                                isClickSlist="{{isClickSlist}}" />
+                                              </view>
+                                              <!-- <view class="ep_product-sub-cate sec_cate_item {{secondIndex == subIndex ?'sec_cate_item_checked' : ''}}"
+                                                    data-sub-index="{{subIndex}}" 
+                                                    data-item="{{subItem}}"
+                                                    data-user-action="{{subItem.user_action}}"
+                                                    bindtap="clickSubClassify"
+                                                    data-trace-id="{{traceId}}">
+                                                <view aria-hidden="true" wx:if="{{secondIndex == subIndex}}" 
+                                                      class="sec_item_checked">
+                                                </view>
+                                                <view class="sec_cate_title ellipsis2"
+                                                      aria-role='button'
+                                                      aria-label="{{subItem.title}}">{{subItem.title}}</view>
+                                              </view> -->
+                                            </block>
+                                </scroll-view>
+                            </view>
+                            <view class="blank_white_item" style="height:{{ipx ? '700rpx':'640rpx'}}"></view>
+                        </scroll-view>
+                    </view>
+                    <view class="flex-auto right_product flex-col">
+
+                      <!-- 三级分类 -->
+                      <view  wx:if="{{thirdList.length > 1}}"
+                            class="flex-none flex-row subCateBox">
+                        <scroll-view scroll-anchoring 
+                                      enable-flex 
+                                      scroll-with-animation 
+                                      scroll-left="{{scrollLeft}}" 
+                                      scroll-into-view="third_{{thirdIndex}}" 
+                                      enable-flex 
+                                      scroll-x 
+                                      scroll-with-animation="{{true}}"
+                                      class="flex-auto sub_cate flex-row">
+                                    <block  wx:for="{{thirdList}}" 
+                                            wx:for-item="thirdItem" 
+                                            wx:for-index="index" 
+                                            wx:key="index">
+                                          <view class=""
+                                                data-item="{{thirdItem}}"
+                                                data-user-action="{{thirdItem.user_action}}"
+                                                bindtap="clickSubClassify" 
+                                                id="third_{{index}}"
+                                                aria-role='button'
+                                                aria-label="{{thirdItem.title}}"
+                                                data-trace-id="{{traceId}}"
+                                                data-level="3">
+                                            <third-cate-item  thirdItem="{{thirdItem}}"
+                                                               checked="{{thirdIndex == index}}"
+                                                               traceId="{{traceId}}"
+                                                               secondIndex="{{secondIndex}}"
+                                                               buriedObj="{{buriedObj}}"
+                                                               isClick3Cate="{{isClick3Cate}}"/>
+                                          </view>
+                                    </block>
+                        </scroll-view>
+                        <view class="flex-none more_sub_cate" 
+                              wx:if="{{thirdList.length > 3}}"
+                              data-type="{{true}}"
+                              bindtap="showThirdCateMask"
+                              aria-role="button" 
+                              aria-haspopup="true" 
+                              aria-label="展示三级分类弹层">
+                        </view>
+                      </view>
+
+                      <!-- 三级分类弹层 -->
+                      <view class="sub_cat_wrap flex-none" 
+                            wx:if="{{showAllThirdCate}}" 
+                            catchtap="showThirdCateMask" 
+                            data-type="{{false}}">
+                        <view class="second_cat_down flex-col">
+                          <view class="second_cat_title flex-row"
+                                aria-label="全部分类" 
+                                aria-role='text'>
+                            <text>全部分类</text>
+                            <view class="up_wrap" aria-hidden="true">
+                              <view class="up"></view>
+                            </view>
+                          </view>
+                          <view class="second_cat_content flex-row">
+                            <view wx:for="{{thirdList}}" 
+                                  wx:for-item="thirdItem" 
+                                  wx:for-index="index"
+                                  wx:key="index" 
+                                  class="down_box">
+                              <view class=""
+                                    data-user-action="{{thirdItem.user_action}}"
+                                    data-item="{{thirdItem}}" 
+                                    bindtap="clickSubClassify"
+                                    aria-role='button'
+                                    aria-label='{{thirdItem.title}}'
+                                    data-trace-id="{{traceId}}" 
+                                    data-level="3">
+                                  <third-cate-pop-item thirdItem="{{thirdItem}}"
+                                                       checked="{{thirdIndex==index}}"
+                                                       traceId="{{traceId}}"
+                                                       buriedObj="{{buriedObj}}"
+                                                       isClick3Cate="{{isClick3Cate}}" />
+                              </view>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+
+                      <!-- 商品列表 -->
+                      <view class="swiper_box flex-auto flex-col" 
+                            data-touch-top="{{productTouchTop}}" 
+                            data-from="right" 
+                            data-y="{{y}}"
+                            data-nav-height="{{navigateBarHeight}}" 
+                            data-cate-index="{{curIndex}}" 
+                            capture-bind:touchmove="{{dragRight.touchmove}}" 
+                            capture-bind:touchstart="{{dragRight.touchstart}}" 
+                            capture-bind:touchend="{{dragRight.touchend}}">
+                        <swiper class='scroll_swiper' 
+                                circular="{{true}}" 
+                                vertical="{{true}}" 
+                                skip-hidden-item-layout="{{true}}"  
+                                current="{{productSwiperIndex}}"                            
+                                duration="{{300}}"
+                                easing-function="easeInCubic"
+                                bindchange="swiperChange">
+                          <block wx:for="{{[0,1,2]}}" 
+                                wx:key="index" 
+                                wx:for-item="item" 
+                                wx:for-index="index">
+                            <swiper-item data-index="{{index}}"> 
+                                <!-- 虚拟分类需要展示的名称 -->                        
+                                <view wx:if="{{virtualItem}}" 
+                                    class="virtual-item-wrap" 
+                                    style="background: {{virtualItem.cateBgColor}};color: {{item.cateTitleColor}}">
+                                        <view class='virtual-left' 
+                                                wx:if='{{virtualItem.cateActivityTitle}}' 
+                                                style="background: linear-gradient(to right, {{virtualItem.activityTitleStartColor}} 0%, {{virtualItem.activityTitleEndColor}} 100%);">
+                                            <image class="icon" src="{{virtualItem.cateActivityIcon}}" />
+                                            <view class='title' style="color: {{virtualItem.cateActivityTitleColor}}">
+                                                {{virtualItem.cateActivityTitle}}
+                                            </view>
+                                        </view>
+                                        <view class='virtual-right' style="color: {{virtualItem.cateTitleColor}}">
+                                        {{virtualItem.cateActivityName}}
+                                        </view>
+                                </view>
+                                <!-- 商家会员秒杀虚拟分类 -->
+                                <view wx:elif="{{vipConfig && index == productSwiperIndex}}" class='vip-virtual' style="background: {{vipConfig.backColor}}">
+                                  <view class='vip-virtual-title'>
+                                    <view wx:for="{{vipConfig.titles}}" wx:for-item="item" wx:key="index" style='color: {{item.color}}'>
+                                      {{item.desc}}
+                                    </view>
+                                  </view>
+                                  <view wx:if="{{vipConfig.button}}" class=' vip-virtual-btn' style="background-image: linear-gradient(to right,  {{vipConfig.button.startColorCode}} , {{vipConfig.button.endColorCode}});color: {{vipConfig.button.buttonNameColor}}" bindtap="jumpVip" data-to='{{vipConfig.to}}' data-params='{{vipConfig.params}}'>
+                                    {{vipConfig.button.buttonName}}
+                                  </view>
+                                </view>
+                                <!-- curIndex==index-1 下一个，index==curIndex-1 上一个  || index == curIndex-1 ||index == curIndex + 1 -->
+                                <block wx:if="{{index == productSwiperIndex }}">
+                                    <product-list req="{{currentProduct.catIds}}"
+                                                userAction="{{currentProduct.userAction}}"
+                                                orgCode="{{storeInfo.orgCode || orgCode}}" 
+                                                storeId="{{storeInfo.storeId || storeId}}" 
+                                                skuId="{{skuId}}" 
+                                                catId="{{currentProduct.catId}}" 
+                                                updateNum="{{upDateGoodsNum}}" 
+                                                curIndex="{{curIndex}}"
+                                                size="{{flatCatList.length}}" 
+                                                isAddCart="{{firstAddCar}}" 
+                                                times="{{times}}"
+                                                tabIndex="{{curTab}}"
+                                                storeGoodsIndex= "{{storeGoodsIndex}}"
+                                                isFollow="{{storeInfo.isFollow || 0}}" 
+                                                bind:touchTop="onProductTouchTop" 
+                                                bind:pageEvent="widgetEvent"
+                                                addCarPushCoupon="{{addCarPushCoupon}}"
+                                                outPromotion="{{outPromotion}}"
+                                                brandCoupon="{{brandCoupon}}"
+                                                vipConfig="{{vipConfig}}"
+                                                buriedObj="{{buriedObj}}"
+                                                options="{{options}}"
+                                                tabName="全部商品"
+                                                showFloatBall="{{showFloatBall}}">
+                                    </product-list>
+                                </block>
+                            </swiper-item>
+                          </block>
+                        </swiper>
+                      </view>
+                    </view>
+                </view>
+                <view wx:else 
+                      style="height:{{movableViewHeight}}px;" 
+                      capture-bind:touchmove="{{dragAll.touchmove}}" 
+                      capture-bind:touchstart="{{dragAll.touchstart}}" 
+                      capture-bind:touchend="{{dragAll.touchend}}"
+                      data-y="{{y}}"
+                      data-nav-height="{{navigateBarHeight}}" 
+                      data-touch-top="{{productTouchTop}}" 
+                      class="outer {{item.type == 'storeHome' ? 'store-home-bg' : ''}}">
+                  <!-- 首页 -->
+                  <block wx:if="{{item.type == 'storeHome'}}">
+                    <storeIndex loadHomePage="{{loadHomePage}}"
+                                orgCode="{{storeInfo.orgCode || orgCode}}" 
+                                storeId="{{storeInfo.storeId || storeId}}" 
+                                bind:touchTop="onProductTouchTop" 
+                                updateNum="{{upDateGoodsNum}}" 
+                                bind:anchorCate="anchorCate"
+                                tabIndex="{{curTab}}"
+                                outPromotion="{{outPromotion}}"
+                                buriedObj="{{buriedObj}}"
+                                bind:pageEvent="widgetEvent"
+                                options="{{options}}"
+                                tabName="{{item.title}}"
+                    >
+                    </storeIndex>
+                  </block>
+                  <!-- 减运活动 -->
+                  <block wx:elif="{{item.type == 'activity'}}">
+                    <reduceGoods loadReducePage="{{loadReducePage}}" 
+                                updateNum="{{upDateGoodsNum}}"
+                                params="{{tabData[index]}}"
+                                outPromotion="{{outPromotion}}"
+                                buriedObj="{{buriedObj}}" 
+                                bind:touchTop="onProductTouchTop"
+                                options="{{options}}"
+                                bind:pageEvent="widgetEvent">
+                    </reduceGoods>
+                  </block>
+                  <!-- 频道tab -->
+                  <block wx:elif="{{item.type == 'storeChannel'}}">
+                      <storeChannel  orgCode="{{storeInfo.orgCode || orgCode}}" 
+                                    storeId="{{storeInfo.storeId || storeId}}"
+                                    activityId="{{activityId}}" 
+                                    channelBusiness="{{channelBusiness}}"
+                                    channelId="{{channelId}}"
+                                    outPromotion="{{outPromotion}}"
+                                    bind:touchTop="onProductTouchTop" 
+                                    bind:onAddMinControllerChange="onAddMinControllerChange" 
+                                    updateNum="{{upDateGoodsNum}}"
+                                    buriedObj="{{buriedObj}}" 
+                                    bind:anchorCate="anchorCate"
+                                    options="{{options}}"
+                                    bind:pageEvent="widgetEvent">
+                      </storeChannel>
+                  </block>
+                  <block wx:elif="{{item.type == 'storeVip'}}">
+                    <storeVip orgCode="{{storeInfo.orgCode || orgCode}}" 
+                              storeId="{{storeInfo.storeId || storeId}}"
+                              loadVipPage="{{loadVipPage}}"
+                              updateNum="{{upDateGoodsNum}}"
+                              activityId="{{item.activityId}}"
+                              buriedObj="{{buriedObj}}"
+                              bind:touchTop="onProductTouchTop"
+                              options="{{options}}"
+                              bind:pageEvent="widgetEvent"></storeVip>
+                  </block>
+                </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    
+</view>
+
+
+<!-- 购物车 -->
+<view id="store-info" class="newstore-footer flex-none {{ changeZ ? 'drag-animation': '' }}"  
+      wx:if="{{isCart && loadeSuccess && (defaultErrorKey=='' || defaultErrorKey=='storeOffline')}}"
+      aria-hidden="{{showCouponMap}}">
+    <view class="minicart">
+        <mini-cart cart-skuId="{{cartSkuId}}" 
+                   cart-type="{{cartType}}" 
+                   store-id="{{storeInfo.storeId || storeId}}" 
+                   org-code="{{storeInfo.orgCode || orgCode}}" 
+                   longitude="{{longitude}}" 
+                   latitude="{{latitude}}" 
+                   refreshMiniCartData="{{refreshMiniCartData}}" 
+                   catAnimation="{{catAnimation}}" 
+                   showCart="{{showCart}}" 
+                   isIphoneX="{{ipx}}" 
+                   hasAddOnEntry="true"  
+                   showGuidFlag="{{showGuidFlag}}"
+                   pageSource="store"
+                   biPageName="storeinfo"
+                   prePageId="{{buriedObj.pageIdFirstPage}}"
+                   pageId="{{buriedObj.pageIdFirstPage}}"
+                   currentPageName="mini_shopcar"
+                   prePageName="{{buriedObj.prePageName}}"
+                   bind:pageEvent="widgetEvent"
+                   refPar="{{refPar}}"
+                   id="minicart"
+                   preBuried="{{buriedObj}}"
+                   fromPosition="store=newStoreV5"
+                   optionsPos="{{options}}"
+                   miniCartMustOrder="{{miniCartMustOrder}}"
+                   bind:miniCartMustOrderFn="miniCartMustOrderFn"
+                   pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}">
+        </mini-cart>
+    </view>
+</view>
+
+
+
+<!-- spu选择器  bind:spuSelectorEvent="onSpuSelectorEvent"-->
+<spu-selector  wx:if="{{loadeSuccess}}" 
+               toggle="{{toggle}}" 
+              orgCode="{{spuData.orgCode}}" 
+              storeId="{{spuData.storeId}}" 
+              skuId="{{spuData.skuId}}" 
+              spuId="{{spuData.spuId}}" 
+              outPromotion="{{outPromotion}}"
+              userAction="{{spuData.userAction && spuData.userAction ||  ' '}}"
+              pageId="{{buriedObj.pageIdFirstPage}}"
+              refPar="{{refPar}}"
+              buriedObj="{{buriedObj}}"
+              id="spu-selector"
+              fromPosition="store=newStoreV5"
+              optionsPos="{{options}}"
+              pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+              biPageName="storeinfo"
+              transmitData="{{spuData.transmitData}}"
+              carNumber="{{spuData.cartNum}}"
+              showModel="{{spuData.showModel}}"
+              weighting="{{spuData.weighting}}"
+              bind:spuSelectorEvent="onSpuSelectorEvent">
+</spu-selector>
+
+<!-- 分享到朋友圈弹层 -->
+<share-to-moments-dialog  wx:if="{{loadeSuccess}}" 
+                          showDialog="{{showShare2MomentsDialog}}" 
+                         imgSrc="{{momentsShareImgSrc}}" 
+                         otherData="{{savePicDialogReportData}}"
+                         buriedObj="{{buriedObj}}"
+                         fromPosition="store=newStoreV5"
+                         optionsPos="{{options}}">
+</share-to-moments-dialog>
+
+<!-- 分享到微信弹层 -->
+<share-to-wx-dialog  wx:if="{{loadeSuccess}}" 
+                    showDialog="{{showShare2WxDialog}}" 
+                    bind:share2Moments="share2Moments"
+                    buriedObj="{{buriedObj}}"
+                    fromPosition="store=newStoreV5"
+                    optionsPos="{{options}}">
+</share-to-wx-dialog>
+
+<!-- 挽留弹层 一天弹一次 -->
+<detention  wx:if="{{loadeSuccess}}" 
+            headCouponList="{{couponSimpleInfo}}" 
+            showDetention="{{showDetention}}"
+            buriedObj="{{buriedObj}}" 
+            bind:detenEvent="detentionEvent"
+            options="{{options}}">
+</detention>
+
+<!-- 挽留弹层 -->
+<leave-pop wx:if="{{loadeSuccess}}" id="leave" pageId="{{buriedObj.pageIdFirstPage}}" buriedObj="{{buriedObj}}" options="{{options}}" />
+
+<!-- 商家服务半弹层 -->
+<org-service-half wx:if="{{loadeSuccess}}"
+                  show="{{showServiceHalf}}"
+                  storeInfo="{{storeInfo}}"
+                  storeCommentVO="{{storeCommentVO}}"
+                  bind:pageEvent="widgetEvent"
+                  buriedObj="{{buriedObj}}"
+                  id="shopService"
+                  options="{{options}}"
+                  pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}">
+</org-service-half>
+
+<!-- 爆品投放 商家会员弹层 -->
+<open-member-daglog wx:if="{{loadeSuccess}}"
+                    show="{{showMemberPop}}" 
+                    storeId="{{storeId}}"
+                    info="{{hotPopData}}"
+                    fromSource='storeInfo'
+                    bindmemberToastopen="memberToastopen"
+                    buriedObj="{{buriedObj}}"
+                    options="{{options}}" />
+
+<!-- vip兑换 -->
+<vip-exchange  wx:if="{{loadeSuccess}}"
+               couponInfo="{{vipCouponInfo}}"
+               grabChannel="station_index_page" 
+               requestFlag="{{showVipExchange}}" 
+               bind:widgetEvent="widgetEvent"
+               pageId="{{vipCouponInfo.recommendObj && vipCouponInfo.recommendObj.pageIdFirstPage}}"
+               currentPageName="{{vipCouponInfo.recommendObj && vipCouponInfo.recommendObj.currentPageName}}" 
+               prePageName="{{vipCouponInfo.recommendObj && vipCouponInfo.recommendObj.prePageName}}"
+               storeId="{{storeId}}"
+               recommendObj="{vipCouponInfo && vipCouponInfo.recommendObj}"
+               pageSource="{{vipCouponInfo.recommendObj && vipCouponInfo.recommendObj.pageSource}}"
+               refPageSource="{{vipCouponInfo.recommendObj && vipCouponInfo.recommendObj.refPageSource}}" />
+
+<!-- 扫码加车弹层 -->
+<scan-pop wx:if="{{showScan}}" 
+          showScan="{{showScan}}" 
+          scanSkuList="{{scanSkuList}}"
+          updateNum="{{upDateGoodsNum}}"
+          bind:toScan="toScan"
+          buriedObj="{{buriedObj}}"
+          options="{{options}}">
+</scan-pop>
+
+<!-- 门店主页商品加车掉券如果品牌券并且不是会员时，点击按钮弹该弹层 -->
+<brand-coupon showPop="{{isShowBrandVipPop}}" 
+              popInfo="{{brandMemberPLayerInfo}}"
+              bind:pageEvent="widgetEvent"
+              buriedObj="{{buriedObj}}"
+              options="{{options}}" >
+</brand-coupon>
+
+<!-- 登录弹层 -->
+<login-pop showPop="{{showLogin}}" buriedObj="{{buriedObj}}" options="{{options}}" />
+
+<!-- 商家会员弹层 -->
+<business-member-pop showPop="{{isShowMemberPop}}" 
+                     popInfo="{{memberPopInfo}}" 
+                     orgCode="{{storeInfo.orgCode || orgCode}}" 
+                     storeId="{{storeInfo.storeId || storeId}}"
+                     pageId="{{buriedObj.pageId}}" 
+                     currentPageName="{{buriedObj.currentPageName}}" prePageName="{{buriedObj.prePageName}}" 
+                     bind:pageEvent="widgetEvent"
+                     buriedObj="{{buriedObj}}"
+                     options="{{options}}" />
+<!-- 门店超区弹层 -->
+<over-step-half  wx:if="{{popType == 1 || popType == 2 || popType == 3}}"
+                storeId="{{storeInfo.storeId || storeId}}"
+                orgCode="{{storeInfo.orgCode || orgCode}}"
+                showPop="{{popType == 1 || popType == 2 || popType == 3}}"
+                popType="{{popType}}"
+                industry="{{storeInfo.industry}}"
+                bind:pageEvent="widgetEvent"
+                buriedObj="{{buriedObj}}"
+                id="overZone"
+                options="{{options}}"
+                pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}">
+</over-step-half>
+<block wx:else>
+    <!-- 爆品投放&外部投放 进店领券弹层 -->
+  <coupon-pop wx:if="{{channelBusiness == 'outside' || channelBusiness == 'jdncapplsd'}}" 
+              item="{{hotPopData}}" 
+              channelBusiness="{{channelBusiness}}" 
+              bind:freshMinicart='freshMinicart' 
+              buriedObj="{{buriedObj}}" 
+              options="{{options}}" />
+  <!-- 线上助力 || 线下推广（来来推） -->
+  <coupon-pop2 wx:elif="{{popType === '0' && (spreadChannel == 'winnerCoupon' || spreadChannel == 'winnerCouponSku' || spreadChannel == 'friendHelp')}}" 
+              showPop="{{spreadChannel == 'winnerCoupon' || spreadChannel == 'winnerCouponSku' || spreadChannel == 'friendHelp'}}" 
+              spreadChannel="{{spreadChannel}}" 
+              storeId="{{storeId}}" 
+              buriedObj="{{buriedObj}}" 
+              options="{{options}}" />
+  <!-- 膨胀券弹层 -->
+  <expand-coupon-pop wx:elif="{{popupPosition}}" 
+                    storeId="{{storeId}}" 
+                    orgCode="{{orgCode}}" 
+                    logoUrl="{{storeInfo.logoUrl}}" 
+                    popupPosition="{{popupPosition}}" 
+                    popup4Params="{{popup4Params}}" 
+                    popupData="{{popupData}}" 
+                    buriedObj="{{buriedObj}}" 
+                    bind:pageEvent="widgetEvent" 
+                    options="{{options}}" />
+  <!-- 切换门店教育弹层 -->
+  <store-education wx:elif="{{showStoreEducation}}"
+                   show="{{showStoreEducation}}" 
+                   type="{{storeInfo.storeBusinessType}}"
+                   navHeight="{{navHeight}}"
+                   bind:pageEvent="widgetEvent" />
+</block>
+
+<block wx:if="{{loadeSuccess}}">
+<!-- 优惠信息半弹层--老半弹层 -->
+<coupon-list-half wx:if="{{!storeCouponPopAb ||storeCouponPopAb == 'D' || storeCouponPopAb == 'E'}}" 
+                  refreshStoreHeadCoupons="{{refreshStoreHeadCoupons}}" 
+                  isFollow="{{storeInfo.isFollow || 0}}" 
+                  bind:pageEvent="widgetEvent" 
+                  showPop="{{showCouponMap}}" 
+                  storeId="{{storeInfo.storeId || storeId}}" 
+                  orgCode='{{storeInfo.orgCode || orgCode}}' 
+                  storeRedPackageInfo="{{storeRedPackageInfo}}" 
+                  storeCouponInfo="{{storeCouponInfo}}" 
+                  couponShowMore="{{couponShowMore}}" 
+                  tags="{{storeInfo.tags}}" 
+                  traceId="{{traceId}}" 
+                  buriedObj="{{buriedObj}}" 
+                  id="couponLayer" 
+                  options="{{options}}" 
+                  bind:getPopRecommendObj="getPopRecommendObj">
+</coupon-list-half>
+<!-- 优惠券半弹层--新弹层 -->
+<coupon-list-half-v6  wx:else
+                      storeCouponPop="{{storeCouponPop}}"
+                      showPop="{{showCouponMap}}"
+                      traceId="{{traceId}}"
+                      isFollow="{{storeInfo.isFollow}}"
+                      storeId="{{storeInfo.storeId || storeId}}" 
+                      orgCode='{{storeInfo.orgCode || orgCode}}'
+                      storeCouponPopAb="{{storeCouponPopAb}}"
+                      bind:pageEvent="widgetEvent"
+                      buriedObj="{{buriedObj}}"
+                      id="newCouponLayer"
+                      options="{{options}}"
+                      storeBusinessType="{{storeInfo.storeBusinessType}}"
+                      bind:getPopRecommendObj="getPopRecommendObj" />
+</block>
+
+<!-- 闭店提醒小条 -->
+<close-tips isShow="{{showCloseTip}}" 
+            wx:if="{{showCloseTip}}"
+            closeTip1="{{storeInfo.closeTip1}}"
+            closeTip2="{{storeInfo.closeTip2}}"
+            miniCarHasTips="{{storeInfo.miniCarHasTips}}"
+            storeId="{{storeId}}"
+            buriedObj="{{buriedObj}}" />
+
+<!-- 切换门店悬浮球 -->
+<store-float-ball wx:if="{{switchStore && switchStore.btnName}}" 
+                  switchStore="{{switchStore}}"  
+                  showFloatBall="{{showFloatBall}}"
+                  navHeight="{{navHeight}}"
+                  buriedObj="{{buriedObj}}"
+                  storeInfo="{{storeInfo}}" />
+
+
+<!-- 处方药弹层 -->
+<!-- <drug-sku-pop /> -->

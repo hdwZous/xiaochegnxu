@@ -1,0 +1,142 @@
+.exchange-floor {
+  box-sizing: border-box;
+  padding: 24rpx;
+  padding-left: 0;
+  font-size: 0;
+}
+
+.exchange-floor.more {
+  padding-right: 0;
+}
+
+.top {
+  margin-left: 24rpx;
+}
+
+.top .title {
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  margin-right: 10rpx;
+}
+
+.top .detail {
+  flex: 1;
+  overflow: hidden;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+
+.product {
+  margin-top: 20rpx;
+  overflow-x: auto;
+}
+
+.product::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.product .product-box {
+  background: #FAFAFA;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  padding: 10rpx;
+  margin-left: 16rpx;
+}
+
+.product.more .product-box {
+  width: 440rpx;
+}
+
+.product .product-box:first-child {
+  margin-left: 24rpx;
+}
+
+.product .product-box .product-img-box {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  position: relative;
+}
+
+.product .product-box .product-img-box .img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+}
+
+.product .product-box .product-img-box .cold-tag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 24rpx;
+  line-height: 26rpx;
+  text-align: center;
+  padding: 0 4rpx;
+  border-radius: 8rpx 0px 8rpx 0px;
+  font-size: 16rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+}
+
+.product .product-box .detail {
+  margin-left: 20rpx;
+  margin-right: 14rpx;
+  flex: 1;
+  overflow: hidden;
+}
+
+.product .product-box .detail .des {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+
+.price-group {
+  flex: 1;
+}
+
+.price-group .main-price {
+  font-size: 28rpx;
+  font-family: regular;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.price-group .mino-price {
+  font-size: 28rpx;
+  font-family: light;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 10rpx;
+}
+
+.price-group .weight-price {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+}
+
+.price-group .vip-icon {
+  flex: 1;
+  height: 21rpx;
+}
+
+.price-group .gray-icon {
+  font-size: 16rpx;
+  line-height: 21rpx;
+  padding-left: 10rpx;
+  flex: 1;
+  height: 21rpx;
+  color: #fff;
+}

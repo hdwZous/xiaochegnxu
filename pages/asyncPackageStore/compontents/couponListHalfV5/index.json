@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "coupon-item": "/components/couponItem/index",
+        "vip-exchange": "../vipExchange/index",
+        "vip-coupon-pop": "../vipCouponPop/index"
+    }
+}

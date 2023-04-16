@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.intro_box}}"><view class="{{style.intro_bg}}"><view class="{{style.title}}">话费充值说明</view><scroll-view scroll-y="{{true}}" class="{{style.content}}"><rich-text nodes="{{content}}"></rich-text></scroll-view><view class="{{style.closeBtn}}" bindtap="closeIntro" data-e-tap-so="this">我知道了</view></view></view></block>

@@ -1,0 +1,655 @@
+<block wx:if="{{!showEmpty}}">
+    <view class="product_case log_container" catchtap="elementTracker">
+        <!-- 头部导航 -->
+        <view class="header_wrap">
+            <view class="detail_header" 
+                  style="padding-top: {{capsule.top}}px;opacity: {{opacity}}"
+                   aria-hidden="{{opacity <= 0.3}}">
+                <view class="flex-row head_title" style="height: {{capsule.height}}px">
+                    <view class="ellipsis" style="padding: 0 {{capsule.width}}px 0 76rpx" aria-label="{{title}}">
+                        {{title}}
+                    </view>
+                    <view aria-role='link' aria-label="返回" class="nav_close" bind:tap="closeCurrentPage"></view>
+                </view>
+            </view>
+            <view class="close_active" 
+                  bind:tap="closeCurrentPage" 
+                  wx:if="{{opacity<0.5}}" 
+                  style="margin-top: {{capsule.top/2-5}}px;opacity: {{1-opacity}}"
+                  aria-role="link"
+                  aria-label="返回"></view>
+        </view>
+        <!-- 商品图 -->
+        <banner images="{{images}}" imageWaterMark="{{imageWaterMark}}" />
+        <!-- 秒杀 -->
+        <seckill info="{{miaoshaInfo}}" bind:timeEdnEvent='onTimeEdnEvent' />
+        <!-- 预估到手价 -->
+        <view wx:if="{{toHandPriceImg}}" 
+              class="to_hand_price" 
+              bindtap="showHandleDetail"
+              aria-role="button"
+              aria-label="{{toHandPriceDetail.discountDesc}}.{{toHandPriceDetail.toHandPrice}}"
+              aria-haspopup="true">
+            <image src="{{toHandPriceImg}}" />
+        </view>
+        <!-- 间隙 -->
+        <view class="gap"></view>
+        <!-- 商品名称 -->
+        <view class="goods_title ellipsis3" 
+             wx:if="{{title}}"
+             aria-role="text"
+             aria-label="{{title}}">
+            <view aria-hidden="true" class="goods_title_tag" style="color:{{skuNameTag.iconTextColorCode}};background-image:linear-gradient(135deg, {{skuNameTag.startColorCode || rgb(64, 160, 255)}} 0%, {{skuNameTag.endColorCode || rgb(0, 119, 238)}} 100%)" wx:if="{{skuNameTag.iconText}}">
+                {{skuNameTag.iconText}}
+            </view>{{title}}
+        </view>
+        <!-- 商品副标题 -->
+        <view class="sub_title ellipsis" wx:if="{{adword}}" aria-role='text' aria-label="{{adword}}">{{adword}}</view>
+        <!-- 商品价格 -->
+        <view class="price_case {{memberConfigInfo.membersUrl ? 'no-radius' : ''}}" 
+             style="top: {{capsule.top+capsule.height+10}}px; height: {{productType == 9 ? '80rpx' : '66rpx'}}">
+            <view aria-hidden="true" class='yushou-title' wx:if="{{productType == 9}}">预售价</view>
+            <view class="d-flex flex-row align-items-center">
+                <view class="price_left flex-auto">
+                    <view style="display: flex;align-items: baseline;">
+                        <!-- major-price -->
+                        <coupon-price majorPrice="{{majorPrice}}" 
+                                      majorPriceFz="56rpx"  
+                                      intervalPrice="{{spuDetailResult && spuDetailResult.isShow == '1' ? true: false}}"
+                                      storeId="{{storeId}}"
+                                      skuId="{{skuId}}"
+                                      pageId="{{recommendObj.pageIdFirstPage}}" 
+                                      currentPageName="{{recommendObj.currentPageName}}" 
+                                      prePageName="{{recommendObj.prePageName}}" />
+                        <!-- minor-price  -->
+                        <view style='margin-left: 16rpx' wx:if="{{assistPrice &&  assistPrice.price}}">
+                            <coupon-price minorPrice="{{assistPrice}}" 
+                                          minorPriceFz="{{assistPrice.price =='暂无报价' ? '28rpx' : '32rpx'}}"
+                                          storeId="{{storeId}}"
+                                          skuId="{{skuId}}"
+                                          pageId="{{recommendObj.pageIdFirstPage}}" 
+                                          currentPageName="{{recommendObj.currentPageName}}" 
+                                          prePageName="{{recommendObj.prePageName}}" />
+                        </view>
+                        <!-- v+会员价  商家会员 || v+会员 || 会员秒杀价 -->
+                        <view style='margin-left: 16rpx' wx:elif="{{minorPrice && minorPrice.priceType != '11' && minorPrice.priceType != '10' && minorPrice.priceType != '3' && minorPrice.priceType != '4'}}">
+                            <coupon-price minorPrice="{{minorPrice}}" 
+                                          minorPriceFz="{{minorPrice.price =='暂无报价' ? '28rpx' : '32rpx'}}"
+                                          storeId="{{storeId}}"
+                                          skuId="{{skuId}}"
+                                          pageId="{{recommendObj.pageIdFirstPage}}" 
+                                          currentPageName="{{recommendObj.currentPageName}}" 
+                                          prePageName="{{recommendObj.prePageName}}" />
+                        </view>
+                    </view>
+                 </view>   
+                <!-- 加减车 -->
+                <view class="select_case">
+                    <!-- 普通单品i单结显示加入购物车 singleSettle：普通单品单结，realSelf是否是爆品自提，productType=11是新人单品单结   -->
+				   <view wx:if="{{singleSettle && realSelf != '1' &&  productType != 11}}"
+                          class="sgs_btn sgs_car_btn" bind:tap="handleAddCar"
+                          aria-role="button"
+                          aria-label="加入购物车">
+                      {{showStateName || "加入购物车"}} 
+                    </view>
+
+                    <!-- 如果是预售品 -->
+                    <block wx:if="{{productType == 9}}">
+                      <!-- <add-min count="{{preSaleCount}}" 
+                              showState="{{showState}}" 
+                              showStateName="{{showStateName}}" 
+                              bind:updatePrePrice="updatePrePrice" /> -->
+                        <!-- 多规格预售预热 -->
+                        <block wx:if="{{iconType == 1}}">
+							<!-- 多规格预热预售 -->
+							<!-- buttonEnable  按钮是否可点击 -->
+							<block wx:if="{{showState==12 || showState==13 || showState==14}}">
+								<view class="pre_btn {{buttonEnable?'pre_btn_green':''}}" bind:tap="showSpu">{{showStateName}}</view>
+							</block>  
+                            <add-min-controller wx:else addCartText="{{showStateName}}" 
+                                                spuId="{{options.spuId||spuId||''}}" 
+												showState="{{showState}}"
+                                                showType="2"
+                                                size="large" 
+                                                count="{{inCartCount}}"
+                                                skuId="{{options.skuId || skuId}}"  
+                                                promotionId="{{preSaleInfo.promotionId}}"
+                                                orgCode="{{options.orgCode || orgCode}}" 
+                                                storeId="{{options.storeId || storeInfo.storeId}}"
+                                                longitude="{{longitude}}" 
+                                                latitude="{{latitude}}"
+                                                userAction="{{clickUserAction}}"
+                                                biPageName="goodsinfo"
+                                                pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" 
+                                                prePageName="{{recommendObj.prePageName}}"  traceId="{{traceId}}"
+                                                iconType="{{iconType}}"
+                                                transmitData="{{transmitData}}"
+                                                showModel="{{showModel}}" />
+                        </block>
+						<!-- 单规格预售预热 -->
+						<block wx:elif="{{showState==12 || showState==13 || showState==14}}">
+                    	 	<view class="pre_btn {{buttonEnable?'pre_btn_green':''}}" bind:tap="goSubscrbe">{{showStateName}}</view>
+                    	</block>  
+                        <block wx:else>
+                            <add-min count="{{preSaleCount}}" 
+                                     showState="{{showState}}"
+                                     showStateName="{{showStateName}}"
+                                     bind:updatePrePrice="updatePrePrice" />
+                        </block>
+                        
+                    </block>
+                    <!-- 如果是爆品自提 -->
+                    <view wx:elif="{{realSelf==1}}" 
+                          class=" sgs_btn {{stockCount ? 'self-normal' : 'self-disabled'}}"
+                          bindtap="clickSelfBuy"
+                          data-type="buyNow"
+                          data-sku-id="{{skuId}}"
+                          data-spu-id="{{spuId}}"
+                          data-store-id="{{storeInfo.storeId}}"
+                          data-user-action="{{clickUserAction}}"
+                          aria-role="link"
+                          aria-label="{{singleSettleButton.buttonDesc}}"
+                    >
+                        {{singleSettleButton.buttonDesc}}
+                    </view>
+                    <!-- 如果是单品单结 包含普通单品单结和新人单品单结-->
+                    <view wx:elif="{{singleSettle}}"  
+                          class="sgs_btn {{productType == 11 ? 'sgs_car_btn' : 'self-normal'}}" bind:tap="handleSgSClick"
+                          data-type="buyNow" 
+                          data-sku-id="{{skuId}}"
+                          data-spu-id="{{spuId}}"
+                          data-store-id="{{storeInfo.storeId}}"
+                          data-user-action="{{clickUserAction}}"
+                          aria-role="link"
+                          aria-label="{{singleSettleButton.buttonDesc}}">
+                        {{singleSettleButton.buttonDesc}}
+                    </view>
+                    <view wx:elif="{{ showState==0||showState==2||showState==5|| !majorPrice || !majorPrice.price || majorPrice.price=='暂无报价'}}" class="add_btn"  aria-role="button" aria-label="{{showStateName}}">
+                        {{showStateName}}
+                    </view>
+                    <block wx:elif="{{showState==9 || showState==10}}">
+                      <goods-remind 
+                        fromPositon="product"
+                        title="{{showStateName}}"
+                        showState="{{showState}}"
+                        skuId="{{options.skuId || skuId}}" 
+                        orgCode="{{options.orgCode || orgCode}}" 
+                        storeId="{{options.storeId || storeInfo.storeId}}" 
+                        buttonEnable="{{buttonEnable}}"
+                        pageSource="goodsinfo"
+                        recommendObj="{{recommendObj}}"
+                        buriedObj="{{recommendObj}}"
+                        userAction="{{clickUserAction}}"
+                      >
+                      </goods-remind>
+                    </block>
+                    <add-min-controller wx:else 
+                                        weighting="{{cartWeight ? true : false}}" 
+                                        weight="{{cartWeight}}" 
+                                        addCartText="{{showStateName}}"
+                                        spuId="{{options.spuId||spuId||''}}" 
+                                        showType="2"
+                                        count="{{inCartCount}}" 
+                                        skuId="{{options.skuId || skuId}}" 
+                                        spuId="{{options.spuId || spuId}}" 
+                                        data-sku-id="{{options.skuId || skuId}}" 
+                                        orgCode="{{options.orgCode || orgCode}}" 
+                                        storeId="{{options.storeId || storeInfo.storeId}}" 
+                                        longitude="{{longitude}}" 
+                                        latitude="{{latitude}}" 
+                                        isAddCart="{{isAddCart}}"
+                                        userAction="{{clickUserAction}}"
+                                        biPageName="goodsinfo"
+                                        size="large"
+                                        pageId="{{recommendObj.pageIdFirstPage}}" 
+                                        currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}"  
+                                        traceId="{{traceId}}"
+                                        iconType="{{iconType}}"
+                                        transmitData="{{transmitData}}"
+                                        showModel="{{showModel}}" />
+                </view>
+            </view>
+        </view>
+        <!--v+会员价  商家会员 || v+会员 || 会员秒杀价 -->
+        <view wx:if="{{minorPrice && (minorPrice.priceType == '11' || minorPrice.priceType == '10' || minorPrice.priceType == '3' || minorPrice.priceType == '4')}}" class='vip-price'>
+            <!-- 会员价 -->
+            <coupon-price minorPrice="{{minorPrice}}" minorPriceFz='32rpx'  iconWidth="94rpx" iconHeight="28rpx" />
+        </view>
+        <!-- 商家会员卡片 || v+会员楼层 -->
+        <member-floor  memberFloorInfoVO="{{memberFloorInfoVO}}"
+                       storeId="{{options.storeId || storeInfo.storeId }}"
+                       bind:pageEvent="pageEvent"
+                       recommendObj="{{recommendObj}}" 
+                       traceId="{{traceId}}" />
+
+        <!-- 8.9属性楼层 -->
+        <view class="attribute-floor" wx:if="{{cateAttrVO}}" bindtap="clickInfo" data-attrs="{{cateAttrVO.sampleAttrItems}}" data-title="{{cateAttrVO.sampleTitle}}" data-sku-id="{{skuId}}" data-store-id="{{options.storeId}}">
+          <view class="attribute-line"></view>
+          <view class="floor-box d-flex flex-row align-items-start {{cateAttrVO.sampleAttrItems.length > 3 ? 'flex-nowrap' : ''}}">
+            <block wx:for="{{cateAttrVO.sampleAttrItems}}" wx:key="arrtibute">
+              <view class="attri-item {{cateAttrVO.sampleAttrItems.length > 3 ? 'fixed' : 'allot'}} {{cateAttrVO.sampleAttrItems.length == 1 ? '':'text'}}"
+                    aria-role='button'
+                    aria-label="商品参数.{{item.attrName}}.{{item.attrValue}}.点击弹起商品参数弹层">
+                <view class="attri-item-name ellipsis" aria-hidden="true">{{item.attrName}}</view>
+                <view class="attri-item-desc ellipsis2" aria-hidden="true">{{item.attrValue}}</view>
+              </view>
+              <view aria-hidden="true" class="attri-item-line" wx:if="{{index != cateAttrVO.sampleAttrItems.length - 1}}"></view>
+            </block>
+          </view>
+        </view>
+        <!-- 8.9榜单楼层 -->
+        <view class="goods-list-floor" wx:if="{{rankVO && rankVO.rankDesc}}" data-to="{{rankVO.to}}" data-params="{{rankVO.params}}" bindtap="goRank" data-categoryId="{{rankVO.categoryId}}">
+          <view class="glf-box d-flex flex-row align-items-center">
+            <image class="glf-top-left" src="{{rankVO.icon}}" />
+            <image class="glf-top-list" src="{{rankVO.rankTitle}}" />
+            <text class="glf-desc">{{rankVO.rankDesc}}</text>
+            <image class="glf-top-right" src="{{rankVO.rankBgImage}}" />
+          </view>
+        </view>
+        <!-- 下边缘 -->
+        <view class="border_radius" ></view>
+        <!-- 预售 阶段说明 -->
+        <presale-stage stage="{{preSaleInfo.stageInfo}}" />
+        <!-- 卡片楼层信息 -->
+        <view class="card_floor_case">
+            <!-- 领券 -->
+            <block wx:if="{{couponInfo.newStyle}}">
+                <!-- 新优惠券 -->
+                <coupon-new
+                    wx:if="{{couponInfo.couponLabel}}"
+                    item="{{couponInfo}}"
+                    orgCode="{{options.orgCode || orgCode}}"
+                    storeId="{{options.storeId||storeId}}"
+                    skuId="{{options.skuId || skuId}}"
+                    recommendObj="{{recommendObj}}"
+                    traceId="{{traceId}}"
+                    options="{{options}}"
+                ></coupon-new>
+            </block>
+            <block wx:else>
+                <!-- 老优惠券 -->
+                <view class="coupon_case flex-row" 
+                      wx:if="{{couponInfo.couponList.length>0}}" 
+                      bind:tap="getCouponList"
+                      aria-label="{{couponInfo.couponLabel}}.{{item.price}}元">
+                    <view aria-hidden="true" class="common_title flex-none" wx:if="{{couponInfo.couponLabel}}">
+                        {{couponInfo.couponLabel}}
+                    </view>
+                    <view class="flex-auto flex-row" aria-hidden="true">
+                        <block wx:for="{{couponInfo.couponList}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+                            <view class="coupon_tags_case" 
+                                  wx:if="{{index<3}}">
+                                <view class="flex-row {{item.markState == 2 ? 'coupon_tag' : 'coupon_tag_active'}}">
+                                    <view class="coupon_price">{{item.price}}元</view>
+                                    <view>{{item.couponButton.title}}</view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                    <view class="flex-none" aria-hidden="true">
+                        <view class="common_arrow icon dj_icon ts_next"></view>
+                    </view>
+                </view>
+            </block>
+            <!-- 促销 -->
+            <view class="promotion_case flex-row" wx:if="{{tags.length>0}}">
+                <view class="promotion_title flex-none" aria-role='text' aria-label="促销">促销</view>
+                <view class="flex-auto">
+                    <view class="flex-row promotion_item" 
+                         wx:for="{{tags}}" 
+                         wx:for-index="index" 
+                         wx:for-item="item" 
+                         wx:key="item" 
+                         data-activity-id="{{item.activityId}}"
+                         data-item="{{item}}" 
+                         bind:tap="goToPromotion"
+                         aria-role='text'
+                         aria-label="{{item.words}}">
+                        <view aria-hidden="true" class="promotion_tag flex-none" style="background-image: linear-gradient(135deg, {{item.startColorCode || rgb(255, 91, 87)}} 0%, {{item.endColorCode || rgb(255, 30, 25)}} 100%);" wx:if="{{item.iconText}}">
+                            {{item.iconText}}
+                        </view>
+                        <view aria-hidden="true" class="promotion_name flex-auto" wx:if="{{item.words}}">
+                            {{item.words}}
+                        </view>
+                        <view aria-hidden="true" class="flex-none" wx:if="{{item.activityId}}">
+                            <view class="common_arrow icon dj_icon ts_next"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 参数 -->
+            <view class="common_case flex-row " 
+                  data-title="{{spuDetailResult.spuCateAttr.key}}" 
+                  wx:if="{{spuDetailResult.spuCateAttr.key}}" 
+                  bind:tap="clickInfo" 
+                  data-attrs="{{spuDetailResult.spuCateAttr.skuCateAttrList}}" 
+                  data-title="{{spuDetailResult.spuCateAttr.cateAttrTitle}}"
+                  aria-label="{{spuDetailResult.spuCateAttr.key}}.{{spuDetailResult.spuCateAttr.attrNameList}}"
+                  aria-role='button'
+                  aria-haspopup="true">
+                <view aria-hidden="true" class="common_title flex-none">{{spuDetailResult.spuCateAttr.key}}</view>
+                <view aria-hidden="true" class="flex-auto ellipsis common_txt">
+                    {{spuDetailResult.spuCateAttr.attrNameList}}
+                </view>
+                <view aria-hidden="true" class="flex-none">
+                    <view class="common_arrow icon dj_icon ts_next"></view>
+                </view>
+            </view>
+            <!-- 说明 -->
+            <view class="common_case flex-row " 
+                 data-title="{{skuCateAttr.cateAttrTitle}}" 
+                 wx:if="{{skuCateAttr.cateAttrTitle}}" 
+                 bind:tap="clickInfo" data-attrs="{{skuCateAttr.skuCateAttrList}}"  data-title="{{skuCateAttr.cateAttrTitle}}"
+                 aria-role='button'
+                 aria-label="{{skuCateAttr.cateAttrTitle}}.{{skuCateAttr.attrNameList}}">
+                <view aria-hidden="true" class="common_title flex-none">{{skuCateAttr.cateAttrTitle}}</view>
+                <view  aria-hidden="true" class="flex-auto ellipsis common_txt">{{skuCateAttr.attrNameList}}</view>
+                <view aria-hidden="true" class="flex-none">
+                    <view class="common_arrow icon dj_icon ts_next"></view>
+                </view>
+            </view>
+            <!-- 服务 -->
+            <view class="common_case flex-row log_desc" data-item="{{weightService}}" wx:if="{{weightService.title}}" bind:tap="clickService" aria-label="{{weightService.title}}.{{weightService.serviceName}}">
+              <view aria-hidden="true" class="common_title flex-none">{{weightService.title}}</view>
+              <view aria-hidden="true" class="flex-none ellipsis common_txt">
+                {{weightService.serviceName}}
+              </view>
+              <view aria-hidden="true" class="flex-none">
+                <view class="common_introduce icon dj_icon ts_introduce"></view>
+              </view>
+            </view>
+            <!-- 品牌 -->
+            <block wx:if="{{brandHomeInfo || brandCouponInfo}}">
+              <brand homeInfo="{{brandHomeInfo}}" couponInfo="{{brandCouponInfo}}" brandLayerInfo="{{brandLayerInfo}}" orgCode="{{options.orgCode || orgCode}}" storeId="{{options.storeId || storeInfo.storeId}}" recommendObj="{{recommendObj}}"  options="{{options}}" />
+            </block>
+            <!-- 售后服务 -->
+            <after-sale wx:if="{{afterSale && afterSale.length}}"
+                        afterSale="{{afterSale}}"
+                        bind:pageEvent="pageEvent"/>
+        </view>
+        <!-- 降价提醒 -->
+        <view class="card_case" wx:if="{{showPriceRemind}}">
+            <view class="common_case flex-row ">
+                <view class="common_icon flex-none" aria-hidden="true">
+                    <image class="common_icon_img" src="https://storage.360buyimg.com/wximg/common/price_icon.png" />
+                </view>
+                <view class="notice_title flex-auto"
+                      aria-role='text'
+                      aria-label="降价提醒">降价提醒</view>
+                <view class="flex-none">
+                    <view class="price_btn {{priceRemind ? '':'price_gray_btn'}}" 
+                          bind:tap="clickNotice"
+                          aria-role='button'
+                          aria-haspopup="true"
+                          aria-label="{{priceRemind ? '取消提醒' : '开启提醒'}}">
+                        <view class="price_btn_radio"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 优惠套装 -->
+        <wrapSku updateCart="{{updateCart}}" data="{{suitLandFloor}}" skuId="{{skuId}}" storeId="{{options.storeId || storeInfo.storeId}}" orgCode="{{options.orgCode || orgCode}}" iconType="{{iconType}}"  recommendObj="{{recommendObj}}" traceId="{{traceId}}"  transmitData="{{transmitData}}" spuDetailResult="{{spuDetailResult}}" />
+        <!-- 处方药购买须知 -->
+        <view class="sku_case" wx:if="{{prescriptionInstructions}}">
+            <view class="sku_title">处方药购买须知</view>
+            <view class="sku_content" id="first" style="height: {{first.height>40 ? first.showMore ? 'auto': '40px' : 'auto'}}">
+                <rich-text class="sku_rich_txt" nodes="{{prescriptionInstructions}}"></rich-text>
+            </view>
+            <view class="sku_arrow" wx:if="{{first.height>40}}" id="first" bind:tap="clickArrowToggle">
+                <view class="sku_arrow_icon icon dj_icon {{first.showMore ? 'ts_up':'ts_down'}}"></view>
+            </view>
+        </view>
+        <!-- 主治功能 -->
+        <view class="sku_case" wx:if="{{skuCategoryAttr.attrName}}">
+            <view class="sku_title">{{skuCategoryAttr.attrName}}</view>
+            <view class="sku_content" id="second" style="height: {{second.height>40 ? second.showMore ? 'auto': '40px' : 'auto'}}">
+                <rich-text class="sku_rich_txt" nodes="{{skuCategoryAttr.attrValue}}"></rich-text>
+            </view>
+            <view class="sku_arrow" wx:if="{{second.height>40}}" id="second" bind:tap="clickArrowToggle">
+                <view class="sku_arrow_icon icon dj_icon {{second.showMore ? 'ts_up':'ts_down'}}"></view>
+            </view>
+        </view>
+        <!-- 搭配购买 -->
+        <!-- 爆品自提和新人楼层和预售品进入需要屏蔽搭配购买楼层 -->
+        <block wx:if="{{!(realSelf == 1 || productType == 11 || productType == 9)}}">
+            <recommend skuDataSync="{{skuDataSync}}" 
+                       skuId="{{options.skuId || skuId}}" 
+                       storeId="{{storeInfo.storeId}}" 
+                       orgCode="{{options.orgCode || orgCode}}"  
+                       recommendObj="{{recommendObj}}"  
+                       traceId="{{traceId}}"
+                       options="{{options}}"
+                       bind:onAddMinControllerChange="onRecommendSkuMiniControllerChange" />
+        </block>
+        <!-- 食谱 -->
+        <!-- <block wx:if="{{recipeVO && recipeVO.recipeVOList}}">
+          <recipe recipeVO="{{recipeVO}}" />
+        </block> -->
+        <!-- 店铺信息 -->
+        <view class="contact-store-layout">
+            <!-- 联系商家 -->
+            <view class="contact-store" wx:if="{{storeInfo.storeName}}">
+                <view class="store-name flex-row " data-store-id="{{storeInfo.storeId}}" data-sku-id="{{options.skuId || skuId}}" bindtap="goToStore"  aria-label="{{storeInfo.storeName}}" aria-role="link">
+                    <view aria-hidden="true" class="store_icon ts_dianpuicon icon dj_icon"></view>
+                    <view class="store-name-c flex-auto ellipsis" aria-hidden="true">
+                        {{storeInfo.storeName}}
+                        <view class="flex-none mj-tag"></view>
+                    </view>
+                </view>
+                <view class="make-phone flex-row " data-store-id="{{storeInfo.storeId}}" data-sku-id="{{options.skuId || skuId}}" bindtap="makePhone" data-phone="{{storeInfo.venderPhone}}"  aria-label="联系商家" aria-role="button">
+                    <view class="icon dj_icon ts_tel"></view>
+                    <view class="store-contact">联系商家</view>
+                </view>
+            </view>
+            <!-- 评价 -->
+            <view class="product-comment flex-row" 
+                  wx:if="{{productComment.commentNum>0}}"
+                  aria-role='text'
+                  aria-label="商品评价.(共{{productComment.commentNum}}人评价).好评{{productComment.goodRate}}%">
+                <view class="product-comment-text" aria-hidden="true">
+                    商品评价
+                    <text class="comment-num" aria-hidden="true">(共{{productComment.commentNum}}人评价)</text>
+                </view>
+                <view class="comment-line" wx:if="{{productComment.commentNum>0}}" aria-hidden="true">
+                    <view class="comment-text">好评{{productComment.goodRate}}%</view>
+                </view>
+                <text class="comment-none" wx:else>暂无评价</text>
+            </view>
+        </view>
+        <!-- 商品详情 -->
+        <view class="detail_case" wx:if="{{detailInfo.h5HtmlText || markingPrice}}">
+            <view class="product-list" wx:if="{{productInfoType==1}}">
+                <view class="product-title-bottom">商品详情</view>
+                <view class="rich-box">
+                    <richtext class="rich_text" detailInfo="{{detailInfo.h5HtmlText}}" />
+                </view>
+            </view>
+            <view class="product-price-introduce" wx:if="{{productInfoType!=1&&markingPrice}}">
+                <view class="rich-box">
+                    <richtext class="rich_text" detailInfo="{{markingPrice}}" />
+                </view>
+            </view>
+            <view class="product-bottom-layout"></view>
+        </view>
+        <!-- 预售的立即购买 -->
+        <block wx:if="{{productType == 9 && (showState!==12&showState!==13)}}">
+            <presale-pay stage="{{preSaleInfo}}"
+                         spuId="{{spuId}}"
+                         skuId="{{skuId}}"
+                         count="{{preSaleCount}}"
+                         handPrice="{{preHandPrice}}"
+                         storeId="{{storeId || storeInfo.storeId}}"
+                         storeName="{{storeInfo.storeId}}"
+                         orgCode="{{orgCode}}"
+                         recommendObj="{{recommendObj}}"
+                         bind:showSpu="showSpu"
+                         options="{{options}}"
+                         iconType="{{iconType}}" />
+        </block>
+        <!-- 爆品自提 -->
+        <block wx:elif="{{realSelf == '1'}}">
+            <view class=" self-buy-btn  {{stockCount ? 'self-normal' : 'self-disabled'}}"
+                  bindtap="clickSelfBuy"
+                  data-type="{{productType}}" 
+                  data-sku-id="{{skuId}}"
+                  data-spu-id="{{spuId}}"
+                  data-store-id="{{storeInfo.storeId}}"
+                  data-position="bottom"
+                  data-user-action="{{clickUserAction}}"
+                  aria-role="link"
+                  aria-label="立即购买">立即购买</view>
+        </block>
+        <!-- 新人专享 -->
+        <block wx:elif="{{productType == 11}}">
+          <view class='single-buy-wrapper' style="padding-bottom: {{isIpx ? '72rpx' : '24rpx'}}">
+            <view class=" self-buy-btn single-buy-normal"  
+                  bindtap="handleSgSClick" 
+                  data-type="立即购买" 
+                  data-sku-id="{{skuId}}"
+                  data-spu-id="{{spuId}}"
+                  data-store-id="{{storeInfo.storeId}}"
+                  data-position="bottom"
+                  data-user-action="{{clickUserAction}}"
+                  aria-role="link" 
+                  aria-label="立即购买">
+                立即购买
+            </view>
+          </view>
+        </block>
+        <!-- mini购物车 -->
+        <block wx:elif="{{showMiniCart}}">
+            <view class="minicart">
+                <mini-cart id="minicart" product-id="{{options.skuId||skuId}}" hasAddOnEntry="true" cart-type="{{cartType}}" store-id="{{options.storeId ||storeInfo.storeId }}" org-code="{{options.orgCode||orgCode}}" refreshMiniCartData="{{refreshMiniCartData}}" catAnimation="{{catAnimation}}" showCart="{{showCart}}" pageSource="productDetail" pageId="{{recommendObj.pageIdFirstPage}}" prePageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}"
+                prePageName="{{recommendObj.prePageName}}"  preBuried="{{recommendObj}}"  refPar="{{refPar}}" biPageName="goodsinfo"  pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}" />
+            </view>
+        </block>
+
+        <!-- 回到顶部 -->
+        <back-top hideBackTop='{{hideBackTop}}' pageMoving='{{pageMoving}}' showMinicar='{{showMiniCart}}'></back-top>
+
+        <!-- spu选择器 -->
+        <spu-selector toggle="{{toggle}}"
+					  bind:onNoticeSubscrib='onNoticeSubscrib'
+                      singleSettle="{{singleSettle}}" 
+                      orgCode="{{options.orgCode||orgCode}}" 
+                      storeId="{{options.storeId ||storeInfo.storeId }}" 
+                      skuId="{{options.skuId||skuId}}" 
+                      spuId="{{options.spuId||spuId}}" 
+                      wx:if="{{iconType == 1}}" 
+                      modelButtonType="{{modelButtonType}}" 
+                      activityId="{{spuActivityId}}" 
+                      treatyType="{{treatyType}}"  
+                      userAction="{{clickUserAction}}" 
+                      bind:spuSelectorEvent="spuSelectorEvent"
+                      preTraceId="{{traceId}}"
+                      pageId="{{recommendObj.pageIdFirstPage}}"
+                      refPar="{{refPar}}"
+                      buriedObj="{{recommendObj}}"
+                      id="spu-selector"
+                      biPageName="goodsinfo"
+                      pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+                      transmitData="{{transmitData}}"
+                      carNumber="{{spuData.cartNum}}"
+                      showModel="{{spuData.showModel}}"
+                      weighting="{{spuData.weighting}}">
+        </spu-selector>
+        <!-- 降价提醒选择器 -->
+        <spu-selector bind:onNoticePrice="onNoticePrice"  
+                      storeInfo="{{storeInfo}}" 
+                      priceRemind="{{priceRemind}}" 
+                      wx:if="{{showPriceRemind}}" 
+                      showPriceRemind="{{showPriceRemind}}" 
+                      toggle="{{noticeToggle}}" 
+                      orgCode="{{options.orgCode||orgCode}}" 
+                      storeId="{{options.storeId ||storeInfo.storeId }}" 
+                      skuId="{{options.skuId||skuId}}" 
+                      spuId="{{options.spuId||spuId}}"  
+                      userAction="{{clickUserAction}}"
+                      bind:pageEvent="pageEvent"
+                      preTraceId="{{traceId}}"
+                      pageId="{{recommendObj.pageIdFirstPage}}"
+                      refPar="{{refPar}}"
+                      buriedObj="{{recommendObj}}"
+                      id="spu-selector"
+                      biPageName="goodsinfo"
+                      pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+                      carNumber="{{spuData.cartNum}}"
+                      showModel="{{spuData.showModel}}"
+                      weighting="{{spuData.weighting}}"
+                      bind:spuSelectorEvent="spuSelectorEvent" >
+        </spu-selector>
+        <!-- 优惠券弹层 -->
+        <coupon-pop bind:pageEvent="widgetEvent" storeId="{{storeInfo.storeId}}" orgCode='{{orgCode}}' isLogin='{{isLogin}}' couponData="{{couponMap}}" showPop="{{showCouponMap}}"  buriedObj="{{recommendObj}}" options="{{options}}" />
+        <!-- 信息半弹层 -->
+        <info-pop data="{{infoPopObj}}" isShow="{{isShowInfoPop}}"  recommendObj="{{recommendObj}}" bind:pageEvent="pageEvent" />
+        <!-- 返回app -->
+        <back-to-app />
+        <!-- 预估到手明细弹层 -->
+        <handle-price-pop  recommendObj="{{recommendObj}}"  
+                           showPop="{{isShowHanldePop}}" 
+                           data="{{toHandPriceDetail}}"
+                           bind:pageEvent="pageEvent" />
+        <!--处方药授权弹窗-->
+        <authory-dialog showDialog="{{isShowAuthoryDialog}}" 
+                        titleText="{{popupWindow.title}}"
+                        contentText="{{authoryDialogContent}}"
+                        popupWindow="{{popupWindow}}"
+                        bind:clickCancel="clickCancel" 
+                        bind:clickConfirm="clickConfirm"  recommendObj="{{recommendObj}}" />
+        <!-- 开通会员弹层-8.18.5 -->
+        <open-vip 
+            bind:pageEvent="handleVipPop"
+            orgCode="{{orgCode}}"
+            storeId="{{options.storeId}}"
+            memberFloorInfoVO="{{memberFloorInfoVO}}"
+            showPop="{{isShowOpenVip}}"
+            recommendObj="{{recommendObj}}"
+            traceId="{{traceId}}"
+            options="{{options}}" />
+        <dialog-pop wx:if="{{showAfterSale}}"
+                    isShow="{{showAfterSale}}"
+                    dialogInfo="{{dialogInfo}}"
+                    recommendObj="{{recommendObj}}"
+                    bind:pageEvent="pageEvent" />
+        <!-- v+会员弹窗 -->
+        <vip-member-pop wx:if="{{isShowVipMemberPop}}" recommendObj="{{recommendObj}}" />
+       <block wx:if="{{showSubscribe}}">
+ 			<subscribe tmplIds="{{tmplIds}}" 
+				showSubscribeMessage="{{showSubscribe}}" 
+				subscribeMessageImageUrl="{{subscribeImg}}"
+				bindsubscribeOk="subscribeMsgOk"
+				bindsubscribeFail="subscribeMsgFail"
+				recommendObj="{{recommendObj}}"
+				buriedObj="{{recommendObj}}"
+				fromPosition="product-subscribe" />
+	   </block>
+	   <block wx:if="{{showSubscribeSuccessPop}}">
+			    <dialog showDialog="{{showSubscribeSuccessPop}}"
+						bind:pageEvent="closeDialog" 
+						useClose="{{false}}"
+						userScroll="{{false}}">
+						<view class='subscribePop'>
+							<view class='title'>订阅成功</view>
+							<view class='content'>{{preSaleInfo.preSellOpeningTime}} 开始预售，预售前会向您发送消息提醒，请您及时关注</view>
+							<view class="btn">我知道了</view>
+						</view>
+				</dialog>
+	   </block>
+    </view>
+</block>
+<view wx:else>
+    <view class="header_wrap">
+    <view class="detail_header1" style="padding-top: {{capsule.top}}px;" >
+      <view class="flex-row head_title" style="height: {{capsule.height}}px">
+        <view class="ellipsis" style="padding: 0 {{capsule.width}}px 0 76rpx" aria-label="{{title}}">
+          京东到家
+        </view>
+        <view aria-role='link' aria-label="返回" class="nav_close" bind:tap="closeCurrentPage"></view>
+      </view>
+    </view>
+    <view class="close_active" bind:tap="closeCurrentPage" wx:if="{{opacity<0.5}}" style="margin-top: {{capsule.top/2-5}}px;opacity: {{1-opacity}}" aria-role="link" aria-label="返回"></view>
+  </view>
+  <view style="padding-top: 100rpx">
+    <new-default type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" bind:defaultBtnEvent="onDefaultBtnEvent" />
+  </view>
+</view>

@@ -1,0 +1,42 @@
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.often-buy-wrapper {
+  width: 100%;
+  border-radius:20rpx 0px 0px 0px;
+  margin-top: 32rpx;
+  /* margin-bottom: 64rpx; */
+}
+.store-floor-tit {
+  padding: 0rpx 0 0rpx 20rpx;
+}
+.store-floor-tit .logo-title {
+    display: flex;
+    align-items: center;
+    max-width: 78%;
+    height: 96rpx;
+}
+.store-floor-tit .title {
+  width: 450rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 36rpx;
+  /* line-height: 36rpx; */
+  color: #333;
+  font-weight: bold;
+  margin-left: 4rpx;
+  height: 100%;
+  line-height: 96rpx;
+
+}
+
+.store-floor-tit .title-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+.scroll-wrapper {
+  white-space: nowrap;
+}

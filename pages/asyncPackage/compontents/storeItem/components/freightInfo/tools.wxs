@@ -1,0 +1,7 @@
+var parseWords = function (str) {
+  return str.split(' | ')
+}
+
+module.exports = {
+  parseWords: parseWords
+};

@@ -1,0 +1,97 @@
+<view wx:if="{{list.length >= 3}}">
+    <view 
+        class='floor-good-wrapper' 
+        style="background-color: {{goodData.needFloorBackground && goodData.floorBgColor || '#fff'}}; background-image: url({{goodData.floorBgImg || ''}}); background-position: no-repeat; background-size: 100% auto;" 
+        data-item="{{item}}">
+        <image 
+            class="title-img" 
+            wx:if="{{goodData.imgTitle && goodData.imgTitle.imgUrl}}" 
+            src="{{goodData.imgTitle.imgUrl}}" 
+            style="width: {{goodData.imgTitle.imgWidth || 200}}rpx; height: {{goodData.imgTitle.imgHeight || 40}}rpx"
+            aria-role="text"
+            aria-label="排行榜" />
+        <view wx:else class='title'  aria-role="text" aria-label="排行榜">{{goodData.floorTitle.floorName}}</view>
+        <view class='change' catchtap="changeCur"  aria-role="button"
+               aria-label="换一组">
+            <image aria-hidden="true" class="img" src="https://storage.360buyimg.com/wximg/common/rotate.png" />
+            <text aria-hidden="true">换一组</text>
+        </view>
+        <view 
+            class='good-content-wrapper'>
+            <view class="mask"></view>
+            <swiper 
+                class='category-swiper-wrapper' 
+                vertical="true" 
+                autoplay="{{autoPlay}}" 
+                interval="{{interval}}" 
+                duration="500" 
+                circular="true" 
+                current="{{aCurrent}}" 
+                display-multiple-items='3'        
+                bindchange="swiperChange" 
+                bindanimationfinish="animationEnd">
+                <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
+                    <swiper-item class="swiper-item">
+                        <view class="title-wrapper" aria-role="text" aria-label="{{item.title}}">
+                            <view class="category-title {{(index == current + 1) ? 'bigger1' : ''}}">
+                              {{item.title}}
+                            </view>
+                        </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+            <view class="mask-right">
+            <view 
+                class="rollaaa"
+                wx:for="{{list[current + 1].data}}"  
+                wx:for-item="subItem"
+                wx:key="index"
+                bindtap="jump"
+                data-item="{{subItem}}"
+                aria-role="button"
+                aria-label="{{subItem.skuName}}{{subItem.majorPrice.price}}元"
+                ></view>
+            </view>
+            <view class='right-good'>
+                <swiper 
+                    vertical="true" 
+                    autoplay="{{autoPlay}}" 
+                    interval="{{interval}}" 
+                    duration="500" 
+                    circular="true" 
+                    current="{{aCurrent}}"
+                    class='good-swiper'
+                >
+                    <block 
+                        wx:for="{{list}}" 
+                        wx:for-item="item" 
+                        wx:key="index">
+                        <swiper-item>
+                            <view 
+                                class="swiper-item-wrapper">
+                                <view 
+                                    class="good-item exposure" 
+                                    wx:for="{{list[current + 1].data}}" 
+                                    wx:for-item="subItem" 
+                                    wx:key="index">
+                                    <view 
+                                        class='imgurl-wrapper'>
+                                        <image 
+                                            src="{{(imgLazyLoad[floorId+index] && subItem.imgUrl) ?  subItem.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" 
+                                            data-lazy-img-id="{{floorId+index}}" 
+                                            class="img lazy-load" />
+                                    </view>
+                                    <view 
+                                        style="color: {{subItem.majorPrice.priceColor}}" 
+                                        class="price">
+                                        ¥{{subItem.majorPrice.price}}
+                                    </view>
+                                </view>
+                            </view>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
+        </view>
+    </view>
+</view>

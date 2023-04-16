@@ -1,0 +1,15 @@
+<view class="feedback-bg">
+  <!-- <view class = 'after-sales-service-tip'>提示：小程序侧线暂无申请售后入口，请下载京东到家APP进行申请</view> -->
+  <radio-group class="feedback-radio-group" bindchange="radioChange">
+    <label class="feedback-radio" wx:for="{{items}}" wx:key="key">
+      <radio value="{{item.code}}" checked="{{item.checked}}" />{{item.name}}
+    </label>
+  </radio-group>
+  <view class="feedback-info">
+    <textarea bindinput="changeInput" value="{{content}}" maxlength="250" cursor-spacing="100" data-name="content" placeholder="{{placeText}}" class="feedback-text" />
+  </view>
+  <view class="feedback-info">
+    <input class="feedback-text-phone" bindinput="changeInput" maxlength="11" cursor-spacing="55" value="{{phone}}" data-name="phone" placeholder="手机号码" confirm-type="done" />
+  </view>
+  <button class="feedback-to" style="background: {{isEnable ? '#47b34f' : '#999999'}};" catchtap='toFeedback'>提交</button>
+</view>

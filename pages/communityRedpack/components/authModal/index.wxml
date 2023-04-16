@@ -1,0 +1,67 @@
+<view class="auth-modal" bind:tap="closeModal" catchtouchmove='true'>
+    <view wx:if="{{showWxAuth}}" class='user_cont' catchtap="stopBubble">
+		<view class="user_center retain_center">为保证账号安全，提现需要您确定微信账号以及真实姓名</view>
+		<view class="user_btns">
+		    <view bind:tap="onCancel" data-button-type="showWxAuth" class="cancle">取消</view>
+			<view
+				bind:tap="onSubmit"
+				data-type="certification"
+				data-button-type="showWxAuth"
+				class="ok"
+			>去提现</view>
+        </view>
+	</view>
+    <view wx:if="{{showUserName}}" class="user_cont" catchtap="stopBubble">
+		<view class="user_title">请完成实名认证</view>
+		<view class="user_center">
+		<view class="input_cont">
+			<input
+                value="{{userName}}"
+                class="input_txt"
+                bindinput="changeInput"
+			/>
+		</view>
+		<view>请输入您当前微信认证的真实姓名</view>
+		</view>
+		<view class="user_btns">
+			<view bind:tap="onCancel" data-button-type="showUserName" class="cancle">取消</view>
+            <view
+				bind:tap="onSubmit"
+				data-type="realName"
+				data-button-type="showUserName"
+				class="ok"
+			>提交</view>
+		</view>
+	</view>
+    <view wx:if="{{showWithdrawing}}" class="withdraw_cont user_cont" catchtap="stopBubble">
+		<view class="withdraw_title">微信提现中</view>
+		<view class="withdraw_center">
+            <view class="withdraw_gray">
+                <view>本次提现<text class="red">{{accountBalance}}元</text></view>
+                <view>提现结果可在提现记录中查看</view>
+            </view>
+            <view class="withdraw_punch">
+                <view class="wx_cont">
+                <image class="wx_icon" src='https://storage.360buyimg.com/wxmini/cash/wechat_green.png' />
+                <view>微信打款</view>
+            </view>
+		<view class="withdraw_money"> {{accountBalance}}元</view>
+	    </view>
+		    <view class="withdraw_gray">微信打款中，24小时到账</view>
+		</view>
+		<view class="withdraw_btns" bind:tap="hideWithdrawing">我知道了</view>
+	</view>
+	<view wx:if="{{showRetain}}" class="user_cont" catchtap="stopBubble">
+		<view class="user_center retain_center">只需要填写姓名就可以完成提现了,确定要放弃{{accountBalance}}元吗？</view>
+		<view class="user_btns">
+			<view bind:tap="onCancel" data-button-type="retain" class="cancle">放弃{{accountBalance}}元</view>
+            <view
+				bind:tap="onSubmit"
+				data-type="retain"
+				data-button-type="retain"
+				class="ok"
+			>继续提现</view>
+		</view>
+	</view>
+</view>
+  

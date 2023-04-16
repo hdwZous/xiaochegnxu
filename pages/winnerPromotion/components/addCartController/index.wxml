@@ -1,0 +1,15 @@
+<view class="cart-controller__wrapper">
+  <view
+    class="subtract"
+    catchtap="handleSubtract"
+    hidden="{{count === 0}}"
+  ></view>
+  <view
+    class="count"
+    hidden="{{count === 0 }}"
+  >{{count}}</view>
+  <view
+    class="add"
+    catchtap="handleAdd"
+  ></view>
+</view>

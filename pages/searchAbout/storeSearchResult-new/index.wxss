@@ -1,0 +1,149 @@
+
+@import "/common/css/global";
+@import "/common/css/regular.wxss";
+@import "/common/css/light.wxss";
+page {
+  background: #f6f6f6;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+.mar_top200 {
+  margin-top: 134rpx;
+}
+
+.mar_top80{
+  margin-top: 80rpx;
+}
+.search_result_wrap {
+  background-color: #f6f6f6;
+}
+.forbid-scroll {
+  height: 100vh;
+  overflow: hidden;
+}
+/*没找到商品 为您推荐  */
+.storePromptWrap {
+  text-align: center;
+  font-size: 24rpx;
+  color: #D97900;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 68rpx;
+  line-height: 68rpx;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  background-color: #FFF6CD;
+  margin-top: 98rpx;
+}
+
+.storePromptWrap label {
+  color: #FF5757;
+}
+.container {
+  width: 100%;
+}
+
+
+/* AB测试改动1 */
+.sort-fixed {
+  background: #f6f6f6;
+}
+
+.sort-fixed-b{
+  position: fixed;
+  top: 97rpx;
+  left: 0;
+  right: 0;
+}
+
+.seat{
+  width: 100%;
+  height: 76rpx;
+}
+
+.category_case {
+  width: 100%;
+  position: fixed;
+  top: -2rpx;
+  z-index: 11;
+  background: #f6f6f6;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0rpx;
+  width: 100%;
+  background: #fff;
+  z-index: 11;
+}
+.back-top {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 48rpx;
+  background: url('https://s.360buyimg.com/wximg/searchAbout/back_top.png') no-repeat;
+  background-size: 100% 100%;
+  position: fixed;
+  bottom: 150rpx;
+  right: 24rpx;
+  z-index: 3;
+}
+
+/*没找到商品 为您推荐  */
+.storePromptWrap {
+  text-align: center;
+  font-size: 24rpx;
+  color: #D97900;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 68rpx;
+  line-height: 68rpx;
+  -webkit-line-clamp: 1;
+  -ms-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  display: -webkit-box;
+  display: -ms-box;
+  display: -moz-box;
+  display: box;
+  background-color: #FFF6CD;
+}
+
+.storePromptWrap label {
+  color: #FF5757;
+}
+.spu_flag{
+  font-size: 20rpx;
+}
+.medicine_img {
+  width: 100%;
+  vertical-align: middle;
+}
+.none-medicine {
+  padding-top: 100rpx;
+}
+.bottom-text {
+  text-align: center;
+  color: #666;
+  font-size: 24rpx;
+  padding: 40rpx 0 140rpx 0;
+}
+.gap {
+  height: 98rpx;
+}
+.pdb40 {
+  padding-bottom: 40rpx;
+}
+.pdt100{
+  padding-top: 100rpx;
+}
+.mar_top100{
+  margin-top: 100rpx;
+}

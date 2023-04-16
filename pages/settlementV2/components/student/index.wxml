@@ -1,0 +1,36 @@
+<view class="student">
+    <view class="frist_line">
+        <view class="left log_student_icon">
+            <text class="title" aria-role="text" aria-label="{{initData.title || '学生信息'}}" >{{initData.title || '学生信息'}}</text> 
+            <image src="https://storage.360buyimg.com/wximg/settlement/tip.png" aria-role="button" aria-label="点击展开介绍弹层" class="qu_icon" bind:tap="handleClickQuestion" wx:if="{{initData.readmeList && initData.readmeList.length>0}}"/> 
+        </view>
+        <view 
+            class="right log_student_h5" 
+            aria-role="button" 
+            ria-label="点击跳转填写信息页面" 
+            bind:tap="goToH5Page">
+            <text class="user {{initData.name && 'active'}}">{{initData.name?initData.name:"未填写"}}</text> 
+            <text class="dj_icon ts_next" wx:if="{{!initData.certificationPassFlag}}"></text>  
+        </view>
+    </view>
+    <view class="content" aria-role="text" aria-label="{{initData.tail}}" >{{initData.tail}}</view>
+</view>
+
+<view class="mask" catch:tap="close" wx:if="{{visible}}">
+    <view class="wrap">
+        <view class="container" catch:tap="stopBubble">
+            <view class="over_scroll">
+                <view class="notice_title" aria-role="text" aria-label="{{noticeList[0].text.title}}">{{noticeList[0].text.title}}</view>
+                <view class="content02">
+                <view class="item" wx:for="{{noticeList}}" wx:key="index">
+                    <view class="left" aria-role="text" aria-label="{{item.text.title}}">{{item.text.title}}</view>
+                    <view class="right" aria-role="text" aria-label="{{item.text.content}}">{{item.text.content}}</view>
+                </view>
+                </view>
+            </view>
+        </view>
+        <view class="close_wrap" catch:tap="close" aria-role="button" aria-label="关闭弹窗">
+          <view class="close"></view>
+        </view>
+    </view>
+</view>

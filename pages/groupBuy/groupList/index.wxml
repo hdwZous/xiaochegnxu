@@ -1,0 +1,98 @@
+<!-- banner -->
+<view class="banner">
+    <view class="image">
+        <image src="https://storage.360buyimg.com/wximg/groupbuy/oldInviteNewRule.jpg" hidden="{{tabActive}}"></image>
+        <view class="buttons">
+            <view>
+                <image src="https://storage.360buyimg.com/wximg/groupbuy/groupRule.png" class="rule" bindtap="openRulesPop"></image>
+            </view>
+            <view>
+                <!-- myOldInviteNew -->
+                <image src="https://storage.360buyimg.com/wximg/groupbuy/myOldInviteNew.png" class="btn" bindtap="goToOrder"></image>
+            </view>
+        </view>
+    </view>
+    <view class="image">
+        <image src="https://storage.360buyimg.com/wximg/groupbuy/groupBuyRule.jpg" hidden="{{!tabActive}}"></image>
+        <view class="buttons">
+            <view>
+                <image src="https://storage.360buyimg.com/wximg/groupbuy/groupRule.png" class="rule" bindtap="openCollectionRulesPop"></image>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- tab -->
+<view class="tab flex-row" wx:if="{{showTab}}">
+    <view class="flex-auto" data-index="0" bindtap="clickTab">
+        <view class="txt {{tabActive ? '' : 'active'}}">
+            <text>老带新团</text>
+        </view>
+    </view>
+    <view class="flex-auto item" data-index="1" bindtap="clickTab">
+        <view class="txt {{tabActive ? 'active' : ''}}">
+            <text>超值优惠团</text>
+        </view>
+    </view>
+</view>
+<!-- content -->
+<view class="content">
+    <block wx:if="{{!isShowEmpty}}">
+        <!-- 老带新团 -->
+        <view hidden="{{tabActive}}">
+            <old-invite-new-goods list="{{oldInviteNewList}}" recommendObj="{{recommendObj}}" bind:onLog="onLog" bind:onLogBanner="onLogBanner" ></old-invite-new-goods>
+        </view>
+        <!-- 拼团 -->
+        <view hidden="{{!tabActive}}">
+            <group-buy-goods list="{{groupBuyList}}" recommendObj="{{recommendObj}}" bind:onLog="onLog"></group-buy-goods>
+        </view>
+    </block>
+    <block wx:else>
+        <!-- <default type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" src="{{src}}" bind:defaultBtnEvent="onDefaultBtnEvent"></default> -->
+        <new-default type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" buriedObj="{{recommendObj}}" bind:defaultBtnEvent="onDefaultBtnEvent" fromPostion="grounpBuy-grounpList" />
+    </block>
+</view>
+<!-- 规则弹层 -->
+<dialog showDialog="{{showRuleDialog}}" bind:pageEvent="closePop" height="692">
+    <view class="dialog-content" style="padding: 40rpx 19px 40rpx;">
+        <view style="text-align: center;color: #030303;line-height:40rpx;font-size:32rpx;font-weight: bold;margin-bottom: 40rpx;">
+            活动规则
+        </view>
+        <view style="color: #333333;font-size: 26rpx">
+            <view style="text-indent:-8rpx">
+                在规定时间内，邀请好友成团（新用户），拼团成功后您与好友将每人获得一张商品券，可以在我的－优惠券中查看；拼团失败，会为您完成极速退款；新用户参团成功后，不可再次参团。
+            </view>
+            <view style="text-indent:-8rpx">
+                老带新团商品库存有限，以成团成功的顺序发放商品券先到先得；具体商品库存以每个商品参与老带新团活动的库存为准；若商品库不足，进行中的拼团活动提示该商品已抢光；若抢光后增加了商品库存，则在拼团结束时间内的商品，将可恢复活动；拼团成功后，将在48小时内将对应的商品券发至参与活动的账户。
+            </view>
+            <view style="text-indent:-8rpx">
+                用户下单时同一商家同一时间，不同门店的商品价格可能根据市场价格调整导致与用户参团成功时发送至账户中的商品券立减金额不同，购买时商品价格以门店实际价格为准。
+            </view>
+        </view>
+    </view>
+</dialog>
+<!-- 团长代收规则弹层 -->
+<dialog showDialog="{{collectionShowRuleDialog}}" height="692" class="collectionShowRuleDialog">
+    <view class="dialog-content" style="padding: 40rpx 19px 40rpx;">
+        <view class="title">拼团规则</view>
+        <view class="subTitle">玩法：</view>
+        <view class="content">
+            <view>【送货到家-预售团】：拼团成功后，订单将在约定时间内发货，发货时间点可在下单时自行选择。</view>
+            <view>【送货到家-团长代收】：多人拼团一起配送，运费更优惠；拼团成功后，统一发货给团长，团员找团长领取货物，团长可凭取货码核实团员信息。</view>
+            <view>【送货到家-其他】：拼团成功后，订单将在门店最近可配送时间内配送；</view>
+            <view>【到店自提】拼团成功后，需凭提货码在规定时间内到相应门店取货；若过期不取货，订单将自动取消，所付款项将原路返还。</view>
+        </view>
+        <view class="subTitle">规则：</view>
+        <view class="content">
+            <view>1、可自行发起拼团，即开团；亦可一键参团，与正在拼团中的人员拼团；</view>
+            <view>2、拼团规定时间内及拼团活动结束时间内邀请到足够人员参团，拼团成功，则订单进入下一流程环节；反之，若拼团失败，订单自动取消，退款原路返回；</view>
+            <view>4、对于团长代收拼团需取消的情况；</view>
+            <view>a、若订单已成团，则团员不可取消订单，如有需求请联系团长取消。</view>
+            <view>b、若订单未成团，已有人参团的情况下，团长不可取消订单，如有需求请联系团员先取消订单后才可取消；没有人参团的情况团长可直接取消。</view>
+            <view>
+                5、拼团活动商品库存有限，以实际支付成功顺序先到先得，具体商品库存以每个商品的实际活动库存为准；用户限购数以门店设置为准。若超过限购或库存已被抢光，则不能参与拼团；
+            </view>
+            <view>6、活动用户需依照页面提示进行操作，如出现违规操作导致商品无法发放、活动无法继续等异常错误，将取消用户参与资格；</view>
+            <view>7、因可能存在系统缓存、页面更新导致价格变动等不确定性情况出现，如您发现异常，请等待页面刷新，并及时联系我们；</view>
+        </view>
+    </view>
+</dialog>

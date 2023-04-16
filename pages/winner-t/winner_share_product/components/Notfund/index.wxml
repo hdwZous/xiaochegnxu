@@ -1,0 +1,19 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.notFund}}">
+        <block wx:if="{{isShow}}">
+            <view>
+                <image class="{{styles.notFundPic}}" src="https://image3.imdada.cn/c38906df35084cef92e58b748deb4bc8.png" mode=""></image>
+                <view></view>
+                <block wx:if="{{errorCode == 1}}">
+                    <view class="{{styles.text}}">暂无商品，可直接搜索商品名称查询</view>
+                </block>
+                <block wx:if="{{errorCode == 2}}">
+                    <view class="{{styles.text}}">门店暂未参与推广活动</view>
+                </block>
+                <block wx:if="{{errorCode == 3}}">
+                    <view class="{{styles.text}}">暂无商品</view>
+                </block>
+            </view>
+        </block>
+    </view>
+</block>

@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view><view class="{{style.scroll}}"><scroll-view class="{{style.scrollview}}" scroll-y="{{100}}"><rich-text nodes="{{strategyContent}}"></rich-text></scroll-view></view></view></block>

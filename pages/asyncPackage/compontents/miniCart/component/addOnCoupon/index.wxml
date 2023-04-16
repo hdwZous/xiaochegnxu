@@ -1,0 +1,31 @@
+<!-- 优惠券 -->
+<view>
+    <block>
+        <coupon-item item="{{item}}" bind:rightBtnClick="handleClick"></coupon-item>
+    </block>
+    <!-- 商品描述 -->
+    <view hidden="{{!item.limitSkuScope && !item.couponRelateDesc}}" class="des-container" aria-role="text"
+      aria-label="{{item.limitSkuScope.desc||''}}{{item.couponRelateDesc[0].desc||''}}{{item.couponRelateDesc[1].desc||''}}{{item.couponRelateDesc[2].desc||''}}"
+    >
+        <view class="des">
+            <text class="des-text" style="background: {{item.limitSkuScope.bgColor}}; color: {{item.limitSkuScope.color}};">
+                {{item.limitSkuScope.desc}}
+            </text>
+            <text wx:for="{{item.couponRelateDesc}}" wx:for-item="descItem" wx:key="index" style="color: {{descItem.color}};">{{descItem.desc}}</text>
+        </view>
+    </view>
+    <!-- 商品图片 -->
+    <scroll-view scroll-x="true" class="skuWrap" wx:if="{{item.skuInfos}}">
+        <view class="skuItem" wx:for="{{item.skuInfos}}" wx:for-item="skuItem" wx:key="index" aria-role="text" aria-label="¥{{skuItem.price}}乘{{skuItem.cartNum}}">
+            <view class="top_left_tag" 
+                style="background:linear-gradient(135deg, {{skuItem.topLeftCornerTag.componentTag.startColorCode}} 0%, {{skuItem.topLeftCornerTag.componentTag.endColorCode}} 100%);"
+                wx:if="{{skuItem.topLeftCornerTag && skuItem.topLeftCornerTag.componentTag}}">
+                <image src="{{skuItem.topLeftCornerTag.componentTag.iconUrl}}" class="top_left_tag-icon"/>
+                <view style="color:{{skuItem.topLeftCornerTag.componentTag.iconTextColorCode}};font-size:20rpx;">{{skuItem.topLeftCornerTag.componentTag.iconText}}</view>
+            </view>
+            <image src="{{skuItem.imageUrl}}" class="skuImg" mode="widthFix" />
+            <view class="skuPrice">¥{{skuItem.price}}</view>
+            <view class="skuNum">x{{skuItem.cartNum}}</view>
+        </view>
+    </scroll-view>
+</view>

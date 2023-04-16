@@ -1,0 +1,20 @@
+
+<view wx:if="{{showPop}}" class='content'>
+    <view class="title" style="color: {{popInfo.titleStytle}}">{{popInfo.titleWords}}</view>
+    <view class='sub-title' style="color: {{popInfo.descStytle}}">
+        {{popInfo.descWords}}<text class='protocal' style="color: {{popInfo.hrefStytle}}"  bindtap="jumpHref" data-href="{{popInfo.href}}">{{popInfo.hrefWords}}</text>
+    </view>
+    <view class='button-group'>
+        <view class="button borderR"
+              style="color: {{popInfo.cancStytle}}" 
+              bindtap="cancel">
+              {{popInfo.cancWords || '暂不领取'}} 
+        </view>
+        <view class="button confirm"
+              style="color: {{popInfo.comStytle}}" 
+              bindtap="openVip">
+              {{popInfo.comWords || "入会并领券"}}
+        </view>
+    </view>
+</view>
+<view wx:if="{{showPop}}" class='mask'></view>

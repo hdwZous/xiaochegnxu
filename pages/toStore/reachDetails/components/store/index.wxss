@@ -1,0 +1,111 @@
+@import "/common/css/iconfont";
+
+.store__content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28rpx;
+    position: relative;
+}
+
+.store__logo {
+    width: 120rpx;
+    height: 120rpx;
+    min-width: 120rpx;
+    border-radius: 16rpx;
+    border: 1rpx solid rgba(0,0,0,0.08);
+    box-sizing: border-box;
+    background-color: #f6f6f6;
+}
+
+.store__info {
+    padding-left: 16rpx;
+    display: flex;
+    flex-direction: column;
+    width: 480rpx;
+}
+
+.store__name {
+    font-weight: 600;
+    color: #333;
+    font-size: 32rpx;
+    margin-bottom: 5rpx;
+}
+
+.store__rating {
+    display: flex;
+    margin-bottom: 5rpx;
+}
+
+.store__score {
+    font-family: 'regular';
+    font-size: 22rpx;
+    font-weight: 400;
+    color: #FF6632;
+    margin-left: 8rpx;
+    line-height: 26rpx;
+}
+
+.store__empty {
+    font-weight: 400;
+    font-size: 24rpx;
+    color: #333;
+}
+
+.store__status {
+    font-weight: 400;
+    font-size: 24rpx;
+    color: #333;
+}
+
+.store__call {
+    width: 64rpx;
+    min-width: 64rpx;
+    height: 64rpx;
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 24rpx;
+}
+
+.store__footer {
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    padding: 22rpx 0 24rpx;
+    position: relative;
+}
+
+.store__footer::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 8rpx;
+    width: 22rpx;
+    height: 40rpx;
+    margin-top: -20rpx;
+    background: url("https://storage.360buyimg.com/wximg/order/order_right_arrow.png") no-repeat center center;
+    background-size: contain;
+}
+
+.store__distance {
+    color: #333;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+
+.store__location {
+    font-size: 22rpx;
+    padding-right: 10rpx;
+}
+
+.store__address {
+    color: #333;
+    font-weight: 400;
+    margin-right: 20rpx;
+}
+
+.store__line {
+    color: #ddd;
+    padding: 0 8rpx;
+}

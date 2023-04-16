@@ -1,0 +1,33 @@
+<view class="picker-mask flex-col" hidden="{{!show}}">
+    <view class="flex-auto" catchtap="clickMask"></view>
+    <view class="picker-box flex-none flex-col {{showBox?'show-picker-box':''}}">
+        <view class="title flex-none border-bottom">
+            <view class="close" catchtap="close"></view>
+            <view class="title-text">选择送达时间</view>
+        </view>
+        <view class="content flex-auto flex-row">
+            <scroll-view class="left flex-none" catchtouchmove="catchtouchmove" scroll-y="true">
+                <block wx:if="{{promiseDateRespItems.length}}" wx:for="{{promiseDateRespItems}}" wx:for-item="item"
+                       wx:key="key" wx:for-index="index">
+                    <view class="left-item {{index==curDateIndex?'active':''}}" data-date-index="{{index}}"
+                          bindtap="selectCurDateIndex">{{item.promiseDateText}}
+                    </view>
+                </block>
+            </scroll-view>
+            <scroll-view class="right flex-auto" catchtouchmove="catchtouchmove" scroll-y="true">
+                <block wx:if="{{promiseDateRespItems[curDateIndex].promiseTimeRespItems.length}}"
+                       wx:for="{{promiseDateRespItems[curDateIndex].promiseTimeRespItems}}" wx:for-item="item"
+                       wx:key="key" wx:for-index="index">
+                    <view class="right-item flex-row border-bottom {{item.selectable==1?curDateIndex==dateIndex&&timeIndex==index?'selected':'':'disabled'}}"
+                          data-status-tip="{{item.statusTip||''}}"
+                          data-status="{{item.selectable||''}}"
+                          data-time-index="{{index}}" bindtap="selectTimeIndex">
+                        <view class="right-item-text flex-auto">{{item.promiseTimeText}}</view>
+                        <view wx:if="{{item.statusTip}}" class="flex-none status-tip">{{item.statusTip}}</view>
+                        <view wx:if="{{curDateIndex==dateIndex&&timeIndex==index}}" class="selected-icon"></view>
+                    </view>
+                </block>
+            </scroll-view>
+        </view>
+    </view>
+</view>

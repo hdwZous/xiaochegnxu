@@ -1,0 +1,6 @@
+.sku-yhe-one-placeholder {
+  width: 100%;
+  height: 500rpx;
+  background: #fff;
+  border-radius: 12rpx;
+}

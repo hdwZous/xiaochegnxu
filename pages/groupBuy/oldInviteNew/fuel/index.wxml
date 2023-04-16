@@ -1,0 +1,44 @@
+<navigation navTitle="{{'京东到家'}}" bgColor="{{'#ffffff'}}" color="{{'black'}}" buriedObj="{{recommendObj}}" fromPostion="grounpBuy-oldInviteNew-fuel"></navigation>
+<view wx:if="{{showPage}}" class="flex-col wrap">
+  <view class="section flex-auto">
+    <scroll-view class="scroll" scroll-y>
+      <view style="padding: 20rpx 0">
+        <!-- 团信息 -->
+        <group title="{{groupInfoVO.title}}" time="{{groupRemainTime}}" group="{{groupInfoVO.joinList}}" btnTxt="{{groupInfoVO.buttonText}}" failReason="{{groupInfoVO.text}}" tips="{{groupInfoVO.tips}}" txtBtn="{{}}" btnType="{{btnType}}" bind:pageEvent="widgetEvent"></group>
+        <!-- 跑马灯 -->
+        <view class="horseLamp" wx-if="{{groupInfoVO.openGroupList.length>0}}">
+          <horse-race-lamp winList="{{groupInfoVO.openGroupList}}" backgroundColor="rgba(0,0,0,0.5)" fontColor="#fff" fromPostion="grounpBuy-oldInviteNew-fuel"></horse-race-lamp>
+        </view>
+      </view>
+      <!-- 商品信息 -->
+                <goods fromPositon="groupBuy-oldInviteNew-fuel1" skuName="{{goodsInfo.data.name}}" skuImgUrl="{{goodsInfo.data.img}}" storeName="{{goodsInfo.data.storeName}}" basicPrice="{{goodsInfo.data.basicPrice}}" actPrice="{{goodsInfo.data.promotionPrice}}" totalMembers="{{goodsInfo.data.totalMembers}}" productPrice="{{moneyInfo.data}}" groupType="{{groupType}}" promotionId="{{groupPromotionId}}" orgCode="{{orgCode}}" storeId="{{storeId}}" skuId="{{groupSkuId}}" groupMode="{{groupMode}}"  bind:pageEvent="goDetailInfo"></goods>
+      <goods fromPositon="groupBuy-oldInviteNew-fuel1" skuName="{{groupInfoVO.skuName}}" skuImgUrl="{{groupInfoVO.skuImgUrl}}" basicPrice="{{groupInfoVO.basicPrice}}" actPrice="{{groupInfoVO.groupPrice}}" totalMembers="{{groupInfoVO.totalMembersDesc}}" storeName="{{groupInfoVO.orgName}}" storeIcon="{{groupInfoVO.logoUrl}}" ></goods>
+      <!-- 活动规则 -->
+      <view class="groupRule" wx:if="{{showImg}}">
+        <view class="title">
+          <image src="https://storage.360buyimg.com/wximg/groupbuy/title1.png" />
+        </view>
+        <image src="https://storage.360buyimg.com/wximg/groupbuy/rule.png" />
+      </view>
+      <!-- 推荐商品 -->
+      <view class="recommand-cont" wx:if="{{recommendInfoList.length>0}}">
+        <view class="title" wx:if="{{showImg}}">
+          <image src="https://storage.360buyimg.com/wximg/groupbuy/title2.png" />
+        </view>
+        <!-- 商品列表 -->
+        <old-invite-new-goods class="recommandList" list="{{recommendInfoList}}" recommendObj="{{recommendObj}}" backgroundColor="#fafafa" source="groupDetail"></old-invite-new-goods>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="flex-none flex-row btn">
+    <view class="flex-auto" bindtap="goToGroupList">更多拼团</view>
+    <view class="border_right flex-none" bindtap="goToStoreHome">进店领优惠</view>
+  </view>
+</view>
+<default wx:else type="{{type}}" fromPositon='groupBuy-oldInviteNew-fuel' btnText="{{btnText}}" tips="{{tips}}" src="{{src}}" buriedObj="{{recommendObj}}" bind:defaultBtnEvent="componentEvent" fromPostion="grounpBuy-oldInviteNew-fuel"></default>
+<dialog showDialog="{{showRuleDialog}}" height="310" data-type="rule" useClose="{{useClose}}">
+  <view class="dialog-content flex-col" style="padding: 40rpx 19px 40rpx;height:230rpx">
+    <view class="flex-auto contentTxt">{{dialogTxt}}</view>
+    <view class="goHomeBtn" bindtap="dailogClick">{{dialogBtn}}</view>
+  </view>
+</dialog>

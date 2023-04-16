@@ -1,0 +1,35 @@
+<view class="container">
+    <view
+      wx:if="{{initData && initData.houseKeepingInfoList && initData.houseKeepingInfoList.length > 0}}"
+      class="title"
+      aria-role="text"
+      aria-label="订单信息">
+        <view>{{initData.houseKeepingInfoList[0].title}}</view>
+        <view class="desc">
+            {{initData.houseKeepingInfoList[0].value}}
+        </view>
+    </view>
+    <view class="item_wrap">
+        <view class="item" 
+              wx:for="{{initData.houseKeepingInfoList}}" 
+              wx:key="index" 
+              aria-role="text"
+              aria-label="{{item.title}}{{item.value}}"
+              wx:if="{{index>0}}">
+            <view class="left">{{item.title}}</view>
+            <view class="right}} {{item.contact ? 'dis':''}}">
+              <text>{{item.value}}</text>
+              <view wx:if="{{item.contact}}" class="contact_con">
+                <image src="https://storage.360buyimg.com/wximg/order/newtel.png" lazy-load="{{true}}"/>
+                <text
+                  class="contact"
+                  bind:tap="handleContact"
+                  aria-role='text'
+                  aria-label="{{item.contact.buttonName}}"
+                  data-item="{{item}}"
+                > {{item.contact.buttonName}} </text>
+              </view>
+              </view>
+        </view>
+    </view>
+</view>

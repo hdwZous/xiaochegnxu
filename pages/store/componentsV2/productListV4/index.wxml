@@ -1,0 +1,141 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+<default wx:if="{{defaultErrorKey=='goodsError' || defaultErrorKey=='goodsEmpty'}}" 
+        type="{{defaultError.type}}" 
+        btnText="{{defaultError.btnText}}" 
+        tips="{{defaultError.tips}}" 
+        src="{{defaultError.src}}" 
+        bind:defaultBtnEvent="onDefaultBtnEvent"
+        fromPosition="store-productListV4"
+        optionsPos="{{options}}">
+</default>
+<block  wx:else>
+<view class="sort-wrap flex-none flex-row" >
+    <view class="flex-none flex-row">
+        <view class="current_cate_num ellipsis"  
+              aria-label="当前分类.{{req.catName}}" 
+              aria-role='text'>{{req.catName}}</view>
+    </view>
+     <!-- 排序组件 -->
+    <view class="sort_box flex-auto flex-row" aria-label="商品排序">
+        <view class="sort_item {{sortKey=='promoteIndex'?'sort_item_checked':''}}" 
+              bindtap="sort"
+              data-store-id="{{storeId}}"
+              data-user-action="{{userAction}}"
+              data-order-type="desc"
+              data-sort-type="sort_promote"
+               
+              data-key="promoteIndex" 
+              data-way="{{0}}"
+              aria-label="按优惠排序"
+              aria-role='button'>
+            优惠
+        </view>
+        <view class="sort_item {{sortKey=='monthSaleSortIndex'?'sort_item_checked':''}}" 
+              bindtap="sort" 
+              data-store-id="{{storeId}}"
+              data-user-action="{{userAction}}"
+              data-sort-type="sort_sale" 
+              data-order-type="desc"
+
+              data-way="{{1}}" 
+              data-key="monthSaleSortIndex"
+              aria-label="按销量排序"
+              aria-role='button'>
+            销量
+        </view>
+        <view class="sort_item flex-row {{sortKey=='realTimePriceSortIndex'?'sort_item_checked':''}}"  
+              bindtap="sort" 
+              data-user-action="{{userAction}}"
+              data-store-id="{{storeId}}"
+              data-sort-type="sort_price"
+              data-order-type="{{priceWay == 1 ? 'asc' : 'desc'}}"
+
+              data-key="realTimePriceSortIndex" 
+              data-way="{{priceWay}}"
+              aria-label="按价格{{priceWay == 1 ? '升序' : '降序'}}排序"
+              aria-role='button'>
+            <text>价格</text>
+            <view class='img_group'>
+              <view class='triangle-up' 
+                    style="border-bottom-color: {{priceWay == 1 ? '#00CF37' : '#999'}}">
+              </view>
+              <view class='triangle-down'
+                    style="border-top-color: {{priceWay == 0 ? '#00CF37' : '#999'}}">
+              </view>
+            </view>
+        </view>
+    </view>
+</view>
+<scroll-view scroll-anchoring 
+            enable-flex 
+            scroll-with-animation 
+            scroll-y="{{true}}"
+            scroll-x="{{false}}"
+            vertical="{{true}}"
+            class="product_scroll container flex-auto flex-col" 
+            bindscroll="productScroll" 
+            bindscrolltolower="productTouchBottom" 
+            bindscrolltoupper="productTouchTop" 
+            id="scrollId"
+            scroll-top="{{sTop}}">
+          <!-- 一维数组 -->
+          <view wx:for="{{showList}}" 
+                wx:for-item="product" 
+                wx:key="outIndex" 
+                wx:for-index="outIndex" 
+                data-lazy-img-id="{{outIndex}}" 
+                class="inner">
+            <!-- 二维数组 -->
+            <block wx:for="{{product}}" 
+                   wx:for-item="item"
+                   wx:key="innerIndex" 
+                   wx:for-index="innerIndex">
+                <!-- 普通商品 -->
+                <one-in-row item="{{item}}" traceId="{{traceId}}" buriedObj="{{buriedObj}}" options="{{options}}" tabName="{{tabName}}" catId="{{catId}}"/>
+                <!-- 搭配购买楼层 -->
+                <!-- 只在点击过的商品下展示搭配购买&&当前端记录的券code＞30个&&搭配购买的次数已达上限（3次），则不再请求门店搭配接口。 -->
+                <block  wx:if="{{couponIds.length <= 30 && recomProducts <= 3  && tool.findSkuId(hasBuyIds, item)}}">
+                  <recom-list totalTimes="{{totalTimes}}"
+                              storeId="{{storeId}}"
+                              orgCode="{{orgCode}}"
+                              skuId="{{sku_id}}"
+                              excludeSkuIds="{{excludeSkuIds}}"
+                              updateNum="{{updateNum}}"
+                              couponIds="{{couponIds}}"
+                              isFollow="{{isFollow}}"
+                              addCarPushCoupon="{{addCarPushCoupon}}"
+                              bind:computeTime="computeTime"
+                              bind:pageEvent="widgetEvent"
+                              brandCoupon="{{brandCoupon}}"
+                              buriedObj="{{buriedObj}}"
+                              NeedExposure="{{true}}"
+                              traceId="{{traceId}}"
+                              fromPosition="store-productListV4"
+                              optionsPos="{{options}}"
+                              tabName="{{tabName}}">
+                  </recom-list>
+                </block>
+            </block>
+            <!-- 占位组件 -->
+            <view wx:if="{{!product|| product.length==0}}">
+              <block wx:for="{{pageSize}}" wx:key="grey">
+                <view class="scroll_item flex-auto flex-row">
+                  <view class="flex-none left">
+                    <view class="sku_img"></view>
+                  </view>
+                  <view class="flex-auto empty_right flex-col">
+                    <view class="name_grey "></view>
+                    <view class="month_sales_grey"></view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+
+          <view class="product_bottom_text" wx:if="{{size==curIndex+1}}">已经到底啦</view>
+          <view class="product_bottom_text" wx:elif="{{(curPage+1) == totalPage}}">
+              上拉查看下一个分类
+          </view>
+    <!-- <view class="blank_white_item"></view> -->
+</scroll-view>
+</block>

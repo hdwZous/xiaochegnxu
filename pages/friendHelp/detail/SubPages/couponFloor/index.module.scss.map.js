@@ -1,0 +1,22 @@
+module.exports = {
+  "wrap": "index-module__wrap___3L5kW",
+  "wrap2": "index-module__wrap2___1Ed3N",
+  "wrap3": "index-module__wrap3___nYY5u",
+  "couponInfo": "index-module__couponInfo___21izH",
+  "content": "index-module__content___HuWk3",
+  "pendantCont": "index-module__pendantCont___hgLy-",
+  "pendant": "index-module__pendant___3b8zL",
+  "item1": "index-module__item1___jrV1_",
+  "left": "index-module__left___3lq6x",
+  "unit": "index-module__unit___10AqS",
+  "amount": "index-module__amount___2fjEw",
+  "cent": "index-module__cent___3DL48",
+  "right": "index-module__right___3tM2s",
+  "limitRule": "index-module__limitRule___Fg7_F",
+  "btn": "index-module__btn___2aO2Z",
+  "flag": "index-module__flag___2yaog",
+  "item2": "index-module__item2___1KZT5",
+  "item3": "index-module__item3___31Lt6",
+  "top": "index-module__top___1DDjQ",
+  "center": "index-module__center___37gGx"
+};

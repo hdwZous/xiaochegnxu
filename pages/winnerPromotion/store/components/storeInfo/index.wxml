@@ -1,0 +1,37 @@
+<view class="store-info">
+  <view class="store">
+    <view class="store-header-box">
+      <image
+        class="channel-tag"
+        src="https://image3.imdada.cn/7f53e5b3dcba4dea8023394d7639c311.png"
+        mode="widthFix"
+      />
+      <image
+        class="store-header"
+        src="{{storeInfo.logoUrl}}"
+        mode="widthFix"
+      />
+    </view>
+    <view class="store_name_box">
+      <view class="store-name">{{storeInfo.storeName}}</view>
+    </view>
+  </view>
+  <view
+    class="coupon-box"
+    bind:tap="handleShowCouponPopup"
+  >
+    <coupon
+      wx:for="{{showList}}"
+      wx:key="activityCode"
+      couponInfo="{{item}}"
+    ></coupon>
+    <view class="coupon-right-text">
+      {{storeCouponInfo.couponModelList.length}}种优惠
+      <image
+        class="coupon-right-text-arrow"
+        src="https://image3.imdada.cn/e757d53c5c7843caa72d4cf121e89606.png"
+        mode="aspectFit"
+      />
+    </view>
+  </view>
+</view>

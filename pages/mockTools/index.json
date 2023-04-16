@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mock-dialog": "./components/mockDialog/index"
+  },
+  "navigationBarTitleText": "mock工具",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "onReachBottomDistance": 160,
+  "navigationStyle": "custom"
+}

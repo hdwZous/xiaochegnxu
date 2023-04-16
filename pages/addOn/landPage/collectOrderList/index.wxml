@@ -1,0 +1,3 @@
+<view catchtap="elementTracker" class="container">
+<include src="../common/template.wxml" />
+</view>

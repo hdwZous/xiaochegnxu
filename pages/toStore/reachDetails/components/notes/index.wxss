@@ -1,0 +1,88 @@
+.notes__container {
+    font-size: 28rpx;
+    overflow: hidden;
+}
+
+.notes__item {
+    padding-bottom: 48rpx;
+}
+
+.notes__item:last-of-type {
+    padding-bottom: 32rpx;
+}
+
+.notes__name {
+    font-weight: 600;
+    color: #333;
+}
+
+.notes__texts {
+    padding-top: 8rpx;
+    padding-left: 20rpx;
+    margin-bottom: -4rpx;
+}
+
+.notes__text {
+    font-weight: 400;
+    color: #777;
+    line-height: 40rpx;
+    position: relative;
+    margin-bottom: 4rpx;
+}
+
+.notes__text::before {
+    content: "";
+    position: absolute;
+    left: -20rpx;
+    top: 16rpx;
+    width: 8rpx;
+    height: 8rpx;
+    background-color: #DADADA;
+    border-radius: 4rpx;
+}
+
+.notes__text--clickable {
+    display: inline-block;
+    padding-right: 24rpx;
+}
+
+.notes__text--clickable::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 22rpx;
+    height: 40rpx;
+    margin-top: -20rpx;
+    background: url("https://storage.360buyimg.com/wximg/order/order_right_arrow.png") no-repeat center center;
+    background-size: contain;
+}
+
+.notes__footer {
+    display: flex;
+    justify-content: center;
+    color: #333;
+    font-size: 28rpx;
+    font-weight: 400;
+    padding: 22rpx 0 24rpx;
+}
+
+.notes__more {
+    line-height: 40rpx;
+    position: relative;
+    padding-right: 26rpx;
+}
+
+.notes__more::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 22rpx;
+    height: 40rpx;
+    margin-top: -22rpx;
+    background: url("https://storage.360buyimg.com/wximg/order/order_right_arrow.png") no-repeat center center;
+    background-size: contain;
+    transform-origin: center;
+    transform: rotate(90deg);
+}

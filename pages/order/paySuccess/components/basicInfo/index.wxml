@@ -1,0 +1,64 @@
+
+<view class="basic-container">
+  <view class='content'>
+    <view class="basic-flex">
+      <view class='pay-finish-desc'>{{initData.payFinishDesc}}</view>
+      <!-- <view class="pay-finish-btn" bindtap="goBack">完成</view> -->
+    </view>
+    <view class='price'>{{initData.realPay}}</view>
+    <!-- 合约机 -->
+    <view
+      class="phone-hint" 
+      wx:if="{{initData.agreementPhoneHint}}">
+      {{initData.agreementPhoneHint}}
+    </view>
+    <!-- 处方药 -->
+    <view
+      wx:if="{{initData.prescriptionMark}}"
+      class="medicine" >
+      {{initData.prescriptionMark}}
+    </view>
+
+    <!-- 支付尾款时间 -->
+    <view class='final-pay-time' wx:if="{{initData.finalPayTime}}">{{initData.finalPayTime}}</view>
+    <!-- 预计达到时间 -->
+    <view
+      wx:if="{{initData.deliveryTime || initData.webankHint}}"
+      class='delivery_time'
+    >{{initData.deliveryTime}}
+      <!-- 微常准提示 -->
+      <view wx:if="{{initData.webankHint}}" style="{{initData.webankHint ? 'margin-right: 10rpx' : ''}}" class="webank">{{initData.webankHint}}</view>
+    </view>
+    <!-- 温馨提示 -->
+    <view class='reminder' wx:if="{{midTelShow && midTelDesc}}">{{midTelDesc}}</view>
+    <!-- 按钮 -->
+    <view class="btns_wrap">
+      <view class='btns'>
+        <view class="btn" wx:if="{{initData.homeButtonName}}" bindtap="goHome">
+          {{initData.homeButtonName}}
+        </view>
+        <view class="btn marL40"  wx:if="{{initData.orderButtonName}}" bindtap="goOrder">{{initData.orderButtonName}}</view>
+      </view>
+    </view>
+    <view class="follow" wx:if="{{isShow}}">
+      <view wx:if="{{isAttention == '0'}}" 
+            class="click_area" 
+            data-status="{{!isAttention}}" 
+            bindtap="fetchFollow">
+        <view class="follow-area">
+          <image class="" src="https://storage.360buyimg.com/wximg/common/unfollow.png" />
+        </view>
+        <text class="pay-store-name">关注  {{storeName}}</text> 
+      </view>
+      <view wx:else 
+            class="click_area" 
+            bindtap="fetchFollow" 
+            data-status="{{!isAttention}}">
+        <view class="follow-area">
+          <image class="" src="https://storage.360buyimg.com/wximg/common/followed.png" />
+        </view>
+        <text class="pay-store-name">关注  {{storeName}}</text>
+      </view>
+    </view>
+  </view>
+</view>

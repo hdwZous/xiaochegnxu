@@ -1,0 +1,8 @@
+<view wx:if="{{iconType == 20}}"
+      catchtap="jump"
+      class='product-add-buy'
+      style="width: {{buttonStyle.width || 56 }}rpx;height: {{buttonStyle.height || 40}}rpx;line-height: {{buttonStyle.height || 40}}rpx;border-radius: {{buttonStyle.borderRadius || 26 }}rpx;font-size: {{buttonStyle.fontSize || 24}}rpx;font-weight: {{buttonStyle.fontWeight || 400}};color: {{buttonStyle.iconTextColor || '#fff'}};background: linear-gradient(to right, {{buttonStyle.startBgColor || '#FF6461'}} 0%, {{buttonStyle.endBgColor || '#FF2A26'}} 100%);"
+      aria-label="{{buttonStyle.iconText}}"
+      aria-role='link'>
+  {{buttonStyle.iconText || '抢购'}}
+</view>

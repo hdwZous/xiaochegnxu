@@ -1,0 +1,11 @@
+<scroll-view scroll-with-animation="{{true}}" scrollTop="{{toTop}}" scroll-y="{{true}}" class="content {{showPop?'showCont':''}}" catchtouchmove="false">
+    <block wx:if="{{couponData&&couponData.length>0}}">
+        <view class="coupon">
+            <view class="title store-title">该商品可用优惠券</view>
+            <!-- 优惠券 -->
+            <coupon data="{{couponData}}" storeId="{{storeId}}" orgCode="{{orgCode}}" bind:pageEvent="widgetEvent" options="{{options}}"  />
+        </view>
+    </block>
+</scroll-view>
+<!-- </view> -->
+<view class="gray gray-bg" style="height: 100%;overflow-y: hidden;" bindtap="hidePop" wx:if="{{showPop}}" catchtouchmove="false"></view>

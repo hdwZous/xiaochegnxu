@@ -1,0 +1,227 @@
+.wrap {
+  height: 56rpx;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.wrap .min {
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/min1.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 95% 95%;
+  background-repeat: no-repeat;
+}
+
+.wrap .min.disabled {
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/min2.png");
+}
+
+.wrap .add {
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/add1.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.wrap .add.disabled {
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/add2.png");
+}
+
+.wrap .add-one {
+  position: relative;
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/add1.png");
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.wrap .num {
+  width: 64rpx;
+  line-height: 44rpx;
+  color: #666666;
+  font-size: 32rpx;
+  text-align: center;
+  font-family: regular;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wrap .num.weighting {
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-size: 24rpx;
+}
+
+.wrap .num-one {
+  position: absolute;
+  right: -7rpx;
+  top: -12rpx;
+  width: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 20rpx;
+  background: #ff5757;
+  border-radius: 100%;
+  font-family: regular;
+}
+
+.product-detail-add-btn-no {
+  display: inline-block;
+  padding: 0 20rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fff;
+  height: 66rpx;
+  line-height: 66rpx;
+  -webkit-border-radius: 4rpx;
+  -moz-border-radius: 4rpx;
+  -ms-border-radius: 4rpx;
+  background-color: #fff;
+}
+
+.product-detail-add-btn {
+    font-family: PingFangSC-Medium, PingFang SC;
+    height: 44rpx;
+    line-height: 44rpx;
+    width: 116rpx;
+    display: inline-block;
+    padding: 0rpx 8rpx;
+    text-align: center;
+    color: #fff;
+    vertical-align: top;
+    font-size: 20rpx;
+    border-radius: 22px;
+    box-sizing: border-box;
+    background: linear-gradient(270deg, rgba(0, 190, 52, 1) 0%, rgba(0, 203, 30, 1) 100%);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.product-detail-add-btn-gray{
+	background: #CCCCCC;
+}
+.product-detail-add-btn-large {
+    min-width: 160rpx;
+    width: auto;
+    padding: 0 20rpx;
+    font-size: 26rpx;
+    height: 66rpx;
+    line-height: 66rpx;
+}
+.product-detail-add-btn.gray {
+  background: linear-gradient(135deg, #CCCCCC 0%, #AAAAAA 100%);
+}
+
+.d-flex {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.flex-row {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+  -webkit-flex-direction: row !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
+}
+
+/* mini购物车新样式 */
+.modify-box {
+  width: 154rpx;
+  height: 44rpx;
+  margin: 0 auto;
+  border-radius: 40rpx;
+  border: 1px solid #eee;
+  line-height: 44rpx;
+}
+
+.modify-box .modify-jian,
+.modify-box .modify-add {
+  width: 42rpx;
+  background-size: 44rpx 44rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.modify-box .modify-jian {
+  border-right: 1px solid #eee;
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/cart_subtract.png");
+}
+
+.modify-box .modify-add {
+  border-left: 1px solid #eee;
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/cart_add.png");
+}
+
+.modify-box .modify-add.disabled {
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/cart_add_disabled.png");
+}
+
+.modify-box .modify-jian.disabled {
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/cart_subtract_disabled.png");
+}
+
+.modify-box .modify-number {
+  flex: 1;
+  text-align: center;
+  line-height: 44rpx;
+  font-size: 28rpx;
+  color: #333333;
+  font-family: 'regular';
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modify-box .modify-number.weighting {
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-size: 24rpx;
+}
+
+.go-buy {
+  background-image: linear-gradient(135deg, rgb(69, 220, 109) 0%, rgb(0, 207, 55) 100%);
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  padding: 6rpx 12rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presale {
+  width: 82rpx;
+  height: 44rpx;
+  background-color: #CCCCCC;
+  border-radius: 22rpx;
+  font-size: 22rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 44rpx;
+}
+
+.price-btn {
+  width: 132rpx;
+  height: 64rpx;
+  background: #CCCCCC;
+  border-radius: 32px;
+  font-size: 28rpx;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}

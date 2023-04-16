@@ -1,0 +1,32 @@
+<block wx:if="{{businessTag && businessTag.tag.icon}}">
+  <block wx:if="{{bizType == 'image'}}" >
+    <view class="icon_buy border_r border_right biz_left" style="background: {{businessTag.tag.bgColor}}">
+      <image wx:if="{{businessTag.tag.businessType == 1}}" class="icon_buy border_r" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+      <image wx:else="{{businessTag.tag.businessType == 2 || businessTag.tag.businessType == 3}}" class="icon_jz border_r" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+    </view>
+  </block>
+<!-- 左右组合 -->
+  <view wx:if="{{bizType == 'horizontal'}}" class="horizontal d-flex border_r" style="background: linear-gradient({{businessTag.tag.bgColor ? businessTag.tag.bgColor:'#00AE42'}},{{businessTag.tag.iconText? '#ffffff': businessTag.tag.bgColor}});border-color:{{businessTag.tag.bgColor ? businessTag.tag.bgColor:'#00AE42'}}">
+    <view class="icon_buy border_r border_right biz_left" style="background: {{businessTag.tag.bgColor}}">
+      <image wx:if="{{businessTag.tag.businessType == 1}}" class="icon_buy icon_height" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+      <image wx:else="{{businessTag.tag.businessType == 2 || businessTag.tag.businessType == 3}}" class="icon_jz icon_height" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+    </view>
+    <view class="flex-auto text border_r biz_right" wx:if="{{businessTag.tag.iconText}}" style="color:{{businessTag.tag.textColor ? businessTag.tag.textColor:'#00AE42'}}">{{businessTag.tag.iconText}}</view>
+  </view>
+  <!-- 上下组合 -->
+  <view wx:if="{{bizType == 'vertical'}}" class="vertical d-flex flex-column align-items-center border_r" style="background: {{businessTag.tag.bgColor}};border-color:{{businessTag.tag.bgColor ? businessTag.tag.bgColor:'#00AE42'}}">
+    <block wx:if="{{businessTag.tag.iconText}}">
+      <view class="{{businessTag.tag.businessType == 1 ? 'icon_buy vertical-100':'icon_jz vertical-84'}} border_r" style="background: {{businessTag.tag.bgColor}}">
+        <image wx:if="{{businessTag.tag.businessType == 1}}" class="icon_buy" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+        <image wx:else="{{businessTag.tag.businessType == 2 || businessTag.tag.businessType == 3}}" class="icon_jz" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+      </view>
+      <view class="flex-auto text text-width100 border_r" wx:if="{{businessTag.tag.iconText}}" style="color:{{businessTag.tag.textColor ? businessTag.tag.textColor:'#00AE42'}}">{{businessTag.tag.iconText}}</view>
+    </block>
+    <block wx:else>
+      <view class="{{businessTag.tag.businessType == 1 ? 'icon_buy':'icon_jz'}} border_r" style="background: {{businessTag.tag.bgColor}}">
+        <image wx:if="{{businessTag.tag.businessType == 1}}" class="icon_buy" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+        <image wx:else="{{businessTag.tag.businessType == 2 || businessTag.tag.businessType == 3}}" class="icon_jz" src="{{businessTag.tag.icon}}" style="width:{{businessTag.tag.iconWidth}}px"/>
+      </view>
+    </block>
+  </view>
+</block>

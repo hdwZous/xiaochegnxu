@@ -1,0 +1,42 @@
+.thing-layout {
+  margin-bottom: 16rpx;
+}
+
+.thing__left {
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+  min-width: 108rpx;
+  min-height: 108rpx;
+  max-width: 180rpx;
+  max-height: 180rpx;
+}
+
+.thing__img {
+  width: 100%;
+  height: 100%;
+}
+
+.thing__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.03);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.thing__icon {
+  width: 28rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 4rpx;
+  left: 4rpx;
+}
+
+.thing__right {
+  margin-left: 16rpx;
+  flex-grow: 1;
+}

@@ -1,0 +1,110 @@
+.reachstore-loading {
+  width: 100%;
+  height: 100vh;
+}
+.reachstore-loading-img {
+  width: 130rpx;
+  height: 130rpx;
+  margin-top: 63%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+}
+.reach-store-wrapper {
+  background: #f4f4f4;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.store-head-wrap {
+  width: 702rpx;
+  margin: 0 auto;
+  /* margin-top: 24rpx; */
+  background: #fff;
+  border-radius: 24rpx;
+  /* margin-bottom: 26rpx; */
+}
+
+.tostore-store-content {
+  padding-bottom: 32rpx;
+}
+/* 门店tab */
+.reach-store-tab-wrap {
+  width: 100%;
+  height: 110rpx;
+  background: transparent;
+}
+.reach-store-tab {
+  width: 100%;
+  height: 110rpx;
+  background: transparent;
+  /* position: sticky; */
+  position: initial;
+  left: 0;
+  z-index: 2;
+  padding-left: 32rpx;
+  padding-top: 48rpx;
+  padding-bottom: 22rpx;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+.reach-store-tabitem {
+  display: inline-block;
+  margin-right: 48rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+  line-height: 32rpx;
+}
+.reach-store-tabitem-text{
+  position: relative;
+  z-index: 1;
+}
+
+.reach-store-tabitem-selected {
+  font-size: 40rpx;
+  font-weight: 500;
+  color: #000000;
+  line-height: 40rpx;
+  position: relative;
+}
+.reach-store-tabitem-selected::after {
+  content: "";
+  width: 100%;
+  height: 8rpx;
+  background: #4BD662;
+  border-radius: 2rpx;
+  position: absolute;
+  bottom: 0rpx;
+  left: 0;
+  z-index: 0;
+}
+/* 门店tab结束 */
+
+/* 代金券 */
+.zhanwei {
+  height: 10rpx;
+  width: 100%;
+  background: transparent
+}
+/* 优惠套餐楼层 */
+.tostore-floor-package {
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+.tostore-floor-title {
+  height: 44rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+  line-height: 44rpx;
+  margin-left: 24rpx;
+  padding: 24rpx 0;
+}
+.floor-combination {
+  overflow: hidden;
+  border-radius: 24rpx;
+  width: 702rpx;
+  margin: 0 auto;
+}

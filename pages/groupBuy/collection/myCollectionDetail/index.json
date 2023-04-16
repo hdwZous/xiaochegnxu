@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "拼团详情",
+    "component": true,
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "share-to-moments-dialog": "/components/singlePicWithSave/index",
+        "share-to-wx-dialog": "/components/share2WxDialog/index"
+    }
+}

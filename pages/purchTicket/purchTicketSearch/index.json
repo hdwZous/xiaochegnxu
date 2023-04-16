@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mini-cart": "../../asyncPackage/compontents/miniCart/index",
+    "add-min-controller": "/components-b/addMinControllerV1/index",
+    "new-default": "/components/newDefault/index"
+  },
+  "componentPlaceholder": {
+    "mini-cart": "/components-b/placeholdCart/index"
+  }
+}

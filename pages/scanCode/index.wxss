@@ -1,0 +1,50 @@
+.share_btn{
+    position: fixed;
+    bottom: 20rpx;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.txa{
+    border: 1px solid #00DF9D;
+    width: 100%;
+    background-color: aliceblue;
+    width: 90%;
+    margin: 10rpx auto;
+}
+
+.heigth60{
+    height: 200rpx;
+}
+/*测试自动切换样式*/
+.test_auto_env {
+    border: 10px solid gray;
+    border-right-width: 0;
+    border-left-width: 40rpx;
+    border-left-color: #00DF9D;
+    z-index: 10;
+    position: fixed;
+    right: -190rpx;
+    top: 500rpx;
+    background: gray;
+    text-align: center;
+    transition: right ease-out 0.2s;
+  }
+  
+  .test_auto_active {
+    right: 0;
+  }
+  
+  .test_auto_env_item {
+    padding: 0 20rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #ffffff;
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+  
+  .test_auto_env_item_active {
+    background: red;
+  }

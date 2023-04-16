@@ -1,0 +1,13 @@
+{
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "animation-modal": "./components/animationModal/index",
+    "coupon-modal": "./components/couponModal/index",
+    "success-modal": "./components/successModal/index",
+    "record-modal": "./components/recordModal/index",
+    "rule-modal": "./components/ruleModal/index",
+    "auth-modal": "./components/authModal/index",
+    "tips-modal": "./components/tipsModal/index"
+  }
+}

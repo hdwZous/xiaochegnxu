@@ -1,0 +1,84 @@
+<block wx:if="{{showEmpty}}">
+    <newDefault 
+      type="{{defaultType}}" 
+      defaultObj="{{defaultObj}}"
+      bind:defaultBtnEvent="onDefaultBtnEvent">
+    </newDefault>
+</block>
+<view>
+    <view class="tabSwitch"  wx:if="{{!showEmpty && tabResultList.length}}">
+        <tab-switch tabResultList="{{tabResultList}}" bind:selectTab="selectTab"/>
+    </view>
+    <view wx:if="{{!showEmpty}}" class="container" style="margin-top:{{!tabResultList.length ? '0rpx' : orderListTopHintType == 2 ? '72rpx' : '88rpx'}}">
+        <block if="{{newList && newList.length>0}}">
+            <topTips id="topTips" recommendObj="{{recommendObj}}" from="{{tabType}}" jumpSource="2" bind:showFnTip="showFnTip"/>
+            <view wx:if="{{orderListTopHintType == 2}}" class="seat"></view>
+            <block wx:for-item="parentItem" wx:for-index="parentIndex" wx:for="{{newList}}" wx:key="parentIndex">
+                <!-- 这个view仅作为间隔区分展示用，并不是必须的 -->
+                <view 
+                    class="demo-item" 
+                    wx:for="{{parentItem}}" 
+                    wx:key="index" >
+                    <!-- 使用 -->
+                    <skeleton show-number="{{2}}">
+                        <list-item 
+                        traceId="{{traceId}}"
+                        bind:clickOrderBtn="clickOrderBtnBuried"
+                        bind:gotoCode="gotoCode"
+                        bind:pageBuried="pageBuried"
+                        bind:clickOrderStateBuried="clickOrderStateBuried"
+                        bind:clickAfterSaleBarBuried="clickAfterSaleBarBuried"
+                        bind:clickCallBuried="clickCallBuried"
+                        bind:showShare="showShare"
+                        bind:onShowPayPop="onShowPayPop"
+                        bind:showMiddleModal="showMiddleModal"
+                        recommendObj="{{recommendObj}}"
+                        init-data="{{item}}"
+                        bind:handleShowCheckCodePop="handleShowCheckCodePop">
+                        </list-item>
+                    </skeleton>
+                </view>
+            </block>
+            <view class="load_tip">{{loadTip}}</view>
+        </block>
+        <button open-type='share' wx:if="{{shareImgShow}}" class='redImg listRedImg'>
+            <image src='{{redImgSrc}}'></image>
+        </button>
+        <!-- 分享到朋友圈弹层 -->
+        <share-to-moments-dialog showDialog="{{showShare2MomentsDialog}}" imgSrc="{{momentsShareImgSrc}}"
+                                 otherData="{{savePicDialogReportData}}"></share-to-moments-dialog>
+        <!-- 分享到微信弹层 -->
+        <share-to-wx-dialog showDialog="{{showShare2WxDialog}}" bind:share2Moments="share2Moments"></share-to-wx-dialog>
+
+        <!-- 中间号弹窗 -->
+        <middle-number-modal fromPositon="order-list" bind:closeModal='closeModal' wx:if="{{isShowMiddleModal}}" order-id="{{orderId}}" store-id="{{storeId}}" recommendObj="{{recommendObj}}" buriedObj="{{recommendObj}}"></middle-number-modal>
+    </view>
+</view>
+<!-- 【弹层】展示添加我的小程序提示类型:0=不展提示 1=鲜豆奖励提示 2=普通提示 -->
+<add-my-mp-pop
+        bind:clickRewardBgBuried="clickRewardBgBuried"
+        bind:clickRewardBeanBuried01="clickRewardBeanBuried01"
+        bind:clickRewardBeanBuried02="clickRewardBeanBuried02"
+></add-my-mp-pop>
+
+
+<!-- 【弹层】展示到店查看券码 -->
+<check-code-pop wx:if="{{showCheckCodePop}}" locCodeList="{{locCodeList}}" bind:closeCheckCodePop="closeCheckCodePop" bind:reloadCode="reloadCode">
+   <canvas slot="qrcode" canvas-id="qrcode"  class="qrcode {{locCodeList.locCodeInfo.qrCodeNum.length >= 40 ? 'codeCenter' : ''}}"/>
+    <block wx:if="{{locCodeList.locCodeInfo.qrCodeNum.length < 40}}">
+       <canvas slot="barcode" canvas-id="barcode" class="barcode"/>
+    </block>
+</check-code-pop>
+
+
+<new-pay-pop  
+    showNewPayPop="{{showPayPop}}"
+    fee="{{fee}}"
+    dealId="{{orderId}}"
+    bgType="{{locOrdertype}}"
+    storeId="{{storeId}}"
+    orgCode="{{orgCode}}"
+    buriedObj="{{recommendObj}}"
+    bind:closeNewPayPop="closeNewPayPop"
+    bind:onPayCancel="closeNewPayPop">
+  </new-pay-pop>

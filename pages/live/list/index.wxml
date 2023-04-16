@@ -1,0 +1,86 @@
+<view wx:if="{{showDefault}}" class="default-error-page">
+    <default type="{{defaultType}}" btnText="{{defaultBtnText}}" tips="{{defaultTips}}" src="{{defaultSrc}}"  bgColor="#f8f8f8" bind:defaultBtnEvent="defaultBtnEvent" buriedObj="{{recommendObj}}"  optionsPos="{{options}}"  fromPositon="liveList"></default>
+    <store-list reachBottom="{{reachBottom}}" recommendObj="{{recommendObj}}" options="{{options}}"/>
+</view>
+<view wx:else class="live-box container"  catchtap="elementTracker">
+    <view class="live-item" wx:if="{{item.liveStatus == 101 || item.liveStatus == 102 || item.liveStatus == 103}}" wx:for="{{list}}" wx:key="index" wx:for-item="item" data-item="{{item}}" data-room-id="{{item.roomid}}" data-live-status="{{item.liveStatus}}" bindtap="jump">
+        <view class='title'>{{item.marketingTitle}}</view>
+
+        <view class="store-name"  wx:if="{{item.subtitleType && item.stationName}}">
+          <image src="https://storage.360buyimg.com/wximg/common/store-icon.png" />
+          <view class="name">{{item.stationName}}</view>
+        </view>
+
+        <view class="store-name"  wx:if="{{!item.subtitleType && item.organiser}}">
+          <image src="https://storage.360buyimg.com/wximg/common/brand-icon.png" />
+          <view class="name">{{item.organiser}}</view>
+        </view>
+        <view class="photo-wrap">
+            <view class="market-img-wrap">
+                <image class="market-img lazy_load_img lazy-load {{imgLazyLoad[item.roomid+'_'+index] ? 'lazy_load_img_active' : ''}}" data-lazy-img-id="{{item.roomid+'_'+index}}" src="{{imgLazyLoad[item.roomid+'_'+index] ? item.marketingImg : ''}}" />
+                <!-- 未开始 -->
+                <view class="live-status" wx:if="{{item.liveStatus == 102}}">
+                    <view class="logo" style="background: linear-gradient(315deg,#FFC837 0%,#FA8618);">
+                        <image class="live-icon" src="https://s.360buyimg.com/wximg/common/notbegin.png" />
+                    </view>
+                    <view class="live-text">{{item.startTime}}  开播</view>
+                </view>
+                <!-- 直播中 -->
+                <view class="live-status" wx:if="{{item.liveStatus == 101}}">
+                    <view class="logo" style="background: linear-gradient(135deg,#FF6464 0%,#FF4255 100%);">
+                        <image class="live-icon" src="https://s.360buyimg.com/wximg/common/living.gif" />
+                    </view>
+                    <view class="live-text">直播中</view>
+                </view>
+                <!-- 已结束 -->
+                <view class="live-status" wx:if="{{item.liveStatus == 103}}">
+                    <view class="logo" style="background:  linear-gradient(135deg,#55D85E 0%,#00CF38)">
+                        <image class="live-icon" src="https://s.360buyimg.com/wximg/common/rebegin.png" />
+                    </view>
+                    <view class="live-text">{{item.startTime}}  回放</view>
+                </view>
+            </view>
+            <!-- 右侧 直播直播中/已结束样式 -->
+            <view wx:if="{{item.liveStatus != 102}}" class="good-img-wrap">
+                <view wx:for="{{item.goodsImg}}" wx:for-index="idx" wx:key="idx" wx:for-item="subImg" class='img-wrap'>
+                    <image class="good-img lazy_load_img lazy-load {{imgLazyLoad[item.roomid+'_'+idx] ? 'lazy_load_img_active' : ''}}" src="{{subImg}}" data-lazy-img-id="{{item.roomid+'_'+idx}}" />
+                    <!-- 图片数量 -->
+                    <view class="mask" wx:if="{{item.goodsImg.length && idx == 1}}">
+                        +{{item.count}}
+                    </view>
+                </view>
+                <!-- 图片不足两个，展示购物袋 -->
+                <view class="bag" wx:if="{{item.goodsImg.length <= 1}}">
+                    <image class="icon-bag" src="https://s.360buyimg.com/wximg/common/bag.png" />
+                    <view class="btn">
+                        <text>进入直播间</text>
+                        <image class="icon-arrow-right" src="https://s.360buyimg.com/wximg/common/arrow-right.png" />
+                    </view>
+                </view>
+            </view>
+            <!-- 右侧 直播未开始样式 -->
+            <view wx:else class="good-img-wrap">
+              <!-- 有图片展示图片，不展示购物袋 -->
+              <view class='img-wrap' wx:if="{{item.goodsImg.length > 0}}">
+                <image class="good-img lazy_load_img lazy-load {{imgLazyLoad[item.roomid] ? 'lazy_load_img_active' : ''}}" src="{{item.goodsImg[0]}}" data-lazy-img-id="{{item.roomid}}" />
+                <view class="mask" wx:if="{{item.goodsImg.length > 1}}">
+                  +{{item.count}}
+                </view>
+              </view>
+              <!-- 展示购物袋 -->
+              <view wx:else class="bag" style="height: 75%">
+                <image class="icon-bag" src="https://s.360buyimg.com/wximg/common/bag.png" />
+                <view class="btn">
+                  <text>进入直播间</text>
+                  <image class="icon-arrow-right" src="https://s.360buyimg.com/wximg/common/arrow-right.png" />
+                </view>
+              </view>
+            </view>
+        </view>
+        <view class="sub-wrap" bind:touchstart='clickSub'  data-item="{{item}}">
+          <subscribe  bindtap="clickSub"  data-item="{{item}}" room-id="{{item.roomid}}" wx:if="{{item.liveStatus == 102}}"></subscribe>
+        </view>
+        
+    </view>
+    <view class="end-bottom" wx:if="{{!hasNextPage}}"  style="padding-bottom: {{isIpx ? '50rpx' : '0'}}">已经到底了</view>
+</view>

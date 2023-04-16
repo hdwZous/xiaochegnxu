@@ -1,0 +1,266 @@
+@import "/common/css/global.wxss";
+.default_wrap {
+    padding-top: 200rpx;
+}
+.wrap {
+    padding-top: 160rpx;
+    padding-bottom: 100rpx;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+.card {
+    position: relative;
+    margin: 20rpx auto 0;
+    width: 718rpx;
+    height: 256rpx;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/coupon_bg.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.title_1 {
+    position: relative;
+    top: 20rpx;
+    width: 710rpx;
+    height: 44rpx;
+    text-align: center;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/title_1.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.title_2 {
+    margin: 0 auto;
+    position: relative;
+    top: 20rpx;
+    width: 710rpx;
+    height: 44rpx;
+    text-align: center;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/title_2.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.title_3 {
+    margin: 0 auto;
+    position: relative;
+    top: 20rpx;
+    width: 710rpx;
+    height: 44rpx;
+    text-align: center;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/title_3.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.text {
+    margin-left: 50rpx;
+    color: #ffffff;
+    font-size: 34rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+}
+.content {
+    position: absolute;
+    left: 20rpx;
+    right: 20rpx;
+    bottom: 30rpx;
+    height: 148rpx;
+    align-items: center;
+}
+.left {
+    padding: 0 40rpx;
+    width: 150rpx;
+}
+.price {
+    color: #FF0000;
+    font-size: 28rpx;
+    font-weight: bold;
+}
+.number {
+    font-size: 60rpx;
+    font-weight: bold;
+    line-height: 1em;
+    font-family: light;
+}
+.txt {
+    font-size: 22rpx;
+    color:rgba(51,51,51,1);
+}
+.middle {
+    overflow: hidden;
+}
+.name {
+    color: #333333;
+    font-size: 32rpx;
+}
+.time {
+    color: #666666;
+    font-size: 22rpx;
+}
+.right {
+    width: 173rpx;
+}
+.btn_2 {
+    margin: 0 auto;
+    width: 131rpx;
+    height: 83rpx;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/btn.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.btn_3 {
+    margin: 0 auto;
+    width: 98rpx;
+    height: 96rpx;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/tag.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.product {
+    padding-top: 20rpx;
+}
+.pro_case {
+    margin-top: 40rpx;
+    padding: 10rpx;
+}
+.pro_default {
+    margin: 60rpx 20rpx 0;
+}
+.pro_default> image {
+    width: 100%;
+}
+.item {
+    padding: 10rpx;
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.con {
+    padding-bottom: 15rpx;
+    position: relative;
+    background: #ffffff;
+    border-radius: 12rpx;
+}
+.pro_tag {
+    z-index: 10;
+    min-width: 38px;
+    height: 30rpx;
+    position: absolute;
+    background: linear-gradient(to right, #FF7D7D, #FF5138);
+    right: 0;
+    top: 0;
+    text-align: center;
+    padding: 5rpx 10rpx;
+    border-radius: 0 10rpx 0 6rpx;
+}
+.pro_discount {
+    color: #F2F2F2;
+    font-size: 20rpx;
+}
+.pro_discount_txt {
+    color: #F2F2F2;
+    font-size: 22rpx;
+}
+.pro_img_case {
+    position: relative;
+    padding-top: 100%;
+    background: #e8e8ee;
+}
+.pro_img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12rpx 12rpx 0 0;
+    vertical-align: middle;
+}
+.pro_name {
+    margin: 10rpx 15rpx 0;
+    color: #333333;
+    font-size: 28rpx;
+}
+.pro_price {
+    margin: 0 15rpx;
+    color: #FF5757;
+    font-size: 36rpx;
+    font-weight: bold;
+    font-family: light;
+}
+.pro_price_tag {
+    margin-left: 10rpx;
+    display: inline-block;
+    padding: 2rpx 8rpx;
+    font-size: 18rpx;
+    border: 2rpx solid rgba(52,139,237,1);
+    border-radius: 12rpx 2rpx 12rpx 4rpx;
+    line-height: 1em;
+    vertical-align: 4px;
+    color: rgba(52,139,237,1);
+}
+.pro_origin {
+    margin: 0 15rpx;
+    height: 40rpx;
+    color: #999999;
+    text-decoration: line-through;
+    font-size: 24rpx;
+}
+.pro_get {
+    position: absolute;
+    bottom: 15rpx;
+    right: 20rpx;
+    width: 66rpx;
+    height: 66rpx;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/get.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.logo {
+    width: 80rpx;
+    height: 80rpx;
+    position: absolute;
+    left: 10rpx;
+    top: 10rpx;
+    border-radius: 50%;
+    box-shadow:0px 0px 8px 0px rgba(0, 0, 0, 0.06);
+}
+.logo>image {
+    width: 100%;
+    height: 100%;
+    background:#dadada;
+    border-radius: 50%;
+    box-shadow:0px 0px 8px 0px rgba(0, 0, 0, 0.06);
+}
+.home {
+    position: relative;
+    margin-top: -100rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #000000;
+    font-size: 28rpx;
+    text-align: center;
+    background: #f6f6f6;
+}
+.save {
+    position: fixed;
+    left: 0;
+    top: 180rpx;
+    width: 90rpx;
+    height: 109rpx;
+    background: url("https://storage.360buyimg.com/wximg/newcomer/sale.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.save_price {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #FF3E5D;
+    font-size: 30rpx;
+    margin-top: -10rpx;
+    font-weight: bold;
+    margin-left: -10rpx;
+}
+.save_symbol {
+    font-size: 20rpx;
+}

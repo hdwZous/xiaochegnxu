@@ -1,0 +1,52 @@
+
+<view class="content">
+  <view class="bg">
+    <view class="type1" wx:if="{{prizeList.length == 1}}">
+      <view wx:if="{{experName == 'newB'}}" class="title">恭喜您，获得1个奖励</view>
+      <view wx:else class="title" style="color: {{title.color}}">{{title.text}}</view>
+      <block wx:for="{{prizeList}}" wx:key="index" wx:for-item="item">
+        <image class="img" 
+              src="{{item.prizeImgInfo.url}}" />
+        <view class="button" data-jump-protocol="{{item.jumpProtocol}}" data-coupon-info="{{item.couponInfo}}" bindtap="jump" style="color: {{item.buttonInfo.color}}; background: {{item.buttonInfo.backGroundColor}}">
+            {{item.buttonInfo.text}}
+          </view>
+      </block>
+    </view>
+    <view class="type2" wx:elif="{{prizeList.length == 2}}">
+      <view wx:if="{{experName == 'newB'}}" class="title">恭喜您，获得2个奖励</view>
+      <view wx:else class="title" style="color: {{title.color}}">{{title.text}}</view>
+      <view class='items-container'>
+        <view class='item-wrap' wx:for="{{prizeList}}" wx:key="index" wx:for-item="item">
+          <view class="img-wrap {{index == 0 ? 'border-right' : ''}}">
+            <image class="img" 
+                  mode="heightFix" 
+                  src="{{item.prizeImgInfo.url}}"
+                  style="width: {{item.prizeImgInfo && item.prizeImgInfo.width * 2 || 160}}rpx; height: {{item.prizeImgInfo && item.prizeImgInfo.height * 2 || 160}}rpx" />
+          </view>
+            <view class="button" data-jump-protocol="{{item.jumpProtocol}}" data-coupon-info="{{item.couponInfo}}" bindtap="jump" style="color: {{item.buttonInfo.color}}; background: {{item.buttonInfo.backGroundColor}}">{{item.buttonInfo.text}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="type3" wx:elif="{{prizeList.length == 3}}">
+      <view wx:if="{{experName == 'newB'}}" class="title">恭喜您，获得3个奖励</view>
+      <view wx:else class="title" style="color: {{title.color}}">{{title.text}}</view>
+      <view class='items-container'>
+        <view class='item-wrap' wx:for="{{prizeList}}" wx:key="index" wx:for-item="item">
+          <view class="img-wrap {{index != 2 ? 'border-right' : ''}}">
+            <image class="img" 
+                  mode="heightFix" 
+                  src="{{item.prizeImgInfo.url}}"
+                  style="width: {{item.prizeImgInfo && item.prizeImgInfo.width * 2 || 160}}rpx; height: {{item.prizeImgInfo && item.prizeImgInfo.height * 2 || 160}}rpx" />
+          </view>
+          <view class="button" data-jump-protocol="{{item.jumpProtocol}}" data-coupon-info="{{item.couponInfo}}" bindtap="jump" style="color: {{item.buttonInfo.color}}; background: {{item.buttonInfo.backGroundColor}}">
+            {{item.buttonInfo.text}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="type4" wx:else>
+      <image src="{{notWin.failImg}}" />
+      <view class='text'>{{notWin.failHint}}</view>
+    </view>
+  </view>
+</view>

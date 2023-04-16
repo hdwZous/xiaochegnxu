@@ -1,0 +1,6 @@
+<view class="set-wrap">
+    <view class="set-item">
+        <text class="set-label">个性化页面展示</text>
+        <switch checked="{{switchChecked}}" bindchange="switchChange"/>
+    </view>
+</view>

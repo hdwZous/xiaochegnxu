@@ -1,0 +1,12 @@
+{
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#f6f6f6",
+    "usingComponents": {
+        "store-item": "../asyncPackage/compontents/storeItem/index",
+        "new-default": "/components/newDefault/index",
+        "filter-comp": "./components/filterComp/index"
+    },
+    "componentPlaceholder": {
+        "store-item": "view"
+    }
+}

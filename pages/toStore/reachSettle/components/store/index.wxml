@@ -1,0 +1,4 @@
+<view class="store_head">
+  <view class="sh_name">{{infos.storeName}}</view>
+  <view class="to_settle_space_line" style="margin-top:32rpx;"></view>
+</view>

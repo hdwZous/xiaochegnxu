@@ -1,0 +1,86 @@
+@import "/common/css/iconfont.wxss";
+
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+}
+
+.amount-wrapper {
+    height: 635rpx;
+    width: 537rpx;
+    background: url("https://storage.360buyimg.com/wximg/storewin/congratulations.png") center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.amount-money {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    vertical-align: bottom;
+    padding-top: 276rpx;
+    font-size: 100rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FD3F42;
+}
+
+.unit {
+    height: 39rpx;
+    line-height: 39rpx;
+    font-size: 53rpx;
+    padding-right: 4rpx;
+}
+
+.amount {
+    height: 75rpx;
+    line-height: 75rpx;
+}
+
+.amount-tips {
+    padding-top: 30rpx;
+    text-align: center;
+    font-size: 26rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #666666;
+}
+
+.amount-button {
+    height: 104rpx;
+    width: 397rpx;
+    background: url("https://storage.360buyimg.com/wximg/communityRedpack/tipsBtn2.png") center no-repeat;
+    background-size: cover;
+    margin: 79rpx auto 0;
+}
+
+.desable-button {
+    background: url("https://storage.360buyimg.com/wximg/store/happy_btn.png") center no-repeat;
+    background-size: cover;
+}
+
+.close-button-wrapper {
+    height: 58rpx;
+    width: 58rpx;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -103rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.close-button {
+    color: #fff;
+    font-size: 24rpx;
+}

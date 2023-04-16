@@ -1,0 +1,30 @@
+<wxs module="tool" src="../../../../../common/util/tools.wxs"></wxs>
+<view class="store-wrapper">
+    <floor-layout title="{{title}}" more-text="{{moreText}}" bindMoreEvent="toH5MoreStore" data-more-jump="{{moreJump}}" enableFooterSlot>
+        <view class="store__content" slot="content">
+            <image aria-role="img" class="store__logo" src="{{storeInfo.logo}}" />
+            <view class="store__info">
+                <view aria-role="text" aria-label="{{storeInfo.name}}" class="store__name ellipsis">{{storeInfo.name}}</view>
+                <view class="store__rating">
+                    <block wx:if="{{storeInfo.overallScore > 0}}">
+                        <rating aria-role="text" aria-label="评分{{storeInfo.overallScore}}" size="14" rating="{{tool.formatStarScore(storeInfo.overallScore)}}" />
+                        <text class="store__score">{{tool.formatStarScore(storeInfo.overallScore)}}</text>
+                    </block>
+                    <block wx:elif="{{!storeInfo.overallScore}}">
+                        <view class="store__empty">暂无评价</view>
+                    </block>
+                </view>
+                <view aria-role="text" aria-label="营业时间 {{businessTimeStr}}" class="store__status">营业时间：{{businessTimeStr}}</view>
+            </view>
+            <image aria-role="button" aria-label="拨打电话" class="store__call" src="https://storage.360buyimg.com/wximg/common/store-head-tel.png" bindtap="toCall" />
+        </view>
+        <view class="store__footer" slot="footer" bindtap="toShowMap">
+            <view class="store__distance nowrap">
+                <view class="dj_icon icon_location1 ts_location store__location"></view>
+                <text>{{storeInfo.distance}}</text>
+            </view>
+            <view class="store__line">|</view>
+            <view aria-role="text" aria-label="{{storeInfo.fullAddress}}" class="store__address ellipsis">{{storeInfo.fullAddress}}</view>
+        </view>
+    </floor-layout>
+</view>

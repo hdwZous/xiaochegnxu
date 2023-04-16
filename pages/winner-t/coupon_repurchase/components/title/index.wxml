@@ -1,0 +1,10 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.ruleTitle}}">
+        <block wx:if="{{label}}">
+            <view>
+                <view class="{{styles.icon}}"></view><text class="{{styles.label}}">{{label}}</text>
+                <view class="{{styles.icon}}"></view>
+            </view>
+        </block>
+    </view>
+</block>

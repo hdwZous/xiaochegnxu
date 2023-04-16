@@ -1,0 +1,33 @@
+<block wx:if="{{data.title}}">
+    <view class="info_bg" wx:if="{{isShow}}" bind:tap="closePop" aria-role="button" aria-label="关闭弹层"></view>
+    <view class="info_wrap flex-col {{isShow ? 'info_active' : ''}}">
+        <!-- title -->
+        <view class="info_title flex-row">
+            <view aria-label="{{data.title}}" aria-role='text'>{{data.title}}</view>
+            <view class="info_close icon dj_icon ts_close" bind:tap="closePop" aria-label="关闭弹层" aria-role="button"></view>
+        </view>
+        <!-- list -->
+        <view class="flex-auto info_list">
+            <scroll-view class="info_scroll" scroll-y="true">
+                <view class="flex-row info_item" 
+                      wx:for="{{data.attrs}}" 
+                      wx:for-index="index" 
+                      wx:for-item="item" 
+                      wx:key="item"
+                      aria-role="text"
+                      aria-label="{{item.attrName}}.{{item.attrValue}}">
+                    <view class="info_label flex-none" wx:if="{{item.attrName}}">
+                        {{item.attrName}}
+                    </view>
+                    <view class="info_content flex-auto" wx:if="{{item.attrValue}}">
+                        {{item.attrValue}}
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <!-- button -->
+        <view class="info_btn_case flex-none" style="padding-bottom: {{isIpx?'60rpx':'10rpx'}}" bind:tap="closePop">
+            <view class="info_btn" aria-label="关闭" aria-role='button'>关闭</view>
+        </view>
+    </view>
+</block>

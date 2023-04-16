@@ -1,0 +1,63 @@
+<view wx:if="{{bannerData && bannerData.data.length > 0}}" 
+      class="swiper-container" 
+      
+>
+    <!-- 楼层背景图片 -->
+    <view wx:if="{{bannerData.floorBgImg}}" 
+          class='bg-image' 
+          style="background-color:{{bannerData.floorBgColor || ''}};background-image: url({{bannerData.floorBgImg || ''}});background-position:no-repeat; background-size: 100% 100%">
+    </view>
+    <!-- 楼层背景色 -->
+    <view wx:elif="{{bannerData.floorBgColor}}" class="bg-color">
+        <view class='fill-color' style="background: {{bannerData.floorBgColor}}"></view>
+    </view>
+    <!--楼层背景色取图片色展示 -->
+    <view class="bg-color" wx:else>
+        <view class='fill-color' style="background: {{swiperBg}}"></view>
+    </view>
+    <!-- 轮播图 -->
+    <swiper 
+        class="banner-swiper-wrapper" 
+        autoplay="{{autoPlay}}" 
+        interval="{{interval}}" 
+        duration="{{duration}}" 
+        circular="true" 
+        current="{{current}}" 
+        data-trace-id="{{pageDataTraceId}}"
+        data-page-id="{{buriedObj.pageIdFirstPage}}"
+        data-current-page-name="{{buriedObj.currentPageName}}"
+        data-pre-page-name='{{buriedObj.prePageName}}'
+        bindchange="swiperChange">
+        <block wx:for="{{bannerData.data}}" wx:for-item="item" wx:key="index">
+            <swiper-item 
+                class="swiper_item"
+                data-item="{{item}}" 
+                aria-role='link' 
+                aria-label='活动广告图{{index+1}}'>
+                <webp-img 
+                    aria-hidden="true"
+                    class=" banner-pic  lazy-load home_floorBanner"  
+                    src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" 
+                    width="702" 
+                    data-lazy-img-id="{{floorId+index}}"
+                    bindtap="jump" 
+                    fromPositon="home_floorbanner"
+                    optionsPos="{{homeoptions}}" 
+                    data-trace-id="{{pageDataTraceId}}"
+                    data-page-id="{{buriedObj.pageIdFirstPage}}"
+                    data-current-page-name="{{buriedObj.currentPageName}}"
+                    data-pre-page-name='{{buriedObj.prePageName}}'
+                    data-user-action="{{item.floorCellData.userAction}}"
+                    data-item="{{item.floorCellData}}"
+                    needOverlay="{{false}}"
+                    height="280"/> 
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- 页码 -->
+    <view class='count' wx:if="{{bannerData.data.length > 1}}" aria-hidden="true">
+        <view class="count-item">{{current + 1}}</view>
+        <view class="count-item">{{bannerData.data.length}}</view>
+    </view>
+</view>
+<canvas class='canvas-wrapper' canvas-id="skinCanvas"></canvas>

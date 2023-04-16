@@ -1,0 +1,109 @@
+<view 
+  class="items-box subsidies seckill_list_ep" 
+  wx:if="{{begin_end != 2}}" 
+  data-to="store" 
+  data-user-action="{{info.userAction}}" 
+  data-trace-id="{{traceId}}" 
+  data-page-id="{{buriedObj.pageIdFirstPage}}"
+  data-current-page-name="{{buriedObj.currentPageName}}"
+  data-pre-page-name="{{buriedObj.prePageName}}"
+  data-type='store' 
+  data-promotion="{{info.secKillTag.type}}" 
+  data-store-id="{{info.storeId}}" 
+  data-sku-id="{{info.skuId}}" 
+  data-item="{{info}}"
+  bindtap="goToStore">
+  <block wx:if="{{hookLazy}}">
+    <view class="cutdown d-flex flex-row align-items-center" wx:if="{{info.roundAdText && info.toPromEndTimes}}">
+      <text class="title ellipsis">{{info.roundAdText}}</text>
+      <text class="txt">{{ info.skuStatus == 1 ? '距结束' : '距开始'}}</text>
+      <view class="times d-flex flex-row">
+        <view class="times-item">{{hour}}</view>
+        <text class="symbol">:</text>
+        <view class="times-item">{{minute}}</view>
+        <text class="symbol">:</text>
+        <view class="times-item">{{second}}</view>
+      </view>
+    </view>
+    <view class="detail content-box d-flex flex-row">
+        <view class="subsidies-left">
+          <view class="img-box">
+            <webp-img webp-img="img" src="{{info.skuImageUrl}}" mode="widthFix" />
+            <view class="cold-tag" wx:if="{{info.topLeftCornerTag && info.topLeftCornerTag.componentTag}}">
+              <freeze-tag topLeftCornerTag="{{info.topLeftCornerTag}}" />
+            </view>
+            <!-- 底部资源位 -->
+            <bottom-corner-tag wx:if="{{info.bottomCornerTag}}" infos="{{info.bottomCornerTag}}" moduleId="SkuYhyFour" showHandle="{{true}}" />
+          </view>
+          <view class="store-info d-flex flex-row align-items-center">
+              <image class="store-icon" src="https://storage.360buyimg.com/wximg/common/icon_store.png" />
+              <view class="store-name ellipsis">{{info.storeName}}</view>
+          </view>
+        </view>
+        <view class="descript-box d-flex flex-column">
+            <view class="head">
+                <view class="name ellipsis">{{info.skuName}}</view>
+                <view class="coucp d-flex flex-row">
+                    <view class="coupon d-flex flex-row align-items-center" wx:if="{{info.couponText && info.couponText.words.length}}">
+                        <image class="money-icon" src="https://storage.360buyimg.com/wximg/seckill/cicon.png" lazy-load="{{lazyload}}" />
+                        <text class="coupon-des">{{info.couponText.words}}</text>
+                    </view>
+                    <!-- <view class="coupon" style="border-color: {{info.secKillTag.strokeNameColorCode}};color: {{info.secKillTag.strokeNameColorCode}}" wx:if="{{info.secKillTag && info.secKillTag.iconText.length}}">
+                        <text class="coupon-des">{{info.secKillTag.iconText}}</text>
+                    </view> -->
+                    <coupon-go-tag 
+                      traceId="{{traceId}}"
+                      data="{{info.couponVOList[0]}}" 
+                      skuId="{{info.skuId || ''}}" 
+                      orgCode="{{info.orgCode || ''}}" 
+                      storeId="{{info.storeId || ''}}" 
+                      from="seckill" 
+                      fromPositon="seckill_list"
+                      userAction="{{info.userAction || ''}}">
+                    </coupon-go-tag>
+                </view>
+                
+            </view>
+            <view class="middle">
+              <view class="sub-price">
+                <view class="sub-detail">
+                  <view class="sub-detail-top">{{info.discountText}}</view>
+                  <view class="sub-detail-bottom">¥{{info.discountPrice}}</view>
+                </view>
+              </view>
+              <view class="sub-line d-flex flex-row">
+                <view class="sub-line-left">
+                  <view class="slf-top">¥{{info.minorPrice.price}}</view>
+                  <view class="slf-middle"></view>
+                  <view class="slf-bottom">{{info.basicPriceText}}</view>
+                </view>
+                <view class="sub-line-middle"></view>
+                <view class="sub-line-right">
+                  <view class="slf-top">¥{{info.minorPrice.price}}</view>
+                  <view class="slf-middle"></view>
+                  <view class="slf-bottom">{{info.basicPriceText}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="footer-bt d-flex flex-row align-items-center" data-to="store" data-user-action="{{info.userAction}}" data-type='buy' data-store-id="{{info.storeId}}" data-sku-id="{{info.skuId}}" data-promotion="{{info.secKillTag.type}}" data-sku-status="{{info.skuStatus}}" data-item="{{info}}" catchtap="goClickBtn">
+              <view class="bt-left d-flex flex-row align-items-baseline">
+                <text class="bt-left-price ellipsis">¥{{info.majorPrice.price}}</text>
+                <text class="bt-left-des">{{info.discountPriceText}}</text>
+              </view>
+              <image class="bt-middle" src="{{info.skuStatus == 1 || info.skuStatus == null ? 'https://storage.360buyimg.com/wximg/seckill/wuyu.png' : 'https://storage.360buyimg.com/wximg/storewin/seckill-gray.png'}}" />
+              <view wx:if="{{info.skuStatus == 1 || info.skuStatus == null}}" class="bt-right d-flex flex-row align-items-center justify-content-end">
+                <text class="txt">马上抢</text>
+                <image class="arrow" src="https://storage.360buyimg.com/wximg/seckill/arrow.png" />
+              </view>
+              <view wx:elif="{{info.skuStatus == 0}}" class="bt-right d-flex flex-row align-items-center gray justify-content-center">
+                <text class="txt">未开始</text>
+              </view>
+              <view wx:else class="bt-right d-flex flex-row align-items-center gray justify-content-center">
+                <text class="txt">已抢光</text>
+              </view>
+            </view>
+        </view>
+    </view>
+  </block>
+  <view wx:else class="placehold_list" style="height: 328rpx;"></view>
+</view>

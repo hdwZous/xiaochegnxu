@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-item": "/components/couponItem/index",
+    "vip-exchange": "../../../asyncPackageStore/compontents/vipExchange/index"
+  },
+  "componentPlaceholder": {
+    "vip-exchange": "view"
+  }
+}

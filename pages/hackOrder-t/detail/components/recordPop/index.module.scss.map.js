@@ -1,0 +1,21 @@
+module.exports = {
+  "pop_wrap": "index-module__pop_wrap___21mwx",
+  "scroll": "index-module__scroll___1lcw_",
+  "titleCont": "index-module__titleCont___Hhh7T",
+  "title2": "index-module__title2___dKAGs",
+  "line1": "index-module__line1___3eimR",
+  "line2": "index-module__line2___239wA",
+  "border": "index-module__border___cbypb",
+  "itemCont": "index-module__itemCont___2EJuF",
+  "item": "index-module__item___lNJL_",
+  "left": "index-module__left___2zgkH",
+  "right": "index-module__right___1D8Mv",
+  "newImg": "index-module__newImg___39tRP",
+  "user": "index-module__user___3BmCd",
+  "newNickName": "index-module__newNickName___1BmD5",
+  "newAmount": "index-module__newAmount___3K81_",
+  "newDate": "index-module__newDate___1Md4I",
+  "newFlag": "index-module__newFlag___1N7nR",
+  "noData": "index-module__noData___R6kV2",
+  "more": "index-module__more___1C9Xi"
+};

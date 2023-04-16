@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index"
+  },
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "V+会员"
+}

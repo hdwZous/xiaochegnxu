@@ -1,0 +1,46 @@
+<block wx:if="{{showLocDefault < 0}}">
+  <location-default locationError="{{locationError}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}"  buriedObj="{{recommendObj}}" fromPosition="purchTicketsStoreList-storeList"
+  optionsPos="{{options}}"></location-default>
+</block>
+<block wx:elif="{{showEmpty}}">
+    <new-default type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" bind:defaultBtnEvent="onDefaultBtnEvent" recommendObj="{{recommendObj}}"  fromPosition="purchTicketsStoreList-storeList"
+  optionsPos="{{options}}"/>
+</block>
+<view style="background-color: #f6f6f6;" wx:else>
+    <block wx:if="{{isShow}}">
+        <view  class="medicine_case">
+            <image src="https://storage.360buyimg.com/wximg/defaultPage/medicine.jpg"
+                   class="medicine_img"
+                   mode="widthFix"
+            ></image>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="storelist_main_layout" wx:if="{{storeList && storeList.length > 0}}">
+            <view class="shopcart-by-position-poi-wrap">
+                <view class="shopcart-by-position-poi">
+                    <image class="left_location" lazy-load="true"
+                           src="https://storage.360buyimg.com/wximg/store/icon_location.png"></image>
+                    <view>{{addressTitle}}</view>
+                    <view class="right_i">(当前位置)</view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{storeList && storeList.length > 0}}">
+            <store-list data="{{storeList}}" recommendObj="{{recommendObj}}" options="{{options}}"></store-list>
+        </view>
+        <view class="storelist_main_layout" wx:if="{{newData && newData.length > 0}}">
+            <view class="shopcart-by-position-poi-wrap" style="background-color:#e2e2e2;">
+                <view class="shopcart-by-position-poi" style="background-color:#999;">
+                    <image class="left_location" lazy-load="true"
+                           src="https://storage.360buyimg.com/wximg/store/icon_location.png"></image>
+                    <view>其它位置</view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{newData && newData.length > 0}}">
+            <store-list data="{{newData}}" recommendObj="{{recommendObj}}" options="{{options}}"></store-list>
+        </view>
+        <view class="load-tip">—— 更多商家入驻中，敬请期待! ——</view>
+    </block>
+</view>

@@ -1,0 +1,42 @@
+<view class="wrap" wx:if="{{newVip.data.newStyle}}">
+  <view class="bt"></view>
+  <view class="wrap_header">
+    <view class="wrap_header_left" aria-role="text" aria-label="{{newVip.data.typeTitle}}">
+      <image class="wrap_header_left_icon" src="{{newVip.data.rnImg1}}" />
+      <view class="wrap_header_title" style="background-image:{{newVip.data.rnImg2}}">
+        <image class="wrap_header_title_icon" src="{{newVip.data.iconSrc}}" />
+        <text style="color:{{newVip.data.typeTitleColor}}">{{newVip.data.typeTitle}}</text>
+      </view>
+      <image class="wrap_header_right_icon" src="{{newVip.data.rnImg3}}" />
+    </view>
+    <view class="wrap_header_right" aria-role="text" aria-label="{{newVip.data.subhead}}">
+      <text>{{newVip.data.subhead}}</text>
+    </view>
+  </view>
+  <view class="wrap_center">
+    <view class="wrap_center_left" aria-role="text" aria-label="{{newVip.data.mainheadNew[0].text+newVip.data.mainheadNew[1].text}}">
+      <text wx:for="{{newVip.data.mainheadNew}}" style="color:{{item.color}};font-weight:bold;" wx:key="index">{{item.text||''}}</text>
+    </view>
+    <view class="wrap_center_right">
+      <image catchtap="showVipRedPag" data-url="{{newVip.data.jump}}" aria-role="button" aria-label="说明" class="wrap_center_left_img" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+      <view style="white-space:nowrap">
+        <text class="origin_price" aria-role="text" aria-label="{{newVip.data.primeCostStr+'元'}}">¥{{newVip.data.primeCostStr||0}}</text>
+        <text class="true_price" style="color:{{newVip.data.amountColor}}" aria-role="text" aria-label="{{newVip.data.promotionCostStr+'元'}}">¥{{newVip.data.promotionCostStr||0}}</text>
+        <text class="btn_unchecked" aria-role="button" aria-label="开通" bindtap="buyVip" wx:if="{{newVip.data.checkVipFlag==0}}" data-check-vip="1" data-vip-id="{{newVip.data.vipId||''}}" style="background:url({{newVip.data.unCheckButtonNoImg}}) no-repeat center center;background-size: cover;width:44rpx;height:44rpx"></text>
+        <text class="btn_checked" aria-role="button" aria-label="取消" bindtap="buyVip" data-check-vip="0" wx:if="{{newVip.data.checkVipFlag==1}}" data-vip-id="{{newVip.data.vipId||''}}" style="background:url({{newVip.data.checkButtonImg}}) no-repeat center center;background-size: cover;width:44rpx;height:44rpx"></text>
+      </view>
+    </view>
+  </view>
+  <view class="wrap_bottom">
+    <view class="coupon_item" wx:for="{{redbag}}" wx:key="index" wx:if="{{redbag.length>0}}" aria-role="text" aria-label="{{item.reductionAmountTip+item.couponLimitRule}}">
+      <view class="coupon_item_price">{{item.reductionAmountTip}}</view>
+      <view class="coupon_item_price_dash"></view>
+      <view class="coupon_item_rule ellipsis">{{item.couponLimitRule}}</view>
+    </view>
+  </view>
+  <view class="wrap-agreement" wx:if="{{newVip.data.agreementDocument && newVip.data.agreementDocument.length}}">
+    <block wx:for="{{newVip.data.agreementDocument}}" wx:key="index">
+      <text class="wrap-agreement-txt" aria-role="button" aria-label="{{item.text}}" style="color: {{item.color}};text-decoration: {{item.underlineFlag ? 'underline' : 'none'}}" data-items="{{item}}" bindtap="goAgreement">{{item.text}}</text>
+    </block>
+  </view>
+</view>

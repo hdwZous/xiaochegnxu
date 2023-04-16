@@ -1,0 +1,90 @@
+<view class="lazy-load-wrap item-wrapper ep_three-item"
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{buriedObj.pageIdFirstPage}}"
+      data-current-page-name="{{buriedObj.currentPageName}}"
+      data-pre-page-name="{{buriedObj.prePageName}}">
+  <view wx:if="{{hookLazy}}"
+        class="item-content" 
+        data-item="{{item}}" 
+        data-sku-id="{{item.skuId}}" 
+        data-spu-id="{{item.spuId}}" 
+        data-store-id="{{item.storeId}}" 
+        data-org-code="{{item.orgCode}}" 
+        bindtap="jumpDetail"
+      >
+      <view class='pro-pic'>
+            <webp-img webp-img="img" 
+                    src="{{item.imgUrl}}" 
+                    mode="widthFix"
+                    needOverlay="{{true}}"
+                    skuName="{{item.skuName}}">
+            </webp-img>
+            <!-- 冷冻or冷藏 -->
+            <view class='freeze-wrap' aria-hidden="true">
+                <freeze-tag topLeftCornerTag="{{item.topLeftCornerTag}}" />
+            </view>
+            <!-- 底部资源位 -->
+            <bottom-corner-tag wx:if="{{item.bottomCornerTag && item.bottomCornerTag.type}}" infos="{{item.bottomCornerTag}}" moduleId="SkuYhsOne" showHandle="{{true}}" />
+            <block wx:else>
+                <view aria-hidden="true" wx:if="{{item.tags.length > 0 }}" class="pro-sale-slogan" style="background: linear-gradient(to bottom right, {{item.tags[0].startColorCode}} 0%,{{item.tags[0].endColorCode}} 100%);">
+                    {{item.tags[0].iconText}}
+                </view>
+            </block>
+      </view>
+      <view class="bottom">
+          <view class="pro-title {{(item.personlizedCateAttritemList && item.personlizedCateAttritemList.length) ? 'ellipsis' : 'ellipsis2'}}"
+                style="height: {{(item.personlizedCateAttritemList && item.personlizedCateAttritemList.length) ? '30rpx' : '60rpx'}}"
+                aria-role="link"
+                aria-label="{{item.skuName}}">
+              <sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+              <text class="three-good-title-name">{{item.skuName}}</text>
+          </view>
+          <!-- 属性 -->
+          <view aria-label="{{item.personlizedCateAttritemList[0]}}{{item.personlizedCateAttritemList.length > 1 ? item.personlizedCateAttritemList[1] : ''}}"
+                aria-role="link" 
+              style="margin-top: 4rpx" 
+              wx:if="{{item.personlizedCateAttritemList && item.personlizedCateAttritemList.length}}">
+              <goods-attribute info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+          </view>
+          <view class='blank'></view>
+          <view class='price-car-wrapper'>
+              <view class='price-group' aria-role='link' aria-label="现价{{item.majorPrice.price}}元，{{item.toHandPrice && item.toHandPrice.rightText ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' :  item.minorPrice &&  item.minorPrice.price ? '原价' + item.minorPrice.price + '元' : ''}} ">
+                  <!-- major-price -->
+                  <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="28rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}" />
+                  <!-- minor-price || 预估到手价 -->
+                  <coupon-price minorPrice="{{item.minorPrice}}" />
+              </view>
+              <view class="car-btn" wx:if="{{showCart}}">
+                <view class="add-group" wx:if="{{item.showCartButton}}">
+                    <add-min-controller-v1 showType="{{1}}" 
+                        count="{{item.showModel ? item.spuCartCount :  item.incartCount}}" 
+                        skuId="{{item.skuId}}" 
+                        spuId="{{item.spuId}}" 
+                        orgCode="{{item.orgCode}}" 
+                        storeId="{{item.storeId}}"
+                        showModel="{{item.showModel}}" 
+                        weighting="{{item.weighting}}"
+                        weight="{{item.cartWeight}}"
+                        userAction="{{item.userActionSku || item.userAction}}"
+                        biPageName="storeinfo"
+                        pageId="{{buriedObj.pageIdFirstPage}}" 
+                        currentPageName="{{buriedObj.currentPageName}}" 
+                        prePageName="{{buriedObj.prePageName}}"
+                        traceId="{{traceId}}"
+                        to="{{item.to}}"
+                        params="{{item.params}}"
+                        transmitData="{{item.transmitData}}"
+                        iconType="{{item.iconType}}">
+                    </add-min-controller-v1>
+                </view>
+                <view wx:else class="go-detail-wrapper">
+                    <image class='go-detail' src="https://storage.360buyimg.com/wximg/common/next_green.png" />
+                </view>
+              </view>
+          </view>
+      </view>
+  </view>
+  <view wx:else
+        class="item-content-gray"></view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "grid": "../commonComponents/grid/index"
+  },
+  "navigationBarTitleText": "支付结果",
+  "onReachBottomDistance": 10
+}

@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><block wx:if="{{!selfStyle}}"><view class="{{style.loading}}"><image class="{{style.loadSize}}" src="{{loadImg}}"></image></view></block><view class="{{style.loaderWrap}}" wx:else><view class="{{style.loader}}"></view></view></block>

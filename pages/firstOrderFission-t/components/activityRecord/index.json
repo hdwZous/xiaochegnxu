@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "render-un-completes-line": "../renderUnComplelesLine/index",
+    "pop-dia": "../popDia/index"
+  }
+}

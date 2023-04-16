@@ -1,0 +1,215 @@
+<block wx:if="{{pageError.error == 'neterror'}}">
+  <new-default fromPositon="addon_landpage" type="{{pageError.type}}" defaultObj="{{pageError.obj}}" binddefaultBtnEvent="onDefaultBtnEvent"></new-default>
+</block>
+<view style="background-color: #f6f6f6;" wx:else>
+    <view wx:if="{{!isShowSearchLayout}}" class="log-search search-bar" bindtap="handleShowSearchClick" aria-role="button" aria-label="{{'搜索你想要的商品'+keyword}}">
+        <view class="search-input hasCancel">
+            <image class="editboxDrawableLeft" mode="aspectFit" src="https://storage.360buyimg.com/wximg/store/icon_search.png" />
+            <input type="search" disabled="true" placeholder-class="place-holder" class="search-index-input" id="search-keyword" placeholder="{{placeHolder}}" value="{{keyword}}" />
+        </view>
+    </view>
+    <view wx:if="{{isShowSearchLayout}}">
+        <view class="search-bar" style="position: fixed; z-index: 12;">
+            <view class="search-input hasCancel {{noSearchBtn}}" style="right: 100rpx;" aria-role="button" aria-label="{{'搜索你想要的商品'+keyword}}">
+                <image class="editboxDrawableLeft" mode="aspectFit" src="https://storage.360buyimg.com/wximg/store/icon_search.png" />
+                <input confirm-type="search" type="search" bindconfirm="handleSearchClick" bindinput="searchInput" placeholder-class="place-holder" class="search-index-input" focus="{{focus}}" id="search-keyword" placeholder="{{placeHolder}}" required="required" value="{{keyword}}" />
+            </view>
+            <view class="search-btn-right" catchtap="handleSearchClick" aria-role="button" aria-label="点击搜索">搜索</view>
+        </view>
+        <div aria-role="button" aria-label="关闭弹层" catchtap="handleMongClick" style="display: block; position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgba(0, 0, 0, 0.7); text-align: center; z-index: 11;"></div>
+    </view>
+    <view class="purchTickets-wrap">
+        <view class="addOns-order-top">
+            <view class="addOns-order-item {{!sortType || sortType == '' ? 'addOns-active-order' : ''}}" bindtap="sortTypeClick" data-type="1" aria-role="button" aria-label="默认排序">
+                默认排序
+            </view>
+            <view class="addOns-order-item {{sortType == 'sort_redissale30_desc' ? 'addOns-active-order' : ''}}" bindtap="sortTypeClick" data-type="2" aria-role="button" aria-label="热销">
+                热销
+            </view>
+            <view class="addOns-order-item {{sortType == 'sort_price_desc' ? 'down addOns-active-order' : ''}} {{sortType == 'sort_price_asc' ? 'up addOns-active-order' : ''}}" bindtap="sortTypeClick" data-type="3" aria-role="button" aria-label="价格">
+                价格
+                <view class='imgGroup'>
+                    <view wx:if="{{rangeWay == 2}}">
+                        <image src="https://storage.360buyimg.com/wximg/store/grayUp.png"></image>
+                        <image src="https://storage.360buyimg.com/wximg/store/greenDown.png"></image>
+                    </view>
+                    <view wx:if="{{rangeWay == 1}}">
+                        <image src="https://storage.360buyimg.com/wximg/store/greenUp.png"></image>
+                        <image src="https://storage.360buyimg.com/wximg/store/grayDown.png"></image>
+                    </view>
+                    <view wx:if="{{rangeWay == 0}}">
+                        <image src="https://storage.360buyimg.com/wximg/store/grayUp.png"></image>
+                        <image src="https://storage.360buyimg.com/wximg/store/grayDown.png"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="addOns-tip-wrap" hidden="{{!togetherOrderInfo.length}}">
+            <i class="addOns-tip-icon"></i>
+            <view class="addOns-tip-text d-flex flex-row ellipsis2">
+              <text wx:for="{{togetherOrderInfo}}" wx:for-item="item" wx:for-index="index" wx:key="index" style="color:{{item.color ? '#'+item.color : ''}};">{{item.desc}}</text>
+            </view>
+        </view>
+    </view>
+    <block wx:if="{{!pageError.error}}">
+        <scroll-view class="scroll" style="background-color: #fff;" enable-flex="{{true}}">
+            <!-- 商品 -->
+            <block wx:for="{{goodList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                <view class="item flex-row" bindtap="goToDetail" data-spu-id="{{item.spuId}}" data-count="{{item.incartCount}}" data-sku-id="{{item.skuId}}" data-org-code="{{item.orgCode}}" data-store-id="{{item.storeId}}" data-longitude="{{longitude}}" data-latitude="{{latitude}}" data-stock-count="{{item.stockCount}}" style="background: {{item.anchoredProduct ? '#fffaeb' : ''}};"
+                  aria-role="link" aria-label="{{item.skuName+'月售'+item.monthSales+'件'+item.highOpinion+(item.tags?item.tags[0].iconText:'')+(item.majorPrice.price+'元')+(item.minorPrice?'原价'+item.minorPrice.price+'元':'')}}">
+                    <view class="goods_image flex-none">
+                        <!-- 业务标 -->
+                        <view class="top_left_tag" wx:if="{{item.businessTag}}">
+                          <biz-tag bizType="image" businessTag="{{item.businessTag}}"></biz-tag>
+                        </view>
+                        <webp-img webp-img="goods_img" src="{{item.imageList[0]}}" needOverlay="{{true}}"></webp-img>
+                        <block wx:if="{{item.bottomCornerTag}}">
+                          <bottom-corner-tag moduleId="SkuYhyOne" infos="{{item.bottomCornerTag}}" showHandle="{{false}}" />
+                        </block>
+                        <block wx:else>
+                          <view class="sku_remain" wx:if="{{item.stockCount<=3 && item.stockCount>0}}">
+                              仅剩{{item.stockCount}}件
+                          </view>
+                          <view class="sale_out" wx:if="{{item.stockCount===0}}">已抢光</view>
+                        </block>
+                    </view>
+                    <!-- 未抢光 -->
+                    <view class="info flex-auto" wx:if="{{item.stockCount > 0}}">
+                        <view class="name ellipsis2">
+                          <sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+                          {{item.skuName}}
+                        </view>
+                        <view class="number">
+                            <text>月售{{item.monthSales}}件</text>
+                            <text style="margin-left:8rpx;margin-right:8rpx;"></text>
+                            <text>{{item.highOpinion}}</text>
+                        </view>
+                        <view class="tags flex-row" wx:if="{{item.tags.length > 0}}">
+                            <view class="tag flex-none"  style="border: solid 2rpx {{tagItem.strokeNameColorCode}};  color: {{tagItem.strokeNameColorCode}};" wx:for="{{item.tags}}" wx:for="{{item.tags}}" wx:for-item="tagItem" wx:for-index="index" wx:key="index">
+                                {{tagItem.iconText}}
+                            </view>
+                        </view>
+                        <view class="price">
+                            <coupon-price 
+                                majorPrice="{{item.majorPrice}}" 
+                                majorPriceFz="36rpx" 
+                                majorPriceWhFz="24rpx" 
+                                intervalPrice="{{item.intervalPrice}}">
+                            </coupon-price>
+                            <coupon-price 
+                                minorPrice="{{item.minorPrice}}" toHandPrice="{{item.toHandPrice}}">
+                            </coupon-price>
+                        </view>
+                        <!-- 加减车 -->
+                        <view class="select_case" style="background: {{item.anchoredProduct ? '#fffaeb' : '#ffffff'}}">
+                            <block wx:if="{{item.showCartButton}}">
+                              <add-min-controller 
+                                showType='2'
+                                iconType="{{item.iconType||0}}"
+                                transmitData="{{item.transmitData}}"
+                                addCartText="{{item.weightPriceStr}}" 
+                                count="{{item.incartCount}}" 
+                                skuId="{{item.skuId}}" 
+                                spuId="{{item.spuId}}" 
+                                orgCode="{{item.orgCode}}" 
+                                storeId="{{item.storeId}}" 
+                                longitude="{{longitude}}" 
+                                latitude="{{latitude}}" 
+                                isAddCart="{{item.isAddCart}}" 
+                                data-index="{{index}}" 
+                                showModel="{{item.showModel}}" 
+                                bind:addMinControllerChange="onAddMinControllerChange" 
+                                weighting="{{item.weighting}}"
+                                weight="{{item.cartWeight}}" 
+                                biPageName="collectOrder" 
+                                couponId="{{couponId}}" 
+                                userAction="{{item.userAction}}" 
+                                pageId="{{recommendObj.pageIdFirstPage}}" 
+                                currentPageName="{{recommendObj.currentPageName}}" 
+                                prePageName="{{recommendObj.prePageName}}">
+                              </add-min-controller>
+                            </block>
+                            <image class="car_more" wx:else src="https://storage.360buyimg.com/wximg/common/next_green.png" mode="widthFix"/>
+                       </view>
+                    </view>
+                    <!-- 已抢光 -->
+                    <view class="info flex-auto stock_null" wx:else>
+                        <view class="name ellipsis2">
+                          <sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+                            {{item.skuName}}
+                        </view>
+                        <view class="number">
+                            <text>月售{{item.monthSales}}件</text>
+                            <text style="margin-left:8rpx;margin-right:8rpx;">|</text>
+                            <text>{{item.highOpinion}}</text>
+                        </view>
+                        <view class="tags flex-row">
+                            <view class="tagItem" wx:for="{{item.tags}}" wx:for-item="tagItem" wx:key="index" wx:for-index="index" style="color: {{tagItem.strokeNameColorCode}}; display:{{(index > 2) ? 'none' : 'flex'}};">
+                               <text>{{tagItem.iconText}}</text>  
+                               <view class="oneBorder" style="border-color:{{tagItem.strokeColorCode}};"></view>
+                            </view>
+                        </view>
+                        <view class="price">
+                            <view>
+                                <text style="font-size:32rpx;">￥</text>
+                                <text class="base">{{item.realTimePrice}}</text>
+                                <!-- spu商品 -->
+                                <text wx:if="{{item.showModel == 1}}">
+                                    <text class="qi" wx:if="{{item.spuMaxPrice != item.spuMinPrice}}">
+                                        起
+                                    </text>
+                                </text>
+                                <text class="origin" wx:if="{{item.promotion == 0 && item.basicPrice && !item.vipPrice && (item.item.basicPrice != item.realTimePrice)}}">
+                                    <text>￥</text>
+                                    {{item.basicPrice}}
+                                </text>
+                            </view>
+                            <view class="vip_price flex-row" wx:if="{{item.vipPrice}}">
+                                <view class="flex-none" style="color: #ccc">
+                                    <text>￥</text>
+                                    {{item.vipPrice}}
+                                </view>
+                                <image class="vip_icon flex-none" lazy-load="true" mode="aspectFill" wx:if="{{item.vipPriceIcon}}" src="{{item.vipPriceIcon}}"></image>
+                            </view>
+                        </view>
+                        <!-- 加减车 -->
+                        <view class="select_case" style="background: {{item.anchoredProduct ? '#fffaeb' : ''}}">
+                            <block wx:if="{{item.showCartButton}}">
+                                  <add-min-controller showType='2' iconType="{{item.iconType||0}}" transmitData="{{item.transmitData}}" addCartText="{{item.weightPriceStr}}" count="{{item.incartCount}}" skuId="{{item.skuId}}" spuId="{{item.spuId}}" orgCode="{{item.orgCode}}" storeId="{{item.storeId}}" longitude="{{longitude}}" latitude="{{latitude}}" isAddCart="{{item.isAddCart}}" data-index="{{index}}" showModel="{{item.showModel}}" bind:addMinControllerChange="onAddMinControllerChange" biPageName="collectOrder" couponId="{{couponId}}" userAction="{{item.userAction}}"
+                                  pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}"></add-min-controller>
+                            </block>
+                            <image class="car_more" wx:else src="https://storage.360buyimg.com/wximg/common/next_green.png" mode="widthFix"/>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <!-- 底线提示 -->
+            <view class="no-goods-remind" bind:tap="goToStore" aria-role="button" aria-label="更多商品，进店凑单">
+               <text>更多商品，进店凑单</text>
+               <image src="https://storage.360buyimg.com/wximg/store_2.0/next-arrow.png" mode="widthFix"/>
+            </view>
+        </scroll-view>
+    </block>
+    <block wx:else>
+      <new-default fromPositon="addon_landpage" type="{{pageError.type}}" defaultObj="{{pageError.obj}}" binddefaultBtnEvent="onDefaultBtnEvent" />
+    </block>
+    <spu-selector 
+      fromPositon="addon_landpage" 
+      id="spu-selector" 
+      toggle="{{toggle}}" 
+      orgCode="{{spuData.orgCode}}" 
+      storeId="{{spuData.storeId}}" 
+      skuId="{{spuData.skuId}}" 
+      spuId="{{spuData.spuId}}" 
+      transmitData="{{spuData.transmitData}}" 
+      buriedObj="{{recommendObj}}" 
+      bind:spuSelectorEvent="onSpuSelectorEvent" 
+      userAction="{{spuData.userAction}}" 
+      pageId="{{recommendObj.pageIdFirstPage}}" 
+      biPageName="{{self_page}}" 
+      pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}" 
+      carNumber="{{spuData.cartNum}}"
+      showModel="{{spuData.showModel}}"
+      weighting="{{spuData.weighting}}">
+    </spu-selector>
+</view>

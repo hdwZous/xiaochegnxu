@@ -1,0 +1,133 @@
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.padTB {
+  padding: 30rpx 0;
+}
+/*一行打点*/
+.ellipsis {
+  height: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*两行打点*/
+.ellipsis2 {
+  height: 60rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.blank {
+    height: 10rpx;
+}
+.wrapper {
+  width: 100%;
+  border-radius:20rpx 0px 0px 0px;
+  /* margin-bottom: 52rpx; */
+}
+.store-floor-tit {
+  position: relative;
+  padding: 0rpx 0 0rpx 20rpx;
+  /* margin-bottom: 30rpx; */
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.store-floor-tit .logo-title {
+    display: flex;
+    align-items: center;
+    max-width: 78%;
+    height: 96rpx;
+}
+.store-floor-tit .title {
+  width: 450rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 36rpx;
+  /* line-height: 36rpx; */
+  color: #333;
+  font-weight: bold;
+  margin-left: 4rpx;
+  height: 100%;
+  line-height: 96rpx;
+}
+.tomore3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 24rpx;
+  height: 96rpx;
+  margin-right: 20rpx;
+}
+.tomore3 .more-text {
+  line-height: 26rpx;
+}
+.more-icon {
+   width: 26rpx;
+  height: 26rpx;
+  /* vertical-align: middle; */
+  /* margin-left: 4rpx; */
+}
+.abs {
+  /* position: absolute;
+  right: 20rpx;
+  bottom: 38rpx; */
+}
+.store-floor-tit .title-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+}
+/* 品类横划列表 */
+.category-wrapper {
+  margin: 16rpx 0 0 20rpx;
+}
+
+
+/* 商品列表 */
+.pro-list-wrapper {
+  width:710rpx;
+  background:#fff;
+  border-radius:12rpx 8rpx 8rpx 12rpx;
+  margin: 18rpx 0 0 20rpx;
+}
+.pro-content {
+    display: flex;
+    justify-content: space-evenly;
+}
+.tomore-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666;
+  padding-right: 20rpx;
+}
+.tomore-item .look-more {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+
+.floor-tail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+  border-top: solid 1rpx #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 24rpx;
+}

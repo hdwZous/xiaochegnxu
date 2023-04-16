@@ -1,0 +1,16 @@
+<view class="bg" wx:if="{{show}}"></view>
+<view class="wrap" wx:if="{{show}}">
+    <view class="content" bind:tap="clickContent">
+        <image 
+            class="content_img home_pop3" 
+            data-user-action="{{data.userAction}}" 
+            data-trace-id="{{data.traceId}}"
+            data-page-id="{{buriedObj.pageIdFirstPage}}"
+            data-current-page-name="{{buriedObj.currentPageName}}"
+            data-pre-page-name='{{buriedObj.prePageName}}'
+            src="{{item.imgUrl}}" />
+    </view>
+    <view class="icon_close" bind:tap="closePop">
+        <image class="img" src="https://storage.360buyimg.com/wximg/common/home_close.png" />
+    </view>
+</view>

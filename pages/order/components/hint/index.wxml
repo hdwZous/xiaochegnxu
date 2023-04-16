@@ -1,0 +1,17 @@
+<view class="hintContainer">
+    <view class="hintItem">
+        <view class="itemTitle">温馨提示</view>
+    </view>
+    <block wx:for="{{reminderFloorInfo}}">
+        <view class="hintItem" wx:if="{{index != 0 &&(index < 2 || !isViewMore)}}">
+            <view class="itemTitle">{{item.title}}</view>
+            <view class="hintText">{{item.value}}</view>
+        </view>
+        <view class="hintItem viewMore" wx:if="{{index == 1 && isViewMore}}">
+            <view catchtap="handieViewMore">
+                查看更多
+                <image class="down" src="https://storage.360buyimg.com/wximg/order/down1.png" mode="widthFix" />
+            </view>
+        </view>
+    </block>
+</view>

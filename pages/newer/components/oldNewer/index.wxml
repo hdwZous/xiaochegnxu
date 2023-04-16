@@ -1,0 +1,147 @@
+<view class="wrap"
+  style="background: #F6F6F6 url('{{bgConfig.imgUrl}}') no-repeat center top;background-size: 100% auto"
+>
+  <block
+    wx:for="{{sourceList}}"
+    wx:for-item="item"
+    wx:for-index="index"
+    wx:key="source{{index}}"
+  >
+    <!--新人专享券-->
+    <view class="card exposure"
+      wx:if="{{item.resourceNo === '100' && (item.newUserCoupon && item.newUserCoupon.markState === 2 || item.newUserCoupon.markState === 3)}}"
+      data-floor='oldNewFloor' 
+      data-user-action="{{item.newUserCoupon.userAction}}">
+        <view class="title_{{index+1}}" wx:if="{{item.titleContent}}">
+          <text class="text">{{item.titleContent}}</text>
+        </view>
+
+        <view class="content flex-row" wx:if="{{item.type === 3 && item.newUserCoupon}}">
+          <view class="left flex-none">
+            <view class="price">￥<text class="number">{{item.newUserCoupon.amount}}</text></view>
+            <view class="txt ellipsis">{{item.newUserCoupon.limitRule}}</view>
+          </view>
+          <view class="middle flex-auto">
+            <view class="name ellipsis">{{item.newUserCoupon.couponTitle}}</view>
+            <view class="time ellipsis">{{item.newUserCoupon.avilableDate}}</view>
+          </view>
+          <view class="right flex-none"
+            data-status="{{item.newUserCoupon.markState}}"
+            data-coupon-id="{{item.newUserCoupon.couponId}}"
+            bindtap="getNewerCoupon">
+              <view class="btn_{{item.newUserCoupon.markState}}"></view>
+          </view>
+        </view>
+    </view>
+
+    <!--券-->
+    <view class="card"
+      wx:if="{{item.resourceNo == '103' && (item.codeCouponVO && item.codeCouponVO.length > 0 && item.codeCouponVO[0].markState === 2 || item.codeCouponVO[0].markState === 3)}}"
+      data-floor='oldCouFloor' 
+      data-user-action="{{item.userAction}}">
+        <view class="title_{{index+1}}" wx:if="{{item.titleContent}}">
+          <text class="text">{{item.titleContent}}</text>
+        </view>
+
+        <view class="content flex-row" wx:if="{{item.type === 3 && item.codeCouponVO &&item.codeCouponVO.length > 0 }}">
+          <view class="left flex-none">
+            <view class="price">￥<text class="number">{{item.codeCouponVO[0].amount}}</text></view>
+            <view class="txt ellipsis">{{item.codeCouponVO[0].limitRule}}</view>
+          </view>
+          <view class="middle flex-auto">
+            <view class="name ellipsis">{{item.codeCouponVO[0].couponTitle}}</view>
+            <view class="time ellipsis">{{item.codeCouponVO[0].avilableDate}}</view>
+          </view>
+          <view class="right flex-none"
+            data-status="{{item.codeCouponVO[0].markState}}"
+            data-coupon-code="{{item.codeCouponVO[0].couponCode}}"
+            bindtap="getCoupon">
+              <view class="btn_{{item.codeCouponVO[0].markState}}"></view>
+          </view>
+        </view>
+    </view>
+
+    <!--商品-->
+    <view class="product"
+          wx:if="{{item.resourceNo === '102'}}"
+    >
+        <!--title-->
+        <view class="title_{{index+1}}"
+              wx:if="{{item.titleContent}}"
+        >
+            <text class="text">{{item.titleContent}}</text>
+        </view>
+        <!--商品列表-->
+        <view class="pro_case"
+              wx:if="{{item.resourceNo == 102 && item.productList && item.productList.length>0}}"
+        >
+            <view class="item exposure"
+                  wx:for="{{item.productList}}"
+                  wx:for-item="subItem"
+                  wx:for-index="subIndex"
+                  wx:key="pro{{subIndex}}"
+                  data-type="{{subItem.couponPrice ? '1' : '2'}}"
+                  data-sku-id="{{subItem.skuId}}"
+                  data-store-name="{{subItem.storeName}}"
+                  data-org-code="{{subItem.orgCode}}"
+                  data-store-id="{{subItem.storeId}}"
+                  data-floor='oldProFloor' 
+                  data-user-action="{{subItem.userAction}}"
+                  bindtap="onClickProduct"
+            >
+                <view class="con">
+                    <view class="pro_tag"
+                          wx:if="{{subItem.promotionDesc}}"
+                    >
+                        <view class="pro_discount">{{subItem.promotionDesc}}</view>
+                    </view>
+                    <view class="pro_img_case">
+                        <image
+                          data-lazy-img-id="pro{{subIndex}}"
+                          src="{{imgLazyLoad['pro' +  subIndex] ? subItem.imgUrl : ''}}"
+                          class="pro_img img lazy_load_img lazy-load {{ imgLazyLoad['pro' +  subIndex] ? 'lazy_load_img_active' : '' }}"
+                        ></image>
+                    </view>
+                    <view class="pro_name ellipsis">{{subItem.skuName}}</view>
+                    <view class="pro_price">
+                        <text>￥{{subItem.couponPrice || subItem.realTimePrice || subItem.basicPrice}}</text>
+                        <div class="pro_price_tag"
+                              wx:if="{{subItem.couponPrice}}"
+                        >券后价
+                        </div>
+                    </view>
+                    <view class="pro_origin">
+                        <text>￥{{subItem.basicPrice || subItem.realTimePrice || subItem.couponPrice}}</text>
+                    </view>
+                    <view class="pro_get"></view>
+                    <!--logo-->
+                    <view class="logo lazy_load_img lazy-load {{ imgLazyLoad['pro' +  subIndex] ? 'lazy_load_img_active' : '' }}"
+                          data-lazy-img-id="pro{{subIndex}}"
+                          wx:if="{{subItem.logoUrl}}"
+                    >
+                        <image src="{{imgLazyLoad['pro' +  subIndex] ? subItem.logoUrl : ''}}"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="pro_default"
+              wx:else
+              bindtap="clickProDefault"
+        >
+            <image mode="widthFix"
+                    src="https://storage.360buyimg.com/wximg/home/pro_default.png"
+            ></image>
+        </view>
+    </view>
+  </block>
+  <!--已省金额-->
+  <view class="save" wx:if="{{price != '0'}}"
+  >
+    <view class="save_price"><text class="save_symbol">￥</text>{{price}}</view>
+  </view>
+</view>
+<!--底部查看更多优惠商品按钮-->
+<view class="home"
+      bindtap="goToHome"
+>去首页查看更多优惠商品>
+</view>

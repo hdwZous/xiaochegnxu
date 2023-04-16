@@ -1,0 +1,21 @@
+<view class="often-buy-wrapper" 
+      style="background: linear-gradient(to bottom, {{floor.bgColor}}, #F8F8F8);" wx:if="{{list.length >= 2}}">
+  <view class='store-floor-tit'>
+    <view class='logo-title'>
+        <image  wx:if="{{floor.titleIcon}}" class="title-icon" src="{{floor.titleIcon}}" aria-hidden="true"></image>
+        <view class="title"  aria-role="text" aria-label="{{floor.floorTitle}}">{{floor.floorTitle}}</view>
+    </view>
+  </view>
+    <scroll-view class="scroll-wrapper" scroll-x="true">
+      <block wx:for="{{list}}"
+             wx:key="index"
+             wx:for-item="item">
+        <one-half-item item="{{item}}" 
+                       traceId="{{traceId}}" 
+                       buriedObj="{{buriedObj}}"
+                       options="{{options}}"
+                       fromPosition="store-oftenBuySV2"
+                       tabName="{{tabName}}" />
+      </block>
+    </scroll-view>
+</view>

@@ -1,0 +1,125 @@
+.goStoreQrCode {
+    margin: 0 48rpx;
+}
+
+.codeCount {
+    box-sizing: border-box;
+    padding: 32rpx 32rpx 0 32rpx;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 2rpx;
+    border-top-left-radius: 32rpx;
+    border-top-right-radius: 32rpx;
+}
+
+.codeCount .codeTitle {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #333333;
+}
+
+.codeCount .cardItem .item {
+    position: relative;
+    font-size: 32rpx;
+    padding: 16rpx 0;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #333333;
+    border-bottom: 1rpx solid #F5F5F5;
+}
+
+.codeCount .cardItem .item:last-child {
+    border-bottom: none;
+}
+
+.cardItem .item .cardPassWord {
+    margin-top: 16rpx;
+}
+
+.cardItem .item view:nth-last-child(2) {
+    display: inline;
+}
+
+.cardItem .item .unfold {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 6rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #999999;
+    margin-left: 8rpx;
+}
+
+.unfold .unfoldIcon {
+    width: 16rpx;
+    height: 16rpx;
+}
+
+.qrCode {
+    position: relative;
+    width: 100%;
+    /* height: 448rpx; */
+    padding-top: 60rpx;
+    padding-bottom: 32rpx;
+}
+.qrCodeBg{
+    position: absolute;
+    top: -2rpx;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.qrCodeBg .qrCodeBgImage{
+    width: 100%;
+    height: 100%;
+}
+
+.codeInfo {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    padding: 0 138rpx;
+    margin-top: 30rpx;
+}
+
+.codeInfo .codeBox {
+    height: 240rpx;
+}
+
+.reloadBtn {
+    width: 144rpx;
+    height: 48rpx;
+    background: #FFFFFF;
+    border-radius: 24rpx;
+    /* border: 1rpx solid #DADADA; */
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #333333;
+    margin: 32rpx auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.reloadBtn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    box-sizing: border-box;
+    border-radius: 48rpx;
+    border: 2rpx solid #DADADA;
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.reloadBtn .reloadIcon {
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 8rpx;
+}

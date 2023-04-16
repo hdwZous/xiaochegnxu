@@ -1,0 +1,10 @@
+<block wx:if="{{orderListTopHintType === 2}}">
+  <view class="top_tips" style="background: {{vPlusHintVO.bgColor}}" bind:tap="{{vPlusHintVO.to ? 'goVip' :''}}">
+    <image src="{{vPlusHintVO.imgUrl}}" class="tips_image" />
+    <view class="tips_text">
+      <text wx:for="{{vPlusHintVO.textList}}" wx:for-item="item" wx:for-index="index" style="color:{{item.fontColor ? item.fontColor: '#333'}};font-size:{{item.fontSize ? item.fontSize*2+'rpx' : '24rpx'}};font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};font-family:{{item.type == 2 ? 'Regular':''}}">{{item.text}}</text>
+    </view>
+    <image wx:if="{{vPlusHintVO.to}}" src="https://storage.360buyimg.com/wxmini/test/xia.png" class="tips_go_icon" />
+  </view>
+</block>
+

@@ -1,0 +1,113 @@
+.newer-container .img {
+  display: block;
+  margin: 0 auto;
+}
+.foods-container{
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; */
+  padding-bottom: 24rpx;
+  margin: 0 auto;
+  background-color: #FF3C3A;
+  border-radius: 0px 0px 24rpx 24rpx;
+  position: relative;
+
+}
+.foods-container::after{
+  content: "";
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  left: 0rpx;
+  top:-20rpx;
+  background-color: #FF3C3A;
+}
+.foods-container::before{
+  content: "";
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  right: 0rpx;
+  top:-20rpx;
+  background-color: #FF3C3A;
+}
+.foods-container .box{
+  padding: 24rpx 32rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-radius: 12rpx;
+  width: 654rpx;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.food-item{
+  display: inline-flex;
+  flex-direction: column;
+  width: 164rpx;
+  height: 304rpx;
+  border-radius: 8rpx;
+  height: 300rpx;
+} 
+.food-item:nth-child(1){
+  margin-bottom: 24px;
+}
+.food-item:nth-child(2){
+  margin-bottom: 24px;
+}
+.food-item:nth-child(3){
+  margin-bottom: 24px;
+}
+.food-item .pic-box{
+  width: 164rpx;
+  height: 164rpx;
+  margin-bottom: 8rpx;
+  position: relative;
+}
+.food-item .pic-box .img{
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+.food-item .pic-box .tag{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #FF5B57 0%, #FF1E19 100%);
+  border-radius: 0 4rpx 0 8rpx;
+  color:#fff;
+  max-width: 100%;
+  height: 32rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 0 6rpx;
+  box-sizing: border-box;
+}
+.name-text{
+  width: 164rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #333333;
+  line-height: 30rpx;
+  margin-bottom: 8rpx;
+}
+.price-text1{
+  width: 164rpx;
+  height: 34rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #FF1E1A;
+  line-height: 34rpx;
+}
+.price-text2{
+  width: 164rpx;
+  height: 30rpx;
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #999999;
+  line-height: 30rpx;
+  text-decoration: line-through;
+}

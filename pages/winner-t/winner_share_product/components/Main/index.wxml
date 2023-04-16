@@ -1,0 +1,27 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.content}}">
+        <scroll-view class="{{styles.content_left}}" scroll-y="{{true}}" scroll-with-animation="{{true}}">
+            <slider-box compid="{{$compid__38}}"></slider-box>
+        </scroll-view>
+        <scroll-view id="content_right" class="{{styles.content_right}}" scroll-y="{{true}}" scroll-into-view="{{scrollInto}}" lower-threshold="{{1}}" bindscrolltolower="anonymousFunc0" scroll-with-animation="{{true}}" enable-back-to-top="{{true}}">
+            <block wx:if="{{anonymousState__temp2}}">
+                <view class="{{styles.subHeader}}">
+                    <swiper class="{{styles.spr}}" indicator-color="#FFFFFF" indicator-active-color="#FF7348" easing-function="linear" circular="{{true}}" indicator-dots="{{true}}" autoplay="{{true}}">
+                        <swiper-item class="{{styles.sprItem}}" wx:key="i" wx:for="{{bannerList}}" wx:for-item="i" wx:for-index="_anonIdx2">
+                            <image src="{{i}}" class="{{styles.pic}}" mode="scaleToFill"></image>
+                        </swiper-item>
+                    </swiper>
+                </view>
+            </block>
+            <view id="product-box" class="{{styles.productBox}}">
+                <view id="product_first"></view>
+                <view id="{{'' + i.$original.skuId}}" class="observer" wx:key="skuId" data-product="{{i.$original}}" wx:for="{{loopArray11}}" wx:for-item="i" wx:for-index="index">
+                    <product wx:key="skuId" compid="{{i.$compid__37}}"></product>
+                </view>
+            </view>
+            <block wx:if="{{showList.length <= 0}}">
+                <view class="{{styles.bottom}}">暂无商品，请查看其它分类..</view>
+            </block>
+        </scroll-view>
+    </view>
+</block>

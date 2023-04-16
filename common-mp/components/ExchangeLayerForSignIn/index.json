@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "pop": "../Pop/index"
+  },
+  "navigationBarTitleText": ""
+}

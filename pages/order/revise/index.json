@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "修改订单",
+  "navigationBarBackgroundColor": "#4FCE58",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "default": "/components/newDefault/index",
+    "remark-dialog": "../components/confirmDialog/index"
+  }
+}

@@ -1,0 +1,11 @@
+{
+	"component": true,
+	"usingComponents": {
+		"rating": "/components/rating/index",
+		"webp-img": "/components/webpImg/index",
+		"store-item": "../../../asyncPackage/compontents/storeItem/index"
+	},
+	"componentPlaceholder": {
+	  "store-item": "/components-b/storeItemPlaceHolder/index"
+	}
+}

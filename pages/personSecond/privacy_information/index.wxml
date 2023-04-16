@@ -1,0 +1,46 @@
+<view class="privacy">
+  <view class="privacy_content">
+    <view class="privacy_smallTitle">为提供服务收集使用个人信息类型</view>
+    <view wx:for="{{list}}" class="privacy_flex privacy_message" style="{{item.style == 'none' ? 'border-bottom: none' : ''}}">
+      <view class="privacy_icon" style="background-image: url({{item.icon}});"></view>
+      <view class="privacy_content_line">
+        <view class="privacy_line">{{item.title}}</view>
+        <view class="privacy_line2">{{item.desc}}</view>
+      </view>
+    </view>
+    <view class="privacy_button privacy_flex" bindtap="jump" data-type="96">
+      <view class="privacy_button_text">查看个人信息收集清单</view>
+      <view class="privacy_button_arrow">></view>
+    </view>
+    <!--  -->
+    <view class="privacy_smallTitle privacy_three">为提供服务申请使用的权限</view>
+    <view wx:for="{{list2}}" class="privacy_flex privacy_message" style="{{item.style == 'none' ? 'border-bottom: none' : ''}}">
+      <view class="privacy_icon" style="background-image: url({{item.icon}});"></view>
+      <view class="privacy_content_line">
+        <view class="privacy_line">{{item.title}}</view>
+        <view class="privacy_line2">{{item.desc}}</view>
+      </view>
+    </view>
+    <view class="privacy_button privacy_flex" bindtap="jump" data-type="97">
+      <view class="privacy_button_text">查看应用权限申请与使用情况说明</view>
+      <view class="privacy_button_arrow">></view>
+    </view>
+    <!--  -->
+    <view class="privacy_smallTitle">与第三方共享的个人信息</view>
+    <view class="privacy_text_content privacy_three">为向您提供商品或服务浏览、完成交易功能，您的个人信息可能与以下第三方进行共享， 我们将根据法律法规要求并参照行业最佳实践，不断完善和提升对您个人信息的安全保障水平。 我们严格遵循隐私权政策的约定，一旦涉及共享您的个人敏感信息或新增共享方，我们将再次征求您的授权同意。</view>
+    <view class="privacy_button privacy_flex" bindtap="jump" data-type="110">
+      <view class="privacy_button_text">查看个人信息共享清单</view>
+      <view class="privacy_button_arrow">></view>
+    </view>
+    <!--  -->
+    <view class="privacy_smallTitle">用户个人信息权益保障</view>
+    <view class="privacy_text_content privacy_line_one">1、如您对首页个性化推荐的商品或服务不感兴趣，可以通过点击被推荐的商品或服务图片右上角的关闭按钮， 根据提示弹窗选择减少或者屏蔽相关商品或服务类目；</view>
+    <view class="privacy_text_content privacy_line_one">2、如您不想接收搜索页为您综合推荐的商品或服务，可以选择按销量、价格或者其他页面可选的维度接收相应的搜索结果展示； 根据提示弹窗选择减少或者屏蔽相关商品或服务类目；</view>
+    <view class="privacy_text_content privacy_line_one">3、如您不想接收APP发送的消息通知，可通过在京东到家APP“设置-消息推送设置”中进行设置或在系统设置中关闭通知； 根据提示弹窗选择减少或者屏蔽相关商品或服务类目；</view>
+    <view class="privacy_text_content privacy_line_one">4、如您想关闭个性化页面展示，您可以通过在京东到家APP“设置-自动化决策”中关闭“个性化页面展示”； 根据提示弹窗选择减少或者屏蔽相关商品或服务类目；</view>
+    <view class="privacy_text_content privacy_line_one">5、如果您不想接收个性化信息推送，您可以通过在京东到家APP“设置-自动化决策”中关闭“个性化信息推送”； 根据提示弹窗选择减少或者屏蔽相关商品或服务类目；</view>
+    <view class="privacy_text_content privacy_line_one">6、如您不想接收商业性短信，可以联系京东到家平台客服或根据短信内容提示，来取消我们给您发送的手机促销短信； 根据提示弹窗选择减少或者屏蔽相关商品或服务类目；</view>
+    <view class="privacy_text_content privacy_line_one">7、如您需要访问、更正、删除、改变或撤回授权、注销账号，请查阅<text class="privacy_link" bindtap="jump" data-type="110">《京东到家隐私政策》</text></view>
+    <view class="privacy_check">查看<text class="privacy_link" bindtap="jump" data-type="110">《京东到家隐私政策》</text>完整版</view>
+  </view>
+</view>

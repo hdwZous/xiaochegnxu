@@ -1,0 +1,29 @@
+<wxs module="tool" src="../../common/util/tools.wxs"></wxs>
+<block wx:if="{{showDefault}}">
+    <!-- <default type="{{defaultType}}"
+             btnText="{{defaultBtnText}}"
+             tips="{{defaultTips}}"
+             src="{{defaultSrc}}"
+             buriedObj="{{recommendObj}}"
+             bind:defaultBtnEvent="defaultBtnEvent"
+    ></default> -->
+    <newDefault 
+      type="{{defaultType}}" 
+      defaultObj="{{defaultObj}}"
+      bind:defaultBtnEvent="defaultBtnEvent">
+    </newDefault>
+</block>
+
+<block wx:for="{{exclusiveCouponList}}"
+       wx:for-item="item"
+       wx:for-index="index"
+       wx:key="ex{{index}}"
+>
+    <exclusive-coupon data="{{item}}"></exclusive-coupon>
+</block>
+<include  wx:if="{{!showDefault}}" src="coupon.wxml" />
+<change-pop isShow="{{isShowChangePop}}"
+            changeCode="{{duihuanma}}"
+            pageId="{{recommendObj.pageIdFirstPage}}"
+            bind:hideChangePop="hideChangePop"
+            recommendObj="{{recommendObj}}" />

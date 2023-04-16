@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.wrap_case}}" bindtap="anonymousFunc0"><image mode="widthFix" class="{{style.img}}" src="{{sourceData.imgUrl}}" alt="说明图"></image></view></block>

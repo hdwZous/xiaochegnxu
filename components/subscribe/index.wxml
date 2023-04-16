@@ -1,0 +1,12 @@
+<block wx:if="{{showSubscribeMessage}}">
+  <block wx:if="{{subscribeMessageImageUrl.length}}">
+    <view class="SubscribeMessageMark">
+        <view>
+            <view class="SubscribeMessageMark" bindtap="hiddenSubscribeMessage"></view>
+            <view class="noticeImageView">
+                <image src="{{subscribeMessageImageUrl}}" mode="aspectFit" class="noticeImage" />
+            </view>
+        </view>
+    </view>
+  </block> 
+</block>

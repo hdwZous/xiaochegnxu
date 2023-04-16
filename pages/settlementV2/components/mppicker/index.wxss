@@ -1,0 +1,127 @@
+.picker-mask {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+}
+
+.picker-box {
+  position: absolute;
+  bottom: 0;
+  /* bottom: 100rpx; */
+  height: 0rpx;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20rpx 20rpx 0px 0px;
+  background-color: white;
+  transition: height 300ms ease-out;
+  -webkit-transition: height 300ms ease-out;
+}
+
+.picker-box .title {
+  height: 100rpx;
+}
+
+.picker-box .title .title-text {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 34rpx;
+}
+
+.picker-box .title .tip-icon {
+  width: 26rpx;
+  height: 26rpx;
+  margin-left: 10rpx;
+}
+
+.picker-box .title .close {
+  z-index: 10;
+  position: absolute;
+  height: 36rpx;
+  width: 36rpx;
+  font-weight: 300;
+  color: #333;
+  font-size: 26rpx;
+  left: 26rpx;
+}
+
+.picker-box .content {
+  height: 480rpx;
+}
+
+.picker-box .content .left {
+  width: 160rpx;
+  background-color: #FAFAFA;
+  height: 100%;
+}
+
+.picker-box .content .left .left-item {
+  line-height: 36rpx;
+  min-height: 100rpx;
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.picker-box .content .left .active {
+  background: white;
+  font-weight: 500;
+}
+
+.picker-box .content .right {
+  height: 100%;
+}
+
+.picker-box .content .right .right-item {
+  line-height: 100rpx;
+  min-height: 100rpx;
+  font-size: 28rpx;
+  color: #333;
+  margin-left: 20rpx;
+}
+.picker-box .content .right .right-item .right-item-text {
+  line-height: 36rpx;
+  padding-right: 24rpx;
+  display: flex;
+  align-items: center;
+  max-width: 416rpx;
+}
+
+.picker-box .content .right .selected {
+  color: #47B34F;
+  font-weight: 500;
+}
+
+.picker-box .content .right .selected-icon {
+  background: url("https://storage.360buyimg.com/wximg/settlement/icon_selected.png") no-repeat center;
+  background-size: 100% 100%;
+  width: 58rpx;
+  height: 54rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.picker-box .content .right .disabled {
+  color: #ccc;
+}
+
+.status-tip {
+  width: 165rpx;
+  text-align: left;
+}
+
+.promiseTip {
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  background: rgba(255, 246, 205, 0.9);
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #713F00;
+}

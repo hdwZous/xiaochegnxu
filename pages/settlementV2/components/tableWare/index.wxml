@@ -1,0 +1,68 @@
+<block wx:if="{{isShow}}">
+  <view catchtap="close" class="tableWare {{ipx ? 'tableWare_ipx' : ''}}">
+    <view catchtap="stopClose" class="tableWare_container">
+      <view class="dj_icon ts_close tableWare_close" bindtap="close"></view>
+      <!-- 标题 -->
+      <view class="tableWare_title">
+        <view  wx:key="index" wx:for="{{tableWareData.data.tablewareLayer.layerTitle.textList}}" class="tableWare_title_text">{{item.text}}</view>
+        <image bindtap="openTip" class="tableWare_title_icon" src="https://storage.360buyimg.com/wximg/settlement/tip.png"/>
+      </view>
+      <!-- 是否需要餐具 -->
+      <view class="tableWare_select">
+        <view bindtap="select" data-type="1" class="tableWare_select_block {{tablewareOptionStatus == 1 ? 'tableWare_selected_block' : ''}}">需要餐具</view>
+        <view bindtap="select" data-type="2" class="tableWare_select_block {{tablewareOptionStatus == 2 ? 'tableWare_selected_block' : ''}}">
+          <image class="tableWare_title_icon" src="https://img30.360buyimg.com/n7/jfs/t1/87382/11/10709/2264/5e212724E1e4c65dd/f7ec59ddab237e3f.png"/>无需餐具
+        </view>
+      </view>
+      <block wx:if="{{tablewareOptionStatus == 1}}">
+        <!-- 标题 -->
+        <view class="tableWare_title">
+            <view wx:key="index" wx:for="{{tableWareData.data.tablewareLayer.selectNumTitle.textList}}" class="tableWare_title_text">{{item.text}}</view>
+        </view>
+        <!-- 选择餐具数量 -->
+        <view class="tableWare_num">
+          <view
+              wx:for="{{tableWareNumList}}"
+              data-item='{{item}}'
+              wx:key="index"
+              catchtap="selectTableWareNum"
+              style="margin-right: {{item.type == 3 ? 0 : '20rpx'}}"
+              class="tableWare_number1 tableWare_number2 {{item.type == 7 ? 'tableWare_number3' : ''}} {{needTablewareNum == item.value || needTablewareNum > 6 && item.value > 6 ? 'tableWare_num_check' : ''}}">
+              <block wx:if="{{item.type != 7}}">
+                <view>{{item.text}}</view>
+              </block>
+              <block wx:else>
+                <view
+                  data-item='{{item}}'
+                  data-control="reduce"
+                  catchtap="controlNum"
+                  class="tableWare_reduce {{reduceDisAble ? 'tableWare_reduce_able' : ''}}"
+                ></view>
+                <view style="width: 137rpx;">{{item.text}}</view>
+                <view
+                  data-item='{{item}}'
+                  data-control="add"
+                  catchtap="controlNum"
+                  class="tableWare_add {{addDisAble ? '' : 'tableWare_add_able'}}"
+                ></view>
+              </block>
+          </view>
+        </view>
+      </block>
+      <!-- 后续操作 -->
+      <block wx:if="{{tablewareOptionStatus}}">
+        <view class="tableWare_followUp">
+            <view bindtap="selectFollowUp" class="tableWare_followUp_icon {{tablewareRememberStatus == 1 || tablewareRememberStatus == 2 ? 'unify-roll-btn-on' : 'unify-roll-btn-off'}}"></view>
+            <view wx:if="{{tablewareOptionStatus == 1 }}" class="tableWare_followUp_text">
+              <view wx:for="{{tableWareData.data.tablewareLayer.rememberNeedTitle.textList}}"item. style="color: {{item.fontColor}};font-size: {{item.fontSize * 2}}rpx;">{{item.text}}</view>
+            </view>
+            <view wx:else class="tableWare_followUp_text">
+              <view wx:for="{{tableWareData.data.tablewareLayer.rememberNotNeedTitle.textList}}"item. style="color: {{item.fontColor}};font-size: {{item.fontSize * 2}}rpx;">{{item.text}}</view>
+            </view>
+        </view>
+      </block>
+      <!-- 确定按钮 -->
+      <view bindtap="confirm" class="{{tablewareOptionStatus == 1 || tablewareOptionStatus == 2 ? 'tableWare_button' : ''}} tableWare_button_disable">{{buttonText }}</view>
+    </view>
+  </view>
+</block>

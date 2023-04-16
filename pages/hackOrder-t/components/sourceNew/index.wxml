@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><block><block wx:if="{{mpSourceData.imgUrl && show}}"><view class="{{style.source}}" bindtap="anonymousFunc0"><image mode="widthFix" class="{{[style.img]}}" src="{{mpSourceData.imgUrl || ''}}"></image></view></block></block></block>

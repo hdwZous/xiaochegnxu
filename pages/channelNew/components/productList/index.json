@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-price":"/components-b/couponPrice/index",
+    "webp-img": "/components/webpImg/index",
+    "ranking-list": "/components/rankingList/index",
+    "goods-attribute": "/components/goodsAttribute/index",
+    "goods": "goods/index"
+  }
+}

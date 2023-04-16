@@ -1,0 +1,22 @@
+module.exports = {
+  "container": "index-module__container___2AAe9",
+  "box_weapp": "index-module__box_weapp___SH_vs",
+  "box": "index-module__box___319QH",
+  "imgbg": "index-module__imgbg___1Ek8d",
+  "initimg": "index-module__initimg___IqbEc",
+  "img": "index-module__img___1zcdr",
+  "grow": "index-module__grow___1si7M",
+  "textTitle": "index-module__textTitle___2JpuT",
+  "text": "index-module__text___1J52k",
+  "btn": "index-module__btn___7wbxD",
+  "sure": "index-module__sure___2rYK6",
+  "getWaterBtn": "index-module__getWaterBtn___YTHRK",
+  "sceneClose": "index-module__sceneClose___3SwkE",
+  "textBg": "index-module__textBg___3fsnj",
+  "taskBtn": "index-module__taskBtn___2VSGH",
+  "taskBtnForSceneYellow": "index-module__taskBtnForSceneYellow___1_AeU",
+  "taskBtnForSceneGreen": "index-module__taskBtnForSceneGreen___1tNF0",
+  "taskBtnForSceneGray": "index-module__taskBtnForSceneGray___3uUO2",
+  "taskBtnLayout": "index-module__taskBtnLayout___2ZEWf",
+  "taskBtnTimeText": "index-module__taskBtnTimeText___3vcv3"
+};

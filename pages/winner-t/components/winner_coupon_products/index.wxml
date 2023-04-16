@@ -1,0 +1,31 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.winnerCouponProducts}}">
+        <view class="{{styles.top}}">
+            <image class="{{styles.img}}" src="https://image3.imdada.cn/7a8a10502e1940d18f28f9ea577ad95f.png" alt=""></image>
+        </view>
+        <view class="{{styles.center}}">
+            <view class="{{styles.list}}">
+                <view class="{{styles.item}}" wx:key="skuId" wx:for="{{loopArray15}}" wx:for-item="item" wx:for-index="__index0">
+                    <view class="{{styles.box}}" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                        <view class="{{styles.imgBox}}">
+                            <image class="{{styles.img}}" src="{{item.$original.skuImageUrl}}" alt=""></image>
+                            <block wx:if="{{item.$original.discountMsg}}"><text class="{{styles.tag}}">{{item.$original.discountMsg}}</text>
+                            </block>
+                        </view>
+                        <view class="{{styles.text}}">{{item.$original.skuName}}</view>
+                        <view class="{{styles.priceBox}}">
+                            <view class="{{styles.price}}"><text class="{{styles.span}}">¥{{item.$original.currentPrice || item.$original.originalPrice}}</text>
+                                <block wx:if="{{item.$original.currentPrice}}"><text class="{{styles.small}}">¥{{item.$original.originalPrice}}</text>
+                                </block>
+                            </view>
+                            <image class="{{item.$loopState__temp2}}" src="https://image3.imdada.cn/c95652cf3a354742bb2775fb0d5445ee.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="{{styles.bottom}}">
+            <image class="{{styles.img}}" src="https://image3.imdada.cn/72c0b314de6e48ee8eb4fab82bc451e6.png" alt=""></image>
+        </view>
+    </view>
+</block>

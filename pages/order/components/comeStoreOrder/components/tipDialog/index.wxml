@@ -1,0 +1,23 @@
+<view wx:if="{{show}}" class="tipDialog d-flex flex-column justify-content-center align-items-center">
+  <view class="dialog-content {{showBtn ? 'showBtn' : ''}}">
+    <block wx:if="{{types == 0}}">
+      <view class="title">{{title}}</view>
+      <view class="desc">{{desc}}</view>
+    </block>
+    <block wx:if="{{types == 1}}">
+      <block wx:for="{{readmeList}}" wx:key="key">
+        <view wx:if="{{item.type==1&&item.text}}" class='bean-item_top_tit'>{{item.text.title||""}}</view>
+        <view wx:if="{{item.type==2&&item.text}}" class='bean-item-title'>{{item.text.title||""}}</view>
+        <view class="bean-content d-flex flex-row">
+          <text wx:if="{{(item.type==3 || item.type==4)&&item.text&&item.text.title}}" class='bean-detail-title'>{{item.text.title}}</text>
+          <text wx:if="{{(item.type==3 || item.type==4)&&item.text&&item.text.content}}"class='bean-detail-item'>{{item.text.content||""}}</text>
+        </view>
+      </block>
+    </block>
+  </view>
+  <block wx:if="{{showBtn}}">
+    <view class="bottom_btn" bindtap="closeDialog">我知道了</view>
+  </block>
+  <view wx:else class="close" bindtap="closeDialog"></view>
+  <view class="bg" bindtap="closeDialog" catchtouchmove="catchtouchmove"></view>
+</view>

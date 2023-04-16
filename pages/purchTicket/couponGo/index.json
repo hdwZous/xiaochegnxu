@@ -1,0 +1,27 @@
+{
+  "component": true,
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText": "京东到家",
+  "navigationBarBackgroundColor": "#000",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "location-default": "/components-b/locationDefault/index",
+    "default": "./components/default/index",
+    "navigation": "./components/navigation/index",
+    "store": "./components/stores/index",
+    "sort": "./components/sort/index",
+    "coupon-fail": "./components/couponFail/index",
+    "mini-cart": "../../asyncPackage/compontents/miniCart/index",
+    "limit-go": "./components/limitGo/index",
+    "spu-selector": "../../asyncPackage/compontents/spuSelector/index",
+    "coupon": "./components/coupon/index",
+    "toast": "./components/toast/index",
+    "category-filter-new": "./components/categoryFilterNew/index",
+    "good-item": "./components/goodItem/index"
+  },
+  "componentPlaceholder": {
+    "spu-selector": "view",
+    "mini-cart": "/components-b/placeholdCart/index"
+  }
+}

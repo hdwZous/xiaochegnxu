@@ -1,0 +1,59 @@
+<view class="wrapper" 
+      style="margin-top: {{floor.bgColor ? '32rpx' : '48rpx'}}; background: linear-gradient(to bottom, {{floor.bgColor}}, #F8F8F8);" 
+      wx:if="{{list.length >= 3}}">
+  <view class='store-floor-tit'>
+    <view class='logo-title'>
+        <image aria-hidden="true"  wx:if="{{floor.titleIcon}}" class="title-icon" src="{{floor.titleIcon}}"></image>
+        <view class="title"  aria-label="{{floor.floorTitle}}" aria-role="text">{{floor.floorTitle}}</view>
+    </view>
+    <view class='tomore1 abs log_store_home_baopin_more ep_baopin-more' 
+          wx:if="{{floor.moreBtnDesc}}"
+          data-to="{{floor.to}}"
+          data-params="{{floor.params}}"
+          data-user-action="{{floor.userAction}}"
+          data-first-cate-id="{{floor.firstCateId}}"
+          data-second-cate-id="{{floor.secondCateId}}"
+          data-trace-id="{{traceId}}"
+          data-page-id="{{buriedObj.pageIdFirstPage}}"
+          data-current-page-name="{{buriedObj.currentPageName}}"
+          data-pre-page-name="{{buriedObj.prePageName}}"
+          bindtap="clickMoreBtn"
+          aria-role="link" 
+          aria-label="查看{{floor.moreBtnDesc}}">
+          <view class='more-text' aria-hidden="true">{{floor.moreBtnDesc}}</view>
+          <image class='more-icon' aria-hidden="true" src="https://storage.360buyimg.com/wximg/common/store-next.png" />
+    </view>
+  </view>
+  <view class='pro-wrapper'>
+    <view class='pro-list-wrapper'>
+        <view class='pro-content'>
+            <block wx:for="{{list}}"
+                wx:key="index"
+                wx:for-item="item">
+                <three-item item="{{item}}" 
+                            itemIndex="{{index}}"
+                            showCart="{{true}}"
+                            traceId="{{traceId}}"
+                            buriedObj="{{buriedObj}}"
+                            fromPosition="store-threeInTwoRow"
+                            tabName="{{tabName}}">
+                </three-item>
+            </block>
+        </view>
+        <view class="floorTail log_store_home_baopin_bottom_more ep_baopin-more"
+              wx:if="{{floor.floorTail && floor.floorTail.mainTitle}}"
+              data-to="{{floor.floorTail.to}}"
+              data-params="{{floor.floorTail.params}}"
+              data-user-action="{{floor.floorTail.userAction}}"
+              data-trace-id="{{traceId}}"
+              data-page-id="{{buriedObj.pageIdFirstPage}}"
+              data-current-page-name="{{buriedObj.currentPageName}}"
+              data-pre-page-name="{{buriedObj.prePageName}}"
+              bindtap="clickMoreBtn"
+              aria-role="button" aria-label="{{floor.floorTail.mainTitle}}">
+                <view>{{floor.floorTail.mainTitle}}</view>
+                <image aria-hidden="true" class='more-icon' src="https://storage.360buyimg.com/wximg/common/store-next.png" />
+        </view>
+    </view>
+  </view>
+</view>

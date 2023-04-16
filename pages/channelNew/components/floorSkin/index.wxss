@@ -1,0 +1,8 @@
+.skin-wrapper .img {
+  /*display: block;*/
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  border-radius: 24rpx;
+}

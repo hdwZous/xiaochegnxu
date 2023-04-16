@@ -1,0 +1,149 @@
+.group-page {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(137deg, #FFF3E1 0%, #FFD6AE 100%);
+    padding-top: 64rpx;
+    box-sizing: border-box;
+}
+
+.title {
+    margin: 0 auto;
+    height: 166rpx;
+    width: 566rpx;
+    background: url("https://storage.360buyimg.com/wximg/groupPage/title.png") center no-repeat;
+    background-size: cover;
+}
+
+.coupon {
+    margin: 54rpx auto 0;
+    height: 248rpx;
+    width: 624rpx;
+    background: url("https://storage.360buyimg.com/wximg/groupPage/coupon.png") center no-repeat;
+    background-size: cover;
+}
+
+.dot {
+    position: absolute;
+    top: 0;
+    height: 478rpx;
+    width: 100vw;
+    background: url("https://storage.360buyimg.com/wximg/groupPage/background_dot.png") center no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+.coupon-background {
+    margin: 118rpx auto 0;
+    height: 414rpx;
+    width: 738rpx;
+    background: url("https://storage.360buyimg.com/wximg/groupPage/coupon_bg.png") center no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.qrcode-wrapper {
+    width: 376rpx;
+    height: 440rpx;
+    background: #fff;
+    position: relative;
+    top: -60rpx;
+    box-shadow: 0px 8px 18px 0px rgba(161, 57, 0, 0.2);
+    border-radius: 24rpx;
+    padding: 28rpx 28rpx 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qrcode-image {
+    height: 320rpx;
+    width: 320rpx;
+}
+
+.image {
+    height: 100%;
+    width: 100%
+}
+
+.qrcode-text {
+    font-size: 44rpx;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #333;
+    padding-top: 10rpx;
+}
+
+.default-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 18vh;
+}
+
+.default-icon {
+    height: 320rpx;
+    width: 320rpx;
+}
+
+.default-text {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666;
+    padding: 34rpx 0 40rpx;
+}
+
+.default-button {
+    width: 220rpx;
+    height: 64rpx;
+    background: #00CF37;
+    border-radius: 32rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.group-button-bg {
+    margin: 24rpx auto 0;
+    height: 582rpx;
+    width: 622rpx;
+    background: url("https://storage.360buyimg.com/wximg/groupPage/couponBackground2.png") center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.group-button {
+    height: 118rpx;
+    width: 518rpx;
+    background: url("https://storage.360buyimg.com/wximg/groupPage/groupButton2.png") center no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 118rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 12rpx;
+}
+
+.group-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: 88rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #FFE1C2;
+}

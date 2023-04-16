@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-go-tag": "/components-b/couponGoTag/index",
+    "coupon-price": "/components-b/couponPrice/index",
+    "webp-img": "/components/webpImg/index",
+    "ranking-list": "/components/rankingList/index",
+    "goods-attribute": "/components/goodsAttribute/index",
+    "bottom-corner-tag": "/components/bottomCornerTag/index",
+    "biz-tag": "/components/bizTag/index",
+    "sku-name-tag": "/components/skuNameTag/index"
+  }
+}

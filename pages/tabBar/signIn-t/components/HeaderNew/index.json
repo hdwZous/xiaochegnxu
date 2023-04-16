@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "subscribe-message": "../../../../../common-mp/components/subscribeMessage/index",
+    "open-sys-push-pop": "../openSysPushPop/index",
+    "sign-reward-pop": "../SignRewardPop/index"
+  },
+  "navigationBarTitleText": ""
+}

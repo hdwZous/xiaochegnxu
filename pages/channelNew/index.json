@@ -1,0 +1,34 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navigation": "/components/navigationBar/index",
+    "recommend-commodity": "./components/recommendCommodity/index",
+    "product-list": "./components/productList/index",
+    "slide-store-list": "./components/slideStoreList/index",
+    "strategy-banner": "./components/strategyBanner/index",
+    "header":"./components/header/index",
+    "nav":"./components/nav/index",
+    "index-banner":"./components/indexBanner/index",
+    "sider-floor":"./components/siderFloor/index",
+    "falls-list":"./components/fallsList/index",
+    "coupon":"./components/coupon/index",
+    "store-list": "./components/storeList/index",
+    "new-customer": "./components/newCustomer/index",
+    "new-default": "/components/newDefault/index",
+    "coupon-pop": "./components/couponPop/index",
+    "ball":"./components/ball/index",
+    "drug-list":"./components/drugList/index",
+    "leave-pop":"../asyncPackage/compontents/leavePop/index",
+    "drug-pop":"./components/drugPop/index",
+    "floor-skin": "./components/floorSkin/index",
+    "webp-img": "/components/webpImg/index",
+    "back-top": "/components/backTop/index",
+    "belt": "/components/belt/index",
+    "infeed-nav": "./components/infeedNav/index",
+    "new-user": "./components/newUser/index",
+    "new-default-v2": "/components/newDefaultV2/index"
+  },
+  "componentPlaceholder": {
+    "leave-pop": "view"
+  }
+}

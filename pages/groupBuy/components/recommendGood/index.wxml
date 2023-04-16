@@ -1,0 +1,19 @@
+<!--components/groupBuy/recommendGood/index.wxml-->
+<view class='goodCont' data-skuId="{{goodInfo.skuId}}" data-promotionId="{{goodInfo.promotionId}}" data-storeId="{{goodInfo.storeId}}" data-orgCode="{{goodInfo.orgCode}}" bindtap='toGroupBuyDetail'>
+  <image class='goodImg' src='{{goodInfo.skuImgUrl}}'></image>
+  <view class='infoCont'>
+    <view class='goodName ellipsis'>{{goodInfo.skuName}}</view>
+    <view class='goodPrice flex-row'>
+      <view class='nowPrice'>
+        <text class='flag'>￥</text>
+        <text>{{goodInfo.actPrice}}</text>
+      </view>
+      <view class='oldPrice'>{{"￥"+goodInfo.basicPrice}}</view>
+    </view>
+    <view class='groupNum'>已团{{goodInfo.joinNum}}件</view>
+    <view class='storeCont flex-row'>
+      <image class='storeImg' src="{{goodInfo.logoUrl}}"></image>
+      <view class='storeName ellipsis'>{{goodInfo.orgName}}</view>
+    </view>
+  </view>
+</view>

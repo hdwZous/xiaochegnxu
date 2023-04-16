@@ -1,0 +1,30 @@
+<!-- pages/settlementV1/components/noticeDialog/index.wxml -->
+<view class="mask" wx:if="{{visible}}" catch:tap="close">
+    <view class="wrap">
+    <view class="container">
+        <view class="title"  aria-role="text" aria-label="{{initData.title || initData.name }}">{{initData.title || initData.name}}</view>
+        <view class="content01" wx:if="{{initData.childMoneyList}}">
+            <view class="price_item header" aria-role="text" aria-label="{{'总费用' + (initData.totalMoney || initData.receivableMoney || initData.value)}}">
+                <view class="name">总费用</view>
+                <view class="price">{{initData.totalMoney || initData.receivableMoney || initData.value}}</view>
+            </view>
+            <view class="item_wrap">
+                <view class="price_item" wx:for="{{initData.childMoneyList}}" wx:key="index" aria-role="text" aria-label="{{item.name + '' + item.value}}">
+                    <view class="name">{{item.name}}</view>
+                    <view class="price">{{item.value}}</view>
+                </view>
+            </view>
+            <view class="footer" wx:if="{{initData.descText}}">
+                <view class="desc" aria-role="text" aria-label="说明">说明</view>
+                <rich-text class="desc_content" nodes="{{initData.descText}}" aria-role="text" aria-label="{{initData.descText}}"></rich-text>
+            </view>
+        </view>
+        <view class="content02" wx:else>
+            <rich-text class="desc_content" nodes="{{initData.descText}}" aria-role="text" aria-label="{{initData.descText}}" wx:if="{{initData.descText}}"></rich-text>
+        </view>
+    </view>
+    <view class="close_wrap" aria-role="button" aria-label="关闭弹窗">
+       <view class="close"></view>
+    </view>
+    </view>
+</view>

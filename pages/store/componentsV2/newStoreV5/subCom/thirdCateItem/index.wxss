@@ -1,0 +1,19 @@
+.sub_cate_item{
+    width:176rpx;
+    height:100%;
+    background:#F8F8F8;
+    border-radius:4rpx;
+    font-size:24rpx;
+    font-weight:500;
+    color: #666666;
+    text-align: center;
+    line-height: 64rpx;
+    display: inline-block;
+    margin-right: 12rpx;
+    border-radius: 4rpx;
+}
+.sub_cate_item_checked{
+    background:rgba(71,179,79,0.08);
+    color: #47B34F;
+    font-size:24rpx;
+}

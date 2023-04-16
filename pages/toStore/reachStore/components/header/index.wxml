@@ -1,0 +1,29 @@
+<view class="navigate_box" style="height: {{navHeight + 5}}px;">
+  <!-- 返回 首页 -->
+  <view class="nav_left flex-row align-items-center" 
+        data-type="{{showBack?'goBack':'goHome'}}" 
+        bind:tap="goBack" 
+        aria-role="link" 
+        aria-label="返回"
+        style="top: {{capsule.top}}px">
+    <view class="flex-row  align-items-center" aria-hidden="true">
+      <view class='tostore-back-btn' style="background: {{tabIsCiel ? '#fff' : 'rgba(0, 0, 0, 0.3)'}}">
+        <text class="more-icon icon dj_icon ts_close"
+              style="color: {{tabIsCiel ? '#333' : '#fff'}}"></text>
+      </view>
+    </view>
+  </view>
+  <view style="opacity: {{opacity}};background-color:#ffffff"
+        aria-label="{{storeName}}"
+        aria-role="text">
+    <view style="width: 100%; height: {{capsule.top}}px"></view>
+    <view style="width:{{capsule.left-10-32-10}}px;padding-left: {{10+32+10}}px">
+      <!-- 导航 与 标题 -->
+      <view class="nav_bar flex-row align-items-center" style="width:100%;height:{{capsule.height}}px">
+        <view class='ellipsis header-storename'>{{storeName}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 占位 -->
+<view style="height: {{navHeight}}px"></view>

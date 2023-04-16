@@ -1,0 +1,169 @@
+<view class="community-redpack" catchtap="elementTracker">
+    <view class="header">
+        <view
+            class="record-button "
+            data-btn-name='2'
+            bind:tap="openRecord"
+        >领取记录</view>
+        <view
+            class="rule-button "
+            data-btn-name='3'
+            bind:tap="openRule"
+        >活动规则</view>
+        <view class="amount-money">
+            <view class="unit">¥</view>
+            <view class="money">{{accountBalance}}</view>
+        </view>
+        <view class="header-tips">
+            <view class="tips-wrapper">
+                <view class="tips-item">群内领红包，满额可提现</view>
+                <view class="tips-item">微信打款，现金快速到账</view>
+                <view class="tips-item">群内领红包，满额可提现</view>
+            </view>
+        </view>
+        <view
+            class="withdrawal-button "
+            bind:tap="withdraw"
+            wx:if="{{withdrawCash}}"
+            data-btn-name='1'
+        ></view>
+        <view class="withdrawal-button disable" wx:else>{{'限时满' + cashingThreshold + '元可提现' || '限时满1元可提现' }}</view>
+    </view>
+    <scroll-view
+        class="resource-wrapper {{resources && resources.length <= 2 ? 'center' : ''}}"
+        scroll-x
+        scroll-with-animation
+        enable-flex
+    >
+        <view
+            wx:for="{{resources}}"
+            wx:for-item="item" 
+            wx:for-index="index"
+            class="resource-item"
+            bind:tap="jumpHandler"
+            data-jump="{{item.jump}}"
+            data-link-url="{{item.linkUrl}}"
+            data-need-login="{{item.needLogin}}"
+            data-jump-param="{{item.jumpParam}}"
+        >
+           <image class="resource-image" src="{{item.imgUrl}}"/>
+        </view>
+    </scroll-view>
+    <view class="records">
+        <view class="record-title">本群领取情况</view>
+        <view wx:if="{{redPacketRecords && redPacketRecords.length > 0}}">
+            <view
+                wx:for="{{redPacketRecords}}"
+                wx:for-item="item" 
+                wx:for-index="index"
+                class="redpack-record-item"
+            >
+                <view class="record-item-image">
+                    <image class="image" src="{{item.avatarUrl}}" mode="aspectFill"/>
+                </view>
+                
+                <view class="record-item-detail">
+                    <view>
+                        <view class="item-nickname">{{item.nickname}}</view>
+                        <view class="item-time">{{item.timeToCollectPacket}}</view>
+                    </view>
+                    <view class="item-amount">{{item.packetAmount}}元</view>
+                </view>
+            </view>
+        </view>
+        <view wx:else class="record-msg">
+            <!-- {{redPacketRecordMsg}} -->
+            <view
+                wx:for="{{redPacketRecordMsg}}"
+                wx:for-item="item" 
+                wx:for-index="index"
+            >
+                {{item}}
+            </view>
+              
+        </view>
+    </view>
+    <!-- 领红包动画弹层 -->
+    <view wx:if="{{modalName == 'animation'}}"> 
+        <animation-modal
+            bind:openRedPacket="openRedPacket"
+            bind:showModal="showModal"
+            recommendObj="{{recommendObj}}"
+            activityId="{{activityId}}"
+            isLogin="{{isLogin}}"
+        />
+    </view>
+    <!-- 优惠券弹层 -->
+     <view wx:if="{{modalName == 'coupon'}}"> 
+        <coupon-modal
+            type="{{type}}"
+            timeStatus="{{timeStatus}}"
+            isFirstStart="{{isFirstStart}}"
+            isFirstEnd="{{isFirstEnd}}"
+            couponInfoList="{{couponInfoList}}"
+            toastTitle="{{toastTitle}}"
+            activityId="{{activityId}}"
+            activityType="{{activityType}}"
+            buriedObj="{{recommendObj}}"
+            bind:showModal="showModal"
+            bind:subscribeMsg="subscribeMsg"
+        />
+    </view>
+    <!-- 活动规则弹层 -->
+    <view wx:if="{{modalName == 'rule'}}"> 
+        <rule-modal
+            rules="{{rules}}"
+            bind:showModal="showModal"
+        />
+    </view>
+    <!-- 领取成功弹层 -->
+    <view wx:if="{{modalName == 'success'}}"> 
+        <success-modal
+            type="{{type}}"
+            isFirstEnd="{{isFirstEnd}}"
+            amount="{{amount}}"
+            bind:showModal="showModal"
+            bind:subscribeMsg="subscribeMsg"
+        />
+    </view>
+    <!-- 提现记录弹层 -->
+    <view wx:if="{{modalName == 'record'}}"> 
+        <record-modal
+            records="{{records}}"
+            bind:showModal="showModal"
+            bind:getRecords="getRecords"
+        />
+    </view>
+    <!-- 用户实名授权弹层 -->
+    <view wx:if="{{modalName == 'auth'}}">
+        <auth-modal
+            isFirstAuth="{{isFirstAuth}}"
+            accountBalance="{{accountBalance}}"
+            bind:showModal="showModal"
+            recommendObj="{{recommendObj}}"
+            bind:withdrawSuccess="withdrawSuccess"
+        />
+    </view>
+    <view wx:if="{{modalName == 'tips'}}">
+        <tips-modal
+            type="{{type}}"
+            timeStatus="{{timeStatus}}"
+            isFirstStart="{{isFirstStart}}"
+            bind:showModal="showModal"
+            bind:subscribeMsg="subscribeMsg"
+        />
+    </view>
+    <view wx:if="{{showSubscribeMessage}}" class="subscribe-message-wrapper">
+        <view class="subscribe-message">
+            <image src="https://storage.360buyimg.com/wximg/communityRedpack/redpackIcon.png" mode="aspectFit" class="subscribe-icon" />
+            <view class="subscribe-text">
+                <view class="text-flex">
+                    点击 <view class="text-sp">允许</view> 按钮
+                </view>
+                <view>11点领现金大红包</view>
+            </view>
+              
+        </view>
+    </view>
+</view>
+  

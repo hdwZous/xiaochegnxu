@@ -1,0 +1,217 @@
+.qu_icon {
+  width: 26rpx;
+  height: 26rpx;
+  padding-right: 48rpx;
+  padding-left: 10rpx;
+  position: relative;
+  top: 3rpx;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0 24rpx;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.no_use {
+  font-size: 28rpx;
+  color: #999;
+  font-family: regular;
+}
+
+.discount {
+  font-size: 28rpx;
+  color: #FF5757;
+  font-family: regular;
+}
+
+.coupon_right .ts_next {
+  color: #666;
+  font-size: 24rpx;
+  padding-left: 6rpx;
+  margin-left: 0;
+}
+
+.couponWrapWrap {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.couponWrapWrap::-webkit-scrollbar {
+  width: 0;
+}
+
+.couponWrap {
+  overflow-x: auto;
+  padding-left: 24rpx;
+  /* padding-top: 10rpx; */
+  white-space: nowrap;
+  /* border-bottom: 1rpx solid #f5f5f5; */
+  padding-bottom: 32rpx
+}
+
+.couponWrap::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.couponItemWrap {
+  padding-right: 40rpx;
+  display: inline-block;
+  background: #fff;
+  width: 70%;
+}
+
+.no_more {
+  display: inline-block;
+  color: rgb(101, 101, 101);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  font-size: 20rpx;
+  width: 20rpx;
+  margin-right: 24rpx;
+  top: 40rpx;
+  position: relative;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.mask_wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  overflow: scroll;
+  width: 78%;
+}
+
+.container {
+  max-height: 50%;
+  border-radius: 16rpx;
+  background: #fff;
+  padding-top: 40rpx;
+  padding-bottom: 40rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+
+.over_scroll {
+  max-height: 600rpx;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.over_scroll::-webkit-scrollbar {
+  display: none;
+  /* Chrome Safari */
+}
+
+.close_wrap {
+  margin-top: 40rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.close {
+  width: 74rpx;
+  height: 74rpx;
+  background: url("https://storage.360buyimg.com/wximg/bargain/close.png") no-repeat center;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+
+.active {
+  color: #333;
+}
+
+.store_item_line {
+  position: relative;
+  background-color: #f5f5f5;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  margin: 0 24rpx;
+}
+
+.lowCase {
+  height: 180rpx;
+  border: 1px dashed rgb(232, 232, 232);
+  margin: 0 24rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.lookbtn {
+  color: rgb(71, 179, 79);
+  padding: 10rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  border: 1px solid rgb(71, 179, 79);
+  border-radius: 10rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  line-height: normal;
+}
+
+.v-members {
+  height: 36rpx;
+  color: #711A13;
+  padding-right: 16rpx;
+  background: linear-gradient(90deg, #FDD99A 0%, #FDD38A 100%);
+  border-radius: 18rpx;
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  position: relative;
+  margin-right: 16rpx;
+}
+
+.v-m-arrow {
+  font-size: 18rpx;
+  color: #711A13;
+  margin-left: 4rpx;
+}
+
+.vlmrllp-num {
+  font-size: 28rpx;
+  font-family: 'regular';
+  font-weight: 600;
+  color: #FF1E19;
+  line-height: 36rpx;
+}
+
+.vlmrllp-sym {
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #711A13;
+}
+
+.vlmrl-icon {
+  width: 60rpx;
+  height: 36rpx;
+}
+
+.vlmrl-icon_arrow {
+  width: 20rpx;
+  height: 20rpx;
+}

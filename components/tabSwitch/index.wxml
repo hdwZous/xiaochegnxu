@@ -1,0 +1,10 @@
+
+<view class="top-tab flex-row">
+  <view class="tab-item " bind:tap="selectTab" wx:for="{{tabResultList}}" wx:for-index="index" wx:for-item="item" wx:key="item" data-index="{{index}}" data-item="{{item}}">
+    <view class="{{item.selected ? 'scale moveScale': ''}} {{item.selected ? 'tab-active':''}}">{{item.tabName || item.name || item.businessName}}</view>
+    <view wx:if="{{item.selected && index == 0}}" class="fadeCommon {{firstInto ? '':'fadeInRight'}}"></view>
+    <view wx:elif="{{item.selected && index != 0 && index !=(tabResultList.length -1)}}" class="fadeCommon {{flag ? 'fadeInLeft': 'fadeInRight'}}"></view>
+    <view wx:elif="{{item.selected && index ==(tabResultList.length -1)}}" class="fadeCommon fadeInLeft"></view>
+  </view>
+</view>
+  

@@ -1,0 +1,33 @@
+<view class="record-modal" bind:tap="closeModal" catchtouchmove='true'>
+    <view class="record-wrapper" catchtap="stopBubble">
+        <view class="record-title">
+            <view class="title-text">领取记录</view>
+        </view>
+        <scroll-view
+            class="record-list"
+            scroll-y
+            scroll-with-animation
+            enable-flex
+            bindscrolltolower="getRecord"
+        >
+            <view
+                wx:for="{{records}}"
+                wx:for-item="item" 
+                wx:for-index="index"
+            >
+                <view class="record-item">
+                    <view class="item-text">
+                        <view>{{item.title}}</view>
+                        <view>{{item.operTimeText}}</view>
+                    </view>
+                    <view class="item-money">{{item.status == 1 ? '+' : '-'}}{{item.amountOfMoney}}元</view>
+                </view>
+                <view class="dotted-line"></view>
+            </view>
+        </scroll-view>    
+        <view class="close-button-wrapper" bindtap="closeModal">
+            <view class="dj_icon ts_close close-button"></view>
+        </view>
+    </view>
+</view>
+  

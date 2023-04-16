@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "usingComponents": {
+      "coupon-go-tag": "/components-b/couponGoTag/index",
+      "coupon-price": "/components-b/couponPrice/index",
+      "sku-name-tag": "/components/skuNameTag/index",
+      "add-min-controller-v1": "/components-b/addMinControllerV1/index"
+    }
+  }

@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "rating": "/components/rating/index",
+        "biz-tag": "/components/bizTag/index"
+    }
+}

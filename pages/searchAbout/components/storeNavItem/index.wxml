@@ -1,0 +1,46 @@
+<view class="more_case_pop_content flex-row {{curNav === 'nav'+ index ? 'selected' : ''}}" data-user-action="{{item.userAction}}" data-trace-id="{{traceId}}" data-page-id='{{pageId}}' data-current-page-name='{{currentPageName}}' data-pre-page-name='{{prePageName}}'>
+    <view aria-hidden="true" class="store_left flex-none">
+        <!-- 全部tab的图标处理 -->
+        <image wx:if="{{item.searchAll && curNav !== 'nav'+ index}}" id='nav0' class='small-logo' src="https://storage.360buyimg.com/wxmini/open_app/select.png" />
+        <image wx:elif="{{item.searchAll && curNav === 'nav'+ index}}" id='nav0' class='small-logo' src="https://storage.360buyimg.com/wxmini/open_app/noSelect.png" />
+        <!-- 门店logo -->
+        <image wx:else id='nav{{index}}' data-lazy-img-id="{{'nav' + index}}" class="logo lazy-load  lazy_load_img {{storeImgLazyLoad['nav'+index] ? 'lazy_load_img_active' : ''}}" src="{{storeImgLazyLoad['nav'+index] ? item.majorIcon : ''}}" />
+    </view>
+    <view aria-hidden="true" class="store_right {{item.searchAll ? 'flex-none':'flex-auto'}}">
+        <view id='nav{{index}}' class="{{index !== 0 ? 'title' : 'all_title_size'}} {{index !== 0 ? 'title_size':''}}">
+            <view wx:if="{{item.title}}" class="ellipsis" style="line-height:1em">
+                {{item.title}}
+            </view>
+            <view wx:if="{{item.closeTip.timeText}}" style="font-size:24rpx;color:{{item.closeTip.endColor}}">
+                {{item.closeTip.timeText}}
+            </view>
+            
+            
+            <block wx:elif="{{item.expansionCoupon && item.expansionCoupon.iconUrl}}">
+              <view class="store_tag" wx:if="{{item.expansionCoupon.iconUrl && curNav !== 'nav'+ index}}">
+                <view class="expansion_coupon" style="background: linear-gradient({{item.expansionCoupon.startColorCode}} 0%,{{item.expansionCoupon.endColorCode}} 100%);">
+                  <image class="expansion_coupon_icon" src="{{item.expansionCoupon.iconUrl}}"/>
+                  <view class="expansion_width">
+                    <view class="expansion-text ellipsis">{{item.expansionCoupon.iconText}}</view>
+                    <text class="expansion_price ellipsis">{{item.expansionCoupon.price}}</text>
+                  </view>
+                </view>
+              </view>
+              <view class="store_tag" wx:elif="{{item.expansionCoupon.selectIconUrl && curNav === 'nav'+ index}}">
+                <view class="expansion_coupon" style="border: 1px solid #fff;">
+                  <image class="expansion_coupon_icon" src="{{item.expansionCoupon.selectIconUrl}}"/>
+                  <view class="expansion_width">
+                    {{item.expansionCoupon.iconText}}
+                    <text class="expansion_price">{{item.expansionCoupon.price}}</text>
+                  </view>
+                </view>
+              </view>
+            </block>
+            <block else>
+              <view class="store_tag ellipsis" wx:if="{{item.promoteTags[0]}}"style="background:{{curNav === 'nav'+ index ? '' : item.promoteTags[0].backgroundColor}};border:{{curNav === 'nav'+ index ? '1px solid #fff' :  '1px solid ' + item.promoteTags[0].outLineColor}};color:{{curNav === 'nav'+ index ? '#fff' : item.promoteTags[0].frontColor}}">
+              {{item.promoteTags[0].words}}
+            </view>
+            </block>
+        </view>
+    </view>
+</view>

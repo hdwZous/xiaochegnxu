@@ -1,0 +1,55 @@
+<!-- 会员弹层 -->
+<view class="pop" wx:if="{{vip.title}}">
+  <!-- 是vip会员 -->
+  <block wx:if="{{vip.vip}}">
+    <view class="vip_content" style="width: {{vip.backWidth*2}}rpx;height: {{vip.backLength*2}}rpx;background-image: url('{{vip.backUrl}}');background-position: center;background-repeat: no-repeat;background-size: 100% 100%;">
+      <view class="vip_title">{{vip.title}}</view>
+      <view class="vip_sub_title">{{vip.subTitle}}</view>
+      <view class="vip_info">
+        <view class="vip_left">
+          <view class="vip_left_price">
+            <text>{{vip.sourcePackage.amount}}</text>
+            <text class="vip_left_symbol">{{vip.sourcePackage.amountUnit}}</text>
+          </view>
+          <view class="vip_left_name">{{vip.sourcePackage.couponTip}}</view>
+          <view class="vip_left_rule">{{vip.sourcePackage.limitRule}}</view>
+          <view class="vip_left_date">{{vip.sourcePackage.availableDate}}</view>
+        </view>
+        <view class="vip_right">
+          <view class="vip_right_price">
+            <text>{{vip.targetPackage.amount}}</text>
+            <text class="vip_right_symbol">{{vip.targetPackage.amountUnit}}</text>
+          </view>
+          <view class="vip_right_name">{{vip.targetPackage.couponTip}}</view>
+          <view class="vip_right_rule">{{vip.targetPackage.limitRule}}</view>
+          <view class="vip_right_date">{{vip.targetPackage.availableDate}}</view>
+        </view>
+      </view>
+      <view class="vip_btn_wrap flex-row">
+        <view class="vip_btn flex-none" bind:tap="cancel">放弃优惠</view>
+        <view class="vip_btn vip_btn_right flex-none" bind:tap="sure">确认兑换</view>
+      </view>
+    </view>
+  </block>
+  <!-- 不是vip会员 -->
+  <block wx:else>
+    <view class="vip_content vip_not">
+      <view style="width: {{vip.backWidth*2}}rpx;height: {{vip.backLength*2}}rpx;background-image: url('{{vip.backUrl}}');background-position: center;background-repeat: no-repeat;background-size: 100% 100%;">
+        <view class="vip_not_title">{{vip.title}}</view>
+        <view class="vip_not_wrap flex-row">
+          <view class="vip_not_left flex-none">
+            <text>{{coupon.amount}}</text>
+            <text class="vip_not_symbol">{{coupon.amountUnit || '元'}}</text>
+          </view>
+          <view class="vip_not_right flex-auto">
+            <view class="vip_not_coupon_title ellipsis">{{coupon.couponTitle}}</view>
+            <view class="vip_not_coupon_rule ellipsis">{{coupon.limitRule}}</view>
+            <view class="vip_not_coupon_date ellipsis">{{coupon.avilableDate}}</view>
+          </view>
+        </view>
+        <view class="vip_not_btn" bind:tap="goToOpenVip">{{vip.buttonTitle}}</view>
+      </view>
+      <view class="vip_not_close" bind:tap="closeVipPop"></view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,102 @@
+@import "/common/css/global";
+.box {
+    overflow: hidden;
+    margin: 0 30rpx 20rpx 30rpx;
+}
+.wrap {
+    border-left:1rpx solid rgba(234,234,234,1);
+    border-right:1rpx solid rgba(234,234,234,1);
+    border-bottom:1rpx solid rgba(234,234,234,1);
+    border-radius:4rpx;
+}
+.top_border {
+    height: 6rpx;
+    background: #FFC64F;
+    border-radius: 4rpx 4rpx 0 0;
+}
+.case {
+    position: relative;
+    padding: 30rpx 0;
+    background: #FFFFFF;
+}
+.left {
+    width: 218rpx;
+    text-align: center;
+}
+.price {
+    color: #FFC64F;
+    font-size: 68rpx;
+}
+.symbol {
+    font-size: 24rpx;
+}
+.mid {
+
+}
+.name {
+    color: #333333;
+    font-size: 30rpx;
+}
+.desc {
+    color: #999999;
+    font-size: 22rpx;
+}
+.time {
+    color: #999999;
+    font-size: 22rpx;
+}
+.right {
+    width: 46rpx;
+    background: url("https://storage.360buyimg.com/wximg/redEnvelope/arrow_right.png") no-repeat center;
+    -webkit-background-size: 16rpx 28rpx;
+    background-size: 16rpx 28rpx;
+}
+.desc_case {
+    padding: 0 30rpx;
+    background: #FAFAFA;
+}
+.description {
+    position: relative;
+    color: #999999;
+    font-size: 22rpx;
+    padding: 14rpx 20rpx 14rpx 0;
+    border-top: 1rpx solid #E8E8E8;
+}
+.radio_left {
+    content: "";
+    position: absolute;
+    left: -11rpx;
+    bottom: -11rpx;
+    width: 20rpx;
+    height: 20rpx;
+    border: 1rpx solid #EAEAEA;
+    background: #FFFFFF;
+    border-radius: 50%;
+}
+.radio_right {
+    content: "";
+    position: absolute;
+    right: -11rpx;
+    bottom: -11rpx;
+    width: 20rpx;
+    height: 20rpx;
+    border: 1rpx solid #EAEAEA;
+    background: #FFFFFF;
+    border-radius: 50%;
+}
+.arrow {
+    width: 20rpx;
+    height: 8rpx;
+    position: absolute;
+    right: 0;
+    top: 25rpx;
+    background: url("https://storage.360buyimg.com/wximg/redEnvelope/arrow_down.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    transform-origin: center;
+    transform: rotate(0deg);
+    transition: transform .5s;
+}
+.animate {
+    transform: rotate(180deg);
+}

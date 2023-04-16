@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "new-default": "/components/newDefaultV2/index",
+    "floor": "./components/floor/index",
+    "popup": "./components/popup/index"
+  }
+}

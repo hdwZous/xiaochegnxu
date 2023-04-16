@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "floor": "../componentsV2/floor/index",
+    "new-default": "/components/newDefault/index",
+    "location-default": "/components-b/locationDefault/index"
+  }
+}

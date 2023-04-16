@@ -1,0 +1,43 @@
+
+<view class="header" style="padding-top:{{top*2}}rpx;padding-right:{{width*2}}rpx;">
+  <view class="header_left">
+    <view
+      class="back log_goback"
+      aria-label='返回'
+      aria-role='link'
+      bind:tap="goback">
+      <view class="back_icon"></view>
+    </view>
+    <view
+      class="title ellipsis"
+      id="title"
+      aria-label='{{initData.gloabTitle}}'
+      aria-role='text'
+    >{{initData.gloabTitle}}</view>
+  </view>
+  <view
+    aria-label='搜索框，点击将跳转到搜索页'
+    aria-role='link'
+    class="search log_search"
+    bind:tap="handleSearch">
+    <view aria-hidden="true" class="dj_icon ts_search1 search_icon"></view>
+    <view aria-hidden="true" class="swiper_wrap" wx:if="{{initData.searchConfig.recommendKeyList && initData.searchConfig.recommendKeyList.length>0}}">
+      <swiper autoplay="{{autoplay}}" interval="{{3000}}" duration="{{1000}}" vertical="{{true}}" circular="{{true}}" class="swiper" bindchange="handleSwiperChange">
+        <block wx:for="{{initData.searchConfig.recommendKeyList}}" wx:key="index">
+          <swiper-item class="swiper-item-wrap">
+            <view
+              class="swiper-item"
+              aria-label='搜索框内容为{{item.title}}，点击将跳转到搜索页'
+              aria-role='link'
+              data-user-action='{{item.userAction}}'
+              data-trace-id='{{traceId}}'
+              data-page-id="{{pageId}}"
+              data-current-page-name="{{currentPageName}}"
+              data-pre-page-name='{{prePageName}}'
+            >{{item.title}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+</view>

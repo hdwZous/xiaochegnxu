@@ -1,0 +1,20 @@
+<!--pages/order/components/deliveryInfo/index.wxml-->
+<view class="container">
+    <view class="title"
+          aria-role="text"
+          aria-label="订单信息">订单信息</view>
+    <view class="item_wrap">
+        <view class="item" 
+              wx:for="{{initData.orderInfoList}}" 
+              wx:key="index" 
+              aria-role="text"
+              aria-label="{{item.title}}{{item.value}}"
+              wx:if="{{index>0}}">
+            <view class="left">{{item.title}}</view>
+            <view class="right {{(index == 1 || index == 2) && 'order_num'}}">
+                 {{item.value}}
+                 <view wx:if="{{item.taxNumber}}">{{item.taxNumber}}</view>
+            </view>
+        </view>
+    </view>
+</view>

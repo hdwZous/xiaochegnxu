@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "notice-diglog":"./components/noticeDialog/index",
+    "service-diglog":"./components/serviceDialog/index",
+    "tip-dialog":"./components/tipDialog/index",
+    "webp-img": "/components/webpImg/index",
+    "deposit": "./components/deposit/index"
+  }
+}

@@ -1,0 +1,8 @@
+{
+	"component": true,
+	"usingComponents": {
+		"rating": "/components/rating/index",
+		"webp-img": "/components/webpImg/index",
+		"biz-tag": "/components/bizTag/index"
+	}
+}

@@ -1,0 +1,57 @@
+<view class="suit-list-wrapper" wx:if="{{data.floorTitle}}">
+  <view class="wrap_sku_title" aria-label="{{data.floorTitle}}" aria-role="text">{{data.floorTitle}}</view>
+  <view class="suitTitle_box d-flex flex-row flex-nowrap">
+    <block wx:for="{{data.suitLandSkus}}" 
+          wx:key="item">
+      <view class="suitTitle {{item.activityId == activeTab.activityId ? 'active' : ''}}" 
+           data-activity-id="{{item.activityId}}" 
+           bindtap="selectTab">
+        <view class="suitTitle_item ellipsis" aria-label="{{item.suitTitle}}" aria-role='button'>{{item.suitTitle}}</view>
+      </view>
+    </block>
+  </view>
+  <view class='suit-item'>
+    <scroll-view class="scroll-view {{activeTab.skuInfoList.length == 3 ? 'justify-content-between special' : ''}}" enable-flex scroll-x="true" aria-role='listbox'>
+        <block wx:for="{{activeTab.skuInfoList}}" wx:key="subIndex" wx:for-item="sku">
+          <view class="four-item {{index == 0 && activeTab.skuInfoList.length != 3 ? 'special' : ''}} {{activeTab.skuInfoList.length == 3 ? 'no-padding' : ''}}" data-item="{{sku}}" bindtap="goToDetail">
+            <view class="four-pic-wrapper">
+              <image class="img" src="{{sku.imageUrl}}" aria-label="{{sku.skuName}}" aria-role='link' />
+              <view class="pic-back"></view>
+            </view>
+            <view class="four-pro-title ellipsis2" aria-label="{{sku.skuName}}" aria-role='link'>{{sku.skuName}}</view>
+            <view class="price-box d-flex flex-row align-items-center justify-content-between"  aria-label="{{sku.price}}元" aria-role='link'>
+              <text class="price">¥{{sku.price}}</text>
+              <text class="num">x{{sku.skuCount}}</text>
+            </view>
+          </view>
+        </block>
+    </scroll-view>
+    <view class="suit-price-btn">
+      <view class="price-wrapper" aria-label="{{activeTab.priceTitle}}.{{activeTab.price}}元.原价{{activeTab.basePrice}}元">
+        <view class='suit-price'>{{activeTab.priceTitle}}</view>
+        <view class='main-price'>¥{{activeTab.price}}</view>
+        <view class='mino-price'>¥{{activeTab.basePrice}}</view>
+      </view>
+      <view class="add-car">
+        <add-min-controller showType="2" 
+                            addCartText="{{showStateName}}" 
+                            count="{{activeTab.cartNum}}" 
+                            iconType="{{isSpu ? 1 : 0}}" 
+                            activityId="{{activeTab.activityId}}" 
+                            skuId="{{skuId}}" 
+                            skuList="{{activeTab.skuInfoList}}" 
+                            orgCode="{{orgCode}}" 
+                            storeId="{{storeId}}" 
+                            userAction="{{activeTab.userAction}}" 
+                            transmitData="{{}}" 
+                            size="large"  
+                            showModel="{{showModel}}" 
+                            biPageName="goodsinfo" 
+                            pageId="{{recommendObj.pageIdFirstPage}}" 
+                            currentPageName="{{recommendObj.currentPageName}}" 
+                            prePageName="{{recommendObj.prePageName}}" 
+                            traceId="{{traceId}}" ></add-min-controller>
+      </view>
+    </view>
+  </view>
+</view>

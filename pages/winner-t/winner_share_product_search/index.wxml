@@ -1,0 +1,16 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.winner_share_product_search}}">
+        <picture-download compid="{{$compid__35}}"></picture-download>
+        <navigator-bar></navigator-bar>
+        <view class="{{styles.header}}">
+            <view class="{{styles.mainHeader}}">
+                <view class="{{styles.searchBox}}">
+                    <image src="https://image3.imdada.cn/2828828c5c6a4c7e94e19ae6be07995b.png" class="{{styles.searchIcon}}"></image>
+                    <input confirm-type="search" class="{{styles.searchInput}}" placeholder="请搜索店内商品" placeholder-style="color:#c8c8c8" value="{{searchText}}" bindblur="anonymousFunc0" focus="{{true}}" />
+                </view><text class="{{styles.searchText}}" bindtap="anonymousFunc1">搜索</text>
+            </view>
+        </view>
+        <search-result compid="{{$compid__36}}"></search-result>
+        <view class="{{styles.flab}}" bindtap="anonymousFunc2"></view>
+    </view>
+</block>

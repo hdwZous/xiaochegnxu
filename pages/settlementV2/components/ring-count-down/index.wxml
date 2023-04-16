@@ -1,0 +1,9 @@
+<view class="ring_count_down d-flex flex-column align-items-center justify-content-center"> 
+  <view class="ring_content">
+    <view class="count_box">
+      {{count}}s
+      <image class="ring_img" src="https://storage.360buyimg.com/peibanjia/dj_wx/settle_loading_3x.png" />
+    </view>
+    <view class="ring_txt">正在查询结果…</view>
+  </view>
+</view>

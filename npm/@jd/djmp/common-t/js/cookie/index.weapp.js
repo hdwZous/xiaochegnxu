@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var setCookie=exports.setCookie=function(e,o,t){},getCookie=exports.getCookie=function(e){},removeCookie=exports.removeCookie=function(e,o){},getAllCookie=exports.getAllCookie=function(){};

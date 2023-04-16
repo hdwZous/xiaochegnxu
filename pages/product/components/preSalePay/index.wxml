@@ -1,0 +1,18 @@
+<view class='pre-sale-pay-wrap' 
+      aria-role="text" 
+      aria-label="{{stage.handPriceDesc}}.{{handPrice}}"
+      style="padding-bottom: {{isIpx ? '60rpx' : '0'}}">
+    <view class='hand-price-desc' 
+          wx:if="{{stage.handPriceDesc}}">
+          {{stage.handPriceDesc}}
+    </view>
+    <view class='hand-price' wx:if="{{handPrice != '暂无报价' &&  handPrice > 0}}">{{handPrice}}</view>
+    <!-- 正常单品支付按钮 -->
+    <view class="submit-desc"
+          bindtap="jumpPay"
+          style="background: linear-gradient(360deg, {{stage.submitButtonEnable ? '#00BE34' : '#ADAFB0'}} 0%, {{stage.submitButtonEnable ? '#00CB1E' : '#CCCCCE'}} 100%);"
+          aria-label="{{stage.submitDesc}}"
+          aria-role="link">
+        {{stage.submitDesc}}
+    </view>
+</view>

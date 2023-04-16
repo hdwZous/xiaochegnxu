@@ -1,0 +1,24 @@
+.sign {
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+    position: fixed;
+    bottom: 320rpx;
+    right: 8rpx;
+    background:transparent;
+    transition: right .3s ease-out;
+}
+.hideActive {
+    right: -90rpx;
+}
+
+.sign:after {
+    border: 1px solid transparent;
+}
+
+.sign .img {
+    width: 120rpx;
+    height: 120rpx;
+    vertical-align: middle;
+    overflow: hidden;
+}

@@ -1,0 +1,74 @@
+.ring_count_down {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: transparent;
+  z-index: 30;
+}
+
+.ring_content {
+  width: 272rpx;
+  height: 272rpx;
+  background: rgba(0,0,0,0.7);
+  border-radius: 24rpx;
+}
+
+.count_box {
+  width: 82rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.count_box .ring_img {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: ring 1s linear infinite;
+  -webkit-animation: ring 1s linear infinite;
+}
+
+.ring_txt {
+  text-align: center;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 36rpx;
+  margin-top: 32rpx;
+}
+
+@keyframes ring {
+  from {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes ring {
+  from {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}

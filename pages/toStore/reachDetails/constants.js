@@ -1,0 +1,5 @@
+export const TO_STORE_POPUP = 'TO_STORE_POPUP'
+export const TO_REACH_SETTLE = 'TO_REACH_SETTLE'
+export const TAKE_COUPON = 'TAKE_COUPON'
+export const TAKE_COUPON_RES = 'TAKE_COUPON_RES'
+export const CLICK_BURIED = 'CLICK_BURIED'

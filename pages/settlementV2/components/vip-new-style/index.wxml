@@ -1,0 +1,103 @@
+<view class="wrap_nv" style="background: linear-gradient(180deg, {{infos.styles.startBackColor}} 0%, {{infos.styles.endBackColor}} 100%);">
+  <view class="bt"></view>
+  <view class="wrap_nv_header d-flex flex-row align-items-start justify-content-between">
+    <view class="wrap_nv_header_left d-flex flex-row align-items-center">
+      <image src="{{infos.styles.appImg||'https://storage.360buyimg.com/wximg/storewin/settle-v-bg.png'}}" class="wrap_nv_bg" />
+      <image class="wrap_nv_header_title_icon" src="{{infos.styles.icon||'https://storage.360buyimg.com/wximg/storewin/settle-v-icon.png'}}" />
+      <text class="wrap_nv_ttx" style="color:{{infos.styles.typeTitleColor}}">{{infos.styles.typeTitle}}</text>
+    </view>
+    <view class="wrap_nv_header_right ellipsis">{{showStyle.subhead}}</view>
+  </view>
+  <view class="wn_des d-flex flex-row align-items-center">
+    <view class="wn_des_box ellipsis">
+      <block wx:for="{{showStyle.mainhead}}" wx:key="index">
+        <text class="wn_des_txt" style="color:{{item.color}};{{item.fontSize?'font-size:'+item.fontSize*2+'rpx':''}};" >{{item.text||''}}</text>
+      </block>
+    </view>
+    <image wx:if="{{showStyle.jump}}" data-url="{{showStyle.jump}}" bindtap="showVipRedPag" class="wn_des_img flex-none" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+  </view>
+  <view class="wn_sub_des ellipsis" wx:if="{{showStyle.benefitDescription && infos.vipPackageChoiceType != 1}}">{{showStyle.benefitDescription}}</view>
+  <block wx:if="{{infos.vipPackageChoiceType != 1}}">
+    <view class="wnb d-flex flex-row align-items-start justify-content-between">
+      <view class="vlmr-wrap">
+        <vplus-discount-style 
+          left="{{infos.firstFloorDiscountStyle}}" 
+          right="{{infos.firstFloorThresholdStyle}}" 
+          bgimg="{{infos.firstFloorDiscountUrl}}"
+          leftMl="40rpx"
+          rightWd="136rpx"
+          from="settle"
+          allowance="{{infos.vipAllowancePrivilege}}"
+          vpType="{{infos.vpType}}"
+        >
+        </vplus-discount-style>
+      </view>
+      <view class="wnb_right d-flex flex-column align-items-end">
+        <view class="wnbr-top d-flex flex-row align-items-center">
+          <view class="origin_price" wx:if="{{infos.primeCostStr}}">¥{{infos.primeCostStr}}</view>
+          <view class="true_price" style="color:{{infos.amountColor}}">¥{{infos.promotionCostStr}}</view>
+          <image class="btn_check" 
+            bindtap="buyVip" 
+            data-check-vip="{{infos.checkVipFlag==1?0:1}}"
+            data-vip-id="{{infos.vipId||''}}"
+            data-union-vip-flag="{{infos.unionVipFlag||false}}"
+            data-union-member-id="{{infos.unionMemberId||''}}"
+            data-sale-text="{{infos.saleText||''}}"
+            src="{{infos.checkVipFlag==1?infos.styles.checkButtonImg:infos.styles.unCheckButtonNoImg}}" 
+          />
+        </view>
+        <view class="vl-bubble-wrap d-flex flex-row justify-content-center" wx:if="{{infos.saleText}}">
+          <view class="vl-bubble">
+            <view class="vlbb-box ellipsis">{{infos.saleText}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{infos.vipPackageChoiceType == 1}}">
+    <view class="wnb d-flex flex-row justify-content-between" style="padding-top:0;">
+      <view class="d-flex flex-column justify-content-between">
+        <view class="wn_sub_des ellipsis" style="margin-left:0;" wx:if="{{showStyle.benefitDescription}}">{{showStyle.benefitDescription}}</view>
+        <view class="vlmr-wrap flex-none">
+          <vplus-discount-style 
+            left="{{infos.firstFloorDiscountStyle}}" 
+            right="{{infos.firstFloorThresholdStyle}}" 
+            bgimg="{{infos.firstFloorDiscountUrl}}"
+            leftMl="40rpx"
+            rightWd="136rpx"
+            from="settle"
+            allowance="{{infos.vipAllowancePrivilege}}"
+            vpType="{{infos.vpType}}"
+          >
+          </vplus-discount-style>
+        </view>
+      </view>
+      <view class="wnb_right d-flex flex-column align-items-end">
+        <block wx:for="{{infos.vipPackageItemList}}" wx:key="items">
+          <view class="wnb_vlist {{item.checkVipFlag?'checked':''}} d-flex flex-row align-items-center justify-content-between" bindtap="buyVip" data-check-vip="{{item.checkVipFlag==0?1:0}}" data-vip-id="{{item.vipId||''}}" data-vip-type="{{item.vipPackageType}}" data-corner-mark-text="{{item.cornerMarkText}}">
+            <view class="wnbvl_left d-flex {{item.vipPackageType==1?'flex-row align-items-center':item.vipPackageType==2?'flex-column':''}}">
+              <view class="wnbvl_left_name flex-none">{{item.name}}</view>
+              <view class="wnbvl_left_money ellipsis d-flex flex-row align-items-baseline">
+                <text class="wnbvl_m_sys">¥</text>
+                <text class="wnbvl_m_count">{{item.promotionCostStr}}</text>
+                <text class="wnbvl_m_cycle" space="nbsp">{{item.cycle}}</text>
+              </view>
+            </view>
+            <image class="wnbvl_btn flex-none" src="{{item.checkVipFlag?'https://img10.360buyimg.com/pop/jfs/t1/213896/18/20585/6417/62bbef41E87cbe87c/6165a0fc5c205bd4.png':'https://img10.360buyimg.com/pop/jfs/t1/115773/37/26214/4490/62bbef0fE45366b6d/1a2e0a33af6a356e.png'}}" /> 
+            <view class="wnbvl_mark" wx:if="{{item.cornerMarkText}}">{{item.cornerMarkText}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <view class="wrap_nv_renewal d-flex flex-row align-items-center" wx:if="{{showStyle.autoRenewDescription}}">
+    <text class="wnr_tip">{{showStyle.autoRenewDescription}}</text>
+    <image wx:if="{{showStyle.autoRenewQuestionLayer}}" bindtap="showRule" class="wn_des_img flex-none" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+  </view>
+  <view class="wrap_nv-agreement" wx:if="{{showStyle.agreementDocument && showStyle.agreementDocument.length}}">
+    <block wx:for="{{showStyle.agreementDocument}}" wx:key="index">
+      <text class="wrap_nv-agreement-txt" style="color:{{item.color}};text-decoration: {{item.underlineFlag ? 'underline' : 'none'}}" data-items="{{item}}" bindtap="goAgreement">{{item.text}}</text>
+    </block>
+  </view>
+</view>
+<tip-dialog types="1" show="{{tipShow}}" readmeList="{{showStyle.autoRenewQuestionLayer.contentList}}" bindtipClose="showRule"></tip-dialog>

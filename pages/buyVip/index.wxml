@@ -1,0 +1,14 @@
+<view>
+    <view class='top'>
+        <image mode='widthFix' src='https://storage.360buyimg.com/wximg/order/buy_vip_succ.png'></image>
+        <view class='pay_success'>
+            <view class='statusTxt'>{{payStatus}}</view>
+            <view class="desc">VIP会员有效期内，您将享受京东到家VIP会员尊贵特权。</view>
+        </view>
+    </view>
+    <view class="see_vip" bindtap="toSee">
+        <view class="desc">查看我的会员</view>
+        <view></view>
+        <view class="arrow"></view>
+    </view>
+</view>

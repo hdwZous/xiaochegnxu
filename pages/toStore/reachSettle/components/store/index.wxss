@@ -1,0 +1,13 @@
+.store_head {
+  background: #FFFFFF;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 32rpx 24rpx;
+  padding-bottom: 0;
+}
+
+.sh_name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  line-height: 40rpx;
+}

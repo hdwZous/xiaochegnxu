@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "overtime": "/components/overtime/index",
+    "count-down":"../countDown/index",
+    "dj-map": "/components/djMap/index",
+    "webp-img": "/components/webpImg/index"
+  }
+}

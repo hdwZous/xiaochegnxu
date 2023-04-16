@@ -1,0 +1,71 @@
+<view class="items-box" 
+      data-to="store"
+      data-user-action="{{info.userAction}}"
+      data-promotion="{{info.secKillTag.type}}"
+      data-type='store'
+      data-store-id="{{info.storeId}}"
+      data-sku-id="{{info.skuId}}"
+      bindtap="goToStore"
+>
+  <view class="detail d-flex flex-row">
+    <view class="img-box">
+      <!-- <webp-img webp-img="img" src="{{info.skuImageUrl}}" mode="widthFix" /> -->
+      <image src="{{info.skuImageUrl}}" mode="widthFix" class="img" />
+      <image class="bao" src="https://storage.360buyimg.com/wximg/seckill/bao.png" mode="widthFix" lazy-load />
+    </view>
+    <view class="descript-box d-flex flex-column justify-content-between">
+      <view class="head">
+        <view class="title d-flex flex-row">
+          <image class="hot" src="https://storage.360buyimg.com/wximg/seckill/bianzu.png" mode="widthFix" lazy-load />
+          <view class="name ellipsis">{{info.skuName}}</view>
+        </view>
+        <view class="coucp d-flex flex-row">
+          <view class="coupon d-flex flex-row align-items-center" wx:if="{{info.couponText && info.couponText.words.length}}">
+            <image class="money-icon" src="https://storage.360buyimg.com/wximg/seckill/cicon.png" mode="widthFix" lazy-load />
+            <text class="coupon-des">{{info.couponText.words}}</text>
+            <!-- <view class="one-border"></view> -->
+          </view>
+          <view class="coupon" style="border-color: {{info.secKillTag.strokeNameColorCode}};color: {{info.secKillTag.strokeNameColorCode}}" wx:if="{{info.secKillTag && info.secKillTag.iconText.length}}">
+            <text class="coupon-des">{{info.secKillTag.iconText}}</text>
+            <!-- <view class="one-border"></view> -->
+          </view>
+        </view>
+      </view>
+      <view class="footer">
+        <view class="price">
+          <!-- major-price -->
+          <coupon-price 
+            pageId="{{buriedObj.pageIdFirstPage}}"
+            prePageName="{{buriedObj.prePageName}}"
+            currentPageName="{{buriedObj.currentPageName}}"
+            majorPrice="{{info.majorPrice}}" 
+            majorPriceFz="48rpx" 
+            majorPriceWhFz="24rpx"></coupon-price>
+          <!-- mino-price -->
+          <coupon-price 
+            pageId="{{buriedObj.pageIdFirstPage}}"
+            prePageName="{{buriedObj.prePageName}}"
+            currentPageName="{{buriedObj.currentPageName}}"
+            minorPrice="{{info.minorPrice}}" 
+            minorPriceFz="28rpx" 
+            showSaledPrice="{{false}}"></coupon-price>
+        </view>
+        <view class="buy-button d-flex flex-row align-items-center justify-content-center"
+              data-to="store"
+              data-user-action="{{info.userAction}}"
+              data-type='buy'
+              data-store-id="{{info.storeId}}"
+              data-promotion="{{info.secKillTag.type}}"
+              data-sku-id="{{info.skuId}}"
+              catchtap="goToStore">
+          <text class="txt">马上抢</text>
+          <image class="arrow" src="https://storage.360buyimg.com/wximg/seckill/arrow.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="store-info d-flex flex-row align-items-center">
+    <image class="store-icon" src="https://storage.360buyimg.com/wximg/common/icon_store.png" mode="widthFix" lazy-load />
+    <text class="store-name">{{info.storeName}}</text>
+  </view>  
+</view>

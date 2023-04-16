@@ -1,0 +1,54 @@
+<view class="hot_store_wrap">
+    <view 
+        class="hot_store_title" 
+        aria-role="text" 
+        aria-label="{{item.title}}">
+        {{item.title}}
+    </view>
+    <view 
+        class="hot_store_item flex-row exposure home_hotStore" 
+        bind:tap="clickStoreItem" 
+        data-item="{{listItem}}" 
+        wx:for="{{item.resources}}" 
+        data-trace-id="{{traceId}}"
+        data-user-action="{{listItem.userAction}}" 
+        data-page-id="{{buriedObj.pageIdFirstPage}}"
+        data-current-page-name="{{buriedObj.currentPageName}}"
+        data-pre-page-name='{{buriedObj.prePageName}}'
+        wx:for-item="listItem" 
+        wx:for-index="index" 
+        wx:key="item"
+        aria-role="link"
+        aria-label="{{listItem.name}}">
+        <view 
+            aria-hidden="true" 
+            class="hot_store_left flex-none">
+            <image class="hot_img" src="{{listItem.imgUrl}}" />
+        </view>
+        <view 
+            aria-hidden="true" 
+            class="hot_store_right flex-auto">
+            <view 
+                class="hot_store_name ellipsis">{{listItem.name}}</view>
+            <view 
+                class="hot_store_coupon" 
+                wx:if="{{listItem.coupons.length}}">
+                <view 
+                    class="coupon_tag_case" 
+                    wx:for="{{listItem.coupons}}" 
+                    wx:for-index="index" 
+                    wx:for-item="couponItem" 
+                    wx:key="couponItem" 
+                    data-item="{{item}}">
+                    <view 
+                        class="coupon_tag" 
+                        style="background-color:{{couponItem.backgroundColor || ''}} ;color: {{couponItem.frontColor}};border:1px solid {{couponItem.outLineColor}}">
+                        {{couponItem.words}}
+                        <view class="left_radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+                        <view class="right_radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

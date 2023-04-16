@@ -1,0 +1,42 @@
+
+<view class="settlement-money-info-outer" wx:if="{{freshBeanInfo.platPointsDesc}}">
+    <view class="settlement-bean-info-inner">
+        <view class="settlement-bean-item">
+            <view class="settlement-bean-promotion-view">
+                <view class="platPointsDesc">
+                    <text aria-role="text" aria-label="{{freshBeanInfo.platPointsDesc}}">{{freshBeanInfo.platPointsDesc}}</text>
+                    <view class="bean-image">
+                        <image catchtap="showBeanDialog" aria-role="button" aria-label="规则说明" class="settlement-bean-icon" mode="aspectFit"
+                                src="https://storage.360buyimg.com/wximg/settlement/tip.png"/>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{freshBeanInfo.onOffFlag}}" aria-role="button" aria-label="{{usePlatPointsFlag ? '取消使用' : '选择使用'}}" bind:tap="useFreshBean"
+                    class="{{usePlatPointsFlag?'use-fresh-btn-on':'use-fresh-btn-off'}}"></view>
+        </view>
+    </view>
+    <view class='store_item_line'></view>
+</view>
+
+
+<view class="bean_bg"
+      hidden="{{showBeanDialog}}"
+>
+  <view class="bean_pop"
+  >
+    <view class="settlement-deliver-bean-dialog-container" scroll-y="true">
+      <block wx:for="{{freshBeanInfo.readmeList}}" wx:for-item="item" wx:key="key">
+        <view wx:if="{{item.type==2&&item.text}}" aria-role="text" aria-label="{{item.text.title}}" class='bean-item-title'>{{item.text.title||""}}</view>
+        <view class="bean-content">
+          <text wx:if="{{item.type==3&&item.text&&item.text.title}}" aria-role="text" aria-label="{{item.text.title}}" class='bean-detail-title'>{{item.text.title}}</text>
+          <text wx:if="{{item.type==3&&item.text&&item.text.content}}" aria-role="text" aria-label="{{item.text.content}}" class='bean-detail-item'>{{item.text.content||""}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="close"
+          bindtap="showBeanDialog"
+          aria-role="button"
+          aria-label="关闭弹窗"
+    ></view>
+  </view>
+</view>

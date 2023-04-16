@@ -1,0 +1,91 @@
+@import "/common/css/iconfont.wxss";
+
+.record-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+}
+
+.record-wrapper {
+    position: relative;
+    height: 737rpx;
+    width: 590rpx;
+    background: #fff;
+    border-radius: 32rpx;
+}
+
+.record-title {
+    width: 590rpx;
+    height: 110rpx;
+    background: url('https://storage.360buyimg.com/wximg/communityRedpack/ruleBg.png') center no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-text {
+    font-size: 44rpx;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #870E02;
+}
+
+.record-list {
+    height: 627rpx;
+    padding: 13rpx 28rpx 74rpx 56rpx;
+    box-sizing: border-box;
+}
+
+.record-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 22rpx;
+}
+
+.item-text {
+    font-size: 26rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #8D2929;
+}
+
+.item-money {
+    font-size: 30rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #EB0D0D;
+}
+
+.dotted-line {
+    padding-top: 24rpx;
+    width: 440rpx;
+    height: 2rpx;
+    border-bottom: 2rpx dashed #F2F2F2;
+}
+
+.close-button-wrapper {
+    height: 58rpx;
+    width: 58rpx;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -103rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.close-button {
+    color: #fff;
+    font-size: 24rpx;
+}

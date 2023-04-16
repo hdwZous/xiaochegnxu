@@ -1,0 +1,19 @@
+<view class="mask" wx:if="{{serviceDialogVisible && initData && initData.title}}" catch:tap="close">
+    <view class="wrap_service">
+    <view class="container_service">
+        <view class="title">{{initData.title}}</view>
+        <view class="content_service">
+            <view class="tel_wrap">
+                <view class="name">{{initData.phoneText}}:</view>
+                <view class="tel" bind:tap="handleClickTel">{{initData.phoneNum}}</view>
+            </view>
+            <view class="desc_service">
+                {{initData.content}}
+            </view>
+        </view>
+    </view>
+    <view class="close_wrap">
+       <view class="close"></view>
+    </view>
+    </view>
+</view>

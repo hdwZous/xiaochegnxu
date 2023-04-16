@@ -1,0 +1,51 @@
+.strategy_wrap {
+    width: 344rpx;
+    height: 276rpx;
+    border-radius: 24rpx;
+}
+.strategy_title_case {
+    padding: 16rpx 24rpx 4rpx;
+    align-items: center;
+}
+.strategy_title {
+    color: rgb(51, 51, 51);
+    font-size: 32rpx;
+    font-weight: bold;
+    margin-right: 4rpx;
+}
+.strategy_title_img {
+    width: 140rpx;
+    height: 32rpx;
+    vertical-align: middle;
+}
+.strategy_desc {
+    padding: 0 24rpx 12rpx;
+    font-size: 24rpx;
+}
+.strategy_googs_case {
+    justify-content: space-around;
+}
+.strategy_googs_item {
+    width: 120rpx;
+}
+.strategy_googs_img_case {
+    width: 120rpx;
+    height: 120rpx;
+    margin-bottom: 10rpx;
+}
+.strategy_googs_img {
+    width: 100%;
+    height: 100%;
+}
+.strategy_googs_price {
+    align-items: center;
+}
+.strategy_googs_price_new {
+    font-size: 24rpx;
+    font-weight: bold;
+    font-family: "regular";
+}
+.strategy_googs_price_old {
+    font-size: 20rpx;
+    font-family: "light";
+}

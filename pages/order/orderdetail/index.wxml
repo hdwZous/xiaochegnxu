@@ -1,0 +1,478 @@
+
+<block wx:if="{{showEmpty}}">
+  <newDefault 
+    type="{{defaultType}}" 
+    defaultObj="{{defaultObj}}"
+    bind:defaultBtnEvent="onDefaultBtnEvent">
+  </newDefault>
+</block>
+<view wx:else class="container" catchtap="elementTracker" aria-hidden='{{actionSheetVisble || rationPickerVisible || isShowQRCode}}'>
+    <!-- 地图 -->
+    <dj-map
+      orderId="{{orderId}}"
+      store-id="{{orderInfo.storeId}}"
+      mapHeight='{{mapInHeight}}'
+      wx:if="{{orderInfo.isSowMap}}" 
+      bind:tapMapEvent='onTapMap'
+      bind:exitFullMap='onTapMap'
+      bind:tapGift='tapGift'
+      isShowGift="{{!drawPop}}"
+      class="map"
+      lotteryInfo="{{orderInfo.lotteryInfo}}"
+      style="height: {{mapHeight}};"
+      recommendObj="{{recommendObj}}"
+    ></dj-map>
+    <block>
+      <!-- 头部 -->
+      <view class="order_header_wrap">
+        <view class="header_bg"></view>
+        <view class="order_status_wrap">
+          <view class="order_status_title" 
+                aria-role='link'
+                aria-label='{{orderInfo.orderStateMap.stateTitle ||  orderInfo.orderStateMap.orderStateName}},{{orderInfo.orderStateMap.stateDesc}}, 点击跳转订单进度页'
+                bind:tap="handleGotoOrderStatusPage">
+            {{orderInfo.orderStateMap.stateTitle || orderInfo.orderStateMap.orderStateName}}
+            <image src="https://storage.360buyimg.com/wximg/order/arrow_right.png" wx:if="{{orderType != 2}}"/>
+          </view>
+          <view class="order_status_content">{{orderInfo.orderStateMap.stateDesc}}</view>
+          <view class="order_send_time" wx:if="{{orderInfo.preDeliveryTimeStr}}">
+            {{orderInfo.preDeliveryTimeStr}}
+          </view>
+          <view class="btn_group">
+            <view class="space"></view>
+            <view class="btn_primary again_buy" 
+                  aria-role='button'
+                  aria-label="再次购买，点击跳转门店"
+                  wx:if="{{orderInfo.rePurchaseSwitch == 1}}" 
+                  data-to="{{orderInfo.rePayProductJump.to}}" 
+                  data-params="{{orderInfo.rePayProductJump.params}}" 
+                  data-click-jumpcheck="{{orderInfo.rePayProductJump.clickJumpCheck}}"
+                  bindtap="handleAgain">再次购买</view>
+            <view
+              wx:if="{{orderInfo.payStateArray && orderInfo.payStateArray.length > 0 && orderInfo.showRemark == 1}}"
+              class="btn_primary refill-button"
+              style="color: {{orderInfo.payStateArray[0].fontColor}};border-color: {{orderInfo.payStateArray[0].borderColor}};background: {{orderInfo.payStateArray[0].backGroundColor}}"
+              data-params="{{orderInfo.payStateArray[0].params}}"
+              data-to="{{orderInfo.payStateArray[0].to}}"
+              bindtap="jumpHandler"
+            >
+              {{orderInfo.payStateArray[0].title}}{{minute}}:{{second}}
+            </view>
+            <view class="btn_primary" 
+                  aria-role='button'
+                  aria-haspopup='true'
+                  aria-label="删除订单，点击将弹出删除订单确认弹层"
+                  wx:if="{{orderInfo.deleteSwitch == 1}}" 
+                  data-order-id="{{orderId}}" 
+                  bindtap="handleDeleteOrder">删除订单</view>
+            <view class="btn_primary {{orderInfo.afsEntrance && orderInfo.afsEntrance.canShow && !orderInfo.afsEntrance.canApply && 'cantApply'}}" 
+                  wx:if="{{orderType != 2 && orderInfo.afsEntrance && orderInfo.afsEntrance.canShow}}" 
+                  bindtap="handleH5pageJump" 
+                  aria-role='button'
+                  aria-label="申请售后，点击跳转申请售后页"
+                  data-type="4">
+                  申请售后
+            </view>
+            <view class="btn_primary" 
+                  aria-role='button'
+                  aria-haspopup='true'
+                  aria-label="取消订单，点击将弹出取消订单弹层"
+                  wx:if="{{orderInfo.cancelSwitchNew != 0}}" 
+                  bindtap="handleCancelOrder">{{orderInfo.cancelButtonName || '取消订单'}}</view>
+            <view class="btn_primary btn_topay" 
+              wx:if="{{orderInfo.showPay == 1 && payButton.length}}"
+              bindtap="handleGotopay"
+              data-can-click="{{payButton[0].canClick}}"
+              data-trade-name="{{orderInfo.orderProductList[0].name}}" 
+              data-business-type="{{orderInfo.businessType}}" 
+              data-order-id="{{orderId}}"
+              data-order-price="{{orderInfo.realPay}}"
+              data-pay-info="{{orderInfo.payInfo}}"
+              data-pre-obj="{{recommendObj}}"
+              style="color: {{payButton[0].fontColor}};border-color: {{payButton[0].borderColor}};background: {{payButton[0].backGroundColor}}"
+            > {{payButton[0].title}}
+              <count-down 
+                wx:if="{{payButton[0].showCountDownTime}}"
+                type="1"
+                init-style="{{ {color: payButton[0].fontColor || '#fff'} }}"
+                init-data="{{payButton[0].countDownTime - orderInfo.serverTime}}"
+                bindtimeendCallback="paybuttonback">
+              </count-down>
+            </view>
+            <view class="btn_primary" 
+                  aria-role='button'
+                  aria-haspopup='true'
+                  wx:if="{{orderType != 2}}"
+                  aria-label="更多，点击将弹出联系客服等信息弹层"
+                  bindtap="handleActionsheet">
+                  <image aria-hidden="true" src="https://storage.360buyimg.com/wximg/activity/headermorev1.png" />
+            </view>
+          </view>
+          <!-- 退款 -->
+          <view class="refund_wrap" wx:if="{{orderInfo.orderRefundInfo}}" data-type="7" bind:tap="handleH5pageJump">
+            <view class="refund_left"
+                  aria-role='text'
+                  aria-label="{{orderInfo.orderRefundInfo.refundScheduleDesc}}"
+                  >{{orderInfo.orderRefundInfo.refundScheduleDesc}}</view>
+            <view class="refund_right"
+                  aria-role='link'
+                  aria-label="申请售后，点击跳转退款页"
+                  >
+              <view class="refund_text">{{orderInfo.orderRefundInfo.refundStatusName}}</view>
+              <view class="refund_icon"></view>
+            </view>
+          </view>
+          <!-- 微常超时赔付 -->
+          <view wx:if="{{orderInfo.weBankInfo}}">
+            <view class="line"></view>
+            <overtime bind:pageBuried="pageBuried" item="{{orderInfo.weBankInfo}}" order-id="{{orderInfo.orderId}}" page-name="orderDetail"  pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" buriedObj="{{recommendObj}}"></overtime>
+          </view>
+          <!-- v+会员津贴  -->
+          <view  wx:if="{{orderInfo.allowanceInfo}}" class='vip-wrapper'>
+            <view class="line"></view>
+            <view class='vip'>
+              <view class="icon-wrap">
+                <image class='icon' src="{{orderInfo.allowanceInfo.icon}}" />
+              </view>
+              <view class="text-wrap"
+                      aria-role='text'
+                      aria-label="{{allowanceInfos}}">
+                <text wx:for="{{orderInfo.allowanceInfo.content}}" 
+                      wx:for-item="item" 
+                      aria-hidden="true"
+                      wx:key="index" class='text' 
+                      style="color: {{item.color}}">{{item.text}}</text>
+              </view>
+              <view class='btn' 
+                    wx:if="{{orderInfo.allowanceInfo && orderInfo.allowanceInfo.buttonTitle}}" 
+                    data-item="{{orderInfo.allowanceInfo.jumpProtocol}}" 
+                    aria-role='link'
+                    aria-label="去查看，点击跳转会员津贴页面"
+                    bindtap="goVip">
+                <text>{{orderInfo.allowanceInfo.buttonTitle}}</text>
+                <image class="arrow" src="https://storage.360buyimg.com/wximg/common/more-right.png" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 提货码 -->
+      <view class="delivery_code_wrap" wx:if="{{orderInfo.pickCodeModule}}">
+        <view class="delivery_code_contain">
+          <view class="code_title">{{orderInfo.pickCodeModule.title}}</view>
+          <view class="code_detail">
+            <view class="code_info" 
+                  aria-role='text'
+                  aria-label="提货码{{orderInfo.pickCodeModule.codeInfo.codeNum}}"
+                  wx:if="{{orderInfo.pickCodeModule.codeInfo.codeNum}}">
+              <text>{{orderInfo.pickCodeModule.codeInfo.codeTitle}}</text><text class="code_info_right">{{orderInfo.pickCodeModule.codeInfo.codeNum}}</text>
+            </view>
+            <view class="code_info_time ellipsis2"
+                  aria-role='text'
+                  aria-label="{{orderInfo.pickCodeModule.codeInfo.time}}"
+                  >{{orderInfo.pickCodeModule.codeInfo.time}}</view>
+          </view>
+          <view class="address_info"
+                aria-role='text'
+                wx:if="{{orderInfo.pickCodeModule.addressInfo && orderInfo.pickCodeModule.addressInfo.storeInfo}}"
+                aria-label="{{orderInfo.pickCodeModule.addressInfo.storeInfo}},{{orderInfo.pickCodeModule.addressInfo.address}}"
+                >
+            <view class="storeInfo ellipsis2">{{orderInfo.pickCodeModule.addressInfo.storeInfo}}</view>
+            <view class="address ellipsis2">{{orderInfo.pickCodeModule.addressInfo.address}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 商家会员 -->
+      <view class="member_floor"
+        wx:if="{{orderInfo.memberTaskInfo && orderInfo.memberTaskInfo.url}}" 
+        style="height:{{orderInfo.memberTaskInfo.height*2}}rpx"
+        bind:tap="handleH5pageJump"
+        data-type="6"
+      >
+        <image src="{{orderInfo.memberTaskInfo.url}}" 
+          style="width:{{orderInfo.memberTaskInfo.width*2}}rpx;height:{{orderInfo.memberTaskInfo.height*2}}rpx;border-radius:24rpx;"
+        />
+      </view>
+      <!-- 砍订单入口 -->
+      <!-- <view class="hack-wrap" wx:if="{{orderInfo.bargainOrderInfo&&orderInfo.bargainOrderInfo.money}}">
+    </view> -->
+      <!-- 售后信息 -->
+      <view class="after_sale_wrap" wx:if="{{orderInfo.afsProcessInfo && orderType != 2}}" data-type="3" bindtap="handleH5pageJump">
+        <view class="after_sale_left">{{orderInfo.afsProcessInfo.title}}</view>
+        <view class="after_sale_right">
+          {{orderInfo.afsProcessInfo.desc}}
+          <image src="https://storage.360buyimg.com/wximg/order/arrow_right.png" lazy-load="{{true}}" />
+        </view>
+      </view>
+      <!-- 修改订单信息 -->
+      <view class='orderInfoList_wrap'>
+        <appointmentInfo
+          init-data="{{orderInfo}}"
+          recommendObj="{{recommendObj}}"
+          bind:showMiddleModal="showMiddleModal"
+        />
+      </view>
+      <!-- 配送员信息 -->
+      <view class="deliveryman_wrap" wx:if="{{orderInfo.deliveryManInfo}}">
+        <deliveryman
+        bind:showMiddleModal="showMiddleModal"
+        init-data="{{orderInfo}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}"
+        prePageName="{{recommendObj.prePageName}}"></deliveryman>
+      </view>
+      <view class="revise" wx:if="{{orderInfo.updateOrderAccess}}" 
+            aria-role='link'
+            aria-label="修改订单信息，点击跳转到修改页面"
+            bind:tap="handleReviseOrder">
+        <view class="revise_left" aria-hidden="true">
+          <view class="revise_title">{{orderInfo.updateOrderAccess.title}}</view>
+          <view class="revise_text">{{orderInfo.updateOrderAccess.text}}</view>
+        </view>
+        <view class="revise_right" aria-hidden="true">
+            <image src="https://storage.360buyimg.com/wximg/order/arrow_right.png" lazy-load="{{true}}" />
+        </view>
+      </view>
+      <!-- 达达资源位 -->
+  
+      <view class="dada_floor" 
+            wx:if="{{orderInfo.dadaSourceInfo && orderInfo.dadaSourceInfo.url}}" 
+            style="height:{{orderInfo.dadaSourceInfo.height*2}}rpx"
+            bind:tap="handleH5pageJump"
+            data-type="5"
+            aria-role='link'
+            aria-label="达达同城快送送你一张优惠券，点击领取福利"
+            >
+        <image src="{{orderInfo.dadaSourceInfo.url}}" 
+              aria-hidden="true"
+              style="width:{{orderInfo.dadaSourceInfo.width*2}}rpx;height:{{orderInfo.dadaSourceInfo.height*2}}rpx"
+        />
+      </view>
+      <!-- {{barcodeUrl}} -->
+      <!-- 订单商品列表 -->
+      <view class="orderInfoList_wrap">
+         <block wx:if="{{orderType == 2}}">
+          <come-store-order   
+              init-data="{{orderInfo}}"
+              from="detail"
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+              traceId="{{traceId}}"
+              recommendObj="{{recommendObj}}"
+              locCodeFloorInfo="{{orderInfo.locCodeFloorInfo}}"
+              bind:reloadCode="reloadCode">
+              <canvas  wx:if="{{!qrcodeUrl}}" slot="qrcode" canvas-id="qrcode"  class="qrcode {{orderInfo.locCodeFloorInfo.locCodeInfo.qrCodeNum.length >= 40 ? 'codeCenter' : ''}}"/>
+              <image  wx:if="{{qrcodeUrl}}" slot="qrcode" src="{{qrcodeUrl}}" class="qrcode {{orderInfo.locCodeFloorInfo.locCodeInfo.qrCodeNum.length >= 40 ? 'codeCenter' : ''}}"/>
+              <block wx:if="{{orderInfo.locCodeFloorInfo.locCodeInfo.qrCodeNum.length < 40}}">
+                  <canvas wx:if="{{!barcodeUrl}}" slot="barcode" canvas-id="barcode"  class="barcode"/>
+                  <image  wx:if="{{barcodeUrl}}" slot="barcode" src="{{barcodeUrl}}" class="barcode"/>
+              </block>
+          </come-store-order>
+         </block>
+        <block wx:else>
+          <order-list-info
+            init-data="{{orderInfo}}"
+            from="detail"
+            pageId="{{recommendObj.pageIdFirstPage}}"
+            currentPageName="{{recommendObj.currentPageName}}"
+            prePageName="{{recommendObj.prePageName}}"
+            traceId="{{traceId}}"
+            recommendObj="{{recommendObj}}">
+          </order-list-info>
+        </block>
+        
+      </view>
+      <!-- 温馨提示 -->
+      <view class="hintContainer" wx:if="{{orderInfo.reminderFloorInfo}}">
+        <hint reminderFloorInfo="{{orderInfo.reminderFloorInfo}}"></hint>
+      </view>
+      
+      <!-- 处方药 -->
+      <view class="prescription" wx:for="{{orderInfo.orderFloorList}}" wx:for-item="item" wx:key="index">
+        <prescription init-data="{{item}}" bind:showPrescription='showPrescription'/>
+      </view>
+
+      <!-- 适用门店 -->
+      <view class="applyShop" wx:if="{{orderInfo.locStoreFloorInfo}}">
+        <apply-shop locStoreFloorInfo="{{orderInfo.locStoreFloorInfo}}" orderInfo="{{orderInfo}}"  
+          currentPageName="{{recommendObj.currentPageName}}"
+          prePageName="{{recommendObj.prePageName}}"
+          recommendObj="{{recommendObj}}"
+          pageId="{{recommendObj.pageIdFirstPage}}">
+        </apply-shop>
+      </view>
+
+
+      <!-- 配送信息 -->
+      <!-- <view class="delivery_info_wrap">
+        <delivery-info init-data="{{orderInfo}}"></delivery-info>
+      </view> -->
+      <!-- 订单信息 -->
+      <view class="order_info_wrap" wx:if="{{orderInfo}}">
+          <order-info init-data="{{orderInfo}}"></order-info>
+      </view>
+
+      <!-- 支付明细 -->
+      <view class="payInfo" wx:if="{{orderInfo.orderPayFloorInfo}}" style="margin-bottom: {{(isIpx && !showFeeds) ? '100rpx' : '40rpx'}}">
+        <pay-info orderPayFloorInfo="{{orderInfo.orderPayFloorInfo}}" discountPrice="{{orderInfo.discountPrice}}" realPay="{{orderInfo.realPay}}"></pay-info>
+      </view>
+
+      <!-- 大转盘入口  -->
+      <view class="lottery"
+        wx:if="{{!drawPop && orderInfo.lotteryInfo}}" 
+        style="bottom: {{isIpx ? '160rpx' : '100rpx'}}" 
+        bindtap="fetchLottery">
+        <image class='img' src="{{orderInfo.lotteryInfo.url}}" />
+      </view>
+      <!-- 商品推荐 -->
+      <feeds orderId="{{orderId}}" locOrderType="{{orderType}}" wx:if="{{showFeeds}}" pageReachBottom="{{pageReachBottom}}"  bind:onExposure="onExposure" pageId="{{recommendObj.pageIdFirstPage}}"
+      currentPageName="{{recommendObj.currentPageName}}"
+      prePageName="{{recommendObj.prePageName}}"
+      recommendObj="{{recommendObj}}"/>
+    </block>
+</view>
+
+<block>
+  <view wx:if="{{showSuspendedBall}}" class="suspended-ball {{ballClass}}" bind:tap="openQRCode"  aria-hidden='{{actionSheetVisble || rationPickerVisible || isShowQRCode}}'>
+    <image class="ball-image" 
+           aria-role='link'
+           aria-label="加入京东到家会员领8元红包"
+           src="{{suspendedImage}}"/>
+  </view>
+
+  <view class="group-modal {{mantleClass}}" wx:if="{{isShowQRCode}}" aria-hidden='{{!isShowQRCode}}'>
+    <view wx:if="{{layerType == 4}}" class="community {{modalClass}}" style="background:url({{bgImg}});background-size: 100% 100%;" data-layer-type="{{layerType}}" data-button-link="{{buttonLink}}" bind:tap="jumpToOfficial">
+    </view>
+    <view wx:else class="modal-content {{modalClass}}" style="height: {{layerType == 1 ? '796rpx' : '654rpx'}}">
+      <view class="group-coupon-background" wx:if="{{layerType == 1}}">
+        <view class="group-qrcode-wrapper"  aria-role='text' aria-label='扫码加入福利群'>
+          <view class="group-qrcode-image">
+            <image show-menu-by-longpress class="qrcode-image" src="{{qrcodePathOfGroup}}"/>
+          </view>
+          <view class="group-qrcode-text"> 长按加入福利群 </view>
+        </view>
+      </view>
+      <view wx:else>
+        <button
+          wx:if="{{layerType == 3}}"
+          class='group-button'
+          data-button-link="{{buttonLink}}"
+          bind:tap="jumpToOfficial"
+          aria-role='button'
+          aria-label='点击进群'
+        >
+        </button>
+        <button
+          wx:else
+          open-type="contact"
+          class='group-button'
+          send-message-title="{{contactTitle}}"
+          send-message-img="{{contactImg}}"
+          send-message-path="{{contactPath}}"
+          session-from="wechatGroup"
+          show-message-card="true"
+          bind:tap="jumpToContact"
+          aria-role='button'
+          aria-label='点击进群'
+        >
+        </button>
+        <view wx:if="{{layerType == 3}}" class="button-tips" aria-role='button' aria-label='点击后关注，获取进群码'>点击后关注，获取进群码</view>
+        <view wx:else class="button-tips" aria-role='button' aria-label='点击后回复“进群”，获取进群码'>点击后回复“进群”，获取进群码</view>
+      </view>
+    </view>
+    <view class="modal-button" 
+          bind:tap="closeQRCode" 
+          aria-role='button'
+          aria-label='关闭弹层'></view>
+  </view>
+  <!-- 取消订单 -->
+  <cancel-order 
+    id="cancelOrder" 
+    bind:closeRationPicker="handleCloseRationPicker"
+    bind:confirmCancel="handleConfirmCancel"
+    bind:showMiddleModal="showMiddleModal"
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    preObj="{{recommendObj}}"
+    isMiddleNumber='{{orderInfo.orderStateMap.isMiddleNumber}}'
+    order-id="{{orderId}}"
+    order-state="{{orderInfo.orderState}}"
+    >
+  </cancel-order>
+  <!-- 底部actionsheet -->
+  <view class="mask" wx:if="{{actionSheetVisble}}" bindtap="handleActionsheet" aria-hidden='{{!actionSheetVisble}}'>
+  </view>
+  <view class="action_sheet_container" catchtap="elementTracker" aria-hidden='{{!actionSheetVisble}}' style="bottom:{{actionSheetVisble?0:-400}}rpx">
+      <view class="action_sheet_btn" 
+            bindtap="handleH5pageJump" 
+            aria-role='button'
+            aria-label="联系客服"
+            data-type="1">联系客服</view>
+      <view class="action_sheet_btn" 
+            bindtap="handleH5pageJump" 
+            aria-role='link'
+            aria-label="投诉"
+            data-type="2" 
+            wx:if="{{orderInfo.complaintSwitch == 1}}">投诉</view>
+      <view class="action_sheet_btn log_complain" 
+            bindtap="handleH5pageJump" 
+            aria-role='link'
+            aria-label="{{orderInfo.invoceMiNIButton.title}}"
+            data-type="8" 
+            wx:if="{{orderInfo.invoceMiNIButton && orderInfo.invoceMiNIButton.title}}">{{orderInfo.invoceMiNIButton.title}}</view>
+      <view class="action_sheet_close" 
+            aria-role="button"
+            aria-label="关闭"
+            bindtap="handleActionsheet">关闭</view>
+      <view wx:if="{{isIpx}}" class="white_blank"></view>
+  </view>
+  <!-- 添加小程序 -->
+  <add-mp currentPageName="{{recommendObj.currentPageName}}"  prePageName="{{recommendObj.prePageName}}" pageId="{{recommendObj.pageIdFirstPage}}" recommendObj="{{recommendObj}}"></add-mp>
+  <!-- 大转盘奖品弹层 -->
+  <draw-pop wx:if="{{drawPop}}" initData="{{drawPop}}" recommendObj="{{recommendObj}}"></draw-pop>
+  <view class="init-box" wx:if="{{isShowInitBox && orderInfo.initBox && orderInfo.initBox.title}}">
+    <view class="init-box-content">
+      <view class="init-box-title">
+        {{orderInfo.initBox.title}}
+      </view>
+      <view class="init-box-text">
+        {{orderInfo.initBox.text}}
+      </view>
+      <view class="init-box-buttons">
+        <view
+          wx:for="{{orderInfo.initBox.buttonList}}"
+          wx:for-item="item"
+          wx:key="index"
+          class="init-box-button-item"
+          style="color: {{item.text == '立即重填' ? '#FF1E19' : ''}};font-weight: {{item.text == '立即重填' ? '600' : '400'}}"
+          data-params="{{item.params}}"
+          data-to="{{item.to}}"
+          data-type="window"
+          bindtap="jumpHandler"
+        > {{item.text}} </view>
+      </view> 
+    </view>
+  </view>
+    
+  <!-- 回到顶部 -->
+  <back-top hideBackTop='{{hideBackTop}}' pageMoving='{{pageMoving}}'></back-top>
+
+</block>
+
+<!-- 中间号弹窗 -->
+<middle-number-modal fromPositon="order-orderdetail" bind:closeModal='closeModal' wx:if="{{isShowMiddleModal}}" order-id="{{orderId}}" store-id="{{orderInfo.storeId}}"  recommendObj="{{recommendObj}}" buriedObj="{{recommendObj}}"></middle-number-modal>
+<new-pay-pop  
+    showNewPayPop="{{showPayPop}}"
+    fee="{{fee}}"
+    dealId="{{orderId}}"
+    bgType="{{orderType}}"
+    storeId="{{orderInfo.storeId}}"
+    orgCode="{{orderInfo.orgCode}}"
+    buriedObj="{{recommendObj}}"
+    bind:closeNewPayPop="closeNewPayPop"
+    bind:onPayCancel="closeNewPayPop"
+    bind:onPaySuccess="onPaySuccess">
+  </new-pay-pop>
+<!-- 处方药弹框 -->
+<prescriptionMask bind:closePrescription='closePrescription' wx:if="{{imgUrl}}" imgUrl="{{imgUrl}}"/>
+

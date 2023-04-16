@@ -1,0 +1,155 @@
+.map {
+    position: relative;
+    width: 100%;
+    transition: height .2s;
+}
+.map.full-screen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    transition: height .2s;
+}
+.customCallout {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+.head-wrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    transform: translateX(-50%);
+    width: 82rpx;
+    height: 90rpx;
+    padding: 6rpx 0 0 4rpx;
+    position: relative;
+    left: 50%;
+    z-index: 999;
+}
+.bg-head {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.deliveryMan .bg-head {
+    width: 76rpx;
+    height: 90rpx;
+    position: absolute;
+    left: 115rpx;
+    top: 0;
+    z-index: 1;
+}
+.icon-head {
+    background-color: #f2f1ed;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 0;
+    width: 78rpx;
+    height: 78rpx;
+    justify-self: center;
+    display: flex;
+    position: absolute;
+    left: 115rpx;
+    bottom: 10rpx;
+    /* border: 1px solid blueviolet; */
+}
+.icon-location {
+    width: 20rpx;
+    height: 20rpx;
+    position: absolute;
+    left: 144rpx;
+    bottom: -2rpx;
+    z-index: 1;
+}
+.label-wrap {
+    background-color: white;
+    border: 1rpx solid #e9e9e9;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 99;
+    left: 50rpx;
+    top: 0rpx;
+    margin: 0 30rpx 10rpx;
+    padding: 10rpx 20rpx ;
+    width: auto;
+    height: 40rpx;
+    overflow: visible;
+}
+/* .bg-label {
+    position: absolute;
+    left: 50%;
+    bottom: -7rpx;
+    width: 28rpx;
+    height: 8rpx;
+    transform: translateX(-50%);
+    z-index: 999;
+} */
+.label {
+    font-size: 20rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    position: relative;
+    z-index: 9;
+    text-align: center;
+}
+.time {
+    color: #FC3D46;
+    display: inline-flex;
+}
+.btn-close {
+    width: 100rpx;
+    height: 100rpx;
+    position: absolute;
+    bottom: 80rpx;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.icon {
+    width: 66rpx;
+    height: 66rpx;
+    position: absolute;
+    left: 20rpx;
+}
+.btn-tip {
+    bottom: 226rpx;
+}
+.btn-refresh {
+    bottom: 120rpx;
+}
+.order-gift-left {
+    width: 92rpx;
+    height: 92rpx;
+    position: absolute;
+    left: 7rpx;
+    bottom: 320rpx;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+}
+.order-img {
+    width: 100%;
+    height: 100%;
+}
+.pop6-title-tag {
+    color: #fff;
+}
+.deliveryMan .label-wrap {
+    width: 180rpx;
+    display: block;
+    padding-bottom: 0;
+}
+.deliveryMan .head-wrap  {
+    width: 300rpx;
+}
+.buyer .icon-head {
+    left: 0;
+}

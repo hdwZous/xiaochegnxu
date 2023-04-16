@@ -1,0 +1,642 @@
+{
+    "pages": [
+        "pages/home/home",
+        "pages/tabBar/orderlist/index",
+        "pages/tabBar/person/person",
+        "pages/newLogin/login/login"
+    ],
+    "subPackages": [
+        {
+          "name": "newPersonB-t",
+          "root": "pages/newPersonB-t/",
+          "pages": [
+            "index"
+          ]
+        },
+        {
+            "name": "hackOrder",
+            "root": "pages/hackOrder-t/",
+            "pages": [
+                "launch/index",
+                "detail/index"
+            ]
+        },
+        {
+            "name": "shareCard",
+            "root": "pages/shareCard/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "scanCode",
+            "root": "pages/scanCode/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "channelNew",
+            "root": "pages/channelNew/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "newer",
+            "root": "pages/newer/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "winnerPromotion",
+            "root": "pages/winnerPromotion/",
+            "pages": [
+                "index/index",
+                "store/store",
+                "order/order",
+                "search/search",
+                "searchResult/index",
+                "couponList/index"
+            ],
+            "independent": true
+        },
+        {
+            "name": "store",
+            "root": "pages/store/",
+            "pages": [
+                "index",
+                "subPage/suitList/index",
+                "subPage/promotionList/index",
+                "subPage/couponMore/index"
+            ]
+        },
+        {
+            "name": "h5",
+            "root": "pages/h5/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "exchange",
+            "root": "pages/exchange/",
+            "pages": [
+                "exchange"
+            ]
+        },
+        {
+            "name": "person",
+            "root": "pages/personSecond/",
+            "pages": [
+				"pay-result/pay-result",
+				"bind-vip/bindvip",
+				"jd-webview/index",
+				"feedback/feedback",
+				"setList/index",
+				"set/index",
+				"store/index",
+				"wallet/index"
+            ]
+        },
+        {
+            "name": "recommendSkuPage",
+            "root": "pages/recommendSkuPage/",
+            "pages": [
+                "recommendSkuPage"
+            ]
+        },
+        {
+            "name": "settlementV2",
+            "root": "pages/settlementV2/",
+            "pages": [
+                "index",
+                "subPage/settlementDiscounts/index",
+                "subPage/map/index"
+            ]
+        },
+        {
+            "name": "other",
+            "root": "pages/other/",
+            "pages": [
+                "remarkPage/remarkPage"
+            ]
+        },
+        {
+            "name": "inviteFriends",
+            "root": "pages/inviteFriends/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "selfGoPay",
+            "root": "pages/selfGoPay/",
+            "pages": [
+                "selfGoPay"
+            ]
+        },
+        {
+            "name": "vip",
+            "root": "pages/buyVip/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "login",
+            "root": "pages/login/",
+            "pages": [
+                "web-view/web-view",
+                "wv-common/wv-common"
+            ]
+        },
+        {
+            "name": "address",
+            "root": "pages/address/",
+            "pages": [
+                "home/index",
+                "createOrEdit/index",
+                "map/index",
+                "search/index",
+                "city/index"
+            ]
+        },
+        {
+            "name": "friendHelp",
+            "root": "pages/friendHelp/",
+            "pages": [
+                "detail/index",
+                "launch/index",
+                "list/index",
+                "myList/index"
+            ]
+        },
+        {
+            "name": "groupBuy",
+            "root": "pages/groupBuy/",
+            "pages": [
+                "groupBuyDetail/index",
+                "confirmOrder/index",
+                "groupList/index",
+                "chooseStore/index",
+                "paySuccess/index",
+                "orderInfo/index",
+                "join/index",
+                "goodDetail/index",
+                "oldInviteNew/detail/index",
+                "oldInviteNew/result/index",
+                "oldInviteNew/fuel/index",
+                "collection/myCollectionDetail/index",
+                "groupOrder/index"
+            ]
+        },
+        {
+            "name": "activity",
+            "root": "pages/activity/",
+            "pages": [
+                "homeFocus/index",
+                "store/index"
+            ]
+        },
+        {
+            "name": "order",
+            "root": "pages/order/",
+            "pages": [
+                "list/index",
+                "orderdetail/index",
+                "orderstatus/index",
+                "paySuccess/index",
+                "addOrRenewMember/index",
+                "shareOrder/orderdetail/index",
+                "revise/index"
+            ]
+        },
+        {
+            "name": "coupon",
+            "root": "pages/coupon/",
+            "pages": [
+                "person-coupon",
+                "push-coupon",
+                "voucher/index",
+                "storeList/index"
+            ]
+        },
+        {
+            "name": "searchAbout",
+            "root": "pages/searchAbout/",
+            "pages": [
+                "search/search",
+                "search-result-new/index",
+                "storeSearchResult-new/index"
+            ]
+        },
+        {
+            "name": "medicineMan",
+            "root": "pages/medicineMan/",
+            "pages": [
+                "createOrEdit/index",
+                "choose/index"
+            ]
+        },
+        {
+            "name": "getCustomers",
+            "root": "pages/getCustomers/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "product",
+            "root": "pages/product/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "redEnvelopeList",
+            "root": "pages/redEnvelopeList/",
+            "pages": [
+                "list/index",
+                "rules/index"
+            ]
+        },
+        {
+            "name": "bean-t",
+            "root": "pages/bean-t/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "sharePreview-t",
+            "root": "pages/sharePreview-t/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "beansExchange",
+            "root": "pages/beansExchange-t/",
+            "pages": [
+                "exchangeList/index",
+                "exchangeDetail/index",
+                "myExchange/index"
+            ]
+        },
+        {
+            "name": "farm-t",
+            "root": "pages/farm-t/",
+            "pages": [
+                "home/index",
+                "record/index",
+                "storelist/index"
+            ]
+        },
+        {
+            "name": "signIn-t",
+            "root": "pages/signIn-t/",
+            "pages": [
+                "index",
+                "record/index",
+                "taskList/index",
+                "newCustomerBenefit/index",
+                "secondKillList/index"
+            ]
+        },
+        {
+            "name": "signIn-t-index",
+            "root": "pages/tabBar/signIn-t",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "weBank",
+            "root": "pages/weBank/",
+            "pages": [
+                "index",
+                "protocol/index"
+            ]
+        },
+        {
+            "name": "purchTicket",
+            "root": "pages/purchTicket/",
+            "pages": [
+                "purchTicketsStoreList/storeList",
+                "purchTickets/purchTickets",
+                "purchTicketSearch/index",
+                "couponGo/index"
+            ]
+        },
+        {
+            "name": "addOn",
+            "root": "pages/addOn/",
+            "pages": [
+                "addOnList/index",
+                "addOnListSearch/index",
+                "landPage/collectOrderSearch/index",
+                "landPage/collectOrderList/index"
+            ]
+        },
+        {
+            "name": "storeWin",
+            "root": "pages/storeWin/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "phoneCharge-t",
+            "root": "pages/phoneCharge-t/",
+            "pages": [
+                "index",
+                "payResult/index",
+                "rechargeDetail/index",
+                "rechargeList/index"
+            ]
+        },
+        {
+            "name": "vpayMember-t",
+            "root": "pages/vpayMember-t/",
+            "pages": [
+                "home/index",
+                "instructions/index",
+                "envelopesRecord/index",
+                "bountyList/index",
+                "couponTab/index",
+                "exchangePage/index",
+                "discountList/index",
+                "introductionPage/index",
+                "packageSelection/index",
+                "memberDay/index",
+                "rightsInstruction/index",
+                "manageRenew/index"
+            ]
+        },
+        {
+            "name": "appExclusive",
+            "root": "pages/appExclusive/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+          "name": "myCoupons",
+          "root": "pages/myCoupons/",
+          "pages": [
+            "index",
+            "subPages/disabledCoupon/index",
+            "subPages/description/index"
+          ]
+        },
+        {
+          "name": "myAttention",
+          "root": "pages/myAttention/",
+          "pages": [
+              "index"
+          ]
+        },
+        {
+            "name": "seckill",
+            "root": "pages/seckill/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "differentIndustry-t",
+            "root": "pages/differentIndustry-t",
+            "pages": [
+                "index",
+                "yili/index",
+                "home/index",
+                "exchangePage/index",
+                "home/cooperateDetail/index"
+            ]
+        },
+        {
+            "name": "winner",
+            "root": "pages/winner-t/",
+            "pages": [
+                "index",
+                "coupon_collection/index",
+                "coupon_sku/index",
+                "coupon_repurchase/index",
+                "winner_share_product/index",
+                "winner_share_product_search/index"
+            ],
+            "independent": true,
+            "taro": true
+        },
+        {
+            "name": "nearbyStore",
+            "root": "pages/nearbyStore/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "portal",
+            "root": "pages/portal-t/",
+            "pages": [
+                "index",
+                "advert_jump_store/index"
+            ],
+            "independent": true,
+            "taro": true
+        },
+        {
+            "name": "offLineActive-t",
+            "root": "pages/offLineActive-t/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "addOnFreight",
+            "root": "pages/addOnFreight/",
+            "pages": [
+                "freight/index",
+                "freightSearch/index"
+            ]
+        },
+        {
+            "name": "getCoupon-t",
+            "root": "pages/getCoupon-t/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "orchard-t",
+            "root": "pages/orchard-t/",
+            "pages": [
+                "index",
+                "strategy/index",
+                "myHarvest/index",
+                "seriesStrategy/index"
+            ],
+            "taro": true
+        },
+        {
+          "root": "pages/vpaymember_t/",
+          "pages": [
+              "home/index",
+              "memberGoods/index",
+              "packageSelection/index",
+              "rightsInstruction/index",
+              "memberDay/index",
+              "couponTab/index",
+              "exchangePage/index",
+              "instructions/index",
+              "envelopesRecord/index",
+              "bountyList/index",
+              "discountList/index",
+              "manageRenew/index",
+              "payResult/index",
+              "toVPlusCenterPage/index"
+          ]
+        },
+        {
+            "name": "landpage",
+            "root": "pages/landpage/",
+            "pages": [
+                "feed/index"
+            ]
+        },
+        {
+            "name": "communityRedpack",
+            "root": "pages/communityRedpack/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "giftCard",
+            "root": "pages/giftCard/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "groupPage",
+            "root": "pages/groupPage/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+            "name": "newUser-t",
+            "root": "pages/newUser-t/",
+            "pages": [
+                "index"
+            ]
+        },
+        {
+          "name": "couponTogether",
+          "root": "pages/couponTogether",
+          "pages": ["index"]
+        },
+        {
+          "name": "mockTool",
+          "root": "pages/mockTools/",
+          "pages": [
+            "index"
+          ]
+        },
+        {
+          "name": "vipChannel-t",
+          "root": "pages/vipChannel-t/",
+          "pages": ["index"],
+          "independent": true
+        },
+        {
+          "name": "newInvoice",
+          "root": "pages/newInvoice/",
+          "pages": [
+            "list/index",
+            "edit/index"
+          ]
+        }
+    ],
+    "preloadRule": {
+        "pages/home/home": {
+            "network": "all",
+            "packages": [
+                "pages/activity/",
+                "pages/store/",
+                "pages/channelNew/"
+            ]
+        }
+    },
+    "window": {
+        "navigationBarBackgroundColor": "#47b34f",
+        "navigationBarTitleText": "京东到家",
+        "navigationBarTextStyle": "black",
+        "backgroundTextStyle": "light",
+        "backgroundColor": "#f6f6f6",
+        "navigationStyle": "default"
+    },
+    "tabBar": {
+        "position": "bottom",
+        "color": "#666666",
+        "selectedColor": "#47b34f",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "附近店铺",
+                "iconPath": "images/pdj_home_default.png",
+                "selectedIconPath": "images/pdj_home.png"
+            },
+            {
+                "pagePath": "pages/tabBar/orderlist/index",
+                "text": "订单",
+                "iconPath": "images/pdj_order_default.png",
+                "selectedIconPath": "images/pdj_order_selected.png"
+            },
+            {
+                "pagePath": "pages/tabBar/person/person",
+                "text": "我的",
+                "iconPath": "images/pdj_my_default.png",
+                "selectedIconPath": "images/pdj_my_selected.png"
+            }
+        ]
+    },
+    "plugins": {
+        "loginPlugin": {
+            "version": "1.5.1",
+            "provider": "wxefe655223916819e"
+        }
+    },
+    "navigateToMiniProgramAppIdList": [
+        "wxbd687630cd02ce1d",
+        "wxcecfde2bc765c661",
+        "wx4d0ad6eb98ccaa39",
+        "wxcccbedbea4d570e2",
+        "wx8876bdc7311e2d4a",
+        "wx91d27dbf599dff74",
+        "wxe0fd3b6e024bf626",
+        "wxdb1f857b4f658a6f",
+        "wxca1fe42a16552094",
+        "wx8830763b00c18ac3",
+        "wxd48ca88c7f7e745c"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用获取最近的门店信息"
+        }
+    },
+    "debug": false,
+    "requiredPrivateInfos":[
+      "getLocation"
+    ],
+    "requiredBackgroundModes": [
+        "audio",
+        "location"
+    ],
+    "sitemapLocation": "sitemap.json"
+}

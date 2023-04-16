@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "guide-bean": "./guideBean/index",
+    "guide-task": "./guideBeanTask/index",
+    "guide-bean-kill": "./guideBeanKill/index"
+  },
+  "navigationBarTitleText": ""
+}

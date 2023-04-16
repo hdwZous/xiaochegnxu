@@ -1,0 +1,147 @@
+<view wx:for="{{list}}" wx:key="index" class="channel_ep">
+  <!-- 一行一商品 -->
+  <view
+    class="item channel_comp_ep"
+    wx:if="{{item.type == 6}}"
+    data-user-action='{{item.data.userAction}}'
+    data-trace-id='{{traceId}}'
+    data-page-id="{{pageId}}"
+    data-current-page-name="{{currentPageName}}"
+    data-pre-page-name='{{prePageName}}'>
+    <view class="item_content log_druglist" bind:tap="handleABJump" data-item="{{item.data}}">
+      <view class="img_wrap">
+        <webp-img src="{{item.data.imgUrl}}" webp-img='img'></webp-img>
+      </view>
+      <view class="item_content_right">
+        <view class="name_wrap ellipsis">
+          <text
+            class="icon"
+            wx:if="{{item.data.skuNameTag&&item.data.skuNameTag.iconText}}"
+            style="background: linear-gradient(135deg, {{item.data.skuNameTag.startColorCode}} 0%, {{item.data.skuNameTag.endColorCode}} 100%);color:{{item.data.skuNameTag.iconTextColorCode}}"
+          >{{item.data.skuNameTag.iconText}}</text>
+          <text class="name ">{{item.data.skuName}}</text>
+        </view>
+        <view class="desc ellipsis">{{item.data.funcIndicatinsOrAdWord}}</view>
+        <view class="desc" wx:if="{{item.data.deliveryFirst | item.data.freightWords | item.data.freightDescForLine}}">
+          <text>{{item.data.deliveryFirst}}</text>
+          <text>|</text>
+          <text>{{item.data.freightWords}}</text>
+          <text style="text-decoration:line-through;font-size:20rpx;">{{item.data.freightDescForLine}}</text>
+        </view>
+
+        <!-- 排行榜 -->
+
+        <view style="margin-top: 8rpx;display:inline-block;" wx:if="{{item.data.recWordsVO}}">
+          <ranking-list info="{{item.data.recWordsVO}}"></ranking-list>
+        </view>
+        <view style="margin-top: 8rpx" wx:if="{{item.data.personlizedCateAttritemList}}">
+          <goods-attribute buriedObj="{{recommendObj}}" info="{{item.data.personlizedCateAttritemList}}"></goods-attribute>
+        </view>
+        <view class="pirce_item">
+          <view class="price-group">
+            <coupon-price
+              majorPriceFz="36rpx"
+              majorPriceWhFz="24rpx"
+              majorPrice="{{item.data.majorPrice}}"
+              intervalPrice="{{item.data.intervalPrice}}"
+            ></coupon-price>
+            <view style="padding-left: 8rpx">
+              <coupon-price minorPrice="{{item.data.minorPrice}}"></coupon-price>
+            </view>
+            <coupon-price toHandPrice="{{item.data.toHandPrice}}"></coupon-price>
+          </view>
+          <view class="buy" data-item="{{item.data}}" catch:tap="handleGotoBuy">购买</view>
+        </view>
+      </view>
+    </view>
+    <view
+      class="footer log_aggregateStoresLayer"
+      data-useraction="{{item.data.userAction}}"
+      data-item="{{item.data}}"
+      bind:tap="handleFooterJump">
+      <image class="nav_arrow" src="https://storage.360buyimg.com/wximg/channel/red_arrow02.png" />
+      <view class="footer_left ellipsis">
+        <image class="store_logo" src="{{item.data.storeLogo}}" />
+        <text class="store_name">{{item.data.storeName}}</text>
+      </view>
+      <view class="footer_right" wx:if="{{item.data.skuBaseInfos && item.data.skuBaseInfos.length <= 1}}">
+        仅当前门店可售
+      </view>
+      <view wx:else>
+        <text class="footer_title">{{item.data.title}}</text>
+        <text class="red_color" style="opacity:0.2" wx:if="{{item.data.title}}">|</text>
+        <text class="red_color">{{item.data.moreButton || '去选店'}}</text>
+        <image class="red_arrow" src="https://storage.360buyimg.com/wximg/channel/red_arrow.png" />
+      </view>
+    </view>
+  </view>
+  <!-- 一行一banner -->
+  <view class="drug-banner" wx:if="{{item.type == 100}}">
+    <index-banner traceId='{{traceId}}' data="{{item}}"/>
+  </view>
+  <!-- 一行一图文宫格 -->
+  <view
+    class="pictext-contanier"
+    wx:if="{{item.type == 101}}">
+    <view
+      wx:for="{{item.data.resources}}"
+      class='pictext log_druglist_pictext  channel_comp_ep'
+      bind:tap='handleGraphicJump'
+      data-to='{{item.to}}'
+      data-params='{{item.params}}'
+      data-trace-id='{{traceId}}'
+      data-user-action='{{item.userAction}}'
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name='{{prePageName}}'>
+      <view class="pictext-text">
+        <text class="pictext-name">{{item.title}}</text>
+        <text class="pictext-solgon">{{item.words}}</text>
+      </view>
+      <view class="pictext-img">
+        <image class="pictext-image" src="{{item.imgUrl}}"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 一行一热门店铺 -->
+  <view class="hot_stores" wx:if="{{item.type == 102}}">
+    <view class="hot_stores_title-line">
+      <image style="width: 36rpx;height: 36rpx;margin-right: 12rpx" src="https://storage.360buyimg.com/wxmini/cash/hotstore.png" alt=""></image>
+      <view class="hot_stores_title">{{item.data.title}}</view>
+    </view>
+    <view class="hot_stores_container">
+
+      <view
+        bind:tap='handleHotStore'
+        wx:for="{{item.data.resources}}"
+        class="hot_stores_single  channel_comp_ep"
+        data-to='{{item.to}}'
+        data-params='{{item.params}}'
+        data-trace-id='{{traceId}}'
+        data-user-action='{{item.userAction}}'
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'>
+        <view class="hot_stores_logo">
+          <image src="{{item.imgUrl}}" alt=""></image>
+        </view>
+        <view class="hot_stores_name">{{item.name}}</view>
+        <view
+          class="coupon-item"
+          wx:for="{{item.coupons}}"
+          wx:for-index="index"
+          wx:for-item="couponItem"
+          wx:key="couponItem"
+          wx:if="{{item.coupons.length > 0}}">
+            <view class="coupon-tag" style="color: {{couponItem.frontColor}};border:1px solid {{couponItem.outLineColor}}">{{couponItem.words}}
+              <block>
+                <view class="left-radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+                <view class="right-radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+              </block>
+            </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

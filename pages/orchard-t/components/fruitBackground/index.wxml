@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view><block wx:if="{{showBackFlag}}"><view class="{{style.container}}"><view class="{{style.img}}"></view><view class="{{style.text}}">活动目前不支持哦</view></view></block></view></block>

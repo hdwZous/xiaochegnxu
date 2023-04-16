@@ -1,0 +1,15 @@
+.footer-tab {
+  position: fixed;
+  bottom: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100rpx;
+  padding-top: 2rpx;
+  padding-bottom: 8rpx;
+  background: #fff;
+}
+
+.footer-tab .tab-img {
+  width: 100rpx;
+  height: 96rpx;
+}

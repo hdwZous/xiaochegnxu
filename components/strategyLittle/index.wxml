@@ -1,0 +1,41 @@
+<view 
+    class="strategy_wrap exposure common_strategylittle" 
+    data-user-action="{{item.userAction}}" 
+    data-page-id="{{buriedObj.pageIdFirstPage}}"
+    data-current-page-name="{{buriedObj.currentPageName}}"
+    data-pre-page-name='{{buriedObj.prePageName}}'
+    data-trace-id="{{traceId}}"
+    bind:tap="clickCard" 
+    style="background: #ffffff url('{{item.skuList.length ? item.fontImgUrl : item.imgUrl}}') no-repeat center;background-size: contain;" 
+    aria-role="link" 
+    aria-label="{{item.title}}{{item.words}}">
+    <block wx:if="{{item.skuList.length}}">
+        <!-- 头部 -->
+        <view class="strategy_title_case flex-row">
+            <view class="strategy_title flex-none">{{item.title}}</view>
+            <view class="strategy_title_img_case flex-none">
+                <image class="strategy_title_img" src="{{item.tagImgUrl}}" />
+            </view>
+        </view>
+        <!-- 说明 -->
+        <view class="strategy_desc ellipsis" style="color: {{item.wordsColor || '#FF1E19'}}">
+            {{item.words}}
+        </view>
+        <!-- 商品 -->
+        <view class="strategy_googs_case flex-row">
+            <view class="strategy_googs_item flex-none" wx:for="{{item.skuList}}" wx:for-item="goodsItem" wx:for-index="index" wx:key="item">
+                <view class="strategy_googs_img_case">
+                    <image class="strategy_googs_img" src="{{goodsItem.imgUrl}}" />
+                </view>
+                <view class="strategy_googs_price flex-row">
+                    <view class="strategy_googs_price_new flex-none" style="color: {{goodsItem.majorPrice.priceColor}}" wx:if="{{goodsItem.majorPrice.price}}">
+                        ¥{{goodsItem.majorPrice.price}}
+                    </view>
+                    <view class="strategy_googs_price_old flex-none" style="color: {{goodsItem.minorPrice.priceColor}}; text-decoration: {{goodsItem.minorPrice.deleteLine?'line-through':'none'}};" wx:if="{{goodsItem.minorPrice.price}}">
+                        ¥{{goodsItem.minorPrice.price}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>

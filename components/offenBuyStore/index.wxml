@@ -1,0 +1,23 @@
+<view class="offen-buy-store">
+   <view class="title" aria-role='text' aria-label="常买店铺">常买店铺</view>
+   
+   <view class="list">
+      <view class="item" 
+            catchtap="gotoStore" 
+            data-order="{{item.params}}" 
+            data-pre-obj="{{buriedObj}}"
+            wx:for="{{list}}" 
+            wx:key="index"
+            aria-label="{{item.stationName}}.买过{{item.orderNum}}次.{{item.tag.iconText}}"
+            aria-role="link">
+         <image class="logo" mode="aspectFill" src="{{item.logo}}" aria-hidden="true" />
+         <view class="name" aria-hidden="true">{{item.stationName}}</view>  
+         <view class="tip" aria-hidden="true">
+            买过<view class="order-num">{{item.orderNum}}</view>次
+         </view>
+         <view class="tag" style="color:{{item.tag.iconTextColorCode}};background: linear-gradient(90deg, {{item.tag.startColorCode}} 0%, {{item.tag.endColorCode}} 100%);" aria-hidden="true">
+            {{item.tag.iconText}}
+         </view>
+      </view>
+   </view>
+</view>

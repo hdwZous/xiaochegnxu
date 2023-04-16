@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.noLoginCont}}"><view class="{{style.btnCont}}"><view class="{{style.btn}}" bindtap="anonymousFunc0">立即领取</view></view></view></block>

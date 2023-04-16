@@ -1,0 +1,20 @@
+<view wx:if="{{showPop}}"
+      class="bg"
+      catchtap="closeBg"
+>
+    <image class="hand_ic animation"
+            style="top: {{top}}"
+            mode="widthFix"
+            lazy-load="true"
+            src="https://storage.360buyimg.com/wximg/home/follow_tip_hand_icon_0.png"
+    ></image>
+    <view class="text_1 margin_top_130"> 点击「添加到我的小程序」</view>
+    <view class="text_1 margin_top_1O">随时访问</view>
+    <view class="card_top">转发</view>
+    <view class="card_middle">添加到我的小程序</view>
+    <view class="card_bottom">关于京东到家生鲜超市医药鲜花1小时</view>
+    <view class="close_btn"
+            style="margin-top:110rpx"
+            catchtap="closeKnowBtn"
+    >我知道了</view>
+</view>

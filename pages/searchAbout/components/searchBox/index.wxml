@@ -1,0 +1,58 @@
+
+<view class="commonSearch">
+  <view class="editbox">
+    <image
+      class="editboxDrawableLeft" 
+      mode="aspectFit" 
+      src="https://storage.360buyimg.com/wxapp/iconsearch.png"
+      aria-hidden="true" />
+      <view class="editboxInput" >
+    <input
+      class="editboxInputArea"
+      bindconfirm="handleSearch" 
+      bindinput="bindSearchInput" 
+      placeholder="{{initSearchVal?initSearchVal:fromSource?'搜索您要购买的商品名称/类型':'搜索附近的商家商品'}}" 
+      placeholder-style="color: #999"
+      focus='{{autoFocus}}'  
+      value='{{searchValue}}'
+      aria-role='input'
+      aria-placeholder="{{initSearchVal?initSearchVal:fromSource?'搜索您要购买的商品名称/类型':'搜索附近的商家商品'}}"
+      aria-label="{{searchValue ? searchValue : ''}}" />
+      </view>
+    <image 
+      wx:if="{{showEditDeleteBtn}}" 
+      class="editboxDrawableRight" bindtap="clickDelBtn" 
+      mode="aspectFit" 
+      src="https://storage.360buyimg.com/wximg/common/edit_delete_btn.png"
+      aria-role='button'
+      aria-label='清空搜索词' />
+    <!-- 占位用，以免叉号显示、隐藏造成输入框长度变化 -->
+    <image 
+      wx:if="{{!showEditDeleteBtn}}" 
+      class="editboxDrawableRight" 
+      bindtap="clickDelBtn" 
+      mode="aspectFit"
+      aria-hidden="true" />
+  </view>
+  <text class="editboxButton" size="mini" type="default" bindtap="handleSearch" aria-label="搜索" aria-role='link'>搜索</text>
+</view>
+<scroll-view class="section_up" scroll-y wx:if="{{suggestionList.length > 0}}">
+  <!-- 联想词列表 -->
+  <view wx:for="{{suggestionList}}" 
+      wx:key="index" 
+      data-item="{{item}}" 
+      bind:tap="handlePageToGo"
+      aria-role="link"
+      aria-label="{{item.name}}"
+      class="suggestion">
+      <search-suggestion
+        suggestionWord="{{item}}"
+        pageId='{{pageId}}'
+        currentPageName='{{currentPageName}}'
+        prePageName='{{prePageName}}'
+        traceId="{{traceId}}"
+        recommendObj="{{recommendObj}}"
+        styleABMap="{{styleABMap}}"
+        />
+  </view>
+</scroll-view>

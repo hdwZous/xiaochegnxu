@@ -1,0 +1,343 @@
+
+@import '/common/css/light.wxss';
+@import '/common/css/global.wxss';
+@import '/common/css/regular.wxss';
+
+.container{
+    background: #fff;
+    border-radius: 6px;
+}
+.title_wrap{
+    display: flex;
+    justify-content: space-between;
+    padding: 30rpx;
+    border-bottom: 1px solid #f8f8f8;
+}
+.left{
+    color: #333;
+    font-size: 32rpx;
+    font-weight: bold;
+    width: 450rpx;
+}
+.left image{
+    width: 20rpx;
+    height: 20rpx;
+    position: relative;
+    top:0rpx;
+    left:-2rpx;
+}
+.right image{
+    width: 28rpx;
+    height: 28rpx;
+    position: relative;
+    top:2rpx;
+    left: -8rpx;
+}
+.contact{
+    font-size: 28rpx;
+    color: #333;
+}
+
+/* 订单列表 */
+.list_and_price_wrap{
+    padding:30rpx 30rpx 0 30rpx;
+}
+.list_item{
+    display: flex;
+    margin-bottom: 34rpx;
+    position: relative;
+}
+.list_item_img{
+    width:100rpx;
+    height:100rpx;
+    border-radius:8rpx;
+}
+.list_item_right{
+    margin-left: 20rpx;
+    width: calc(100% - 120rpx);
+}
+.list_item_right .skuSpecification {
+  font-size: 24rpx;
+  color: rgb(153, 153, 153);
+  line-height: 34rpx;
+  padding: 10rpx 0;
+}
+.name{
+    font-size: 28rpx;
+    color: #333;
+    line-height: 34rpx;
+    margin-top: 6rpx;
+}
+.promotion_label{
+    padding:0 8rpx;
+    height:28rpx;
+    line-height: 28rpx;
+    background:linear-gradient(135deg,rgba(85,216,94,1) 0%,rgba(72,193,81,1) 100%);
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    color:#fff;
+    margin-right: 10rpx;
+    position: relative;
+    top:-4rpx;
+}
+.price_wrap{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    align-items: flex-start;
+    font-family: regular;
+    height: 40rpx;
+    line-height: 40rpx;
+    padding-top: 10rpx;
+}
+.left_price{
+    font-size: 28rpx;
+    color:#333;
+    font-weight: bold;
+}
+.right_price{
+    font-weight: bold;
+}
+.origin_price{
+    font-size: 28rpx;
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 14rpx;
+    font-weight: normal;
+}
+.pay_price{
+    font-size: 28rpx;
+    color: #333;
+}
+.total_num{
+    height: 52rpx;
+    line-height: 52rpx;
+    background:#F9F9F9;
+    color: #999;
+    text-align: center;
+    font-size: 28rpx;
+    border-radius: 200rpx;
+    margin-bottom: 40rpx;
+}
+.total_num image{
+    width: 12rpx;
+    height: 24rpx;
+    transform: rotate(90deg);
+    position: relative;
+    left:8rpx;
+    top:6rpx;
+    transition: all ease 0.3s;
+}
+.upper{
+    transform: rotate(270deg) !important;
+}
+.total_price_wrap{
+    display: flex;
+    justify-content: space-between;
+    color:#333;
+    font-size: 28rpx;
+    font-family: light;
+    margin-bottom: 40rpx;
+}
+.total_price_right{
+    font-weight: bold;
+}
+.other_price{
+    margin-bottom: 40rpx;
+}
+.discounts_wrap{
+    display: flex;
+    justify-content: space-between;
+    font-size: 28rpx;
+    margin-bottom: 40rpx;
+}
+.discounts_label{
+    padding:0 8rpx;
+    height:28rpx;
+    line-height: 28rpx;
+    background:linear-gradient(135deg,rgba(85,216,94,1) 0%,rgba(72,193,81,1) 100%);
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    color:#fff;
+    margin-right: 10rpx;
+    position: relative;
+    top:-4rpx;
+}
+.discounts_right{
+    color:#FF5757;
+    font-family: light;
+    font-weight: bold;
+}
+.discounts_coupon_wrap{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40rpx;
+    font-size: 28rpx;
+    color:#333;
+    font-family: light;
+}
+.discounts_coupon_right{
+    color:#FF5757;
+}
+.final_pay_price_wrap{
+    text-align: right;
+    padding-top: 52rpx;
+    padding-right: 30rpx;
+    padding-bottom: 40rpx;
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    color:#333;
+    font-family: light;
+    margin-bottom: 14rpx;
+    border-top: 1rpx solid #F5F5F5;
+}
+.total_save_text{
+    color:#666;
+}
+.save_price{
+    color:#FF5757;
+    margin-right: 30rpx;
+}
+.real_pay_price{
+    font-family: regular !important;
+    color:#333;
+    font-size: 44rpx;
+}
+.delivery-fee-icon {
+    width: 26rpx;
+    height: 26rpx;
+    padding-right: 48rpx;
+    padding-left: 10rpx;
+    position: relative;
+    top: 4rpx;
+}
+.top_left_tag{
+    position: absolute;
+    top:0rpx;
+    left:0rpx;
+    /* background: linear-gradient(90deg, #6785FF 0%, #2D56FF 100%); */
+    border-radius: 8rpx 0 8rpx 0;
+    font-size: 20rpx;
+    height: 24rpx;
+    line-height: 24rpx;
+    display: flex;
+    align-items: center;
+    padding:0 4rpx 0 4rpx;
+}
+.top_left_tag-icon{
+    width: 20rpx;
+    height: 20rpx;
+}
+.weight_unit{
+    font-size: 24rpx;
+    font-family: normal;
+    color:#666;
+    font-weight: normal;
+}
+.member_icon {
+  width: 78rpx;
+  height: 24rpx;
+}
+.not_weight{
+    font-size: 24rpx;
+    color: #FF1E19;
+    font-weight: normal;
+    margin-top: 6rpx;
+}
+/* 增值服务 */
+.add_service_item{
+    display: flex;
+    justify-content: space-between;
+    font-size: 24rpx;
+    color: #333;
+    margin-top: 12rpx;
+}
+.add_service_left{
+    max-width: 456rpx;
+}
+.add_service_right{
+    font-family: regular;
+}
+.use_service{
+    text-align: right;
+    font-size: 24rpx;
+    color: #348BED;
+    margin-top: 12rpx;
+}
+.right_arrow{
+    display: inline-block;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-color: rgb(52, 139, 237);
+    border-right-width: 1rpx;
+    border-bottom-width: 1rpx;
+    height: 14rpx;
+    transform: rotate(-45deg);
+    /* transform-origin: center center; */
+    width: 14rpx;
+    position: relative;
+    top: -2rpx;
+    left: -4rpx;
+}
+
+.no_refunds {
+  background: #fff;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  padding: 40rpx 30rpx;
+  border-top: 1rpx solid #F5F5F5;
+}
+
+.no_refunds .top_box {
+  position: relative;
+}
+
+.no_refunds .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+  color: rgb(51, 51, 51);
+  max-width: 480rpx;
+}
+
+.no_refunds .settlement-delivery-fee-icon {
+  margin-left: 6rpx;
+}
+
+.no_refunds .desc_info {
+  color: rgb(153, 153, 153);
+  font-size: 24rpx;
+  line-height: 30rpx;
+  margin-top: 10rpx;
+}
+
+.no_refunds .delivery-fee-icon {
+  top: 0;
+}
+
+.deposit-wrap {
+  padding-top: 34rpx;
+  padding-bottom: 40rpx;
+  border-top: 1rpx solid #F5F5F5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

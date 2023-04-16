@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "shop-list": "../../../components/shopList/index"
+  }
+}

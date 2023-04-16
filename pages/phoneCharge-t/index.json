@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "pop": "./components/pop/index",
+    "pop-up": "./commonComponents/Pop-up-t/index",
+    "coupon": "./components/coupon/index"
+  },
+  "navigationBarTitleText": "手机充值"
+}

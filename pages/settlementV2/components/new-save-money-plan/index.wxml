@@ -1,0 +1,65 @@
+<view class="new-money-strategy-wrap" style="padding-bottom: {{isIPX ? '48rpx' : '0'}}">
+  <view class="new-money-strategy" catchtouchmove="true" style="top: -{{hmlInfo.tip_over?hmlInfo.top_comp_h:hmlInfo.top_origin_h}}px;transform: translateY({{-animation}}px)">
+    <view class="strategy-top-box d-flex flex-column align-items-center" id="top-box">
+      <view class="new-strategy-arrow" catchtap="upStrategy"><image class="strategy-arrow-img {{layerOpen?'up':''}}" src="https://storage.360buyimg.com/wximg/storewin/money-strategy-arrow.png"></image></view>
+      <view class="new-strategy-top d-flex flex-row align-items-center">
+        <view class="strategy-des">
+          <view class="d-flex flex-row align-items-center">
+            <image class="new-strategy-des-icon" src="https://storage.360buyimg.com/wximg/storewin/strategy-des-icon.png" />
+            <view class="new-strategy-des-detail">
+              <block wx:for="{{infos.title.textList}}" wx:for-index="items" wx:key="items">
+                <text class="new-strategy-des-title {{item.type == 2?'ragular':''}}" style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}}">{{item.text}}</text>
+              </block>
+            </view>
+          </view>
+          <view class="new-strategy-top-tip d-flex flex-row align-items-center" id="top-tip">
+            <view class="nstt_box {{hmlInfo.tip_over?'ellipsis':''}}" style="height:{{hmlInfo.tip_over?hmlInfo.hmlInfo.tip_base+'px':'auto'}}">
+              <block wx:for="{{infos.tip.textList}}" wx:key="tip">
+                <text style="color:{{item.fontColor||'#333333'}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};text-decoration: {{item.jumpFlag ? 'underline' : 'none'}}" data-item="{{item}}" catchtap="jumpAgreeUrl">{{item.text}}</text>
+              </block>
+              <view class="new_tip_open up" catchtap="showTip" wx:if="{{!hmlInfo.tip_over&&hmlInfo.tip_open==true}}">
+                <text>收起</text>
+                <image class="tip_open_icon up" src="https://storage.360buyimg.com/wximg/storewin/save-money-arrow.png" />
+              </view>
+            </view>
+            <view class="new_tip_open" catchtap="showTip" wx:if="{{hmlInfo.tip_over&&hmlInfo.tip_open==false}}">
+              <text>展开</text>
+              <image class="tip_open_icon" src="https://storage.360buyimg.com/wximg/storewin/save-money-arrow.png" />
+            </view>
+          </view>
+          <view class="new-strategy-space" id="strategy-space"></view>
+        </view>
+        <view class="new-strategy-btn d-flex flex-row align-items-center flex-none {{infos.openState==1?'checkOn':''}}" catchtap="changeMoneyStaus">
+          <text>{{infos.buttonText}}</text>
+          <image class="nsb-check" src="{{infos.openState==1?'https://storage.360buyimg.com/wximg/settleV2/check-true-green.png':'https://storage.360buyimg.com/wximg/storewin/save-money-nocheck.png'}}" />
+          <view class="shin-border-box" wx:if="{{infos.openState==1}}"></view>
+        </view>
+      </view>
+    </view>
+    <view class="new-strategy-vip-box" id="vip-box">
+      <block wx:for="{{infos.saveMoneyItems}}" wx:key="items">
+        <view class="new-sgvip-items-box d-flex flex-row align-items-center">
+          <image class="sgvip-icon" src="{{item.icon}}" />
+          <view class="new-sgvip-middle">
+            <view class="sgvip-middle-title">
+              <block wx:for="{{item.title.textList}}" wx:for-item="tipItems" wx:key="tips">
+                <text class="sgvip-m-t-txt {{tipItems.type == 2?'ragular':''}}" style="color:{{tipItems.fontColor}};font-size:{{tipItems.fontSize*2}}rpx;font-weight:{{tipItems.fontWeight==1?'bold':tipItems.fontWeight==2?'lighter':'normal'}}">{{tipItems.text}}</text>   
+              </block>
+              <image wx:if="{{item.smallQuestionMark}}" data-item="{{item.smallQuestionMark}}" catchtap="jumpAgreeUrl" class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+            </view>
+          </view>
+          <block wx:if="{{item.type==3&&inflationSuccess}}">
+            <view class="inflation d-flex flex-row align-items-center">
+              <text>券已发放</text>
+              <image class="inflation_icon" src="https://storage.360buyimg.com/wximg/storewin/inflation-icon.png" />
+            </view>
+          </block>
+          <block wx:else>
+            <view wx:if="{{item.openState}}" class="sgvip-btn {{item.openState === 2 ? 'unify-roll-btn-off' : item.openState === 1 ? 'unify-roll-btn-on' : ''}}" data-items="{{item}}" data-ids="{{index}}" catchtap="changeMoneyItemsStaus"></view>
+          </block>
+        </view>
+      </block>
+      <view class="new-explain">{{infos.explain}}</view>
+    </view>
+  </view>
+</view>

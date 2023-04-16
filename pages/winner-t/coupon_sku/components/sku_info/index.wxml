@@ -1,0 +1,16 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.couponSkuInfo}}">
+        <view class="{{styles.content}}" bindtap="anonymousFunc0">
+            <image class="{{styles.left}}" src="{{SKUInfo.skuImageUrl}}"></image>
+            <view class="{{styles.right}}">
+                <view class="{{styles.title}}">{{SKUInfo.skuName}}</view>
+                <view class="{{styles.tags}}"><text class="{{styles.tag1}}">{{SKUInfo.discountMsg}}</text>
+                </view>
+                <view class="{{styles.price}}"><text class="{{styles.span}}">¥{{SKUInfo.currentPrice || SKUInfo.originalPrice}}</text>
+                    <block wx:if="{{SKUInfo.currentPrice}}"><text class="{{styles.small}}">¥{{SKUInfo.originalPrice}}</text>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>

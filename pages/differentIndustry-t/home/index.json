@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index",
+    "webp-img": "../image/index",
+    "sec-kill-goods": "./components/seckill/index"
+  },
+  "navigationBarTitleText": "到家会员免费送"
+}

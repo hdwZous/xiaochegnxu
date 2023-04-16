@@ -1,0 +1,139 @@
+<view
+  class="goods_wrap channel_comp_ep"
+  data-trace-id="{{traceId}}"
+  data-page-id="{{pageId}}"
+  data-current-page-name="{{currentPageName}}"
+  data-pre-page-name='{{prePageName}}'
+  data-user-action="{{item.userAction}}">
+  <!-- 商品图 -->
+  <view
+    aria-role="link"
+    aria-label="商品图片：{{item.recWordsVO.recWords}}{{item.skuName}}"
+    class="goods_image_case"
+    data-item="{{item}}"
+    bind:tap="clickToStore">
+    <!-- 图片 -->
+    <!-- <image class="goods_image" src="{{item.imgUrl}}" /> -->
+    <webp-img webp-img="goods_image" src="{{item.imgUrl}}" />
+    <!-- 增加广告标 -->
+    <view wx:if="{{item.samIdImgUrl}}" class="tag_ad">
+        <image class="tag_ad_image" src="{{item.samIdImgUrl}}" />
+    </view>
+    <!-- 到店标 -->
+    <view class="biz_tag_left_top">
+      <biz-tag bizType="horizontal" businessTag="{{item.businessTag}}"/>
+    </view>
+    <!-- 底部资源位 -->
+    <bottom-corner-tag wx:if="{{item.bottomCornerTag}}" infos="{{item.bottomCornerTag}}" moduleId="SkuFeedOne" showHandle="{{true}}" />
+  </view>
+  <!-- 商品名称 -->
+  <view
+    class="goods_name_wrapper"
+    aria-role="tab"
+    aria-label="商品名称：{{item.recWordsVO.recWords}}{{item.skuName}}">
+    <view
+      class="goods_name ellipsis2"
+    > 
+      <sku-name-tag wx:if="{{item.skuNameTag && item.skuNameTag.iconText}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+      {{item.skuName}}
+    </view>
+  </view>
+  <!-- 副标题 -->
+  <view wx:if="{{item.funcIndicatinsOrAdWord}}" class="goods_subtitle">
+    {{item.funcIndicatinsOrAdWord}}
+  </view>
+    
+  
+  <!-- 属性标签 -->
+  <view wx:if="{{item.personlizedCateAttritemList}}" class="goods_attribute_box">
+      <goods-attribute buriedObj="{{buriedObj}}" info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+  </view>
+  <!-- 功能主治||广告语 -->
+  <view  aria-hidden="true" wx:elif="{{item.skuDesc}}" class="goods_aword ellipsis">{{item.skuDesc}}</view>
+  <!-- 排行榜和普通推荐语 -->
+  <view class="goods_tips_case" wx:if="{{item.recWordsVO.recWords}}">
+    <ranking-list 
+      info="{{item.recWordsVO}}" 
+      userAction="{{item.userAction}}" 
+      traceId="{{traceId}}" 
+      pageId="{{pageId}}" 
+      currentPageName="{{currentPageName}}" 
+      buriedObj="{{buriedObj}}"
+      prePageName="{{prePageName}}">
+    </ranking-list>
+  </view>
+  <!-- 促销标签 -->
+  <view class="goods_tag_case flex-row" wx:if="{{item.tags.length || item.coupons.length || item.couponVOList.length || item.disabledTags.length}}" style="margin-top: 8rpx">
+      <!-- 促销标 -->
+      <view aria-role="tab" aria-label="{{item.tags[0].iconText}}" wx:if="{{item.tags.length && item.tags[0].iconText}}" class="goods_tag" style="color: {{item.tags[0].strokeNameColorCode}}; border-color: {{item.tags[0].strokeColorCode}}">
+          {{item.tags[0].iconText}}
+      </view>
+      <!-- 不可用券标 -->
+      <view class="wrap" wx:if="{{item.disabledTags.length}}" >
+        <view 
+          class="coupon_go flex-row align-items-center" 
+          style="color: {{item.disabledTags[0].iconTextColorCode}};  border-color: {{item.disabledTags[0].strokeColorCode}}"
+        >
+          <view class="coupon_tag_left flex-row ">
+            {{item.disabledTags[0].iconText}}
+          </view>
+          <view class="left_icon" style=" border-color: {{item.disabledTags[0].strokeColorCode}};"></view>
+          <view class="right_icon" style=" border-color: {{item.disabledTags[0].strokeColorCode}};"></view>
+        </view>
+      </view>
+
+      <!-- 红包 -->
+      <view wx:if="{{item.coupons.length}}"
+        aria-role="tab" aria-label="{{item.coupons[0].words}}"
+        class="coupon_txt coupon_gap flex-none" 
+        style="border: 1px solid {{item.coupons[0].outLineColor}};background: {{item.coupons[0].backgroundColor}};color: {{item.coupons[0].frontColor}}" >
+        {{item.coupons[0].words}}
+      </view>
+      <!-- 神券 -->
+      <view wx:if="{{item.couponVOList.length}}" class="coupon_gap flex-none flex-row">
+        <coupon-go-tag 
+          data="{{item.couponVOList[0]}}" 
+          sku-id="{{item.skuId || ''}}" 
+          org-code="{{item.orgCode || ''}}" 
+          store-id="{{item.storeId || ''}}" 
+          from="home" source="{{0}}" 
+          user-action="{{item.userAction}}" 
+          traceId="{{traceId}}" 
+          pageId="{{pageId}}" 
+          currentPageName="{{currentPageName}}" 
+          prePageName="{{prePageName}}" />
+      </view>
+
+  </view>
+  <!-- 商品价格 -->
+  <!-- 如果是会员价、v+会员价、券后价、预估到手价换行展示、商家会员促销价格-->
+
+   <view class="goods_price_case {{item.majorPrice.priceType == 3 || item.majorPrice.priceType == 4 || item.majorPrice.priceType == 7 || item.majorPrice.priceType == 10 || item.majorPrice.priceType == 11 || item.minorPrice.priceType == 3  || item.minorPrice.priceType == 7 || item.minorPrice.priceType == 10 || item.minorPrice.priceType == 11 ? '' : 'one-line-show' }}" 
+    style="height: {{item.majorPrice.priceType == 3 || majorPrice.priceType == 4 || item.majorPrice.priceType == 7 || item.majorPrice.priceType == 10 || item.majorPrice.priceType == 11 || item.minorPrice.priceType == 3  || item.minorPrice.priceType == 7 || item.minorPrice.priceType == 10 || item.minorPrice.priceType == 11 ? '78rpx' : '44rpx' }}" 
+    data-item="{{item}}" 
+    bind:tap="clickToStore"
+    aria-role='text' 
+    aria-label="现价{{item.majorPrice.price}}元，{{item.toHandPrice && item.toHandPrice.rightText ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' :  item.minorPrice &&  item.minorPrice.price ? '原价' + item.minorPrice.price + '元' : ''}} ">
+    <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="36rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}"></coupon-price>
+    <coupon-price wx:if="{{item.skuType != 1 || item.skuType == 1 && item.majorPrice != item.minorPrice}}" minorPrice="{{item.minorPrice}}"></coupon-price>
+  </view>
+  
+  <!-- 店铺信息 -->
+  <view aria-role="link" aria-label="{{item.storeName}}{{item.freightWords}}" class="store_info_case flex-row" wx:if="{{item.storeLogo}}" data-item="{{item}}" bind:tap="clickToStore">
+    <view class="store_info_left" aria-hidden="true">
+      <webp-img webp-img="store_info_logo" src="{{item.storeLogo}}" />
+    </view>
+    <view class="store_info_right" aria-hidden="true">
+      <view class="store_info_name ellipsis">{{item.storeName}}</view>
+      <view class="store_info_desc ellipsis">
+        <view class="name ellipsis" >
+          {{item.freightWords}}
+          <view class="free_feight ellipsis" wx:if="{{item.freightDescForLine}}">
+            {{item.freightDescForLine}}
+          </view>
+        </view>
+       
+      </view>
+    </view>
+  </view>
+</view> 

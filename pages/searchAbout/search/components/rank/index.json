@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "styleIsolation": "apply-shared",
+  "usingComponents": {
+    "rank-layout": "../rank-layout/index",
+    "thing-layout": "../thing-layout/index",
+    "tag": "../tag/index",
+    "coupon-price": "/components-b/couponPrice/index"
+  }
+}

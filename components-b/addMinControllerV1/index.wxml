@@ -1,0 +1,81 @@
+<!-- 购买按钮 -->
+<block wx:if="{{iconType == 7}}">
+  <view class="go-buy" catchtap="buy">购买</view>
+</block>
+<!-- 待预售 -->
+<block wx:elif="{{iconType == 9}}">
+  <view class="{{showType == 5 ? 'price-btn' : ''}} presale" catchtap="presale">待预售</view>
+</block>
+<!-- 加车按钮 -->
+<block wx:else>
+  <block wx:if="{{showType == 0}}">
+    <view class="wrap">
+      <!-- 减车 -->
+      <view class="min" catchtap="min" hidden="{{count === 0 ? true : false}}" aria-role="button" aria-label="减车"></view>
+      <!-- 数量 -->
+      <view
+        class="num {{weighting ? 'weighting' : ''}}"
+        hidden="{{count === 0 ? true : false}}"
+      >{{weighting ? weight : count}}</view>
+      <!-- 加车 -->
+      <view class="add" catchtap="add" aria-role="button" aria-label="加车"></view>
+    </view>
+  </block>
+  <block wx:if="{{showType == 1}}">
+    <view class="wrap">
+      <!-- 加车 -->
+      <view class="add" catchtap="add"  aria-role="button" aria-label="加车">
+        <view class="num-one" hidden="{{count === 0 ? true : false}}"  aria-live="assertive" aria-label="当前商品数量{{count}}件">{{count}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{showType == 2}}">
+    <view
+      class="product-detail-add-btn ellipsis {{size == 'large' ? 'product-detail-add-btn-large' : ''}} {{showState==13?'product-detail-add-btn-gray':''}}"
+      wx:if="{{(addCartText&&count===0)}}"
+      catchtap="add"
+      aria-role="button"    
+      aria-label="{{addCartText ? addCartText : '增加购买数量'}}"
+    >{{addCartText}}</view>
+    <view class="wrap" wx:if="{{!(addCartText&&count===0)}}">
+      <!-- 减车 -->
+      <view catchtap="min" hidden="{{count === 0 ? true : false}}">
+        <view class="min"  aria-role="button" aria-label="减少购买数量"></view>
+      </view>
+      <!-- 数量 -->
+      <view
+        class="num {{weighting ? 'weighting' : ''}}"
+        hidden="{{count === 0 ? true : false}}"
+        catchtap="modifyNumber"
+      >{{weighting ? weight : count}}</view>
+      <!-- 加车 -->
+      <view catchtap="add" aria-role="button" aria-label="{{addCartText ? addCartText : '增加购买数量'}}">
+        <view class="product-detail-add-btn" wx:if="{{(addCartText&&count===0)}}" catchtap="add">
+          {{addCartText}}
+        </view>
+        <view class="add" catchtap="add" wx:else aria-role="button" aria-label="增加购买数量"></view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{showType == 3}}">
+    <view class="wrap">
+      <view catchtap="add" aria-role="button" aria-label="加车">
+        <view class="add" style="width: {{width}}rpx;height: {{height}}rpx" catchtap="add"></view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{showType == 4}}">
+    <view class="modify-box d-flex flex-row">
+      <view catchtap="deleteGift" class="modify-jian" wx:if="{{suitType == 'gift'}}"  aria-role="button" aria-label="减车"></view>
+      <block wx:else>
+        <view class="modify-jian disabled" wx:if="{{forbiddenMin}}" aria-role="button" aria-label="减车"></view>
+        <view class="modify-jian" wx:else catchtap="min" aria-role="button" aria-label="减车"></view>
+      </block>
+      <view class="modify-number {{weighting ? 'weighting' : ''}}" catchtap="modifyNumber">{{weighting ? weight : count}}</view>
+      <block>
+        <view class="modify-add disabled" wx:if="{{forbiddenAdd}}" aria-role="button" aria-label="加车"></view>
+        <view class="modify-add" wx:else catchtap="add" aria-role="button" aria-label="加车"></view>
+      </block>
+    </view>
+  </block>
+</block>

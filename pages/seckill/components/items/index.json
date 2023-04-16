@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-price": "/components-b/couponPrice/index",
+    "webp-img": "/components/webpImg/index"
+  }
+}

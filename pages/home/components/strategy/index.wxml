@@ -1,0 +1,23 @@
+<view wx:if="{{strategyData.data &&  strategyData.data.length >= 2}}"
+      class="grid-wrapper"
+      style="background-color: {{strategyData.needFloorBackground && strategyData.floorBgColor || '#fff'}};background-image: url({{strategyData.floorBgImg || ''}});background-position: no-repeat; background-size: 100% auto;"
+>
+  <view
+    wx:for="{{strategyData.data}}"
+    wx:for-item="item"
+    wx:key="index"
+    class=" grid-item home_strategy"
+    data-item="{{item.floorCellData}}"
+    data-user-action="{{item.floorCellData.userAction}}"
+    data-trace-id="{{pageDataTraceId}}"
+    data-page-id="{{buriedObj.pageIdFirstPage}}"
+    data-current-page-name="{{buriedObj.currentPageName}}"
+    data-pre-page-name='{{buriedObj.prePageName}}'
+    bindtap="jump"
+  >
+    <image src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+           data-lazy-img-id="{{floorId+index}}"
+           class="img lazy-load"
+     />
+  </view>
+</view>

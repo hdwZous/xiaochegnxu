@@ -1,0 +1,81 @@
+<view class="page-cont">
+  <!-- 用药人信息 -->
+  <view class='content'>
+    <view class="item-cont">
+      <view class='item item-diff flex-row'>
+        <view class='left'>姓名:</view>
+        <view class='right flex-col'>
+          <view class='input-cont name-cont flex-row'>
+            <view class="left-cont">
+              <input placeholder-class='placeholder-class' placeholder='请输入用药人真实姓名' value="{{name}}" name="name" data-name="name" bindinput='handleInput' bindfocus='inputFocus' bindblur="inputBlur" maxlength='10' />
+              <!-- <view hidden="{{name}}" class="text-placeholder">请输入用药人真实姓名</view> -->
+            </view>
+            <view class="arrow-right-cont delete-icon flex-col" wx:if="{{nameFocus&&name}}" bindtap='clearInput'>
+              <image class='cancle-btn' src='https://storage.360buyimg.com/wximg/medicine/cancle.png' data-name="name"></image>
+            </view>
+          </view>
+          <view class='sex flex-row'>
+            <view bindtap='chooseSex' data-sex="0" class='sex-btn {{chooseSex=="0"?"choose":""}}'>
+              男
+            </view>
+            <view bindtap='chooseSex' data-sex="1" class='sex-btn women {{chooseSex=="1"?"choose":""}}'>
+              女
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="item-cont">
+      <view class='item flex-row'>
+        <view class='left'>身份证号:</view>
+        <view class='right'>
+          <view class='input-cont flex-row'>
+            <view class="left-cont">
+              <input type='idcard' value="{{idCard}}" data-name="idCard" bindinput='handleInput' bindfocus='inputFocus' bindblur="inputBlur" maxlength='18' />
+              <view hidden="{{idCard}}" class="text-placeholder">请输入用药人身份证号</view>
+            </view>
+            <view class="arrow-right-cont delete-icon flex-col" wx:if="{{idCardFocus&&idCard}}" bindtap='clearInput'>
+              <image class='cancle-btn' src='https://storage.360buyimg.com/wximg/medicine/cancle.png' data-name="idCard"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="item-cont">
+      <view class='item flex-row'>
+        <view class='left'>出生日期:</view>
+        <view class='right'>
+          <picker mode="date" value="{{bornDate}}" start="1960-01-01" end="{{endTime}}" bindchange="bindDateChange">
+            <view class='date-cont flex-row'>
+              <view class='picker {{bornDate!==""?"born-date":""}}'>
+                {{bornDate?bornDate:"请选择用药人出生日期"}}
+              </view>
+              <view class="arrow-right-cont flex-col">
+                <image class="arrow-right" src="https://storage.360buyimg.com/wxapp/arrow_right_dark.png"></image>
+              </view>
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="item-cont">
+      <view class='item flex-row'>
+        <view class='left'>联系电话:</view>
+        <view class='right'>
+          <view class='input-cont flex-row'>
+            <view class="left-cont">
+              <input type='number' value="{{phone}}" data-name="phone" bindinput='handleInput' bindfocus='inputFocus' bindblur="inputBlur" maxlength='11' />
+              <view hidden="{{phone}}" class="text-placeholder">请填写用药人手机号，供药师回拨</view>
+            </view>
+            <view class="arrow-right-cont delete-icon flex-col" wx:if="{{phoneFocus&&phone}}" bindtap='clearInput'>
+              <image class='cancle-btn' src='https://storage.360buyimg.com/wximg/medicine/cancle.png ' data-name="phone"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='tips '>为了您的用药安全，提交需求单时需验证身份信息，京东到家平台严格保密您的隐私，请放心填写。</view>
+  <view class='button' bindtap='saveMedicineMan'>确定</view>
+  <view wx:if="{{editData.infoId}}" class='deleteBtn' bindtap='deleteMedicineMan'></view>
+</view>

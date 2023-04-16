@@ -1,0 +1,187 @@
+/* 会员弹层 */
+.pop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+.vip_content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.vip_title {
+    color: #2e2832ff;
+    font-size: 32rpx;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 180rpx;
+}
+.vip_sub_title {
+    margin-top: 10rpx;
+    color: #312b35ff;
+    font-size: 24rpx;
+    text-align: center;
+    padding: 0 40rpx;
+}
+.vip_info {
+    position: relative;
+    margin: 25rpx auto;
+    width: 530rpx;
+    height: 293rpx;
+    background: url("https://storage.360buyimg.com/wximg/common/vip_couopn_info.png")
+        no-repeat center;
+    background-size: 100% 100%;
+}
+.vip_left {
+    position: absolute;
+    left: 11rpx;
+    top: 35rpx;
+    width: 180rpx;
+    height: 214rpx;
+    text-align: center;
+}
+.vip_left_price {
+    color: #323648ff;
+    font-size: 48rpx;
+    font-weight: bold;
+    padding-top: 20rpx;
+}
+.vip_left_symbol {
+    color: #323648ff;
+    font-size: 22rpx;
+}
+.vip_left_name {
+    color: #323648ff;
+    font-size: 20rpx;
+    margin-top: 34rpx;
+}
+.vip_left_rule,
+.vip_left_date {
+    color: #999999ff;
+    font-size: 18rpx;
+}
+.vip_right {
+    position: absolute;
+    right: 16rpx;
+    top: 10rpx;
+    width: 220rpx;
+    height: 264rpx;
+    text-align: center;
+}
+.vip_right_price {
+    color: #323648ff;
+    font-size: 60rpx;
+    font-weight: bold;
+    padding-top: 20rpx;
+}
+.vip_right_symbol {
+    color: #323648ff;
+    font-size: 28rpx;
+}
+.vip_right_name {
+    color: #323648ff;
+    font-size: 24rpx;
+    margin-top: 45rpx;
+}
+.vip_right_rule,
+.vip_right_date {
+    color: #999999ff;
+    font-size: 20rpx;
+}
+.vip_btn_wrap {
+    justify-content: center;
+}
+.vip_btn {
+    width: 244rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 40rpx;
+    border: 1px solid #323648;
+    color: #39323fff;
+    font-size: 30rpx;
+    text-align: center;
+}
+.vip_btn_right {
+    margin-left: 20rpx;
+    color: #ffe0c2ff;
+    background: linear-gradient(315deg, #2a242d 0%, #3e3745 100%);
+}
+.vip_not {
+    margin-top: -60rpx;
+}
+.vip_not_title {
+    padding-top: 180rpx;
+    color: #533200ff;
+    font-size: 32rpx;
+    text-align: center;
+    font-weight: bold;
+}
+.vip_not_wrap {
+    margin: 0 auto;
+    width: 484rpx;
+    margin-top: 100rpx;
+}
+.vip_not_left {
+    position: relative;
+    width: 176rpx;
+    text-align: center;
+    color: #323648ff;
+    font-size: 80rpx;
+    font-weight: bold;
+}
+.vip_not_left::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 5rpx;
+    width: 1px;
+    border-right: 1px solid #f5f5f5;
+    height: 100rpx;
+}
+.vip_not_symbol {
+    font-size: 28rpx;
+}
+.vip_not_right {
+    overflow: hidden;
+    padding-left: 40rpx;
+}
+.vip_not_coupon_title {
+    font-size: 28rpx;
+    color: #323648ff;
+    font-weight: bold;
+}
+.vip_not_coupon_rule {
+    margin-top: 4rpx;
+    color: #999999ff;
+    font-size: 22rpx;
+}
+.vip_not_coupon_date {
+    margin-top: 4rpx;
+    color: #999999ff;
+    font-size: 22rpx;
+}
+.vip_not_close {
+    margin: 60rpx auto 0;
+    width: 74rpx;
+    height: 74rpx;
+    background: url("https://storage.360buyimg.com/wximg/common/vip_close.png")
+        no-repeat center;
+    background-size: 100% 100%;
+}
+.vip_not_btn {
+    margin: 90rpx auto 0;
+    width: 508rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #ffe0c2ff;
+    font-size: 30rpx;
+    background: linear-gradient(315deg, #2a242d 0%, #3e3745 100%);
+    border-radius: 40rpx;
+    text-align: center;
+    font-weight: bold;
+}

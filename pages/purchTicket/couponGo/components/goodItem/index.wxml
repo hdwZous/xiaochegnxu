@@ -1,0 +1,99 @@
+<view class='ep_good-item good-item'  
+      data-item="{{item}}" 
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{recommendObj.pageIdFirstPage}}"
+      data-current-page-name="{{recommendObj.currentPageName}}"
+      data-pre-page-name="{{recommendObj.prePageName}}" 
+      bindtap="goToDetail">
+  <!-- 左侧 -->
+  <view class='logo'>
+    <image aria-hidden="true" class='ad-icon' wx:if="{{item.adInfo && item.adInfo.adLogo}}" src="{{item.adInfo.adLogo}}" />
+    <webp-img width="156rpx" height="160rpx" src="{{item.imageList.length > 0 ? item.imageList[0] : 'none'}}" mode="widthFix" needOverlay="{{true}}" skuName="{{item.skuName}}{{item.skuDesc ?  '.' + item.skuDesc : ''}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}现价{{item.majorPrice.price}}元.{{item.toHandPrice ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice ? '原价' + item.minorPrice.price + '元' : ''}}"></webp-img>
+    <view wx:if="{{!item.fixedStatus}}" class="store_stockCount_tag">已下架</view>
+    <view wx:if="{{item.stockCount === 0}}" class="store_stockCount_tag">已抢光</view>
+    <view wx:if="{{item.stockCount <= 3 && item.stockCount>0}}" class="store-sku-remain">
+      仅剩
+      <text>{{item.stockCount}}</text>
+      件
+    </view>
+    <!-- 业务标 -->
+    <view class='sky-yhe-one-business-tag'>
+      <biz-tag bizType="horizontal" businessTag="{{item.businessTag}}"/>
+    </view>
+  </view>
+  <!-- 右侧 -->
+  <view class='right-info' aria-role="link" aria-label="{{item.skuName}}{{item.skuDesc ?  '.' + item.skuDesc : ''}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}现价{{item.majorPrice.price}}元，{{item.toHandPrice && item.toHandPrice.rightText ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' :  item.minorPrice &&  item.minorPrice.price ? '原价' + item.minorPrice.price + '元' : ''}}">
+    <view class='sku-name' aria-hidden="true">
+      <!-- <view class='sku-name-tag' wx:if="{{item.skuNameTag}}" aria-hidden="true" style="color: {{item.skuNameTag.iconTextColorCode}};background: linear-gradient(135deg, {{item.skuNameTag.startColorCode}} 0%,  {{item.skuNameTag.endColorCode}} 100%);">
+        {{item.skuNameTag.iconText}}
+      </view> -->
+      <sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+      <text class="good-title-name">{{item.skuName}}</text>
+    </view>
+    <view class='description ellipsis' wx:if="{{item.skuDesc}}" aria-hidden="true">
+      <image aria-hidden="true" class='desc-icon' wx:if="{{item.skuDescIcon}}" src="{{item.skuDescIcon}}" />
+      {{item.skuDesc}}
+    </view>
+    <view aria-hidden="true" class="ad-word ellipsis" wx:elif="{{item.funcIndicatinsOrAdWord}}">
+      {{item.funcIndicatinsOrAdWord}}
+    </view>
+    <!-- 月售 好评 -->
+    <view class='month-highopinion' aria-hidden="true">
+      <view aria-hidden="true">月售{{item.monthSales}}</view>
+      <view aria-hidden="true" class='high-opinion'>{{item.highOpinion}}</view>
+    </view>
+    <!-- 促销标签 -->
+    <view class='tags' aria-hidden="true">
+      <view wx:for="{{item.tags}}" wx:key="index" wx:for-item="subItem" class='tag' style="color: {{subItem.strokeNameColorCode}};border: solid 2rpx {{subItem.strokeNameColorCode}}">
+        {{subItem.iconText}}
+      </view>
+    </view>
+    <view class='price-group' aria-hidden="true">
+      <!-- major-price -->
+      <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="28rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" />
+      <coupon-price minorPrice="{{item.minorPrice}}"  pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}"/>
+      <!-- minor-price ||预估到说价 -->
+      <!-- <coupon-price 
+                                        toHandPrice="{{item.toHandPrice}}"
+                                        minorPrice="{{item.minorPrice}}" /> -->
+    </view>
+    <view class='rec-word' wx:if="{{item.recWords}}" aria-hidden="true">{{item.recWords}}</view>
+  </view>
+  <!--<block wx:if="{{item.iconType == 7 }}">
+    <view class='buy'>购买</view>
+  </block>-->
+  <!-- 新版加减车 -->
+  <view  class="select_case">
+    <add-min-controller 
+      count="{{!item.showModel ? item.incartCount : item.spuCartCount}}" 
+      showModel="{{item.showModel}}" 
+      skuId="{{item.skuId}}" 
+      spuId="{{item.spuId}}" 
+      data-sku-id="{{item.skuId}}" 
+      orgCode="{{item.orgCode}}" 
+      storeId="{{item.storeId}}" 
+      longitude="{{longitude}}" 
+      latitude="{{latitude}}" 
+      isAddCart="{{item.isAddCart}}" 
+      tags="{{item.tags}}" 
+      limitGroup="{{item.limitGroup}}" 
+      limitFlag="{{limitFlag}}" 
+      pageSource="couponGoodsList" 
+      couponId="{{couponId}}" 
+      weighting="{{item.weighting}}" 
+      weight="{{item.cartWeight}}" 
+      userAction="{{item.userActionSku || item.userAction}}" biPageName="NewCouponBuy" 
+      addCartText="{{item.weightPriceStr}}" 
+      showType="2" 
+      pageId="{{recommendObj.pageIdFirstPage}}" 
+      currentPageName="{{recommendObj.currentPageName}}" 
+      prePageName="{{recommendObj.prePageName}}" 
+      traceId="{{goodTraceId}}"
+      iconType="{{item.iconType}}" 
+      transmitData="{{item.transmitData}}" 
+      to="{{item.to}}" 
+      params="{{item.params}}"  
+      showModel="{{item.showModel}}"></add-min-controller>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+{
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "goods": "../components/goods/index",
+        "group": "../components/group/index",
+        "newperson-pop": "../../asyncPackage/compontents/newPersonPop/index",
+        "share-to-moments-dialog": "/components/singlePicWithSave/index",
+        "share-to-wx-dialog": "/components/share2WxDialog/index"
+    },
+    "componentPlaceholder": {
+      "newperson-pop": "view"
+    }
+}

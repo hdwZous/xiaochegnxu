@@ -1,0 +1,180 @@
+@import "/common/css/global.wxss";
+.page-cont {
+    box-sizing: border-box;
+    font-weight: 400;
+    background: #fafafa;
+    min-height: 100vh;
+}
+
+.content {
+    background: #fff;
+}
+
+.item-cont {
+    padding: 0 20rpx;
+}
+
+.content .item {
+    min-height: 100rpx;
+    align-items: center;
+    border-bottom: 1rpx solid #f5f5f5;
+}
+
+.content .item-diff {
+    align-items: flex-start;
+}
+
+.content .item .left {
+    font-size: 28rpx;
+    width: 140rpx;
+}
+
+.content .item-diff .left {
+    margin-top: 35rpx;
+}
+
+.content .item .right {
+    flex: 1;
+    padding-left: 10rpx;
+}
+
+.content .item .right .date-cont {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content .item .right .date-cont .picker {
+    font-size: 28rpx;
+    color: #999;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.content .item .right .date-cont .born-date {
+    color: #333;
+}
+
+.content .item .right .arrow-right {
+    width: 12rpx;
+    height: 20rpx;
+}
+
+.item .right .input-cont {
+    align-items: center;
+    justify-content: space-around;
+    height: 100rpx;
+}
+
+.item .right .name-cont {
+    border-bottom: 1rpx solid #f5f5f5;
+}
+
+.item .right .input-cont input {
+    width: 90%;
+    font-size: 28rpx;
+    color: #333;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.item .right .input-cont .input-placeholder {
+    font-size: 28rpx;
+    color: #999;
+}
+
+.item .right .input-cont .cancle-btn {
+    width: 23rpx;
+    height: 23rpx;
+}
+
+.item .right .sex {
+    font-size: 28rpx;
+    color: #666;
+    height: 100rpx;
+    align-items: center;
+}
+
+.item .right .sex .sex-btn {
+    padding: 0 34rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    border-radius: 4px;
+    border: 1px solid #f5f5f5;
+}
+
+.item .right .sex .sex-btn.choose {
+    background: #47b34f;
+    color: #fff;
+    border: none;
+}
+
+.item .right .sex .sex-btn.women {
+    margin-left: 30rpx;
+}
+
+.page-cont .tips {
+    font-size: 22rpx;
+    color: #999;
+    line-height: 30rpx;
+    padding: 0 20rpx;
+    margin-top: 30rpx;
+}
+
+.button {
+    margin: 84rpx 30rpx 0;
+    background: #47b34f;
+    color: #fff;
+    font-size: 40rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    border-radius: 4rpx;
+}
+
+.deleteBtn {
+    margin: 0 auto;
+    width: 86rpx;
+    height: 86rpx;
+    background: url("https://storage.360buyimg.com/wximg/medicine/delete.png") center no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 86rpx;
+    margin-top: 104rpx;
+    border-radius: 100%;
+    /* box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.06); */
+}
+
+.arrow-right-cont {
+    height: 100rpx;
+    justify-content: center;
+    padding: 0 20rpx;
+}
+
+.left-cont {
+    position: relative;
+    flex: 1;
+}
+
+.placeholder-class {
+    font-size: 28rpx;
+    color: #999;
+}
+
+.text-placeholder {
+    position: absolute;
+    top: 32rpx;
+    left: 0;
+    font-size: 28rpx;
+    color: #999;
+}
+
+.item-cont {
+    position: relative;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 40rpx;
+}

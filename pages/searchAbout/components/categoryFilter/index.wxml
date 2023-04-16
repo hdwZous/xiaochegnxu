@@ -1,0 +1,25 @@
+<view class='category-filter-wrapper' wx:if="{{displayFilterFloor.itemList.length>=2}}">
+  <scroll-view 
+    class="category-filter-scroll" 
+    scroll-x
+    scroll-left="{{scrollLeft}}"
+    enable-flex="true"
+    scroll-into-view="{{itemId}}"
+    scroll-with-animation>
+    <view
+      wx:for="{{displayFilterFloor.itemList}}"
+      wx:key="index"
+      wx:for-item="item"
+      id="{{'_' + item.itemId}}"
+      data-item="{{item}}"
+      class="category-item {{itemId ==  '_' + item.itemId ? 'selected  ' : ''}}{{item.itemShowType == 1 && item.clickIconItem.imgUrl && item.defaultIconItem.imgUrl ? ' nobgcolorandtext' : ''}}"
+      bindtap="clickCatogory"
+      style="background-image: url({{ (item.itemShowType == 1 && itemId ==  '_' + item.itemId && item.clickIconItem.imgUrl) ? item.clickIconItem.imgUrl : (item.itemShowType == 1  && item.defaultIconItem.imgUrl) ? item.defaultIconItem.imgUrl : '' }}) ;background-size: 100% 100%;"
+      aria-role='button'
+      aria-label="{{item.itemName}}"
+    > 
+      {{item.itemName}}
+    </view> 
+  </scroll-view>
+
+</view>

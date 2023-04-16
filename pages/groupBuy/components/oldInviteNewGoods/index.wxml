@@ -1,0 +1,42 @@
+<view class='group-item' style="background:{{backgroundColor}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="list" wx:key="list{{index}}">
+    <view bindtap='goToDetail' class="group-cont flex-row" data-promotion-Id="{{list.promotionId}}" data-store-Id="{{list.storeId}}" data-org-Code="{{list.orgCode}}" data-sku-Id="{{list.skuId}}" data-deliver="{{list.delivery}}">
+        <!-- 商品图片 -->
+        <view class='good-img'>
+            <image mode='widthFix' src='{{list.skuImgUrl}}'></image>
+            <text class='group-name'>{{list.totalMembersDesc}}</text>
+        </view>
+        <view class="group-right flex-col">
+            <view class='flex-auto'>
+                <!-- 店铺名称商品名称 -->
+                <view class='good-store'>
+                    <!-- 商品名 -->
+                    <view class='good-name ellipsis2'>{{list.skuName}}</view>
+                    <!-- 店铺名 -->
+                    <view class='store-name flex-row'>
+                        <image src='https://storage.360buyimg.com/wximg/groupbuy/icon_store.png'></image>
+                        <view class='name'>{{list.orgName}}</view>
+                    </view>
+                </view>
+                <!-- 配送方式 -->
+                <view class="deliver-type flex-row">
+                    <view class="self-num">{{list.joinNumDesc}}</view>
+                </view>
+            </view>
+            <!-- 商品价格，去拼团 -->
+            <view class='group-price flex-none flex-row'>
+                <view class='price-cont flex-row'>
+                    <!-- 拼团价 -->
+                    <view class='now-price'>
+                        <text>{{"￥"+list.actPrice}}</text>
+                    </view>
+                    <!-- 原价 -->
+                    <view class='old-price'>
+                        <text>{{"￥"+list.basicPrice}}</text>
+                    </view>
+                </view>
+                <!-- 去拼团 -->
+                <view class='gostartGroup'>去拼团</view>
+            </view>
+        </view>
+    </view>
+</view>

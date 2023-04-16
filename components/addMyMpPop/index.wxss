@@ -1,0 +1,121 @@
+.bg {
+    height: 100vh;
+    width: 100vw;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .7);
+}
+
+.hand_ic{
+    position: absolute;
+    right: 12%;
+    width: 70rpx;
+}
+
+.text_1 {
+    color: #FFFFFF;
+    font-size: 36rpx;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.margin_top_1O {
+    margin-top: 20rpx;
+}
+
+.margin_top_130 {
+    margin-top: 250rpx;
+}
+
+.card_top {
+    width: 534rpx;
+    height: 96rpx;
+    color: #666666;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 96rpx;
+    margin: 0 auto;
+    margin-top: 40rpx;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 8rpx 8rpx 0 0;
+    opacity: 0.9;
+}
+
+.card_middle {
+    width: 606rpx;
+    height: 100rpx;
+    color: #333333;
+    font-size: 32rpx;
+    text-align: center;
+    line-height: 100rpx;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 1);
+    box-shadow:0px 2px 8px 0px rgba(0,0,0,0.06);
+    border-radius: 4rpx;
+}
+
+.card_bottom {
+    width: 534rpx;
+    height: 96rpx;
+    color: #666666;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 96rpx;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0 0 8rpx 8rpx;
+    opacity: 0.9;
+}
+.close_btn{
+    width: 232rpx;
+    height: 80rpx;
+    color: #FFFFFF;
+    font-size: 32rpx;
+    text-align: center;
+    line-height: 80rpx;
+    margin: 0 auto;
+    border-radius:40rpx;
+    border:2rpx solid rgba(255,255,255,1);
+}
+
+.animation {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-animation:mymove 0.6s infinite;
+    animation:mymove 0.6s infinite;
+    animation-direction:alternate;
+}
+@-webkit-keyframes mymove {
+    1% {transform: translateY(0rpx);}
+    10% {transform: translateY(-2rpx);}
+    20% {transform: translateY(-4rpx);}
+    30% {transform: translateY(-6rpx);}
+    40% {transform: translateY(-8rpx);}
+    50% {transform: translateY(-10rpx);}
+    60% {transform: translateY(-12rpx);}
+    70% {transform: translateY(-14rpx);}
+    80% {transform: translateY(-16rpx);}
+    90% {transform: translateY(-18rpx);}
+    100% {transform: translateY(-20rpx);}
+}
+@keyframes mymove {
+    1% {transform: translateY(0rpx);}
+    10% {transform: translateY(-2rpx);}
+    20% {transform: translateY(-4rpx);}
+    30% {transform: translateY(-6rpx);}
+    40% {transform: translateY(-8rpx);}
+    50% {transform: translateY(-10rpx);}
+    60% {transform: translateY(-12rpx);}
+    70% {transform: translateY(-14rpx);}
+    80% {transform: translateY(-16rpx);}
+    90% {transform: translateY(-18rpx);}
+    100% {transform: translateY(-20rpx);}
+}
+
+.img{
+    width:540rpx;
+}

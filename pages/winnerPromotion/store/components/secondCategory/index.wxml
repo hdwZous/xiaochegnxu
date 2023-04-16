@@ -1,0 +1,66 @@
+<view class="second-category">
+  <view
+    wx:if="{{secondList.length > 0}}"
+    class="flex-none flex-row subCateBox"
+  >
+    <scroll-view
+      scroll-anchoring
+      scroll-into-view="second_{{secondIndex}}"
+      enable-flex
+      scroll-x
+      scroll-with-animation="{{true}}"
+      class="flex-auto sub_cate flex-row"
+    >
+      <block
+        wx:for="{{secondList}}"
+        wx:for-item="secondItem"
+        wx:for-index="index"
+        wx:key="index"
+      >
+        <view
+          class="log_third_classify flex-none ellipsis sub_cate_item {{secondIndex == index ? 'sub_cate_item_checked' : ''}}"
+          data-item="{{secondItem}}"
+          bindtap="clickSubClassify"
+          id="second_{{index}}"
+        >{{secondItem.title}}</view>
+      </block>
+    </scroll-view>
+    <view
+      class="flex-none more_sub_cate"
+      wx:if="{{secondList.length > 3}}"
+      data-type="{{true}}"
+      bindtap="showSecondCateMask"
+    ></view>
+  </view>
+  <!-- 二级分类弹层 -->
+  <view
+    class="sub_cat_wrap flex-none"
+    wx:if="{{showAllSecondCate}}"
+    catchtap="showSecondCateMask"
+    data-type="{{false}}"
+  >
+    <view class="second_cat_down flex-col">
+      <view class="second_cat_title flex-row">
+        <text>全部分类</text>
+        <view class="up_wrap">
+          <view class="up"></view>
+        </view>
+      </view>
+      <view class="second_cat_content flex-row">
+        <view
+          wx:for="{{secondList}}"
+          wx:for-item="secondItem"
+          wx:for-index="index"
+          wx:key="index"
+          class="down_box"
+        >
+          <view
+            class="log-third-class-pop down_item flex-none {{secondIndex==index ? 'down_item_checked' : ''}}"
+            data-item="{{secondItem}}"
+            bindtap="clickSubClassify"
+          >{{secondItem.title}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

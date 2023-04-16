@@ -1,0 +1,30 @@
+{
+  "navigationBarTitleText": "搜索结果",
+  "navigationBarBackgroundColor": "#f6f6f6",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "default": "/pages/searchAbout/components/default/index",
+    "banner": "../components/banner/index",
+    "result-searchbox": "../components/result-searchbox/index",
+    "store-nav": "../components/storeNav/index",
+    "store-info": "../../asyncPackage/compontents/storeItem/index",
+    "sort-new": "../components/sortNew/index",
+    "category-filter": "../components/categoryFilter/index",
+    "good-list": "../components/goodList/index",
+    "category-filter-new": "../components/categoryFilterNew/index",
+    "back-top": "/components/backTop/index",
+    "search-tag-floor-item":"../components/searchTagFloorItem/index",
+    "belt": "/components/belt/index",
+    "tabSwitch":"/components/tabSwitch/index",
+    "DdLocal": "../components/DdLocal/index",
+    "filterReach":"../../asyncPackage/compontents/filterReach/index",
+    "DdGoodList":"../components/DdGoodList/index"
+  },
+  "componentPlaceholder": {
+    "filterReach": "view",
+    "tabSwitch": "/components/placeHoldTabSwitch/index",
+    "store-info": "/components-b/storeItemPlaceHolder/index"
+  
+  },
+  "disableScroll":true
+}

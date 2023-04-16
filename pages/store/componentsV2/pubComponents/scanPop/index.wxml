@@ -1,0 +1,126 @@
+<block wx:if="{{showScan}}">
+    {{scanSkuList.length}}
+    <!-- 没有商品 -->
+    <view class='no-data' wx:if="{{!scanSkuList.length}}">
+        <view class='icon_circle_close' bindtap="hidePop"></view>
+        <view class='no-scan'></view>
+        <view class='no-title'>该商品当前线上不可售哦~</view>
+        <view class='no-continue' bindtap="triggerScan">
+            <view class='icon_scan'></view>
+            <view class=''>继续扫码</view>
+        </view>
+    </view>
+    <!-- 只有一个品 -->
+    <view class='one' wx:if="{{scanSkuList.length == 1}}">
+        <view class='icon_circle_close' bindtap="hidePop"></view>
+        <image class='product-img' src="{{scanSkuList[0].imgUrl}}" />
+        <view class='sku-name'>{{scanSkuList[0].skuName}}</view>
+        <view class='price-car-wrapper'>
+            <view class='price-group'>
+                <!-- major-price -->
+                <coupon-price majorPrice="{{scanSkuList[0].majorPrice}}" />
+                <!-- minor-price -->
+                <coupon-price minorPrice="{{scanSkuList[0].minorPrice}}" />
+            </view>
+        </view>
+        <view class='has-add'></view>
+        <view class='no-continue' bindtap="triggerScan">
+            <view class='icon_scan'></view>
+            <view class=''>继续扫码</view>
+        </view>
+    </view>
+    <!-- 多个品 -->
+    <view class='some show_cont' wx:if="{{scanSkuList.length > 1}}">
+        <view class="header">
+            识别到多款商品，请选择
+            <view class="some-close_icon" bindtap="hidePop"></view>
+        </view>
+        <scroll-view class="scroll-view"  scroll-with-animation="{{true}}" scroll-y>
+            <block wx:for="{{scanSkuList}}"
+                wx:key="index"
+                wx:for-item="item">
+                <view class='good-item'data-item="{{item}}">
+                    <view class="left">
+                        <image class="good-pic" src="{{item.imgUrl}}" />
+                        <view wx:if="{{item.stockCount <= 3 && item.stockCount>0}}" class="store-sku-remain">
+                            仅剩
+                            <text>{{item.stockCount}}</text>
+                            件
+                        </view>
+                        <!-- 冷冻or冷藏 -->
+                        <view class='freeze-wrap'>
+                            <freeze-tag topLeftCornerTag="{{item.topLeftCornerTag}}" />
+                        </view>
+                    </view>
+                    <view class="right">
+                        <view class='flex-auto'>
+                            <view class="good-title">{{item.skuName}}</view>
+                            <view class='description ellipsis' wx:if="{{item.skuDesc}}">
+                                <image class='desc-icon' wx:if="{{item.skuDescIcon}}" src="{{item.skuDescIcon}}" />
+                                {{item.skuDesc}}
+                            </view>
+                            <view class='description ellipsis' wx:elif="{{item.funcIndicatinsOrAdWord}}">
+                                {{item.funcIndicatinsOrAdWord}}
+                            </view>
+                            <view class='description ellipsis' wx:elif="{{item.aword}}">
+                                {{item.aword}}
+                            </view>
+                            <view class="good-sale-highopinion">
+                                <text>月售{{item.monthSales}}</text>
+                                <text class='hign-opinion'>{{item.highOpinion}}</text>
+                            </view>
+                            <view class="flex-row tag_case">
+                                <view class="flex-none good-tag-list" wx:if="{{item.tags.length > 0}}">
+                                    <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+                                        <view class='good-tag' style="color: {{tag.strokeNameColorCode}};border: solid 2rpx {{tag.strokeNameColorCode}}">
+                                            {{tag.iconText}}
+                                        </view>
+                                    </block>
+                                </view>
+                                <view class="flex-none">
+                                    <coupon-go-tag data="{{item.couponVOList[0]}}" sku-id="{{item.skuId || ''}}" org-code="{{item.orgCode || ''}}" store-id="{{item.storeId || ''}}" from="promotionPage" user-action="{{item.userActionSku}}" fromPosition="store-pubCompontents-scanPop"
+                                    optionsPos="{{options}}"></coupon-go-tag>
+                                </view>
+                            </view>
+                        </view>
+                        <view class='price-car-wrapper'>
+                            <view class='price-group'>
+                                <!-- major-price -->
+                                <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="36rpx" intervalPrice="{{item.intervalPrice}}" />
+                                <!-- minor-price || 预估到手价 -->
+                                <coupon-price minorPrice="{{item.minorPrice}}" />
+                            </view>
+                            <view class="car-btn" style="margin-bottom: {{item.minorPrice && item.minorPrice.price ? '0rpx' : '-8rpx'}}">
+                                <view class="add-group" wx:if="{{item.showCartButton}}">
+                                    <view class="select_case">
+                                        <add-min-controller count="{{item.showModel ? item.spuCartCount :  item.incartCount}}" 
+                                                            skuId="{{item.skuId}}" 
+                                                            spuId="{{item.spuId}}" 
+                                                            data-sku-id="{{item.skuId}}" 
+                                                            orgCode="{{item.orgCode}}" 
+                                                            storeId="{{item.storeId}}"  
+                                                            isAddCart="{{item.isAddCart}}" 
+                                                            tags="{{item.tags}}" 
+                                                            weighting="{{item.weighting}}"
+                                                            weight="{{item.cartWeight}}"
+                                                            iconType="{{item.iconType}}"
+                                                            transmitData="{{item.transmitData}}"
+                                                            to="{{item.to}}" 
+                                                            params="{{item.params}}"
+                                                            showModel="{{item.showModel}}">
+                                        </add-min-controller>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>  
+            </block>
+        </scroll-view>
+        <view class='continue' bindtap="triggerScan">
+            <view class='icon_scan'></view>
+            <view>继续扫码</view>
+        </view>
+    </view>
+    <view class='mask' bindtap='hidePop'></view>
+</block>

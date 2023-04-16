@@ -1,0 +1,12 @@
+.leftTopWrapper {
+  width: 56rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  z-index: 2;
+}
+.leftTopWrapper image {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,374 @@
+<wxs module="scrollMove" src="./index.wxs"> </wxs>
+<wxs src="../../common/util/tools.wxs" module="tools" />
+<block wx:if="{{showEmpty}}">
+  <!-- <new-default type="{{defaultType}}" tips="{{tips}}" btnText="{{btnText}}" bind:defaultBtnEvent="onDefaultBtnEvent" /> -->
+  <new-default-v2
+    type="{{defaultType}}"
+    defaultObj="{{defaultObj}}"
+    bind:defaultBtnEvent="onDefaultBtnEvent"
+  ></new-default-v2>
+</block>
+<view class="scrollview container" catchtap="elementTracker" wx:if="{{!showEmpty}}">
+  <!-- 头部和导航部分 -->
+  <image aria-hidden="true" src="{{config.searchConfig.borderImg || 'https://storage.360buyimg.com/wximg/channel/default_bg.png'}}" lazy-load="{{true}}" style="width:100%" class="cover_image" />
+  <view class="header_wrap">
+    <!-- 头部 -->
+    <view class="header" style="height:{{(statusBarHeight+30+16)*2}}rpx;">
+      <header
+        initData="{{config}}"
+        class="header_comp"
+        data-height="{{statusBarHeight}}"
+        data-config="{{config}}"
+        traceId='{{traceId}}'
+        categoryBallName="{{categoryBallName}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}"
+        prePageName="{{recommendObj.prePageName}}"
+        bind:hanldeGoBack="hanldeGoBack"
+        recommendObj="{{recommendObj}}"
+      ></header>
+    </view>
+    <!-- 横向滑动导航 -->
+    <view class="hori_ball ">
+
+      <!-- 一级分类 -->
+      <scroll-view
+        scroll-x="{{true}}"
+        class="nav_wrap hide02"
+        data-current="{{currentIndex}}"
+        scroll-with-animation="{{true}}"
+        data-horicurrent="{{horiCurrentIndex}}"
+        data-length="{{secondNavArr.length}}"
+        scroll-into-view="A{{sIndex-2>=0?sIndex-2:0}}"
+        data-firstlength="{{config.cateBallConfig && config.cateBallConfig.categoryList && config.cateBallConfig.categoryList.length}}">
+        <view
+          class="nav_item log_first_nav channel_ep"
+          id="A{{index}}"
+          wx:for="{{categoryList}}"
+          data-item="{{item}}"
+          data-index="{{item.index}}"
+          data-id="{{item.tagId}}"
+          data-title="{{item.title}}"
+          wx:key="index"
+          bind:tap="{{scrollMove.handleNavClick}}">
+            <infeed-nav
+              item='{{item}}'
+              config="{{config}}"
+              infeedType="{{1}}"
+              traceId="{{traceId}}"
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+              currentIndex="{{currentIndex}}"
+              isShowArrow="{{isShowArrow}}"
+              arrowDirection="{{arrowDirection}}"
+              currentIndex="{{currentIndex}}"
+              userAction="{{item.otherUserAction}}"
+            ></infeed-nav>
+
+        </view>
+      </scroll-view>
+
+      <!-- 二级分类 -->
+      <scroll-view class="secondNav2 hide" scroll-with-animation="{{true}}" scroll-y="{{true}}">
+        <view class="wrap">
+          <view
+            class="item item2 ellipsis log_second_nav channel_ep"
+            data-name="{{item.name}}"
+            data-id="{{item.tagId}}"
+            wx:for="{{secondNavArr}}"
+            wx:key="index"
+            data-index="{{index}}"
+            data-item="{{item}}"
+            catch:tap="{{scrollMove.handleSecondNavClick}}"
+            style="margin-right:{{(index+1)%4==0&&0}};font-weight:{{horiCurrentIndex==index&&'bold'}};">
+            <infeed-nav
+              config="{{config}}"
+              sencondName="{{item.name}}"
+              infeedType="{{2}}"
+              index2="{{index}}"
+              horiCurrentIndex="{{horiCurrentIndex}}"
+              traceId="{{traceId}}"
+              userAction="{{item.userAction}}"
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+            ></infeed-nav>
+          </view>
+        </view>
+      </scroll-view>
+      <!-- 二级分类蒙层 -->
+      <view class="mask hide" style="top:0rpx" catch:touchmove='ture' bind:tap="{{scrollMove.closeMask}}"></view>
+    </view>
+  </view>
+  <view class="content_area">
+    <view class="empty_area" style="height:{{(statusBarHeight+30+16)*2}}rpx"></view>
+    <view class="content_wrap" style="border-radius: {{config.cateBallConfig.bgImgUrl ? '' : '12px'}};padding-bottom: {{isIphoneX ? '50rpx' : ''}}">
+      <scroll-view
+        id="scroll"
+        class="content_wrap02"
+        throttle="{{false}}"
+        scroll-y="{{true}}"
+        bindscrolltolower="handleScrollToBottom"
+        bindscroll="{{scrollMove.scrollYMove}}"
+        scroll-top="{{scrollTop*2+'rpx'}}">
+        <view class="minHeight">
+          <!-- 分类球 -->
+          <view class="cateBall">
+            <view aria-hidden="true" class="ball_bgcolor" style="height: {{categoryBallBgHeight}}rpx;background-image: url({{ config.cateBallConfig.bgImgUrl }})"></view>
+            <ball 
+              initData="{{config.cateBallConfig}}"
+              wx:if="{{config.cateBallConfig.categoryList&&config.cateBallConfig.categoryList.length>0}}"
+              bind:handleFirstNavClick="handleFirstNavClick"
+              currentIndex="{{currentIndex}}"
+              currentBallIndex="{{currentBallIndex}}"
+              traceId='{{traceId}}'
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+            ></ball>
+          </view>
+          <!-- 二级导航 -->
+          <view class="plr12 pt12" wx:if="{{secondNavArr.length>0}}">
+            <view class="secondNav1" aria-label='二级分类筛选' aria-role='tablist'>
+              <nav
+                initData="{{secondNavArr}}"
+                currentIndex="{{horiCurrentIndex}}"
+                config="{{config}}"
+                bind:handleSecondNav="handleSecondNav"
+                traceId='{{traceId}}'
+                pageId="{{recommendObj.pageIdFirstPage}}"
+                currentPageName="{{recommendObj.currentPageName}}"
+                prePageName="{{recommendObj.prePageName}}"
+              ></nav>
+            </view>
+          </view>
+          <block wx:if="{{compList.length > 0}}">
+            <block
+              wx:for="{{compList}}"
+              wx:for-item="item"
+              wx:for-index="floorIndex"
+              wx:key="item"
+              wx:if="{{currentIndex==initIndex && channelType!=22 || channelType==22&&currentBallIndex==currentIndex }}">
+              <!-- 首页banner -->
+              <view wx:if="{{item.floorStyle === 'banner'}}" class="pt12">
+                <index-banner
+                  data="{{item}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></index-banner>
+              </view>
+              <!-- 活动宫格组件 -->
+              <view wx:if="{{(item.floorStyle === 'act2' || item.floorStyle === 'act3' || item.floorStyle === 'act4' || item.floorStyle === 'act6' || item.floorStyle === 'act8')}}" class="plr12 pt12">
+                <recommend-commodity
+                  data="{{item}}"
+                  channelId="{{channelId}}"
+                  img-lazy-load="{{imgLazyLoad}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></recommend-commodity>
+              </view>
+              <!-- 领券楼层 -->
+              <view wx:if="{{item.floorStyle === 'channelCoupon'}}" class="plr12 pt12">
+                <coupon
+                  traceId="{{traceId}}"
+                  item="{{item}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                  bind:onCouponEvent="onCouponEvent"
+                ></coupon>
+              </view>
+              <!-- 推荐商品组件 -->
+              <view wx:if="{{item.floorStyle === 'productList'}}" class="plr12 pt12">
+                <product-list
+                  data="{{item}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></product-list>
+              </view>
+              <!-- 附近门店组件 -->
+              <view wx:if="{{item.floorStyle === 'slideStoreList'}}" class="plr12 pt12">
+                <slide-store-list
+                  wx:if="{{item.styleTpl === 'tpl2'}}"
+                  data="{{item}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></slide-store-list>
+                <store-list
+                  wx:else
+                  data="{{item}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></store-list>
+              </view>
+              <!-- 新人楼层banner组件 -->
+              <view wx:if="{{item.floorStyle === 'floorBanner' && (item.styleTpl == 'tpl10' || item.styleTpl == 'tpl11') }}" class="plr12 pt12">
+                <strategy-banner
+                  data="{{item}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></strategy-banner>
+              </view>
+              <view wx:if="{{item.floorStyle === 'newCustomer'}}" class="plr12 pt12">
+                <new-customer
+                  data="{{item}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></new-customer>
+              </view>
+              <!-- 换肤楼层（到家CMS） -->
+              <view wx:if="{{ item.floorStyle == 'floorBanner' && item.styleTpl == 'tpl8'}}" class="plr12 pt12">
+                <floor-skin
+                  skinData="{{item}}"
+                  traceId="{{traceId}}"
+                  floor-id="skin_{{floorIndex}}"
+                  img-lazy-load="{{imgLazyLoad}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                ></floor-skin>
+              </view>
+              <!-- 新人楼层 -->
+              <view wx:if="{{item.floorStyle == 'marketing' && item.data && item.data[0]}}" class="plr12 pt12">
+                <new-user
+                  item="{{item.data[0]}}"
+                  traceId="{{traceId}}"
+                  pageId="{{recommendObj.pageIdFirstPage}}"
+                  currentPageName="{{recommendObj.currentPageName}}"
+                  prePageName="{{recommendObj.prePageName}}"
+                  recommendObj="{{recommendObj}}"
+                ></new-user>
+              </view>
+            </block>
+          </block>
+          <block wx:elif="{{compList.length == 0 && channelType == 22}}">
+            <view class="no_data_store_img">
+              <image src='https://storage.360buyimg.com/wximg/common/errorbar_icon_nothingV2.png' />
+            </view>
+            <view class="no_data_store">暂无商家</view>
+          </block>
+          <!-- 商品列表 -->
+          <view class="plr12 pt12">
+            <view class="hint_msg" wx:if="{{!list_no_data && hintMsg.msg}}">
+              <!-- <image class="no_data_img" src="https://storage.360buyimg.com/wximg/common/errorbar_icon_nothingV2.png" lazy-load="{{true}}" /> -->
+              <webp-img webp-img="no_data_img" src="{{'https://storage.360buyimg.com/wximg/common/errorbar_icon_nothingV2.png'}}" />
+              <view class="hint_msg_text">{{hintMsg.msg}}</view>
+              <!-- <image class="hint_msg_img" mode="aspectFit" src="{{hintMsg.titleImg}}" lazy-load="{{true}}" /> -->
+              <webp-img webp-img="hint_msg_img" mode="aspectFit" src="{{hintMsg.titleImg}}" />
+            </view>
+            <falls-list
+              list="{{skuList}}"
+              isRefersh="{{isRefersh}}"
+              traceId="{{skuListTraceId}}"
+              recommendObj='{{recommendObj}}'
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+              noData="{{list_no_data}}"
+              defaultType="{{defaultType}}"
+              defaultObj="{{defaultObj}}"
+              wx:if="{{skuListType!=6}}"
+              bind:defaultBtnEvent="onDefaultBtnList"
+            ></falls-list>
+            <drug-list
+              initData="{{skuList}}"
+              isRefersh="{{isRefersh}}"
+              traceId='{{skuListTraceId}}'
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+              recommendObj="{{recommendObj}}"
+              wx:if="{{skuListType==6 || skuListType==100 || skuListType==101 || skuListType==102}}"
+              bind:handleFooterJump="handleFooterJump"
+            />
+            <!-- <view class="no_data" wx:if="{{list_no_data}}"> -->
+              <!-- <image class="no_data_img" src="https://storage.360buyimg.com/wximg/common/errorbar_icon_nothingV2.png" lazy-load="{{true}}" /> -->
+              <!-- <webp-img webp-img="no_data_img" src="{{'https://storage.360buyimg.com/wximg/common/errorbar_icon_nothingV2.png'}}" />
+              <view class="no_data_text" wx:if="{{errMsg}}">{{errMsg}}</view>
+            </view> -->
+            <view class="to_bottom" wx:if="{{!list_no_data && lastPage}}">已经到底了～</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <belt
+    fading="{{fading}}"
+    isShow="{{isBeltShow}}"
+    currentPage="newChannelPage"
+    channelId="{{channelId}}"
+    refreshBeltFlag="{{refreshBeltTimeFlag}}"
+    bind:beltBacktop='beltBacktop'
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    currentPageName="{{recommendObj.currentPageName}}"
+    prePageName="{{recommendObj.prePageName}}"
+    recommendObj="{{recommendObj}}"
+  ></belt>
+  <!-- 侧边栏楼层 -->
+  <sider-floor
+    class="sider"
+    traceId="{{traceId}}"
+    data="{{config.sideFloor}}"
+    wx:if="{{config.sideFloor}}"
+    siderHide="{{siderHide}}"
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    currentPageName="{{recommendObj.currentPageName}}"
+    prePageName="{{recommendObj.prePageName}}"
+    recommendObj="{{recommendObj}}"
+  ></sider-floor>
+  <!-- 挽留弹层 -->
+  <leave-pop id="leave" buriedObj="{{recommendObj}}" pageId="{{recommendObj.pageIdFirstPage}}" />
+  <!-- 医药门店弹层 -->
+  <drug-pop
+    channelId="{{channelId}}"
+    channelBusiness="{{channelBusiness}}"
+    id="drug"
+    traceId='{{skuListTraceId}}'
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    currentPageName="{{recommendObj.currentPageName}}"
+    prePageName="{{recommendObj.prePageName}}"
+    recommendObj="{{recommendObj}}"
+    bind:drugPopClose='drugPopClose'
+  ></drug-pop>
+  <!-- 回到顶部 -->
+  <back-top
+    hideBackTop="{{isShowBackTop}}"
+    pageMoving="{{pageMoving}}"
+    bind:handleBackTop='handleBackTop'
+  ></back-top>
+</view>
+<!-- 券包弹层 -->
+<block wx:if="{{couponList.length}}">
+  <coupon-pop
+    list="{{couponList}}"
+    traceId="{{traceId}}"
+    storeInfo="{{pageConfig.storeInfo}}"
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    currentPageName="{{recommendObj.currentPageName}}"
+    prePageName="{{recommendObj.prePageName}}"
+    recommendObj="{{recommendObj}}"
+  ></coupon-pop>
+</block>

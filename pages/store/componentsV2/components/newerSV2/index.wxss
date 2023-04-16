@@ -1,0 +1,196 @@
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.newer-wrapper {
+  width: 100%;
+  border-radius:20rpx 0px 0px 0px;
+  /* margin-bottom: 64rpx; */
+  margin-top: 32rpx;
+}
+.store-floor-tit {
+  position: relative;
+  padding: 30rpx 0 0rpx 20rpx;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+.store-floor-tit .title {
+  font-size: 36rpx;
+  line-height: 36rpx;
+  color: #333;
+  font-weight: bold;
+  margin-left: 4rpx;
+  max-width: 450rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sub-title {
+  font-size: 24rpx;
+  color: #333;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.store-floor-tit .newer-tomore {
+  position: absolute;
+  right: 20rpx;
+  bottom: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+.newer-tomore .more-text {
+  line-height: 26rpx;
+}
+.newer-tomore .more-icon {
+  width: 26rpx;
+  height: 26rpx;
+  /* vertical-align: middle; */
+  /* margin-left: 4rpx; */
+}
+.store-floor-tit .title-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+}
+/* 一行三个半 + 优惠券 */
+.pro-coupon-wrapper {
+}
+.coupon-wrapper {
+  margin-top: 16rpx;
+}
+
+.coupon-wrapper .one-coupon {
+  width: 710rpx;
+  height: 160rpx;
+  margin: 0 auto;
+}
+.coupon-wrapper .coupons {
+  width: 730rpx;
+  margin-left: 4rpx;
+}
+.coupon-wrapper .some-coupons {
+  display: flex;
+  height: 160rpx;
+}
+.coupon-wrapper .some-coupon-item {
+  width: 650rpx;
+  height: 160rpx;
+  margin-left: 16rpx;
+}
+
+
+
+.pro-list-wrapper {
+  width:730rpx;
+  height:404rpx;
+  border-radius:12rpx 8rpx 8rpx 12rpx;
+  margin: 18rpx 0 0 20rpx;
+}
+.scroll-wrapper {
+}
+.scroll-block {
+  background:#fff;
+  margin-right: 20rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  border-radius:12rpx 8rpx 8rpx 12rpx;
+}
+.item-wrapper {
+  display: inline-block;
+  width:210rpx;
+  border-radius: 8rpx;
+  margin-left: 20rpx;
+}
+
+.item-wrapper .pro-pic {
+  width:210rpx;
+  height:210rpx;
+  border-radius:8rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+.pro-pic .img {
+  width:210rpx;
+  height:210rpx;
+  border-radius: 8rpx;
+}
+.pro-pic  .pro-sale-slogan {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  padding: 0rpx 6rpx;
+  height: 30rpx;
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 30rpx;
+  border-radius:0 8rpx 0 8rpx;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pro-pic .freeze-wrap {
+  position: absolute;
+  left: 4rpx;
+  top: 4rpx;
+}
+
+.item-wrapper .bottom {
+  position: relative;
+  padding: 0 0 20rpx 0rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bottom .pro-title {
+  width: 210rpx;
+  height: 60rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #333;
+  display: -webkit-box;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 10rpx;
+  margin-bottom: 24rpx;
+}
+.price-car-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+  position: relative;
+}
+.price-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.car-btn {
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+  position: absolute;
+  right: 0;
+}
+.add-group {
+  position: relative;
+}
+.bottom  .go-detail {
+  width: 44rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}

@@ -1,0 +1,1 @@
+require("./runtime"),require("./vendors"),(wx["webpackJsonp/pages/myAttention/"]=wx["webpackJsonp/pages/myAttention/"]||[]).push([[4],{140:function(e,n,t){"use strict";t.r(n);var o=t(5);Component(Object(o.createRecursiveComponentConfig)())}},[[140,0,3]]]);

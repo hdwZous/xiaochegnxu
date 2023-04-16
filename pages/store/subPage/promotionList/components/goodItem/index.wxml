@@ -1,0 +1,132 @@
+<view class='ep_good-item good-item' 
+        style="background: {{item.checked ? 'rgba(71, 179, 79, 0.05)' : ''}}"
+        bindtap="goToDetail" 
+        data-item="{{item}}"
+        data-user-action="{{item.promUserActionSku || item.userAction}}"
+        data-trace-id="{{traceId}}"
+        data-page-id="{{buriedObj.pageIdFirstPage}}"
+        data-current-page-name="{{buriedObj.currentPageName}}"
+        data-pre-page-name="{{buriedObj.prePageName}}">
+    <view class="left">
+        <webp-img webp-img="good-pic" src="{{item.imgUrl}}" mode="widthFix" needOverlay="{{true}}"></webp-img>
+        <bottom-corner-tag wx:if="{{item.bottomCornerTag}}" infos="{{item.bottomCornerTag}}" moduleId="SkuYhyOne" showHandle="{{false}}" />
+        <block wx:else>
+          <view wx:if="{{!item.fixedStatus}}" class="store_stockCount_tag">已下架</view>
+          <view wx:if="{{item.stockCount === 0}}" class="store_stockCount_tag">已抢光</view>
+          <view wx:if="{{item.stockCount <= 3 && item.stockCount>0}}"   
+                class="store-sku-remain">
+              仅剩
+              <text>{{item.stockCount}}</text>
+              件
+          </view>
+        </block>
+        <!-- 业务标 -->
+        <view class='sky-yhe-one-business-tag'>
+          <biz-tag bizType="horizontal" businessTag="{{item.businessTag}}"/>
+        </view>
+    </view>
+    <view class="right">
+        <view class='flex-auto'>
+            <view class="good-title">
+                <view class='sku-name-tag-wrap'><sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}" /></view>
+                <text class="good-title-name">{{item.skuName}}</text>
+            </view>
+            <view class='description ellipsis' wx:if="{{item.skuDesc}}">
+                <image class='desc-icon' 
+                        wx:if="{{item.skuDescIcon}}" 
+                        src="{{item.skuDescIcon}}" />
+                {{item.skuDesc}}
+            </view>
+            <view class='description ellipsis' 
+                  wx:elif="{{item.funcIndicatinsOrAdWord}}">
+                {{item.funcIndicatinsOrAdWord}}
+            </view>
+            <view class='description ellipsis' 
+                  wx:elif="{{item.aword}}">
+                  {{item.aword}}
+            </view>
+            <view class="good-sale-highopinion">
+                <text>月售{{item.monthSales}}</text>
+                <text class='hign-opinion'>{{item.highOpinion}}</text>
+            </view>
+            <!-- 属性 -->
+            <view style="margin-bottom: 4rpx" wx:if="{{item.personlizedCateAttritemList}}">
+              <goods-attribute info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+            </view>
+            <view class="flex-row tag_case">
+                <view class="flex-none good-tag-list" 
+                      wx:if="{{item.tags.length > 0}}">
+                    <block wx:for="{{item.tags}}" 
+                           wx:for-item="tag" 
+                           wx:key="index">
+                        <view class='good-tag' 
+                              style="color: {{tag.strokeNameColorCode}};border: solid 2rpx {{tag.strokeNameColorCode}}">
+                            {{tag.iconText}}
+                        </view>
+                    </block>
+                </view>
+                <view class="flex-none" wx:if="{{item.couponVOList && item.couponVOList.length}}">
+                    <coupon-go-tag data="{{item.couponVOList[0]}}" 
+                                  sku-id="{{item.skuId || ''}}" 
+                                  org-code="{{item.orgCode || ''}}" 
+                                  store-id="{{item.storeId || ''}}" 
+                                  from="promotionPage"
+                                  user-action="{{item.userActionSku}}">
+                    </coupon-go-tag>
+                </view>
+            </view>
+        </view>
+        <view class='price-car-wrapper'>
+            <view class='price-group'>
+                <!-- major-price -->
+                <coupon-price majorPrice="{{item.majorPrice}}" 
+                              majorPriceFz="28rpx" 
+                              majorPriceWhFz="24rpx" 
+                              intervalPrice="{{item.intervalPrice}}" />
+                <!-- minor-price -->
+                <coupon-price minorPrice="{{item.minorPrice}}" />
+            </view>
+            <view class="car-btn" 
+                  style="margin-bottom: {{item.minorPrice && item.minorPrice.price ? '0rpx' : '-8rpx'}}">
+                <view class="add-group" 
+                      wx:if="{{item.showCartButton}}">
+                    <view class="select_case">
+                        <add-min-controller count="{{item.showModel ? item.spuCartCount :  item.incartCount}}" 
+                                            skuId="{{item.skuId}}" 
+                                            spuId="{{item.spuId}}" 
+                                            data-sku-id="{{item.skuId}}" 
+                                            orgCode="{{item.orgCode}}" 
+                                            storeId="{{item.storeId}}" 
+                                            longitude="{{longitude}}" 
+                                            latitude="{{latitude}}" 
+                                            isAddCart="{{item.isAddCart}}" 
+                                            tags="{{item.tags}}"
+                                            weighting="{{item.weighting}}" 
+                                            weight="{{item.cartWeight}}"
+                                            userAction="{{item.userActionSku || item.userAction}}"
+                                            biActivityId='{{activityId}}'
+                                            biPageName="StoreHomeActivity"
+                                            addCartText="{{item.weightPriceStr}}"
+                                            currentPageName="{{buriedObj.currentPageName}}"
+                                            prePageName="{{buriedObj.prePageName}}"
+                                            showType="2"
+                                            floorCodeName="{{title}}"
+                                            iconType="{{item.iconType}}" 
+                                            transmitData="{{item.transmitData}}" 
+                                            to="{{item.to}}" 
+                                            params="{{item.params}}"
+                                            showModel="{{item.showModel}}"
+                                            pageId="{{buriedObj.pageIdFirstPage}}" 
+                                            currentPageName="{{buriedObj.currentPageName}}" 
+                                            prePageName="{{buriedObj.prePageName}}">
+                         </add-min-controller>
+                    </view>
+                </view>
+                <view wx:else class="go-detail-wrapper">
+                    <image class='go-detail' 
+                           src="https://storage.360buyimg.com/wximg/common/next_green.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

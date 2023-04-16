@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.wrap}}"><block wx:if="{{listArr.length > 0}}"><card wx:key="$original.groupId" wx:for="{{loopArray72}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__249}}"></card></block></view></block>

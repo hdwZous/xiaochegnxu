@@ -1,0 +1,27 @@
+<view class="confirm-dialog-bg flex-col"
+      bindtap="hide"
+      wx:if="{{showDialog}}"
+>
+    <view class="confirm-dialog-case">
+        <view class="confirm-dialog-top"
+              style="background: {{backgroundColor ? backgroundColor : 'transparent'}}"
+        ></view>
+        <view class="confirm-dialog-bottom"
+              style="background: {{backgroundColor ? backgroundColor : 'transparent'}}"
+        ></view>
+        <scroll-view class="confirm-dialog-body"
+                     style="height:{{height}}rpx;width: {{width}}rpx;background: {{backgroundColor ? backgroundColor : '#ffffff'}};{{styles}}"
+                     scroll-y="{{scroll}}"
+                     wx:if="{{userScroll}}"
+        >
+            <slot></slot>
+        </scroll-view>
+        <view class="dialogView"  wx:if="{{!userScroll}}">
+            <slot></slot>
+        </view>
+    </view>
+    <view class="confirm-dialog-close"
+          bindtap="hide"
+          wx:if="{{useClose}}"
+    ></view>
+</view>

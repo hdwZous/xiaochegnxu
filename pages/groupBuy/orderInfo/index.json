@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "订单详情",
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "goods": "../components/goods/index",
+        "share-to-moments-dialog": "/components/singlePicWithSave/index",
+        "share-to-wx-dialog": "/components/share2WxDialog/index"
+    }
+}

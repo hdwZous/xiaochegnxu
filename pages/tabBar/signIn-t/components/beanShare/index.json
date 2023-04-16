@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "marquee": "../../../../../common-mp/components/Marquee/index",
+    "subscribe-message": "../../../../../common-mp/components/subscribeMessage/index"
+  },
+  "navigationBarTitleText": ""
+}

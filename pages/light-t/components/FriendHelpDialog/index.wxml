@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{styles.dialog_mask}}" style="{{anonymousState__temp}}"><view class="{{styles.dialog_bg}}" style="{{anonymousState__temp2}}"><view class="{{styles.dialog_open}}" bindtap="anonymousFunc0">{{okText}}</view><view class="{{styles.dialog_cancal}}" bindtap="anonymousFunc1"></view></view></view></block>

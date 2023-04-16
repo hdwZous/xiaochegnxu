@@ -1,0 +1,6 @@
+<view class="rs_discount module_box d-flex flex-row justify-content-between">
+   <view class="mb_title">{{infos.title}}</view>
+   <view class="d-flex flex-row align-items-center">
+    <text-list infos="{{infos.data.discountMoneyText.textItemList}}"></text-list>
+   </view>
+</view>

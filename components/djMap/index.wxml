@@ -1,0 +1,55 @@
+<view class="map-wrap">
+   <map
+      id="myMap"
+      class="map {{mapHeight == '100vh' && 'full-screen'}}"
+      markers="{{markers}}"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      enable-scroll='{{scroll}}'
+      enable-zoom='{{zoom}}'
+      bindtap='onTapMap'
+      style="height: {{mapHeight}};"
+    >
+      <cover-view slot="callout">
+         <block wx:for="{{markers}}" wx:key="index">
+            <cover-view  class="customCallout {{item.name}}" marker-id="{{item.id}}" >
+               <cover-view wx:if="{{item.content}}" class="label-wrap {{item.name}}">
+                  <cover-view class="label"> 
+                     <cover-view style="display: inline-flex">{{item.content}}</cover-view>
+                     <cover-view class="time">{{item.distanceAndTimeDes}}</cover-view>
+                  </cover-view>
+                  <!-- <cover-view class="bg-label">
+                     <cover-image src="https://storage.360buyimg.com/wxmini/map/icon-callout.png" referrer-policy='no-referrer'></cover-image>
+                  </cover-view> -->
+               </cover-view>
+               <cover-view class="head-wrap {{item.name}}">
+                  <!-- <cover-view
+                     wx:if="{{isShowGift && item.name == 'deliveryMan'}}"
+                     class="{{direction == 1 ? 'order-gift' : 'order-gift-left'}} {{mapHeight == '100vh' && 'full-screen' ? '' : ''}}"
+                     bind:tap="giftJump"
+                     style="background-image: url({{lotteryInfo.url}})"
+                  ></cover-view> -->
+                  <cover-image class="bg-head" src="https://storage.360buyimg.com/wxmini/map/bg-head.png" referrer-policy='no-referrer'></cover-image>
+                  <cover-view></cover-view>
+                  <cover-image class="icon-head" src="{{item.head}}" referrer-policy='no-referrer'></cover-image>
+                  <cover-view></cover-view>
+                  <cover-image class="icon-location" src="https://storage.360buyimg.com/wxmini/map/icon-location.png" referrer-policy='no-referrer'></cover-image>
+                  <cover-view></cover-view>
+               </cover-view>
+            </cover-view>
+         </block>
+      </cover-view>
+      <block wx:if="{{mapHeight=='100vh'}}">
+         <cover-image
+            wx:if="{{ isShowGift && lotteryInfo}}"
+            class="order-gift-left {{mapHeight == '100vh' && 'full-screen' ? '' : ''}}"
+            bind:tap="giftJump"
+            src='{{lotteryInfo.url}}'
+         ></cover-image>
+         <cover-image bind:tap="exitFullMap" class="btn-close" src="./img/icon-close.png"></cover-image>
+         <cover-image bind:tap="showTip" class="icon btn-tip" src="./img/icon-tip.png"></cover-image>
+         <cover-image bind:tap="refreshMap" class="icon btn-refresh" src="./img/icon-refresh.png"></cover-image>
+      </block>
+
+    </map>
+</view>

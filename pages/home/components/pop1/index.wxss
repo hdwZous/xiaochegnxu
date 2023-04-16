@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  z-index: 500;
+  left: 0;
+  top: 0;
+}
+.content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 60rpx;
+  z-index: 1001;
+}
+.pic {
+  width: 610rpx;
+  height: 610rpx;
+}
+.close {
+  display: block;
+  width: 76rpx;
+  height: 76rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+}

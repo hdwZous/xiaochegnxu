@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index",
+    "marquee": "../commonComponents/Marquee/index",
+    "info-card": "../components/InfoCard/index",
+    "pop": "../../../common-mp/components/Pop/index",
+    "subscribe-message": "../../../common-mp/components/subscribeMessage/index",
+    "back-to-app": "/components/backToApp/index"
+  },
+  "navigationBarTitleText": "京东到家",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

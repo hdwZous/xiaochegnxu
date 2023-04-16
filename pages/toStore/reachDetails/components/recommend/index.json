@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "styleIsolation": "apply-shared",
+    "usingComponents": {
+        "floor-layout": "../floor-layout/index",
+        "recommend-item": "./components/recommend-item/index"
+    }
+}

@@ -1,0 +1,15 @@
+<view
+  class="video-box floor_relative"
+  data-index="{{floorData.index}}"
+  id="f{{item.index}}"
+  style="background: {{item.floorConfig.bgColorVal}}">
+  <block wx:for="{{item.data}}" wx:for-item="subItem" wx:key="item">
+    <list
+      traceId="{{traceId}}"
+      subItem="{{subItem}}"
+      pageId="{{recommendObj.pageIdFirstPage}}"
+      currentPageName="{{recommendObj.currentPageName}}"
+      prePageName="{{recommendObj.prePageName}}"
+    ></list>
+  </block>
+</view>

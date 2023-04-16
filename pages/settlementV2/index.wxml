@@ -1,0 +1,509 @@
+<wxs module="tool" src="./util/tools.wxs"></wxs>
+<view  wx:if="{{defaultError!=null}}" class="error_box">
+    <default fromPositon="settlementv2" type="{{defaultError.type}}" btnText="{{defaultError.btnText}}" tips="{{defaultError.tips}}" src="{{defaultError.src}}" bind:defaultBtnEvent="onDefaultBtnEvent"></default>
+</view>
+<view class="settlementV2" catchtap="elementTracker" wx:else aria-hidden="{{ariaHidden}}">
+  <view bindtap="ovserevent">
+    <navigation capsule="{{capsule}}" retainCoupon="{{retainInfo}}" storeId="{{storeId}}" bindshowRetain="showRetain"></navigation>
+    <!-- 8.15.5地址小黄条移动到顶部 START -->
+    <view wx:if="{{!(deliverModel == 2 && deliverTypeABStyle == 1)}}" style="top: {{capsule.top + capsule.height + 10}}px" bindtap="goAddress" class="address-tips-text d-flex flex-row justify-content-between {{showAddressTips?'show-address-tips':'hide-address-tips'}}">
+      <view class="ellipsis location-text" wx:if="{{receiptAddress.data.type==1}}" aria-role="button" aria-label="{{'配送至：' + receiptAddress.data.addressVo.addressName + '点击切换地址'}}">
+        {{(settlementBusinessTag===1?'上门地址：':'配送至：')+(receiptAddress.data.addressVo.addressName || "")}}
+      </view>
+      <view class="ellipsis location-text" wx:elif="{{receiptAddress.data.type==3||receiptAddress.data.type==5}}" aria-role="button" aria-label="{{(receiptAddress.data.title || receiptAddress.data.addressVo.addressName || '') + receiptAddress.data.desc + '点击切换地址'}}">
+        {{receiptAddress.data.title || receiptAddress.data.addressVo.addressName || ""}}
+          {{"("+receiptAddress.data.desc+")"}}
+      </view>
+      <view class="ellipsis location-text" wx:else aria-role="button" aria-label="{{receiptAddress.data.title + '点击切换地址'}}">{{receiptAddress.data.title||""}}</view>
+      <image class="location-img" src="https://storage.360buyimg.com/wximg/storewin/location_arrow.png" />
+    </view>
+    <!-- 8.15.5地址小黄条移动到顶部 END -->
+    <view style="padding-top:{{capsule.top + capsule.height + 10}}px;background-color: #00CF37;"></view>
+    <view class="background-box" wx:if="{{topText || receiptAddress}}">
+      <view class="topTip d-flex flex-row align-items-start" wx:if="{{topText}}" aria-role="text" aria-label="{{topText}}">
+        <image class="topTip-icon" src="{{topIcon}}" />
+        <text class="topTip-txt ellipsis2">{{topText}}</text>
+      </view>
+      <view class="address-box">
+        <distribution-info 
+          receiptAddress="{{receiptAddress}}" 
+          deliverTime="{{deliverTime}}" 
+          deliverType="{{deliverType}}" 
+          dispatchMold="{{dispatchMold}}"
+          selfAddress="{{selfAddress}}" 
+          orderPageId="{{orderPageId}}" 
+          storeId="{{storeId}}" 
+          unique="{{unique}}" 
+          deliverTypeABStyle="{{deliverTypeABStyle}}"
+          selectedDeliveryTime="{{selectedDeliveryTime}}" 
+          pageId="{{recommendObj.pageIdFirstPage}}"
+          currentPageName="{{recommendObj.currentPageName}}" 
+          prePageName="{{recommendObj.prePageName}}"
+          buriedObj="{{recommendObj}}"
+          serviceDateTime="{{serviceDateTime}}"
+          bindgoAddress="goAddress" 
+          bindclickAddressTab="clickAddressTab"
+          bindnewselfPhone="newselfPhone" 
+          bindonDeliverTimeClick="onDeliverTimeClick"
+          bindpopStatus="popStatus">
+        </distribution-info>
+      </view>
+    </view>
+
+    <!-- 自提服务协议 -->
+    <view wx:if="{{deliverTime.data.urlTextList}}" class="agreement-wrap">
+      <view bindtap="checkAgreement" class="agreement-check {{checkAgreementFlag ? 'unify-roll-btn-on' : 'unify-roll-btn-off'}}" aria-role="button" aria-label="{{checkAgreementFlag ? '不同意自提服务协议' : '同意自提服务协议'}}"></view>
+      <view bindtap="lookAgreement" wx:for="{{deliverTime.data.urlTextList}}" data-item='{{item}}' style="color:{{item.color}}" wx:key="index" class="{{item.url && 'btn-link'}}"  aria-role="link" aria-label="点击跳转服务协议详情页面">
+        {{item.text}}
+      </view>
+    </view>
+    <!-- 保供picker -->
+    <view wx:if="{{picker}}" class="newPicker card-wrap">
+      <new-picker infos="{{picker}}" bindsetPickerValue="setPickerValue" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}"></new-picker>
+    </view>
+    <!-- 订购人信息模块 -->
+    <view class="settlement-order-info-container" wx:if="{{bookInfo || specialInfo}}">
+      <block wx:if="{{bookInfo}}">
+        <view class="settlement-content-box d-flex flex-row align-items-center">
+          <text class="book-title flex-none" aria-role="text" aria-label="{{bookInfo.title}}" >{{bookInfo.title}}：</text>
+          <input class="settlement-order-info-input" aria-role="button" aria-label="输入姓名" placeholder-class='placeholder-class' placeholder="姓名" bindinput="SetInputValue" data-keys="orderNameValue" value='{{orderNameValue}}' maxlength="7"></input>
+          <view class="settlement-div-line"></view>
+          <input class="settlement-order-info-input" aria-role="button" aria-label="输入手机号" type="number" placeholder-class='placeholder-class' placeholder="电话" bindinput="SetInputValue" data-keys="orderPhoneValue" value='{{orderPhoneValue}}' maxlength="11" />
+        </view>
+        <view class="shin-border-bottom"></view>
+      </block>
+      <view class="settlement-content-box d-flex flex-row" wx:if="{{specialInfo}}">
+        <text class="book-title flex-none" aria-role="text" aria-label="{{specialInfo.title}}">{{specialInfo.title}}</text>
+        <input class="settlement-order-info-input" aria-role="button" aria-label="输入祝福语信息" auto-height="true" placeholder-class='placeholder-class' placeholder="{{specialInfo.defaultText}}" bindinput="SetInputValue" data-keys="specialRemark" value='{{specialRemark}}' maxlength="20"></input>
+      </view>
+    </view>
+    <!-- 学生教育优惠 -->
+    <view class="student_wrap" wx:if="{{educationInfo}}">
+      <student initData="{{educationInfo}}" buriedObj="{{recommendObj}}" />
+    </view>
+    <!-- 医药 -->
+    <view class="drug_wrap" wx:if="{{useDrug}}">
+      <drug initData="{{useDrug}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" buriedObj="{{recommendObj}}"/>
+    </view>
+    <!-- 头部模块化区域 -->
+    <block wx:if="{{headerFloor && headerFloor.data.componentList.length}}">
+      <block wx:for="{{headerFloor.data.componentList}}" wx:key="items">
+        <view class="module_wrap">
+          <block wx:if="{{item.type == 'picker'}}">
+            <module-picker 
+              infos="{{item}}" 
+              pageId="{{recommendObj.pageIdFirstPage}}" 
+              currentPageName="{{recommendObj.currentPageName}}" 
+              prePageName="{{recommendObj.prePageName}}" 
+              modulePickerInit="{{modulePickerInit}}" 
+              buriedObj="{{recommendObj}}"
+              bindrefreshModuleKey="refreshModuleKey"></module-picker>
+          </block>
+          <block wx:elif="{{item.type == 'jump'}}">
+            <module-jump infos="{{item}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" bindrefreshModuleKey="refreshModuleKey"></module-jump>
+          </block>
+        </view>
+      </block>
+    </block>
+    <!-- 商品列表 -->
+    <view class="product-wrap" wx:if="{{productList.length}}">
+      <product skus="{{productList}}" productTotal="{{productTotal}}" totalWeight="{{totalWeight}}" storeName="{{storeName}}" distributionType="{{distributionTypeLabel}}"></product>
+    </view>
+    <!-- 餐盒费 -->
+    <view class="moneyInfo-wrap d-flex flex-row justify-content-between align-items-center" wx:if="{{moneyInfo && moneyInfo.data.length}}">
+      <text class="moneyInfo-name" aria-role="text" aria-label="{{moneyInfo.data[0].name}}">{{moneyInfo.data[0].name}}</text>
+      <text class="moneyInfo-value" aria-role="text" aria-label="{{moneyInfo.data[0].value}}" >{{moneyInfo.data[0].value}}</text>
+    </view>
+    <!-- 定金 -->
+    <view class="deposit-wrap" wx:if="{{reserveOrderInfo}}">
+      <deposit info="{{reserveOrderInfo.data}}"></deposit>
+    </view>
+    <!-- 运费 -->
+    <view class="package-wrap" wx:if="{{actionModule}}">
+      <package 
+        lists="{{actionModule.data}}" 
+        bindselectFeeId="selectFeeId" 
+        bindsetDefaultFree="setDefaultFree" 
+        bindoneKeyOpen="oneKeyOpen" 
+        bindneedPackage="selectPack"
+        bindpopStatus="popStatus"
+        bind:checkBusiness="checkBusiness"
+        unique="{{unique}}"
+        orderPageId="{{orderPageId}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        initSettleParams="{{initSettleParams}}"
+        currentPageName="{{recommendObj.currentPageName}}" 
+        prePageName="{{recommendObj.prePageName}}"
+        buriedObj="{{recommendObj}}"
+        storeId="{{storeId}}" 
+        orgCode="{{orgCode}}">
+      </package>
+    </view>
+    <!-- 折扣信息 -->
+    <view class="dis_money_info_wrap" wx:if="{{disMoneyInfo}}">
+      <dis-money-info initData="{{disMoneyInfo}}" vipMemberFlag="{{vipMemberFlag}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" bind:handleVipClick="handleVipClick" bind:handleOneKeyExchange="handleOneKeyExchange" bindpopNewVip="popNewVip" buriedObj="{{recommendObj}}"/>
+    </view>
+    <!-- vip红包 -->
+    <view class="vip_wrap" style="padding-top:{{newVip?16:0}}rpx" wx:if="{{newVip}}"> 
+      <block wx:if="{{newVip.data.styleType == 10}}">
+        <vip-new-style infos="{{newVip.data}}" bindhandleNewVip="handleVipCheck" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" storeId="{{storeId}}" buriedObj="{{recommendObj}}"></vip-new-style>
+      </block>
+      <block wx:else>
+        <vip newVip="{{newVip}}" isIOS="{{isIOS}}" buriedObj="{{recommendObj}}" bind:handleVipCheck="handleVipCheck" />
+      </block>
+    </view>
+    <!-- 优惠券 -->
+    <view class="coupon_wrap" wx:if="{{couponInfo}}">
+      <coupon 
+        initData="{{couponInfo}}" 
+        unique="{{unique}}"
+        storeId="{{storeId}}"
+        orderPageId="{{orderPageId}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}" 
+        prePageName="{{recommendObj.prePageName}}"
+        buriedObj="{{recommendObj}}"
+        mockVip="{{mockVip}}"
+        vipFloor="{{newVip.data}}"
+        disMoneyInfo="{{disMoneyInfo}}"
+        buyCouponWithOrderFlag="{{buyCouponWithOrderFlag}}"
+        bind:handleInitCouponInfo="handleInitCouponInfo"
+        bind:handleCouponDiglogVisible="handleCouponDiglogVisible" 
+        bind:handleCouponInfo="handleCouponInfo"
+        bind:listenNewVipPop="listenNewVipPop" />
+    </view>
+    <!-- 礼品卡 -->
+    <view class="settlement-money-gift d-flex flex-row align-items-center justify-content-between" wx:if="{{giftCard&&giftCard.data}}">
+      <view class="gift-description d-flex flex-row align-items-center">
+        <text class="gift-card-desc">{{giftCard.data.giftCardDesc||""}}</text>
+        <image bindtap="showGiftDialog" class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+      </view>
+      <view class="d-flex flex-row align-items-center">
+        <view class="gift-dis-money" wx:if="{{giftCard.data.deductMoney}}">-￥{{giftCard.data.deductMoney/100}}</view>
+        <view bindtap="useGiftCard" data-type="{{giftDisable ? 'disable' : useGiftCardFlag ? 1 : 0 }}" class="{{giftCard.data.onOffFlag ? 'unify-roll-btn-on' : 'unify-roll-btn-off'}}"></view>
+      </view>
+    </view>
+    <!-- 仙豆 -->
+    <view class="beans_wrap">
+      <beans freshBeanInfo="{{platPoints.data}}" usePlatPointsFlag="{{usePlatPointsFlag}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" bind:handleUseBeans="handleUseBeans" bind:explainBeanBuried="explainBeanBuried" bindpopStatus="popStatus"/>
+    </view>
+    <!-- 总金额 -->
+    <view wx:if="{{totalMoney}}" class="settlement-money-total">
+      <view class="flex-col">
+        <view style="text-align:right" aria-role="text" aria-label="{{totalDiscount?'共节省'+totalDiscount:''}}{{useDrugRequireFlag!=null?'需求单金额':'实付金额'}}{{totalMoney}}">
+          <text class="settlement-money-discount" wx:if="{{totalDiscount}}">共节省</text><text class="settlement-money-discount settlement-money-discount-color">{{totalDiscount}}</text>
+          <text class="real_pay_text">{{useDrugRequireFlag!=null?"需求单金额":"实付金额"}}</text>
+          <text class="total-money">{{totalMoney}}</text>
+        </view>
+        <text wx:if="{{discountRuleTip}}" aria-role="text" aria-label="{{discountRuleTip}}" class="settlement-money-tip">{{discountRuleTip}}</text>
+      </view>
+    </view>
+    <!-- 超值换购楼层 -->
+    <view class="exchange_wrap" wx:if="{{huanGouProductInfo}}">
+        <exchange-floor info="{{huanGouProductInfo}}" storeId="{{storeId}}" orgCode="{{orgCode}}" recomObj="{{recommendObj}}" bindexchangeSuccess="exchangeSuccess"></exchange-floor>
+    </view>
+    <!-- 商家会员 -->
+    <view class="member_wrap" wx:if="{{memberEntrance}}">
+      <view class="desc-box d-flex flex-row {{memberEntrance.data.memberType == 2 ? 'align-items-start' : 'align-items-center'}}">
+        <view class="member_left_wrap">
+          <view class="member_title d-flex flex-row align-items-center">
+            <text class="member_title_txt ellipsis" aria-role="text" aria-label="{{memberEntrance.data.memberTitle}}">{{memberEntrance.data.memberTitle}}</text>
+            <image bindtap="showMemberRule" aria-role="link" aria-label="点击弹出介绍会员规则弹窗" wx:if="{{memberEntrance.data.explain && memberEntrance.data.explain}}" class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+          </view>
+          <view class="member_content_wrap d-flex flex-row align-items-start">
+            <view class="member_content ellipsis2">
+              <block wx:for="{{memberEntrance.data.memberTipNew}}" wx:key="txt">
+                  <text bindtap="jump2rule" data-to="{{item.to}}" data-params="{{item.params.url}}" data-jumpflag="{{item.jumpFlag}}" style="color: {{item.color}};text-decoration:{{item.underlineFlag ? 'underline':'' }};">{{item.text}}</text>
+              </block>
+            </view>
+            <view class="spare-layer" aria-role="text" aria-label="{{memberEntrance.data.estimateProvincial}}" wx:if="{{memberEntrance.data.memberType == 2 && memberEntrance.data.estimateProvincial}}"><view class="spl-box"><text class="spare-layer-txt">{{memberEntrance.data.estimateProvincial}}</text></view></view>
+          </view>
+        </view>
+        <view class="click-box {{memberEntrance.data.memberType == 2 ? 'new2' : ''}}">
+          <block wx:if="{{memberEntrance.data.skipUrl}}">
+            <view class="member_right d-flex flex-row align-items-center" bind:tap="handleMemberJump" aria-role="link" aria-label="{{'节省' + (memberEntrance.data.discountMoney/100) + '元，点击去开通'}}">
+              <text class="member_money" wx:if="{{memberEntrance.data.discountMoney}}">-¥{{memberEntrance.data.discountMoney/100}}</text>
+              <text class="dj_icon ts_next member_right_icon" style="top:{{isIOS?'0':'4rpx'}}"></text>
+            </view>
+          </block>
+          <view
+            class="member_open d-flex flex-row align-items-center justify-content-end"
+            wx:if="{{memberEntrance.data.memberType == 2}}"
+            bindtap="openMember"
+            data-open-state="{{memberEntrance.data.memberOpenState}}"
+            data-to-member-center-url="{{memberEntrance.data.toMemberCenterUrl}}">
+            <text
+              class="member_pay_money"
+              style="margin-right: 8rpx"
+              wx:if="{{memberEntrance.data.memberType == 2 && memberEntrance.data.feeBasedContent}}"
+              aria-role="text"
+              aria-label="{{memberEntrance.data.feeBasedContent}}"
+            >{{memberEntrance.data.feeBasedContent}}</text>
+            <view
+              wx:if="{{memberEntrance.data.memberOpenState}}"
+              class="{{memberEntrance.data.memberOpenState == 1 ? 'unify-roll-btn-on' : memberEntrance.data.memberOpenState == 2 ? 'unify-roll-btn-off' : memberEntrance.data.memberOpenState == 3 ? 'unify-roll-btn-nochose' : ''}}"
+              aria-role="button"
+              aria-label="{{memberEntrance.data.memberOpenState == 1 ? '取消选中' : memberEntrance.data.memberOpenState == 2 ? '选择开通' : memberEntrance.data.memberOpenState == 3 ? '禁止选择' : ''}}"
+            ></view>
+            <view wx:if="{{memberEntrance.data.toMemberCenterUrl}}" class="dj_icon ts_next" style="margin-left: 4rpx;"></view>
+          </view>
+        </view>
+      </view>
+      <block wx:if="{{memberEntrance.data.memberType == 2 && memberEntrance.data.merchantBenefits}}">
+        <view class='shin-border-bottom' style="color: #F5F5F5;margin-top: 16rpx;"></view>
+        <view class="member_equity_box">
+          <view class="equity_content d-flex flex-row align-items-center">
+            <text class="equity_title" aria-role="button" aria-label="{{memberEntrance.data.benefitTitle}}">{{memberEntrance.data.benefitTitle}}：</text>
+            <block wx:for="{{memberEntrance.data.merchantBenefits}}" wx:key="member">
+              <view class="equity_items_wrap" aria-role="text" aria-label="{{item.benefitCopy}}">
+                <view class="equity_items {{item.benefitType == 1 || item.benefitType == 2 ? 'A': item.benefitType == 4 || item.benefitType == 3 ? 'B' : ''}} d-flex flex-row align-items-center" wx:if="{{index < 4}}">
+                  <text class="equity_txt">{{item.benefitCopy}}</text>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- 同意定金不退楼层 -->
+    <view class="no_refunds" wx:if="{{preSaleProtocol}}">
+      <view class="top_box d-flex flex-row align-items-center">
+        <text class="title ellipsis" aria-role="text" aria-label="{{preSaleProtocol.data.title}}">{{preSaleProtocol.data.title}}</text>
+        <image bindtap="showGuardRule" aria-role="link" aria-label="点击弹出定金不退规则" wx:if="{{preSaleProtocol.data.readmeList.length}}" data-readme-list="{{preSaleProtocol.data.readmeList}}" data-title="{{preSaleProtocol.data.title}}"  data-icon-name="预售协议"  class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+        <image class="switch" aria-role="button" aria-label="{{usePreSaleProtocol ? '点击取消' : '点击选中'}}" bindtap="changePresale" src="{{usePreSaleProtocol ?'https://storage.360buyimg.com/wximg/groupbuy/switch-open.png':'https://storage.360buyimg.com/wximg/groupbuy/switch-close.png'}}" mode="widthFix" />
+      </view>
+      <view class="desc ellipsis2" aria-role="text" aria-label="{{preSaleProtocol.data.tongtip}}">{{preSaleProtocol.data.tongtip}}</view>
+    </view>
+
+    <!-- 微准长、号码保护 -->
+    <view class="micro_phone_wrap" wx:if="{{(microSettlement.moduleKey && deliverModel==1) || cryptoguard}}">
+      <micro-settle microSettlement="{{microSettlement}}"  wx:if="{{microSettlement && deliverModel==1}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" buriedObj="{{recommendObj}}" bind:handleWeBankBtnClick="handleWeBankBtnClick" />
+      <view class='store_item_line' wx:if="{{microSettlement.moduleKey && deliverModel==1}}"></view>
+      <view wx:if="{{cryptoguard}}" class="phone-guard-card">
+        <view class="wrap-box d-flex flex-row align-items-center">
+          <text class="title" aria-role="text" aria-label="{{cryptoguard.data.title}}">{{cryptoguard.data.title}}</text>
+          <image bindtap="showGuardRule" aria-role="link" aria-label="规则说明" wx:if="{{cryptoguard.data.readmeList.length}}" data-readme-list="{{cryptoguard.data.readmeList}}" data-icon-name="号码保护" class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+          <image class="switch" aria-role="button" aria-label="{{(mobileSafeFlag != null ? mobileSafeFlag : cryptoguard.data.useCryptoguard) ? '点击取消' : '点击选中'}}" bindtap="changePhoneNumGuard" data-operateType="{{cryptoguard.data.useCryptoguard ? 'close' : 'open'}}" data-flag="{{cryptoguard.data.useCryptoguard}}" src="{{(mobileSafeFlag != null ? mobileSafeFlag : cryptoguard.data.useCryptoguard)?'https://storage.360buyimg.com/wximg/groupbuy/switch-open.png':'https://storage.360buyimg.com/wximg/groupbuy/switch-close.png'}}" mode="widthFix" />
+        </view>
+        <view class="desc" aria-role="text" aria-label="{{cryptoguard.data.tip}}">{{cryptoguard.data.tip}}</view>
+      </view>
+    </view>
+    <!-- 底部模块化区域 -->
+    <block wx:if="{{footerFloor && footerFloor.data.componentList.length}}">
+      <block wx:for="{{footerFloor.data.componentList}}" wx:key="items">
+        <view class="module_wrap">
+          <block wx:if="{{item.type == 'picker'}}">
+            <module-picker infos="{{item}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" modulePickerInit="{{modulePickerInit}}" bindrefreshModuleKey="refreshModuleKey"></module-picker>
+          </block>
+          <block wx:elif="{{item.type == 'jump'}}">
+            <module-jump 
+              infos="{{item}}" 
+              pageId="{{recommendObj.pageIdFirstPage}}" 
+              currentPageName="{{recommendObj.currentPageName}}" 
+              prePageName="{{recommendObj.prePageName}}" 
+              buriedObj="{{recommendObj}}"
+              bindrefreshModuleKey="refreshModuleKey"></module-jump>
+          </block>
+        </view>
+      </block>
+    </block>
+    <!-- 缺货、发票、备注 -->
+    <view class="footer_wrap" style="padding-bottom:300rpx;">
+      <footer-module orderMark="{{orderMark}}" lackGoodsInfo="{{outOfStockConfig}}" invoice="{{invoice}}" bind:handleInvoiceClick="handleInvoiceClick" 
+      invoiceRightValue="{{invoiceRightValue}}" invoiceData="{{invoiceData}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" storeId="{{storeId}}" tableWareData="{{tableWareData}}" bind:setRemarkContent="setRemarkContent" bind:setLackGoods="setLackGoods" bindpopStatus="popStatus" bind:handleTableWare="handleTableWare"/>
+      <view wx:if="{{isIPX}}" style="height:50rpx;"></view>
+    </view>
+    <!-- 提交按钮 -->
+    <view class="submit-view">
+      <!-- 提交按钮 -->
+      <view class="submit_wrap d-flex flex-row justify-content-end align-items-center" wx:if="{{submitInfoNew && submitInfoNew.data}}">
+        <view class="price-settle-text" aria-role="text" aria-label="{{!depositInfo.price?(totalDiscount?'共节省'+totalDiscount+','+totalMoney:''):((depositInfo.title||'')+depositInfo.price)}}">
+          <view class="ellipsis">
+            <block wx:if="{{!depositInfo.price}}">
+              <text wx:if="{{totalDiscount}}" class="totalMoney-text-discount">共节省<text class="total-discount-num">{{totalDiscount}}</text></text>
+              <text wx:if="{{totalMoney}}" class="totalMoney-text">{{totalMoney}}</text>
+            </block>
+            <block wx:else>
+              <text wx:if="{{depositInfo.title}}" class="depositInfo_text">{{depositInfo.title}}</text>
+              <text class="totalMoney-text">{{depositInfo.price}}</text>
+            </block>
+          </view>
+          <view class="new-yorker" wx:if="{{submitInfoNew.data.orderReturnRitual}}" aria-role="text" aria-label="{{submitInfoNew.data.orderReturnRitual.airaStr}}" style="background: linear-gradient(135deg, {{submitInfoNew.data.orderReturnRitual.backgroundStartColor}} 0%, {{submitInfoNew.data.orderReturnRitual.backgroundEndColor}} 100%);">
+            <view class="d-flex flex-row align-items-baseline">
+              <block wx:for="{{submitInfoNew.data.orderReturnRitual.textList}}" wx:key="items">
+                <text class="{{item.type == 2?'new_regular':''}}" style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};">{{item.text}}</text>
+              </block>
+              <view class="shin-border-box" style="border-color:{{submitInfoNew.data.orderReturnRitual.borderColor}}"></view>
+            </view>
+          </view>
+        </view>
+        <view class="submit_btn_wrap" aria-role="button" aria-label="{{memberToast ? '继续提交' : submitInfoNew.data.text}}">
+          <button class="btn-submit" animation="{{animation}}" loading="{{loading}}" disabled="{{disabled}}" bindtap="goPay">
+            {{memberToast ? '继续提交' : submitInfoNew.data.text}}
+          </button>
+        </view>
+      </view>
+      <view wx:if="{{isIPX}}" class="white_blank"></view>
+    </view>
+    
+  </view>
+</view>
+<!-- 优惠券弹层 -->
+<coupon-dialog isShow="{{couponDiglogVisible}}" list="{{couponInfoList}}" isIOS="{{isIOS}}" unique="{{unique}}" orderPageId="{{orderPageId}}" couponCacheId="{{couponCacheId}}"  bind:onClickCloseCoupon="onClickCloseCoupon" buriedObj="{{recommendObj}}" />
+<!-- 选择配送时间弹层 -->
+<mp-picker show="{{showPicker}}" deliverModel="{{deliverModel}}" promiseTip="{{deliverTime.data.promiseTip}}" deliverTimeDesc="{{deliverTime.data.deliverTimeDesc}}" promiseDateRespItems="{{deliverTime.data.promiseDateRespItems}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" bindgetPickerTime="getPickerTime" isIOS="{{isIOS}}" bindpopStatus="popStatus"></mp-picker>
+<!-- 选择地址弹框 -->
+<select-address isShow="{{showAddress}}" storeId="{{storeId}}" pageId="{{recommendObj.pageIdFirstPage}}" buriedObj="{{recommendObj}}" receiptAddress="{{receiptAddress}}" settlementBusinessTag="{{settlementBusinessTag}}" bindselectdAddress="selectdAddress" bindpopStatus="popStatus"></select-address>
+<!-- 问号提示框 -->
+<tip-dialog types="{{tipDialog.types}}" show="{{tipDialog.show}}" title="{{tipDialog.title}}" desc="{{tipDialog.desc}}" readmeList="{{tipDialog.readmeList}}" bindtipClose="tipClose"></tip-dialog>
+<!-- vip套餐弹层 -->
+<vip-red-bag show="{{showVip}}" pageId="{{recommendObj.pageIdFirstPage}}" buriedObj="{{recommendObj}}" bind:handleVipChecked="handleVipPopChecked" bind:exchangeVipBag="exchangeVipBag" unique="{{unique}}" data="{{disMoneyInfo}}" requestFlag="{{vipFlag}}" storeId="{{storeId}}" orgCode="{{orgCode}}" orderPageId="{{orderPageId}}" isIOS="{{isIOS}}" buyCouponWithOrderFlag="{{buyCouponWithOrderFlag}}" bindpopStatus="popStatus" />
+<!-- 新版vip套餐弹层 -->
+<vip-new-layer id="vip-new-layer" show="{{showNewVipLayer}}" bind:listenNewVipPop="listenNewVipPop" bindcloseLayer="closeLayer" unique="{{unique}}" data="{{disMoneyInfo}}" requestFlag="{{newVipReq}}" storeId="{{storeId}}" orgCode="{{orgCode}}" orderPageId="{{orderPageId}}" isIOS="{{isIOS}}" buyCouponWithOrderFlag="{{buyCouponWithOrderFlag}}" vipMemberFlag="{{vipMemberFlag}}" mockVip="{{mockVip}}" v28VoucherList="{{v28VoucherList}}" preBuried="{{recommendObj}}" biPageName="settlementinfo" />
+<!-- 礼品卡支付输入框 -->
+<pay-dialog 
+  showDialog="{{showGiftPay}}"
+  bindinputPwd="inputPwd" 
+  bind:forgetBuried="forgetBuried"
+  height="320"
+  width="540"
+  forget-password="{{giftCardForgetPassUrl}}"
+  tips="{{'使用礼品卡余额，请输入礼品卡支付密码'}}"
+  errorTips="{{giftTips}}"
+  clear="{{clearGiftPwd}}"
+  title="输入礼品卡支付密码"
+  buriedObj="{{recommendObj}}"
+>
+</pay-dialog>
+
+<!-- 订阅消息 -->
+<block wx:if="{{showSubscribeMessage}}">
+    <view class="SubscribeMessageMark">
+        <view>
+            <view class="SubscribeMessageMark" bindtap="hiddenSubscribeMessage"></view>
+            <view class="noticeImageView">
+                <image src="https://storage.360buyimg.com/wximg/common/subscribeImagePay.png" mode="aspectFit" class="noticeImage" />
+            </view>
+        </view>
+    </view>
+</block>
+
+<!-- 超值换购toast -->
+<exchange-toast wx:if="{{huanGouProductInfo && exchangeToast}}" info="{{huanGouProductInfo}}" showAddressTips="{{showAddressTips}}" exFloorTop="{{exFloorTop}}" isIPX="{{isIPX}}"></exchange-toast>
+<!-- 随单开通会员toast -->
+<member-toast wx:if="{{memberToast}}" submitOrderMemberTip="{{submitOrderMemberTip}}" info="{{specialBusinessResult}}" show="{{memberToast}}" memberOpenState="{{submitOrderLayerType == 1 ? memberEntrance.data.memberOpenState : newVip.data.checkVipFlag}}" isIPX="{{isIPX}}" buriedObj="{{recommendObj}}" bindlistenMember="listenMember"></member-toast>
+<!-- 定金不退弹窗 -->
+<deposit-dialog show="{{depositShow}}" info="{{preSaleProtocol}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" bindmonitorDeposit="monitorDeposit"></deposit-dialog>
+<needpack-dialog wx:if="{{needpackShow}}" show="{{needpackShow}}" info="{{blockPopup}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" bindpackDialogStatus="packDialogStatus"></needpack-dialog>
+<!-- 挽留弹层 -->
+<detention-toast info="{{retainInfo}}" storeId="{{storeId}}" show="{{retainShow}}" unique="{{unique}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" buriedObj="{{recommendObj}}" binddetentionSuccess="detentionSuccess"></detention-toast>
+<!-- 一键开通会员弹层 -->
+<open-member-dialog fromPositon="settlementv2" show="{{oneKeyOpen}}" storeId="{{storeId}}" info="{{memberBenefitInfo}}" bindmemberToastopen="memberToastopen" bindpopStatus="popStatus"  pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" buriedObj="{{recommendObj}}" ></open-member-dialog>
+<!-- 旧版省钱攻略 -->
+<view class="money-strategy-wrap" wx:if="{{saveMoneyPlan && styPopInfos.status !== null}}" style="padding-bottom: {{isIPX ? '48rpx' : '0'}}">
+  <view class="money-strategy" catchtouchmove="true" style="top: -{{styPopInfos.basicHeight}}px;transform: translateY({{styPopInfos.animation}}px)">
+    <view class="strategy-top-box d-flex flex-column align-items-center">
+      <view class="strategy-arrow" catchtap="upStrategy"><image class="strategy-arrow-img {{styPopInfos.status == 2 ? 'up' : ''}}" src="https://storage.360buyimg.com/wximg/storewin/money-strategy-arrow.png"></image></view>
+      <view class="strategy-top">
+        <view class="strategy-des d-flex flex-row align-items-center">
+          <image class="strategy-des-icon" src="https://storage.360buyimg.com/wximg/storewin/strategy-des-icon.png" />
+          <view class="strategy-des-detail">
+            <text class="strategy-des-title" style="color: {{saveMoneyPlan.data.title.color}}">{{saveMoneyPlan.data.title.text}}</text>
+            <text class="strategy-des-money" style="color: {{saveMoneyPlan.data.saveAmountStr.color}}">{{saveMoneyPlan.data.saveAmountStr.text}}</text>
+          </view>
+          <image class="strategy-des-switch" wx:if="{{saveMoneyPlan.data.openState}}" catchtap="changeSaveMoneyStaus" src="https://storage.360buyimg.com/wximg/storewin/{{saveMoneyPlan.data.openState == 1 ? 'strategy-des-switch-open' : 'strategy-des-switch-close'}}.png" />
+        </view>
+        <view class="strategy-top-tip">
+          <block wx:for="{{saveMoneyPlan.data.tip}}" wx:key="tip">
+            <text style="color: {{item.color || '#333333'}};text-decoration: {{item.jumpFlag ? 'underline' : 'none'}}" data-item="{{item}}" catchtap="jumpAgreeUrl">{{item.text}}</text>
+          </block>
+        </view>
+      </view>
+    </view>
+    <scroll-view class="strategy-vip-box" scroll-y>
+      <block wx:for="{{saveMoneyPlan.data.saveMoneyItems}}" wx:key="items">
+        <view class="sgvip-items-box d-flex flex-row align-items-center">
+          <image class="sgvip-icon" src="{{item.icon || 'https://storage.360buyimg.com/wximg/storewin/sgvip-icon.png'}}" />
+          <view class="sgvip-middle">
+            <view class="sgvip-middle-title d-flex flex-row align-items-center">
+              <text class="sgvip-m-t-txt">{{item.title}}</text>
+              <image wx:if="{{item.smallQuestionMark}}" data-item="{{item.smallQuestionMark}}" catchtap="jumpAgreeUrl" class="settlement-delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+            </view>
+            <view class="sgvip-middle-des">
+              <block wx:for="{{item.tip}}" wx:for-item="tipItems" wx:key="tips">
+                <text>{{tipItems.text}}</text>
+              </block>
+            </view>
+          </view>
+          <view class="sgvip-money">
+            <text class="sgvip-money-light">{{item.linePriceStr}}</text>
+            <text class="sgvip-money-regular">{{item.realPayPriceStr}}</text>
+          </view>
+          <view wx:if="{{item.openState}}" class="sgvip-btn {{item.openState === 2 ? 'unify-roll-btn-off' : item.openState === 1 ? 'unify-roll-btn-on' : ''}}" data-items="{{item}}" catchtap="changeMoneyItemsStaus"></view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+<!-- 新版省钱攻略 -->
+<new-save-money-plan 
+  id="newMoneyPlan"
+  wx:if="{{newSaveMoneyPlan}}" 
+  infos="{{newSaveMoneyPlan}}"
+  getPlanHml="{{getPlanHml}}"
+  refreshSwell="{{refreshSwell}}"
+  storeId="{{storeId}}"
+  buriedObj="{{recommendObj}}"
+  orderPageId="{{orderPageId}}"
+  bindlistenNewSaveMoney="listenNewSaveMoney"
+>
+</new-save-money-plan>
+<!-- 通用取消开通弹层 -->
+<confirm-dialog 
+  cancelText="{{confirmDialog.cancelText}}" 
+  confirmText="{{confirmDialog.confirmText}}" 
+  showDialog="{{confirmDialog.show}}" 
+  height="320"
+  width="540"
+  rightClose="{{true}}"
+  bindclickCancel="onRemarkCancle"
+  bindclickConfirm="onRemarkCompleted">
+  <view class="solt-content">{{confirmDialog.soltContent}}</view>
+</confirm-dialog>
+<!-- 连续包月倒计时弹层 -->
+<ring-count-down wx:if="{{ringCountDown}}" show="{{ringCountDown}}" ></ring-count-down>
+<!-- 家政服务选择时间弹层 -->
+<home-making-picker
+  infos="{{serviceDateTime}}"
+  show="{{showHomemaking}}"
+  buriedObj="{{recommendObj}}"
+  bindpopStatus="popStatus"
+  bindgetHomemakingTime="getHomemakingTime"
+>
+</home-making-picker>
+<toast wx:if="{{originToast}}" title="{{originToast}}" bindcloseToast="closeToast"></toast>
+<!-- 必选弹窗 -->
+<must-order-pop-up
+  ipx="{{isIPX}}"
+  isShow="{{isShowMustOrder}}"
+  recommendObj="{{recommendObj}}"
+  storeId="{{storeId}}" 
+  orgCode="{{orgCode}}"
+  orderPageId="{{orderPageId}}"
+  upDateGoods="{{upDateGoods}}"
+  bind:handleMustOrderConfirm="handleMustOrderConfirm"
+  requiredCategoryData="{{requiredCategoryData}}"
+></must-order-pop-up>
+<!-- 餐具弹层 -->
+<block wx:if="{{isShowTableWare}}">
+  <table-ware
+    ipx="{{isIPX}}"
+    bind:handleTableWareBack="handleTableWareBack"
+    bind:handleTableWareOpenTip="handleTableWareOpenTip"
+    isShow="{{isShowTableWare}}"
+    recommendObj="{{recommendObj}}"
+    tableWareData="{{tableWareData}}"
+    storeId="{{storeId}}"
+    tableWareClickType="{{tableWareClickType}}"
+  ></table-ware>
+</block>

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "sku-yhs-one": "../../../asyncPackageSku/compontents/SkuYhsOne/index"
+  },
+  "componentPlaceholder": {
+    "sku-yhs-one": "/components/placeholdSkyYhsOne/index"
+  }
+}

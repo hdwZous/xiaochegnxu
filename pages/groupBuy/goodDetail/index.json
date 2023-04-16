@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "商品详情",
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "richtext": "../../asyncPackage/compontents/richtext/index",
+        "good-img": "../components/goodImg/index",
+        "good-store": "../components/goodStore/index",
+        "good-ac-info": "../components/goodActInfo/index"
+    },
+    "componentPlaceholder": {
+      "richtext": "view"
+    }
+}

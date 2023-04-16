@@ -1,0 +1,113 @@
+<view class="mask02" wx:if="{{visible}}" bind:tap="close" catch:touchmove='ture'></view>
+<view id="drug" class="pop_container" style="bottom:{{visible?0:'-1400rpx'}}" catch:touchmove='ture'>
+    <view class="drug" wx:if="{{loading}}">
+        <view class="skelton_left"></view>
+        <view class="skelton_right">
+           <view class="skelton_right_content"></view>
+           <view class="skelton_right_content wd260"></view>
+           <view class="skelton_right_content wd146"></view>
+        </view>
+    </view>
+    <view class="drug" wx:if="{{!loading}}">
+        <view class="drug_img_wrap">
+            <image class="drug_img" src="{{skuDesc.imgUrl}}" />
+        </view>
+        <view class="drug_content">
+            <view class="drug_name ellipsis">{{skuDesc.skuName}}</view>
+            <view class="drug_desc ellipsis3">{{skuDesc.funcIndicatinsOrAdWord}}</view>
+        </view>
+    </view>
+    <view class="store_list">
+        <view class="store_list_title">{{title}}</view>
+        <scroll-view class="scroll" scroll-y="{{true}}" scroll-with-animation="{{true}}" scrollTop="{{scrollTop}}">
+            <block wx:if="{{showEmpty}}">
+                <new-default type="{{type}}" height="{{true}}" tips="{{tips}}" btnText="{{btnText}}" bind:defaultBtnEvent="onDefaultBtnEvent" />
+            </block>
+            <view wx:if="{{!showEmpty}}" wx:for="{{skuModelList}}" wx:for-index="index" wx:for-item="item" wx:key="item" class="store-item" data-item="{{item}}" bind:tap="handlePopStoreJump">
+                <view class="store-img log_list_store_item" data-to="{{item.to}}" data-params="{{item.params}}" data-user-action="{{item.userAction}}">
+                    <!-- <image src="{{item.imgUrl}}" class="image" lazy-load></image> -->
+                    <webp-img src="{{item.imgUrl}}" webp-img='image'></webp-img>
+                </view>
+                <view class="store-info">
+                    <view data-to="{{item.to}}" data-params="{{item.params}}" data-user-action="{{item.userAction}}" class="log_pop_store_list">
+                        <view class="store-name-wrap">
+                           <view class="store-name ellipsis">{{item.storeName}}</view>
+                           <view class="store-icon" 
+                                 wx:if="{{item.iconUrls && item.iconUrls.length>0}}" 
+                                 wx:for="{{item.iconUrls}}"
+                                 wx:key="index"
+                                 wx:for-item="iconUrls"
+                                 >
+                                 <image class="store-icon-image" src="{{iconUrls}}" />
+                           </view>
+                        </view>
+                        <view class="closeTip" wx:if="{{item.closeTip}}">
+                            <view class="reserveText">{{item.closeTip.reserveText}}</view>
+                            <view class="timeText">{{item.closeTip.timeText}}</view>
+                        </view>
+                        <view class="padding-top__6 flex between" style="height: 28rpx">
+                            <view class="flex align-center">
+                                <view class="store-start" wx:if="{{item.storeStar > 0}}">
+                                    <rating rating="{{item.storeStar}}" size="{{11}}" />
+                                    <view class="store-score">{{item.scoreAvg}}</view>
+                                </view>
+                                <view wx:else class="store-default">暂无评价</view>
+                                <view class="month-sale" wx:if="{{item.monthSale}}">
+                                    {{item.monthSale}}
+                                </view>
+                            </view>
+                            <view class="distance">{{item.deliveryFirst}} | {{item.distance}}</view>
+                        </view>
+                        <view class="padding-top__7 flex between">
+                            <view class="freight-words">{{item.freightWords}} <text class="freight-line" wx:if="{{item.freightDescForLine}}">{{item.freightDescForLine}}</text> </view>
+                        </view>
+                        <view class="flex between" wx:if="{{item.coupons && item.coupons.length > 0}}">
+                            <view class="store-coupon" style="height:44rpx;">
+                                <view class="coupon-item" wx:for="{{item.coupons}}" wx:for-index="index" wx:for-item="couponItem" wx:key="couponItem" wx:if="{{index<3}}">
+                                    <view class="coupon-tag" style="background-color:{{couponItem.backgroundColor || ''}} ;color: {{couponItem.frontColor}};border:1px solid {{couponItem.outLineColor}}">
+                                        {{couponItem.words}}
+                                        <block wx:if="{{couponItem.couponMode != 4}}">
+                                            <view class="left-radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+                                            <view class="right-radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+                                        </block>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="pop-footer">
+                            <view class="price-group">
+                                <view class="main-price" wx:if="{{item.majorPrice}}">
+                                    <view style="color: {{item.majorPrice.priceColor}}">
+                                        {{item.majorPrice.price == '暂无报价' ? '' : '¥'}}{{item.majorPrice.price}}
+                                    </view>
+                                    <block wx:if="{{item.majorPrice.priceType == 3 || item.majorPrice.priceType == 4}}">
+                                        <view class='vip-icon' wx:if="{{!item.majorPrice.deleteLine}}" style="background: url('{{item.majorPrice.vipPriceIcon}}') no-repeat;  background-size: auto 100%;"></view>
+                                        <view wx:else class='gray-icon' style="background: url('{{item.majorPrice.iconGray}}') no-repeat; background-size: auto 100%">
+                                            {{item.majorPrice.iconGrayText}}
+                                        </view>
+                                    </block>
+                                </view>
+                                <view class="mino-price" wx:if="{{item.minorPrice}}">
+                                    <view wx:if="{{item.minorPrice.price}}" style="color:  {{item.minorPrice.priceColor}}; text-decoration:{{item.minorPrice.deleteLine ? 'line-through' : 'none'}}">
+                                        ¥{{item.minorPrice.price}}
+                                    </view>
+                                    <block wx:if="{{item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4}}">
+                                        <view class='vip-icon' wx:if="{{!item.minorPrice.deleteLine}}" style="background: url('{{item.minorPrice.vipPriceIcon}}') no-repeat;  background-size: auto 100%;"></view>
+                                        <view wx:else class='gray-icon' style="background: url('{{item.minorPrice.iconGray}}') no-repeat; background-size: auto 100%">
+                                            {{item.minorPrice.iconGrayText}}
+                                        </view>
+                                    </block>
+                                </view>
+                            </view>
+                            <view class="go-to-store" data-item="{{item}}" catch:tap="handleGotoBuy"> 
+                                <view>进店购买</view>
+                                <view class="right-arrow"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{isIPX}}" class="white_blank"></view>
+        </scroll-view>
+    </view>
+</view>

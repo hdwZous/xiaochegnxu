@@ -1,0 +1,63 @@
+.feedback-bg {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.feedback-radio {
+  margin-left: 50rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.feedback-radio-group {
+  margin-left: 10rpx;
+  margin-top: 30rpx;
+}
+
+.feedback-info {
+  margin-top: 30rpx;
+  margin-left: 60rpx;
+}
+
+.feedback-text {
+  color: #666;
+  font-size: 28rpx;
+  width: 600rpx;
+  padding: 10rpx;
+  border-radius: 8rpx;
+  border-width: 1px;
+  border-color: #d9d9d9;
+  border-style: solid;
+}
+
+.feedback-text-phone {
+  color: #666;
+  font-size: 28rpx;
+  width: 600rpx;
+  padding: 10rpx;
+  border-radius: 8rpx;
+  border-width: 1px;
+  border-color: #d9d9d9;
+  border-style: solid;
+}
+
+.feedback-to {
+  margin-top: 40rpx;
+  font-size: 30rpx;
+  color: #fff;
+  margin-left: 60rpx;
+  width: 620rpx;
+  border-radius: 8rpx;
+}
+
+.after-sales-service-tip{
+  width: 100%;
+  color: #D97900;
+  font-size: 24rpx;
+  background: #FDF3CB;
+  padding: 16rpx 20rpx;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}

@@ -1,0 +1,171 @@
+.store-head-marTop10 {
+  margin-top: 10rpx;
+}
+
+.store-head-bg {
+  /* background: rgba(255, 106, 24, 0.08); */
+  /* 8%的透明度  14 */
+  background: #ff6a1814;
+  border-radius: 24rpx;
+}
+.store-info-wrap {
+  width: 702rpx;
+  box-shadow: 0px 4px 12rpx 0px rgba(24, 24, 24, 0.04);
+  border-radius: 24rpx;
+  background: #fff;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  padding: 24rpx 0 0 0;
+}
+.basic-info {
+  padding: 0 24rpx;
+  height: 100rpx;
+  overflow: hidden;
+}
+.store-logo {
+  flex-shrink: 0;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+  border: 1rpx solid rgba(0, 0, 0, 0.06);
+}
+.store-logo .store-logo-url  {
+  width: 100%;
+  height: 100%;
+  border-radius: 16rpx;
+ }
+.name-freight {
+  max-width: 540rpx;
+  margin-left: 16rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.store-name {
+  display: flex;
+  align-items: center;
+}
+.head-store-name {
+  max-width: 508rpx;
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #333333;
+  line-height: 48rpx;
+}
+.deliver {
+  width: 100%;
+  flex-wrap: wrap;
+    /* margin-top: 12rpx; */
+    font-size: 24rpx;
+    font-weight: 400;
+    color: #777777;
+    line-height: 28rpx;
+    /* height: 32rpx; */
+    box-sizing: border-box;
+    overflow: hidden;
+    justify-content: flex-start;
+    /* height: 56rpx; */
+}
+.coupon-wrap {
+  /* margin-top: 32rpx; */
+  height: 44rpx;
+  padding-top: 32rpx;
+}
+
+.icon_next {
+  width: 8rpx;
+  height: 16rpx;
+  font-size: 16rpx;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.ell {
+  text-overflow:ellipsis;
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  flex: 1;
+}
+
+.dis-num {
+  margin-right: 4rpx;
+}
+
+.store-icon-bg {
+  width: 8rpx;
+  height: 16rpx;
+  background: url('https://storage.360buyimg.com/wximg/common/head-store-icon.png') no-repeat;
+  background-size: 100% auto;
+  margin-left: 8rpx;
+}
+/* 分割线 */
+.split-line {
+  width: 654rpx;
+  height: 2rpx;
+  background: #f6f6f6;
+  margin: 22rpx auto 0;
+}
+/* 地址导航信息 */
+.store-head-address-info {
+  width: 702rpx;
+  height: 136rpx;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+.store-head-address-poi {
+  flex: 1;
+}
+/* 地址 */
+.store-head-left-address {
+  min-width: 494rpx;
+  max-height: 64rpx;
+  min-height: 32rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #333333;
+  line-height: 32rpx;
+}
+.store-head-add_dis {
+  display: flex;
+  align-items: center;
+  height: 32rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #777777;
+  line-height: 32rpx;
+}
+/* poi和距离 */
+.store-head-poi-icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+/* 导航和电话 */
+.store-head-nav-wrap {
+  margin-left: 20rpx;
+}
+.store-head-icon {
+  display: block;
+  width: 48rpx;
+  height: 48rpx;
+}
+.store-head-nav-text {
+  height: 32rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #777777;
+  line-height: 32rpx;
+  margin-top: 4rpx;
+}
+.store-head-tel-wrap {
+  margin-left: 48rpx;
+}

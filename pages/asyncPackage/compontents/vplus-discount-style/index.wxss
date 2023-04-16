@@ -1,0 +1,116 @@
+.vlm-r {
+  min-width: 280rpx;
+  height: 100rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  overflow: hidden;
+}
+
+.vlmr-l {
+  flex: 1;
+}
+
+.vlmrllp-num {
+  font-size: 36rpx;
+  font-family: 'regular';
+  font-weight: 400;
+  color: #FF1E19;
+  line-height: 44rpx;
+}
+
+.vlmrllp-sym {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FF1E19;
+  transform: translateY(-2rpx);
+  -webkit-transform: translateY(-2rpx);
+}
+
+.vlmrl-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.vlmrl-icon.minicart_vds {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.vlmr-r {
+  width: 106rpx;
+  box-sizing: border-box;
+  padding: 0 4rpx;
+  text-align: center;
+  font-size: 18rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #711A13;
+}
+
+/* 津贴样式 */
+.vlm_subsidy {
+  width: 304rpx;
+  height: 102rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  overflow: hidden;
+}
+
+.vls_left {
+  width: 94rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  margin-top: 68rpx;
+  text-align: center;
+  font-size: 9px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #711A13;
+}
+
+.vls_right {
+  width: 144rpx;
+  height: 102rpx;
+}
+
+.vlsr_top {
+  margin-top: 12rpx;
+}
+
+.vlsr {
+  margin-top: 16rpx;
+  text-align: center;
+  height: 28rpx;
+  line-height: 28rpx;
+  font-size: 18rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #711A13;
+}
+
+.vlm_subsidy_settle {
+  width: 320rpx;
+  height: 102rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  overflow: hidden;
+  background-image:url('https://storage.360buyimg.com/peibanjia/dj_wx/828_v_settle.png')
+}
+
+.vlmss_num {
+  font-size: 32rpx;
+  font-family: 'regular';
+  font-weight: 400;
+  color: #711A13;
+}
+
+.vlmss_unit {
+  font-size: 16rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #711A13;
+}

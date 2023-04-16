@@ -1,0 +1,56 @@
+.strategy-banner {
+    width: 100%;
+    height: 400rpx;
+    overflow: hidden;
+}
+
+.strategy-image {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    /* margin-top: 12px; */
+}
+
+.swiper-block {
+    height: 400rpx;
+    width: 100%;
+}
+
+.swiper-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    overflow: unset;
+    padding-top: 20rpx;
+    box-sizing: border-box;
+}
+
+.slide-image {
+    height: 360rpx;
+    width: 560rpx;
+    border-radius: 24rpx;
+    margin-left: -20rpx;
+    z-index: 1;
+}
+
+.active {
+    transform: scale(1.1);
+    transition: all .5s ease-in 0s;
+    -webkit-transition: all .5s ease-in 0s;
+    -moz-transition: all .5s ease-in 0s;
+    z-index: 20;
+}
+
+.common {
+    transform: scale(1);
+    transition: all .5s ease-in 0s;
+    -webkit-transition: all .5s ease-in 0s;
+    -moz-transition: all .5s ease-in 0s;
+    z-index: 0;
+}
+
+.image {
+    width: 100%;
+}

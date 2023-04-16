@@ -1,0 +1,777 @@
+<block  
+      wx:if="{{newerData.data &&  newerData.data.length}}"
+      wx:for="{{newerData.data}}"
+      wx:key="index"
+      wx:for-item="item">
+      <view class=" v3 newer-container  {{!newerData.newUserFloorSpacingFlag ? 'hasTop' : ''}}"
+            style="background: {{newerData.needFloorBackground && newerData.floorBgColor || ''}} url({{newerData.floorBgImg}}) no-repeat; background-size: 100% 100%;"
+            data-item="{{item.floorCellData}}"
+            data-user-action="{{item.floorCellData.userAction}}"
+            data-trace-id="{{pageDataTraceId}}"
+            data-page-id="{{buriedObj.pageIdFirstPage}}"
+            data-current-page-name="{{buriedObj.currentPageName}}"
+            data-pre-page-name='{{buriedObj.prePageName}}'>
+            <view 
+                  style="background: url({{newerData.data && newerData.data[0] && newerData.data[0].floorCellData && newerData.data[0].floorCellData.bgImgUrl}}) no-repeat; background-size: 100% 100%;"
+                  class="inner_container" >
+                  <view 
+                        class="title_text d-flex {{item.floorCellData.modelShowType && item.floorCellData.modelShowType == 2 ? 'back' : ''}}" 
+                        hover-class="none" 
+                        hover-stop-propagation="false">
+                        <!--新人图片-->
+                        <image 
+                              aria-role="text"
+                              aria-label="活动标题"
+                              class="titleImg" 
+                              wx:if="{{item.floorCellData.modelShowType && item.floorCellData.modelShowType == 1 && item.floorCellData.mainTitleImg && item.floorCellData.mainTitleImgWidth && item.floorCellData.mainTitleImgHeight }}"
+                              style="width:{{item.floorCellData.mainTitleImgWidth ? item.floorCellData.mainTitleImgWidth+'px' : '258rpx'}}"
+                              src="{{item.floorCellData.mainTitleImg ? item.floorCellData.mainTitleImg : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" />
+                        <view 
+                              aria-role="text"
+                              aria-label="{{item.floorCellData.mainTitleText}}"
+                              class="friend_backtitle ellipsis" 
+                              wx:if="{{item.floorCellData.modelShowType && item.floorCellData.modelShowType == 2 }}">
+                              {{item.floorCellData.mainTitleText}}
+                        </view>
+                        <!--倒计时-->
+                        <view 
+                              aria-hidden="true"
+                              class="countDownTime d-flex"
+                              wx:if="{{item.floorCellData.countDownText && (item.floorCellData.countDownFlag == 1 || item.floorCellData.countDownFlag == 2 ) && item.floorCellData.countDownTime}}"
+                              style="background: linear-gradient(270deg, {{item.floorCellData.countDownEndColor ? item.floorCellData.countDownEndColor : ''}} 0%, {{item.floorCellData.countDownStartColor ? item.floorCellData.countDownStartColor : ''}} 100%);">
+                              <view 
+                                    wx:if="{{item.floorCellData.countDownFlag == 2}}"
+                                    class="time_box d-flex">
+                                    <view class="hour countDownTime_text">
+                                    {{hour}}
+                                    </view>
+                                    <view class="minute countDownTime_text">
+                                          :{{minute}}
+                                    </view>
+                                    <view class="timer countDownTime_text">
+                                          :{{second}}
+                                    </view>
+                              </view>
+                              <view 
+                                    wx:if="{{item.floorCellData.countDownFlag == 1}}"
+                                    class=" d-flex">
+                                    <view class=" countDownTime_text">
+                                         {{item.floorCellData.countDownTime || ''}}
+                                    </view>
+                              </view>
+                              {{item.floorCellData.countDownText || ''}}
+                        </view>
+                        <!--右上角箭头 放大点击热区-->
+                        <view 
+                              class="extend_clickarea  {{item.floorCellData.arrowUserAction ? 'home_floorNewer' : ''}}" 
+                              data-item="{{item.floorCellData}}"
+                              data-trace-id="{{pageDataTraceId}}"
+                              data-page-id="{{buriedObj.pageIdFirstPage}}"
+                              data-current-page-name="{{buriedObj.currentPageName}}"
+                              data-pre-page-name='{{buriedObj.prePageName}}'
+                              data-user-action="{{item.floorCellData.arrowUserAction}}"
+                              aria-role="button"
+                              aria-label="查看更多按钮"
+                              bindtap="clickRightTop">
+                              <image 
+                              class="righttop_arrow"
+                              wx:if="{{item.floorCellData.arrowBtnShow}}"
+                              src="https://storage.360buyimg.com/wximg/home/home_newer_rightarrow.png"/>
+                        </view>
+                      
+
+                  </view>
+                  <!--skuShowType  1爆品 2普通品-->
+                  <!--modelShowType  1 新人 2召回-->
+                  <!--优惠券图片 合图-->
+                  <image 
+                        class="img lazy-load couponListImg home_floorNewer {{item.floorCellData.expansionCouponArrowImg && item.floorCellData.expansionCouponArrowImg.imageUrl && item.floorCellData.expansionCouponArrowImg.width && item.floorCellData.expansionCouponArrowImg.height && item.floorCellData.expansionCouponList.length ? 'hascoupon' : item.floorCellData && item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length > 0 ? 'hasMarginBottom' : ''}}" 
+                        wx:if="{{item.floorCellData.imgUrl && item.floorCellData.imgWidth && item.floorCellData.imgHeight && item.floorCellData.modelShowType && item.floorCellData.modelShowType == 1 }}"
+                        src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                        data-lazy-img-id="{{floorId+index}}"
+                        data-item="{{item.floorCellData}}"
+                        data-user-action="{{item.floorCellData.userAction}}"
+                        data-trace-id="{{pageDataTraceId}}"
+                        data-page-id="{{buriedObj.pageIdFirstPage}}"
+                        data-current-page-name="{{buriedObj.currentPageName}}"
+                        data-pre-page-name='{{buriedObj.prePageName}}'
+                        bindtap="jumpCoupon"/>
+
+                  <!-- 膨胀券 -->
+                  <view class="expansion_coupon" 
+                        wx:if="{{item.floorCellData.expansionCouponArrowImg && item.floorCellData.expansionCouponArrowImg.imageUrl && item.floorCellData.expansionCouponArrowImg.width && item.floorCellData.expansionCouponArrowImg.height && item.floorCellData.expansionCouponList.length> 0}}">
+                        <image 
+                              class="up_img" 
+                              wx:if="{{item.floorCellData.expansionCouponArrowImg && item.floorCellData.expansionCouponArrowImg.imageUrl && item.floorCellData.expansionCouponArrowImg.width && item.floorCellData.expansionCouponArrowImg.height}}" src="{{item.floorCellData.expansionCouponArrowImg.imageUrl}}"
+                              style="width:{{item.floorCellData.expansionCouponArrowImg.width}}px;height:{{item.floorCellData.expansionCouponArrowImg.height}}px;"/>
+                        <scroll-view  
+                              scroll-x="{{item.floorCellData.expansionCouponList.length > 2 ? true : false}}"
+                              class="expansion_list justify-content-center  {{item.floorCellData.expansionCouponList.length > 2 ? 'expansion_list3' : ''}}" 
+                              wx:if="{{item.floorCellData.expansionCouponList && item.floorCellData.expansionCouponList.length > 0}}"
+                              style="background-color:{{item.floorCellData.expansionCouponBgColor || '#D52F30'}}">
+                              <view 
+                                    wx:for="{{item.floorCellData.expansionCouponList}}"
+                                    wx:key="index"
+                                    wx:for-item="expansionItem"
+                                    class="expansion_item home_floorNewer {{item.floorCellData.expansionCouponList.length > 2 ? 'expansion_item3' : item.floorCellData.expansionCouponList.length  == 2 ? 'expansion_item2' : 'expansion_item1' }}" 
+                                    data-trace-id="{{pageDataTraceId}}"
+                                    data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                    data-current-page-name="{{buriedObj.currentPageName}}"
+                                    data-item="{{expansionItem}}"
+                                    data-user-action="{{expansionItem.userAction}}"
+                                    data-pre-page-name='{{buriedObj.prePageName}}'
+                                    bindtap="listexpansionItem">
+                                    <image 
+                                          class="store_log" 
+                                          src="{{expansionItem.storeLogo}}"/>
+                                     <view 
+                                          style="background-color:{{item.floorCellData.expansionCouponBgColor || '#D52F30'}}"
+                                          class="expansion_up" >
+                                    </view>
+                                    <view 
+                                          style="background-color:{{item.floorCellData.expansionCouponBgColor || '#D52F30'}}"
+                                          class="expansion_down" >
+                                    </view>
+                                    <view 
+                                          class="right_area"
+                                          style="background: linear-gradient(270deg, {{expansionItem.bgEndColor ? expansionItem.bgEndColor : '#fff'}} 0%, {{expansionItem.btnBgStartColor ? expansionItem.bgStartColor : '#fff'}} 100%);">
+                                          <view class="expansionItem_text ellipsis" >
+                                                {{expansionItem.couponText}}
+                                          </view> 
+                                          <view class="expansionItem_text price" >
+                                                {{expansionItem.couponPrice}}
+                                          </view> 
+                                          <view 
+                                                wx:if="{{item.floorCellData.expansionCouponList.length == 1}}"
+                                                style="background: linear-gradient(270deg, {{expansionItem.btnBgEndColor ? expansionItem.btnBgEndColor : '#FF6963'}} 0%, {{expansionItem.bgStartColor ? expansionItem.btnBgStartColor : '#FF6963'}} 100%);"
+                                                class="expansion_now" >
+                                                {{expansionItem.couponBtn}}
+                                          </view>
+                                    </view>
+                              </view>
+                              <view 
+                                    class="expansion_checkbtn  home_floorNewer"
+                                    wx:if="{{item.floorCellData.expansionCouponSeeMoreShow &&  item.floorCellData.expansionCouponSeeMore.to &&  item.floorCellData.expansionCouponSeeMore.userAction}}"
+                                    aria-hidden="true"
+                                    data-trace-id="{{pageDataTraceId}}"
+                                    data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                    data-current-page-name="{{buriedObj.currentPageName}}"
+                                    data-pre-page-name='{{buriedObj.prePageName}}'
+                                    data-user-action="{{item.floorCellData.expansionCouponSeeMore.userAction}}"
+                                    data-item="{{item.floorCellData.expansionCouponSeeMore}}" 
+                                    aria-role="button"
+                                    aria-label="查看更多按钮"
+                                    bindtap="listCheckMoreExpansion">
+                                    <image class="check_img" src="https://storage.360buyimg.com/wximg/home/expansion_checkbtn.png"/>
+                              </view>
+                              <view 
+                                    class="expansion_checktext  home_floorNewer" 
+                                    wx:if="{{item.floorCellData.expansionCouponSeeMoreShow &&  item.floorCellData.expansionCouponSeeMore.to &&  item.floorCellData.expansionCouponSeeMore.userAction}}"
+                                    aria-hidden="true"
+                                    data-trace-id="{{pageDataTraceId}}"
+                                    data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                    data-current-page-name="{{buriedObj.currentPageName}}"
+                                    data-pre-page-name='{{buriedObj.prePageName}}'
+                                    data-user-action="{{item.floorCellData.expansionCouponSeeMore.userAction}}"
+                                    data-item="{{item.floorCellData.expansionCouponSeeMore}}"
+                                    aria-role="button"
+                                    aria-label="查看更多按钮"
+                                    bindtap="listCheckMoreExpansion">
+                                    查看更多
+                              </view>                 
+                        </scroll-view>
+                       
+                  </view>
+                  
+                        
+
+
+                  <!--优惠券列表-->
+                  <view 
+                        wx:if="{{item.floorCellData.modelShowType && item.floorCellData.modelShowType == 2 && item.floorCellData.strategyCouponList && item.floorCellData.strategyCouponList.length > 0}}"
+                        class="coupon_list {{item.floorCellData && item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length > 0 ? 'hasMarginBottom' : ''}}">
+                        <view 
+                              wx:for="{{item.floorCellData.strategyCouponList}}"
+                              wx:key="index"
+                              wx:for-item="couponItem"
+                              wx:if="{{item.floorCellData.strategyCouponList.length == 2}}"
+                              bindtap="clickCouponButton"
+                              data-item="{{couponItem}}"
+                              style="background:url({{couponItem.bgImg ? couponItem.bgImg : 'https://storage.360buyimg.com/wximg/home/home_new_c2.png'}}) no-repeat; background-size: 100% 100%;"
+                              data-trace-id="{{pageDataTraceId}}"
+                              data-page-id="{{buriedObj.pageIdFirstPage}}"
+                              data-current-page-name="{{buriedObj.currentPageName}}"
+                              data-pre-page-name='{{buriedObj.prePageName}}'
+                              data-user-action="{{couponItem.userAction}}"
+                              aria-role="button" 
+                              aria-label="{{couponItem.couponMark ?  '角标文案:'+couponItem.couponMark: ''}} {{couponItem.couponTitle ?  '券名称:'+couponItem.couponTitle: ''}} {{couponItem.price ?  '券金额:'+couponItem.price: ''}} {{couponItem.couponLimit ?  '券金额:'+couponItem.couponLimit: ''}} '双击去使用'"
+                              class=" coupon_item coupon_item2  {{couponItem.userAction ? ' home_floorNewer ' : '' }} {{couponItem.bgImg ? 'hasBg' : 'noBg'}}">
+                              <view 
+                                    aria-hidden="true"
+                                    class="inner_bg  inner_bg2 {{couponItem.bgImg ? 'hasBg' : 'noBg'}}"></view>
+                              <view 
+                                    aria-hidden="true"
+                                    wx:if="{{couponItem.couponMark}}"
+                                    class="top_mark ellipsis" >
+                                    {{couponItem.couponMark}}
+                              </view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="price ellipsis" >
+                                    <view aria-hidden="true" class="priceUnit">{{couponItem.priceUnit}}</view>{{couponItem.price || ''}}</view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="couponLimit">
+                                    {{couponItem.couponLimit || ''}}
+                              </view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="couponButton">
+                                    {{couponItem.couponButton || ''}}
+                              </view>
+                        </view>
+                        <view 
+                              wx:for="{{item.floorCellData.strategyCouponList}}"
+                              wx:key="index"
+                              wx:for-item="couponItem"
+                              wx:if="{{item.floorCellData.strategyCouponList.length == 1}}"
+                              data-trace-id="{{pageDataTraceId}}"
+                              data-page-id="{{buriedObj.pageIdFirstPage}}"
+                              data-current-page-name="{{buriedObj.currentPageName}}"
+                              data-pre-page-name='{{buriedObj.prePageName}}'
+                              data-user-action="{{couponItem.userAction}}"
+                              data-item="{{couponItem}}"
+                              bindtap="clickCouponButton"
+                              aria-role="button" 
+                              aria-label="{{couponItem.couponMark ?  '角标文案:'+couponItem.couponMark: ''}} {{couponItem.couponTitle ?  '券名称:'+couponItem.couponTitle: ''}} {{couponItem.price ?  '券金额:'+couponItem.price: ''}} {{couponItem.couponLimit ?  '券金额:'+couponItem.couponLimit: ''}} '双击去使用'"
+                              style="background:url({{couponItem.bgImg ? couponItem.bgImg : 'https://storage.360buyimg.com/wximg/home/home_new_c1.png'}}) no-repeat; background-size: 100% 100%;"
+                              class=" coupon_item coupon_item1 {{couponItem.userAction ? ' home_floorNewer ' : '' }} {{couponItem.bgImg ? 'hasBg' : 'noBg'}}">
+                              <view 
+                                    aria-hidden="true"
+                                    class="inner_bg  inner_bg1 {{couponItem.bgImg ? 'hasBg' : 'noBg'}}"></view>
+                              <view 
+                                    aria-hidden="true"
+                                    wx:if="{{couponItem.couponMark}}"
+                                    class="top_mark ellipsis" >
+                                    {{couponItem.couponMark}}
+                              </view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="price ellipsis" >
+                                    {{couponItem.price || ''}}
+                              </view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="priceUnit">{{couponItem.priceUnit}}</view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="couponLimit ellipsis">
+                                    {{couponItem.couponLimit || ''}}
+                              </view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="couponButton">
+                                    {{couponItem.couponButton || ''}}
+                              </view>
+                              <view 
+                                    aria-hidden="true"
+                                    class="couponTitle ellipsis">
+                                    {{couponItem.couponTitle}}
+                              </view>
+                              <!-- 
+                              <view 
+                                    aria-hidden="true"
+                                    class="dashLine">
+                                    
+                              </view>
+                              -->
+                        </view>
+                        <scroll-view  
+                              scroll-x="true"
+                              class="coupon_wrap" >
+                              <view 
+                                    wx:for="{{item.floorCellData.strategyCouponList}}"
+                                    wx:key="index"
+                                    wx:for-item="couponItem"
+                                    wx:if="{{item.floorCellData.strategyCouponList.length >= 3}}"
+                                    bindtap="clickCouponButton"
+                                    data-item="{{couponItem}}"
+                                    style="background:url({{couponItem.bgImg ? couponItem.bgImg : 'https://storage.360buyimg.com/wximg/home/home_new_c3.png'}}) no-repeat; background-size: 100% 100%;"
+                                    data-trace-id="{{pageDataTraceId}}"
+                                    data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                    data-current-page-name="{{buriedObj.currentPageName}}"
+                                    data-pre-page-name='{{buriedObj.prePageName}}'
+                                    data-user-action="{{couponItem.userAction}}"
+                                    aria-role="button" 
+                                    aria-label="{{couponItem.couponMark ?  '角标文案:'+couponItem.couponMark: ''}} {{couponItem.couponTitle ?  '券名称:'+couponItem.couponTitle: ''}} {{couponItem.price ?  '券金额:'+couponItem.price: ''}} {{couponItem.couponLimit ?  '券金额:'+couponItem.couponLimit: ''}} '双击去使用'"
+                                    class=" coupon_item coupon_item3 {{couponItem.userAction ? ' home_floorNewer ' : '' }} {{couponItem.bgImg ? 'hasBg' : 'noBg'}}">
+                                    <view 
+                                          aria-hidden="true"
+                                          class="inner_bg  inner_bg3 {{couponItem.bgImg ? 'hasBg' : 'noBg'}}"></view>
+                                    <view 
+                                          aria-hidden="true"
+                                          wx:if="{{couponItem.couponMark}}"
+                                          class="top_mark ellipsis" >
+                                          {{couponItem.couponMark}}
+                                    </view>
+                                    <view 
+                                          aria-hidden="true"
+                                          class="price ellipsis" >
+                                          <view 
+                                          aria-hidden="true"
+                                          class="priceUnit">{{couponItem.priceUnit}}</view>{{couponItem.price || ''}}</view>
+                                    <!--
+                                    <view 
+                                          aria-hidden="true"
+                                          class="priceUnit">{{couponItem.priceUnit}}</view> -->
+                                    <view 
+                                          aria-hidden="true"
+                                          class="couponLimit">
+                                          {{couponItem.couponLimit || ''}}
+                                    </view>
+                                    <view 
+                                          aria-hidden="true"
+                                          class="couponButton">
+                                          {{couponItem.couponButton || ''}}
+                                    </view>
+                              </view>
+                        </scroll-view>
+                       
+                  </view>
+                  
+                  <!--新人超级爆图片-->
+                  <view 
+                        wx:if="{{item.floorCellData.subTitleImgWidth && item.floorCellData.subTitleImgHeight && item.floorCellData.subTitleImg &&  item.floorCellData.modelShowType && item.floorCellData.modelShowType == 1 && item.floorCellData.skuShowType && item.floorCellData.skuShowType == 1}}"
+                        class="list_title">
+                        <image 
+                              class="subTitleImg" 
+                              style="width:{{item.floorCellData.subTitleImgWidth ? item.floorCellData.subTitleImgWidth+'px' : '306rpx'}};height:{{item.floorCellData.subTitleImgHeight ? item.floorCellData.subTitleImgHeight+'px' : '38rpx'}};"
+                              src="{{item.floorCellData.subTitleImg ? item.floorCellData.subTitleImg : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" />
+                  </view>
+                  <view 
+                        class="foods-container" 
+                        wx:if="{{item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length }}">
+                        <view class="box" >
+                              <view 
+                                    class="list_box nohot" 
+                                    wx:if="{{ item.floorCellData.modelShowType == 1 && item.floorCellData.skuShowType == 2}}">
+                                    <view 
+                                          wx:if="{{item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length == 3}}"
+                                          class="food-item " 
+                                          data-item="{{subitem}}"
+                                          bindtap="clickGoods"
+                                          aria-role="button" 
+                                          aria-label="{{subitem.skuName ? subitem.skuName : ''}} {{subitem.minorPrice.price ?'原价'+ subitem.minorPrice.price : ''}} {{subitem.majorPrice.price ? '现价'+subitem.majorPrice.price : ''}} "
+                                          wx:for="{{item.floorCellData.strategySkuList}}"
+                                          wx:key="index"
+                                          wx:for-item="subitem">
+                                          <view 
+                                                aria-hidden="true"
+                                                class="up_clickbox {{subitem.userAction ? ' home_floorNewer ' : '' }}" 
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{subitem.userAction}}">
+                                                <view class="pic-box" >
+                                                      <image 
+                                                            src="{{subitem.imgUrl ? subitem.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                                                            class="img" />
+                                                      <view 
+                                                            class="tag"
+                                                            wx:if="{{subitem.topLeftCornerTag && subitem.topLeftCornerTag.componentTag.iconText && subitem.topLeftCornerTag.componentTag.bgImgUrl}}"
+                                                            style="background:url({{ subitem.topLeftCornerTag.componentTag.bgImgUrl }}) no-repeat; background-size: 100% 100%;">
+                                                            <view class="tagText" >
+                                                                  {{subitem.topLeftCornerTag.componentTag.iconTextUp}}
+                                                            </view>
+                                                            <view class="tagText" >
+                                                                  {{subitem.topLeftCornerTag.componentTag.iconTextDown}}
+                                                            </view>
+                                                      </view>
+                                                </view>
+                                                <view 
+                                                      class="name-text ellipsis2">
+                                                      {{subitem.skuName ? subitem.skuName : ''}}
+                                                </view>
+                                          
+                                          </view>
+                                          <view 
+                                                aria-hidden="true"
+                                                class="price_box d-flex flex-column justify-content-center">
+                                                <view 
+                                                      class="price-text2">
+                                                      <view class="imgbtn">  
+                                                            <view class="left ellipsis" 
+                                                                  style="color:{{subitem.majorPrice.priceColor ? subitem.majorPrice.priceColor : '#FFFFFF'}}"
+                                                            >
+                                                                  {{subitem.majorPrice.price ? '¥'+subitem.majorPrice.price : ''}}
+                                                            </view>
+                                                      </view>
+                                                </view>
+                                                <view 
+                                                      class="price-text1 ellipsis" 
+                                                      wx:if="{{subitem.minorPrice.price}}"
+                                                      style="text-decoration:{{subitem.minorPrice.deleteLine ? 'line-through' :'none' }};color:{{subitem.minorPrice.priceColor ? subitem.minorPrice.priceColor : '#FF3E4C'}}">
+                                                      {{subitem.minorPrice.price ? '¥'+ subitem.minorPrice.price : ''}}
+                                                </view>
+                                          </view>
+                                         
+                                    </view>
+                                    <scroll-view  
+                                          wx:if="{{item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length > 3}}"
+                                          scroll-x="true"
+                                          class="food_wrap" >
+                                          <view 
+                                                class="food-item " 
+                                                wx:for="{{item.floorCellData.strategySkuList}}"
+                                                wx:key="index"
+                                                wx:for-item="subitem"
+                                                data-item="{{subitem}}"
+                                                aria-role="button" 
+                                                aria-label="{{subitem.skuName ? subitem.skuName : ''}} {{subitem.minorPrice.price ?'原价'+ subitem.minorPrice.price : ''}} {{subitem.majorPrice.price ? '现价'+subitem.majorPrice.price : ''}} "
+                                                bindtap="clickGoods">
+                                                <view 
+                                                      aria-hidden="true"
+                                                      class="up_clickbox {{subitem.userAction ? ' home_floorNewer ' : '' }}" 
+                                                      data-trace-id="{{pageDataTraceId}}"
+                                                      data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                      data-current-page-name="{{buriedObj.currentPageName}}"
+                                                      data-pre-page-name='{{buriedObj.prePageName}}'
+                                                      data-user-action="{{subitem.userAction}}">
+                                                      <view class="pic-box" >
+                                                            <image 
+                                                                  src="{{subitem.imgUrl ? subitem.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                                                                  class="img" />
+                                                             <view 
+                                                                  class="tag"
+                                                                  wx:if="{{subitem.topLeftCornerTag && subitem.topLeftCornerTag.componentTag.iconText && subitem.topLeftCornerTag.componentTag.bgImgUrl}}"
+                                                                  style="background:url({{ subitem.topLeftCornerTag.componentTag.bgImgUrl }}) no-repeat; background-size: 100% 100%;">
+                                                                  <view class="tagText" >
+                                                                        {{subitem.topLeftCornerTag.componentTag.iconTextUp}}
+                                                                  </view>
+                                                                  <view class="tagText" >
+                                                                        {{subitem.topLeftCornerTag.componentTag.iconTextDown}}
+                                                                  </view>
+                                                            </view>
+                                                            
+                                                      </view>
+                                                      <view 
+                                                            class="name-text ellipsis2">
+                                                            {{subitem.skuName ? subitem.skuName : ''}}
+                                                      </view>
+                                                
+                                                </view>
+                                                <view 
+                                                      aria-hidden="true"
+                                                      class="price_box d-flex flex-column justify-content-center">
+                                                      <view 
+                                                            class="price-text2">
+                                                            <view class="imgbtn">  
+                                                                  <view class="left ellipsis" 
+                                                                        style="color:{{subitem.majorPrice.priceColor ? subitem.majorPrice.priceColor : '#FFFFFF'}}">
+                                                                        {{subitem.majorPrice.price ? '¥'+subitem.majorPrice.price : ''}}
+                                                                  </view>
+                                                            </view>
+                                                      </view>
+                                                      <view 
+                                                            class="price-text1 ellipsis" 
+                                                            wx:if="{{subitem.minorPrice.price}}"
+                                                            style="text-decoration:{{subitem.minorPrice.deleteLine ? 'line-through' :'none' }};color:{{subitem.minorPrice.priceColor ? subitem.minorPrice.priceColor : '#FF3E4C'}}">
+                                                            {{subitem.minorPrice.price ? '¥'+ subitem.minorPrice.price : ''}}
+                                                      </view>
+                                                </view>
+                                          </view>
+                                          <view 
+                                                aria-hidden="true"
+                                                class="check_morebtn food-item justify-content-center {{item.floorCellData.skuSeeMoreUserAction ? ' home_floorNewer ' : '' }}"
+                                                wx:if="{{item.floorCellData.skuSeeMoreShow}}"
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{item.floorCellData.skuSeeMoreUserAction}}"
+                                                data-item="{{item.floorCellData}}" 
+                                                aria-role="button"
+                                                aria-label="查看更多按钮"
+                                                bindtap="listCheckMore">
+                                                <image class="check_img" src="https://storage.360buyimg.com/wximg/home/home_newercheckmore.png"/>
+                                          </view>
+                                          <view 
+                                                aria-hidden="true"
+                                                aria-role="button"
+                                                aria-label="查看更多按钮"
+                                                class="check_moretext food-item align-items-center {{item.floorCellData.skuSeeMoreUserAction ? ' home_floorNewer ' : '' }}" 
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{item.floorCellData.skuSeeMoreUserAction}}"
+                                                wx:if="{{item.floorCellData.skuSeeMoreShow}}"
+                                                data-item="{{item.floorCellData}}" 
+                                                bindtap="listCheckMore">
+                                               查看更多
+                                          </view>
+                                    </scroll-view>
+                              </view>
+                              <view 
+                                    class="list_box hot" 
+                                    wx:if="{{ item.floorCellData.modelShowType == 1 && item.floorCellData.skuShowType == 1}}">
+                                    <scroll-view  
+                                          wx:if="{{item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length > 3}}"
+                                          scroll-x="true"
+                                          class="food_wrap" >
+                                          <view 
+                                                class="food-item " 
+                                                bindtap="clickGoods"
+                                                aria-role="button" 
+                                                aria-label="{{subitem.skuName ? subitem.skuName : ''}} {{subitem.minorPrice.price ?'原价'+ subitem.minorPrice.price : ''}} {{subitem.majorPrice.price ? '现价'+subitem.majorPrice.price : ''}} "
+                                                data-item="{{subitem}}"
+                                                wx:for="{{item.floorCellData.strategySkuList}}"
+                                                wx:key="index"
+                                                wx:for-item="subitem">
+                                                <view 
+                                                      aria-hidden="true"
+                                                      class="up_clickbox {{subitem.userAction ? ' home_floorNewer ' : '' }}"
+                                                      data-trace-id="{{pageDataTraceId}}"
+                                                      data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                      data-current-page-name="{{buriedObj.currentPageName}}"
+                                                      data-pre-page-name='{{buriedObj.prePageName}}'
+                                                      data-user-action="{{subitem.userAction}}">
+                                                      <view class="pic-box" >
+                                                            <image 
+                                                                  src="{{subitem.imgUrl ? subitem.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                                                                  class="img"/>
+                                                            <!-- 底部资源位 -->
+                                                            <bottom-corner-tag 
+                                                                  wx:if="{{subitem.bottomCornerTag }}" 
+                                                                  infos="{{subitem.bottomCornerTag}}" 
+                                                                  fromPositon="home_floornewerv3"
+                                                                  homeoptions="{{homeoptions}}"
+                                                                  moduleId="SkuYhsOne" 
+                                                                  showHandle="{{true}}" />
+                                                      </view>
+                                                      <view 
+                                                            class="name-text ellipsis2">
+                                                            {{subitem.skuName ? subitem.skuName : ''}}
+                                                      </view>
+                                                
+                                                </view>
+                                                <view 
+                                                      aria-hidden="true"
+                                                      class="price-text1 ellipsis" 
+                                                      style="text-decoration:{{subitem.minorPrice.deleteLine ? 'line-through' :'none' }};color:{{subitem.minorPrice.priceColor ? subitem.minorPrice.priceColor : '#FF3E4C'}}">
+                                                      {{subitem.minorPrice.price ? '¥'+ subitem.minorPrice.price : ''}}
+                                                </view>
+                                          </view>
+                                          <view 
+                                                aria-hidden="true"
+                                                class="check_morebtn food-item justify-content-center {{item.floorCellData.skuSeeMoreUserAction ? ' home_floorNewer ' : '' }}"
+                                                wx:if="{{item.floorCellData.skuSeeMoreShow}}"
+                                                aria-role="button"
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{item.floorCellData.skuSeeMoreUserAction}}"
+                                                aria-label="查看更多按钮"
+                                                data-item="{{item.floorCellData}}" 
+                                                bindtap="listCheckMore">
+                                                <image class="check_img" src="https://storage.360buyimg.com/wximg/home/home_newercheckmore.png"/>
+                                          </view>
+                                           <view 
+                                                aria-hidden="true"
+                                                class="check_moretext food-item align-items-center {{item.floorCellData.skuSeeMoreUserAction ? ' home_floorNewer ' : '' }}" 
+                                                wx:if="{{item.floorCellData.skuSeeMoreShow}}"
+                                                aria-role="button"
+                                                aria-label="查看更多按钮"
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{item.floorCellData.skuSeeMoreUserAction}}"
+                                                data-item="{{item.floorCellData}}" 
+                                                bindtap="listCheckMore">
+                                               查看更多
+                                          </view>
+                                    </scroll-view>
+                                    <view 
+                                          wx:if="{{item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length == 3}}"
+                                          class="food-item "
+                                          bindtap="clickGoods"
+                                          aria-role="button" 
+                                          aria-label="{{subitem.skuName ? subitem.skuName : ''}} {{subitem.minorPrice.price ?'原价'+ subitem.minorPrice.price : ''}} {{subitem.majorPrice.price ? '现价'+subitem.majorPrice.price : ''}} "
+                                          data-item="{{subitem}}" 
+                                          wx:for="{{item.floorCellData.strategySkuList}}"
+                                          wx:key="index"
+                                          wx:for-item="subitem">
+                                          <view 
+                                                aria-hidden="true"
+                                                class="up_clickbox {{subitem.userAction ? ' home_floorNewer ' : '' }}" 
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{subitem.userAction}}">
+                                                <view class="pic-box" >
+                                                      <image 
+                                                            src="{{subitem.imgUrl ? subitem.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                                                            class="img"/>
+                                                      <!-- 底部资源位 -->
+                                                      <bottom-corner-tag wx:if="{{subitem.bottomCornerTag}}" infos="{{subitem.bottomCornerTag}}" moduleId="SkuYhsOne" showHandle="{{true}}" />
+                                                </view>
+                                                <view 
+                                                      class="name-text ellipsis2">
+                                                      {{subitem.skuName ? subitem.skuName : ''}}
+                                                </view>
+                                          
+                                          </view>
+                                          <view 
+                                                aria-hidden="true"
+                                                class="price-text1 ellipsis" 
+                                                style="text-decoration:{{subitem.minorPrice.deleteLine ? 'line-through' :'none' }};color:{{subitem.minorPrice.priceColor ? subitem.minorPrice.priceColor : '#FF3E4C'}}">
+                                                {{subitem.minorPrice.price ? '¥'+ subitem.minorPrice.price : ''}}
+                                          </view>
+                                    </view>
+                              </view>
+                              <view 
+                                    class="list_box hot callback" 
+                                    wx:if="{{ item.floorCellData.modelShowType == 2 }}">
+                                    <scroll-view  
+                                          wx:if="{{item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length > 3}}"
+                                          scroll-x="true"
+                                          class="food_wrap" >
+                                          <view 
+                                                class="food-item " 
+                                                data-item="{{subitem}}"
+                                                bindtap="clickGoods"
+                                                aria-role="button" 
+                                                aria-label="{{subitem.skuName ? subitem.skuName : ''}} {{subitem.minorPrice.price ?'原价'+ subitem.minorPrice.price : ''}} {{subitem.majorPrice.price ? '现价'+subitem.majorPrice.price : ''}} "
+                                                wx:for="{{item.floorCellData.strategySkuList}}"
+                                                wx:key="index"
+                                                wx:for-item="subitem">
+                                                <view 
+                                                      aria-hidden="true"
+                                                      class="up_clickbox {{subitem.userAction ? ' home_floorNewer ' : '' }}" 
+                                                      data-trace-id="{{pageDataTraceId}}"
+                                                      data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                      data-current-page-name="{{buriedObj.currentPageName}}"
+                                                      data-pre-page-name='{{buriedObj.prePageName}}'
+                                                      data-user-action="{{subitem.userAction}}">
+                                                      <view class="pic-box" >
+                                                            <image 
+                                                                  src="{{subitem.imgUrl ? subitem.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                                                                  class="img"/>
+                                                            <!-- 底部资源位 -->
+                                                            <bottom-corner-tag wx:if="{{subitem.bottomCornerTag}}" infos="{{subitem.bottomCornerTag}}" moduleId="SkuYhsZh" showHandle="{{true}}" />
+                                                      </view>
+                                                      <view 
+                                                            class="name-text ellipsis2">
+                                                            {{subitem.skuName ? subitem.skuName : ''}}
+                                                      </view>
+                                                
+                                                </view>
+                                                <view 
+                                                      aria-hidden="true"
+                                                      class="price-text1 ellipsis" 
+                                                      style="text-decoration:{{subitem.minorPrice.deleteLine ? 'line-through' :'none' }};color:{{subitem.minorPrice.priceColor ? subitem.minorPrice.priceColor : subitem.majorPrice.priceColor?subitem.majorPrice.priceColor :'#FF3E4C'}}">
+                                                      {{subitem.minorPrice.price ? '¥'+ subitem.minorPrice.price : subitem.majorPrice.price ? '¥'+ subitem.majorPrice.price : '' }}
+                                                </view>
+                                          </view>
+                                          <view 
+                                                aria-hidden="true"
+                                                class="check_morebtn food-item justify-content-center {{item.floorCellData.skuSeeMoreUserAction ? ' home_floorNewer ' : '' }}"
+                                                wx:if="{{item.floorCellData.skuSeeMoreShow}}"
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{item.floorCellData.skuSeeMoreUserAction}}"
+                                                data-item="{{item.floorCellData}}"
+                                                aria-role="button"
+                                                aria-label="查看更多按钮" 
+                                                bindtap="listCheckMore" >
+                                                <image class="check_img" src="https://storage.360buyimg.com/wximg/home/home_newercheckmore.png"/>
+                                          </view>
+                                           <view 
+                                                aria-hidden="true"
+                                                class="check_moretext food-item align-items-center {{item.floorCellData.skuSeeMoreUserAction ? ' home_floorNewer ' : '' }}"
+                                                wx:if="{{item.floorCellData.skuSeeMoreShow}}"
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{item.floorCellData.skuSeeMoreUserAction}}"
+                                                data-item="{{item.floorCellData}}" 
+                                                aria-role="button"
+                                                aria-label="查看更多按钮"
+                                                bindtap="listCheckMore" >
+                                               查看更多
+                                          </view>
+                                    </scroll-view>
+                                    <view 
+                                          wx:if="{{item.floorCellData.strategySkuList && item.floorCellData.strategySkuList.length == 3}}"
+                                          class="food-item " 
+                                          data-item="{{subitem}}"
+                                          aria-role="button" 
+                                          aria-label="{{subitem.skuName ? subitem.skuName : ''}} {{subitem.minorPrice.price ?'原价'+ subitem.minorPrice.price : ''}} {{subitem.majorPrice.price ? '现价'+subitem.majorPrice.price : ''}} "
+                                          bindtap="clickGoods"
+                                          wx:for="{{item.floorCellData.strategySkuList}}"
+                                          wx:key="index"
+                                          wx:for-item="subitem">
+                                          <view 
+                                                aria-hidden="true"
+                                                class="up_clickbox {{subitem.userAction ? ' home_floorNewer ' : '' }}" 
+                                                data-trace-id="{{pageDataTraceId}}"
+                                                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                                data-current-page-name="{{buriedObj.currentPageName}}"
+                                                data-pre-page-name='{{buriedObj.prePageName}}'
+                                                data-user-action="{{subitem.userAction}}">
+                                                <view class="pic-box" >
+                                                      <image 
+                                                            src="{{subitem.imgUrl ? subitem.imgUrl  : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}"
+                                                            class="img"/>
+                                                      <!-- 底部资源位 -->
+                                                      <bottom-corner-tag wx:if="{{subitem.bottomCornerTag}}" infos="{{subitem.bottomCornerTag}}" moduleId="SkuYhsZh" showHandle="{{true}}" />
+                                                </view>
+                                                <view 
+                                                      class="name-text ellipsis2">
+                                                      {{subitem.skuName ? subitem.skuName : ''}}
+                                                </view>
+                                          
+                                          </view>
+                                          <view 
+                                                aria-hidden="true"
+                                                class="price-text1 ellipsis" 
+                                                style="text-decoration:{{subitem.minorPrice.deleteLine ? 'line-through' :'none' }};color:{{subitem.minorPrice.priceColor ? subitem.minorPrice.priceColor : '#FF3E4C'}}">
+                                                {{subitem.minorPrice.price ? '¥'+ subitem.minorPrice.price : subitem.majorPrice.price ? '¥'+ subitem.majorPrice.price : '' }}
+                                          </view>
+                                    </view>
+                              </view>
+                              <view 
+                                    class="btnbox"
+                                    wx:if="{{item.floorCellData.goNowBtnShow && item.floorCellData.goNowBtnVO && item.floorCellData.goNowBtnVO.imgWidth && item.floorCellData.goNowBtnVO.imgHeight && item.floorCellData.goNowBtnVO.imgUrl}}"
+                                    aria-role="text" 
+                                    aria-label="点击进入新人专享频道页浏览更多新人专享商品" >
+                                    <view class="gobtn {{item.floorCellData.goNowBtnVO.userAction ? ' home_floorNewer ' : '' }}" 
+                                          data-item="{{item.floorCellData.goNowBtnVO}}"
+                                          data-trace-id="{{pageDataTraceId}}"
+                                          data-page-id="{{buriedObj.pageIdFirstPage}}"
+                                          data-current-page-name="{{buriedObj.currentPageName}}"
+                                          data-pre-page-name='{{buriedObj.prePageName}}'
+                                          aria-role="button"
+                                          aria-label="立即前往按钮"
+                                          data-user-action="{{item.floorCellData.goNowBtnVO.userAction}}"
+                                          bindtap="clickGoNow">
+                                          <image 
+                                                class="gobtn_img" 
+                                                style="width:{{ item.floorCellData.goNowBtnVO.imgWidth ? item.floorCellData.goNowBtnVO.imgWidth+'px' : '260rpx'}};height:{{ item.floorCellData.goNowBtnVO.imgHeight ? item.floorCellData.goNowBtnVO.imgHeight+'px' : '74rpx'}};"
+                                                src="{{item.floorCellData.goNowBtnVO.imgUrl ? item.floorCellData.goNowBtnVO.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" />
+                                    </view>
+                              </view>
+                        </view>
+                  </view>
+            </view>
+           
+           
+      </view>
+</block>

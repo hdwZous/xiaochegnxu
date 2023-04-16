@@ -1,0 +1,159 @@
+<wxs module="tool" src="../../../../../common/util/tools.wxs"></wxs>
+<block wx:if="{{list.length && showPop}}">
+  <view class='mask'></view>
+  <view class='pop-container'>
+    <view class="toast" wx:if="{{desc}}">
+      {{desc}}
+    </view>
+    <!-- 只有一个 -->
+    <view wx:if="{{list.length == 1}}"
+          class="bg-common {{spreadChannel == 'friendHelp' ? 'bg1' : 'bg1-1'}}">    
+      <view class="title ellipsis">{{title}}</view>
+      <view class="content1">
+        <view class="price-wrap1">
+          <view class="price1">
+            <view class="price1-big" style="font-size: {{list[0].price.length >= 5 ? '128rpx' : '160rpx'}}">{{tool.turnPrice(list[0].price)[0]}}</view>
+            <view class='price1-small' wx:if="{{tool.turnPrice(list[0].price).length > 1}}">
+              .{{tool.turnPrice(list[0].price)[1]}}
+            </view>
+          </view>
+          <view class="unit1">{{list[0].priceUnit == 1 ? '元' : '折'}}</view>
+        </view>
+        <view class="limit1">{{list[0].couponLimit}}</view>
+        <view class="time1">{{list[0].couponExpire}}</view>
+        <view class='store-name1 ellipsis'>{{list[0].couponTitle}}</view>
+        <image class="coin" src="https://storage.360buyimg.com/wximg/common/spreadCoin.png"></image>
+      </view>
+
+      <block wx:if="{{sign && spreadChannel != 'friendHelp'}}">
+        <send-coupon bindsendcoupon="getcoupon" 
+                      bind:userconfirm="redirectuser" 
+                      send_coupon_params="{{couponParamList}}" 
+                      sign="{{sign}}" 
+                      send_coupon_merchant="{{merchantId}}">
+          <view class="bottom-common bottom1-1" data-position="立即使用">
+            <view class='tip1 ellipsis'>{{list[0].limitRules}}</view>
+          </view>
+        </send-coupon>
+      </block>
+      <view wx:else
+            class="bottom-common {{spreadChannel == 'friendHelp' ? 'bottom1' : 'bottom1-1'}}" 
+            bindtap="getcoupon" 
+            data-position="立即使用">
+        <view class='tip1 ellipsis'>{{list[0].limitRules}}</view>
+      </view>
+      <image class='close' 
+            aria-role="button" 
+            aria-label="关闭弹层" 
+            bindtap="hidePop" 
+            src="https://storage.360buyimg.com/wximg/common/popDelete.png"
+            data-position="关闭" />
+    </view>
+    <!-- 长度等于2 -->
+    <view wx:elif="{{list.length == 2}}"
+          class="bg-common {{spreadChannel == 'friendHelp' ? 'bg2' : 'bg2-1'}}">
+      <view class="title ellipsis">{{title}}</view>
+      <view class="content1">
+        <view wx:for="{{list}}"
+              wx:key="index"
+              wx:for-item="item"
+              class="coupon">
+          <view class="coupon-left">
+            <view class='price-wrap2'>
+              <view class="price2">
+                <view class="price2-big">{{tool.turnPrice(item.price)[0]}}</view>
+                <view class='price2-small' wx:if="{{tool.turnPrice(item.price).length > 1}}">
+                  .{{tool.turnPrice(item.price)[1]}}
+                </view>
+              </view>
+              <view class="unit2">{{item.priceUnit == 1 ? '元' : '折'}}</view>
+            </view>
+            <view class='limit2'>{{item.couponLimit}}</view>
+          </view>
+          <view class="coupon-right">
+            <view class="coupon-name ellipsis">{{item.couponTitle}}</view>
+            <view class="tip2 ellipsis">{{item.couponExpire}}</view>
+            <view class="time2 ellipsis">{{item.limitRules}}</view>
+          </view>
+        </view>
+      </view>
+      <block wx:if="{{sign && spreadChannel != 'friendHelp'}}">
+        <send-coupon bindsendcoupon="getcoupon" 
+                      bind:userconfirm="redirectuser" 
+                      send_coupon_params="{{couponParamList}}" 
+                      sign="{{sign}}" 
+                      send_coupon_merchant="{{merchantId}}">
+          <view class="bottom-common bottom2-1" data-position="立即使用"></view>
+        </send-coupon>
+      </block>
+      <view wx:else
+            class="bottom-common {{spreadChannel == 'friendHelp' ? 'bottom2' : 'bottom2-1'}}" 
+            bindtap="getcoupon" 
+            data-position="立即使用"></view>
+      <image class="coin" src="https://storage.360buyimg.com/wximg/common/spreadCoin.png"></image>
+      <image class='close' 
+            aria-role="button" 
+            aria-label="关闭弹层" 
+            bindtap="hidePop"
+            data-position="关闭" 
+            src="https://storage.360buyimg.com/wximg/common/popDelete.png" />
+    </view>
+
+    <!-- 长度大于等于3 -->
+    <view wx:elif="{{list.length > 2}}" class="bg-common {{spreadChannel == 'friendHelp' ? 'bg3' : 'bg3-1'}}">
+      <view class="title ellipsis">{{title}}</view>
+      <scroll-view class="content2" scroll-y="{{true}}">
+        <block wx:for="{{list}}"
+               wx:key="index"
+               wx:for-item="item">
+          <view class="coupon">
+            <view class="coupon-left">
+              <view class='price-wrap2'>
+                <view class="price2">
+                  <view class="price2-big">{{tool.turnPrice(item.price)[0]}}</view>
+                  <view class='price2-small' wx:if="{{tool.turnPrice(item.price).length > 1}}">
+                    .{{tool.turnPrice(item.price)[1]}}
+                  </view>
+                </view>
+                <view class="unit2">{{item.priceUnit == 1 ? '元' : '折'}}</view>
+              </view>
+              <view class='limit2'>{{item.couponLimit}}</view>
+            </view>
+            <view class="coupon-right">
+              <view class="coupon-name ellipsis">{{item.couponTitle}}</view>
+              <view class="tip2 ellipsis">{{item.limitRules}}</view>
+              <view class="time2">{{item.couponExpire}}</view>
+            </view>
+          </view>
+        </block>
+        <view style="height: 80rpx;"></view>
+      </scroll-view>
+      <block wx:if="{{sign && spreadChannel != 'friendHelp'}}">
+        <send-coupon bindsendcoupon="getcoupon" 
+                      bind:userconfirm="redirectuser" 
+                      send_coupon_params="{{couponParamList}}" 
+                      sign="{{sign}}" 
+                      send_coupon_merchant="{{merchantId}}">
+          <!-- 内部为自定义代码，按钮点击部分的代码写在这里 -->
+          <view class="bottom-common bottom2-1" data-position="立即使用"></view>
+        </send-coupon>
+      </block>
+      <view wx:else
+            bindtap="getcoupon"
+            class="bottom-common {{spreadChannel == 'friendHelp' ? 'bottom2' : 'bottom2-1'}}" 
+            data-position="立即使用">
+      </view> 
+      
+      
+      <image class="coin2" src="https://storage.360buyimg.com/wximg/common/spreadCoin.png"></image>
+      <image class='close' 
+            aria-role="button" 
+            aria-label="关闭弹层" 
+            bindtap="hidePop"
+            data-position="关闭" 
+            src="https://storage.360buyimg.com/wximg/common/popDelete.png" />
+    </view>
+  </view>
+
+</block>
+<toast wx:if="{{toast}}" title="{{toast}}" />

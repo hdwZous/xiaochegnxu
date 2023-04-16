@@ -1,0 +1,118 @@
+<block wx:if="{{!showLoading}}">
+  <block wx:if="{{nonetwork}}">
+    <view class="storeWinErrorLayout">
+      <image class="storeWinErrorImg" src="https://image3.imdada.cn/09fc32e209bc4fadbfe2b0dc6d1d0978.png" mode="widthFix" />
+      <text class="storeWinErrorText">网络连接失败</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="storeWin d-flex flex-column align-items-center">
+      <!-- <view class="imageNone"></view> -->
+      <image class="imageNone" src="https://image3.imdada.cn/09fc32e209bc4fadbfe2b0dc6d1d0978.png" mode="widthFix" />
+      <image class="headpic" src="https://storage.360buyimg.com/wximg/storewin/headpic2x.png" mode="widthFix" lazy-load="true" />
+      <view class="act_box" wx:if="{{showBabyInfo && btstatus === 4}}">
+        <view class="act_item flex j_b">
+          <view class="nowp">
+            *宝宝的出生日期或者预产期
+          </view>
+          <view class="act_line" />
+          <picker mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+            <view class="flex-row act_right" bindtap="showBabyPop">
+              <text class="act_please_choose" wx:if="{{!start_time_p}}">请点击选择</text>
+              <text wx:else class="sel_text">{{start_time_p}}</text>
+
+              <view class="act-tag"></view>
+
+            </view>
+          </picker>
+        </view>
+        
+      </view>
+
+      <text class="yetrest" wx:if="{{errmsg && errmsg.length}}">{{errmsg}}</text>
+      <button class="store-btn" wx:if="{{btstatus === 0}}" bindtap="goregister">微信手机号快捷领取</button>
+      <button class="store-btn" wx:if="{{btstatus === 4}}" bindtap="getThrottleCoupon">领取优惠券</button>
+      <!-- 联系客服 -->
+      <!-- <button 
+        open-type="contact" 
+        class="store-btn" 
+        wx:if="{{btstatus === 1}}"
+        bindtap="getapp"
+        send-message-title="返回小程序"
+        send-message-img="https://storage.360buyimg.com/wximg/storewin/down.png"
+        send-message-path="pages/storeWin/index" 
+        show-message-card="true">
+        获取下载链接
+      </button> -->
+      <button class="store-btn" wx:if="{{btstatus === 2 || btstatus === 1}}" bindtap="gohome">去购物</button>
+
+      <view class="act_tip_layout" wx:if="{{couponListTip}}">
+        <image class="act_img" src="https://image3.imdada.cn/4a6fce7e74be4425a5f8a7beaf269e43.png" mode="scaleToFill" />
+        <view class="act_texts">{{couponListTip}}</view>
+        <image class="act_img" src="https://image3.imdada.cn/46a4411ee85d4622b540cbf4b8e9e6c2.png" mode="scaleToFill" />
+      </view>
+
+      <block wx:if="{{params.taskClassify == 2 && isShowBrand && btstatus === 4}}">
+        <view class="protoolPreLayout">
+
+          <block wx:if="{{openBrandAccount}}">  
+              <view class="imageChoosed" bind:tap="clickPro"></view>
+            </block>
+            <block wx:else>
+              <view class="imageUnChoose" bind:tap="clickPro"></view>
+            </block>
+          <view class="protoolLayout">
+            
+            <text class="protool-text" bind:tap="clickPro">开通{{brandName}}品牌会员，已阅读并同意</text>
+            <text class="link-text" bind:tap="gotoH5">{{protoolText}}</text>
+          </view>
+
+         
+        </view>
+         <view class="progress-par-layout">
+            <view class="progress-layout">
+              <view class="progress-san-red"></view>
+              <view class="progress-tip-content-red">授权开通品牌会员，领大额优惠券</view>
+            </view>
+          </view>
+        
+      </block>
+
+      
+       <view class="loadingStoreWin" wx:if="{{loading === 'loading'}}">
+          <image class="imageStoreWin" src='https://storage.360buyimg.com/wximg/signIn_new/loadingN.gif'></image>
+        </view>
+      
+        <!-- <view class="loading-wrap d-flex flex-row align-items-center" wx:if="{{loading === 'loading'}}">
+
+       
+
+        <image class="loading" src="https://storage.360buyimg.com/wximg/storewin/quan2x.png" mode="widthFix" />
+        <text class="loading-txt">优惠券正在来的路上…</text>
+      </view> -->
+      <view class="shop" wx:if="{{btstatus !== 1}}">
+        <image class="shop-img" mode="widthFix" src="https://storage.360buyimg.com/wximg/storewin/shops.png" />
+        <text class="shop-tip">页面所展示商家部分地区未全覆盖；商品价格存在波动。 具体以App内实际情况为准</text>
+      </view>
+      <view class="coupon" wx:if="{{loading === 'done' && list.length}}">
+        <block wx:for="{{list}}" wx:key="index" wx:for-index="ids">
+          <row detail="{{item}}"></row>
+        </block>
+      </view>
+    </view>
+  </block>
+  
+</block>
+<block wx:else>
+    <view class="loadingStoreWin">
+      <image class="imageStoreWin" src='https://storage.360buyimg.com/wximg/signIn_new/loadingN.gif'></image>
+    </view>
+</block>
+
+
+<!-- <subscribe 
+    bind:pageBuried="pageBuried"
+    tmplIds = "{{tmplIds}}" 
+    showSubscribeMessage = "{{showSubscribeMessage}}" 
+    subscribeMessageImageUrl = "">
+</subscribe> -->

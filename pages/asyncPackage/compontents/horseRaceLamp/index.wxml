@@ -1,0 +1,16 @@
+<!-- 跑马灯 -->
+<view class='horseRaceLamp' style="background:{{backgroundColor}};top:{{top}}">
+  <swiper style='height:44rpx' autoplay="true" vertical="true" circular="true" interval="2000">
+    <block wx:for="{{winList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+      <swiper-item style="height:44rpx">
+        <view class="scrollItem ">
+          <image src='{{item.nickHeadUrl}}'></image>
+          <view class='name'>
+            <view class="nickName" style="color:{{fontColor}}">{{item.nickName}}</view>
+            <view class="dec" style="color:{{fontColor}}">{{item.desc}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

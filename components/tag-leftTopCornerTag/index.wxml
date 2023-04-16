@@ -1,0 +1,5 @@
+<view class="tag" 
+      wx:if="{{topLeftCornerTag && topLeftCornerTag.componentTag.iconText && topLeftCornerTag.componentTag.bgImgUrl}}" 
+      style="background:url({{topLeftCornerTag.componentTag.bgImgUrl }}) no-repeat; background-size: 100% 100%;">
+  {{topLeftCornerTag.componentTag.iconText}}
+</view>

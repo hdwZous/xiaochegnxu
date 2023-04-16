@@ -1,0 +1,5 @@
+<view class="sku-title" style="background:{{isToday ?'#FFF2F0': '#EEEEEE'}}">
+    <image class="sku-title-icon" src="{{titleData.icon}}" />
+    <text class="title-text {{source ? 'customTtile' : ''}}" style="color:{{titleData.fontColor || '#000'}}">{{titleData.text}}</text>
+    <text class="sku-title-date" style="font-size:{{source ? '22rpx' : null}}">{{titleData.skuTitleDateText}}</text>
+</view>

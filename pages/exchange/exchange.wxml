@@ -1,0 +1,19 @@
+<view class="exchange-bg">
+  <text class="exchange-title">{{cityName}}</text>
+  <view class="exchange-info">
+    <text class="exchange-name">兑换码：</text>
+    <input bindinput="changeInput" bindblur="inputBlur" bindfocus="inputFocus" value="{{code}}" cursor-spacing="100" data-name="code" placeholder="请输入兑换码" class="exchange-text" placeholder-style='color:#b3b3b3;'/>
+    <view class="icon-clear" hidden="{{iconToggle.codeIcon}}" catchtap="clearCodeInput">
+      <icon type="clear" size="18" />
+    </view>
+  </view>
+  <view class="exchange-info">
+    <text class="exchange-name">手机号：</text>
+    <input class="exchange-text" bindinput="changeInput" bindblur="inputBlur" maxlength="11" cursor-spacing="55" bindfocus="inputFocus" value="{{phone}}" data-name="phone" placeholder="券将放至手机号关联账户" placeholder-style='color:#b3b3b3;' confirm-type="done" />
+    <view class="icon-clear" hidden="{{iconToggle.phoneIcon}}" catchtap="clearPhoneInput">
+      <icon type="clear" size="18" />
+    </view>
+  </view>
+  <button class="exchange-to" catchtap='toExchange'>去兑换</button>
+  <text class="exchange-to-home" catchtap='toHome'>去门店></text>
+</view>

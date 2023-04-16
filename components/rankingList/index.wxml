@@ -1,0 +1,7 @@
+<view class="rank-wrap" wx:if="{{info.recWords}}">
+  <view class="ranking-list d-flex flex-row align-items-center" style="background: {{info.bgColor}}" catchtap="goRank" data-to="{{info.to}}" data-params="{{info.params}}">
+    <image class="ranking-icon" src="{{info.leftIconUrl}}" wx:if="{{info.leftIconUrl}}" />
+    <text class="ranking-desc ellipsis" style="color: {{info.fontColor}}">{{info.recWords}}</text>
+    <image class="ranking-right-icon" src="{{info.iconUrl}}" wx:if="{{info.iconUrl}}" />
+  </view>
+</view>

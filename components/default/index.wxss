@@ -1,0 +1,39 @@
+@import "/common/css/global.wxss";
+.component_default {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.component_default .net_error {
+    width: 321rpx;
+    height: 321rpx;
+    background: url("https://storage.360buyimg.com/wximg/common/errorbar_icon_nonetworkV1.png") center no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.component_default .text {
+    color: #666666;
+    font-size: 30rpx;
+    margin-top: 50rpx;
+    width:70%;
+    text-align:center;
+}
+.component_default .component_btn {
+    margin-top: 50rpx;
+    color: #ffffff;
+    font-size: 30rpx;
+    border-radius: 12rpx;
+    display: inline-block;
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 40rpx;
+    background: #3ab549;
+}
+.component_default .box{
+    width: 100%;
+}

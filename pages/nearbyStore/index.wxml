@@ -1,0 +1,60 @@
+<page-meta page-style="overflow: {{visible}}" />
+<view 
+    class="page_wrap container" 
+    style="padding-top: {{pagePaddingTop}}">
+    <!-- 筛选头部 -->
+    <block>
+        <filter-comp
+            sortList="{{sortList}}"
+            tabList="{{tabList}}"
+            allList="{{allList}}"
+            categoryFilter="{{categoryFilter}}"
+            nearbyFilter="{{nearbyFilter}}"
+            businessConfig="{{businessConfig}}"
+            businessType="{{filterCompData.businessType}}"
+            sortActive="{{sortActive}}"
+            config="{{config}}"
+            storeNum="{{storeNum}}"
+            positionConfig="{{positionConfig}}"
+            filterCompData="{{filterCompData}}"
+            scopeData="{{scopeDataObj}}"
+            recommendObj="{{recommendObj}}"  
+            bind:changeTouchMove="changeTouchMove"
+            bind:scrollToTop="scrollToTop"
+            bind:getStoreNum="getStoreNum"
+            bind:getCurrentPageData="getFilterParams"
+        ></filter-comp>
+    </block>
+    <!-- 门店列表 -->
+    <block wx:if="{{showDefault}}">
+        <new-default 
+            wx:if="{{showDefault}}" 
+            type="{{type}}" 
+            tips="{{tips}}" 
+            NeedExposure="{{false}}" 
+            fromPositon="nearbystore_defatult"
+            btnText="{{btnText}}" 
+            bind:defaultBtnEvent="onDefaultBtnEvent" />
+    </block>
+    <view wx:else>
+            <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="item">
+                <!-- <store-list 
+                    item="{{item}}" 
+                    traceId="{{traceId}}" 
+                    NeedExposure="{{true}}"  
+                    buriedObj="{{recommendObj}}"  
+                    moreFlag="{{moreFlag}}" /> -->
+                <view class="store_item" >
+                    <store-item
+                    item="{{item}}" 
+                    traceId="{{traceId}}" 
+                    NeedExposure="{{true}}"  
+                    buriedObj="{{recommendObj}}"  
+                    moreFlag="{{moreFlag}}" /> 
+                </view>
+                
+            </block>
+    </view>
+    <!-- 底线 -->
+    <view class="bottom_txt" wx:if="{{showBottom}}">没有更多商家啦</view>
+</view>

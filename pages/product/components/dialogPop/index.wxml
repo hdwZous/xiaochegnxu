@@ -1,0 +1,8 @@
+<view class="mask" wx:if="{{isShow}}"></view>
+<view class="product-dialog-wrap" wx:if="{{isShow}}">
+  <view class="product-dialog-content">
+    <view class="product-dialog-title">{{dialogInfo.title}}</view>
+    <text decode="true" class='product-dialog-desc'>{{dialogInfo.content}}</text>
+  </view>
+  <view class="close" bindtap="closeDialog"></view>
+</view>

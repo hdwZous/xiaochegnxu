@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "coupon-item": "/components/couponItem/index",
+    "coupon-yhy-one": "../../../asyncPackageStore/compontents/coupon-yhy-one/index",
+    "vip-coupon-pop": "../../../asyncPackageStore/compontents/vipCouponPop/index"
+  },
+  "componentPlaceholder": {
+    "coupon-yhy-one": "view",
+    "vip-coupon-pop": "view"
+  }
+}

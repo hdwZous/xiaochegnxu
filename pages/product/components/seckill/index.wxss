@@ -1,0 +1,29 @@
+.seckill {
+    align-items: center;
+    justify-content: center;
+    height: 80rpx;
+    background: rgba(255, 87, 87, 0.1);
+}
+.box {
+    margin: 0 4rpx;
+    width: 40rpx;
+    height: 44rpx;
+	line-height: 44rpx;
+    text-align: center;
+    background: rgb(255, 30, 26);
+    color: #ffffff;
+    font-size: 28rpx;
+    font-weight: bold;
+    border-radius: 4rpx;
+	font-family: 'regular';
+}
+.txt {
+    color: rgb(255, 30, 26);
+    font-size: 28rpx;
+}
+.start {
+    margin-right: 8rpx;
+}
+.end {
+    margin-left: 8rpx;
+}

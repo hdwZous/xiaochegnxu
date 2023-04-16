@@ -1,0 +1,61 @@
+<view wx:if="{{showPage}}" class="pageCont">
+  <view class='goodCont'>
+    <!-- 商品图片 -->
+    <!-- 轮播图 -->
+    <good-img goodImg="{{groupDetailData.bigImgUrls}}" />
+    <!-- 商品价格，倒计时 -->
+    <good-ac-info actPrice="{{groupDetailData.groupPrice}}" basicPrice="{{groupDetailData.basicPrice}}" remainTime="{{remainTime}}" joinNumDesc="{{groupDetailData.joinNumDesc}}" bind:pageEvent="componentEvent" />
+    <!-- 店铺名称商品名称 -->
+    <good-store orgName="{{groupDetailData.orgName}}" logoUrl="{{groupDetailData.logoUrl}}" totalMembersDesc="{{groupDetailData.totalMembersDesc}}" skuName="{{groupDetailData.skuName}}" />
+    <!-- 活动规则 -->
+    <view class="groupRule">
+      <view class="title">
+        <image src="https://storage.360buyimg.com/wximg/groupbuy/title1.png" />
+      </view>
+      <image src="https://storage.360buyimg.com/wximg/groupbuy/rule.png" />
+    </view>
+    <!-- 商品详情 -->
+    <view wx:if="{{groupDetailData.productDetailHtml}}" class='goodDetail'>
+      <view class="detailCont">
+        <view class="good_detail_Title">商品详情</view>
+        <richtext detailInfo="{{groupDetailData.productDetailHtml}}"></richtext>
+      </view>
+    </view>
+  </view>
+  <!-- 拼团失败提示 -->
+  <!-- <view wx:if="{{!canOpenGroup||actTime.timeEnd}}" class='tips'>
+    {{!actTime.timeEnd?groupDetailData.failReason:"活动结束"}}
+  </view> -->
+  <!-- 原价购买，一键开团 -->
+  <view class='bottom-btns flex-row' wx:if="{{!disabled}}">
+    <view class='basic-price-buy' bindtap='basicPriceBuy'>
+      <view class="basic-price flex-row">
+        <label for="">￥</label>
+        <view>{{groupDetailData.basicPrice}}</view>
+      </view>
+      <view>原价购买</view>
+    </view>
+    <form bindsubmit="startGroup" report-submit="true" class="start-group">
+      <button formType="submit" class="button1"></button>
+      <view class="button">
+        <view class="act-price flex-row">
+          <label for="">￥</label>
+          <view>{{groupDetailData.groupPrice}}</view>
+        </view>
+        <view>一键开团</view>
+      </view>
+    </form>
+  </view>
+  <view class='bottom-btns flex-row' wx:else>
+    <view class="failTxt">{{failStatusDesc}}</view>
+  </view>
+</view>
+<block wx:else>
+  <default fromPositon='groupBuy-oldInviteNew-detail' type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" src="{{src}}" buriedObj="{{recommendObj}}" bind:defaultBtnEvent="onDefaultBtnEvent"  fromPostion="grounpBuy-oldInviteNew-detail"></default>
+</block>
+<dialog showDialog="{{showRuleDialog}}" height="310" data-type="rule" useClose="{{useClose}}">
+  <view class="dialog-content flex-col" style="padding: 40rpx 19px 40rpx;height:230rpx">
+    <view class="flex-auto contentTxt">{{dialogTxt}}</view>
+    <view class="goHomeBtn" bindtap="dailogClick">{{dialogBtn}}</view>
+  </view>
+</dialog>

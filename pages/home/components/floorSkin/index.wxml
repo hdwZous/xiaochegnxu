@@ -1,0 +1,24 @@
+<view 
+    class=" skin-wrapper exposure home_floorSkin" 
+    data-user-action="{{img.floorCellData.userAction}}" 
+    data-trace-id="{{pageDataTraceId}}"
+    data-page-id="{{buriedObj.pageIdFirstPage}}"
+    data-current-page-name="{{buriedObj.currentPageName}}"
+    data-pre-page-name='{{buriedObj.prePageName}}'
+    style="background-color: {{skinData.needFloorBackground && skinData.floorBgColor || ''}}; background-image: url({{skinData.floorBgImg || ''}}); background-position: no-repeat; background-size: 100% 100%" 
+    aria-role="link"  
+    aria-label="广告图{{img.floorCellData.title}}">
+    <view class="img skin-pic lazy-load" 
+        data-lazy-img-id="{{floorId+index}}"
+        data-item="{{img.floorCellData}}"
+        bindtap="jump">
+        <webp-img 
+        webp-img="pic lazy-load"  
+        src="{{(imgLazyLoad[floorId+index] && img.floorCellData.imgUrl) ? img.floorCellData.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" 
+        width="{{img.floorCellData.imgWidth}}rpx" 
+        needOverlay="{{false}}"
+        height="{{img.floorCellData.imgHeight}}rpx"/> 
+    </view>
+    
+  
+</view>

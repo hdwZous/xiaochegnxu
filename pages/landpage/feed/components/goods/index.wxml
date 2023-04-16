@@ -1,0 +1,80 @@
+<view
+  class="feed_good"
+  data-trace-id="{{traceId}}"
+  data-user-action="{{item.userAction}}"
+  data-page-id="{{recommendObj.pageIdFirstPage}}"
+  data-current-page-name="{{recommendObj.currentPageName}}"
+  data-pre-page-name='{{recommendObj.prePageName}}'>
+  <view class="list_left">
+    <webp-img webp-img="list_img" src="{{item.imgUrl}}"></webp-img>
+    <view class="top_left_tag" style="background:linear-gradient(135deg, {{item.topLeftCornerTag.componentTag.startColorCode}} 0%, {{item.topLeftCornerTag.componentTag.endColorCode}} 100%);" wx:if="{{item.topLeftCornerTag && item.topLeftCornerTag.componentTag}}">
+      <image src="{{item.topLeftCornerTag.componentTag.iconUrl}}" class="top_left_tag-icon" />
+      <view style="color:{{item.topLeftCornerTag.componentTag.iconTextColorCode}};font-size:20rpx;">
+        {{item.topLeftCornerTag.componentTag.iconText}}
+      </view>
+    </view>
+    <bottom-corner-tag wx:if="{{item.bottomCornerTag}}" infos="{{item.bottomCornerTag}}" moduleId="SkuYhyTwelve" showHandle="{{true}}" />
+  </view>
+  <view class="list_right">
+    <view class="list_right_top">
+      <view class="name ellipsis2">
+        <view style="background:linear-gradient(90deg, {{item.skuNameTag.startColorCode}} 0%, {{item.skuNameTag.endColorCode}} 100%);color:{{item.skuNameTag.iconTextColorCode}}" wx:if="{{item.skuNameTag&&item.skuNameTag.iconText}}" class="skuTag flex-none">
+          {{item.skuNameTag.iconText}}
+        </view>
+        {{item.skuName}}
+      </view>
+      <view class="desc ellipsis2" wx:if="{{item.funcIndicatinsOrAdWord && !item.cateAttrTags}}">
+        {{item.funcIndicatinsOrAdWord}}
+      </view>
+      <view class="tel_wrap" wx:if="{{item.cateAttrTags && item.cateAttrTags.length}}">
+        <view class="tel" wx:for="{{item.cateAttrTags}}" wx:for-item="attrItem" wx:key="index">
+          <image src="{{attrItem.standardIcon}}" class="tel_icon" />
+          <view class="ellipsis2" style="flex:1">{{attrItem.standardDesc}}</view>
+        </view>
+      </view>
+      <!-- 属性 -->
+      <view style="margin-top: 8rpx" wx:if="{{item.personlizedCateAttritemList}}">
+        <goods-attribute buriedObj="{{recommendObj}}" info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+      </view>
+      <view wx:if="{{item.couponVOList && item.couponVOList.length}}" class="coupon-wrapper">
+        <view wx:for="{{item.couponVOList}}" wx:key="index" wx:for-item="cItem" style="margin-right:8rpx">
+          <coupon-go-tag data="{{cItem}}" sku-id="{{cItem.skuId || ''}}" org-code="{{cItem.orgCode || ''}}" store-id="{{cItem.storeId || ''}}" user-action="{{cItem.userActionSku}}" wx:if="{{index<2}}"></coupon-go-tag>
+        </view>
+      </view>
+    </view>
+    <view class="list_right_bottom">
+      <view class="price_cmp d-flex {{(((item.minorPrice.priceType==11||item.minorPrice.priceType==3)&&item.minorPrice.vipPriceIcon)||((item.majorPrice.priceType==11||item.majorPrice.priceType==3)&&item.majorPrice.vipPriceIcon))?'flex-column':'flex-row align-items-baseline'}}">
+        <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="56rpx" intervalPrice="{{item.intervalPrice}}" style="margin-right: 8rpx;"></coupon-price>
+        <coupon-price minorPrice="{{item.minorPrice}}" minorPriceFz="28rpx"></coupon-price>
+      </view>
+      <!-- 加减车 -->
+      <view class="select_case" style="background: {{item.anchoredProduct ? '#fffaeb' : '#ffffff'}}" wx:if="{{item.stockCount > 0}}">
+        <block wx:if="{{item.showCartButton}}">
+          <add-min-controller
+            showType="1"
+            iconType="{{item.iconType||0}}"
+            transmitData="{{item.transmitData}}"
+            count="{{item.showModel ? item.spuCartCount : item.incartCount}}"
+            skuId="{{item.skuId}}"
+            spuId="{{item.spuId}}"
+            orgCode="{{item.orgCode}}"
+            storeId="{{item.storeId}}"
+            longitude="{{longitude}}"
+            latitude="{{latitude}}"
+            isAddCart="{{item.isAddCart}}"
+            data-index="{{index}}"
+            showModel="{{item.showModel}}"
+            weighting="{{item.weighting}}"
+            weight="{{item.cartWeight}}"
+            biPageName="feedRecGoods"
+            userAction="{{item.userAction}}"
+            pageId="{{recommendObj.pageIdFirstPage}}"
+            currentPageName="{{recommendObj.currentPageName}}"
+            prePageName="{{recommendObj.prePageName}}"
+          ></add-min-controller>
+        </block>
+        <image class="car_more" wx:else src="https://storage.360buyimg.com/wximg/common/next_green.png" mode="widthFix" />
+      </view>
+    </view>
+  </view> 
+</view>

@@ -1,0 +1,50 @@
+.common-search{
+  flex-direction: row;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin: 24rpx
+}
+
+.edit-box {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 60rpx;
+  padding-left: 26rpx;
+  padding-right:16rpx;
+  background: #f8f8f8;
+  flex:1;
+}
+
+.edit-box__left {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.edit-box__right {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.edit-box__input {
+  line-height: 50rpx;
+  display: flex;
+  flex:1;
+  align-items: center;
+  font-size: 28rpx;
+  margin-left: 12rpx;
+  color: #333333;
+  /* background: red; */
+  padding: 0;
+}
+
+.edit-box__input::placeholder{
+  color:  #999;
+}
+
+.edit-box__button {
+  font-size: 28rpx;
+  margin-left: 28rpx;
+  color: #333;
+}

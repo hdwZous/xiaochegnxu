@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "send-coupon": "plugin://sendCoupon/send-coupon",
+    "toast": "../../components/toast/index"
+  }
+}

@@ -1,0 +1,129 @@
+@import "/common/css/light.wxss";
+@import "/common/css/regular.wxss";
+@import "/common/css/global.wxss";
+
+.abs {
+  position: absolute;
+  right: 20rpx;
+  bottom: 36rpx;
+}
+
+
+/* threeItem和threeHalfItem公用 */
+.item-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  width:210rpx;
+  border-radius: 8rpx;
+}
+
+.item-wrapper .pro-pic {
+  width:210rpx;
+  height:210rpx;
+  border-radius:8rpx;
+  position: relative;
+  /* padding-top: 20rpx; */
+  margin-top: 20rpx;
+}
+.pro-pic .freeze-wrap {
+  position: absolute;
+  left: 4rpx;
+  top: 24rpx;
+}
+.pro-pic .img {
+  width:210rpx;
+  height:210rpx;
+  border-radius:8rpx;
+}
+.pro-pic  .pro-sale-slogan {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  padding: 0rpx 6rpx;
+  color: #fff;
+  font-size: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius:0 8rpx 0 8rpx;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-wrapper .bottom {
+  position: relative;
+  padding: 0 0 20rpx 0rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bottom .pro-title {
+  width: 210rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 10rpx;
+  text-align: left;
+}
+
+.bottom .price-car-wrapper {
+   display: flex;
+  justify-content: space-between;
+  height: 66rpx;
+  position: relative;
+  align-items: center;
+}
+.bottom  .price-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bottom .car-btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0px;
+}
+.add-group {
+  position: relative;
+}
+
+.blank {
+    height: 10rpx;
+}
+
+.initial {
+    white-space: initial;
+}
+.go-detail {
+  width: 44rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  margin-top: 16rpx;
+}
+/* 预售标 */
+.sku-name-tag {
+    font-size: 20rpx;
+    padding: 0rpx 8rpx;
+    color: #fff;
+    border-radius: 4rpx;
+    margin-right: 8rpx;
+    display: inline-flex;
+    height: 28rpx;
+    align-items: center;
+}
+/* 预售购买按钮 */
+.buy {
+  position: relative;
+  width: 80rpx;
+  height: 48rpx;
+  background: linear-gradient(90deg, #45DC6D 0%, #00CF37 100%);
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48rpx;
+}

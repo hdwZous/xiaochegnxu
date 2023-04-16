@@ -1,0 +1,13 @@
+<view wx:if="{{!playEnd}}" class="animation-modal {{transparent ? 'transparent-bg' : 'black-bg'}}">
+    <view class="red-bg">
+        <view class="red-bg-top {{move ? 'red-bg-top-animation' : ''}}">
+            <view class="money-title">社群红包</view>
+            <view class="money-tips">社群专属现金红包</view>
+            <view wx:if="{{!isLogin}}" class="login-tips">登录后即可领取</view>
+        </view>
+        <view class="red-open {{showOpenBtn ? '' : 'hide'}}" bind:tap="openRedpack"></view>
+        <view class="red-xuanzhuan {{showRotateBtn ? 'show' : 'hide'}}"></view>
+        <view class="red-bg-bottom {{move ? 'red-bg-bottom-animation' : ''}}"></view>
+    </view>
+</view>
+  

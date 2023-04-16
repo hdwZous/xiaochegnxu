@@ -1,0 +1,47 @@
+@import "wxss/bg.wxss";
+@import "wxss/main.wxss";
+
+.winner-store {
+  position: relative;
+}
+
+.top-nav {
+  display: flex;
+  position: fixed;
+}
+
+.to-search {
+  width: 400rpx;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.16);
+  color: white;
+  border-radius: 40rpx;
+  margin-left: 40rpx;
+  vertical-align: middle;
+}
+
+.status-bar {
+  height: 48rpx;
+}
+
+.search-icon {
+  margin-left: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: text-bottom;
+}
+
+.search-text {
+  margin-left: 20rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  height: 60rpx;
+  vertical-align: middle;
+}
+
+.coupon-icon {
+  width: 72rpx;
+  height: 40rpx;
+  margin: 10rpx 20rpx;
+  vertical-align: middle;
+}

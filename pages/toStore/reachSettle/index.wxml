@@ -1,0 +1,50 @@
+<view  wx:if="{{pageError.error}}" class="error_box">
+  <new-default-v2 type="{{pageError.type}}" defaultObj="{{pageError.obj}}" binddefaultBtnEvent="onDefaultBtnEvent"></new-default-v2>
+</view>
+<view class="settlementV2" wx:else>
+  <block wx:if="{{moduleList&&moduleList.length}}">
+    <view class="background_box"></view>
+    <view class="settle_box">
+      <block wx:for="{{moduleList}}" wx:key="items">
+        <store wx:if="{{item.componentType=='store_type'}}" infos="{{item.data}}"></store>
+        <product wx:if="{{item.componentType=='product_type'}}" infos="{{item.data}}" bindmodifySku="modifySku"></product>
+        <discount wx:if="{{item.componentType=='discount_common_type'}}" infos="{{item}}"></discount>
+        <coupon wx:if="{{item.componentType=='coupon_type'}}" infos="{{item}}" isIPX="{{isIPX}}" bgType="{{bgType}}" buriedObj="{{recommendObj}}" storeId="{{storeId}}" orderPageId="{{orderPageId}}"></coupon>
+        <red-packet wx:if="{{item.componentType=='jdRedPacket_type'}}" infos="{{item}}" isIPX="{{isIPX}}" bgType="{{bgType}}" buriedObj="{{recommendObj}}" storeId="{{storeId}}" orderPageId="{{orderPageId}}"></red-packet>
+        <jd-beans wx:if="{{item.componentType=='points_type'}}" infos="{{item}}" isIPX="{{isIPX}}" bgType="{{bgType}}" buriedObj="{{recommendObj}}" storeId="{{storeId}}" orderPageId="{{orderPageId}}"></jd-beans>
+        <view class="rs_money" wx:if="{{item.componentType=='amount_type'}}">
+          <view class="to_settle_space_line" style="margin: 0 24rpx;margin-bottom:44rpx;"></view>
+          <view class="d-flex flex-row justify-content-end align-items-baseline">
+            <view class="save_money" wx:if="{{item.data.totalSaveMoney}}">共节省<text class="save_money_sys">¥{{item.data.totalSaveMoney}}</text></view>
+            <view><text class="order_t">实付金额：</text><text class="order_money">¥{{item.data.orderPayableMoney}}</text></view>
+          </view>
+        </view>
+        <!-- 提单 -->
+        <block wx:if="{{item.componentType=='submit_type'}}">
+          <view class="submit-view d-flex flex-row justify-content-end align-items-center" style="padding-bottom:{{isIPX?48:0}}rpx;">
+            <view class="ellipsis">
+              <text class="totalMoney-text-discount" wx:if="{{item.data.totalSaveMoney}}">共节省<text class="total-discount-num">¥{{item.data.totalSaveMoney}}</text></text>
+              <text class="totalMoney-text">¥{{item.data.orderPayableMoney}}</text>
+            </view>
+            <button class="btn-submit flex-none" animation loading="{{bt_loading}}" disabled="{{bt_disabled}}" bindtap="goPay" data-infos="{{item}}">
+              提交订单
+            </button>
+          </view>
+        </block>
+      </block>
+    </view>
+  </block>
+</view>
+<toast wx:if="{{originToast}}" title="{{originToast}}" bindcloseToast="closeToast"></toast>
+<new-pay-pop 
+  showNewPayPop="{{showPayPop}}"
+  fee="{{fee}}"
+  dealId="{{orderId}}"
+  bgType="{{bgType}}"
+  storeId="{{storeId}}"
+  orgCode="{{orgCode}}"
+  buriedObj="{{recommendObj}}"
+  bindcloseNewPayPop="closeNewPayPop"
+  bindonPaySuccess="onPaySuccess"
+>
+</new-pay-pop>

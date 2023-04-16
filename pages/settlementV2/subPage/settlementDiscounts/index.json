@@ -1,0 +1,13 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "运费立减商品",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "new-default": "/components/newDefault/index",
+    "spu-selector": "../../../asyncPackage/compontents/spuSelector/index",
+    "lists": "./lists/index"
+  },
+  "componentPlaceholder": {
+    "spu-selector": "view"
+  }
+}

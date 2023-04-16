@@ -1,0 +1,12 @@
+<view class="icon-wrap0 pos flex"
+      style="height: {{type == 1 ? '32rpx' : '28rpx'}}; font-size: {{type == 1 ? '22rpx' : '18rpx'}}"
+      aria-hidden="true">
+  <view wx:for="{{list}}"
+        wx:for-item="item"
+        wx:key="index"
+        class='icon{{index}}'
+        style="color: {{item.titleColor}}; background: linear-gradient(to right, {{item.startColor}} 0%, {{item.endColor}} 100%);">
+    {{item.title}}
+    <image wx:if="{{item.icon}}" src="{{item.icon}}" class="icon_arrow" />
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<view class="wrap">
+  <view class="coupon_go flex-row align-items-center" 
+    catchtap="clickCouponGo" 
+    data-activity-code="{{data.activityCode || ''}}" 
+    data-mark-state="{{data.markState || ''}}" 
+    data-coupon-id="{{data.couponId || ''}}" 
+    data-user-action="{{data.userAction || ''}}" 
+    data-sku-id="{{skuId || ''}}" 
+    data-org-code="{{orgCode || ''}}" 
+    data-store-id="{{storeId || ''}}" 
+    data-show-button="{{data.showButton}}" 
+    aria-role="button"
+    wx:if="{{data.couponTagVOMap[data.markState].iconText}}"
+    aria-label="{{data.couponTagVOMap[data.markState].iconText}}{{data.couponTagVOMap[data.markState].couponButtonTagVO.iconText}}">
+    <view class="coupon_tag_left flex-row {{data.couponTagVOMap[data.markState].couponButtonTagVO.iconText == '使用' ? 'coupon_tag_left_bg' : ''}} flex-auto">
+      {{data.couponTagVOMap[data.markState].iconText}}
+    </view>
+    <view class="coupon_tag_right flex-row flex-none" wx:if="{{data.showButton}}">
+      <view wx:if="{{isShowLoading}}" class="coupon_loading {{isShowLoading ? 'coupon_loading_active' : ''}}"></view>
+      <block wx:else>
+        {{data.couponTagVOMap[data.markState].couponButtonTagVO.iconText}}
+        <view class="coupon_tag_icon icon dj_icon ts_next"></view>
+      </block>
+    </view>
+    <view class="coupon_tag_border"></view>
+  </view>
+</view>

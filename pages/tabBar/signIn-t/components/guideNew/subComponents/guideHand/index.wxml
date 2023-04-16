@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{[style.hand, style[classNameByF]]}}"><view hidden="{{true}}" class="{{style.guideNewer}}"></view></view></block>

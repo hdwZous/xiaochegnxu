@@ -1,0 +1,58 @@
+
+<block wx:if="{{showEmpty}}">
+    <new-default type="{{type}}" tips="{{tips}}" btnText="{{btnText}}" bind:defaultBtnEvent="onDefaultBtnEvent" />
+</block>
+<view class="container" wx:else catchtap="elementTracker">
+    <view class="order_status_wrap">
+        <view class="order_status_title" bind:tap="handleGotoOrderStatusPage">
+            {{orderInfo.orderStateMap.stateTitle}}
+            <image src="https://storage.360buyimg.com/wximg/order/arrow_right.png" />
+        </view>
+        <view class="order_status_content">
+          {{orderInfo.orderStateMap.stateDesc}}
+        </view>
+        <view class="order_send_time"
+          wx:if="{{orderInfo.preDeliveryTimeStr}}"
+        >
+            {{orderInfo.preDeliveryTimeStr}}
+        </view>
+    </view>
+    <view class="deliveryman_wrap" wx:if="{{orderInfo.deliveryManInfo}}">
+        <deliveryman bind:showMiddleModal="showMiddleModal" init-data="{{orderInfo}}" pageId="{{recommendObj.pageIdFirstPage}}"
+          currentPageName="{{recommendObj.currentPageName}}"
+          prePageName="{{recommendObj.prePageName}}"></deliveryman>
+    </view>
+    <!-- 修改订单信息 -->
+    <view class='orderInfoList_wrap'>
+      <appointmentInfo
+        init-data="{{orderInfo}}"
+        bind:showMiddleModal="showMiddleModal"
+      />
+    </view>
+    <view class="orderInfoList_wrap">
+        <order-list-info
+          init-data="{{orderInfo}}"
+          pageId="{{recommendObj.pageIdFirstPage}}"
+          currentPageName="{{recommendObj.currentPageName}}"
+          prePageName="{{recommendObj.prePageName}}"
+          recommendObj="{{recommendObj}}"
+          >
+        </order-list-info>
+    </view>
+    <view class="delivery_info_wrap">
+        <delivery-info init-data="{{orderInfo}}"></delivery-info>
+    </view>
+    <view class="order_info_wrap" style="margin-bottom:{{isIPX?204:154}}rpx">
+        <order-info init-data="{{orderInfo}}"></order-info>
+    </view>
+    <view class="footer">
+        <image lazy-load="{{true}}" 
+          style="margin-bottom:{{isIPX?54:6}}rpx"
+          bind:tap="handleFooterClick"
+          src="https://storage.360buyimg.com/wximg/order/footer_share_button.png"
+        />
+    </view>
+</view>
+
+<!-- 中间号弹窗 -->
+<middle-number-modal fromPositon="order-shareOrder-orderDetail" bind:closeModal='closeModal' wx:if="{{isShowMiddleModal}}" order-id="{{orderId}}" store-id="{{orderInfo.storeId}}" share-token='{{shareToken}}' recommendObj="{{recommendObj}}" buriedObj="{{recommendObj}}"></middle-number-modal>

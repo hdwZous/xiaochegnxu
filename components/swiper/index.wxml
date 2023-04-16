@@ -1,0 +1,46 @@
+<view class="swiper_case">
+  <swiper
+    wx:if="{{list.length}}"
+    class="swiper_wrap"
+    style="height:{{swiperCaseHeight ? swiperCaseHeight+'rpx': '575rpx'}}"
+    circular="true"
+    autoplay="{{autoplay}}"
+    data-trace-id="{{pageDataTraceId}}"
+    data-page-id="{{buriedObj.pageIdFirstPage || pageId}}"
+    data-current-page-name="{{buriedObj.currentPageName || currentPageName}}"
+    data-pre-page-name='{{buriedObj.prePageName || prePageName}}'
+    bindchange="swiperChange"
+    aria-role="listbox"
+    aria-label="促销广告图共{{list.length}}张">
+    <swiper-item
+      class="swiper_item channel_comp_ep"
+      style="height:{{swiperCaseHeight ? swiperCaseHeight+'rpx': '575rpx'}}"
+      wx:for="{{list}}"
+      wx:for-index="index"
+      wx:for-item="item"
+      data-user-action="{{item.userAction || ''}}"
+      wx:key="item" >
+        <image  
+          aria-role="link" 
+          aria-label="促销广告图{{index+1}}"
+          class="swiper_img   channel_comp_ep" 
+          data-user-action="{{item.userAction}}"
+          data-trace-id="{{traceId}}"
+          data-page-id="{{buriedObj.pageIdFirstPage || pageId}}"
+          data-current-page-name="{{buriedObj.currentPageName || currentPageName}}"
+          data-pre-page-name='{{buriedObj.prePageName || prePageName}}'
+          src="{{item.imgUrl}}" 
+          data-item="{{item}}" 
+          bind:tap="clickImg" 
+        />
+    </swiper-item>
+  </swiper>
+  <view class="dot flex-row" wx:if="{{list.length>1}}">
+    <view
+      class="dot_item {{currentIndex == index ? 'active':''}}"
+      wx:for="{{list}}"
+      wx:for-index="index"
+      wx:key="item"
+    ></view>
+  </view>
+</view>

@@ -1,0 +1,15 @@
+/* pages/coupon/push-coupon.wxss */
+@import "coupon.wxss";
+.push-to {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #fff;
+  width: 540rpx;
+  border-radius: 8rpx;
+}
+.push-tip {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+  text-align: center
+}

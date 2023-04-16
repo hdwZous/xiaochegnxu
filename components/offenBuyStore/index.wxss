@@ -1,0 +1,59 @@
+.offen-buy-store .title {
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #000000;
+}
+.list {
+    display: flex;
+    margin-top: 20rpx;
+    overflow-x: scroll;
+}
+.item {
+    box-sizing: border-box;
+    color: #333333;
+    text-align: center;
+    min-width: 208rpx;
+    height: 208rpx;
+    background: #FEFFFE;
+    border-radius: 16rpx;
+    margin-right: 16rpx;
+    padding: 24rpx 20rpx;
+    position: relative;
+}
+.logo {
+    width: 72rpx;
+    height: 72rpx;
+    border-radius: 8rpx;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 24rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    margin: 6rpx 0 6rpx;
+}
+.tip {
+    display: flex;
+    justify-content: center;
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+}
+.order-num {
+    color: #FF1E1A;
+    margin: 0 4rpx;
+}
+.tag {
+    position: absolute;
+    border-radius: 16rpx 0px 12rpx 0px;
+    top: 0;
+    left: 0;
+    color: #FEFFFE;
+    font-size: 20rpx;
+    padding: 6rpx 8rpx;
+}

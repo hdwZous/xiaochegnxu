@@ -1,0 +1,44 @@
+.wrap01{
+    position: fixed;
+    top:0;
+    z-index: 1000;
+    /* left: 0; */
+    right: 0;
+    text-align: right;
+    width:500rpx;
+    height: 98rpx;
+}
+.wrap02{
+    position: fixed;
+    top:0;
+    z-index: 99;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: right;
+    background: rgba(0,0,0,0); 
+}
+.first{
+    width: 100%;
+    height: 100%;
+}
+.second{
+    width: 526rpx;
+    height: 517rpx;
+}
+.close-icon{
+    position: absolute;
+    width: 100rpx;
+    height: 80rpx;
+    left: 0;
+    top: 0 ;
+    z-index: 1050;
+}
+.add-icon{
+    position: absolute;
+    width: 100rpx;
+    height: 80rpx;
+    right: 0;
+    top: 0 ;
+    z-index: 1050;
+}

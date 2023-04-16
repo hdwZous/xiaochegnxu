@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "freeze-tag": "../../../components/freezeTag/index",
+    "coupon-price": "../../../components/couponPrice/index",
+    "add-cart-controller": "../../../components/addCartController/index"
+  }
+}

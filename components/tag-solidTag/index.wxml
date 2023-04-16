@@ -1,0 +1,6 @@
+<view class='sku-name-tag' 
+      wx:if="{{iconText}}" 
+      aria-hidden="true" 
+      style="color: {{iconTextColorCode}};background: linear-gradient(135deg, {{startColorCode}} 0%,  {{endColorCode}} 100%);">
+  {{iconText}}
+</view>

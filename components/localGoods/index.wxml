@@ -1,0 +1,34 @@
+<view class="local_goods_wrap">
+    <!-- 头部 -->
+    <view class="local_title_case flex-row" aria-role="{{item.title}}" aria-role="text">
+        <view aria-hidden="true" class="local_left_icon"></view>
+        <view aria-hidden="true" class="local_title">{{item.title}}列表</view>
+        <view aria-hidden="true" class="local_right_icon"></view>
+    </view>
+    <!-- 商品列表 -->
+    <view 
+        class="local_goods_case flex-row exposure home_localGoods" 
+        bind:tap="clickGoods" 
+        data-item="{{listItem}}" 
+        wx:for="{{item.resource}}" 
+        wx:for-item="listItem" 
+        wx:for-index="listIndex" 
+        data-trace-id="{{traceId}}"
+        data-user-action="{{listItem.userAction}}" 
+        data-page-id="{{buriedObj.pageIdFirstPage}}"
+        data-current-page-name="{{buriedObj.currentPageName}}"
+        data-pre-page-name='{{buriedObj.prePageName}}'
+        wx:key="item"
+        aria-role="button"
+        aria-label="{{listItem.skuName}}{{listItem.majorPrice.price}}">
+        <view aria-hidden="true" class="local_goods_logo flex-none">
+            <image class="local_goods_img" src="{{listItem.imgUrl}}" />
+        </view>
+        <view aria-hidden="true" class="local_goods_info flex-auto">
+            <view class="local_goods_name ellipsis">{{listItem.skuName}}</view>
+            <view class="local_goods_price ellipsis">
+                ¥{{listItem.majorPrice.price}}
+            </view>
+        </view>
+    </view>
+</view>

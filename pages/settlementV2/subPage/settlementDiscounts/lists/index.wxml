@@ -1,0 +1,60 @@
+<view class="good-item-wrap" data-user-action="{{item.userAction}}" data-trace-id="{{traceId}}" data-page-id="{{pageId}}" data-current-page-name="{{currentPageName}}" data-pre-page-name="{{prePageName}}">
+  <block wx:if="{{hookLazy}}">
+    <view class='good-item' style="background: {{item.checked ? 'rgba(71, 179, 79, 0.05)' : ''}}" bindtap="goToDetail" data-item="{{item}}"
+      aria-role="link" aria-label="{{item.skuName+'月售'+item.monthSales+'件'+item.highOpinion+(item.tags?item.tags[0].iconText+(item.tags[1].iconText||''):'')+(item.majorPrice.price+'元')+(item.minorPrice?'原价'+item.minorPrice.price+'元':'')}}"
+    >
+      <view class="left">
+        <webp-img webp-img="good-pic" src="{{item.imgUrl}}" needOverlay="{{true}}"></webp-img>
+        <view wx:if="{{!item.fixedStatus}}" class="store_stockCount_tag">已下架</view>
+        <view wx:if="{{item.stockCount < 1}}" class="store_stockCount_tag">已抢光</view>
+        <view wx:if="{{item.stockCount <= 3 && item.stockCount>0}}" class="store-sku-remain">
+          仅剩<text>{{item.stockCount}}</text>件
+        </view>
+      </view>
+      <view class="right">
+        <view class='flex-auto'>
+          <view class="good-title">{{item.skuName}}</view>
+          <view class="good-sale-highopinion">
+            <text>月售{{item.monthSales}}</text>
+            <text class='hign-opinion'>{{item.highOpinion}}</text>
+          </view>
+          <!-- 属性 -->
+          <view style="margin-bottom: 5rpx" wx:if="{{item.personlizedCateAttritemList}}">
+            <goods-attribute buriedObj="{{buriedObj}}" info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+          </view>
+          <view class="good-tag-list" wx:if="{{item.tags.length > 0}}">
+            <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+              <view class='good-tag' style="background:  linear-gradient(to right,{{tag.startColorCode}} 0%,{{tag.endColorCode}} 100%);">
+                {{tag.iconText}}
+              </view>
+            </block>
+          </view>
+        </view>
+        <view class='price-car-wrapper'>
+          <view class='price-group'>
+            <!-- major-price -->
+            <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="36rpx"></coupon-price>
+            <!-- mino-price -->
+            <coupon-price minorPrice="{{item.minorPrice}}" minorPriceFz="24rpx" toHandPrice="{{item.toHandPrice}}"></coupon-price>
+          </view>
+          <view class="car-btn" style="margin-bottom: {{item.minorPrice && item.minorPrice.price ? '0rpx' : '-8rpx'}}">
+            <view class="add-group" wx:if="{{item.showCartButton}}">
+              <view class="select_case">
+                <add-min-controller count="{{item.showModel ? item.spuCartCount : item.incartCount}}" showModel="{{item.showModel}}" iconType="{{item.iconType||0}}" transmitData="{{item.transmitData}}"
+                 count="{{item.showModel ? item.spuCartCount : item.incartCount}}" skuId="{{item.skuId}}" spuId="{{item.spuId}}" data-sku-id="{{item.skuId}}" orgCode="{{item.orgCode}}" storeId="{{item.storeId}}" longitude="{{longitude}}" latitude="{{latitude}}" isAddCart="{{item.isAddCart}}" tags="{{item.tags}}" userAction="{{item.userAction}}" 
+                 biPageName="freightReductionPage" pageId="{{pageId}}" currentPageName="{{currentPageName}}"  prePageName="{{prePageName}}" >
+                </add-min-controller>
+              </view>
+            </view>
+            <view wx:else class="go-detail-wrapper">
+              <image class='go-detail' src="https://storage.360buyimg.com/wximg/common/next_green.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="cp-lazy-skeleton" style="height: 240rpx"></view>
+  </block>
+</view>

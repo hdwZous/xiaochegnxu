@@ -1,0 +1,167 @@
+<view>
+    <!-- 筛选头部 -->
+    <view class="head" style="top:{{positionConfig.priceText ? 0 : 0}}; padding-top: {{positionConfig.priceText ? 0 : ''}}; padding-bottom: {{ subStatus1 || subStatus3 || subStatus4 ? 0 : ''}};" wx:if="{{config.storeTags || config.reachTags || positionConfig.priceText}}">
+      
+        <view class="tab_box" wx:if="{{businessConfig.length > 1}}">
+            <tabSwitch tabResultList="{{businessConfig}}" bind:selectTab="clickBusinessTag"/>
+        </view>
+
+
+        <!--  导航腰带-->
+        <view 
+            class="banner flex-row"  
+            bind:tap="clickBanner"
+            data-item="{{positionConfig}}"
+            wx:if="{{positionConfig.priceText && businessType !== 2}}"
+            style="background:-webkit-linear-gradient(135deg, {{positionConfig.startBackgroundColor || '#fff'}} 0%,  {{positionConfig.endBackgroundColor || '#fff'}} 100%);background:linear-gradient(135deg, {{positionConfig.startBackgroundColor || '#fff'}} 0%,  {{positionConfig.endBackgroundColor || '#fff'}} 100%)">
+            <view class="price" >
+            <image class="price_bg" src="{{positionConfig.iconImage}}" style="width:{{positionConfig.iconImageWidth || 116}}rpx;height:{{positionConfig.iconImageHeight || 86}}rpx"></image>
+                <view class="unit {{positionConfig.priceTagText ? 'qi' : ''}}">
+                    {{positionConfig.unit}}
+                </view>
+                <view class="priceText">
+                    {{positionConfig.priceText}}
+                    <view class="priceTagText">
+                        {{positionConfig.priceTagText}}
+                    </view>
+                </view>
+            
+            </view>
+            <view class="text flex ellipsis " >
+                <!-- 这段dom结构不要打开 -->
+                <view
+                    class="subtext"
+                    style="color:{{item.color}}"
+                    wx:for="{{positionConfig.contentText}}" 
+                    wx:for-index="index" 
+                    wx:for-item="item" 
+                    wx:if="{{item.text}}"
+                    wx:key="item">{{item.text}}</view>
+            </view> 
+            <view class="countDownTime flex" wx:if="{{positionConfig.countDownFlag}}">
+                <view class="hour countDownTime_text">
+                    {{hour}}
+                </view>
+                <view class="minute countDownTime_text">
+                    {{minute}}
+                </view>
+                <view class="timer countDownTime_text">
+                    {{second}}
+                </view>
+            </view>
+            <view class="countDownText flex " wx:if="{{positionConfig.countDownFlag}}">
+                {{positionConfig.countDownText}}
+            </view>
+        </view>
+   
+        <!-- 各个筛选按钮 -->
+        <view class="flex-row sub_box" wx:if="{{config.storeTags || config.reachTags}}">
+            <view class="sub_filter_box flex-row filter_active" bind:tap="clickSubTag" wx:if="{{businessConfig[businessIndex].storeTagsShowFlag || businessConfig.length === 0}}">
+                <view class="sub_filter">{{sortList[sortActive].name}}</view>
+                <image 
+                    class="img {{subStatus1 ? 'rotate' : ''}}" 
+                    src="https://storage.360buyimg.com/wximg/common/arrow-bottom-green.png" />
+            </view>
+            <view class="sub_filter_box flex-row {{filterTagIds.length && hasClickViewStores ? 'filter_active' : ''}} {{subStatus2 ? 'filter_active' : ''}}" bind:tap="clickSubTagTwo" wx:if="{{businessConfig[businessIndex].storeTagsShowFlag || businessConfig.length === 0}}">
+                <view class="sub_filter">筛选</view>
+                <view class="selector_num" wx:if="{{filterTagIds.length && !subStatus2 && hasClickViewStores}}">
+                    ({{filterTagIds.length}})
+                </view>
+                <image wx:if="{{filterTagIds.length || subStatus2}}"
+                    class="img {{subStatus2 ? 'rotate' : ''}}" 
+                    src="https://storage.360buyimg.com/wximg/common/arrow-bottom-green.png" />
+                <image wx:else
+                    class="img {{subStatus2 ? 'rotate' : ''}}"
+                    src="https://storage.360buyimg.com/wximg/common/arrow-bottom.png" />
+            </view>
+            <view class="sub_filter_box flex-row {{subStatus3 ? 'sub_active': ''}} {{subStatus3Names !== '分类' ? 'sub_active': ''}}" bind:tap="clickSubClassifyTag" wx:if="{{businessConfig[businessIndex].reachTagsShowFlag}}">
+                <view class="sub_filter ">{{subStatus3Names}}</view>
+                <image wx:if="{{subStatus3Names !== '分类' || subStatus3}}"
+                    class="img {{subStatus3 ? 'rotate' : ''}}" 
+                    src="https://storage.360buyimg.com/wximg/common/arrow-bottom-green.png" />
+                <image wx:else
+                    class="img {{subStatus3 ? 'rotate' : ''}}"
+                    src="https://storage.360buyimg.com/wximg/common/arrow-bottom.png" />
+            </view>
+            <view class="sub_filter_box flex-row {{subStatus4 ? 'sub_active': ''}} {{subStatus4Names !== '附近' ? 'sub_active': ''}}" bind:tap="clickSubNearbyTag" wx:if="{{businessConfig[businessIndex].reachTagsShowFlag}}">
+                <view class="sub_filter">{{subStatus4Names}}</view>
+                <image wx:if="{{subStatus4Names !== '附近' || subStatus4}}"
+                    class="img {{subStatus4 ? 'rotate' : ''}}" 
+                    src="https://storage.360buyimg.com/wximg/common/arrow-bottom-green.png" />
+                <image wx:else
+                    class="img {{subStatus4 ? 'rotate' : ''}}"
+                    src="https://storage.360buyimg.com/wximg/common/arrow-bottom.png" />
+            </view>
+        </view>
+
+        <!-- 排序组件 -->
+        <view hidden="{{!subStatus1}}" class="select_one">
+            <view class="flex-auto select_one_cont">
+                <view bind:tap="clickSortTag" data-index="{{index}}" data-item="{{item}}" data-rank-type="{{item.rankType}}" class="sort_tag {{sortActive == index ? 'sort_tag_active':''}} flex-none" wx:for="{{sortList}}" wx:for-index="index" wx:for-item="item" wx:key="item">
+                    {{item.name}}
+                    <image wx:if="{{sortActive == index}}" class="yes_img" src="https://storage.360buyimg.com/wximg/nearbyStore/yes.png"></image>
+                </view>
+            </view>
+        </view>
+
+        <!-- 筛选弹层 -->
+        <view class="seletor_pop" hidden="{{!subStatus2}}">
+            <!-- 分类列表 -->
+            <scroll-view scroll-y="true" class="scroll_seletor" style="max-height: 798rpx">
+                <view class="selector_case" wx:for="{{allList}}" wx:for-index="index" wx:for-item="item" wx:key="item">
+                    <view class="selector_title">{{item.name}}</view>
+                    <view class="tag_case flex-row">
+                        <view class="tag_item" wx:for="{{item.children}}" wx:for-index="subIndex" wx:for-item="subItem" wx:key="subItem">
+                            <view class="tag_item_name {{subItem.active ? 'select_tag_active': ''}}" bind:tap="clickTag" data-type="{{item.outTag ? 'multiple' :''}}" data-item="{{subItem}}" data-parent-item="{{item}}" data-index="{{subIndex}}">
+                                {{subItem.name}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+            <!-- button -->
+            <view class="btn_case flex-row">
+                <view class="btn_item btn_black" wx:if="{{filterTagIds.length>0}}" bind:tap="clickReset">
+                    重置
+                </view>
+                <view class="btn_item btn_gray" wx:else>重置</view>
+                <view class="btn_item btn_green {{storeNum?'':'btn_green_active'}}" bind:tap="clickMultipleStores">
+                    查看{{storeNum}}个店铺
+                </view>
+            </view>
+        </view>
+
+        <!-- 分类筛选组件 -->
+        <view hidden="{{!subStatus3}}">
+            <filter-reach 
+                compType="categoryFilter"
+                businessName="{{businessName}}"
+                filterObj="{{categoryFilter}}"
+                scopeData="{{scopeDataObj}}" 
+                recommendObj="{{recommendObj}}"
+                isShow="{{subStatus3}}"
+                bind:clickClosePop="clickClosePop"
+                bind:clickConfirm="clickConfirmClassify" bind:clickReset="clickResetClassify"
+            >
+            </filter-reach>
+        </view>
+
+        <!-- 附近组件 -->
+        <view hidden="{{!subStatus4}}">
+            <filter-reach 
+                compType="nearbyFilter"
+                businessName="{{businessName}}"
+                filterObj="{{nearbyFilter}}" 
+                scopeData="{{scopeDataObj}}" 
+                recommendObj="{{recommendObj}}"
+                isShow="{{subStatus4}}"
+                bind:clickClosePop="clickClosePop"
+                bind:clickConfirm="clickConfirmNearby" bind:clickReset="clickResetNearby"
+            >
+            </filter-reach>
+        </view> 
+    </view>
+    <!-- 全部筛选背景 -->
+    <view class="pop_bg" hidden="{{!subStatus1 && !subStatus2 && !subStatus3 && !subStatus4}}" catchtouchmove="catchTouchMove" bind:tap="clickAllTagPop"></view>
+
+</view>

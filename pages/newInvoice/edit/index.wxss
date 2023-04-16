@@ -1,0 +1,98 @@
+.edit {
+  height: 100vh;
+  background: rgb(246, 246, 246);
+}
+
+.content {
+  background: #fff;
+  padding-top: 30rpx;
+  color: rgb(51, 51, 51)
+}
+
+.input {
+  padding: 0 20rpx 30rpx 20rpx;
+  position: relative;
+}
+
+.input_2 {
+  height: 100rpx;
+  padding: 0 20rpx;
+  position: relative;
+}
+
+.input_title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.titType_check {
+  background-color: rgb(248, 248, 248);
+  width: 136rpx;
+  text-align: center;
+  margin-right: 6rpx;
+  margin-left: 10rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}
+
+.titType_check.select {
+  color: rgb(71, 179, 79);
+  background-color: rgb(236, 247, 237);
+}
+
+.space-line {
+  position: absolute;
+  left: 20rpx;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1px solid rgb(245, 245, 245);
+}
+
+.input_box_invoice {
+  font-size: 28rpx;
+  flex: 1;
+}
+
+.clear {
+  height: 100rpx;
+  width: 50rpx;
+  background-image: url('https://storage.360buyimg.com/wximg/storewin/clear.png');
+  background-repeat: no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position: right center;
+}
+
+.save {
+  background-image: linear-gradient(135deg, rgb(69, 220, 109) 0%, rgb(0, 207, 55) 100%);
+  border-radius: 40rpx;
+  box-shadow: rgb(71 179 79 / 20%) 16rpx 8rpx 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  margin: 0 20rpx;
+  margin-top: 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.delete {
+  margin-top: 40rpx;
+  text-align: center;
+}
+
+.del_img {
+  width: 86rpx;
+  height: 86rpx;
+}
+
+.feeIcon {
+  height: 100rpx;
+  width: 50rpx;
+  background-image: url('https://storage.360buyimg.com/wximg/settlement/tip.png');
+  background-repeat: no-repeat;
+  background-size: 26rpx 26rpx;
+  background-position: right center;
+}

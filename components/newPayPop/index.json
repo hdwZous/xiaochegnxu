@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "pay-button": "plugin://jd@wxapp-deal/pay-button"
+  }
+}

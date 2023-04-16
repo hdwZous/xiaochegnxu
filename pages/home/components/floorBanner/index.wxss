@@ -1,0 +1,75 @@
+.swiper-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.bg-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bg-color {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;  
+  z-index: 0;  
+  overflow: hidden;
+}
+.fill-color {
+  width: 140%;
+  height: 72%;
+  position: absolute;  
+  left: -20%;  
+  top: 0;  
+  z-index: 1;
+  border-radius: 0 0 50% 50%;
+}
+.banner-swiper-wrapper {
+  margin: 0 auto;
+  height: 280rpx;
+  padding-top: 12rpx;
+}
+.banner-swiper-wrapper .banner-pic {
+  display: block;
+  margin: 0 auto;
+  border-radius: 12rpx;
+  background: #f6f6f6;
+  width: 702rpx;
+  height: 280rpx;
+}
+.banner-swiper-wrapper .banner-pic  image {
+  border-radius: 12rpx;
+}
+.count {
+  width: 50rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background: url('https://storage.360buyimg.com/wximg/common/pageCount.png') no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 22rpx;
+  left: 48rpx;
+  font-size: 16rpx;
+  font-family: light;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.count .count-item {
+  width: 20rpx;
+  text-align: center;
+}
+.canvas-wrapper {
+  width: 30rpx;
+  height: 10rpx;
+  position: absolute;
+  top: -60rpx;
+  left: -60rpx;
+  z-index: -1;
+}
+
+
+

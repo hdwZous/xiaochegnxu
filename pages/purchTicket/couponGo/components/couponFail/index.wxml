@@ -1,0 +1,41 @@
+<!-- 无券列表默认页 -->
+<view wx:if="{{responseList.length <= 0}}" class='no-coupon-wrapper'>
+  <view class='default-pic'>
+    <image class="default-image" src="https://storage.360buyimg.com/wximg/common/no-coupon.png"></image>
+  </view>
+  <view class='default-fail-text'>来晚一步，券已领光</view>
+  <view class="no-coupon-back-btn log-goback" bindtap="goBack">返回</view>
+</view>
+<!-- 有券列表样式 -->
+<view wx:else class='has-coupon-wrapper'>
+  <view class='default'>
+    <image class="default-image" src="https://storage.360buyimg.com/wximg/common/no-coupon.png"></image>
+    <view class='default-fail-text'>来晚一步，券已领光</view>
+    <view class='default-fail-text'>别灰心，我们发现了更多优惠券</view>
+  </view>
+  <!-- 券列表 -->
+  <view class="coupon-list">
+    <view class='coupon-item log-fail-coupon' 
+          wx:for="{{responseList}}" 
+          wx:key="index" 
+          wx:for-item="item"
+          data-user-action="{{item.userAction}}"
+          bindtap="clickUse">
+      <coupon-item  type="1"
+                    circleBgColor="#fff"
+                    item="{{item}}"
+                    pageId="{{recommendObj.pageIdFirstPage}}"
+                    currentPageName="{{recommendObj.currentPageName}}"
+                    prePageName="{{recommendObj.prePageName}}"
+                    bind:rightBtnClick="jump"
+                    noNeedExposure="{{true}}"
+                    buriedObj="{{recommendObj}}"
+                    recommendObj="{{recommendObj}}"
+                    optionsPos="{{options}}"
+                    fromPosition="couponGo-couponFail"
+                    >
+      </coupon-item>
+    </view>
+  </view>
+  <view class="has-coupon-back-btn log-goback" bindtap="goBack">返回</view>
+</view>

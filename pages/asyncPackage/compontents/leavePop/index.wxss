@@ -1,0 +1,116 @@
+@import "/common/css/global";
+@import "/common/css/light";
+@import "/common/css/regular";
+.mask{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+.wrap{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0);
+    width: 89%;
+    z-index: 1001;
+}
+.container{
+    background: url('') no-repeat center center;
+    background-size: contain;
+    height: 520rpx;
+    width: 100%;
+    padding: 0 40rpx;
+    box-sizing: border-box;
+    padding-top: 170rpx;
+    border-radius: 24rpx;
+}
+.coupon{
+    display: flex;
+    justify-content: space-between;
+    /* background: #fff; */
+    /* border-radius: 12rpx; */
+    overflow: hidden;
+    padding:24rpx 0rpx 60rpx 28rpx;
+    /* width: 100%; */
+}
+.img_src{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 4rpx;
+    margin-right: 16rpx;
+}
+.coupon_left{
+    display: flex;
+    /* flex:1; */
+    max-width: 406rpx;
+}
+.coupon_content{
+    flex:1;
+}
+.title{
+    color:#333;
+    font-size: 32rpx;
+}
+.desc{
+    font-size: 22rpx;
+    color: #666;
+}
+.time{
+    color:#666;
+    font-size: 22rpx;
+    font-family: light;
+}
+.coupon_right{
+    border-left: 1rpx dashed #C7BF9B;
+    width: 140rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 16rpx; */
+}
+.price{
+    color:#FF1E19;
+    font-family: regular;
+}
+.price_value{
+    font-size: 68rpx;
+}
+.price_label{
+    font-size: 28rpx;
+}
+.btn_group{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30rpx;
+}
+.btn_group02{
+    justify-content: center;
+}
+.btn_item{
+    width: 284rpx;
+    height: 84rpx;
+    line-height: 84rpx;
+    text-align: center;
+    font-size: 32rpx;
+    border-radius: 42rpx;
+}
+.btn_item02{
+    width: 324rpx;
+}
+.close_wrap{
+    margin-top: 40rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.close {
+    width: 74rpx;
+    height: 74rpx;
+    background: url("https://storage.360buyimg.com/wximg/bargain/close.png") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}

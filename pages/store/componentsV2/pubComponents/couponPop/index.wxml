@@ -1,0 +1,133 @@
+<!-- 红包 -->
+<block wx:if="{{showPopType == 'coupon'}}">
+    <block wx:if="{{item.mode === 1 && showInPop}}">
+        <!-- 背景 -->
+        <view class="store_coupon_pop_bg"></view>
+        <!-- 入店弹层 -->
+        <view class="store_coupon_pop_wrap_in">
+            <!-- 价格等信息 -->
+            <view class="store_coupon_pop_wrap_price_case flex-row" wx:if="{{item.couponList[0].quota}}">
+                <view class="store_coupon_pop_wrap_price flex-none">
+                    <view>{{item.couponList[0].uperPrice}}</view>
+                    <image class="store_coupon_pop_img_0" src="https://storage.360buyimg.com/wximg/store/store_coupon_type.png" />
+                </view>
+                <view class="store_coupon_pop_wrap_symbol flex-none">
+                    <block wx:if="{{item.couponList[0].lowerPrice}}">.{{item.couponList[0].lowerPrice}}</block>
+                    {{item.couponList[0].couponSuffix}}</view>
+            </view>
+            <!-- 倒计时 -->
+            <view class="store_coupon_pop_count_case flex-row" wx:if="{{!end}}">
+                <view class="store_coupon_pop_count_item flex-none">{{hour}}</view>
+                <view class="store_coupon_pop_count_dot flex-none">:</view>
+                <view class="store_coupon_pop_count_item flex-none">{{minute}}</view>
+                <view class="store_coupon_pop_count_dot flex-none">:</view>
+                <view class="store_coupon_pop_count_item flex-none">{{second}}</view>
+            </view>
+            <!-- 按钮 -->
+            <view class="store_coupon_pop_btn" bind:tap="closeInPop"></view>
+            <!-- 背景图 -->
+            <image class="store_coupon_pop_img" src="https://storage.360buyimg.com/wximg/store/store_coupon.png" />
+            <!-- 关闭按钮 -->
+            <image class="store_coupon_pop_close" src="https://storage.360buyimg.com/wximg/home/btn_closeCoupons.png" bind:tap="closeInPop" />
+        </view>
+    </block>
+    <block wx:elif="{{item.mode === 0 && showOutPop}}">
+        <!-- 背景 -->
+        <view class="store_coupon_pop_bg"></view>
+        <!-- 挽留弹层 -->
+        <view class="store_coupon_pop_wrap_out">
+            <!-- 价格等信息 -->
+            <view class="store_coupon_pop_wrap_price_case flex-row" wx:if="{{item.couponList[0].quota}}">
+                <view class="store_coupon_pop_wrap_price flex-none">
+                    <view>{{item.couponList[0].uperPrice}}</view>
+                    <image class="store_coupon_pop_img_0" src="https://storage.360buyimg.com/wximg/store/store_coupon_type.png" />
+                </view>
+                <view class="store_coupon_pop_wrap_symbol flex-none">{{item.couponList[0].couponSuffix}}</view>
+            </view>
+            <!-- 倒计时 -->
+            <view class="store_coupon_pop_count_case flex-row" wx:if="{{!end}}">
+                <view class="store_coupon_pop_count_item flex-none">{{hour}}</view>
+                <view class="store_coupon_pop_count_dot flex-none">:</view>
+                <view class="store_coupon_pop_count_item flex-none">{{minute}}</view>
+                <view class="store_coupon_pop_count_dot flex-none">:</view>
+                <view class="store_coupon_pop_count_item flex-none">{{second}}</view>
+                <view class="store_coupon_pop_count_txt">过期作废</view>
+            </view>
+            <!-- 按钮 -->
+            <view class="store_coupon_pop_btn" bind:tap="closeOutPop"></view>
+            <!-- 背景图 -->
+            <image class="store_coupon_pop_img" src="https://storage.360buyimg.com/wximg/store/store_out_coupon.png" />
+            <!-- 关闭按钮 -->
+            <view class="store_coupon_pop_close" bind:tap="goBack">放弃福利</view>
+        </view>
+    </block>
+</block>
+
+<!-- 券&品 -->
+<block wx:if="{{showPopType == 'sku-coupon'}}">
+    <view class="store_coupon_pop_bg"></view>
+    <view class='pro-and-coupon-wrap'>
+        <view class='content'>
+            <view class='header'></view>
+            <view class='opacity-blank'></view>
+            <view wx:if="{{skuObj.one && skuObj.one.skuName}}"
+                  class='one'
+                  bindtap="addCart"
+                  data-item='{{skuObj.one}}'>
+                <view class='left'>
+                    <image class="slogan" src="https://storage.360buyimg.com/wximg/common/surprise-slogan.png" />
+                    <image class='sku-img' src='{{skuObj.one.imgUrl}}'></image>
+                </view>
+                <view class='right'>
+                    <view class='sku-name ellipsis2'>{{skuObj.one.skuName}}</view>
+                    <view class='sku-price'>
+                        <view class='price marR12'>
+                            <view class='unit'>¥</view><view class='value'>{{skuObj.one.majorPrice.price}}</view>
+                        </view>
+                        <view class='select'>选TA</view>
+                        
+                    </view>
+                </view>
+                
+            </view>
+
+            <view class='h24' wx:if="{{item.skuList.length >= 3 || (item.couponList && item.couponList.length > 0) && skuObj.one}}"></view>
+
+            <view class='two' wx:if="{{skuObj.two && skuObj.two.length >= 2}}">
+                <block wx:for="{{skuObj.two}}"
+                       wx:for-item="item"
+                       wx:for-index="index">
+                    <view class='two-item'
+                        bindtap="addCart"
+                        data-item='{{item}}'>
+                        <image class="slogan" src="https://storage.360buyimg.com/wximg/common/surprise-slogan.png" />
+                        <image class='sku-img' src="{{item.imgUrl}}" />
+                        <view class='sku-name ellipsis'>{{item.skuName}}</view>
+                        <view class='price'>
+                            <view class='unit'>¥</view>
+                            <view class='value'>{{item.majorPrice.price}}</view>
+                        </view>
+                        <view class='select marAuto marT12'>选TA</view>
+                    </view>
+                 </block>
+            </view>
+
+            <view class='coupon' wx:if="{{item.couponList && item.couponList.length > 0}}">
+                <view class='coupon-left'>
+                    <view class='price-wrap'>
+                        <view class='font24'>¥</view>
+                        <view  class='font44'>{{item.couponList[0].uperPrice}}</view>
+                        <view class='font24' wx:if="{{item.couponList[0].lowerPrice}}">.{{item.couponList[0].lowerPrice}}</view>
+                    </view>
+                    
+                </view>
+                <view class='coupon-right'>
+                    <view class='coupon-rule'>{{item.couponList[0].couponTypeDesc}}  {{item.couponList[0].couponLimitDesc}}</view>
+                </view>
+            </view>
+            
+            <view class='buy-button' data-name='click_into' bindtap='closeSkuPop'></view>
+        </view>
+        <view class='close-icon'data-name='click_close' bindtap='closeSkuPop'></view>
+    </view>
+</block>

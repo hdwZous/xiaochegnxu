@@ -1,0 +1,45 @@
+.sku-title {
+  height: 56rpx;
+  background: #EEEEEE;
+  padding-left: 16rpx;
+  line-height: 56rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 24rpx 24rpx 0rpx 0rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  color: #333333;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+.sku-title .sku-title-icon {
+  height: 24rpx;
+  width: 24rpx;
+  /* display: block; */
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+
+.sku-title .sku-title-date {
+  color: #FF1E19;
+  font-family: 'regular';
+  vertical-align: middle;
+  font-weight: 500;
+  margin-top: -2rpx;
+  display: inline-block;
+  margin-left: 4px;
+  /* height: 56rpx;
+  line-height: 56rpx; */
+}
+
+.customTtile{
+  vertical-align: middle;
+  width: 410rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  font-size: 22rpx;
+  display: inline-block;
+}

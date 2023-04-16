@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view><block wx:if="{{showTip}}"><view class="{{style.container}}"><view class="{{style.backContainer}}"></view><view class="{{style.waterTip}}">领取成功</view></view></block><view class="{{[style.waterDrop, waterAni ? style.waterAni : '']}}" style="{{anonymousState__temp}}"><view class="{{style.waterNum}}">{{waterNum}}g</view></view></view></block>

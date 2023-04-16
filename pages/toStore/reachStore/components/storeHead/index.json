@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "small-coupon": "../smallCouponList/index"
+  },
+  "componentPlaceholder": {
+  }
+}

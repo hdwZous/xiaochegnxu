@@ -1,0 +1,15 @@
+<view class='wrap' 
+      style="width:{{memberObj.imgWidth}}rpx; height: {{memberObj.imgHeight}}rpx"
+      data-user-action="{{memberObj.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{buriedObj.pageIdFirstPage}}"
+      data-current-page-name="{{buriedObj.currentPageName}}"
+      data-pre-page-name="{{buriedObj.prePageName}}"
+      aria-role="link"
+      aria-label="{{memberObj.memberFlag ? '查看会员权益' : '开通商家会员，领取大礼包'}}">
+  <image class="img" 
+         src="{{memberObj.imgUrl}}" 
+         bindtap="openMember"
+         data-item="{{memberObj}}"
+         aria-hidden="true" />
+</view>

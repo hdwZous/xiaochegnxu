@@ -1,0 +1,80 @@
+.newPayPop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 11;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payContainer {
+  box-sizing: border-box;
+  width: 540rpx;
+  height: 292rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  backdrop-filter: blur(10rpx);
+  text-align: center;
+  padding: 40rpx 34rpx 32rpx 34rpx;
+}
+
+.payContainer .title {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}
+
+.payContainer .subTitle {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  color: #333333;
+  margin-top: 20rpx;
+}
+
+.payContainer .payBtns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40rpx;
+}
+
+.payContainer .payBtns .btn {
+  box-sizing: border-box;
+  width: 220rpx;
+  height: 72rpx;
+  border-radius: 38rpx;
+  font-size: 28rpx;
+  line-height: 72rpx;
+}
+
+.payContainer .payBtns .close {
+  color: #999999;
+  position: relative;
+}
+
+.payContainer .payBtns .close::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  box-sizing: border-box;
+  border-radius: 88rpx;
+  border: 2rpx solid #CCCCCC;
+  -webkit-transform: scale(.5);
+  transform: scale(.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.payContainer .payBtns .pay {
+  color: #999999;
+  background: linear-gradient(270deg, #00CF37 0%, #0FDF46 100%);
+  font-weight: 500;
+  color: #FFFFFF;
+}

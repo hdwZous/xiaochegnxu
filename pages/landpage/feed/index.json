@@ -1,0 +1,21 @@
+{
+  "navigationBarTitleText": "京东到家",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "new-default": "/components/newDefault/index",
+    "coupon-price": "/components-b/couponPrice/index",
+    "mini-cart": "../../asyncPackage/compontents/miniCart/index",
+    "add-min-controller": "/components-b/addMinControllerV1/index",
+    "coupon-go-tag": "/components-b/couponGoTag/index",
+    "spu-selector": "../../asyncPackage/compontents/spuSelector/index",
+    "goods-attribute": "/components/goodsAttribute/index",
+    "webp-img": "/components/webpImg/index",
+    "bottom-corner-tag": "/components/bottomCornerTag/index",
+    "goods": "components/goods/index"
+  },
+  "componentPlaceholder": {
+    "spu-selector": "view",
+    "mini-cart": "/components-b/placeholdCart/index"
+  }
+}

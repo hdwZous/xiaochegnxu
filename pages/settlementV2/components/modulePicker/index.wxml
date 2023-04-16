@@ -1,0 +1,33 @@
+<view class="picker_box">
+  <view class="flex-row white_item" wx:if="{{lists.length > 0}}">
+    <view class="flex-none white_title" aria-role="text" aria-label="{{infos.title}}">
+      <block wx:for="{{infos.title.textList}}">
+        <text style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};">{{item.text}}</text> 
+      </block>
+      <image wx:if="{{infos.smallQuestionMark.type}}" src="https://storage.360buyimg.com/wximg/settlement/tip.png" class="module_icon" data-items="{{infos.smallQuestionMark}}" bindtap="handleClickQuestion"/> 
+    </view>
+    <view class="flex-auto flex-row white_value align-items-center" bindtap="showPicker" aria-role="link" aria-label="{{infos.rightText}}">
+      <view class="select ellipsis">{{infos.rightText}}</view>
+      <view class="flex-none dj_icon ts_next"></view>
+    </view>
+  </view>
+</view>
+<!-- 弹窗 -->
+<view class="lack">
+  <view class="half_bg" wx:if="{{showLack}}" catchtap="closeBg"></view>
+  <view class="half_content d-flex flex-column {{showLack?'show_content':''}}">
+    <view class="header d-flex flex-row justify-content-between align-items-center">
+      <text class="lack_bt" catchtap="closeBg">取消</text>
+      <text class="title">{{title}}</text>
+      <text class="lack_bt" catchtap="confirm">确定</text>
+    </view>
+    <picker-view catchchange="bindPickerChange" indicator-class="picker_select" value="{{selectedIds}}" class="scroll_box">
+      <picker-view-column>
+        <view class="scroll_item d-flex flex-row align-items-center justify-content-center"  wx:for="{{lists}}" wx:key="data" aria-role="text" aria-label="{{item.showText}}">
+          <text class="flex_auto ellipsis2">{{item.showText}}</text>
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+<tip-dialog types="1" show="{{tipShow}}" readmeList="{{infos.smallQuestionMark.questionLayer.contentList}}" bindtipClose="showRule"></tip-dialog>

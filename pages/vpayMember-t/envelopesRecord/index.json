@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "loading": "../components/Loading/index",
+    "default": "../commonComponents/Default/index",
+    "tip": "../components/Tip/index"
+  },
+  "navigationBarBackgroundColor": "#f4f4f4",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "购买记录"
+}

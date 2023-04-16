@@ -1,0 +1,29 @@
+<view class="wrap" wx:if="{{list.length}}" catchtouchmove="catchtouchmove">
+  <view class="content">
+    <view class="case">
+      <image class="img" src="https://storage.360buyimg.com/wximg/common/coupon_header_bg.png" />
+      <scroll-view class="list" scroll-y>
+        <view class="list">
+          <view class="item" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+            <coupon-item
+              circleBgColor="#FF1A43FF"
+              item="{{item.couponComponentResponse}}"
+              type="1"
+              noNeedExposure="{{true}}"
+              traceId="{{traceId}}"
+              pageId="{{pageId}}"
+              currentPageName="{{currentPageName}}"
+              prePageName="{{prePageName}}"
+              recommendObj="{{recommendObj}}"
+              bind:rightBtnClick="rightBtnClick"
+            ></coupon-item>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="check_case" bind:tap="goToMyCoupon">
+        <view class="check_btn">查看我的优惠券</view>
+      </view>
+    </view>
+    <view class="close" bind:tap="closePop"></view>
+  </view>
+</view>

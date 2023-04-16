@@ -1,0 +1,54 @@
+<view class="classify d-flex flex-row align-items-center {{tabFixd ? 'tabFixd' : ''}}">
+  <view class="scroll-wrap">
+    <scroll-view scroll-x="true" scroll-into-view="A{{currentView}}" scroll-with-animation="{{ainmation}}">
+      <view class="tabs-box d-flex flex-row flex-nowrap {{!fillUp ? 'justify-content-around' : ''}}">
+        <block wx:for="{{tabInfo.tabs}}" wx:key="spaceNo">
+          <view class="tabs-items d-flex flex-row align-items-center {{ activeTab == item.spaceNo ? 'actived' : '' }}" id="A{{item.spaceNo}}" data-active="{{item.spaceNo}}" 
+          data-ids="{{index}}" 
+          data-name="{{item.navigationName}}" 
+          data-is-layer="0" 
+          aria-role="button"
+          aria-label="{{item.navigationName}}"
+          catchtap="clickTab">
+            <block wx:if="{{activeTab == item.spaceNo}}">
+              <view class="location" wx:if="{{!tabFixd}}" style="background: #FF2626">
+                <image src="https://storage.360buyimg.com/wximg/activity/fangwei.png" class="location-img" />
+              </view>
+              <image class="location-fixed" wx:else src="https://storage.360buyimg.com/wximg/seckill/white-location.png" />
+            </block>
+            <block wx:if="{{item.navigationImgUrl}}">
+              <image class="tabs-item-img" wx:if="{{!tabFixd}}" src="{{item.navigationImgUrl}}" />
+              <image class="tabs-item-img" wx:if="{{tabFixd}}" src="{{item.navigationTopImgUrl}}" />
+            </block>
+            <text class="tabs-item-txt" wx:else >{{item.navigationName}}</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="tabs-right" wx:if="{{fillUp}}">
+      <block wx:if="{{tabFixd}}">
+        <image class="ty-icon-fix" src="https://storage.360buyimg.com/wximg/seckill/touying.png" />
+        <view class="flei-icon-fix" bindtap="showPop"></view>
+      </block>
+      <block wx:else>
+        <image class="ty-icon" src="https://storage.360buyimg.com/wximg/activity/tab-yiny.png" />
+        <view class="flei-icon" bindtap="showPop"></view>
+      </block>
+  </view>
+  <view class="popup {{tabFixd ? 'yetTop' : ''}}" wx:if="{{popup}}" catchtouchmove="touchHandler">
+    <view class="head d-flex flex-row justify-content-between align-items-center">
+      <text class="title">全部目录</text>
+      <text class="ts-up" bindtap="hidePop"></text>
+    </view>
+    <view class="contain d-flex flex-row flex-wrap">
+      <block wx:for="{{tabInfo.tabs}}" wx:key="spaceNo">
+        <view class="category {{ activeTab == item.spaceNo ? 'actived' : '' }}" data-active="{{item.spaceNo}}" data-ids="{{index}}" data-name="{{item.navigationName}}" data-is-layer="1" catchtap="clickTab" data-from="pop">
+          <image class="tabs-item-img" wx:if="{{item.navigationImgUrl}}" src="{{item.navigationImgUrl}}" />
+          <text class="category_txt ellipsis" wx:else>{{item.navigationName}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="bg" wx:if="{{popup}}" bindtap="hidePop" catchtouchmove="touchHandler"></view>
+</view>

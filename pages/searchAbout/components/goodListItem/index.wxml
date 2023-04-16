@@ -1,0 +1,11 @@
+
+<!-- 单个商品 -->
+<view
+  class="good-item"
+  data-user-action="{{item.userActionSku}}"
+  data-page-id='{{pageId}}'
+  data-current-page-name='{{currentPageName}}'
+  data-pre-page-name='{{prePageName}}'
+  data-trace-id="{{traceId}}">
+  <include src="../SkuYhySearch/index.wxml" />
+</view>

@@ -1,0 +1,38 @@
+<view
+  class="row_two"
+  wx:if="{{goodList.length>0}}"s
+  tyle="border-radius:{{isShowStoreEnter?'0 0 12rpx 12rpx':'12rpx'}}">
+  <view
+    class="wrap"
+    style="color:{{bgColor||'#FFFFFF'}}">
+    <view
+      class="item exposure"
+      wx:for="{{goodList}}"
+      wx:for-item="item"
+      wx:for-index="index"
+      wx:key="skuId"
+      data-to="{{item.to}}"
+      data-user-action="{{item.userAction}}"
+      data-params="{{item.params}}"
+      data-click-buried="{{item.clickBuriedPic}}"
+      bindtap="goToStoreShotGood"
+      style="padding-right:{{index%2==0?'10rpx':'0'}};padding-left:{{index%2!=0?'10rpx':'0'}}">
+      <lists
+        item="{{item}}"
+        traceId="{{traceId}}"
+        biPageName="{{biPageName}}"
+        recommendObj="{{recommendObj}}"
+        biActivityId="{{biActivityId}}"
+      ></lists>
+    </view>
+  </view>
+  <view
+    class="door log-good-two-store"
+    wx:if="{{isShowStoreEnter}}"
+    data-params="{{data[0].params}}"
+    data-data="{{data[0]}}"
+    data-user-action="{{data[0].params.userAction}}"
+    bindtap="goToStoreHome">
+    进店逛逛
+  </view>
+</view>

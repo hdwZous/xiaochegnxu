@@ -1,0 +1,17 @@
+<view class="wrap">
+  <view class="case d-flex flex-row justify-content-between overtime-bottom">
+    <view class="left">
+      <view class="left-top">
+        <image src="{{item.icon}}" class="icon" />
+        <view class="title" wx:if="{{item.content && item.content.length > 0}}">
+          <text wx:for="{{item.content}}" style="color: {{item.color}}">{{item.text}}</text>
+        </view>
+      </view>
+      <view wx:if="{{item.activityName}}" class="left-bottom ellipsis">{{item.activityName}}</view>
+    </view>
+    <view class="flex-none right overtime-button" wx:if="{{item.buttonTitle}}" bind:tap="handleJump">
+      <text class="right-text">{{item.buttonTitle}}</text>
+      <text class="left-arrow" wx:if="{{item.jumpProtocol && item.jumpProtocol.to && item.jumpProtocol.params}}"></text>
+    </view>
+  </view>
+</view>

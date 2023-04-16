@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "add-min-controller": "/components-b/addMinControllerV1/index",
+    "freeze-tag": "/components/freezeTag/index",
+    "coupon-price":"/components-b/couponPrice/index",
+    "webp-img": "/components/webpImg/index",
+    "goods-attribute": "/components/goodsAttribute/index",
+    "disabled-tag": "../../disabledTag/index",
+    "biz-tag": "/components/bizTag/index",
+    "rating": "/components/rating/index",
+    "add-buy": "/components-b/addBuy/index"
+  }
+}

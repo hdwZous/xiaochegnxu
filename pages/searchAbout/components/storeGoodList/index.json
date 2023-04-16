@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "store-good-list-item": "../storeGoodListItem/index",
+    "recom-list": "../../../asyncPackage/compontents/recomList/index"
+  },
+  "componentPlaceholder": {
+    "recom-list": "view"
+  }
+}

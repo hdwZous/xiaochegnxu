@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "pop": "../../../../common-mp/components/Pop/index",
+    "shop-list": "../shopList/index"
+  }
+}

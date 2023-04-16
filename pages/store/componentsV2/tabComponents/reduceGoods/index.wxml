@@ -1,0 +1,155 @@
+<wxs module="tools" src="../../../../../common/util/tools.wxs"></wxs>
+<block wx:if="{{showEmpty}}">
+  <!-- 获取门店接口无结果 || 接口异常 -->
+  <new-default type="{{type}}" 
+            tips="{{tips}}" 
+            btnText="{{btnText}}" 
+            src="{{defaultSrc}}" 
+            height="{{true}}"
+            bind:defaultBtnEvent="onDefaultBtnEvent"
+            fromPosition="store-tabComponents-reduceGoods"
+            optionsPos="{{options}}">
+  </new-default>
+</block>
+<block wx:else>
+    <scroll-view scroll-anchoring 
+                 enable-flex 
+                 scroll-with-animation 
+                 scroll-y 
+                 class="store-scroll-view flex-auto flex-col container" 
+                 bindscroll="productScroll" 
+                 bindscrolltolower="productTouchBottom" 
+                 bindscrolltoupper="productTouchTop" 
+                 id="scrollId" 
+                 wx:if="{{dataList.length}}">
+        <block wx:for="{{dataList}}" 
+              wx:for-index="idx" 
+              wx:for-item="item" 
+              wx:key="index">
+            <view class="scrollWrapper">
+                <!-- title -->
+                <view class='store-floor-tit'>
+                    <view class="floor-title1" aria-role="text" aria-label="{{item.floorTitle}}">{{item.floorTitle}}</view>
+                    <view class='tomore abs' 
+                          wx:if="{{item.moreBtnDesc}}" 
+                          data-title="{{item.floorTitle}}"
+                          data-item="{{item}}"
+                          bindtap="goDetails">
+                        <view class='more-text' aria-role='link' aria-label="{{item.moreBtnDesc}}">{{item.moreBtnDesc}}</view>
+                        <image aria-hidden="true" class='more-icon' src="https://storage.360buyimg.com/wximg/common/store-next.png" />
+                    </view>
+                </view>
+
+                <!-- 一行一个 -->
+                <block wx:if="{{item.floorStyle == 'product' && (item.tpl == 'tpl1-1' || item.tpl == 'tplN-2' )}}">
+                    <view class='tpl1-1-wrap'>
+                        <block wx:for="{{item.data}}" 
+                               wx:key="index" 
+                               wx:for-item="item">
+                            <one-item item="{{item}}"
+                                      itemIndex="{{index}}"
+                                      traceId="{{traceId}}"
+                                      buriedObj="{{buriedObj}}"
+                                      options="{{options}}"
+                                      tabName="{{tabName}}"></one-item>
+                        </block>
+                    </view>
+                </block>
+
+                <!-- 一行一个半 -->
+                <block wx:if="{{item.floorStyle == 'product' && item.tpl == 'tpl1-2'}}" >
+                    <scroll-view class="tpl-1-half-wrap" scroll-x="true">
+                        <block wx:for="{{item.data}}" 
+                            wx:key="index" 
+                            wx:for-item="item">
+                            <one-half-item item="{{item}}" traceId="{{traceId}}" buriedObj="{{buriedObj}}" options="{{options}}" tabName="{{tabName}}" />
+                        </block>
+                    </scroll-view>
+                </block>
+
+                <!-- 一行三个半 -->
+                <block wx:if="{{item.floorStyle == 'product' && (item.tpl == 'tpl1-3.5')}}">
+                        <view class='itemArea'>
+                            <scroll-view scroll-x
+                             
+                                        scroll-anchoring 
+                                        class="xscroll nowrap">
+                                <view class='wrap3 nowrap'>
+                                    <block wx:for="{{item.data}}" 
+                                        wx:key="index" 
+                                        wx:for-item="item">
+                                    <three-half-item item="{{item}}" 
+                                                        showCart="{{true}}" 
+                                                        itemIndex="{{index}}"
+                                                        traceId="{{traceId}}"
+                                                        buriedObj="{{buriedObj}}"
+                                                        options="{{options}}"
+                                                        tabName="{{tabName}}">
+                                    </three-half-item>
+                                    </block>
+                                </view>
+                            </scroll-view>
+                        </view>
+                </block>
+                <!-- 一行三个 -->
+                 <block wx:if="{{item.floorStyle == 'product' && (item.tpl == 'tpl1-3')}}">
+                     <view class='itemArea'>
+                        <view class='wrap4'>
+                            <block wx:for="{{item.data}}" wx:key="index" wx:for-item="item">
+                            <three-item item="{{item}}" 
+                                        itemIndex="{{index}}"
+                                        showCart="{{true}}"
+                                        traceId="{{traceId}}"
+                                        buriedObj="{{buriedObj}}"
+                                        options="{{options}}"
+                                        tabName="{{tabName}}">
+                            </three-item>
+                            </block>
+                        </view>
+                     </view>
+                 </block>
+                <!-- 两行三个 -->
+                <block wx:if="{{item.floorStyle == 'product' &&  item.tpl == 'tpl2-3'}}">
+                    <view class='tpl2-3-wrap'>
+                        <block wx:for="{{item.data}}" 
+                               wx:key="index" 
+                               wx:for-item="item">
+                            <three-item item="{{item}}" 
+                                        itemIndex="{{index}}"
+                                        showCart="{{true}}"
+                                        traceId="{{traceId}}"
+                                        buriedObj="{{buriedObj}}"
+                                        options="{{options}}"
+                                        tabName="{{tabName}}">
+                            </three-item>
+                        </block>
+                    </view>
+                </block>
+
+                <!-- 两行三个半 -->
+                <block wx:if="{{item.floorStyle == 'product' && item.tpl == 'tpl2-3.5'}}">
+                    <view class='itemArea'>
+                        <scroll-view scroll-x scroll-anchoring  enable-flex class="xscroll nowrap">
+                            <view class='tpl2-3-half-wrap nowrap'>
+                                <view class="eys-item"
+                                      wx:for="{{item.data}}" 
+                                       wx:key="index" 
+                                       wx:for-item="item">
+                                    <three-half-item item="{{item}}" 
+                                                     showCart="{{true}}" 
+                                                     itemIndex="{{index}}"
+                                                     traceId="{{traceId}}"
+                                                     buriedObj="{{buriedObj}}"
+                                                     options="{{options}}"
+                                                     tabName="{{tabName}}">
+                                    </three-half-item>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </block>
+            </view>
+        </block>
+        <view style="height: 276rpx;background: #f8f8f8;"></view>
+    </scroll-view>
+</block>

@@ -1,0 +1,141 @@
+.content{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 20rpx 20rpx 0 0;
+    height: auto;
+    min-height: 0;
+    max-height: 0;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    z-index: 20;
+}
+.show_cont{
+    max-height: 80vh;
+    min-height: 76vh;
+}
+.gray{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+.gray-bg{
+    background: #000000;
+    opacity: .7;
+    z-index: 19;
+}
+
+
+.header {
+    text-align: center;
+    width: 100%;
+    border-radius:10px 10px 0px 0px;
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+    margin-top: 32rpx;
+    margin-bottom: 48rpx;
+}
+.icon_close {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    right: 0;
+    top: 32rpx;
+    color: #c1c1c1;
+    font-size: 25rpx;
+}
+.reminder {
+    color: #333;
+    font-size: 28rpx;
+    text-align: center;
+}
+.sale_desc_box {
+    width: 282rpx;
+    height: 132rpx;
+    margin: 0 auto;
+    border-radius: 16rpx;
+    background: #FFF4F4;
+    margin-top: 24rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.sale_desc_box::after {
+    content: '';
+    background-image: url(https://storage.360buyimg.com/wximg/common/pink_arrow.png);
+    background-size: cover;
+    width: 56rpx;
+    height: 16rpx;
+    position: absolute;
+    bottom: -16rpx;
+    left: 50%;
+    transform: translateX(-28rpx);
+}
+.sale_desc {
+    font-size: 28rpx;
+    color: #FF1E19;
+    text-align: center; 
+    line-height: 44rpx;
+}
+.sale_price {
+    font-size: 28rpx;
+    color: #FF1E19;
+    text-align: center; 
+    font-family: regular;
+    line-height: 44rpx;
+}
+.sale_detail_box {
+    margin-top: 40rpx;
+    max-height: 45vh;
+    overflow: scroll;
+}
+.sale_detail_box .detail_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80rpx;
+}
+.detail_left {
+    display: flex;
+    align-items: center;
+    padding-left: 24rpx;
+}
+.detail_item .tag {
+    height: 32rpx;
+    width: auto;
+    border-radius: 4rpx;
+    line-height: 32rpx;
+    padding: 0 6rpx;
+    font-size: 20rpx;
+    line-height: 32rpx;
+}
+.detail_item .desc {
+    font-size: 24rpx;
+    color: #333;
+    margin-left: 8rpx;
+}
+.detail_item .amount {
+    font-size: 32rpx;
+    color: #FF1E19;
+    font-family: regular;
+    margin-right: 24rpx;
+}
+.sub-title {
+    width: 750rpx;
+    font-size: 24rpx;
+    text-align: center;
+    color: #999;
+    position: absolute;
+    bottom: 48rpx;
+    left: 0;
+}

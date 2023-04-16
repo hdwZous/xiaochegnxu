@@ -1,0 +1,34 @@
+<view class="we_bank_wrap" wx:if="{{microSettlement && microSettlement.data}}">
+    <view class="we_bank_title flex-row" wx:if="{{microSettlement.data.microTitle}}">
+        <view class="flex-none we_bank_line" aria-role="text" aria-label="{{microSettlement.data.microTitle}}">{{microSettlement.data.microTitle}}</view>
+        <view class="flex-none " bindtap="clickWeBankTips" aria-hidden="true">
+            <view class="we_bank_icon"></view>
+        </view>
+        <view class="flex-auto">
+            <view class="we_bank_back" aria-role="text" aria-label="{{microSettlement.data.microLabel.title}}" style="color:{{microSettlement.data.microLabel.titleColor}};border:1rpx solid {{microSettlement.data.microLabel.borderColor}}">
+                {{microSettlement.data.microLabel.title}}
+            </view>
+        </view>
+    </view>
+    <!-- && microSettlement.data.microDescNew  -->
+    <view class="we_bank_text" wx:if="{{microSettlement.data && microSettlement.data.microDescNew && microSettlement.data.microDescNew.length}}">
+        <view class="switch_webank" data-openstate="{{microSettlement.data.openState}}" bind:tap="weBankChangeBtn" wx:if="{{microSettlement.data.openState!=0}}" aria-role="button" aria-label="点击{{microSettlement.data.openState==1?'取消':'选中'}}">
+            <image src="{{microSettlement.data.openState==1 ? 'https://storage.360buyimg.com/wximg/groupbuy/switch-open.png' : 'https://storage.360buyimg.com/wximg/groupbuy/switch-close.png'}}" mode="widthFix" />
+        </view>
+        <view wx:for="{{microSettlement.data.microDescNew}}" wx:key="index">
+            <block wx:for="{{item}}" wx:for-item="childItem" wx:key="index2">
+                <text aria-role="button" aria-label="{{childItem.text}}" bindtap="clickWeBankTips" data-microtipid="{{childItem.microTipId}}"  class="desc" style="color:{{childItem.color}}">{{childItem.text}}</text>
+            </block>
+        </view>
+    </view>
+</view>
+
+<!--微常准服务协议-->
+<we-bank-dialog showDialog="{{microTip}}"
+                bind:pageEvent="pageEvent"
+                backgroundColor="#ffffff"
+                height="600"
+                styles="padding: 40rpx 20rpx;"
+>
+    <rich-text nodes="{{microTip}}"></rich-text>
+</we-bank-dialog>

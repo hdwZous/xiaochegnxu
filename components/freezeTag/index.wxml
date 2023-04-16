@@ -1,0 +1,11 @@
+<block wx:if="{{topLeftCornerTag}}">
+  <image wx:if="{{topLeftCornerTag.imageTag}}" 
+        class="image-tag" 
+        src="{{topLeftCornerTag.imageTag}}"></image>
+  <view class='component-tag' 
+        wx:elif="{{topLeftCornerTag.componentTag}}" 
+        style="color: {{topLeftCornerTag.componentTag.iconTextColorCode}}; background: linear-gradient(to right, {{topLeftCornerTag.componentTag.startColorCode}} 0%,  {{topLeftCornerTag.componentTag.endColorCode}} 100%);">
+    <image class='freeze-icon' src="{{topLeftCornerTag.componentTag.iconUrl}}" />
+    <text>{{topLeftCornerTag.componentTag.iconText}}</text>
+  </view>
+</block>

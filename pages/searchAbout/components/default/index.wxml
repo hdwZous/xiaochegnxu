@@ -1,0 +1,27 @@
+<view 
+  id="default-container"
+  class="default flex-col {{  isRest ? '' : 'height-fill-search'}} {{  readySuccess ? '' :  'view-opacity' }}" 
+  style="{{  isRest ? 'height:' +  restHeight : '' }}"
+>
+<!-- style="{{height? 'min-height: 80vh':'min-height: 100vh'}}" -->
+  <block wx:if="{{!guideData}}">
+    <block wx:if="{{src}}">
+      <image class="net_error {{type==0?'loading':''}}" src="{{src}}"></image>
+    </block>
+    <block wx:if="{{type!=0}}">
+      <view class="text1">{{tips}}</view>
+      <block wx:if="{{btnType}}">
+        <button bindtap="dealDefault" class="btn" open-type="{{btnType}}">{{btnText}}</button>
+      </block>
+      <block wx:else>
+        <view wx:if="{{btnText}}" bindtap="dealDefault" class="btn">{{btnText}}</view>
+      </block>
+    </block>
+  </block>
+  <block wx:else>
+    <image wx:if="{{guideData.imgUrl}}" class="net_error" src="{{guideData.imgUrl}}"></image>
+    <view wx:if="{{tips}}" class="text1" style="margin-top: 20rpx">{{tips}}</view>
+    <view wx:if="{{guideData.desc}}" class="text1" style="color:{{guideData.descColorCode}};margin-top: 20rpx">{{guideData.desc}}</view>
+    <view wx:if="{{guideData.linkText}}" bindtap="dealDefault" class="guide-btn" style="background-color: {{guideData.descColorCode}}">{{guideData.linkText}}</view>
+  </block>
+</view>

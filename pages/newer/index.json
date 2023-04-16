@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "new-newer": "./components/newNewer/index",
+    "old-newer": "./components/oldNewer/index",
+    "default": "/components/default/index"
+  }
+}

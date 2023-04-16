@@ -1,0 +1,12 @@
+<view 
+  class="tag-floor-item-con" 
+  data-user-action="{{item.userAction}}"
+  data-trace-id="{{traceId}}"
+  data-page-id='{{pageId}}'
+  data-current-page-name='{{currentPageName}}'
+  data-pre-page-name='{{prePageName}}'>
+  <view aria-hidden="true" class="item-image-wrapper">
+    <image class="tag-floor-item-img" mode="aspectFill" src="{{item.imgUrl}}"/>
+  </view>
+  <view aria-hidden="true" class="tag-floor-item-text">{{item.itemName}}</view>
+</view>

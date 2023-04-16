@@ -1,0 +1,58 @@
+<view class="bg">
+    <!-- tab -->
+    <view class="tab">
+        <scroll-view scroll-x="true" style="height: 104rpx;">
+            <view class="case flex-row">
+                <view class="item_case flex-none" wx:for="{{tab}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+                    <view class="tab_item {{activeIndex == index ? 'active' : ''}}" data-index="{{index}}" bindtap="clickTab">
+                        {{item.title}}
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <!-- 列表 -->
+    <view class="list">
+        <view class="list_item" 
+              wx:for="{{list}}" 
+              wx:for-item="item" 
+              wx:for-index="index" 
+              wx:key="item"
+              style="margin-bottom: {{moreCouponAb ? '16rpx' : '24rpx'}}">
+          <!-- 8.20方案abc -->
+          <coupon-yhy-one wx:if="{{moreCouponAb}}"
+                          item="{{item}}"
+                          fromWhere="couponMore"
+                          traceId="{{currentTraceId}}"
+                          pageId="{{recommendObj.pageIdFirstPage}}"
+                          currentPageName="{{recommendObj.currentPageName}}"
+                          prePageName="{{recommendObj.prePageName}}"
+                          couponId="{{item.couponId}}"
+                          bind:rightBtnClick="rightBtnClick"
+                          buriedObj="{{recommendObj}}"
+                          fromPosition="store-couponMore"
+                          optionsPos="{{options}}" />
+          <!-- 老样式 -->
+          <coupon-item wx:else
+                       circleBgColor="rgba(242,242,242,1)" 
+                        item="{{item}}" 
+                        type="1"
+                        traceId="{{currentTraceId}}"
+                        pageId="{{recommendObj.pageIdFirstPage}}"
+                        currentPageName="{{recommendObj.currentPageName}}"
+                        prePageName="{{recommendObj.prePageName}}"
+                        bind:rightBtnClick="rightBtnClick"
+                        buriedObj="{{recommendObj}}"
+                        fromPosition="store-couponMore"
+                        optionsPos="{{options}}"
+                        recommendObj="{{recommendObj}}">
+          </coupon-item>
+            
+        </view>
+    </view>
+    <!-- 已经到底提示 -->
+    <view class="bottom_tips">已经到底了</view>
+</view>
+
+<!-- 普通优惠券，限v+会员领取 -->
+<vip-coupon-pop show="{{showVipCouponPop}}"  popInfo="{{popInfo}}" buriedObj="{{recommendObj}}" />

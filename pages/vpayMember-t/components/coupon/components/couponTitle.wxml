@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.couponTitle}}" style="{{anonymousState__temp}}">{{couponTitle}}</view></block>

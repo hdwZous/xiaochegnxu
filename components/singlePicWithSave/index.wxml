@@ -1,0 +1,5 @@
+<view wx:if="{{showDialog}}" class="dialog_bg {{refresh?'dialog_trans_show':'dialog_trans_hide'}} flex-col" bindtap='close'>
+  <image class="pic" src='{{imgSrc}}' mode='aspectFit'> </image>
+  <button class="btn" bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
+  <button class="btn" open-type="openSetting" bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
+</view>

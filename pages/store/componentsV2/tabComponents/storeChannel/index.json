@@ -1,0 +1,18 @@
+{
+  "component": true,
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#000",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "new-default": "/components/newDefault/index",
+    "main-cate": "../../components/mainCateSV2/index",
+    "banner-v2": "../../components/bannerSV2/index",
+    "often-buy": "../../components/oftenBuySV2/index",
+    "newer-v2": "../../components/newerSV2/index",
+    "three-in-row": "../../components/threeInRow/index",
+    "choose-for-you": "../../components/chooseForYou/index",
+    "three-in-two-row": "../../components/threeInTwoRow/index",
+    "suit": "../../components/suit/index"
+  }
+}

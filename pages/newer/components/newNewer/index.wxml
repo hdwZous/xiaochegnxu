@@ -1,0 +1,161 @@
+<view class='container' style="background: url('{{bgConfig.imgUrl}}') repeat-y center; background-size: 100% 100%;" >
+  <view class='banner-lazy'>
+    <!-- <image 
+      src="{{imgLazyLoad['banner'] ?  banner.imgUrl : ''}}"
+      data-lazy-img-id="banner"
+      class="banner img lazy_load_img lazy-load {{imgLazyLoad['banner'] ? 'lazy_load_img_active' : ''}}">
+    </image> -->
+    <image src="{{banner.imgUrl}}"  class="banner"></image>
+  </view>
+  <block
+    wx:for="{{resultArray}}"
+    wx:key="index"
+    wx:for-item="item">
+    <view 
+      class='module1-wrapper' 
+      wx:if="{{item.length > 0}}">
+        <view class='wrapper'>
+          <view class='title'>
+            <view class='titleindex'>{{index + 1}}</view>
+            <view class='titlename'>全场通用神仙券</view>
+          </view>
+          <!-- 新人券 -->
+          <view
+            class='first-order exposure' 
+            wx:if="{{item[0] && item[0].resourceNo == 100}}"
+            data-floor='newFloor'
+            data-user-action="{{item[0].newUserCoupon.userAction}}">
+              <image class='tag1' src='https://s.360buyimg.com/wximg/newcomer/zhang.png' />
+              <view class='newer-price'>
+                <view class='price'>¥<text class='count'>{{item[0].newUserCoupon.amount}}</text></view>
+                <view class='choice'>{{item[0].newUserCoupon.limitRule}}</view>
+              </view>
+          </view>
+          <!-- 复购券 -->
+          <view class='full-coupon' wx:if="{{item[1] && item[1].resourceNo == 103 &&  item[1].codeCouponVO.length > 0}}">
+            <view class='coupon exposure'
+              wx:for="{{item[1].codeCouponVO}}"
+              wx:key="index"
+              wx:for-item="repeat"
+              data-floor='repeatFloor'
+              data-user-action="{{repeat.userAction}}">
+              <view class='coupon-left'>
+                ¥<text class='count'>{{repeat.amount}}</text>
+              </view>
+              <view class='coupon-right'>
+                <view class='coupon-choice'>{{repeat.limitRule}}</view>
+                <view class='coupon-time'>即将过期</view>
+                <image class='tag2' src='https://s.360buyimg.com/wximg/newcomer/has_tag.png' />
+              </view>
+            </view>
+          </view>
+        </view>
+    </view>
+    <view class='module2-wrapper' wx:if="{{item.resourceNo == 103 && item.couponVO.length > 0}}">
+      <view class='wrapper'>
+        <view class='title'>
+          <view class='titleindex'>{{index + 1}}</view>
+          <view class='titlename'>精选大牌券任你领</view>
+        </view>
+        <view class='content'>
+          <!-- 商家券+品牌券 -->
+          <view class='brand-coupon exposure'
+            wx:for="{{item.couponVO}}"
+            wx:key="index"
+            wx:for-item="busAndBrand"
+            data-floor='busAndBrandFloor'
+            data-user-action="{{busAndBrand.userAction}}">
+              <view class='price-wrapper'>
+                <view class='brand-price'>¥<text class='brand-count'>{{busAndBrand.amount}}</text></view>
+                <view class='brand-name'>{{(busAndBrand.orgName == '京东到家' ||  busAndBrand.couponClassify == 4) ?  busAndBrand.couponTitle :  busAndBrand.orgName}}</view>
+                <view class='overlay' wx:if="{{busAndBrand.couponClassify == 4}}"></view>
+              </view>
+              <view class='state {{busAndBrand.markState == 2 ? "red " : "yellow "}}' 
+                data-coupon="{{busAndBrand}}"
+                data-user-action="{{busAndBrand.userAction}}" 
+                bindtap="handleGetOrUse">
+                  {{busAndBrand.markState == 2 ? '领取' : '去使用'}}
+              </view>
+          </view>
+        </view>
+      </view>
+      <!-- <view class='btn-getall' bindtap="handleGetAll">一键领取</view> -->
+    </view>
+    <view class='module3-wrapper' wx:if="{{item.resourceNo == 106 && item.sugStoreInfoVO.length > 0}}">
+      <view class='title'>
+        <view class='titleindex'>{{index + 1}}</view>
+        <view class='titlename'>精选商家任你挑</view>
+      </view>
+      <view class='shop exposure'
+        wx:for="{{sugStoreInfoVO}}"
+        wx:key="index"
+        wx:for-item="shop"
+        data-pro='{{shop}}'
+        bindtap="goStore"
+        data-floor='shopFloor'
+        data-user-action="{{shop.userAction}}">
+          <view class='shop-info'>
+            <view class="filter" style="background: url({{shop.logo}}) center"></view>
+            <view class="glass">
+              <image 
+                class="logo img lazy_load_img lazy-load {{ imgLazyLoad['shop' + index] ? 'lazy_load_img_active' : '' }}"
+                src="{{ imgLazyLoad['shop' + index] ? shop.logo : '' }}"
+                data-lazy-img-id="shop{{index}}" />
+              <view>
+                <view class='shop-name'>{{shop.storeName}}</view>
+                <view class='coupon-list'>
+                  <view class='bus-coupon '
+                    bindtap="handleCoupon"
+                    data-pro="{{shop}}"
+                    data-user-action="{{shop.userAction}}"
+                    wx:for="{{shop.couponEntityList}}"
+                    wx:key="index"
+                    wx:for-item="coupon">
+                      ¥{{coupon.amount}}
+                  </view>
+                </view>
+              </view>
+              <view class=' btn-gostore' data-pro="{{shop}}" data-user-action="{{shop.userAction}}" bindtap="handleEnterStore">进店</view>
+            </view>
+          </view>
+          <view class='product-list' wx:if="{{shop.productList.length >= 3 }}">
+            <view class='product-wrapper'>
+              <view class=' product-item {{index == 1 ? "border-2px" : ""}}' 
+                bindtap="handleProduct"
+                wx:for="{{shop.productList}}"
+                wx:key="index"
+                wx:for-item="product"
+                data-pro="{{product}}"
+                data-user-action="{{product.userAction}}"
+                data-addCart="true"
+              >
+                <view class='product-pic'>
+                  <image
+                    src="{{imgLazyLoad['product' + index] ? product.imgUrl : ''}}"
+                    data-lazy-img-id="product{{index}}"
+                    class="img lazy_load_img lazy-load {{ imgLazyLoad[floorId + index] ? 'lazy_load_img_active' : '22' }}"
+                   />
+                  <text class='sale' wx:if="{{product.promotionDesc}}">{{product.promotionDesc}}</text>
+                </view>
+                <view class='title'>{{product.skuName}}</view>
+                <view class='sale-price'>¥{{product.realTimePrice ||  product.basicPrice}}</view>
+                <view class='origin-price' wx:if="{{product.realTimePrice !=  product.basicPrice}}">¥{{product.basicPrice}}</view>
+                <view class='btn-add'></view>
+              </view>
+            </view>
+          </view>
+      </view>
+      <view class='go-index ' data-is-login="true" bindtap="goToHome">去首页个查看更多></view>
+    </view>
+  </block>
+  <view class='save' wx:if="{{price > 0}}">
+    <view class='save-price-wrapper'>
+      <view class='unit'>¥</view>
+      <view class='price {{newNewerAnimation ? "price-animation" : ""}}  number{{index+1}}'
+       wx:for="{{priceData}}"
+        wx:key="index"
+        data-before="{{  item.afterContent }}"
+        wx:for-item="item">{{ item.number }}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,501 @@
+{
+    "setting": {},
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "首页去分享有礼",
+                    "pathName": "pages/home/home",
+                    "query": "type=31",
+                    "scene": null
+                },
+                {
+                    "name": "帮忙助力详情页",
+                    "pathName": "pages/friendHelp/detail/index",
+                    "query": "activityId=236bbf9ec65b53d&groupId=100003931604708",
+                    "scene": 1044,
+                    "shareInfo": {
+                        "groupName": "测试模拟群0",
+                        "shareName": "Oa3HNh9oISnMxEO3RWwe12r2vkpbMzpg1KNQwj6G-tA@cr4dev",
+                        "shareKey": "OlsI9r5zsE82cdEIHJZ-bU7ek_s1NEVun5LSJsCi_InxZ-lCz4ry5WZ55KhSsu0oZ6-P-oFNGimXXovGzJgY4Q~~"
+                    }
+                },
+                {
+                    "name": "拼团支付成功页",
+                    "pathName": "pages/groupBuy/paySuccess/index",
+                    "query": "orderId=100001039869037"
+                },
+                {
+                    "name": "拼团订单详情页",
+                    "pathName": "pages/groupBuy/orderInfo/index",
+                    "query": "orderId=100001039869037"
+                },
+                {
+                    "name": "订单详情页",
+                    "pathName": "pages/order/orderdetail/index",
+                    "query": "orderId=1100001097028940",
+                    "scene": null
+                },
+                {
+                    "name": "拼团提单",
+                    "pathName": "pages/groupBuy/confirmOrder/index",
+                    "query": "storeId=11838628&orgCode=71598&groupCode=&skuId=2000001587&promotionId=3479"
+                },
+                {
+                    "name": "参团页",
+                    "pathName": "pages/groupBuy/join/index",
+                    "query": "unionCode=&activityId=22bd833194a3e1e&storeId=11779609&orgCode=317862&skuId=2011379384&channel=2",
+                    "scene": null
+                },
+                {
+                    "name": "门店获客页",
+                    "pathName": "pages/getCustomers/index",
+                    "query": "",
+                    "scene": "1012"
+                },
+                {
+                    "name": "门店获客页",
+                    "pathName": "pages/getCustomers/index",
+                    "query": "",
+                    "scene": "1012"
+                },
+                {
+                    "name": "团长代收详情",
+                    "pathName": "pages/groupBuy/collection/myCollectionDetail/index",
+                    "query": "orderId=100001039948972",
+                    "scene": "1012"
+                },
+                {
+                    "name": "团长代收",
+                    "pathName": "pages/groupBuy/collection/myCollection/index",
+                    "query": ""
+                },
+                {
+                    "name": "团长代收",
+                    "pathName": "pages/groupBuy/collection/myCollection/index",
+                    "query": ""
+                },
+                {
+                    "name": "店内活动",
+                    "pathName": "pages/activity/store/index",
+                    "query": "activityId=11976398&storeId=11864032&orgCode=329840",
+                    "scene": null
+                },
+                {
+                    "name": "店内搜索",
+                    "pathName": "pages/searchAbout/storeSearchResult/storeSearchResult",
+                    "query": "name=水果&type=undefined&curStoreId=11871213&orgCode=296720&industryTag=3",
+                    "scene": null
+                },
+                {
+                    "name": "全内搜索",
+                    "pathName": "pages/searchAbout/search-result/search-result",
+                    "query": "name=shi&type=undefined&curStoreId=",
+                    "scene": null
+                },
+                {
+                    "name": "裂变红包",
+                    "pathName": "pages/redPacketFission/redPacketFission",
+                    "query": "code=569a8b93368a459780af8afec3fe9ea1&shareId=uMrc9jSKGsbTI25GnAwiiLKk45bm9WprrLqGjO8l09Q%25253D&maxCouponPlace=4",
+                    "scene": null
+                },
+                {
+                    "name": "门店获客",
+                    "pathName": "pages/getCustomers/index",
+                    "query": "cityName=北京市&channel=hfyhmdgy&code=1234&cityId=1&longitude=116.347015&latitude=39.72819&storeId=&orgcode=&business=1",
+                    "scene": null
+                },
+                {
+                    "name": "订单详情",
+                    "pathName": "pages/order/orderdetail/index",
+                    "query": "orderId=100001039968012",
+                    "scene": null
+                },
+                {
+                    "name": "优惠券列表",
+                    "pathName": "pages/coupon/person-coupon",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "优惠券",
+                    "pathName": "pages/coupon/person-coupon",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "门店页",
+                    "pathName": "pages/store/index",
+                    "query": "storeId=10006391&showCoupon=1&orgCode=71598",
+                    "scene": null
+                },
+                {
+                    "name": "红包列表",
+                    "pathName": "pages/redEnvelopeList/list/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "结算vippppppp",
+                    "pathName": "pages/settlementV1/settlement",
+                    "query": "storeId=10006391&orgCode=71598&storeName=七一五九八可改行业测试测试&attention=1",
+                    "scene": null
+                },
+                {
+                    "name": "活动页",
+                    "pathName": "pages/activity/homeFocus/index",
+                    "query": "activityId=11984145&userAction=%7B%22spm_id%22%3A%22act_3%7C7%7C2%7Ctpl10%7C110%7C%E4%BB%8A%E6%97%A5%E7%89%B9%E4%BB%B7%7C%22%2C%22activityId%22%3A%2211984145%22%2C%22to%22%3A%22activityDetail%22%7D&latitude=&longitude=&cityId=",
+                    "scene": null
+                },
+                {
+                    "name": "好友助力列表",
+                    "pathName": "pages/friendHelp/list/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "发起好友助力详情页",
+                    "pathName": "pages/friendHelp/launch/index",
+                    "query": "from=list&activityId=03785dc19458a6b&groupId=916566439000014&__key_=15628378594815",
+                    "scene": null
+                },
+                {
+                    "name": "送蛋首页",
+                    "pathName": "pages/farm-t/home/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "送蛋门店列表",
+                    "pathName": "pages/farm-t/storelist/index",
+                    "query": "couponId=206502052",
+                    "scene": null
+                },
+                {
+                    "name": "砍价列表",
+                    "pathName": "pages/bargain/cutGoodList/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "砍价发起详情",
+                    "pathName": "pages/bargain/launch/index",
+                    "query": "unionCode=91881186500014&activityId=22bddf85c286f8e&storeId=10006391&orgCode=71598&skuId=2019701071&channel=2",
+                    "scene": null
+                },
+                {
+                    "name": "帮砍价",
+                    "pathName": "pages/bargain/fuel/index",
+                    "query": "activityId=236bd1fe0fb3afd&orgCode=71598&storeId=10006391&skuId=2028394653&unionCode=10000000060513",
+                    "scene": null
+                },
+                {
+                    "name": "爱的小店",
+                    "pathName": "pages/loveStore/home/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "拣货游戏",
+                    "pathName": "pages/loveStore/game/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "门店展示砍价tab",
+                    "pathName": "pages/store/index",
+                    "query": "storeId=11779609&orgCode=317862&showCutTab=1",
+                    "scene": null
+                },
+                {
+                    "name": "结算页改版",
+                    "pathName": "pages/settlementV1/settlement",
+                    "query": "storeId=11701156&orgCode=71598&storeName=HHY%E6%B5%8B%E8%AF%95--%E8%B0%A2%E8%B0%A2&attention=1",
+                    "scene": null
+                },
+                {
+                    "name": "发起砍价",
+                    "pathName": "pages/bargain/launch/index",
+                    "query": "skuId=2024124746&avatarUrl=https://thirdwx.qlogo.cn/mmopen/vi_32/Q3auHgzwzM5XCMkzpqMr5ia9PUMFT7ONjHbo1oq8ZIa0E0zHJ0fDjicvqShQDk4vn980jWPHhicCcb0e0bg1hJUug/132&nickName=哄哄&unionId=null&storeId=11939867&unionCode=10000127026767&activityId=22bea6ae1140db6&orgCode=304477",
+                    "scene": null
+                },
+                {
+                    "name": "结算页UI",
+                    "pathName": "pages/store/index",
+                    "query": "storeId=11701156&skuId=&orgCode=71598&longitude=91.00306&latitude=29.646418",
+                    "scene": null
+                },
+                {
+                    "name": "7fresh结算",
+                    "pathName": "pages/settlementV1/settlement",
+                    "query": "storeId=11749494&orgCode=321061&storeName=%E4%BA%AC%E4%B8%9C7FRESH%E7%94%9F%E9%B2%9C(%E5%A4%A7%E6%97%8F%E5%B9%BF%E5%9C%BA%E5%BA%97)&attention=0",
+                    "scene": null
+                },
+                {
+                    "name": "结算-新建地址",
+                    "pathName": "pages/settlementV1/settlement",
+                    "query": "storeId=11827571&orgCode=329958&storeName=%E5%8D%8E%E6%B6%A6%E4%B8%87%E5%AE%B6-%E5%B0%8F%E9%BE%99%E5%9D%8E%E5%BA%97&attention=0",
+                    "scene": null
+                },
+                {
+                    "name": "老的签到落叶",
+                    "pathName": "pages/signInLand/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "抓娃娃",
+                    "pathName": "pages/signInLand/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "订单分享详情",
+                    "pathName": "pages/order/shareOrder/orderdetail/index",
+                    "query": "shareToken=HK1xUWvELi9GmT6O4tnCgLPnNfMKNL4ubj9l7KGxn610xWFun5HP7%2FYhxQBu6chYzVPrVyQ88zF3ZU4uSxLH%2B1bbXjtjBSh3ED0kgv0DRY5jAF%2BHgMjmPjP%2FNrwisK%2BgQ1JFuv4812DAuMWJVRaHKJgcgPf6OFs9aC%2FhG6B90Ws%3D&business=163",
+                    "scene": null
+                },
+                {
+                    "name": "新订单列表",
+                    "pathName": "pages/tabBar/orderlist/index",
+                    "query": "orderId=1100001096901932",
+                    "scene": null
+                },
+                {
+                    "name": "首页跳转",
+                    "pathName": "pages/home/home",
+                    "query": "type=51&business=160&channel=order1&orderId=1100001117730914",
+                    "scene": null
+                },
+                {
+                    "name": "全局搜索",
+                    "pathName": "pages/searchAbout/search-result-new/index",
+                    "query": "name=牛腱肉&type=&curStoreId=&fromSource=&channelId=undefined&channelBusiness=undefined",
+                    "scene": null
+                },
+                {
+                    "name": "搜索",
+                    "pathName": "pages/searchAbout/search/search",
+                    "query": "name=牛奶",
+                    "scene": null
+                },
+                {
+                    "name": "定向",
+                    "pathName": "pages/locationRedirect/home",
+                    "query": "mytype=30&orgcode=81372&skuId=2021553019&business=121&channel=81372",
+                    "scene": null
+                },
+                {
+                    "name": "直播",
+                    "pathName": "pages/live/index",
+                    "query": "1",
+                    "scene": null
+                },
+                {
+                    "name": "付费会员",
+                    "pathName": "pages/vpayMember-t/home/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/tabBar/signIn-t/index",
+                    "pathName": "pages/tabBar/signIn-t/index",
+                    "query": "a=1",
+                    "scene": null
+                },
+                {
+                    "name": "pages/signIn-t/index",
+                    "pathName": "pages/signIn-t/index",
+                    "query": "urlGroupId=1",
+                    "scene": null
+                },
+                {
+                    "name": "发起",
+                    "pathName": "pages/hackOrder-t/launch/index",
+                    "query": "cutOrderId=cpo5055631659920479",
+                    "scene": null
+                },
+                {
+                    "name": "砍单详情",
+                    "pathName": "pages/hackOrder-t/detail/index",
+                    "query": "cutOrderId=cpo9604024386678122&orderSource='DAOJIA_WX'",
+                    "scene": null
+                },
+                {
+                    "name": "pages/weBank/index",
+                    "pathName": "pages/weBank/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "直播列表",
+                    "pathName": "pages/live/list/index",
+                    "query": ""
+                },
+                {
+                    "name": "伊利",
+                    "pathName": "pages/differentIndustry-t/index",
+                    "query": "channel=yili",
+                    "scene": 1037,
+                    "referrerInfo": {
+                        "appId": "wxdcf23dc1e3a84ff2",
+                        "extraData": "{\"redeemCode\":\"U4XZlZhe17A9wGOc5qbQaKVoHUPPmRLmGNwZRLtzvHGUjxMNPn+JQJoIiOpachN2YK161wJ0cMOMCgFixgI5naBMR1c5apNf5sfLbx9XKtcB9tk3xCKuuC8ZiGpgkH6f85+RG0OcNBt3jP2X8bXsDuf6CyYmrMZeCbBtVMxvKIk=\"}"
+                    }
+                },
+                {
+                    "name": "伊利4",
+                    "pathName": "pages/differentIndustry-t/yili/index",
+                    "query": "channel=yili",
+                    "scene": 1037,
+                    "referrerInfo": {
+                        "appId": "wxdcf23dc1e3a84ff2",
+                        "extraData": "{\"redeemCode\":\"U4XZlZhe17A9wGOc5qbQaKVoHUPPmRLmGNwZRLtzvHGUjxMNPn+JQJoIiOpachN2YK161wJ0cMOMCgFixgI5naBMR1c5apNf5sfLbx9XKtcB9tk3xCKuuC8ZiGpgkH6f85+RG0OcNBt3jP2X8bXsDuf6CyYmrMZeCbBtVMxvKIk=\"}"
+                    }
+                },
+                {
+                    "name": "pages/seckill/index",
+                    "pathName": "pages/seckill/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/activity/store/index",
+                    "pathName": "pages/activity/store/index",
+                    "query": "activityId=12000032&storeId=11926752&orgCode=344475",
+                    "scene": null
+                },
+                {
+                    "name": "pages/redPacketFission/redPacketFission",
+                    "pathName": "pages/redPacketFission/redPacketFission",
+                    "query": "code=569a8b93368a459780af8afec3fe9ea1&shareId=uMrc9jSKGsbTI25GnAwiiLKk45bm9WprrLqGjO8l09Q%25253D&maxCouponPlace=4",
+                    "scene": null
+                },
+                {
+                    "name": "pages/activity/homeFocus/index",
+                    "pathName": "pages/activity/homeFocus/index",
+                    "query": "activityId=12012480&imgOrder=1&latitude=29.72881&longitude=90.91768&cityId=2951",
+                    "scene": null
+                },
+                {
+                    "name": "pages/activity/homeFocus/index",
+                    "pathName": "pages/activity/homeFocus/index",
+                    "query": "activityId=12012480&imgOrder=1",
+                    "scene": null
+                },
+                {
+                    "name": "pages/store/index",
+                    "pathName": "pages/store/index",
+                    "query": "storeId=10006391&showCoupon=0&orgCode=71598&userAction=%7B%22spm_id%22%3A%22slideStoreList_5%7C13%7C2%7Ctpl1%7C2%7C%7C%22%2C%22orgCode%22%3A71598%2C%22to%22%3A%22store%22%2C%22storeId%22%3A%2210006391%22%2C%22imgOrder%22%3A2%7D",
+                    "scene": null
+                },
+                {
+                    "name": "运费立减商品",
+                    "pathName": "pages/settlementV2/subPage/settlementDiscounts/index",
+                    "query": "params={\"storeId\":11902263,\"orgCode\":\"81372\",\"cityCode\":\"1\",\"unique\":\"f99cc0fc-141a-4552-9d58-0aa2f68629e8\",\"orderPageId\":\"e59ea2a7-b693-47a8-b80f-1734786addf9\",\"topSkuIdList\":[2013546706,2012054038,2006240400,2004962459]}",
+                    "scene": null
+                },
+                {
+                    "name": "发票",
+                    "pathName": "pages/invoice/djcomponents/pages/invoice/SettlementInvoice/SettlementInvoice",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "发票2",
+                    "pathName": "pages/invoice/djcomponents/pages/invoice/SettlementInvoiceList/SettlementInvoiceList",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/tabBar/person/person",
+                    "pathName": "pages/tabBar/person/person",
+                    "query": "url=https://daojia.jd.com/pavilion/poseidon/newuser/index.html",
+                    "scene": null
+                },
+                {
+                    "name": "pages/purchTicket/couponGo/index",
+                    "pathName": "pages/purchTicket/couponGo/index",
+                    "query": "userAction=%7B%22coupon_code%22%3A101525005%2C%22coupon_type%22%3A1%7D&storeId=10006391&orgCode=&limitId=101525005&jumpType=couponGoodsList&brandId=&upc=&skuList=&url=&couponPattern=1&code=HMAK0011295002&markState=3&refPageSource=couponsList&skuIds=[\"\"]",
+                    "scene": null
+                },
+                {
+                    "name": "pages/order/paySuccess/index",
+                    "pathName": "pages/order/paySuccess/index",
+                    "query": "orderId=1100001097165740&storeId=10006391",
+                    "scene": null
+                },
+                {
+                    "name": "pages/activity/homeFocus/index",
+                    "pathName": "pages/activity/homeFocus/index",
+                    "query": "activityId=12040111&latitude=39.728333&longitude=116.34683&cityId=1&userAction=",
+                    "scene": null
+                },
+                {
+                    "name": "pages/addOn/addOnList/index",
+                    "pathName": "pages/addOn/addOnList/index",
+                    "query": "storeId=12045692&couponId=1028506602&priceDiff=98.1&limitType=all&orgCode=345593&fromPage=&pageSource=minicart",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "pages/addOn/addOnListSearch/index",
+                    "pathName": "pages/addOn/addOnListSearch/index",
+                    "query": "storeId=11679862&orgCode=304477&couponId=1026790002&keyword=土豆&priceDiff=27.3&limitType=all&from=settlement",
+                    "scene": null
+                },
+                {
+                    "name": "pages/addOnFreight/freight/index",
+                    "pathName": "pages/addOnFreight/freight/index",
+                    "query": "params={\"differenceOfThreshold\":410,\"addItemType\":4,\"orgCode\":\"73521\",\"addItemFaceVlaue\":300,\"addItemThreshold\":2000,\"storeId\":\"11819942\",  \"fromPage\": \"settle\"}",
+                    "scene": null
+                },
+                {
+                    "name": "618活动",
+                    "pathName": "pages/brandSoeActive/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "主会场",
+                    "pathName": "pages/home/home",
+                    "query": "activityId=12041677&type=12&business=5&channel=baishiyinliao",
+                    "scene": null
+                },
+                {
+                    "name": "主会场2",
+                    "pathName": "pages/activity/homeFocus/index",
+                    "query": "activityId=12041677&type=12&business=5&channel=baishiyinliao",
+                    "scene": null
+                },
+                {
+                    "name": "pages/couponTogether/index",
+                    "pathName": "pages/couponTogether/index",
+                    "query": "userAction=%257B%2522coupon_code%2522%253A102141041%252C%2522coupon_type%2522%253Anull%257D&storeId=10006391&orgCode=71598&limitId=102141041&jumpType=promotionGoodsList&brandId=&upc=&skuList=&url=&couponPattern=&code=MWAW0011914048&markState=3&refPageSource=store&skuIds=%5B%22%22%5D&promotionSource=storePromotion&activityId=&cateName=&needAnchorSku=&promotionType=&skuId=&source=",
+                    "scene": null
+                },
+                {
+                    "name": "凑券页",
+                    "pathName": "pages/addOn/addOnList/index",
+                    "query": "storeId=11926752&couponId=1028520403&priceDiff=0.1&limitType=all&orgCode=344475&fromPage=&pageSource=minicart",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/settlementV2/index",
+                    "query": "uu_uuid=7a78a242e352c6476b630f0d34497f67&storeId=10006391&orgCode=71598",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "71745",
+                    "pathName": "pages/settlementV2/index",
+                    "query": "uu_uuid=353423a914a3ac7c94a3817ecc68c152&storeId=11898611&orgCode=71745&storeName=FJY测试用71745门店&grabCouponList=[]",
+                    "launchMode": "default",
+                    "scene": null
+                }
+            ]
+        }
+    },
+    "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+}

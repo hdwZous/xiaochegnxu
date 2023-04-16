@@ -1,0 +1,14 @@
+<view class="rank-layout">
+  <view class="rank-layout__header flex-row align-items-center" style="{{headerStyle}}">
+    <image aria-role="img" class="rank-layout__icon" mode="aspectFit" src="{{logo}}" lazy-load />
+    <text class="ellipsis">{{title}}</text>
+  </view>
+  <view class="rank-layout__content" style="{{contentStyle}}">
+    <view class="rank-layout__slot">
+      <slot></slot>
+    </view>
+  </view>
+  <view class="rank-layout__footer ellipsis" style="{{footerStyle}}">
+    <text>{{bottomText}}</text>
+  </view>
+</view>

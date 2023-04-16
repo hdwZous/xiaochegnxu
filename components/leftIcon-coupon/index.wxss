@@ -1,0 +1,40 @@
+.pos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.icon0 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 16rpx 0rpx 16rpx 0rpx;
+  padding: 0 16rpx;
+  position: relative;
+  z-index: 2;
+}
+.icon1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 0rpx 0rpx 16rpx 0rpx;
+  padding: 0 16rpx 0 24rpx;
+  margin-left: -16rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.icon_arrow {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+

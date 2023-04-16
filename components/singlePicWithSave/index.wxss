@@ -1,0 +1,51 @@
+@import "/common/css/global.wxss";
+
+.dialog_bg {
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(0);
+  -webkit-transform: scale(0);
+}
+
+.dialog_trans_hide {
+  transition: all ease 300ms;
+  -webkit-transition: all ease 300ms;
+}
+
+.dialog_trans_show {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  transition: all ease 300ms;
+  -webkit-transition: all ease 300ms;
+}
+
+.dialog_bg .pic {
+  margin-top: 100rpx;
+  width: 588rpx;
+  height: 800rpx;
+}
+
+.dialog_bg .btn {
+    z-index: 100;
+  width: 220rpx;
+  height: 60rpx;
+  margin-top: 60rpx;
+  background:rgba(0,0,0,0.2);
+  border-radius: 8rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 60rpx;
+}
+button::after {
+  border:1px solid rgba(255,255,255,0.5);
+}

@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "default": "../components/default/index",
+    "card": "../components/card/index",
+    "record-list": "../components/recordList/index",
+    "rule-dia": "../components/ruleDia/index",
+    "bargain-dia": "../components/bargainDia/index",
+    "subscribe-message": "../components/subscribeMessage/index"
+  },
+  "navigationBarTitleText": "砍价领商品",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "onReachBottomDistance": 50
+}

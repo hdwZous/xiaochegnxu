@@ -1,0 +1,39 @@
+@import "/common/css/global.wxss";
+.goodImg {
+    background: #fff;
+    height: 750rpx;
+    position: relative;
+}
+
+.goodImg swiper {
+    height: 750rpx;
+}
+
+.goodImg image {
+    /* width: 320rpx;
+  height: 320rpx; */
+    width: 750rpx;
+    height: 750rpx;
+    display: block;
+    margin: 0 auto;
+    background: #ccc;
+}
+
+.dots {
+    position: absolute;
+    bottom: 20rpx;
+    right: 20rpx;
+}
+
+.dots .item {
+    width: 8rpx;
+    height: 8rpx;
+    background: #d8d8d8;
+    border-radius: 4rpx;
+    margin-right: 4rpx;
+}
+
+.dots .current {
+    width: 22rpx;
+    background: #666;
+}

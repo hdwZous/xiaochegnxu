@@ -1,0 +1,104 @@
+<view class="seckill">
+  <navigation 
+    capsule="{{capsule}}" 
+    titlePicUrl="{{titlePicUrl}}" 
+    searchWord="{{searchWord}}" 
+    scrollTop="{{scrollTop}}"
+    buriedObj="{{recommendObj}}">
+  </navigation>
+  <view style="padding-top:{{capsule.top + capsule.height + 10}}px;background-color: #FF2626;"></view>
+   <!-- 回到顶部 -->
+  <back-top 
+    hideBackTop='{{hideBackTop}}' 
+    pageMoving='{{pageMoving}}' 
+    fromPositon="seckill_back_to"
+    showMinicar='{{true}}'></back-top>
+
+  <block wx:if="{{!netError.pageError}}">
+    <view class="content"> 
+      <view class="banner_wrap">
+        <block wx:if="{{bannerList.length}}">
+          <image-banner 
+            lists="{{bannerList}}" 
+            scrollTop="{{scrollTop}}" 
+            buriedObj="{{recommendObj}}"
+            traceId="{{traceId}}">
+          </image-banner>
+        </block>
+        <block wx:else>
+          <banner 
+            wx:if="{{bannerShow && banner.length}}" 
+            datas="{{banner}}" 
+            scrollTop="{{scrollTop}}" 
+            buriedObj="{{recommendObj}}"
+            NeedExposure="{{true}}"  
+            bindreportTopfloor="reportTopfloor" 
+            traceId="{{traceId}}">
+          </banner>
+        </block>
+        <!-- 优惠券楼层 -->
+        <coupon 
+          wx:if="{{couponList.length}}" 
+          bind:onCouponEvent="onCouponEvent" 
+          lists="{{couponList}}" 
+          traceId="{{traceId}}"
+          buriedObj="{{recommendObj}}"/>
+      </view>
+      <view class="tab-wrap {{tabFixd ? 'tabFixd' : ''}}" style="top: {{tabInfo.scrollTop - 1}}px;" wx:if="{{tabInfo.tabs.length > 1}}">
+        <tabs 
+          tabInfo="{{tabInfo}}"
+          tabFixd="{{tabFixd}}" 
+          buriedObj="{{recommendObj}}"
+          bindquerySku="querySku"
+          bindreportSortnameTab="reportSortnameTab"
+          bindreportPopname="reportPopname"
+          bindreportSortname="reportSortname">
+        </tabs>
+      </view>
+      <block wx:if="{{!netError.listError}}">
+        <view class="list-wrap" wx:if="{{lists.length}}">
+          <view class="list-background"></view>
+          <block wx:for="{{pageData}}" wx:for-item="firstItem" wx:key="skuId">
+            <block wx:for="{{firstItem}}" wx:for-item="subItem" wx:key="subItem">
+              <list 
+                info="{{subItem}}" 
+                traceId="{{traceId}}" 
+                NeedExposure="{{true}}"  
+                buriedObj="{{recommendObj}}"
+                bindreportGoodsList="reportGoodsList">
+              </list>
+            </block>
+          </block>
+        </view>
+        <view class="bottom" wx:if="{{lists && lists.length && lastPage}}" style="padding-bottom: {{isIpx ? '68rpx' : '40rpx'}}">已经到底啦</view>
+      </block>
+      <block wx:else>
+        <new-default 
+          type="{{netError.listError.type}}" 
+          btnText="{{netError.listError.btnText}}" 
+          tips="{{netError.listError.tips}}" 
+          fromPositon="seckill_defatult"
+          binddefaultBtnEvent="onDefaultlist"></new-default>
+      </block>
+      <!-- 底部tab -->
+      <block wx:if="{{bottomTabList.length > 0}}">
+        <bottom-tab-list 
+          buriedObj="{{recommendObj}}"
+          list="{{bottomTabList}}" />
+      </block>
+      <!-- 分享到微信弹层 -->
+      <view class="share_pop" wx:if="{{showShare}}" bind:tap="clickShareBg"></view>
+        <view class="share_case" wx:if="{{showShare}}">
+          <button class="button" open-type="share" data-from="helpCoupon">
+            <view class="img_case">
+                <image class="img" src="https://storage.360buyimg.com/wximg/lottery/ic_share_2_chat.png" />
+            </view>
+            <view class="txt">微信小程序</view>
+          </button>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <new-default type="{{netError.pageError.type}}" btnText="{{netError.pageError.btnText}}" tips="{{netError.pageError.tips}}" binddefaultBtnEvent="onDefaultBtnEvent"></new-default>
+  </block>
+</view>

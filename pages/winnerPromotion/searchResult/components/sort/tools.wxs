@@ -1,0 +1,15 @@
+
+var showSelectedNames = function (filter) {
+  return filter.itemList
+    .filter(function (i) {
+      return i.selected
+    })
+    .map(function (i) {
+      return i.itemName
+    })
+}
+
+module.exports = {
+  showSelectedNames: showSelectedNames,
+}
+

@@ -1,0 +1,6 @@
+<view class="mask_prescription" wx:if="{{imgUrl}}" catchtouchmove="catchTouchmove">
+  <view class="mask_prescription_img" style="background-image:url({{imgUrl}});"></view>
+  <view class="close_prescription" bind:tap="closeImgBig">
+    <image class="close_prescription_img" src="https://storage.360buyimg.com/wximg/bargain/close.png" />
+  </view>
+</view>

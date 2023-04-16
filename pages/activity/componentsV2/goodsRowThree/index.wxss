@@ -1,0 +1,79 @@
+.content {
+  margin: 0 20rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  height: 394rpx;
+  background: #fff;
+}
+
+.content.banner {
+  margin: 0 20rpx 0 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: transparent;
+  height: 368rpx;
+}
+
+.content.banner .skeleton-box {
+  margin-left: 20rpx;
+}
+
+.wrap {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  height: 100%;
+  font-size: 0;
+}
+
+.door-cont {
+  margin-left: 32rpx;
+  align-items: center;
+  width: 100rpx;
+  vertical-align: top;
+  margin-top: 44rpx;
+  padding-right: 40rpx;
+  display: inline-block;
+  white-space: normal;
+  height: 160rpx;
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  left: 0;
+  top: 50%;
+  transform: translateX(-50%);
+}
+
+.door {
+  color: #666666;
+  width: 28rpx;
+  height: 160rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin-left: 20rpx;
+  height: 160rpx;
+  white-space: normal;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 25rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.sub-select {
+  margin-right: 24rpx;
+}
+
+.content.banner .sub-select {
+  margin-right: 8rpx;
+}

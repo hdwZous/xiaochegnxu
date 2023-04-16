@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "guess-like": "../guessLike/index",
+    "good-list-item":"../goodListItem/index",
+    "DdSkuYhySearch":"../DdSkuYhySearch/index"
+  }
+}

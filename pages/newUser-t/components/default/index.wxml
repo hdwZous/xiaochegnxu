@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.default}}"><image class="{{style.jdDog}}" src="https://storage.360buyimg.com/wximg/newUser/default_jd.png"></image><text class="{{style.defaultHint}}">抱歉，没有东西哦~</text><view class="{{style.toHome}}" bindtap="toHome" data-e-tap-so="this">去首页逛逛</view></view></block>

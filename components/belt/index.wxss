@@ -1,0 +1,98 @@
+.belt {
+  left: 24rpx;
+  display: flex;
+  bottom: 40rpx;
+  width: 702rpx;
+  height: 80rpx;
+  position: relative;
+  border-radius: 8rpx;
+  align-items: center;
+  box-sizing: border-box;
+  transition: all 1s;
+  background-image: url(https://storage.360buyimg.com/wxmini/cash/belt_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+.belt_content {
+  display: flex;
+  font-size: 28rpx;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+.belt_icon {
+  width: 120rpx;
+  height: 80rpx;
+  margin-right: 24rpx;
+}
+.belt_icon image {
+    width: 100%;
+    height: 100%;
+}
+.belt_text_left {
+  margin-right: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 490rpx;
+}
+.belt_text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.belt_text_right {
+  font-size: 20rpx;
+  color: #FF143C;
+  margin-left: 6rpx;
+}
+.belt_countDown {
+  display: flex;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.belt_close {
+  width: 80rpx;
+  height: 80rpx;
+  background-image: url(https://storage.360buyimg.com/wxmini/cash/belt_close2.png);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.belt_time {
+  width: 32rpx;
+  height: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4rpx;
+  background: #ffffff;
+  font-size: 22rpx;
+  color: #333333;
+}
+.belt_time2 {
+  width: 8rpx;
+  height: 32rpx;
+  font-size: 24rpx;
+  color: #FF4060;
+  text-align: center;
+  line-height: 32rpx;
+}
+.belt_timeDown {
+  display: flex;
+  align-items: center;
+}
+.belt_cover {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 108rpx;
+  z-index: 11;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.69) 37%, #FFFFFF 100%);
+}
+.belt_cover2 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 111;
+}

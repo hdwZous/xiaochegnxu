@@ -1,0 +1,20 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.winnerCouponLayout}}">
+        <block wx:if="{{isLoading}}">
+            <loading-component></loading-component>
+        </block>
+        <view class="{{styles.winnerCouponCollection}}">
+            <view class="{{styles.banner}}"></view>
+            <winner-coupon-group compid="{{$compid__30}}"></winner-coupon-group>
+            <view class="{{styles.couponAside}}">优惠券活动存在波动，以最终领取结果为准</view>
+            <block wx:if="{{sameTip}}">
+                <view class="{{styles.couponAside}}">{{sameTip}}</view>
+            </block>
+            <block wx:if="{{limitTip}}">
+                <view class="{{styles.couponAside}}">{{limitTip}}</view>
+            </block>
+            <winner-coupon-products compid="{{$compid__31}}"></winner-coupon-products>
+            <view class="{{styles.bottomAside}}">价格存在波动，最终解释权一京东到家平台解释为准</view>
+        </view>
+    </view>
+</block>

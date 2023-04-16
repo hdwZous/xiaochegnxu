@@ -1,0 +1,17 @@
+{
+  "component": true,
+  "usingComponents": {
+    "store-list": "../storeList/index",
+    "dd-store-list": "../ddStoreList/index",
+    "goods-row-one": "../goodsRowOne/index",
+    "goods-row-two": "../goodsRowTwo/index",
+    "goods-row-three": "../goodsRowThree/index",
+    "goods-row-three-banner": "../goodsRowThreeBanner/index",
+    "goods-row-two-skinny": "../goodsRowTwoSkinny/index",
+    "store-actgood": "../storeActGoods/index",
+    "dd-goods-row-three": "../ddGoodsRowThree/index",
+    "dd-goods-row-one": "../ddGoodsRowOne/index",
+    "dd-goods-row-two": "../ddGoodsRowTwo/index",
+    "dd-goods-row-three-banner": "../ddGoodsRowThreeBanner/index"
+  }
+}

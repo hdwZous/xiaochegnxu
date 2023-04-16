@@ -1,0 +1,95 @@
+<view >
+    <view  
+        class="meeting-container" 
+        style="background-color: {{meetingFourObj.needFloorBackground && meetingFourObj.floorBgColor || '#fff'}}; background-image: url({{meetingFourObj.floorBgImg || ''}}); background-repeat:no-repeat; background-size: 100% 100%;" 
+        wx:if="{{meetingFourObj.data && meetingFourObj.data.length >= 4 && meetingFourObj.styleTpl == 'tpl12'}}">
+        <view 
+            wx:if="{{meetingFourObj.imgTitle &&  meetingFourObj.imgTitle.imgUrl}}" 
+            class='top-bg' 
+            style="width: {{meetingFourObj.imgTitle.imgWidth}}rpx; height: {{meetingFourObj.imgTitle.imgHeight}}rpx; background: url('{{meetingFourObj.frontImg}}'); background-size: 100% 100%"
+            aria-hidden="true">
+            {{tplStr}}
+        </view>
+        <view 
+            wx:else class='title'
+            aria-role="text" 
+            aria-label="meetingFourObj.floorTitle.floorName">
+            {{meetingFourObj.floorTitle.floorName}}
+        </view>
+        <view class='list-wrapper'>
+            <view 
+                class=' item-wrapper exposure home_MeetingFour' 
+                style="background:{{imgLazyLoad[floorId+index] ? '' : '#D8D8D8'}};"
+                wx:for="{{list}}" 
+                wx:key="index" 
+                wx:item="{{item}}" 
+                data-user-action="{{item.floorCellData.userAction}}" 
+                data-trace-id="{{pageDataTraceId}}"  
+                data-page-id="{{buriedObj.pageIdFirstPage}}" 
+                data-current-page-name="{{buriedObj.currentPageName}}"
+                data-pre-page-name='{{buriedObj.prePageName}}'
+                data-item="{{item.floorCellData}}" 
+                bindtap="jump">
+                <view data-lazy-img-id="{{floorId+index}}" 
+                      class="pic lazy-load"
+                      aria-role="button"
+                      aria-label="促销广告图{{index + 1}}">
+                    <webp-img webp-img="pic lazy-load"  src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" width="170" height="240"  needOverlay="{{false}}"/> 
+                </view>
+                
+            </view>
+        </view>
+    </view>
+    <view  
+        class="bigSale-container " 
+        style="background-color: {{bigSaleObj.needFloorBackground && bigSaleObj.floorBgColor || '#fff'}}; background-image: url({{bigSaleObj.floorBgImg || ''}}); background-repeat:no-repeat; background-size: 100% 100%;" 
+        wx:if="{{bigSaleObj.data && bigSaleObj.data.length >= 3 && bigSaleObj.styleTpl == 'tpl16' || bigSaleObj.data && bigSaleObj.data.length >= 3 && bigSaleObj.styleTpl == 'tpl17'}}">
+        <view 
+            class=" {{bigSaleObj.styleTpl == 'tpl17' ? 'list-bigsale-wrapper-yixing' : 'list-bigsale-wrapper'}}">
+            <view 
+                class="  exposure item-bigsale-wrapper home_MeetingFour"
+                wx:if="{{bigSaleObj.styleTpl == 'tpl16'}}"
+                style="background:{{imgLazyLoad[floorId+index] ? '' : '#D8D8D8'}};"
+                wx:for="{{listBigSale}}" 
+                wx:key="index" 
+                wx:item="{{item}}" 
+                data-user-action="{{item.floorCellData.userAction}}" 
+                data-trace-id="{{pageDataTraceId}}"  
+                data-page-id="{{buriedObj.pageIdFirstPage}}" 
+                data-current-page-name="{{buriedObj.currentPageName}}"
+                data-pre-page-name='{{buriedObj.prePageName}}'
+                data-type='bigSale'
+                data-item="{{item.floorCellData}}" 
+                bindtap="jump"
+                aria-role="button"
+                aria-label="促销广告图{{index + 1}}">
+                <view aria-hidden="true" data-lazy-img-id="{{floorId+index}}" class="pic lazy-load">
+                    <webp-img  webp-img="pic lazy-load"  src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" width="226" needOverlay="{{false}}" height="232"/> 
+                </view>
+                
+            </view>
+            <view 
+                class=" exposure  item-bigsale-wrapper-yixing home_MeetingFour"
+                wx:if="{{bigSaleObj.styleTpl == 'tpl17'}}"
+                style="background:{{imgLazyLoad[floorId+index] ? '' : '#D8D8D8'}};"
+                wx:for="{{listBigSale}}" 
+                wx:key="index" 
+                wx:item="{{item}}" 
+                data-user-action="{{item.floorCellData.userAction}}"
+                data-trace-id="{{pageDataTraceId}}"  
+                data-page-id="{{buriedObj.pageIdFirstPage}}"  
+                data-current-page-name="{{buriedObj.currentPageName}}"
+                data-pre-page-name='{{buriedObj.prePageName}}'
+                data-type='bigSaleYx'
+                data-item="{{item.floorCellData}}" 
+                bindtap="jump"
+                aria-role="button"
+                aria-label="促销广告图{{index + 1}}">
+                <view aria-hidden="true" data-lazy-img-id="{{floorId+index}}" class="pic lazy-load">
+                    <webp-img  webp-img="pic lazy-load"  src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" width="{{index == 1 ? 302 : 188}}" height="{{index == 1 ? 248 : 232}}"  needOverlay="{{false}}"/> 
+                </view>
+                
+            </view>
+        </view>
+    </view>
+</view>

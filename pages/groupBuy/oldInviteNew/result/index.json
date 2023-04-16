@@ -1,0 +1,19 @@
+{
+    "navigationBarTitleText": "京东到家",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff",
+    "backgroundColorTop": "#fff",
+    "usingComponents": {
+        "goods": "../../components/goods/index",
+        "group": "../../components/group/index",
+        "horse-race-lamp": "../../../asyncPackage/compontents/horseRaceLamp/index",
+        "old-invite-new-goods": "../../components/oldInviteNewGoods/index",
+        "default": "/components/default/index",
+        "dialog": "/components/dialog/index"
+    },
+    "componentPlaceholder": {
+        "horse-race-lamp":"view"
+    }
+}

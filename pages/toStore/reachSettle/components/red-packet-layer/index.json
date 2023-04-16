@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-yhy-one": "../../../../asyncPackageStore/compontents/coupon-yhy-one/index",
+    "tip-dialog": "../tipDialog/index",
+    "text-list": "../text-list/index"
+  },
+  "componentPlaceholder": {
+    "coupon-yhy-one": "view"
+  }
+}

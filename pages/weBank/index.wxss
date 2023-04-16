@@ -1,0 +1,85 @@
+.loading_case {
+    padding-top: 40%;
+}
+.loading {
+    margin: 0 auto;
+    width: 140rpx;
+    height: 140rpx;
+    background: url("https://storage.360buyimg.com/wximg/common/loading.gif") no-repeat center;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.wrap {
+    position: relative;
+    /* padding-bottom: 100rpx; */
+    height: 100vh;
+    overflow: hidden;
+    background-image:url("https://storage.360buyimg.com/wximg/webank4.0/bg4.jpg");
+    background-repeat: no-repeat;
+    background-position:center;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    /* background-size: 100% 100%; */
+    box-sizing: border-box;
+    background-color: #ff7e15;
+}
+.btn {
+    /* padding: 0 40rpx; */
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    margin-top: 200rpx;
+    text-align: center;
+    box-sizing: border-box;
+}
+.img {
+    display: block;
+    /* width: 310rpx;
+    height: 121rpx; */
+    margin: 0 auto;
+    width: 690rpx;
+    height: 90rpx;
+}
+.protocol {
+    display: inline;
+    font-size: 20rpx;
+    color: #fff;
+}
+.protocol_text {
+    text-decoration: underline;
+}
+.protocol_wrap {
+    display: inline;
+    font-size: 20rpx;
+    color: #fff;
+}
+.proto_icon {
+    display: inline-block;
+    width: 24rpx;
+    height: 24rpx;
+    background: url("https://storage.360buyimg.com/wximg/webank4.0/unchecked.png") center no-repeat;
+    background-size: 100% 100%;
+    vertical-align: -4rpx;
+    /* vertical-align: -1rpx; */
+}
+.proto_icon_checked {
+    background: url("https://storage.360buyimg.com/wximg/webank4.0/checked.png") center no-repeat;
+    background-size: 100% 100%;
+}
+.space {
+    height: 10rpx;
+}
+.bottom {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+.bottom>.img {
+    width: 475rpx;
+    height: 38rpx;
+    display: inline-block;
+    vertical-align: middle;
+}

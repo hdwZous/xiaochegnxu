@@ -1,0 +1,12 @@
+<view class="sku_name_tag">
+  <block wx:if="{{infos.iconUrl}}">
+    <view class='component-tag' 
+        style="color: {{infos.iconTextColorCode}}; background: linear-gradient(to right, {{infos.startColorCode}} 0%,  {{infos.endColorCode}} 100%);">
+      <image class='freeze-icon' src="{{infos.iconUrl}}" />
+      <text>{{infos.iconText}}</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="sku_info_tags" wx:if="{{infos.iconText}}" style="color: {{infos.iconTextColorCode}};background:linear-gradient(135deg, {{infos.startColorCode}} 0%, {{infos.endColorCode}} 100%);">{{infos.iconText}}</view>
+  </block>
+</view>

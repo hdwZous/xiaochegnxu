@@ -1,0 +1,51 @@
+<view class="drug-sku-pop">
+    <view class="pop">
+        <view class="title">{{drugSkuPopData.title}}</view>
+        <view class="sub-title">{{drugSkuPopData.content}}</view>
+        <view class="sku-scroll-box">
+            <scroll-view class="sku-scroll" scroll-y>
+                <view class="scroll-view-item" wx:for="{{drugSkuPopData.list}}" wx:for-item="item" wx:key="index">
+                    <!-- 处方药标题 -->
+                    <drug-sku-title wx:if="{{item.prescriptionTag}}" subItem="{{item.prescriptionTag}}" source="drupPop"></drug-sku-title>
+                    <view class="sku-container" wx:for="{{item.skuInfoVOList}}" wx:for-item="skuInfo" wx:key="index">
+                        <view class="container">
+                            <view class="sku-image">
+                                <image class="sku-image" mode="widthFix" src="{{skuInfo.imageUrl}}" />
+                            </view>
+                            <view class="sku-text">
+                                <view class="name">{{skuInfo.skuName}}</view>
+                                <view class="count">x{{skuInfo.cartNum}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="pop-btn">
+            <block wx:if="{{drugSkuPopData.type == 2 || drugSkuPopData.type == 1}}">
+                <block wx:if="{{drugSkuPopData.type == 2}}">
+                    <view class="btn unimportance" bindtap="closeDrugSkuPop">返回</view>
+                    <!-- 去开单 -->
+                    <view class="btn important" wx:for="{{drugSkuPopData.buttons}}" wx:for-item="item" wx:key="index" bindtap="toPrescriptionsH5" data-pop-button="{{item}}">
+                        {{item.title}}
+                    </view>
+                </block>
+                <!-- 一起购买 -->
+                <block wx:if="{{drugSkuPopData.type == 1}}">
+                    <view class="btn unimportance" bindtap="closeDrugSkuPop">取消</view>
+                    <view class="btn important" wx:for="{{drugSkuPopData.buttons}}" wx:for-item="item" wx:key="index" bindtap="buyTogether" data-pop-button="{{item}}">
+                        {{item.title}}
+                    </view>
+                </block>
+            </block>
+            <block wx:if="{{drugSkuPopData.type == 3}}">
+                <view class="btn unimportance" bindtap="confirmChangeSku">确认修改</view>
+                <view class="btn important" bindtap="closeDrugSkuPop">取消修改</view>
+            </block>
+             <block wx:if="{{drugSkuPopData.type == 4}}">
+                <view class="btn unimportance" bindtap="confirmDelSku">确认删除</view>
+                <view class="btn important" bindtap="closeDrugSkuPop">取消删除</view>
+            </block>
+        </view>
+    </view>
+</view>

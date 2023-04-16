@@ -1,0 +1,20 @@
+module.exports = {
+  "facetoFaceDiaMask": "index-module__facetoFaceDiaMask___1dJ4c",
+  "facetoFaceDiaContentBox": "index-module__facetoFaceDiaContentBox___3_JjK",
+  "title": "index-module__title___IMk2-",
+  "erweimaBox": "index-module__erweimaBox___3qJ01",
+  "erweimaImg": "index-module__erweimaImg___335xv",
+  "friendOperateTitle": "index-module__friendOperateTitle___-W7fo",
+  "friendOperateBox": "index-module__friendOperateBox___PFZ07",
+  "friendOperateWeixin": "index-module__friendOperateWeixin___Ckoqn",
+  "friendOperateWeixinImg": "index-module__friendOperateWeixinImg___1mCfS",
+  "friendOperateWeixinTitle": "index-module__friendOperateWeixinTitle___3PV3w",
+  "friendOperateErweima": "index-module__friendOperateErweima___2N0Of",
+  "friendOperateErweimaImg": "index-module__friendOperateErweimaImg___cwACv",
+  "friendOperateErweimaTitle": "index-module__friendOperateErweimaTitle___rWbIH",
+  "friendOperateDone": "index-module__friendOperateDone___2qJP2",
+  "friendOperateDoneImg": "index-module__friendOperateDoneImg___3_MLr",
+  "friendOperateDoneTitle": "index-module__friendOperateDoneTitle___RLrlN",
+  "friendOperateArrow": "index-module__friendOperateArrow___3h0zu",
+  "closeFacetoFaceDiaButton": "index-module__closeFacetoFaceDiaButton___3btKk"
+};

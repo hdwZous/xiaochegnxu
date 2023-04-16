@@ -1,0 +1,14 @@
+.tag{
+  padding-top: 4rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  width: 56rpx;
+  height: 64rpx;
+  line-height: 24rpx;
+  font-size: 20rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-align: center;
+  white-space: normal;
+}

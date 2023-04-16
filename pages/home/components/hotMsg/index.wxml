@@ -1,0 +1,46 @@
+<view 
+    class="hot_msg_wrap flex-row" 
+    style="background-color: {{item.needFloorBackground && item.floorBgColor || '#fff'}};background-image: url({{item.floorBgImg || ''}});background-position: no-repeat; background-size: 100% auto;">
+    <view 
+        class="title_img_case flex-none" 
+        aria-label="头条" 
+        aria-role="text">
+    </view>
+    <view class="hot_msg_case flex-auto">
+        <swiper 
+            class="hot_swiper" 
+            autoplay="{{autoPlay}}" 
+            circular="true" 
+            data-trace-id="{{pageDataTraceId}}"
+            data-page-id="{{buriedObj.pageIdFirstPage}}"
+            data-current-page-name="{{buriedObj.currentPageName}}"
+            data-pre-page-name='{{buriedObj.prePageName}}'
+            bindchange="swiperChange"
+            vertical="true">
+            <swiper-item 
+                class="swiper_item" 
+                wx:for="{{item.data}}" 
+                wx:for-item="subitem" 
+                wx:for-index="index" 
+                wx:key="subitem">
+                <view 
+                    class="hot_txt_case flex-row {{item.data.length  == 1 ? 'home_hotmsg' : ''}}" 
+                    bind:tap="clickHotText" 
+                    data-item="{{subitem.floorCellData}}"
+                    data-trace-id="{{pageDataTraceId}}"
+                    data-page-id="{{buriedObj.pageIdFirstPage}}"
+                    data-current-page-name="{{buriedObj.currentPageName}}"
+                    data-pre-page-name='{{buriedObj.prePageName}}'
+                    data-user-action="{{subitem.floorCellData.userAction}}"
+                    aria-role="button"
+                    aria-label="头条消息第{{index}}条{{subitem.floorCellData.title}}{{subitem.floorCellData.words}}">
+                    <view aria-hidden="true" class="hot_txt_left flex-none">{{subitem.floorCellData.title}}</view>
+                    <view aria-hidden="true" class="hot_split">|</view>
+                    <view aria-hidden="true" class="hot_txt_right flex-auto ellipsis">
+                        {{subitem.floorCellData.words}}
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>

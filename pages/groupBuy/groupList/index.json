@@ -1,0 +1,15 @@
+{
+    "navigationBarTitleText": "拼团享优惠",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff",
+    "backgroundColorTop": "#fff",
+    "usingComponents": {
+        "group-buy-goods": "../components/groupBuyGoods/index",
+        "old-invite-new-goods": "../components/oldInviteNewGoods/index",
+        "dialog": "/components/dialog/index",
+        "default": "/components/default/index",
+        "new-default": "/components/newDefault/index"
+    }
+}

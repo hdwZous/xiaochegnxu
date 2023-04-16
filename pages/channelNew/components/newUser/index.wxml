@@ -1,0 +1,323 @@
+
+  <!-- wx:if="{{item.mainTitleImg && item.modelShowType == 1 || item.modelShowType == 2}}" -->
+<view
+  class="newUser"
+  data-user-action="{{item.userAction}}"
+  data-trace-id="{{traceId}}"
+  data-page-id="{{pageId}}"
+  data-current-page-name="{{currentPageName}}"
+  data-pre-page-name='{{prePageName}}'
+  style="background: url({{item.bgImgUrl}}) no-repeat; background-size: 100% 100%;">
+  <view class="newUser-title-content">
+    <view class="newUser-flex-one">
+      <view class="newUser-title-name">
+        <image
+          wx:if="{{item.modelShowType == 1}}"
+          src="{{item.mainTitleImg}}"
+          aria-label='活动标题'
+          aria-role='text'
+        ></image>
+        <text
+          class="newUser-title-name3"
+          wx:if="{{item.modelShowType == 2}}"
+          aria-label='{{item.maintitleText}}'
+          aria-role='text'
+        >{{item.maintitleText || '老朋友专享福利'}}</text>
+      </view>
+      <view
+        class="newUser-timeDown"
+        wx:if="{{item.modelShowType == 1 && item.countDownTime}}"
+        aria-label='{{hour}}小时 {{minute}}分钟 {{second}}秒 即将失效'
+        aria-role='text'
+        style='background: linear-gradient(90deg, {{item.countDownStartColor}} 0%, {{item.countDownEndColor}} 100%)'
+      >{{hour}}:{{minute}}:{{second}}即将失效</view>
+    </view>
+    <view
+      bind:tap="jumpArrow"
+      data-item='{{item}}'
+      wx:if="{{item.arrowBtnShow}}"
+      class="newUser-friend-arrowContent">
+      <view
+        class="newUser-friend-arrow channel_comp_ep"
+        data-trace-id="{{traceId}}"
+        data-user-action='{{item.arrowUserAction}}'
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        aria-label='跳转到落地页'
+        aria-role='text'
+      ></view>
+    </view>
+  </view>
+  <!-- 优惠券合图 -->
+  <view
+    class="newUser-coupon channel_comp_ep"
+    bind:tap="clickCoupon"
+    data-item='{{item}}'
+    aria-label='活动图片'
+    aria-role='text'
+    data-trace-id="{{traceId}}"
+    data-user-action="{{item.userAction}}"
+    data-page-id="{{pageId}}"
+    data-current-page-name="{{currentPageName}}"
+    data-pre-page-name='{{prePageName}}'
+    wx:if="{{item.imgUrl && item.modelShowType == 1}}"
+  ><image src="{{item.imgUrl}}"></image>
+  </view>
+  <!-- 膨胀劵箭头 -->
+  <view wx:if="{{item.expansionCouponArrowImg.imageUrl}}" class="newUser-expand-arrow">
+    <image src="{{item.expansionCouponArrowImg.imageUrl}}"></image>
+  </view>
+  <!-- 膨胀劵列表 -->
+  <scroll-view
+    wx:if="{{item.expansionCouponList.length > 0}}"
+    scroll-x="{{true}}"
+    scroll-with-animation="{{true}}"
+    class="newUser-expand-coupon"
+    style="background: {{item.expansionCouponBgColor}}">
+    <!-- 大于三张动态计算宽度 大于3张 width == 每张优惠券 * 张数 + 查看更多箭头的宽度 -->
+      <view
+        class="{{item.expansionCouponList.length < 3 ? 'newUser-expand-cover1' : 'newUser-expand-cover'}} channel_comp_ep"
+        wx:for="{{item.expansionCouponList}}"
+        data-item="{{ele}}"
+        data-trace-id="{{traceId}}"
+        data-user-action="{{ele.userAction}}"
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        bind:tap="expandClick"
+        style="display: {{item.expansionCouponList.length == 1 ? 'flex' : ''}};width: {{item.expansionCouponList.length == 2 ? '316rpx' : 'auto'}};"
+        wx:for-item="ele">
+        <view wx:if="{{ele.storeLogo}}" class="newUser-expand-logo">
+          <image src="{{ele.storeLogo}}" />
+        </view>
+        <view
+          style="background: linear-gradient({{ele.bgStartColor}} 0%, {{ele.bgEndColor}} 100%);{{item.expansionCouponList.length == 1 ? 'padding-right: 48rpx' : ''}}"
+          class="{{item.expansionCouponList.length < 3 ? 'newUser-expand-content1' : 'newUser-expand-content'}}">
+          <text style="{{item.expansionCouponList.length == 1 ? 'height: 48rpx;line-height: 58rpx;width: auto' : ''}}" class='newUser-expand-text'>{{ele.couponText}}</text>
+          <text class="newUser-expand-price">{{ele.couponPrice}}</text>
+          <view
+            wx:if="{{item.expansionCouponList.length == 1}}"
+            class="newUser-expand-button"
+            style="color: {{ele.couponBtnColor}};background: linear-gradient({{ele.btnBgStartColor}} 0%, {{ele.btnBgEndColor}} 100%)"
+          >{{ele.couponBtn}}</view>
+        </view>
+        <view class="newUser-expand-topdot"></view>
+        <view class="newUser-expand-bottomdot"></view>
+      </view>
+      <view
+        wx:if="{{item.expansionCouponSeeMoreShow && item.expansionCouponSeeMore && item.expansionCouponSeeMore.to != null}}"
+        class="newUser-checkmore channel_comp_ep"
+        bind:tap="clickMore"
+        data-trace-id="{{traceId}}"
+        data-user-action="{{item.expansionCouponSeeMore.userAction}}"
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        data-item="{{item}}">
+        <view class="newUser-checkmore-icon"></view>
+        <view class="newUser-checkmore-text">查看更多</view>
+      </view>
+  </scroll-view>
+  <!-- 副标题/新人楼层 -->
+  <view wx:if="{{item.subTitleImg && item.modelShowType == 1}}" class="newUser-subTitle">
+    <image
+      aria-label='召回楼层图片'
+      aria-role='img'
+      src="{{item.subTitleImg}}"
+    ></image>
+  </view>
+  <!-- 商品列表 -->
+  <!-- 爆品类型 -->
+  <!-- 普通品 -->
+  <!-- 预估到手价商品 -->
+  <!-- 商品类型：组件a，要区分爆品=1还是普通品=2，组件b为3，预估到手价商品 -->
+  <view
+    class="newUser-item-list"
+    style="{{item.modelShowType == 2 ? 'margin-top: 0' : 'margin-top: 20rpx'}}"
+    wx:if="{{item.strategySkuList && item.strategySkuList.length > 0}}">
+    <scroll-view
+      class="newUser-friend-list"
+      scroll-x="{{true}}">
+      <view
+        bind:tap="jumpItem"
+        data-item="{{ele}}"
+        wx:for-item="ele"
+        wx:for-index="index"
+        wx:key="index"
+        wx:for="{{item.strategySkuList}}"
+        class="newUser-friend-feed">
+
+        <!-- 爆品类型 -->
+        <view
+          class="channel_comp_ep"
+          data-trace-id="{{traceId}}"
+          data-user-action="{{ele.userAction}}"
+          data-page-id="{{pageId}}"
+          data-current-page-name="{{currentPageName}}"
+          data-pre-page-name='{{prePageName}}'
+          wx:if="{{ele.skuShowType == 1}}">
+          <view class="newUser-friend-top">
+            <image
+              aria-label='商品图片'
+              aria-role='text'
+              class="newUser-friend-image" src="{{ele.imgUrl}}"
+            ></image>
+            <!-- <view class="newUser-friend-leftpic">
+              <text class="newUser-friend-yugu">{{ele.bottomCornerTag.tag.iconLeft.iconTitle}}</text>
+            </view>
+            <view
+              style="color: {{ele.bottomCornerTag.tag.iconRight.colorCode}}"
+              class="newUser-friend-bottom-text"
+            >{{ele.bottomCornerTag.tag.iconRight.iconText}}</view> -->
+            <bottom-corner-tag
+              wx:if="{{ele.bottomCornerTag}}"
+              infos="{{ele.bottomCornerTag}}"
+              moduleId="SkuYhsOne"
+              showHandle="{{true}}"
+            ></bottom-corner-tag>
+          </view>
+          <view class="newUser-friend-bottom">
+            <view
+              aria-label='{{ele.skuName}}'
+              aria-role='text'
+              class="newUser-friend-name"
+            >{{ele.skuName}}</view>
+            <view
+              aria-label='价格：{{ele.minorPrice.price}}'
+              aria-role='text'
+              class="newUser-friend-price"
+              wx:if='{{ele.minorPrice.price}}'
+              style="color: {{ele.minorPrice.priceColor}};{{ele.minorPrice.deleteLine ? 'text-decoration: line-through;' : ''}};font-family: light;"
+            >¥{{ele.minorPrice.price}}</view>
+          </view>
+        </view>
+
+        <!-- 普通品 -->
+        <view
+          class="channel_comp_ep"
+          data-trace-id="{{traceId}}"
+          data-user-action="{{ele.userAction}}"
+          data-page-id="{{pageId}}"
+          data-current-page-name="{{currentPageName}}"
+          data-pre-page-name='{{prePageName}}'
+          wx:if="{{ele.skuShowType == 2}}">
+          <view class="newUser-friend-top">
+            <view class="newUser-friend-type2" style="background-image: url({{ele.topLeftCornerTag.componentTag.bgImgUrl}})">
+              <text
+                aria-label='{{ele.topLeftCornerTag.componentTag.iconText}}'
+                aria-role='text'
+                class="newUser-friend-typeText"
+              >{{ele.topLeftCornerTag.componentTag.iconText}}</text>
+            </view>
+            <image
+              aria-label='商品图片'
+              aria-role='text'
+              class="newUser-friend-image"
+              src="{{ele.imgUrl}}"
+            ></image>
+          </view>
+          <view class="newUser-friend-bottom">
+            <view
+              aria-label='{{ele.skuName}}'
+              aria-role='text'
+              class="newUser-friend-name">{{ele.skuName}}</view>
+            <view
+              wx:if='{{ele.majorPrice.price}}'
+              style="color: {{ele.majorPrice.priceColor}};"
+              class="newUser-friend-price {{!ele.minorPrice.price ? 'newUser-friend-price1' : ''}}"
+              aria-label='价格：{{ele.majorPrice.price}}'
+              aria-role='text'
+            >¥{{ele.majorPrice.price}}</view>
+            <view
+              wx:if="{{ele.minorPrice.price}}"
+              aria-label='价格：{{ele.minorPrice.price}}'
+              aria-role='text'
+              style="color: {{ele.minorPrice.priceColor}};{{ele.minorPrice.deleteLine ? 'text-decoration: line-through;' : ''}};font-family: light;"
+              class="newUser-friend-price2"
+            >¥{{ele.minorPrice.price}}</view>
+          </view>
+        </view>
+
+        <!-- 预估到手价商品 -->
+        <view
+          class="channel_comp_ep"
+          data-trace-id="{{traceId}}"
+          data-user-action="{{ele.userAction}}"
+          data-page-id="{{pageId}}"
+          data-current-page-name="{{currentPageName}}"
+          data-pre-page-name='{{prePageName}}'
+          wx:if="{{ele.skuShowType == 3}}">
+          <view class="newUser-friend-top">
+            <image
+              aria-label='商品图片'
+              aria-role='text'
+              class="newUser-friend-image"
+              src="{{ele.imgUrl}}"
+            ></image>
+            <!-- <view class="newUser-friend-leftpic3" style="background: {{ele.bottomCornerTag.tag.iconLeft.bgColorCode}}">
+              <text class="newUser-friend-yugu3" style="color: {{ele.bottomCornerTag.tag.iconLeft.colorCode}}">{{ele.bottomCornerTag.tag.iconLeft.iconTitle}}</text>
+              <text class="newUser-friend-yugu32" style="color: {{ele.bottomCornerTag.tag.iconLeft.colorCode}}">{{ele.bottomCornerTag.tag.iconLeft.iconText}}</text>
+            </view>
+            <view
+              style="color: {{ele.bottomCornerTag.tag.iconRight.colorCode}};background: {{ele.bottomCornerTag.tag.iconLeft.bgColorCode}}"
+              class="newUser-friend-bottom-text"
+            >￥{{ele.bottomCornerTag.tag.iconRight.iconText}}</view> -->
+           <bottom-corner-tag
+            wx:if="{{ele.bottomCornerTag}}"
+            infos="{{ele.bottomCornerTag}}"
+            moduleId="SkuYhsOne"
+            showHandle="{{true}}"
+          ></bottom-corner-tag>
+          </view>
+          <view class="newUser-friend-bottom">
+            <view
+              aria-label='{{ele.skuName}}'
+              aria-role='text'
+              class="newUser-friend-name"
+            >{{ele.skuName}}</view>
+            <view
+              wx:if="{{ele.minorPrice.priceColor}}"
+              style="color: {{ele.minorPrice.priceColor}};font-family: light;"
+              class="newUser-friend-price2"
+              aria-label='{{ele.minorPrice.price}}'
+              aria-role='text'
+            >¥{{ele.minorPrice.price}}</view>
+            <view
+              wx:elif="{{ele.majorPrice.price}}"
+              aria-label='{{ele.majorPrice.price}}'
+              aria-role='text'
+              style="color: {{ele.majorPrice.priceColor}};font-family: 'light';"
+              class="newUser-friend-price"
+            >¥{{ele.majorPrice.price}}</view>
+          </view>
+        </view>
+
+      </view>
+      <view
+        class="newUser-friend-more channel_comp_ep"
+        bind:tap="jumpMore"
+        data-item="{{item}}"
+        aria-label='点击跳转，查看更多'
+        aria-role='text'
+        data-trace-id="{{traceId}}"
+        data-user-action="{{item.skuSeeMoreUserAction}}"
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        wx:if="{{item.skuSeeMoreShow}}">
+        <image
+          aria-label='查看更多图标'
+          aria-role='text'
+          class="newUser-friend-imagemore"
+          src="https://storage.360buyimg.com/wxmini/cash/belt_more.png"
+        ></image>
+        <view
+          aria-label='查看更多'
+          aria-role='text'
+          class="newUser-friend-checkmore"
+        >查看更多</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

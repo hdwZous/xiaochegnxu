@@ -1,0 +1,10 @@
+
+<view class="content">
+  <block wx:for="{{initData.dial}}" wx:for-item="item" wx:key="index">
+    <view class="item-wrap {{current === index ? 'active' : ' '}}  {{index == 4 ? 'scale log-draw' : ''}}" 
+          style="background: {{index == 4 ? 'transparent' : ''}}"
+          bindtap="clickStart">
+      <image class="item-image" src="{{item.url}}" />
+    </view>
+  </block>
+</view>

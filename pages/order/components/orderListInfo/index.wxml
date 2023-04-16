@@ -1,0 +1,144 @@
+<!-- pages/order/components/orderListInfo/index.wxml -->
+<view class="container">
+    <view class="title_wrap">
+        <view class="left ellipsis" 
+              aria-role='link'
+              aria-label="{{initData.storeName}}，点击进入门店"
+              bind:tap="handleGotoStore">
+            {{initData.storeName}}
+            <image src="https://storage.360buyimg.com/wximg/order/arrow_right.png" lazy-load="{{true}}" wx:if="{{!initData.medicineTag}}" />
+        </view>
+        <view class="right"
+              bind:tap="handleContact"
+              aria-haspopup='true'
+              aria-role='button'
+              aria-label="联系商家，点击弹出唤起电话弹层"
+              >
+            <image src="https://storage.360buyimg.com/wximg/order/newtel.png" lazy-load="{{true}}" />
+            <text class="contact">联系商家</text>
+        </view>
+    </view>
+    <view class="list_and_price_wrap">
+        <view class="list_item" 
+              wx:for="{{initData.productInfos}}" 
+              wx:key="index" wx:if="{{ isFold ? index <=1 : index>=0 }}" 
+              bind:tap="handleGotoProductDetail" 
+              data-skuid="{{item.sku}}">
+            <view aria-hidden="true" class="top_left_tag" 
+                style="background:linear-gradient(135deg, {{item.componentTag.startColorCode}} 0%, {{item.componentTag.endColorCode}} 100%);"
+                wx:if="{{item.componentTag}}">
+                    <image wx:if="{{item.componentTag.iconUrl}}" src="{{item.componentTag.iconUrl}}" class="top_left_tag-icon"/>
+                    <view style="color:{{item.componentTag.iconTextColorCode}};font-size:16rpx;padding-left:{{!item.componentTag.iconUrl&&'4rpx'}};padding-right:{{!item.componentTag.iconUrl&&'4rpx'}}">{{item.componentTag.iconText}}</view>
+            </view>
+            <webp-img aria-hidden="true" webp-img="list_item_img" src="{{item.imgPath}}" needOverlay='{{true}}' />
+            <!-- <image class="list_item_img" lazy-load="{{true}}" src="{{item.imgPath}}" /> -->
+            <view class="list_item_right"               
+                  aria-role='link'
+                  aria-label="{{item.name}},现价{{item.totalPrice}}，点击进入商品详情页">
+                <view class="name ellipsis" aria-hidden="true">
+                    <text wx:if="{{item.startColorCode}}" style="background:linear-gradient(135deg,{{item.startColorCode}} 0%,{{item.endColorCode}} 100%);color:#fff" class="promotion_label">{{item.promotionText}}</text>
+                    {{item.name}}
+                </view>
+                <view class="skuSpecification" wx:if="{{item.skuSpecification}}" aria-hidden="true">{{item.skuSpecification}}</view>
+                <view class="price_wrap" wx:for="{{item.priceInfos}}" wx:key="index" wx:for-item="item02" aria-hidden="true">
+                    <view class="left_price" style="color:{{item.priceInfos.length>1 && item02.promotionType != 0 && 'red'}}">
+                        <view style="height:30rpx;">
+                            <text >{{item02.promotionWeightTotalPrice || item02.weightTotalPrice || item02.priceStr || item02.promotionPriceStr}}</text>
+                            <text wx:if="{{!item02.promotionTotalWeight && !item02.totalWeight}}"> x {{item02.num || item02.promotionNum}}</text>
+                            <text wx:if="{{item02.promotionTotalWeight || item02.totalWeight}}" class="weight_unit">{{item02.promotionTotalWeight || item02.totalWeight}}</text>
+                            <image wx:if="{{item02.memberIcon}}" class="member_icon" src="{{item02.memberIcon}}"/>
+                        </view>
+                    </view>
+                    <view class="right_price" wx:if="{{index != (item.priceInfos.length -1) }}"></view>
+                    <view class="right_price" wx:else>
+                        <text class="origin_price" wx:if="{{item.totalBasicPriceFen}}"> ¥{{item.totalBasicPriceFen/100}}</text><text class="pay_price">{{item.totalPrice}}</text>
+                    </view>
+                </view>
+                <!-- 增值服务 -->
+                <view class="add_service" wx:if="{{item.valueAddedServiceList}}">
+                   <view class="add_service_item" wx:for="{{item.valueAddedServiceList}}" wx:for-item="serviceItem" wx:key="index">
+                      <view class="add_service_left">{{serviceItem.serviceName}} x {{serviceItem.serviceNum}}</view>
+                      <view class="add_service_right">{{serviceItem.servicePrice}}</view>
+                   </view>
+                   <view class="use_service" 
+                     wx:if="{{item.valueAddedServiceEntrance && item.valueAddedServiceEntrance.text}}"  
+                     data-dialog="{{item.valueAddedServiceEntrance.layer}}" 
+                     catch:tap="handelServiceClick">
+                     <text> {{item.valueAddedServiceEntrance.text}} </text>
+                     <view class="right_arrow"></view>
+                   </view>
+                </view>
+                <view class="not_weight" wx:if="{{item.weightAdjustContext}}">{{item.weightAdjustContext}}</view>
+            </view>
+        </view>
+        <view class="total_num" 
+              wx:if="{{initData.productInfos.length>2}}" 
+              aria-role='button'
+              aria-label="{{initData.productTotalNumStr}},点击将展开全部已购买商品"
+              bind:tap="handleFold">
+            {{initData.productTotalNumStr}}
+            <image src="https://storage.360buyimg.com/wxapp/arrow_right_dark.png" class="{{!isFold && 'upper'}}" />
+        </view>
+        <view class="total_price_wrap" 
+              aria-role='button'
+              aria-label="商品总价,{{initData.productVisibleTotalPrice}}"
+              wx:if="{{initData.productVisibleTotalPrice}}">
+            <view class="total_price_left">商品总价</view>
+            <view class="total_price_right">{{initData.productVisibleTotalPrice}}</view>
+        </view>
+        <!-- 定金 -->
+        <view class="deposit-wrap" wx:if="{{initData.reserveOrderInfo}}">
+          <deposit info="{{initData.reserveOrderInfo}}"></deposit>
+        </view>
+        <!-- 运费信息 -->
+        <view class="total_price_wrap other_price" 
+              aria-role='text'
+              aria-label="{{item.title}}{{item.value}}"
+              wx:for="{{initData.priceInfoList}}" 
+              wx:key="index">
+            <view class="total_price_left" aria-hidden="true">
+                <text>{{item.title}}</text><text style="font-size: 24rpx">{{item.secondTitle}}</text>
+                <image 
+                wx:if="{{item.childMoneyList && (item.title =='包装服务' || item.title =='运费')}}"
+                id="{{index}}" catchtap='onDeliverFeeClick'
+                aria-haspopup='true'
+                aria-role='button'
+                data-id="{{index}}"
+                data-title='{{item.title}}'
+                aria-label="{{item.title}}明细，点击将弹出明细弹层"
+                class="delivery-fee-icon" 
+                mode="aspectFit" 
+                src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+            </view>
+            <view class="total_price_right" aria-hidden="true">{{item.value}}</view>
+        </view>
+        <!-- 优惠信息 -->
+        <view class="discounts_wrap" 
+              aria-role='text'
+              aria-label="{{item.title}}{{item.value}}"
+              wx:for="{{initData.promotionInfoList}}" 
+              wx:key="index">
+            <view class="discounts_left" aria-hidden="true">
+                <text class="discounts_label" style="background:linear-gradient(135deg,{{item.startColorCode}} 0%,{{item.endColorCode}} 100%);color:{{flagColor}}">{{item.flagTitle}}</text><text style="font-weight:normal;color:#333;">{{item.title}}</text>
+            </view>
+            <view class="discounts_right" aria-hidden="true">{{item.value}}</view>
+        </view>
+    </view>
+    <view class="final_pay_price_wrap"
+          aria-role='text'
+          aria-label="共节省{{initData.discountPrice || 0}}元，实付金额{{initData.realPay}}元">
+        <text class="total_save_text" wx:if="{{initData.discountPrice}}" aria-hidden="true">共节省</text><text class="save_price" wx:if="{{initData.discountPrice}}">¥{{initData.discountPrice}}</text><text>实付金额：</text><text class="real_pay_price">¥{{initData.realPay}}</text>
+    </view>
+    <!-- 同意定金不退楼层 -->
+    <view class="no_refunds" wx:if="{{initData.reserveOrderInfo}}">
+      <view class="top_box d-flex flex-row align-items-center">
+        <text class="title ellipsis">{{initData.reserveOrderInfo.agreement.title}}</text>
+        <image bindtap="showGuardRule" wx:if="{{initData.reserveOrderInfo.agreement.readmeList.length}}" data-readme-list="{{initData.reserveOrderInfo.agreement.readmeList}}" class="delivery-fee-icon" mode="aspectFit" src="https://storage.360buyimg.com/wximg/settlement/tip.png" />
+      </view>
+      <view class="desc_info ellipsis2">{{initData.reserveOrderInfo.agreement.tongtip}}</view>
+    </view>
+</view>
+<!-- 问号提示哦 -->
+<notice-diglog  noticeDialogVisible="{{noticeDialogVisible}}" initData="{{noticeDialogData}}" bind:onNoticeDialogVisible="onNoticeDialogVisible"/>
+<service-diglog serviceDialogVisible="{{serviceDialogVisible}}" initData="{{serviceDialogData}}" bind:onServiceDialogVisible="onServiceDialogVisible"/>
+<tip-dialog types="{{tipDialog.types}}" show="{{tipDialog.show}}" title="{{tipDialog.title}}" desc="{{tipDialog.desc}}" readmeList="{{tipDialog.readmeList}}" bindtipClose="tipClose"></tip-dialog>

@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.labels}}"><block wx:if="{{tags && tags.length > 0}}"><dj-tag wx:key="$loopState__temp2" wx:for="{{loopArray169}}" wx:for-item="v" wx:for-index="i" compid="{{v.$compid__310}}"></dj-tag></block></view></block>

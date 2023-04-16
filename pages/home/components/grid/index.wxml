@@ -1,0 +1,24 @@
+<view wx:if="gridData.data && gridData.data.length>=2" 
+      class="container" 
+      style="background-color:{{gridData.needFloorBackground && gridData.floorBgColor}}; background-image: url({{gridData.floorBgImg || ''}}); background-position: no-repeat; background-size: 100% auto;">
+    <view class="wrap{{gridData.data.length}}">
+        <view 
+            wx:for="{{gridData.data}}" 
+            wx:for-item="item" 
+            wx:key="index" 
+            class=" item{{gridData.data.length}} exposure home_grid" data-item="{{item.floorCellData}}" 
+            data-user-action="{{item.floorCellData.userAction}}" 
+            data-trace-id="{{pageDataTraceId}}"
+            data-page-id="{{buriedObj.pageIdFirstPage}}"
+            data-current-page-name="{{buriedObj.currentPageName}}"
+            data-pre-page-name='{{buriedObj.prePageName}}'
+            bindtap="jump">
+            <view 
+                style="margin-right: {{gridData.data.length == 2 ? '28rpx' : '0rpx'}}">
+                <view class='title'>{{item.floorCellData.title}}</view>
+                <view class='words'>{{item.floorCellData.words}}</view>
+            </view>
+            <image src="{{imgLazyLoad[floorId+index] ? item.floorCellData.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" data-lazy-img-id="{{floorId+index}}" class="img lazy-load" />
+        </view>
+    </view>
+</view>

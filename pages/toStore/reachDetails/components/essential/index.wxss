@@ -1,0 +1,70 @@
+.essential__wrapper {
+  background-color: #fff;
+  border-radius: 0 0 32rpx 32rpx;
+  padding: 44rpx 24rpx 32rpx;
+}
+
+.essential__title {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #333;
+  line-height: 44rpx;
+}
+
+.essential__content {
+  padding: 32rpx 0;
+}
+
+.essential__buy {
+  height: 64rpx;
+  background: linear-gradient(90deg, #FF6461, #FF2A26);
+  border-radius: 200rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  line-height: 64rpx;
+  color: #fff;
+  margin: 0;
+  padding: 0 32rpx !important;
+}
+
+.essential__footer {
+  border-top: 1rpx solid #EAEAEA;
+}
+
+.essential__hint {
+  position: relative;
+  font-size: 28rpx;
+  line-height: 34rpx;
+  margin-top: 30rpx;
+  overflow: hidden;
+}
+
+.essential__arrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8rpx;
+  width: 22rpx;
+  height: 40rpx;
+  margin-top: -20rpx;
+  background: url("https://storage.360buyimg.com/wximg/order/order_right_arrow.png") no-repeat center center;
+  background-size: contain;
+}
+
+.essential__item__title {
+  font-weight: 500;
+  color: #333;
+  margin-right: 16rpx;
+}
+
+.essential__item__list {
+  font-weight: 400;
+  color: #777;
+  margin-right: 24rpx;
+}
+
+.essential__item__image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 4rpx;
+}

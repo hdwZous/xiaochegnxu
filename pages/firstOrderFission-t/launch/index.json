@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "default": "../components/default/index",
+    "marquee": "../components/marquee/index",
+    "activity": "../components/activity/index",
+    "activity-record": "../components/activityRecord/index",
+    "pop-dia": "../components/popDia/index"
+  },
+  "navigationBarTitleText": "邀请有礼",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "onReachBottomDistance": 50
+}

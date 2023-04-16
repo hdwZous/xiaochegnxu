@@ -1,0 +1,7 @@
+/* pages/store/index.wxss */
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: red;
+    display: none;
+}

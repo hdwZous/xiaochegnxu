@@ -1,0 +1,201 @@
+.jd_beans_box {
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.jd_beans-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .7);
+}
+
+.jd_beans_box .jd_beans-body {
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -1000px;
+  width: 100%;
+  height: 80vh;
+  transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+}
+
+.jd_beans-body .title-box {
+  text-align: center;
+  font-size: 32rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #333333;
+  line-height: 48rpx;
+  padding: 32rpx 24rpx;
+  position: relative;
+}
+
+.jd_beans-body .jd_beans-close {
+  position: absolute;
+  right: 0;
+  width: 80rpx;
+  height: 112rpx;
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/settle-vnl-close.png");
+  background-repeat: no-repeat;
+  background-size: 32rpx 32rpx;
+  background-position: center center;
+}
+
+.jd_beans_scroll {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.res_layer_content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+  height: calc(80vh - 224rpx);
+  height: -webkit-calc(80vh - 224rpx);
+  -webkit-overflow-scrolling: touch;
+}
+
+.res_layer_content.ipx {
+  height: calc(80vh - 284rpx);
+  height: -webkit-calc(80vh - 284rpx);
+}
+
+.rlc_top {
+  height: 68rpx;
+  background: linear-gradient(90deg, #FFF7D4 0%, #FCF5D7 100%);
+  border: 1px solid rgba(190,88,15,0.04);
+  border-radius: 20rpx;
+  width: 100%;
+}
+
+.rlct_img {
+  width: 92rpx;
+  height: 68rpx;
+}
+
+.rlct_red {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #713F00;
+  flex: 1;
+  margin-left: 14rpx;
+}
+
+.rlct_num {
+  font-size: 28rpx;
+  font-family: 'regular';
+  font-weight: 400;
+  color: #713F00;
+}
+
+.rlct_arrow {
+  width: 60rpx;
+  height: 16rpx;
+  transform: translateY(-20%);
+  -webkit-transform: translateY(-20%);
+}
+
+.jd_beans_select {
+  margin-top: 32rpx;
+  margin-bottom: 50rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+
+.jd_beans_select.no_margin {
+  margin: 0;
+}
+
+.rls_check {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.jd_beansb-bt {
+  margin: 0 24rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background: linear-gradient(270deg, #00CF37 0%, #0FDF46 100%);
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.jd_beans_explain {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #713F00;
+  text-decoration: underline;
+  margin-right: 16rpx;
+}
+
+.rl_red_item {
+  margin-bottom: 32rpx;
+}
+
+.beans_exchage {
+  position: relative;
+  margin-top: 24rpx;
+  height: 176rpx;
+  background: rgba(0,0,0,0.01);
+}
+
+.beans_shin {
+  border-radius: 48rpx;
+  border-color: rgba(0,0,0,0.03);
+}
+
+.be_detail {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+}
+
+.be_input {
+  width: 120rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  background: rgba(0,0,0,0.03);
+  border-radius: 4rpx;
+  margin: 0 4rpx;
+  position: relative;
+  z-index: 11;
+}
+
+.be_count {
+  color: #FF0000;
+  font-family: 'regular';
+}
+
+.be_tip {
+  margin-top: 22rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+  line-height: 34rpx;
+}
+
+.be_tip.legal {
+  color: #FF1E19;
+}
+

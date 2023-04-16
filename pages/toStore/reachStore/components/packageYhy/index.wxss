@@ -1,0 +1,104 @@
+.package-couppon-yhy-gray {
+  width: 702rpx;
+  height: 216rpx;
+  margin: 0 auto;
+}
+.package-yhy-wrap {
+  width: 702rpx;
+  height: 216rpx;
+  padding: 26rpx 24rpx 22rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+}
+.package-yhy-wrap .package-yhy-pro-wrap {
+  position: relative;
+  width: 168rpx;
+  height: 168rpx;
+  background: #D8D8D8;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+.package-yhy-wrap .package-yhy-pro {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+.package-yhy-wrap .overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.02);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.package-yhy-wrap .doudi {
+  width: 168rpx;
+  height: 168rpx;
+  background: #f4f4f4;
+}
+.package-yhy-wrap  .package-yhy-right {
+  flex: 1;
+}
+.package-yhy-wrap  .package-yhy-skuname {
+  width: 464rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+  line-height: 40rpx;
+}
+.package-yhy-wrap .package-yhy-center {
+  width: 464rpx;
+  height: 30rpx;
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #666666;
+  line-height: 30rpx;
+  margin-top: 16rpx;
+  margin-bottom: 40rpx;
+}
+.package-yhy-bottom {
+  display: flex;
+  justify-content: flex-start;
+  /* align-items: baseline; */
+ }
+.package-yhy-bottom-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.package-yhy-mino-price {
+  height: 30rpx;
+  line-height: 30rpx;
+  margin-left: 8rpx;
+}
+.tostore-package-pos {
+  position: absolute;
+  right: 24rpx;
+  bottom: 22rpx;
+}
+.package-yhy-discount {
+  height: 28rpx;
+  line-height: 28rpx;
+  background: #FFFFFF;
+  border-radius: 4rpx;
+  border-width: 1rpx;
+  border-style: solid;
+  font-size: 20rpx;
+  font-weight: 400;
+  padding: 0 6rpx;
+  margin-left: 10rpx;
+  margin-top: 8rpx;
+}
+.zanwu {
+  font-size: 36rpx;
+  color: #FF1E19;
+  height: 50rpx;
+  line-height: 50rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "vip-pop-card": "../components/vipPopCard/index"
+  },
+  "navigationBarTitleText": "兑换码开通会员"
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "store-nav-item":"../storeNavItem/index"
+  }
+}

@@ -1,0 +1,5 @@
+@import "./common/css/global.wxss";
+@import "./common/css/light.wxss";
+@import "./common/css/regular.wxss";
+@import "./common/css/iconfont.wxss";
+@import "./common-taro/common.wxss";

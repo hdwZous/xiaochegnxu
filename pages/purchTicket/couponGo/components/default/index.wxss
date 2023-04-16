@@ -1,0 +1,71 @@
+@import "/common/css/global.wxss";
+
+.view-opacity{
+  opacity: 0;
+}
+.default {
+  background-color: #ffffff;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh
+}
+.height-fill{
+ position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.default .net_error {
+  width: 321rpx;
+  height: 321rpx;
+  /* margin-top: 80rpx */
+}
+
+.default .loading {
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.default .text {
+  color: #666666;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.default .btn {
+    text-align: center;
+    margin-top: 40rpx;
+    margin-bottom: 88rpx;
+    color: #ffffff;
+    font-size: 28rpx;
+    display: inline-block;
+    height: 64rpx;
+    line-height: 64rpx;
+    background: linear-gradient(270deg, #00CF37 0%, #45DC6D 100%);
+    border-radius: 32rpx;
+    width: 192rpx;
+}
+
+.guide-btn{
+  color: white;
+  font-size: 28rpx;
+  margin-top: 34rpx;
+  width: 220rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  text-align: center;
+  border-radius:8rpx;
+  -webkit-border-radius: 8rpx;
+  margin-bottom: 100rpx;
+}

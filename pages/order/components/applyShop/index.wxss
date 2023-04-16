@@ -1,0 +1,114 @@
+@import '/common/css/global.wxss';
+.applyShop {
+    width: 710rpx;
+    border-radius: 24rpx;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.applyShop .title {
+    padding: 28rpx;
+    border-bottom: 1rpx solid #F5F5F5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.applyShop .title .left {
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+}
+
+.applyShop .title .right {
+    font-size: 24rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.applyShop .title .right image {
+    width: 24rpx;
+    margin-left: 6rpx;
+}
+
+.shopInfo {
+    padding: 28rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.shopInfoBox{
+    width: 100%;
+}
+
+.shopInfo .shopName {
+    font-size: 32rpx;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #333333;
+    width: 550rpx;
+}
+
+.shopInfo .address {
+    display: flex;
+    margin-top: 16rpx;
+    width: 580rpx;
+}
+
+.shopInfo .address .distance {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    height: 32rpx;
+    display: flex;
+    align-items: center;
+    border-right: 1rpx solid #DDDDDD;
+    padding-right: 8rpx;
+    vertical-align: middle;
+}
+
+.shopInfo .address .distance image {
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 12rpx;
+    vertical-align: middle;
+}
+
+.shopInfo .address .addressText {
+    width: 454rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    margin-left: 8rpx;
+    text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;			
+	text-overflow: ellipsis;	
+	display: -webkit-box;		
+	-webkit-line-clamp: 2;		
+	line-clamp: 2;					
+	-webkit-box-orient: vertical;
+}
+
+.shopInfo .callUp {
+    position: relative;
+    width: 64rpx;
+    height: 64rpx;
+    background: #EEEEEE;
+    border-radius: 50%;
+}
+
+.shopInfo .callUp .callUpIcon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+

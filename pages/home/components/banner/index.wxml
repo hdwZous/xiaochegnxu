@@ -1,0 +1,50 @@
+<view class="wrap" style="background: {{bgColor || '#F6F6F6'}}" aria-label="轮播图">
+    <swiper 
+        autoplay="{{autoPlay}}" 
+        interval="{{interval}}" 
+        duration="{{duration}}" 
+        circular="{{circular}}" 
+        current="{{current}}" 
+        bindchange="bannerChange" 
+        data-trace-id="{{pageDataTraceId}}"
+        data-page-id="{{buriedObj.pageIdFirstPage}}"
+        data-current-page-name="{{buriedObj.currentPageName}}"
+        data-pre-page-name='{{buriedObj.prePageName}}'
+        skip-hidden-item-layout 
+        wx:if="{{data.length>0}}" class="swiper">
+        <swiper-item 
+            class="swiper_item"
+            wx:for="{{data}}" 
+            wx:for-item="item" 
+            wx:for-index="index" 
+            wx:key="item" 
+            aria-label="{{item.title || '促销活动页入口'}}">
+            <view 
+                bindtap="clickImg" 
+                class=" img-wrapper {{data.length == 1 ? 'home_banner' : ''}} " 
+                data-floor="首焦楼层{{index}}" 
+                data-params="{{item.params}}" 
+                data-to="{{item.to}}" 
+                data-user-action="{{item.userAction}}" 
+                data-trace-id="{{pageDataTraceId}}"
+                data-page-id="{{buriedObj.pageIdFirstPage}}"
+                data-current-page-name="{{buriedObj.currentPageName}}"
+                data-pre-page-name='{{buriedObj.prePageName}}'
+                aria-role="button"  
+                aria-label="活动广告图{{index + 1}}">
+                <image aria-hidden="true" src="{{imgLazyLoad[floorId+'_'+index] ? item.imgUrl : 'https://storage.360buyimg.com/wximg/home/default_bg.png'}}" binderror="imgError" data-lazy-img-id="{{floorId+'_'+index}}" class="image lazy-load"></image>
+            </view>
+        </swiper-item>
+    </swiper>
+    <block wx:if="{{data.length === 1 ? false : indicatorDots}}">
+        <view class="dot flex-row">
+            <view 
+                wx:for="{{data}}" 
+                wx:for-item="item" 
+                wx:for-index="index" 
+                wx:key="item" 
+                class="flex-none dot_item {{activeIndex === index ? 'dot_active' : ''}}">
+            </view>
+        </view>
+    </block>
+</view>

@@ -1,0 +1,23 @@
+<view
+  class="category-filter__wrapper"
+  wx:if="{{displayFilterFloor.itemList.length>=2}}"
+>
+  <scroll-view
+    class="category-filter__scroll"
+    scroll-x
+    scroll-left="{{scrollLeft}}"
+    enable-flex="true"
+    scroll-into-view="{{itemId}}"
+    scroll-with-animation
+  >
+    <view
+      wx:for="{{displayFilterFloor.itemList}}"
+      wx:key="index"
+      wx:for-item="item"
+      id="{{'_' + item.itemId}}"
+      data-item="{{item}}"
+      class="category-item {{itemId == '_' + item.itemId ? 'selected' : ''}}"
+      bindtap="handleSelectCategory"
+    >{{item.itemName}}</view>
+  </scroll-view>
+</view>

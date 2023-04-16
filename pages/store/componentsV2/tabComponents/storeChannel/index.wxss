@@ -1,0 +1,18 @@
+@import "../../public.wxss";
+
+.tomore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #47B34F;
+  font-size: 24rpx;
+  padding: 50rpx 0 200rpx 0;
+}
+.tomore .more-icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+.store-index-scroll .floor-wrapper:first-of-type {
+  background: #fff;
+  margin-top: -32rpx;
+}

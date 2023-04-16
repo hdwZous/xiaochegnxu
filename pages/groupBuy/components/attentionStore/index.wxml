@@ -1,0 +1,9 @@
+<view class="attention_cont flex-row">
+  <view class="attention_left">
+    <view class="title">关注店铺</view>
+    <view class="text">优惠活动早知道</view>
+  </view>
+  <view class="attention_switch" bindtap="switchAttention">
+    <image src="{{attention?switchSrcOpen:switchSrcClose}}" mode="widthFix" />
+  </view>
+</view>

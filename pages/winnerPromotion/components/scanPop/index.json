@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "add-min-controller": "../addCartController/index",
+    "coupon-price": "../couponPrice/index"
+  }
+}

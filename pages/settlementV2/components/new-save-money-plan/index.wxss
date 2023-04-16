@@ -1,0 +1,216 @@
+.new-money-strategy-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 112rpx;
+  z-index: 10;
+}
+
+.new-money-strategy-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9;
+  background: transparent;
+}
+
+.new-money-strategy {
+  position: absolute;
+  left: 12rpx;
+  right: 12rpx;
+  background: linear-gradient(180deg, #FFE7E7 0%, #FFF4F0 100%);
+  border-radius: 24rpx 24rpx 0px 0px;
+  box-sizing: border-box;
+  padding: 0 8rpx;
+  font-size: 0;
+  transition: all 0.4s ease;
+}
+
+.new-money-strategy .new-strategy-arrow {
+  display: inline-block;
+  width: 120rpx;
+  height: 24rpx;
+  box-sizing: border-box;
+  padding-top: 10rpx;
+  text-align: center;
+  padding-bottom: 24rpx;
+}
+
+.new-strategy-arrow .strategy-arrow-img {
+  width: 32rpx;
+  height: 10rpx;
+  transition: all 0.3s;
+}
+
+.new-money-strategy .strategy-arrow-img.up {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+.new-strategy-top {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16rpx;
+  padding-right: 0;
+  padding-bottom: 16rpx;
+}
+
+.strategy-des {
+  flex: 1;
+  overflow: hidden
+}
+
+.new-strategy-space {
+  position: absolute;
+  height: 32rpx;
+  z-index: -20;
+}
+
+.new-strategy-des-icon {
+  width: 96rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+.new-strategy-des-detail {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #3A3431;
+  line-height: 36rpx;
+}
+
+.new-strategy-des-money {
+  font-family: regular;
+  color: #FF1E19;
+}
+
+.new-strategy-des-switch {
+  width: 60rpx;
+  height: 36rpx;
+}
+
+.new-strategy-top-tip {
+  font-size: 20rpx;
+  font-family: PingFangSC-Light, PingFang SC;
+  font-weight: 300;
+  color: #333333;
+}
+
+.nstt_box {
+  width: 220px;
+  line-height: 32rpx;
+}
+
+.new-strategy-vip-box {
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0px 0px;
+  padding: 16rpx 16rpx 24rpx 24rpx;
+}
+
+.new-sgvip-items-box {
+  height: 96rpx;
+}
+
+.new-sgvip-items-box .sgvip-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+}
+
+.new-sgvip-middle {
+  flex: 1;
+  margin-right: 24rpx;
+}
+
+.new-sgvip-middle .sgvip-m-t-txt {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+
+.new-sgvip-middle .settlement-delivery-fee-icon {
+  margin-left: 4rpx;
+  vertical-align: -2rpx;
+}
+
+.new-strategy-btn {
+  width: 132rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  box-sizing: border-box;
+  padding-left: 16rpx;
+  background: linear-gradient(270deg, #FF2A26 0%, #FF6461 100%);
+  border-radius: 26rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #fff;
+  margin-left: 20rpx;
+  margin-right: 12rpx;
+  position: relative;
+}
+
+.new-strategy-btn.checkOn {
+  background: transparent;
+  color: #FF1E19;
+}
+
+.new-strategy-btn .shin-border-box {
+  border-color: #FF6461;
+  border-radius: 52rpx;
+}
+
+.new-strategy-btn .nsb-check {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 4rpx;
+}
+
+.new_tip_open {
+  display: inline-block;
+}
+
+.new_tip_open.up {
+  margin-left: 8rpx;
+}
+
+.new_tip_open.up .tip_open_icon {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+.tip_open_icon {
+  width: 16rpx;
+  height: 16rpx;
+  margin-left: 4rpx;
+}
+
+.inflation {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+
+.inflation_icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.new-explain {
+  font-size: 20rpx;
+  font-weight: 400;
+  color: #CCCCCC;
+  line-height: 28rpx;
+}
+
+.ragular {
+  font-family: 'regular';
+}

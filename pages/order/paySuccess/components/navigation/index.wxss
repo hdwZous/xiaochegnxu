@@ -1,0 +1,79 @@
+
+@import '/common/css/light.wxss';
+@import '/common/css/regular.wxss';
+.flex{
+    display: -webkit-flex;
+    display: flex;
+}
+.flex_row {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+.align_item_center{
+    -webkit-align-items:center;
+    align-items:center;
+}
+.just_content_center{
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+.flex_auto {
+    -webkit-flex: auto;
+    flex: auto;
+}
+.navigation {
+  width: 100%;
+  background: #fff;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  position: fixed;
+}
+.navigation .nav_bar {
+  font-size: 32rpx;
+  color: #fff;
+}
+.navigation .nav_left {
+  margin-left: 30rpx;
+}
+.navigation .back_white{
+    width: 14px;
+    height:18px;
+    background: url("https://storage.360buyimg.com/wximg/common/header_back_white.png") no-repeat center;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+}
+.navigation .back_black{
+    width: 14px;
+    height:18px;
+    background: url("https://storage.360buyimg.com/wximg/common/header_back_black.png") no-repeat center;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+}
+.navigation .home_box {
+    border-radius:12px;
+    padding: 3px 9px;
+    background: transparent;
+}
+.navigation .home_white {
+    width: 16px;
+    height: 16px;
+    background: url("https://storage.360buyimg.com/wximg/common/header_home_white.png") no-repeat center;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+
+}
+.navigation .home_black {
+    width: 16px;
+    height: 16px;
+    background: url("https://storage.360buyimg.com/wximg/common/header_home_black.png") no-repeat center;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+
+}
+.navigation .title {
+  margin-left: 13vw;
+  text-align: center;
+}

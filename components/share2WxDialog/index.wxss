@@ -1,0 +1,83 @@
+@import "/common/css/global.wxss";
+
+.dialog_bg {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(0);
+    -webkit-transform: scale(0);
+}
+
+.dialog_trans_hide {
+    transition: all ease 300ms;
+    -webkit-transition: all ease 300ms;
+}
+
+.dialog_trans_show {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    transition: all ease 300ms;
+    -webkit-transition: all ease 300ms;
+}
+
+.btn_zone {
+    width: 100%;
+    position: absolute;
+    bottom: 0rpx;
+    justify-content: center;
+    justify-items: center;
+}
+
+.share_btn {
+    background: #ffffff
+}
+
+.share_btn_zone {
+    background: #FFFFFF;
+    border-radius: 20rpx 20rpx 0 0;
+    -webkit-border-radius: 20rpx 20rpx 0 0;
+    overflow: hidden;
+    padding: 0 190rpx;
+}
+
+.share_btn_zone .btn_icon {
+    height: 108rpx;
+    width: 108rpx;
+    margin-top: 60rpx;
+    align-self: center;
+}
+
+.share_btn_zone .btn_text {
+    line-height: 24rpx;
+    font-size: 24rpx;
+    color: #666666;
+    margin-top: 20rpx;
+    margin-bottom: 40rpx;
+    align-self: center;
+}
+
+.btn_zone .divider {
+    height: 2rpx;
+    width: 100vw;
+    background: #F5F5F5;
+}
+
+.btn_zone .btn_cancel {
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    color: #666666;
+    background: #ffffff;
+}
+.share_friend{
+  margin: 0;
+  margin-right: 152rpx;
+}

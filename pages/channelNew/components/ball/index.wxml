@@ -1,0 +1,173 @@
+<view class="ball">
+  <!-- 5个分类球 -->
+  <scroll-view wx:if="{{type==1}}">
+    <view
+      class="wrap01"
+      aria-label='分类筛选'
+      aria-role='tablist'>
+      <view
+        class="item01 log_click_ball channel_comp_ep"
+        bind:tap="handleFirstNavClick"
+        data-trace-id='{{traceId}}'
+        data-id="{{item.tagId}}"
+        data-title="{{item.title}}"
+        data-item="{{item}}"
+        data-user-action="{{item.userAction}}"
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        data-index="{{item.index}}"
+        wx:for="{{list}}"
+        wx:key="index"
+        aria-label='当前选中的是{{item.title}}分类'
+        aria-role='tab'
+        style="border-color:{{currentIndex==item.index && initData.selectedCateBgColor}}">
+        <view aria-hidden="true" class="img_wrap01">
+          <image
+            aria-hidden="true"
+            class="img01"
+            style="border-color:{{currentIndex==item.index&&initData.selectedCateBgColor}}"
+            src="{{item.tagImgUrl}}" lazy-load="{{true}}"/>
+          <view aria-hidden="true" class="tooltips" wx:if="{{item.words}}">
+            <text aria-hidden="true" class="tooltips_word">{{item.words}}</text>
+          </view>
+        </view>
+        <view
+          class="title"
+          aria-hidden="true"
+          style="color:{{currentIndex==item.index?initData.selectedCateColor:initData.defaultCateColor}};background:{{currentIndex==item.index?initData.selectedCateBgColor || 'rgb(246, 246, 246)':'transparent'}};">
+          {{item.title}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 6-7个分类球 -->
+  <scroll-view
+    scroll-x="{{true}}"
+    scroll-into-view="AA{{currentIndex-2}}"
+    scroll-with-animation="{{true}}"
+    wx:if="{{type==2}}"
+    style="width:100%">
+    <view
+      class="wrap02"
+      aria-label='分类筛选'
+      aria-role='tablist'>
+      <view
+        class="item02 log_click_ball  channel_comp_ep"
+        id="AA{{item.index}}"
+        bind:tap="handleFirstNavClick"
+        data-id="{{item.tagId}}"
+        data-title="{{item.title}}"
+        data-item="{{item}}"
+        data-user-action="{{item.userAction}}"
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        data-index="{{item.index}}"
+        wx:for="{{list}}"
+        data-trace-id='{{traceId}}'
+        wx:key="index"
+        aria-label='当前选中的是{{item.title}}分类'
+        aria-role='tab'
+        style="border-color:{{currentIndex==item.index && initData.selectedCateBgColor}}">
+        <view aria-hidden="true" class="img_wrap01">
+          <image aria-hidden="true" class="img01" style="border-color:{{currentIndex==item.index&&initData.selectedCateBgColor}}" src="{{item.tagImgUrl}}" lazy-load="{{true}}" />
+          <view aria-hidden="true" class="tooltips" wx:if="{{item.words}}">
+            <text aria-hidden="true" class="tooltips_word">{{item.words}}</text>
+          </view>
+        </view>
+        <view
+          aria-hidden="true"
+          class="title"
+          style="color:{{currentIndex==item.index?initData.selectedCateColor:initData.defaultCateColor}};background:{{currentIndex==item.index?initData.selectedCateBgColor || 'rgb(246, 246, 246)':'transparent'}};">
+          {{item.title}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 8-10个分类球 -->
+  <scroll-view wx:if="{{type==3}}">
+    <view class="wrap01 wrap03" aria-label='分类筛选' aria-role='tablist'>
+      <view
+        class="item03 log_click_ball  channel_comp_ep"
+        bind:tap="handleFirstNavClick"
+        data-id="{{item.tagId}}"
+        data-title="{{item.title}}"
+        data-item="{{item}}"
+        data-user-action='{{item.userAction}}'
+        data-trace-id='{{traceId}}'
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name='{{prePageName}}'
+        data-index="{{item.index}}"
+        wx:for="{{list}}"
+        wx:key="index"
+        aria-label='当前选中的是{{item.title}}分类'
+        aria-role='tab'
+        style="border-color:{{currentIndex==item.index && initData.selectedCateBgColor}}">
+        <view aria-hidden="true" class="img_wrap01" >
+          <image
+            aria-hidden="true"
+            class="img01"
+            style="border-color:{{currentIndex==item.index&&initData.selectedCateBgColor}}" src="{{item.tagImgUrl}}"
+            lazy-load="{{true}}" />
+          <view aria-hidden="true" class="tooltips" wx:if="{{item.words}}">
+            <text aria-hidden="true" class="tooltips_word">{{item.words}}</text>
+          </view>
+        </view>
+        <view
+          aria-hidden="true"
+          class="title"
+          style="color:{{currentIndex==item.index?initData.selectedCateColor:initData.defaultCateColor}};background:{{currentIndex==item.index?initData.selectedCateBgColor || 'rgb(246, 246, 246)':'transparent'}};">
+          {{item.title}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 10个以上分类球 -->
+  <block wx:if="{{type==4}}">
+    <view class="container04" aria-label='分类筛选' aria-role='tablist'>
+      <scroll-view
+        class="scroll04"
+        scroll-x="{{true}}"
+        bind:scroll="handleScroll"
+        scroll-with-animation="{{true}}">
+        <view class="wrap01 wrap04" style="width:{{width}}rpx">
+          <view
+            class="item04 log_click_ball  channel_comp_ep"
+            bind:tap="handleFirstNavClick"
+            data-id="{{item.tagId}}"
+            data-title="{{item.title}}"
+            data-item="{{item}}"
+            data-user-action='{{item.userAction}}'
+            data-trace-id='{{traceId}}'
+            data-page-id="{{pageId}}"
+            data-current-page-name="{{currentPageName}}"
+            data-pre-page-name='{{prePageName}}'
+            data-index="{{item.index}}"
+            wx:for="{{list}}"
+            wx:key="index"
+            aria-label='当前选中的是{{item.title}}分类'
+            aria-role='tab'
+            style="border-color:{{currentIndex==item.index && initData.selectedCateBgColor}};padding-bottom:{{item.pb}}rpx">
+            <view aria-hidden="true" class="img_wrap01" >
+              <image aria-hidden="true" class="img01" style="border-color:{{currentIndex==item.index && initData.selectedCateBgColor}}" src="{{item.tagImgUrl}}" lazy-load="{{true}}" />
+              <view aria-hidden="true" class="tooltips" wx:if="{{item.words}}">
+                <text aria-hidden="true" class="tooltips_word">{{item.words}}</text>
+              </view>
+            </view>
+            <view
+              aria-hidden="true"
+              class="title"
+              style="color:{{currentIndex==item.index ? initData.selectedCateColor:initData.defaultCateColor}};background:{{currentIndex==item.index ? initData.selectedCateBgColor || 'rgb(246, 246, 246)':'transparent'}};">
+              {{item.title}}
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="bar">
+      <view class="bar_bg" style="transform:translateX({{translateX}}rpx)"></view>
+    </view>
+  </block>
+</view>

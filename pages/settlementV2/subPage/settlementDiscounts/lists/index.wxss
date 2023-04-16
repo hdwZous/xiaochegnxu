@@ -1,0 +1,129 @@
+ .good-item {
+  display: flex;
+  justify-content: space-between;
+  /* border-bottom: solid 2rpx #f6f6f6; */
+  padding-top: 24rpx;
+}
+
+ .left {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  margin-left: 24rpx;
+  position: relative;
+}
+
+ .right {
+  width: 526rpx;
+  margin-right: 24rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  min-height: 160rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+ .good-pic {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+}
+
+ .store_stockCount_tag {
+  position: absolute;
+  left: 0px;
+  top: 0rpx;
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 160rpx;
+  color: #FFF;
+  font-size: 26rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+ .store-sku-remain {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 28rpx;
+  font-size: 20rpx;
+  color: #FFF;
+  text-align: center;
+  line-height: 28rpx;
+  border-radius: 0 0 8rpx 8rpx;
+  background: linear-gradient(to right, #FF5C37 0%, #FF9248 100%)
+}
+
+ .good-title {
+  width: 526rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+  color: #333333;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 5rpx;
+}
+
+ .good-sale-highopinion {
+  font-size: 22rpx;
+  line-height: 28rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+ .hign-opinion {
+  margin-left: 16rpx;
+}
+
+ .good-tag-list {}
+
+ .good-tag {
+  display: inline-block;
+  margin-right: 10rpx;
+  padding: 0rpx 6rpx;
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 30rpx;
+  border-radius: 8rpx 2rpx 8rpx 2rpx;
+}
+
+ .price-car-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+  margin-top: 16rpx;
+}
+
+ .price-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+ .car-btn {
+  display: flex;
+  align-items: flex-end;
+}
+
+ .vip-icon {
+  flex: 1;
+  height: 21rpx;
+}
+
+ .gray-icon {
+  font-size: 16rpx;
+  line-height: 21rpx;
+  padding-left: 10rpx;
+  flex: 1;
+  height: 21rpx;
+  color: #fff;
+}

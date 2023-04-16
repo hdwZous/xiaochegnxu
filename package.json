@@ -1,0 +1,21 @@
+{
+  "name": "paidaojia",
+  "version": "1.0.0",
+  "description": "小程序代码检查",
+  "main": "app.js",
+  "scripts": {
+    "check": "eslint ./components/share2WxDialog  -o ./log.html"
+  },
+  "author": "treesea",
+  "license": "ISC",
+  "devDependencies": {
+    "@dj-lib/colorapi": "^1.0.35",
+    "@dj-lib/dj-base-lib": "^1.0.23",
+    "@dj-lib/signutil": "",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^5.16.0",
+    "jsencrypt": "^3.0.0-rc.1",
+    "wxmp-rsa": "^2.1.0"
+  },
+  "dependencies": {}
+}

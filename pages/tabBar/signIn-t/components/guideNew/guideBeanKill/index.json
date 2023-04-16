@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "guide-box-shadow": "../subComponents/guideBoxShadow/index",
+    "guide-hand": "../subComponents/guideHand/index"
+  },
+  "navigationBarTitleText": ""
+}

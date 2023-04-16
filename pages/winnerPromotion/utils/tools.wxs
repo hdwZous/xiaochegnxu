@@ -1,0 +1,83 @@
+var isIponeX = function () {
+  var res = wx.getSystemInfoSync()
+  return res.safeArea.top > 20
+}
+
+module.exports = {
+  isIponeX: isIponeX,
+}
+
+// var checkColor = function (color) {
+//   if (color) {
+//     if (color.match('#')) {
+//       return color
+//     } else {
+//       return '#' + color
+//     }
+//   } else {
+//     return color
+//   }
+// }
+
+// // 将数组转化成字符串
+// var arrToStr = function (arr) {
+//   if (arr.length) {
+//     return arr.join('，')
+//   }
+// }
+
+// // 字符串截断
+// var checkStr = function (str,num){
+//   if(str &&  str.length > num){
+//     return str.slice(0,num)
+//   }else{
+//     return str
+//   }
+// }
+// // 处理特殊字符, 例如门店的促销标签文案里带###号的改成，号
+// var repChart = function (str, target, content) {
+//   if (str && str.length > 0) {
+//     return str.split(target).join(content)
+//   } else {
+//     return str
+//   }
+// }
+
+// // 查找skuid
+// var findSkuId = function (arr, item) {
+//   if (arr && arr.length) {
+//     return arr.indexOf(item.spuId ? item.spuId : item.skuId) > -1
+//   } else {
+//     return false
+//   }
+// }
+
+// var filterStr = function (str) {
+//     // console.log('----->11111111111111',str)
+//     // return 500
+//     return str.replace('/','')
+// }
+
+// var turnPrice = function (str) {
+//     var price = str + ''
+//     var arr = price.split(".");
+//     // if (price.indexOf(".") != -1) {
+//     //   arr = str.split(".");
+//     // }
+//     console.log('.............', arr)
+//     return arr
+// }
+// // 取中间值
+// var calidx = function (num) {
+//   return Math.ceil(num / 2);
+// }
+// module.exports = {
+//   checkColor: checkColor,
+//   arrToStr: arrToStr,
+//   checkStr: checkStr,
+//   repChart: repChart,
+//   findSkuId: findSkuId,
+//   filterStr: filterStr,
+//   turnPrice: turnPrice,
+//   calidx: calidx,
+// };

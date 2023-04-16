@@ -1,0 +1,19 @@
+{
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#00CF37",
+    "navigationBarTitleText": "确认订单",
+    "usingComponents": {
+      "new-default-v2": "/components/newDefaultV2/index",
+      "toast": "./components/toast/index",
+      "store": "./components/store/index",
+      "product": "./components/product/index",
+      "discount": "./components/discount/index",
+      "coupon": "./components/coupon/index",
+      "red-packet": "./components/red-packet/index",
+      "jd-beans": "./components/jd-beans/index",
+      "new-pay-pop": "/components/newPayPop/index"
+    },
+    "componentPlaceholder": {
+      "toast": "view"
+    }
+}

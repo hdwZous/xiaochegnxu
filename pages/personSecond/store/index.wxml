@@ -1,0 +1,25 @@
+<view class="page_wrap container" style="padding-top: {{config.storeTags ? '140rpx':''}}">
+    <block wx:if="{{!showEmpty}}">
+        <!-- 门店列表 -->
+        <block wx:if="{{showDefault}}">
+          <newDefault 
+            type="{{defaultType}}" 
+            defaultObj="{{defaultObj}}"
+            bind:defaultBtnEvent="onDefaultBtnEvent"/>
+        </block>
+        <block wx:else>
+            <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="item">
+                <store-list item="{{item}}" recommendObj="{{recommendObj}}" buriedObj="{{recommendObj}}" traceId="{{traceId}}" noNeedExposure="{{true}}"  optionsPos="{{optionsPos}}" />
+            </block>
+        </block>
+        <!-- 底线 -->
+        <view class="bottom_txt" wx:if="{{showBottom}}">没有更多商家啦</view>
+    </block>
+    <block wx:else>
+      <newDefault 
+        type="{{defaultType}}" 
+        defaultObj="{{defaultObj}}"
+        buriedObj="{{recommendObj}}"
+        bind:defaultBtnEvent="onDefaultBtnEvent"/>
+    </block>
+</view>

@@ -1,0 +1,162 @@
+.drug-sku-pop {
+    z-index: 11;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drug-sku-pop .pop {
+    box-sizing: border-box;
+    position: relative;
+    width: 622rpx;
+    height: 684rpx;
+    background: #FFFFFF;
+    border-radius: 40rpx;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.drug-sku-pop .pop .title {
+    font-size: 40rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    margin-top: 32rpx;
+}
+
+.drug-sku-pop .pop .sub-title {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #333333;
+    margin-top: 24rpx;
+    text-align: left;
+    padding: 0 40rpx;
+}
+
+.drug-sku-pop .pop .sku-scroll-box {
+    margin-top: 24rpx;
+    padding: 0 24rpx;
+}
+
+.drug-sku-pop .pop .sku-scroll {
+    height: 330rpx;
+}
+
+.drug-sku-pop .scroll-view-item {
+    width: 100%;
+    border-radius: 16rpx;
+    overflow: hidden;
+    background: #F9F9F9;
+}
+
+.drug-sku-pop .scroll-view-item:not(:first-child) {
+    margin-top: 16rpx;
+}
+
+.drug-sku-pop .sku-container {
+    width: 574rpx;
+    background: #F9F9F9;
+    border-radius: 16px;
+}
+
+.sku-container .container {
+    display: flex;
+    align-items: center;
+    margin: 16rpx 0 16rpx 16rpx;
+}
+
+.sku-container .sku-image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 8rpx;
+    background-color: #eeeeee;
+}
+
+.sku-container .sku-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100rpx;
+    margin-left: 20rpx;
+    width: 400rpx;
+}
+
+.sku-container .sku-text .name {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #333333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.sku-container .sku-text .count {
+    font-size: 28rpx;
+    font-family: JDDJ-1-Regular, JDDJ-1;
+    color: #333333;
+    display: flex;
+}
+
+.drug-sku-pop .pop-btn {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 622rpx;
+    height: 136rpx;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30rpx;
+}
+
+.drug-sku-pop .pop-btn .btn {
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    height: 80rpx;
+    border-radius: 40rpx;
+    text-align: center;
+    line-height: 80rpx;
+    margin-top: 24rpx;
+}
+
+.drug-sku-pop .pop-btn .unimportance {
+    width: 186rpx;
+    background: #FFFFFF;
+    /* border: 1rpx solid #2AD758; */
+    color: #00CF37;
+    height: 78rpx;
+    position: relative;
+}
+
+.drug-sku-pop .pop-btn .unimportance::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    box-sizing: border-box;
+    border-radius: 88rpx;
+    border: 2rpx solid #2AD758;
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.drug-sku-pop .pop-btn .important {
+    box-sizing: border-box;
+    width: 348rpx;
+    background: linear-gradient(270deg, #00CF37 0%, #45DC6D 100%);
+    color: #FFFFFF;
+}

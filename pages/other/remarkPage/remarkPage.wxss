@@ -1,0 +1,29 @@
+/* pages/settlement/remarkDialog/remarkPage.wxss */
+page{
+  /* 不能滑动，textarea有问题 */
+  overflow: hidden;
+  height: 100%;
+}
+
+.settlement-remark-page-container {
+  background: #f4f4f4;
+  margin: 16rpx;
+}
+
+.settlement-remark-page-input {
+  padding: 16rpx;
+}
+
+.settlement-remark-page-ok {
+  background-color: #47b34f;
+  color: #fff;
+  font-size: 32rpx;
+  margin-top: 80rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  box-shadow: 0px 4rpx 8rpx 0px rgba(71, 179, 79, 0.27);
+  border-radius: 6rpx;
+  text-align: center;
+}

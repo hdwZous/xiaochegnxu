@@ -1,0 +1,1 @@
+require("./runtime"),require("./vendors"),(wx["webpackJsonp/pages/vipChannel-t/"]=wx["webpackJsonp/pages/vipChannel-t/"]||[]).push([[4],{287:function(e,n,p){"use strict";p.r(n);var r=p(2);Component(Object(r.createRecursiveComponentConfig)())}},[[287,0,3]]]);

@@ -1,0 +1,104 @@
+<!-- 价格类型（"1"：原价；"2"：促销价；"3"：商家会员价；"4"：v+会员价；"5"：暂无报价，“6”："预售价"，"7":"券后价", "8":"渠道价"） -->
+
+<!-- 券后价 -->
+<!-- <view
+  class="container {{initData.explainIcon&&'container02'}}"
+  wx:if="{{initData.priceType==7}}"
+  style="background:{{initData.colorCode}};display:flex;"
+  bind:tap="handleMask"
+>
+  <view style="color:{{initData.priceTextColorCode}}">{{initData.priceText}}</view>
+  <view
+    style="color:{{initData.priceColor}};display:inline-block;margin-left:4rpx;"
+  >¥{{initData.price}}</view>
+  <image
+    src="{{initData.explainIcon}}"
+    class="icon_img"
+    wx:if="{{initData.explainIcon}}"
+  />
+</view> -->
+
+<!-- 主价格 -->
+<view
+  class="main-price"
+  wx:if="{{majorPrice && majorPrice.price}}"
+>
+  <view
+    class="price01_wrap"
+  >
+    <view
+      class="price01"
+      style="font-size:{{majorPriceFz}}"
+    >{{majorPrice.price == '暂无报价' ? '' : '¥'}}{{majorPrice.price}}</view>
+    <!-- <view
+      class="weight {{!isBottom && 't2'}}"
+      wx:if="{{majorPrice.weight && majorPrice.price != '暂无报价'}}"
+    >
+      <text class="line">/</text>
+      {{tool.filterStr(majorPrice.weight)}}
+    </view> -->
+    <view
+      class="sale-qi"
+      wx:if="{{intervalPrice}}"
+    >起</view>
+  </view>
+  <block wx:if="{{majorPrice.priceType == 3 || majorPrice.priceType == 4}}">
+    <view
+      class="vip-icon"
+      wx:if="{{!majorPrice.deleteLine}}"
+      style="background: url('{{majorPrice.vipPriceIcon}}') no-repeat;  background-size: auto 100%;"
+    ></view>
+    <view
+      wx:else
+      class="gray-icon"
+      style="background: url('{{majorPrice.iconGray}}') no-repeat; background-size: auto 100%"
+    >{{majorPrice.iconGrayText}}</view>
+  </block>
+</view>
+<!-- 次要价格 只展示deleline为true的价格 -->
+<view
+  class="mino-price"
+  wx:if="{{minorPrice && minorPrice.price && minorPrice.deleteLine}}"
+>
+  <view 
+    style="color:{{minorPrice.priceColor}};text-decoration:{{minorPrice.deleteLine ? 'line-through' : 'none'}};font-size:{{minorPriceFz}}"
+  >¥{{minorPrice.price}}</view>
+</view>
+
+
+<!-- 不需要 预估到手价 -->
+<!-- <view
+  class="hand-price"
+  wx:if="{{toHandPrice && toHandPrice.leftText}}"
+>
+  <view
+    class="hand-price-left"
+    style="background:linear-gradient(137deg, {{toHandPrice.leftStartColor}} 0%, {{toHandPrice.leftEndColor}} 100%);color:{{toHandPrice.leftFontColor}}"
+  >{{toHandPrice.leftText}}</view>
+  <view
+    class="hand-price-right"
+    style="color:{{toHandPrice.rightFontColor}};border:1px solid {{toHandPrice.outlineColor}};border-width:{{!toHandPrice.outlineColor&&'0px'}};background:{{toHandPrice.rightColor}}"
+  >{{isShortHandPrice?toHandPrice.rightShortText:toHandPrice.rightText}}</view>
+</view> -->
+
+<view
+  class="mask"
+  bind:tap="handleMask"
+  wx:if="{{visible}}"
+>
+  <view class="mask_wrap">
+    <view
+      class="content"
+      catch:tap="{{false}}"
+    >
+      <view
+        class="item {{item.text.title &&'title'}}"
+        wx:for="{{initData.explainText || minorPrice.explainText}}"
+        wx:key="index"
+      >{{item.text.title || item.text.content}}</view>
+    </view>
+    <view class="close_wrap">
+      <view class="close"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "店内活动",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff",
+    "backgroundColorTop": "#fff",
+    "usingComponents": {
+        "floor": "../componentsV2/floor/index",
+        "new-default": "/components/newDefault/index"
+    }
+}

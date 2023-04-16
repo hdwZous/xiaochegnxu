@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "default": "./commonComponents/Default/index",
+    "vip-pop-card": "./components/vipPopCard/index"
+  },
+  "navigationBarTitleText": "到家会员免费送"
+}

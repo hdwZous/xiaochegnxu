@@ -1,0 +1,161 @@
+@import "/common/css/global.wxss";
+.mustOrderPopUp {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 11;
+  background: rgba(0, 0, 0, .5);
+}
+.mustOrderPopUp_contanier {
+  border-radius: 24rpx 24rpx 0 0;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  max-height: 80vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.mustOrderPopUp_ipx .mustOrderPopUp_contanier_ipx {
+  /* padding-bottom: 208rpx; */
+}
+.mustOrderPopUp_ipx .mustOrderPopUp_confim {
+  padding-bottom: 84rpx;
+}
+.mustOrderPopUp_lists {
+  max-height: 63vh;
+}
+.mustOrderPopUp_title {
+  font-weight: 600;
+  font-size: 32rpx;
+  color: #333333;
+  text-align: center;
+  height: 108rpx;
+  line-height: 108rpx;
+}
+.mustOrderPopUp_list {
+  display: flex;
+  height: 234rpx;
+  padding-top: 24rpx;
+  padding-bottom: 32rpx;
+  box-sizing: border-box;
+  position: relative;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.mustOrderPopUp_list:last-child {
+  border-bottom: none;
+}
+.mustOrderPopUp_list_image {
+  margin-right: 16rpx;
+}
+.mustOrderPopUp_list_image image {
+  width: 160rpx;
+  height: 160rpx;
+}
+.mustOrderPopUp_list_content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.mustOrderPopUp_list_title {
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+  font-family: PingFangSC-Medium,PingFang SC;
+}
+.mustOrderPopUp_list_desc {
+  font-size: 24rpx;
+  font-family: light;
+  font-weight: 300;
+  color: #666666;
+}
+.mustOrderPopUp_list_price {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.mustOrderPopUp_add {
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  bottom: 32rpx;
+  right: 0;
+}
+.mustOrderPopUp_confim {
+  width: 100%;
+  background-color: #ffffff;
+  /* position: absolute; */
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 16rpx 0;
+}
+.mustOrderPopUp_confim_btn {
+  width: 700rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium,PingFang SC;
+  background-color: #cccccc;
+  border-radius: 40rpx;
+  color: #ffffff;
+}
+.mustOrderPopUp_confim_btn2 {
+  background: linear-gradient(270deg, #00CF37 0%, #0FDF46 100%);
+}
+
+/* 加减车 */
+.wrap {
+  height: 56rpx;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.wrap .min {
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/min1.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 95% 95%;
+  background-repeat: no-repeat;
+}
+.wrap .add {
+  width: 46rpx;
+  height: 46rpx;
+  background-image: url("https://storage.360buyimg.com/wximg/store_2.0/add1.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.wrap .num {
+  width: 64rpx;
+  line-height: 44rpx;
+  color: #666666;
+  font-size: 32rpx;
+  text-align: center;
+  font-family: regular;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mustOrderPopUp_icon {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  transform: rotate(180deg);
+  top: 75rpx;
+  left: 0;
+}

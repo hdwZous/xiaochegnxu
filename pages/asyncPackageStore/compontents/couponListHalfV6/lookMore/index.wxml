@@ -1,0 +1,9 @@
+<view class="look-more-btn"
+      data-user-action="{{userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name="{{prePageName}}">
+  <view class="show-all-coupon-title">{{mainTitle}}</view>
+  <view class="flex-none show-all-coupon-arrow"></view>
+</view>

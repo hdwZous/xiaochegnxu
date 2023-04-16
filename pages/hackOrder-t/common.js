@@ -1,0 +1,1 @@
+"use strict";function shareToMoment(){console.log("分享到朋友圈")}function doWithdrawal(){}Object.defineProperty(exports,"__esModule",{value:!0}),exports.shareToMoment=shareToMoment,exports.doWithdrawal=doWithdrawal;

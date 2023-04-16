@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tip-dialog": "../tipDialog/index",
+    "text-list": "../text-list/index"
+  }
+}

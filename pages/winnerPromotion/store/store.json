@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#000",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "store-info": "./components/storeInfo/index",
+    "main-category": "./components/mainCategory/index",
+    "second-category": "./components/secondCategory/index",
+    "product-box": "./components/productBox/index",
+    "shop-cart": "../components/shopCart/index",
+    "coupon-popup": "../components/couponPopup/index"
+  }
+}

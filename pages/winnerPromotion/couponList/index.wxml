@@ -1,0 +1,30 @@
+<view class="coupon-list__page">
+  <view class="filter-tag">
+    <view
+      class="filter-tag__item {{index === tagIndex ? 'active': ''}}"
+      wx:for="{{tags}}"
+      wx:key="index"
+      wx:for-index="index"
+      wx:for-item="tag"
+      data-index="{{index}}"
+      bind:tap="handleChangeTag"
+    >{{tag}}</view>
+  </view>
+  <view class="coupon-list">
+    <view
+      class="coupon-list__item"
+      wx:for="{{tagCoupons}}"
+      wx:key="index"
+      wx:for-index="index"
+      wx:for-item="coupon"
+    >
+      <coupon
+        coupon="{{coupon}}"
+        storeId="{{storeId}}"
+        orgCode="{{orgCode}}"
+        bind:changeCoupon="handleChangeCoupon"
+      />
+    </view>
+  </view>
+  <view class="footer">已经到底了</view>
+</view>

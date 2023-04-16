@@ -1,0 +1,27 @@
+<view class="corner_tag">
+  <block wx:if="{{infos.type == 2}}">
+    <image class="newser_tag" mode="widthFix" style="border-radius:{{imgBdradius}}" src="{{infos.tag.imgUrl||'https://storage.360buyimg.com/wximg/storewin/corner_tag_newser.png'}}" />
+  </block>
+  <block wx:if="{{infos.type == 3 && showHandle == true}}">
+    <view class="d-flex flex-row align-items-end position-relative">
+      <view class="d-flex flex-row justify-content-center flex-none estimate_left-wr" style="width:{{leftWidth}};padding:{{leftPadding}};color:{{infos.tag.iconLeft.colorCode||'#E43D3D'}};border-radius:{{leftBdrs}};background:{{(infos.tag.iconLeft.startColorCode&&infos.tag.iconLeft.endColorCode)?'linear-gradient(54deg,'+infos.tag.iconLeft.startColorCode+' 0%,'+infos.tag.iconLeft.endColorCode+' 100%':infos.tag.iconLeft.bgColorCode?infos.tag.iconLeft.bgColorCode:'#FFF7EC'}})">
+        <view class="estimate_left d-flex flex-column justify-content-center align-items-start">
+          <text class="left_title ellipsis" wx:if="{{infos.tag.iconLeft.iconTitle}}" style="font-size:{{leftTitleFz}};line-height:{{leftTitleLh}};">{{infos.tag.iconLeft.iconTitle}}</text>
+          <text class="left_text ellipsis" wx:if="{{infos.tag.iconLeft.iconText}}" style="font-size:{{leftTextFz}};line-height:{{leftTextLh}};">{{infos.tag.iconLeft.iconText}}</text>
+        </view>
+      </view>
+      <view class="estimate_right_wr d-flex flex-row" style="border-radius:{{rightBdrs}};background:{{(infos.tag.iconRight.startColorCode&&infos.tag.iconRight.endColorCode)?'linear-gradient(52deg,'+infos.tag.iconRight.startColorCode+' 0%,'+infos.tag.iconRight.endColorCode+' 100%':infos.tag.iconRight.bgColorCode?infos.tag.iconRight.bgColorCode:'#FF3272'}})">
+        <view style="width:{{leftWidth}}"></view>
+        <view class="estimate_right ellipsis" style="font-size:{{rightFz}};color:{{infos.tag.iconRight.colorCode||'#fff'}};line-height:{{rightLh}};">{{infos.tag.iconRight.iconText}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{infos.type == 4}}">
+    <view class="d-flex flex-row align-items-end">
+      <view class="estimate_left_4 ellipsis2" style="color:{{infos.tag.iconLeft.colorCode||'#E43D3D'}};background:{{(infos.tag.iconLeft.startColorCode&&infos.tag.iconLeft.endColorCode)?'linear-gradient(54deg,'+infos.tag.iconLeft.startColorCode+' 0%,'+infos.tag.iconLeft.endColorCode+' 100%':infos.tag.iconLeft.bgColorCode?infos.tag.iconLeft.bgColorCode:'#FFF7EC'}})">
+        {{infos.tag.iconLeft.iconTitle}}
+      </view>
+      <view class="estimate_right_4 ellipsis" style="color:{{infos.tag.iconRight.colorCode||'#fff'}};background:{{(infos.tag.iconRight.startColorCode&&infos.tag.iconRight.endColorCode)?'linear-gradient(52deg,'+infos.tag.iconRight.startColorCode+' 0%,'+infos.tag.iconRight.endColorCode+' 100%':infos.tag.iconRight.bgColorCode?infos.tag.iconRight.bgColorCode:'#FF3272'}})">{{infos.tag.iconRight.iconText}}</view>
+    </view>
+  </block>
+</view>

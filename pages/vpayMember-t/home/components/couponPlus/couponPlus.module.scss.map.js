@@ -1,0 +1,23 @@
+module.exports = {
+  "couponCms": "couponPlus-module__couponCms___1OUeo",
+  "couponWrap": "couponPlus-module__couponWrap___29gtG",
+  "couponLeft": "couponPlus-module__couponLeft___21m1E",
+  "couponValue": "couponPlus-module__couponValue___2Fu-8",
+  "couponLimit": "couponPlus-module__couponLimit___39hgg",
+  "couponDesc": "couponPlus-module__couponDesc___3KVu_",
+  "couponRight": "couponPlus-module__couponRight___nE5wY",
+  "line": "couponPlus-module__line___2YbWF",
+  "semiCircle": "couponPlus-module__semiCircle___178JU",
+  "bottomCircle": "couponPlus-module__bottomCircle___206nb",
+  "couponBtn": "couponPlus-module__couponBtn___1iqll",
+  "couponUnit": "couponPlus-module__couponUnit___3Qejm",
+  "couponNum": "couponPlus-module__couponNum___2Fbkm",
+  "couponNumSmall": "couponPlus-module__couponNumSmall___2bjk0",
+  "CouponPlus": "couponPlus-module__CouponPlus___2KbVB",
+  "titleOpen": "couponPlus-module__titleOpen___373ju",
+  "CouponPlusVipFlag": "couponPlus-module__CouponPlusVipFlag___1Zglh",
+  "CouponPlus1": "couponPlus-module__CouponPlus1___3Ozsn",
+  "tips": "couponPlus-module__tips___1Gdnm",
+  "title": "couponPlus-module__title___Mkgxx",
+  "title1": "couponPlus-module__title1___vnVIW"
+};

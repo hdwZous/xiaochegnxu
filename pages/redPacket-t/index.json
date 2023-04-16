@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "default": "./components/default/index",
+    "friend-help": "./components/Dialogs/FriendHelp",
+    "permission": "./components/Dialogs/Permission",
+    "open-red-packet": "./components/Dialogs/OpenRedPacket/index",
+    "rob-red": "./components/Dialogs/RobRed",
+    "top-banner": "./components/TopBanner/index",
+    "bullets": "./components/Bullets/index",
+    "hour-red": "./components/HourRed/index",
+    "friend-help-comp": "./components/FriendHelpComp/index",
+    "dot-packet": "./pages/dotPacket/index"
+  },
+  "navigationBarTitleText": "京东到家红包雨",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "onReachBottomDistance": 50
+}

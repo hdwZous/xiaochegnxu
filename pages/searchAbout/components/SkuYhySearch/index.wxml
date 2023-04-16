@@ -1,0 +1,163 @@
+
+
+  <!-- 左侧 -->
+  <view class="good-pic">
+    <image class="image" src="{{item.imgUrl}}" aria-role='link'
+            aria-label="{{item.skuName}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}.现价{{item.majorPrice.price}}元，{{item.toHandPrice && item.toHandPrice.rightText ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' :  item.minorPrice &&  item.minorPrice.price ? '原价' + item.minorPrice.price + '元' : ''}},{{item.couponVOList.length && item.couponVOList[0]['couponTagVOMap']['2'].iconText}}" />
+    <view class="logo-layer"></view>
+    <!-- 到店标 -->
+    <view class="biz_tag_search">
+      <biz-tag bizType="image" businessTag="{{item.businessTag}}"/>
+    </view>
+    <!-- 预估到手价 与仅剩X件 互斥 -->
+    <view class="to_hand_price_820" wx:if="{{item.bottomCornerTag && item.bottomCornerTag.type}}">
+      <bottomCornerTag infos="{{item.bottomCornerTag}}" moduleId="SkuYhySearch" showHandle="{{true}}"/>
+    </view>
+    <block wx:else>
+      <view wx:if="{{!item.fixedStatus && item.skuType != 1}}" class="store_stockCount_tag">已下架</view>
+      <view wx:if="{{item.stockCount === 0 && item.skuType != 1}}" class="store_stockCount_tag">已抢光</view>
+      <view wx:if="{{item.stockCount <= 3 && item.stockCount>0 && item.skuType != 1}}" 
+            aria-label='仅剩{{item.stockCount}}件'
+            aria-role='text'
+            class="store-sku-remain">
+        仅剩
+        <text>{{item.stockCount}}</text>
+        件
+      </view>
+    </block>
+    <!-- 冷冻or冷藏 -->
+    <view class='freeze-wrap'>
+      <freeze-tag topLeftCornerTag="{{item.topLeftCornerTag}}" />
+    </view>
+  </view>
+  <!-- 右侧 -->
+  <view class="good-content">
+      <view  aria-role='link' class="con-inner"
+              aria-label="{{item.skuName}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}.现价{{item.majorPrice.price}}元.{{item.toHandPrice ? item.toHandPrice.rightText  + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' : '原价' + item.minorPrice.price + '元'}},{{item.couponVOList.length && item.couponVOList[0]['couponTagVOMap']['2'].iconText}}">
+          <view class='sku-name' aria-hidden="true">
+              <view class="sku-tag" wx:if="{{item.skuNameTag}}">
+                <sku-name-tag infos="{{item.skuNameTag}}"></sku-name-tag>
+              </view>
+              {{item.skuName}}
+          </view>
+        
+          <view aria-hidden="true">
+            <!-- 广告语, 优先排行榜 -->
+            <view class='description' wx:if="{{item.skuDesc}}" aria-hidden="true" style="color: {{item.skuDescFontColor}}">
+              <image class='desc-icon' wx:if="{{item.skuDescIcon}}" src="{{item.skuDescIcon}}" />
+              <view class="ellipsis text">{{item.skuDesc}}</view>
+            </view>
+            <!-- 排行榜 -->
+            <ranking-list wx:if="{{item.recWordsVO && item.recWordsVO && !item.skuDesc}}" info="{{item.recWordsVO}}" traceId="{{traceId}}" item="{{item}}" buriedObj="{{recommendObj}}"></ranking-list>
+          </view>
+          <view wx:if="{{item.personlizedCateAttritemList}}" aria-hidden="true" style="margin-top: 4px">
+              <goods-attribute buriedObj="{{recommendObj}}" info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+          </view>
+          <view style="flex: 1;min-height: 18rpx" aria-hidden="true"></view>
+
+          <view class="bottom-box">
+            <!-- 价格 & 月售数量 -->
+            <view class="flex-row price_case pos">
+              <view class="flex-auto">
+                <view class="price-flex-row"
+                      aria-hidden="true">
+                  <!-- major-price -->
+                  <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="36rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}" />
+                  <!-- minor-price -->
+                  <view class="mg1">
+                    <coupon-price minorPrice="{{item.minorPrice}}"/>
+                  </view>
+                  <!-- 月售 -->
+                  <view class='month-sale-high-opinion'>月售{{item.monthSales}}</view>
+                </view>
+              
+              
+              </view>
+
+              
+
+              <view wx:if="{{formTmp === 'store'}}" class="add_cart_box_820">
+                <view class="buy-btn-bg"></view>
+                <view>
+                  <!-- 新版加减车 -->
+                  <view class="select_case" wx:if="{{item.showCartButton}}">
+                    <add-min-controller showType="2" 
+                                      count="{{item.showModel ? item.spuCartCount :  item.incartCount}}" 
+                                      skuId="{{item.skuId}}" 
+                                      spuId="{{item.spuId}}" 
+                                      showModel="{{item.showModel}}" 
+                                      data-sku-id="{{item.skuId}}" 
+                                      orgCode="{{item.orgCode}}" 
+                                      storeId="{{item.storeId}}" 
+                                      longitude="{{longitude}}" 
+                                      latitude="{{latitude}}" 
+                                      isAddCart="{{item.isAddCart}}" 
+                                      tags="{{item.tags}}"
+                                      weighting="{{item.weighting}}"
+                                      weight="{{item.cartWeight}}"
+                                      addCartText="{{item.weightPriceStr}}"
+                                      keyword="{{keyword}}"
+                                      traceId="{{traceId}}"
+                                      biPageName="store_search"
+                                      bind:addMinControllerChange="addMinControllerChange"
+                                      userAction="{{item.userActionSku || item.userAction}}"
+                                      currentPageName="{{currentPageName}}"
+                                      prePageName="{{prePageName}}"
+                                      pageId="{{pageId}}"
+                                      to="{{item.to}}"
+                                      params="{{item.params}}"
+                                      transmitData="{{item.transmitData}}"
+                                      iconType="{{item.iconType}}">
+                    </add-min-controller>
+                  </view>
+                  <view wx:else class="go-detail-wrapper">
+                      <image class='go-detail' src="https://storage.360buyimg.com/wximg/common/next_green.png" />
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="tagAndMore">
+              <disabled-tag
+                wx:if="{{item.disabledTags && item.disabledTags.length > 0}}"
+                dataItem="{{item.disabledTags}}"
+              ></disabled-tag>
+              <!-- 标签 -->
+              <block wx:if="{{item.tags.length > 0}}">
+                <view class='flex-none tag-wrapper' wx:if="{{item.tags.length > 0}}">
+                  <view
+                    class='tag' 
+                    aria-role="text"
+                    aria-label="{{subItem.iconText}}"
+                    wx:for="{{item.tags}}" 
+                    wx:key="index" 
+                    wx:for-item="subItem" 
+                    style="color: {{subItem.strokeNameColorCode}};border: solid 2rpx {{subItem.strokeNameColorCode}}">
+                      {{subItem.iconText}}
+                  </view>
+                </view>
+              </block>
+              <block wx:if="{{item.couponVOList[0]}}">
+                <coupon-go-tag 
+                  data="{{item.couponVOList[0]}}"
+                  sku-id="{{item.skuId || ''}}"
+                  org-code="{{item.orgCode || ''}}"
+                  store-id="{{item.storeId || ''}}"
+                  from="{{formTmp === 'store'? 'storeSearchResult':'storeListByKey'}}"
+                  traceId="{{traceId}}"
+                  user-action="{{item.userActionSku}}"
+                  currentPageName="{{currentPageName}}"
+                  prePageName="{{prePageName}}"
+                  pageId="{{pageId}}"
+                  buriedObj="{{recommendObj}}">
+                </coupon-go-tag>
+              </block>
+            </view>
+            <!-- 买赠说明 -->
+            <view class="gift-info ellipsis" wx:if="{{item.giftInfo}}">{{item.giftInfo}}</view>
+
+            
+          </view>
+      </view>
+      
+  </view>
+

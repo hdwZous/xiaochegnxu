@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "store-item": "../../../../asyncPackage/compontents/storeItem/index"
+  },
+  "componentPlaceholder": {
+    "store-item": "/components-b/storeItemPlaceHolder/index"
+}
+}

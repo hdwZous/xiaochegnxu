@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "sort-new-item": "../sortNewItem/index"
+  }
+}

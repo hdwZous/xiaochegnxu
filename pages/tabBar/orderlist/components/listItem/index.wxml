@@ -1,0 +1,394 @@
+<!-- 非拼团订单 -->
+<view class="order-list-item" wx:if="{{initData.isGroup==0 || initData.isGroup==undefined}}">
+    <!-- 订单列表头部信息 -->
+    <view class="order-item-header" 
+          catchtap="gotoStore" 
+          data-order="{{initData}}"
+          data-pre-obj="{{recommendObj}}"
+          aria-role='link'
+          aria-label="{{initData.storeName}}.订单状态.{{initData.mainOrderStateMap.orderStateName}}">
+        <image class="store-logo" mode="aspectFill" src="{{initData.storeLogo || defaultLogo}}" aria-hidden="true" />
+        <view class="header-right" aria-hidden="true">
+            <view class="name-wrap d-flex flex-row justify-content-between align-items-center">
+              <view class="name_wrap_box d-flex flex-row align-items-center">
+                <view class="order-name ellipsis">{{initData.storeName}}</view>
+                <view class="icon_arrow flex-none"></view>
+              </view>
+              <view class="order-status flex-none" style="color:{{initData.mainOrderStateMap.orderColor}}">{{initData.mainOrderStateMap.orderStateName}}</view>
+            </view>
+            <view wx:if="{{initData.closeTip}}" class="close-tip-wrap">
+                <view class="close-tip" style="background:{{initData.closeTip.endColor}};border: 1rpx solid {{initData.closeTip.endColor}};{{initData.closeTip.timeText && 'font-size: 20rpx'}}">
+                    {{initData.closeTip.reserveText}}
+                </view>
+                <view wx:if="{{initData.closeTip.timeText}}" class="time-tip" style="border: 1rpx solid {{initData.closeTip.endColor}};color:{{initData.closeTip.endColor}};font-size:20rpx">{{initData.closeTip.timeText}}</view>
+            </view>
+            <view wx:if="{{!initData.closeTip || initData.closeTip.timeText}}" class="list-coupon">
+                <view class="item-coupon {{item.couponMode!=4 && 'bg-img'}}" wx:for="{{initData.coupons}}" wx:key="index" wx:if="{{index < 4}}" style="color:{{item.frontColor}};border-color:{{item.outLineColor}};background-color:{{item.backgroundColor}}">
+                    <!-- <image class="bg-coupon-left" mode="aspectFill" src="https://storage.360buyimg.com/wxmini/map/bg-coupon-left.png" /> -->
+                    {{item.words}}
+                    <!-- <image class="bg-coupon-middle" mode="aspectFill" src="https://storage.360buyimg.com/wxmini/map/bg-coupon-middle.png" />
+                    <image class="bg-coupon-right" mode="aspectFill" src="https://storage.360buyimg.com/wxmini/map/bg-coupon-right.png" /> -->
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="order-list-item-content">
+        <!-- 订单信息 -->
+        <view class="order-item-info">
+            <!-- 订单状态信息 -->
+            <view class="order-item-status-info" catchtap="gotoOrderDetail" data-page-name="orderdetail"
+                  data-order-id="{{initData.orderId}}"
+                  data-order-type="{{initData.locOrderType}}"
+                  wx:if="{{initData.orderListShowTrack == 1 && initData.orderStateMap && initData.locOrderType != 2}}">
+                <view class="order-status-header">
+                    <view class="order-status-header-first"> 
+                        <text> {{initData.orderStateMap.stateTitle}} </text>
+                        <!-- <text> {{initData.orderStateMap.stateTime}} </text> -->
+                    </view>                     
+                    <view class="order-status-header-second">{{initData.orderStateMap.stateDesc}}</view>
+                </view>
+                <view class="order-status-right" 
+                    catchtap="handleClickCall"
+                    wx:if="{{initData.orderStateMap && initData.orderStateMap.functionNumber}}"
+                    data-type="{{initData.orderStateMap.phoneNumType}}"
+                    data-number="{{initData.orderStateMap.functionNumber}}"
+                    data-middle="{{initData.orderStateMap.isMiddleNumber}}"
+                    >
+                    <image src="https://storage.360buyimg.com/wximg/order/tel.png" lazy-load="{{true}}"/>
+                </view>
+            </view>
+
+            <!-- 地图 -->
+            <!-- 订单列表页不显示礼盒 -->
+            <dj-map
+                orderId="{{initData.orderId}}"
+                store-id="{{initData.storeId}}"
+                mapHeight='{{mapInHeight}}'
+                wx:if="{{initData.isSowMap}}" 
+                bind:tapMapEvent='onTapMap'
+                bind:exitFullMap='onTapMap'
+                isShowGift='{{false}}'
+                class="map" style="height: {{'368rpx' ||mapHeight}};"
+                recommendObj="{{recommendObj}}"
+            ></dj-map>
+
+            <!-- 售后进度信息 -->
+            <!-- initData.locOrderType != 2 &&  -->
+            <view class="order-item-status-info"
+                    wx:if="{{initData.afsProcessInfo}}"
+                    catchtap="handleAfterSaleJumop"
+                    data-init-data="{{initData}}"
+                    data-url="{{initData.afsProcessInfo.params.url}}"
+            >
+                <view class="order-status-header">
+                    <view class="order-status-header-first"> 
+                        <text> {{initData.afsProcessInfo.title || '申请售后进度'}} </text>
+                    </view>                     
+                    <view class="order-status-header-second">{{initData.afsProcessInfo.desc}}</view>
+                </view>
+                <view class="order-status-right after_sale">
+                    <image src="https://storage.360buyimg.com/wximg/order/arrow_right.png" lazy-load="{{true}}"/>
+                </view>
+            </view>
+            <!-- 订单商品列表 -->
+            <view class="order-item-product-list flex-row"   
+                  catchtap="gotoOrderDetail" 
+                  data-page-name="orderdetail"
+                  data-order-id="{{initData.orderId}}"
+                  data-order-type="{{initData.locOrderType}}"
+                  aria-role="link"
+                  aria-label="付款金额.{{initData.productTotalPrice}}.{{initData.productTotalNumStr}}.配送方式{{initData.deliveryTypeDesc}}">
+                <view style='flex:1;white-space:nowrap;' aria-hidden="true">
+                    <!-- 商品图片 -->
+                    <block wx:for="{{initData.productList}}" wx:key="key">
+                        <view class="order-list-img-package" wx:if="{{index < 4}}">
+                            <!-- <text class="num-total-tag" wx:if="{{item.num > 1}}">{{item.num+(item.promotionNum||0)}}</text> -->
+                            <webp-img webp-img="order-item-imgs" src="{{item.imgPath}}" needOverlay='{{true}}' />
+                            <!-- <image class="order-item-img" src="{{item.imgPath}}" background-size="cover"/> -->
+                        </view>
+                        <view wx:elif="{{index == 4}}"
+                                class="order-list-img-package product-more">
+                        </view>
+                    </block>
+                </view>
+                <!-- 商品数量 -->
+                <view class="order-item-number" aria-hidden="true">{{initData.productTotalNumStr}}</view>
+            </view>
+            <view class="goodInfo" 
+                  catchtap="gotoOrderDetail" 
+                  data-page-name="orderdetail"
+                  data-order-id="{{initData.orderId}}"
+                  data-order-type="{{initData.locOrderType}}"
+                  aria-role="link"
+                  aria-label="付款金额.{{initData.productTotalPrice}}.{{initData.productTotalNumStr}}.配送方式{{initData.deliveryTypeDesc}}.时间{{initData.dateSubmitStr}}">
+                <view class="tag-time-wrap" aria-hidden="true">
+                    <view
+                      class="dada-tag"
+                      wx:if="{{initData.carrierTag}}"
+                      style="color:{{initData.carrierTag.iconTextColorCode}};border-color:{{initData.carrierTag.strokeColorCode}}"
+                    >{{initData.carrierTag.iconText}}</view>
+                    <view class="order-item-time">{{initData.dateSubmitStr}}</view>
+                </view>
+                <view class="tag-right-wrap" aria-hidden="true">
+                <view
+                      class="total-discount-tag"
+                      wx:if="{{initData.totalDiscountTag}}"
+                      style="color:{{initData.totalDiscountTag.iconTextColorCode}};border-color:{{initData.totalDiscountTag.strokeColorCode}}"
+                    >{{initData.totalDiscountTag.iconText}}</view>
+                    <!-- 商品金额 -->
+                    <view class="order-item-money" aria-hidden="true">{{initData.productTotalPrice || initData.realPay}}</view>
+                </view>
+            </view>
+            <!-- 订单底部信息与按钮组合 -->
+            <view class="order-item-footer flex-row">
+                <view class="order-shouldpay"></view>
+                <view class="order-pay-link flex-row">
+                    <view class=" txt order-list-to-code" catchtap="gotoCode"
+                            data-order-id="{{initData.orderId}}" wx:if="{{initData.orderBarcodeFlag == 1}}">
+                        订单条码
+                    </view>
+                    <view class="again_buy" catchtap="checkCode" wx:if="{{initData.showLocCodeButton}}">查看券码</view>
+                    <view class="again_buy" wx:if="{{initData.rePurchaseSwitch == 1}}" data-clickJumpCheck="{{initData.rePayProductJump.clickJumpCheck}}" data-to="{{initData.rePayProductJump.to}}" data-params="{{initData.rePayProductJump.params}}" catchtap="handleAgain" aria-role='button' aria-label="再次购买">再次购买</view>
+                    <block wx:if="{{initData.showPay == 1 && payButton.length}}">
+                      <view class="txt order-list-to-pay" catchtap="gotopay"
+                              data-can-click="{{payButton[0].canClick}}"
+                              data-business-type="{{initData.businessType}}"
+                              data-loc-orderType="{{initData.locOrderType}}"
+                              data-trade-name="{{initData.productList[0].name}}"
+                              data-org-code="{{initData.orgCode}}"
+                              data-order-id="{{initData.orderId}}" 
+                              data-realpay="{{initData.realPay}}"
+                              data-storeid="{{initData.storeId}}" 
+                              data-storename="{{initData.storeName}}"
+                              data-order-state="{{initData.orderState}}"
+                              style="color: {{payButton[0].fontColor}};border-color: {{payButton[0].borderColor}};background: {{payButton[0].backGroundColor}}"
+                      >
+                          {{payButton[0].title}}<count-down wx:if="{{payButton[0].showCountDownTime}}"
+                            type="1"
+                            init-style="{{ {color: payButton[0].fontColor || '#fff'} }}"
+                            init-data="{{payButton[0].countDownTime - initData.serverTime}}"
+                            bindtimeendCallback="paybuttonback">
+                          </count-down>
+                      </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{initData.payStateArray && initData.payStateArray.length > 0 && initData.showRemark == 1}}" class="refill">
+        <view
+            class="refill-button"
+            style="color: {{initData.payStateArray[0].fontColor}};border-color: {{initData.payStateArray[0].borderColor}};background: {{initData.payStateArray[0].backGroundColor}}"
+            data-params="{{initData.payStateArray[0].params}}"
+            data-to="{{initData.payStateArray[0].to}}"
+            bindtap="jumpHandler"
+        >
+            {{initData.payStateArray[0].title}}{{minute}}:{{second}}
+        </view>
+    </view>
+    <block wx:if="{{initData.weBankInfo}}">
+        <!--微常准-->
+        <view class="line"></view>
+        <overtime
+            item="{{initData.weBankInfo}}"
+            index="{{index}}"
+            order-id="{{initData.orderId}}"
+            bind:pageBuried="pageBuried"
+            page-name="orderList"
+            pageId="{{pageIdFirstPage}}"
+            currentPageName="{{currentPageName}}"
+            prePageName="{{prePageName}}"
+            buriedObj="{{recommendObj}}"
+        ></overtime>
+    </block>
+        <!-- 砍订单入口 -->
+</view>
+<!-- 拼团订单 -->
+<view class="order-list-item" wx:if="{{initData.isGroup === 1}}">
+    <!-- 订单列表头部信息 -->
+    <view class="order-item-header" catchtap="gotoStore" data-order="{{initData}}" data-pre-obj="{{recommendObj}}">
+        <view class="order-name">
+            {{initData.storeName}}
+            <view class="icon_arrow"></view>
+        </view>
+        <view class="order-status" style="color:{{initData.mainOrderState.orderColor}}">
+            {{initData.mainOrderState.orderStateName}}
+        </view>
+    </view>
+    <view class="order-item-time">{{initData.dateSubmitStr}}</view>
+    <view class="order-list-item-content">
+        <!-- 订单信息 -->
+        <view class="order-item-info {{initData.orderListShowTrack == 1 &&initData.deliveryType!=1&& initData.orderStateMap ? 'status-has-track' : ''}}">
+            <view catchtap="goToGroupOrderDetail" data-order-id="{{initData.orderId}}">
+                <!-- 订单状态信息 -->
+                <view class="order-item-status-info"
+                        wx:if="{{initData.orderListShowTrack == 1 && initData.orderStateMap&&initData.deliveryType!='1'}}">
+                    <view class="order-status-header">
+                        {{initData.orderStateMap.stateTitle}}
+                        <text>{{initData.orderStateMap.stateTime}}</text>
+                        <view>{{initData.orderStateMap.stateDesc}}</view>
+                    </view>
+                    <view class="order-status-right" 
+                        catchtap="handleClickCall"
+                        wx:if="{{initData.orderStateMap && initData.orderStateMap.functionNumber}}"
+                        data-type="{{initData.orderStateMap.phoneNumType}}"
+                        data-number="{{initData.orderStateMap.functionNumber}}"
+                    >
+                        <image src="https://storage.360buyimg.com/wximg/order/tel.png" lazy-load="{{true}}"/>
+                    </view>
+                </view>
+                <!-- 订单商品列表 -->
+                <view class="order-item-product-list flex-row">
+                    <!-- 商品图片 -->
+                    <block wx:for="{{initData.productList}}" wx:key="key" wx:for-index="subIndex"
+                            wx:for-item="subItem">
+                        <view class="order-list-img-package">
+                            <!-- <text class="num-total-tag" wx:if="{{subItem.num > 1}}">{{item.num}}</text> -->
+                            <image class="order-item-img" src="{{subItem.imgPath}}"
+                                    background-size="cover"/>
+                            <view class="group_tips">{{initData.groupTips}}</view>
+                        </view>
+                    </block>
+                    <view class='goodInfo group-goodinfo'>
+                        <!-- 商品金额 -->
+                        <view class="order-item-money">{{initData.productTotalPrice}}</view>
+                        <!-- 商品数量 -->
+                        <view class="order-item-number">{{initData.productTotalNumStr}}</view>
+                        <!-- 配送方式 0：达达配送 1：商家自送（不显示） 2:到店自提 -->
+                        <view class="flags flex-row">
+                            <!-- groupType: 1、自提拼团 2、常规拼团 3、预售团 -->
+                            <view class="collection order-list-collection"
+                                    wx:if="{{initData.entrustOrderTag!= null && initData.entrustOrderTag==1}}">
+                                团长代收
+                            </view>
+                            <view class="pre-flag" wx:if="{{initData.groupType==3}}">预售团</view>
+                            <view class="dada-tag" wx:if="{{initData.deliveryType == 0}}">
+                                {{initData.deliveryTypeDesc}}
+                            </view>
+                            <view class="self-tag" wx:elif="{{initData.deliveryType == '2'}}">
+                                {{initData.deliveryTypeDesc}}
+                            </view>
+                            <view class="store-tag" wx:elif="{{initData.deliveryType == '1'}}">
+                                {{initData.deliveryTypeDesc}}
+                            </view>
+                            <view class="dada-tag order-list-delivery"
+                                    wx:if="{{initData.deliveryType == 4}}">
+                                {{initData.deliveryTypeDesc}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 订单底部信息与按钮组合 -->
+            <view class="order-item-footer group_buy">
+                <view class="left">
+                    <view wx:if="{{initData.groupType == 1}}">
+                        <view class="item" wx:if="{{initData.totalMembers && initData.leftMembers}}">
+                            {{initData.totalMembers}}人团
+                            <text class="split">|</text>
+                            还差{{initData.leftMembers}}人
+                        </view>
+                        <view class="item" wx:if="{{initData.storeName}}">提货门店：{{initData.storeName}}</view>
+                        <view class="item" wx:if="{{initData.selfPickCode}}">
+                            提货码：{{initData.selfPickCode}}
+                        </view>
+                        <view class="item" wx:if="{{initData.selfPickEndTime}}">
+                            提货剩余时间：
+                            <count-down 
+                                type="1"
+                                init-style="{{ {color:'#333'} }}"
+                                init-data="{{initData.selfPickEndTime - initData.serverTime}}">
+                            </count-down>
+                            <!-- {{initData.hour}}:{{initData.minute}}:{{initData.second}} -->
+                            <!-- </text> -->
+                        </view>
+                        <view class="item" wx:if="{{initData.cancelDate}}">取消时间：{{initData.cancelDate}}</view>
+                        <view class="item" wx:if="{{initData.groupEndTime}}">
+                            成团剩余时间：
+                            <count-down 
+                                type="1"
+                                init-style="{{ {color:'#333'} }}"
+                                init-data="{{initData.groupEndTime}}">
+                            </count-down>
+                            <!-- {{initData.hour}}:{{initData.minute}}:{{initData.second}} -->
+                        </view>
+                        <view class="item" wx:if="{{initData.payEndTime}}">
+                            付款剩余时间：
+                           <count-down 
+                                type="1"
+                                init-style="{{ {color:'#333'} }}"
+                                init-data="{{initData.payEndTime - initData.serverTime}}">
+                            </count-down>
+                            <!-- {{initData.hour}}:{{initData.minute}}:{{initData.second}} -->
+                        </view>
+                        <view class="item" wx:if="{{initData.isSelfPicked}}">已提货</view>
+                        <!-- <view>{{item.countDown(item.time)}}</view> -->
+                    </view>
+                    <view wx:elif="{{initData.groupType == 2||initData.groupType == 3}}">
+                        <view class="item" wx:if="{{initData.totalMembers && initData.leftMembers}}">
+                            {{initData.totalMembers}}人团
+                            <text class="split">|</text>
+                            还差{{initData.leftMembers}}人
+                        </view>
+                        <view class="item" wx:if="{{initData.cancelDate}}">取消时间：{{initData.cancelDate}}</view>
+                        <view class="item" wx:if="{{initData.groupEndTime}}">
+                            成团剩余时间：
+                            <count-down 
+                                type="1"
+                                init-style="{{ {color:'#333'} }}"
+                                init-data="{{initData.groupEndTime}}">
+                            </count-down>
+                            <!-- {{initData.hour}}:{{initData.minute}}:{{initData.second}} -->
+                        </view>
+                        <view class="item" wx:if="{{initData.payEndTime}}">
+                            付款剩余时间：
+                            <count-down 
+                                type="1"
+                                init-style="{{ {color:'#333'} }}"
+                                init-data="{{initData.payEndTime - initData.serverTime}}">
+                            </count-down>
+                            <!-- {{initData.hour}}:{{initData.minute}}:{{initData.second}} -->
+                        </view>
+                    </view>
+                </view>
+                <block wx:if="{{!initData.prescriptionTag}}">
+                    <view class="right">
+                        <view wx:if="{{initData.btnType == 2}}">
+                            <button 
+                                    class="btn_share flex-row" 
+                                    catchtap='showShare'
+                                    data-sku-id="{{initData.productList[0].sku}}"
+                                    data-org-Code="{{initData.orgCode}}" 
+                                    data-store-Id="{{initData.storeId}}"
+                                    data-from="groupBuy" 
+                                    data-group-id="{{initData.groupCode}}"
+                                    data-index="{{index}}" 
+                                    data-typedesc="{{initData.deliveryTypeDesc}}"
+                                    data-shareImgUrl="{{initData.shareImgUrl}}"
+                                    data-productList="{{initData.productList}}"                                   
+                                >
+                                <view class="flex-auto">{{initData.btnTxt}}</view>
+                            </button>
+                        </view>
+                        <view wx:else 
+                                class="btn flex-row {{initData.groupAgainSwitch ==1 && 'groupAgainSwitch'}}" 
+                                catchtap="clickOrderBtn"
+                                data-sku-id="{{initData.productList[0].sku}}" 
+                                data-org-Code="{{initData.orgCode}}"
+                                data-store-Id="{{initData.storeId}}"
+                                data-business-type="{{initData.businessType}}"
+                                data-trade-name="{{initData.productList[0].name}}"
+                                data-order-id="{{initData.orderId}}" 
+                                data-group-id="{{initData.groupCode}}"
+                                data-btn-type="{{initData.btnType}}"
+                                data-typedesc="{{initData.deliveryTypeDesc}}"
+                                data-entrust-order-tag="{{initData.entrustOrderTag}}">
+                            <view class="flex-auto">{{initData.btnTxt}}</view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>
+

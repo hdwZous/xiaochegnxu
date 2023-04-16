@@ -1,0 +1,25 @@
+<view class="container" catchtouchmove="catchTouchmove">
+  <view class="title"
+        aria-role="text"
+        aria-label="处方信息">{{initData[0].title}}</view>
+  <view class="item_wrap">
+      <view class="item" 
+          wx:for="{{initData}}" 
+          wx:key="index"
+          wx:if="{{index>0}}"
+          aria-role="text"
+          aria-label="{{item.title}}{{item.value}}"
+      >
+          <view class="left" aria-hidden="true">{{item.title}}</view>
+          <view wx:if="{{item.pictureList.length}}" class="right">
+            <view class="center_time" wx:for="{{item.pictureList}}" wx:for-item="itemPic" wx:key="index">
+              <image class="img_person" src="{{itemPic.img0}}" data-item="{{itemPic}}" bind:tap="showImgBig"/>
+            </view>
+          </view>
+          <block wx:else>
+            <view class="center_time"> {{item.value}} </view>
+          </block>
+      </view>
+  </view>
+</view>
+

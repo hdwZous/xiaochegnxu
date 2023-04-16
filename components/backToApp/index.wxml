@@ -1,0 +1,14 @@
+<view class="back_to_app_wrap flex-row" wx:if="{{isShow}}">
+    <view class="flex-none" wx:if="{{appScene === 1069}}">
+        <view class="icon dj_icon ts_pre back_to_app_icon_arrow"></view>
+    </view>
+    <view class="flex-auto back_to_app_middle">
+        <button open-type="launchApp" class="back_to_app_txt" binderror="launchAppError" hover-class="none">
+            {{appScene === 1069 ? '返回APP' : '打开APP' }}
+        </button>
+    </view>
+    <view class="flex-none back_to_app_split">|</view>
+    <view class="flex-none back_to_app_right" bind:tap="clickClose">
+        <view class="icon dj_icon ts_close back_to_app_icon_close"></view>
+    </view>
+</view>

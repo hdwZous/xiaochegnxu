@@ -1,0 +1,32 @@
+<view class="component_default" style="background: {{bgColor ?  bgColor : '#fff'}}">
+    <block wx:if="{{src}}">
+        <image style="width: {{width}}"
+               mode="widthFix"
+               src="{{src}}"
+        ></image>
+    </block>
+    <block wx:else>
+        <view class="net_error"></view>
+    </block>
+    <view class="text">{{tips}}</view>
+    <block wx:if="{{btnType}}">
+        <button open-type="{{btnType}}">{{btnText}}</button>
+    </block>
+    <block wx:else>
+        <view class="box d-flex justify-content-around" >
+                <view 
+                    bindtap="dealDefault" 
+                    class="component_btn " 
+                    wx:if="{{btnText}}">
+                    {{btnText}}
+                </view>
+                <view 
+                    class="component_btn " 
+                    wx:if="{{fromsource == 'home'}}"
+                    bindtap="goToAddress">
+                    手动选择地址
+                </view>
+        </view>
+        
+    </block>
+</view>

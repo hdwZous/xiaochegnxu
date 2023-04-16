@@ -1,0 +1,216 @@
+@import "/common/css/global";
+.wrap {
+    background: url('https://storage.360buyimg.com/wximg/store/red_border.png?1') no-repeat center;
+    background-size: 100% 100%;
+    /* background-size: cover; */
+    /* margin:0 10rpx; */
+    padding-right: 44rpx;
+    height: 192rpx;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+.left{
+    padding-left: 16rpx;
+    align-items: center;
+    width: 60%;
+}
+.money-cont{
+    justify-content: center;
+    align-items: center;
+    width: 178rpx;
+    padding:  0 10rpx;
+    box-sizing: border-box;
+    margin-top: -8rpx;
+}
+.money{
+    align-items: baseline;
+    color: #FF5757;
+    justify-content: center;
+    width: 100%;
+    font-family: 'regular';
+}
+.money .unit{
+    font-size: 28rpx;
+}
+.money .num{
+    font-size: 64rpx;
+}
+.money .cent{
+    justify-content: center;
+    align-items: baseline;
+    font-size: 64rpx;
+}
+.limit{
+    font-size: 22rpx;
+    text-align: center;
+    font-weight: 300;
+    width: 100%;
+}
+.coupon {
+    width: 55%;
+    margin-top: -8rpx;
+}
+.coupon .title{
+    font-size: 28rpx;
+    font-weight: bold;
+    margin-bottom: 5rpx;
+}
+.tags-container {
+    display: flex;
+}
+.coupon .tags{
+    font-size: 20rpx;
+    text-align: center;
+    margin-right: 10rpx;
+}
+.bule{
+    color: #348BED;
+    border-radius:8rpx 2rpx 8rpx 2rpx;
+    border:1px solid #348BED;
+    margin-right: 8rpx;
+    padding: 0rpx 6rpx 0 0;
+    margin-top: 10rpx;
+}
+.red{
+    color: #FF4C44;
+    border-radius:8rpx 2rpx 8rpx 2rpx;
+    border:1px solid #FF4C44;
+    margin-right: 8rpx;
+    padding: 0rpx 6rpx 0 0;
+    margin-top: 10rpx;
+}
+.coupon .date{
+    font-size: 22rpx;
+    color: #666666;
+    margin-top: 18rpx;
+}
+.right .btn{
+    width: 112rpx;
+    height: 48rpx;
+    border-radius:30rpx;
+    font-size: 24rpx;
+    line-height: 48rpx;
+    text-align: center;
+    margin-top: -8rpx;
+    /*border: .5px solid;*/
+    position: relative;
+    z-index: 10;
+}
+.go-get{
+    background:linear-gradient(315deg,#FF5138 0%,#FF7D7D 100%);
+    box-shadow:0px 4rpx 8rpx 0rpx rgba(255,88,67,0.21);
+    color: #fff;
+}
+.has-get{
+    border:1rpx solid #cccccc;
+    color: #999999
+}
+.sold-out{
+    background: #cccccc;
+    color: #fff;
+}
+.flag{
+    width: 87rpx;
+    height: 87rpx;
+    position: absolute;
+    right: 14rpx;
+    top: 12rpx;
+}
+.tagItem {
+    border: .5px solid;
+    border-radius:4px 1px 4px 1px;
+    padding: 0 6rpx;
+}
+
+.des-container {
+    margin-top: 30rpx;
+    /* padding: 0 24rpx; */
+    margin-bottom: 20rpx;
+}
+.des {
+    font-size: 24rpx;
+    line-height: 40rpx;
+    color: #333;
+}
+.des .des-text {
+    height: 32rpx;
+    /*width: 140rpx;*/
+    line-height: 12rpx;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0 12rpx;
+    font-size: 20rpx;
+    display: inline-block;
+    margin-right: 10rpx;
+}
+
+/* 0.5px边框 */
+.right .btn-has-grap:after {
+    /*z-index: -999;*/
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid;
+    width: 200%;
+    height: 200%;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(.5, .5);
+    transform: scale(.5, .5);
+    box-sizing: border-box;
+    border-radius: 60rpx;
+}
+
+/* 商品图片 */
+.skuWrap{
+    padding:0 10rpx;
+    margin-bottom: 6rpx;
+    width: 100%;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+}
+.skuItem{
+    display: inline-block;
+    width: 132rpx;
+    text-align: center;
+    margin-right: 20rpx;
+    position: relative;
+}
+.skuItem:last-child{
+    margin-right: 0;
+}
+.skuImg{
+    width: 100%;
+    height: 132rpx;
+}
+.skuPrice{
+    font-size: 28rpx;
+    color: #333;
+    font-family: regular;
+}
+.skuNum{
+    font-size: 24rpx;
+    color: #999;
+    font-family: regular;
+}
+.top_left_tag{
+    position: absolute;
+    top:4rpx;
+    left:4rpx;
+    /* background: linear-gradient(90deg, #6785FF 0%, #2D56FF 100%); */
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    display: flex;
+    align-items: center;
+    padding:0 8rpx 0 4rpx;
+}
+.top_left_tag-icon{
+    width: 20rpx;
+    height: 20rpx;
+}

@@ -1,0 +1,9 @@
+<view class="dd_store_list_box">
+  <store-item
+    item="{{info}}" 
+    buriedObj="{{recommendObj}}"
+    traceId="{{traceId}}"
+    keyword="{{keyword}}"
+    noNeedExposure="{{false}}"
+  ></store-item>
+</view>

@@ -1,0 +1,8 @@
+{
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "进群领福利",
+    "usingComponents": {
+      "location-default": "/components-b/locationDefault/index"
+    }
+  }

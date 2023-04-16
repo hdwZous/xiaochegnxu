@@ -1,0 +1,70 @@
+@import "/common/css/global.wxss";
+.icon_buy{
+  height: 28rpx;
+  width: auto;
+  /* background: #01CF38; */
+  display: flex;
+}
+
+.border_r{
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+.biz_right {
+  /* position: relative;
+  bottom: 2rpx; */
+}
+.biz_left {
+  /* position: relative;
+  bottom: 0rpx; */
+  border-bottom-left-radius: 0rpx;
+}
+.border_right{
+  border-bottom-right-radius: 10rpx;
+}
+.icon_jz{
+  /* background: red; */
+  display: flex;
+  height: 26rpx;
+}
+.icon_height{
+  height: 28rpx;
+}
+.horizontal{
+  overflow: hidden;
+  width: max-content;
+  height: 28rpx;
+  /* box-sizing: border-box; */
+  border-width: 2rpx;
+  border-style: solid;
+}
+.vertical{
+  width: max-content;
+  text-align: center;
+  box-sizing: border-box;
+  border-width: 2rpx;
+  border-style: solid;
+}
+.vertical-84{
+  justify-content: center;
+  width: 84rpx;
+}
+.vertical-100{
+  justify-content: center;
+  width: 100rpx;
+}
+
+.text{
+  font-size: 20rpx;
+  line-height: 28rpx;
+  background: #fff;
+  padding: 0 4rpx;
+  width: auto;
+}
+.text-width100{
+  width: 100%;
+  border-radius: 4rpx;
+  padding: 0;
+}
+
+

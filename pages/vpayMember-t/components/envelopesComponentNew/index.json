@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "poup-envelopes": "../poupEnvelopes/index"
+  },
+  "navigationBarTitleText": "V+会员"
+}

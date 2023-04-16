@@ -1,0 +1,84 @@
+<view class='guess-like-wrapper' wx:if="{{guessLike.itemList && guessLike.itemList.length >=4}}">
+    <view class='title' aria-role='text' aria-label="{{guessLike.filterName}}">
+        <image src="https://s.360buyimg.com/wximg/searchAbout/guess-like-left.png" aria-hidden="true" />
+        <view class='name' aria-hidden="true">{{guessLike.filterName}}</view>
+        <image src="https://s.360buyimg.com/wximg/searchAbout/guess-like-right.png" aria-hidden="true" />
+    </view>
+    <view class='guess-list-wrapper'>
+        <!-- 1：店内分类； -->
+        <block wx:if="{{guessLike.filterType == 1}}">
+            <view 
+              class="guess-item-ep guess-item {{index == curGuessIndex ? 'guess-selected' : ''}}"
+              wx:for="{{list}}"
+              wx:key="index"
+              wx:for-item="subItem"
+              id="{{index}}"
+              data-item="{{subItem}}"
+              data-cat-ids="{{guessLike.filterType == 1 ? subItem : []}}"
+              data-brand-ids="{{guessLike.filterType == 2 ? subItem : []}}"
+              data-standard-cat-ids="{{guessLike.filterType == 3 ?  subItem : []}}"
+              bindtap="clickGuessLike"
+              aria-label="{{subItem.itemName}}"
+              aria-role='button'
+              data-user-action="{{subItem.userAction}}"
+              data-trace-id="{{traceId}}"
+              data-page-id='{{pageId}}'
+              data-current-page-name='{{currentPageName}}'
+              data-pre-page-name='{{prePageName}}'>
+                {{subItem.itemName}}
+            </view>
+        </block>
+        <!-- 2：品牌； -->
+        <block wx:if="{{guessLike.filterType == 2}}">
+            <view class="guess-item {{index == curGuessIndex ? 'guess-selected' : ''}}" wx:for="{{list}}" wx:key="index" wx:for-item="subItem" id="{{index}}" data-item="{{subItem}}" data-cat-ids="{{guessLike.filterType == 1 ? subItem : []}}" data-brand-ids="{{guessLike.filterType == 2 ? subItem : []}}" data-standard-cat-ids="{{guessLike.filterType == 3 ?  subItem : []}}" bindtap="clickGuessLike" aria-label="{{subItem.itemName}}" aria-role='button'>
+                {{subItem.itemName}}
+            </view
+            >
+        </block>
+        <!-- 1：店内分类；猜你想要 -->
+        <block wx:if="{{guessLike.filterType == 3}}">
+            <view 
+              class="guess-item-ep guess-item {{index == curGuessIndex ? 'guess-selected' : ''}}"
+              wx:for="{{list}}"
+              wx:key="index"
+              wx:for-item="subItem"
+              id="{{index}}"
+              data-item="{{subItem}}"
+              data-cat-ids="{{guessLike.filterType == 1 ? subItem : []}}"
+              data-brand-ids="{{guessLike.filterType == 2 ? subItem : []}}"
+              data-standard-cat-ids="{{guessLike.filterType == 3 ?  subItem : []}}"
+              bindtap="clickGuessLike"
+              aria-label="{{subItem.itemName}}"
+              aria-role='button'
+              data-user-action="{{subItem.userAction}}"
+              data-trace-id="{{traceId}}"
+              data-page-id='{{pageId}}'
+              data-current-page-name='{{currentPageName}}'
+              data-pre-page-name='{{prePageName}}'>
+                {{subItem.itemName}}
+            </view>
+        </block>
+        <!-- 3:平台标准分类： 精选店铺 -->
+        <block wx:if="{{guessLike.filterType == 4}}">
+            <view
+              data-item="{{subItem}}"
+              bind:tap="clickStoreListItem"
+              class="guess-item-ep flex-row guess-item-2"
+              wx:for="{{list}}"
+              wx:key="index"
+              wx:for-item="subItem"
+              aria-label="{{subItem.storeName}}"
+              aria-role='link'
+              data-user-action="{{subItem.userAction}}"
+              data-trace-id="{{traceId}}"
+              data-page-id='{{pageId}}'
+              data-current-page-name='{{currentPageName}}'
+              data-pre-page-name='{{prePageName}}'>
+                <view class="logo_img_case flex-none" aria-hidden="true">
+                    <image class="log_img" src="{{subItem.logo}}" />
+                </view>
+                <view class="flex-auto ellipsis" aria-hidden="true">{{subItem.storeName}}</view>
+            </view>
+        </block>
+    </view>
+</view>

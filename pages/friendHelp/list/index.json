@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "large-sale": "../components/LargeSale/index",
+    "default": "../commonComponents/Default/index",
+    "list-all": "./SubPages/ListAll/index",
+    "pop": "../../../common-mp/components/Pop/index",
+    "subscribe-message": "../../../common-mp/components/subscribeMessage/index"
+  },
+  "navigationBarTitleText": "京东到家",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

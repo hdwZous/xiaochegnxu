@@ -1,0 +1,201 @@
+<!-- 最外层增加scroll为了防止mini购物车事件发到这里 -->
+<view catchtap="elementTracker" class="search_result_wrap {{forbidScroll ? 'forbid-scroll' : ''}}">
+    <!-- 搜索框 -->
+    <result-searchbox 
+      searchKey="{{searchKey}}" 
+      fromSource="{{fromSource}}"
+      orgCode="{{orgCode}}"
+      storeId="{{storeId}}"
+      styleABMap="{{styleABMap}}"
+      onPullDown="{{onPullDown}}"
+      isCart="{{isCart}}"
+      fatherFilterList="{{filterList}}"
+      buriedObj="{{recommendObj}}"
+      bind:getGoodList="getGoodList"
+    />
+    <view wx:if="{{backTop}}" class="gap"></view>
+    <!-- 小黄条 -->
+    <!-- <view 
+      wx:if="{{resultNotice}}" 
+      class="storePromptWrap border-b">
+        抱歉,没有找到商品,为您推荐<text class="searchPrompt">“{{promptWord}}”</text>下搜索结果
+    </view> -->
+    
+    <!-- 医药屏蔽或其他异常情况 -->
+    <block wx:if="{{showEmpty}}">
+      <block wx:if="{{showMedicineDefault}}">
+        <view class="none-medicine">
+          <image src="https://s.360buyimg.com/wximg/defaultPage/medicine.jpg" mode="widthFix" class="medicine_img"></image>
+        </view>
+      </block>
+      <block wx:else>
+          <newDefault 
+            type="{{defaultType}}" 
+            topMargin="{{topMargin}}"
+            imgSize="{{imgSize}}"
+            defaultObj="{{defaultObj}}"
+            buriedObj="{{recommendObj}}"
+            bind:defaultBtnEvent="onDefaultBtnEvent">
+          </newDefault>
+      </block>
+    </block>
+
+
+    <view wx:else class='{{onPullDown ? (multiDisplayFilterFloorList && multiDisplayFilterFloorList.length)? "container mar_top200": "container mar_top80" : "container mar_top100"}}'>
+      <block wx:if="{{!showGoodListEmpty || isShowTopFilter}}">
+        <!-- 排序 -->
+        <view wx:if="{{!storeModal}}" class='{{onPullDown ? "sort-fixed sort-fixed-b" : "sort-fixed"}}' style="z-index:{{forbidScroll ? 12 : 11}}">
+          <sort-new 
+            class="sort-new"
+            isShowFilter="{{isShowFilter}}" 
+            sortNodeList="{{sortNodeList}}" 
+            searchFilterList="{{searchFilterList}}" 
+            fatherFilterList="{{filterList}}" 
+            storeId="{{storeId}}"
+            sortModal="{{sortModal}}"
+            pageId='{{recommendObj.pageIdFirstPage}}'
+            currentPageName='{{recommendObj.currentPageName}}'
+            prePageName='{{recommendObj.prePageName}}'
+            searchKey="{{searchKey}}"
+            otherSortModal="{{otherSortModal}}"
+            traceId="{{traceId}}"
+            bind:forbid="forbid" 
+            bind:look="lookBury" 
+            bind:getGoodList="getGoodList"
+            bind:clickChangeZIndex="clickChangeZIndex"
+            bind:showModal="showModal"
+          />
+          <!-- 占位 -->
+          <view class='{{onPullDown ? "" :  searchTagFix ? "seat" : ""}}'></view>
+          <!-- 品类筛选 -->
+          <view class='{{onPullDown ? "" :  searchTagFix ? "category_case" : ""}}' id="searchTag">
+            <category-filter-new
+              wx:if="{{multiDisplayFilterFloorList && multiDisplayFilterFloorList.length}}"
+              fatherFilterList="{{filterList}}"
+              multiDisplayFilterFloor="{{multiDisplayFilterFloorList}}"
+              categoryModal="{{categoryModal}}"
+              searchKey="{{searchKey}}"
+              storeId="{{storeId}}"
+              traceId="{{traceId}}"
+              pageId='{{recommendObj.pageIdFirstPage}}'
+              currentPageName='{{recommendObj.currentPageName}}'
+              prePageName='{{recommendObj.prePageName}}'
+              bind:buryClick="catogoryBury"
+              bind:getGoodList="getGoodList"
+              bind:showModal="showModal"
+            />
+            <category-filter
+              wx:if="{{displayFilterFloor.itemList.length >=2 && (!multiDisplayFilterFloorList || multiDisplayFilterFloorList.length === 0) }}"
+              fatherFilterList="{{filterList}}"
+              searchKey="{{searchKey}}"
+              storeId="{{storeId}}" 
+              displayFilterFloor="{{displayFilterFloor}}" 
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+              bind:buryClick="catogoryBury"
+              bind:getGoodList="getGoodList" />
+          </view>
+        </view>
+      </block>
+        
+
+        <block wx:if="{{!showGoodListEmpty && goodList.length > 0}}">
+          <!-- 商品列表 -->
+          <store-good-list
+            goodList="{{goodList}}"
+            imgLazyLoad="{{imgLazyLoad}}"
+            keyword="{{searchKey}}"
+            traceId="{{traceId}}"
+            recommendNumber="{{recommendNumber}}"
+            pageId="{{recommendObj.pageIdFirstPage}}"
+            currentPageName="{{recommendObj.currentPageName}}"
+            prePageName="{{recommendObj.prePageName}}"
+            recommendObj="{{recommendObj}}"
+            updateNum="{{updateNum}}"
+            bind:goodAddBury="goodAddBury"
+            bind:goodReduceBury="goodReduceBury"
+          />
+        </block>
+      
+      <!-- 获取商品列表无数据 -->
+      <view class='pdb40 pdt100' wx:else>
+          <newDefault 
+            type="{{defaultType}}" 
+            topMargin="{{topMargin}}"
+            imgSize="{{imgSize}}"
+            defaultObj="{{defaultObj}}"
+            bind:defaultBtnEvent="onDefaultBtnEvent"/>
+      </view>
+    </view>
+    
+    <!-- 回到顶部 -->
+    <back-top hideBackTop='{{hideBackTop}}' pageMoving='{{pageMoving}}' showMinicar='{{true}}' bind:handleBackTop='handleBackTop'></back-top>
+
+    <!-- 相关推荐 -->
+    <view class='container'>
+      <recommend-good 
+        imgLazyLoad="{{imgLazyLoad}}"
+        recommendInfo="{{recommendInfo}}"
+        recommendSkuList="{{recommendSkuList}}"
+        traceId="{{traceId}}"
+        buriedObj="{{recommendObj}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}"
+        prePageName="{{recommendObj.prePageName}}"
+        bind:recGoodAddBury="recGoodAddBury"
+        bind:recGoodReduceBury="recGoodReduceBury" />
+      <view class='bottom-text' hidden="{{recommendSkuList.length <= 0 && goodList.length <= 0}}">已经到底了</view>
+    </view>
+    <!-- 迷你购物车 -->
+    <view class="footer flex-none" wx:if="{{!showMedicineDefault}}">
+      <view class="minicart" wx:if="{{isCart}}">
+        <mini-cart
+          id="minicart"
+          store-id="{{storeId}}" 
+          org-code="{{orgCode}}" 
+          longitude="{{longitude}}"
+          latitude="{{latitude}}"
+          catAnimation="{{catAnimation}}"
+          refreshMiniCartData="{{refreshMiniCartData}}"
+          hasAddOnEntry="true"
+          pageSource="storeSearchResult"
+          keyword="{{searchKey}}"
+          searchType="{{searchType}}"
+          pageId="{{recommendObj.pageIdFirstPage}}"
+          prePageId="{{recommendObj.pageIdFirstPage}}"
+          currentPageName="{{recommendObj.currentPageName}}"
+          prePageName="{{recommendObj.prePageName}}"
+          refPar="{{refPar}}"
+          preBuried="{{recommendObj}}"
+          pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+          biPageName="store_search"
+          ></mini-cart>
+      </view>
+    </view>
+    <!-- 多规格商品 spu选择器 -->
+    <spu-selector
+        toggle="{{toggle}}" 
+        orgCode="{{spuData.orgCode}}" 
+        storeId="{{spuData.storeId}}" 
+        skuId="{{spuData.skuId}}" 
+        spuId="{{spuData.spuId}}" 
+        refPar="{{refPar}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        userAction="{{spuData.userActionSku && spuData.userActionSku || spuData.userAction  ||  ' '}}"
+        id="spu-selector"
+        biPageName="store_search"
+        pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+        transmitData="{{spuData.transmitData}}"
+        carNumber="{{spuData.cartNum}}"
+        showModel="{{spuData.showModel}}"
+        carNumber="{{spuData.cartNum}}"
+        showModel="{{spuData.showModel}}"
+        weighting="{{spuData.weighting}}"
+        bind:spuSelectorEvent="onSpuSelectorEvent"
+    />
+    <!-- 腰带楼层 -->
+    <belt fading="{{fading}}" isShow="{{isBeltShow}}" currentPage="search" ></belt>
+</view>
+
+<!-- <weconsole /> -->

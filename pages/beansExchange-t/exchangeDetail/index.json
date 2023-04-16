@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index",
+    "swipe": "../commonComponents/Swipe/index",
+    "pop": "../../../common-mp/components/Pop/index"
+  },
+  "navigationBarTitleText": "兑换详情",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

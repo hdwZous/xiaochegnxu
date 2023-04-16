@@ -1,0 +1,13 @@
+<view class="newPayPop" wx:if="{{showNewPayPop}}">
+    <view class="payContainer">
+        <view class="title">确认支付</view>
+        <view class="subTitle">订单已生成，快去支付吧</view>
+        <view class="payBtns">
+            <view class="btn close" catchtap="closeNewPayPop">取消</view> 
+            <!-- applet_zWDVWrRg_beta -->
+            <pay-button custom="{{true}}" fee="{{fee  * 100}}" deal-id="{{dealId}}" biz-id="applet_PXEg7zKs" bind:success="onPaySuccess" bind:fail="onPayFail" bind:cancel="onPayCancel" bind:authfail="onAuthFail">
+                <view class="btn pay">支付</view>
+            </pay-button>
+        </view>
+    </view>
+</view>

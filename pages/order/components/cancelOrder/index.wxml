@@ -1,0 +1,86 @@
+<!--b-components/cancelOrder/index.wxml-->
+<!-- selectCallback 提交最终数据 -->
+<ratio-picker 
+  visible="{{rationPickerVisible}}"
+  bind:close="handleCloseRationPicker" 
+  bind:selectCallback="handleSelect"
+  init-data="{{rationInitData}}"
+  cancel-tip="{{cancelTip}}"
+  title="{{rationTitle}}"
+  picker-type="{{pickerType}}"
+  recommendObj="{{recommendObj}}"
+  orderState="{{orderState}}"
+  orderId="{{orderId}}"
+  modalType="{{modalType}}"
+  rationTitle="{{rationTitle}}"
+  >
+</ratio-picker>
+<view class="mask" catchtouchmove='ture' bindtap="colseMask" wx:if="{{maskVisible}}">
+   <view class="cancel_modal" wx:if="{{modalType == 2}}" catch:tap="stopPropagation">
+      <view class="modal_pic">
+        <image 
+          src="https://storage.360buyimg.com/wximg/order/default_dog.png"
+          lazy-load="{{true}}"
+         />
+      </view>
+      <view class="modal_title">
+         <block
+            wx:for="{{initData.layerTitleSlices}}" 
+            wx:key="index" 
+          >
+            <text style="color:{{item.color}}">{{item.content}}</text>
+         </block>
+      </view>
+      <view class="btn_group" wx:if="{{initData.operations.length == 2}}">
+        <button 
+          class="{{index==0? 'first_btn' : 'second_btn' }}" 
+          wx:for="{{initData.operations}}"
+          wx:key="index"
+          data-hrefInfo="{{item.hrefInfo}}"
+          catch:tap="handleOperationBtn"
+        >
+          {{item.content}}
+        </button>
+      </view>
+      <view class="btn_group" wx:if="{{initData.operations.length == 3}}">
+          <button
+            open-type="{{item.hrefInfo.type == 4 && 'contact'}}"
+            class="{{index==0? 'first_btn02' : index==1 ?  'second_btn02' : 'third_btn02' }}" 
+            wx:for="{{initData.operations}}"
+            wx:key="index"
+            data-hrefInfo="{{item.hrefInfo}}"
+            catch:tap="handleOperationBtn"
+          >
+            {{item.content}}
+          </button>
+      </view>
+   </view>
+</view>
+<!--  取消图片弹窗 -->
+<view class="pic_ration_select_container"  style="bottom:{{(maskVisible && modalType == 1 && !rationPickerVisible)?0:-300}}px">
+  <view class="title_wrap" bindtap="colseMask">
+    <view class="title"> {{firstPageData.title}} </view>
+    <view class="close_wrap">
+        <image 
+          class="close_icon"
+          src="https://storage.360buyimg.com/wximg/order/close.png"
+          lazy-load="{{true}}"
+        /> 
+    </view>
+  </view>
+  <view class="pic_select_wrap" >
+    <view class="select_img" 
+      wx:for="{{firstPageData.childNodes}}" 
+      wx:key="index"
+      data-item="{{item}}"
+      bindtap="handleFirstPageSelect"
+    >
+      <image 
+          src="{{firstPageData.reasonModels[index].imgUrl}}" 
+          lazy-load="{{true}}"
+        />
+        <view class="select_text">{{item.title}}</view>
+    </view>
+  </view>
+</view> 
+

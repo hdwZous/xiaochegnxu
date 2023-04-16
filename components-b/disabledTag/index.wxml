@@ -1,0 +1,10 @@
+<view class="wrap">
+  <view class="coupon_go flex-row align-items-center" 
+    aria-role="button"
+    aria-label="{{data.iconText}}">
+    <view class="coupon_tag_left flex-row flex-auto"
+          style="color: {{data.iconTextColorCode}};border-color: {{data.iconTextColorCode}}">
+      {{data.iconText}}
+    </view>
+  </view>
+</view>

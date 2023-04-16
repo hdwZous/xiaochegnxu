@@ -1,0 +1,13 @@
+.sku-name-tag {
+  height: 28rpx;
+  /* line-height: 30rpx; */
+  font-size: 20rpx;
+  padding: 0rpx 8rpx;
+  color: #fff;
+  border-radius: 4rpx;
+  /* margin-right: 8rpx; */
+  vertical-align: 5rpx;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}

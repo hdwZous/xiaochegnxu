@@ -1,0 +1,27 @@
+{
+  "usingComponents": {
+    "scene-task-pop": "./components/SceneTaskPop/index",
+    "super-order-task-pop": "./components/SignInSuperOrderTaskPop/index",
+    "waterwheel": "./components/Waterwheel/index",
+    "assistance": "./components/Assistance/index",
+    "task-pop": "./components/TaskPop/index",
+    "browse-store-coupon-pop": "./components/BrowseStoreCouponPop/index",
+    "select-fruit": "./components/SelectFruit/index",
+    "fruit-background": "./components/fruitBackground/index",
+    "new-get-water": "./components/NewGetWater/index",
+    "input-location": "./components/InputLocation/index",
+    "detain-pop": "./components/DetainPop/index",
+    "get-water-drop": "./components/GetWaterDrop/index",
+    "tomorrow-reward": "./components/TomorrowReward/index",
+    "red-packet": "./components/RedPacket/index",
+    "newer-gift": "./components/NewerGift/index",
+    "series-watering": "./components/SeriesWatering/index",
+    "ripe-pop": "./components/RipePop/index",
+    "custom-nav-bg": "./components/CustomNavBg/index",
+    "con-sign-in-task": "./components/ConSignInTask/index",
+    "upgrade-pop-new": "./components/UpgradePopNew/index"
+  },
+  "navigationBarTitleText": "到家果园",
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

@@ -1,0 +1,24 @@
+<view wx:if="{{showDialog}}" class="dialog_bg {{refresh?'dialog_trans_show':'dialog_trans_hide'}}">
+  <view  class="btn_zone flex-col">
+    <view>
+      <slot></slot>
+    </view>
+    <view>
+      <view class="share_btn_zone  flex-row">
+        <!-- 分享给朋友 -->
+        <button class="flex-col share_btn share_friend" open-type="share" data-from="groupBuy" bindtap="share2Chat">
+          <image class='btn_icon' src="https://storage.360buyimg.com/wximg/lottery/ic_share_2_chat.png"></image>
+          <view class='btn_text'>微信好友</view>
+        </button>
+        <!-- 分享到朋友圈 -->
+        <view class='flex-col share_btn share_circle' bindtap='share2Moments'>
+          <image class='btn_icon' src="https://storage.360buyimg.com/wximg/lottery/ic_share_2_moments.png"></image>
+          <view class='btn_text'>朋友圈</view>
+        </view>
+      </view>
+      <view class="divider" />
+      <!-- 取消按钮 -->
+      <view class="btn_cancel" bindtap='cancel'>取消</view>
+    </view>
+  </view>
+</view>

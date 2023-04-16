@@ -1,0 +1,10 @@
+<view class="coupon_wrap {{lists.length > 1 ? 'd-flex flex-row' : ''}}">
+    <block wx:for="{{lists}}" wx:key="items">
+        <block wx:if="{{lists.length == 1}}">
+            <include src="./template/caseOne.wxml"></include>
+        </block>
+        <block wx:else> 
+            <include src="./template/caseTwo.wxml"></include>
+        </block>
+    </block>
+</view>

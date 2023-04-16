@@ -1,0 +1,13 @@
+.cate_title_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: auto;
+  position: relative;
+}
+.cate_title {
+  font-size:28rpx;
+  font-weight:400;
+  line-height:34rpx;
+  width: 112rpx;
+}

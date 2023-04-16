@@ -1,0 +1,60 @@
+.coupon-popup {
+  width: 100%;
+  height: 100%;
+  border-radius: 24rpx 24rpx 0 0;
+  background-color: #fff;
+  color: #333;
+}
+
+.popup-title {
+  position: relative;
+  box-sizing: border-box;
+  height: 92rpx;
+  padding-top: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.popup-title__icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 24rpx;
+}
+
+.popup-title__icon image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.popup-coupons {
+  padding: 0 20rpx;
+
+}
+
+.popup-coupon__item {
+  margin-top: 24rpx;
+
+}
+
+.popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx 0 48rpx;
+  font-weight: 300;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.popup-footer image {
+  margin-left: 10rpx;
+  width: 26rpx;
+  height: 26rpx;
+}

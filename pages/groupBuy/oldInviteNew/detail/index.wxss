@@ -1,0 +1,162 @@
+@import "/common/css/global.wxss";
+.pageCont {
+    background: #fff;
+    min-height: 100vh;
+}
+
+.goodCont {
+    padding-bottom: 170rpx;
+    min-height: 100vh;
+    box-sizing: border-box
+}
+
+.tips {
+    position: fixed;
+    bottom: 100rpx;
+    left: 0px;
+    right: 1px;
+    font-size: 24rpx;
+    color: #d97900;
+    background: #fef5d1;
+    text-align: center;
+    height: 68rpx;
+    line-height: 68rpx;
+}
+
+.bottom-btns {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bottom-btns .basic-price-buy {
+    background: #fff;
+    flex: 1;
+    webkit-flex: 1;
+    font-size: 28rpx
+}
+
+.bottom-btns .basic-price-buy .basic-price,
+.bottom-btns .start-group .act-price {
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: baseline;
+    -webkit-align-items: baseline;
+}
+
+.bottom-btns .basic-price-buy .basic-price view,
+.bottom-btns .start-group .act-price view {
+    font-size: 48rpx;
+}
+
+.bottom-btns .start-group {
+    flex: 1;
+    webkit-flex: 1;
+}
+
+button::after {
+    border: none;
+    outline: none;
+    border: 0;
+}
+
+.bottom-btns .start-group .button {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    border-radius: 0;
+    padding: 0;
+    font-size: 28rpx;
+    background: linear-gradient(-90deg, rgba(243, 33, 37, 1), rgba(253, 130, 29, 1));
+    line-height: 40rpx;
+    height: 100%;
+}
+.button1{
+    position: absolute;
+    opacity: 0;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+}
+
+.bottom-btns .start-group .act-price view {
+    line-height: 60rpx;
+}
+
+.bottom-btns .startGroupYes {
+    background: linear-gradient(-90deg, rgba(243, 33, 37, 1), rgba(253, 130, 29, 1));
+}
+
+.bottom-btns .startGroupNO {
+    background: #d9d9d9;
+}
+
+.goodDetail {
+    background: #fafafa;
+    padding-top: 20rpx;
+}
+
+.detailCont {
+    padding: 25rpx 15rpx;
+    background: #fff;
+}
+
+.good_detail_Title {
+    font-size: 30rpx;
+    padding-bottom: 25rpx
+}
+
+.groupRule .title {
+    font-size: 28rpx;
+    color: #333333;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 40rpx;
+}
+
+.groupRule .title image {
+    width: 706rpx;
+    height: 28rpx;
+}
+
+.groupRule {
+    padding: 30rpx 20rpx;
+    background: #FAFAFA
+}
+
+.groupRule image {
+    width: 676rpx;
+    height: 108rpx;
+    display: block;
+    margin: 0 auto
+}
+
+.failTxt {
+    color: #999999;
+    background: #f5f5f5;
+    font-size: 36rpx;
+    text-align: center;
+    line-height: 100rpx;
+    width: 100vw;
+    font-weight: 400;
+}
+
+.goHomeBtn {
+    padding: 15rpx 35rpx;
+    background: #47b34f;
+    color: #fff;
+    font-size: 30rpx;
+    display: inline-block;
+    border-radius: 8rpx;
+    margin: 0 auto
+}
+
+.contentTxt {
+    color: #333333;
+    font-size: 32rpx;
+    text-align: center;
+    padding-top: 20rpx;
+    line-height: 60rpx;
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index",
+    "my-list-all": "./SubPages/MyListAll/index",
+    "subscribe-message": "../../../common-mp/components/subscribeMessage/index"
+  },
+  "navigationBarTitleText": "京东到家",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

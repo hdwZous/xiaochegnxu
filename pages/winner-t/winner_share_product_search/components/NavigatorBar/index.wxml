@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="{{styles.navigator_bar}}" style="{{anonymousState__temp}}">
+        <image class="{{styles.back_icon}}" src="https://image3.imdada.cn/d5db73a985964fe688105094dd97a8f2.png" bindtap="anonymousFunc0"></image><text class="{{styles.title}}">搜索</text>
+    </view>
+</block>

@@ -1,0 +1,143 @@
+<view class='lazy-load-wrap ep_good-item' 
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{recommendObj.pageIdFirstPage}}"
+      data-current-page-name="{{recommendObj.currentPageName}}"
+      data-pre-page-name="{{recommendObj.prePageName}}">
+  <block wx:if="{{hookLazy}}">
+    <view class=" scroll_item flex_auto flex_row"    
+          bindtap="goToDetail" 
+          data-item="{{item}}">
+      <!-- 左侧 -->
+      <view class="flex_none left">
+        <webp-img webp-img="sku_img" src="{{item.imageList[0]}}" mode="widthFix" needOverlay="{{true}}" skuName="{{item.skuName}}"></webp-img>
+        <!-- 业务标 -->
+        <view class='sky-yhe-one-business-tag'>
+          <biz-tag bizType="horizontal" businessTag="{{item.businessTag}}"/>
+        </view>
+        <view wx:if="{{!item.fixedStatus && item.skuType != 1}}" class="store_stockCount_tag" aria-label="{{item.skuName}}.已下架" aria-role='link'>
+          已下架
+        </view>
+        <view wx:if="{{item.stockCount === 0 && item.skuType != 1}}" class="store_stockCount_tag" aria-label="{{item.skuName}}.已抢光" aria-role='link'>
+          已抢光
+        </view>
+        <view wx:if="{{item.stockCount <= 3 && item.stockCount>0 && item.skuType != 1}}" class="store-sku-remain" aria-label="{{item.skuName}}.仅剩{{item.stockCount}}件" aria-role='link'>
+          仅剩
+          <text>{{item.stockCount}}</text>
+          件
+        </view>
+      </view>
+      <!-- 右侧 -->
+      <view class="flex_auto right flex_col">
+        <view class="flex_auto coupon_case">
+          <view class="name ellipsis2" aria-label="{{item.skuName}}" aria-role='link'>
+            <!-- <view class='sku-name-tag' wx:if="{{item.skuNameTag}}" aria-hidden="true" style="color: {{item.skuNameTag.iconTextColorCode}};background: linear-gradient(135deg, {{item.skuNameTag.startColorCode}} 0%,  {{item.skuNameTag.endColorCode}} 100%);">
+              {{item.skuNameTag.iconText}}
+            </view> -->
+            <sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+            <text class="good-title-name">{{item.skuName}}</text>
+          </view>
+          <!-- 排行榜 -->
+          <view style="display:inline-block;margin-top: 8rpx" wx:if="{{item.recWordsVO}}">
+            <ranking-list info="{{item.recWordsVO}}" 
+                          fromPositon="couponTogether-goodItem"
+                          optionsPos="{{options}}"></ranking-list>
+          </view>
+          <!-- 商品描述 -->
+          <view class='description  ellipsis' wx:if="{{item.skuDesc}}" aria-label="{{item.skuDesc}}" aria-role='link'>
+            <image aria-hidden="true" class='desc-icon' wx:if="{{item.skuDescIcon}}" src="{{item.skuDescIcon}}" />
+            {{item.skuDesc}}
+          </view>
+          <!-- 广告语 -->
+          <view class='description ellipsis' wx:elif="{{item.funcIndicatinsOrAdWord}}" aria-role='link' aria-label="{{item.skuName}}">
+            {{item.funcIndicatinsOrAdWord}}
+          </view>
+          <!-- 广告语 -->
+          <view class='description ellipsis' wx:elif="{{item.aword}}" aria-role='link' aria-label="{{item.skuName}}">
+            {{item.aword}}
+          </view>
+          <!-- 销量和好评 -->
+          <view class="month_sales flex-row" wx:if="{{item.monthSales|| item.highOpinion}}" aria-role='link' aria-label="月售{{item.monthSales}}.{{item.highOpinion}}">
+            <view aria-hidden="true" wx:if="{{item.monthSales}}" style="margin-right:4rpx">
+              月售{{item.monthSales}}
+            </view>
+            <view aria-hidden="true" wx:if="{{item.highOpinion}}">{{item.highOpinion}}</view>
+          </view>
+          <!-- 属性 -->
+          <view style="margin-top: 8rpx" wx:if="{{item.personlizedCateAttritemList && item.personlizedCateAttritemList.length}}">
+            <goods-attribute buriedObj="{{recommendObj}}" 
+                             info="{{item.personlizedCateAttritemList}}"  
+                             fromPositon="couponTogether-goodItem"
+                             optionsPos="{{options}}"></goods-attribute>
+          </view>
+          <!-- 标签 -->
+          <scroll-view class="scroll_view" scroll-x wx:if="{{item.tags && item.tags.length > 0}}">
+            <view class="tags flex-row" aria-role='link' aria-label="{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}">
+              <block wx:for="{{item.tags}}" wx:for-item="tagItem" wx:for-index="index" wx:key="tags">
+                <view class="tag flex-none" style="color: {{tagItem.strokeNameColorCode}};border: solid 2rpx {{tagItem.strokeNameColorCode}}" aria-hidden="true">
+                  {{tagItem.iconText}}
+                </view>
+              </block>
+              <view class="flex-none" style="margin-right:8rpx" wx:for="{{item.couponVOList}}" wx:for-item="couponTiem" wx:key="couponTiem" wx:for-index="index" aria-hidden="true">
+                <coupon-go-tag data="{{couponTiem}}" sku-id="{{item.skuId || ''}}" org-code="{{item.orgCode || ''}}" store-id="{{item.storeId || ''}}" from="store" source="{{0}}" user-action="{{item.userActionSku}}" buriedObj="{{recommendObj}}" fromPositon="couponTogether-goodItem" optionsPos="{{options}}"></coupon-go-tag>
+              </view>
+            </view>
+          </scroll-view>
+          <view class="shadow_box" wx:if="{{item.couponVOList.length+item.tags.length>3}}"></view>
+        </view>
+        <view class="price flex_col" aria-role='link' aria-label="现价{{item.majorPrice.price}}元.{{item.toHandPrice ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice ? '原价' + item.minorPrice.price + '元' : ''}} ">
+          <!-- major-price -->
+          <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="28rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}"  pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" />
+          <!-- minor-price  预估到手价 -->
+          <coupon-price minorPrice="{{item.minorPrice}}" toHandPrice="{{item.toHandPrice}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}"/>
+        </view>
+      </view>
+      <!-- <block wx:if="{{item.iconType == 7 }}">
+        <view class='buy'>
+          购买
+        </view>
+      </block> -->
+      <!-- <block wx:else> -->
+        <view class="add_cart_box" data-item="{{item}}" data-index="{{productIndex}}" count="{{item.incartCount}}">
+          <add-min-controller count="{{item.showModel ? item.spuCartCount :  item.incartCount}}" 
+                              showModel="{{item.showModel}}" 
+                              skuId="{{item.skuId}}" 
+                              spuId="{{item.spuId}}" 
+                              orgCode="{{item.orgCode}}" 
+                              storeId="{{item.storeId}}" 
+                              longitude="{{longitude}}" 
+                              latitude="{{latitude}}" 
+                              isAddCart="{{item.isAddCart}}"  
+                              showModel="{{item.showModel}}" floorName="productList" 
+                              weighting="{{item.weighting}}" 
+                              weight="{{item.cartWeight}}" 
+                              userAction="{{item.userAction}}" 
+                              addCartText="{{item.weightPriceStr}}" 
+                              showType="2"
+                              pageId="{{recommendObj.pageIdFirstPage}}" 
+                              currentPageName="{{recommendObj.currentPageName}}" 
+                              prePageName="{{recommendObj.prePageName}}"
+                              traceId="{{traceId}}"
+                              biPageName="couponTogether"
+                              iconType="{{item.iconType}}" 
+                              transmitData="{{item.transmitData}}" 
+                              to="{{item.to}}" 
+                              params="{{item.params}}"
+                              showModel="{{item.showModel}}">
+          </add-min-controller>
+        </view>
+      <!-- </block> -->
+    </view>
+  </block>
+  <block wx:else>
+    <view class="scroll_item flex_auto flex_row">
+      <view class="flex_none left">
+        <view class="sku_img"></view>
+      </view>
+      <view class="flex_auto empty_right flex_col">
+        <view class="name_grey "></view>
+        <view class="month_sales_grey"></view>
+      </view>
+    </view>
+  </block>
+</view>

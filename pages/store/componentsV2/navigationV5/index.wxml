@@ -1,0 +1,51 @@
+<view class="nav_box" style="background-color:{{bgColor}};color:{{color}}" wx:if="{{compatible}}">
+    <!--状态栏高度-->
+    <view class="status_bar" style="height:{{capsule.top}}px"></view>
+    <!--导航 与 标题-->
+    <view class="nav_bar flex_row  align_item_center" style="width:{{capsule.left-10}}px;height:{{capsule.height}}px">
+        <!--返回 首页-->
+        <view class="nav_left flex align_item_center" 
+              data-type="{{showBack?'goBack':'goHome'}}" 
+              bind:tap="{{showBack?'goBack':showHome?'goHome':''}}"
+              aria-role="link"
+              aria-label="返回">
+            <view class="flex_row align_item_center">
+                <view class="back_{{color}} back-btn"  wx:if="{{showBack}}"></view>
+                <view class="home_box" wx:if="{{showHome}}">
+                    <!-- <view class="home_{{color}}" ></view> -->
+                    <view class="home_white"></view>
+                </view>
+            </view>
+        </view>
+        <!--标题-->
+        <view class="search_box flex_row just_content_center align_item_center" bindtap="goToSearch" >
+            <view class="flex_row input_box" >
+                <view class="icon_search flex_none" aria-role="link" aria-label="搜索店内商品"></view>
+                <view class="place_holder" aria-role="link" aria-label="搜索店内商品"> 
+                    {{storeInfo.inSaleNum ? '店内'+ storeInfo.inSaleNum + '件商品':'搜索店内商品'}}
+                </view>
+                <view class='icon_scan' catchtap="goScan"  aria-role="button" aria-label="扫一扫"></view>
+            </view>
+            <view class="search_opacity"></view>
+        </view>
+        <!-- 优惠券标 -->
+        <view wx:if="{{showCoupon}}"
+             class="coupon-btn"
+             bindtap="showCoupon">
+            <image src="https://storage.360buyimg.com/wximg/store_2.0/coupon-btn.png" />
+        </view>
+        <!-- 关注按钮 -->
+        <view wx:else
+              class="flex_none follow" 
+              catchtap="clickHeart">
+            {{storeInfo.isFollow ? '已关注' : '关注'}}
+        </view>
+        
+    </view>
+</view>
+<!--因为上边用的fixed, 占位用的-->
+<view wx:if="{{compatible}}">
+    <view style="height:{{statusBarHeight}}px"></view>
+    <view style="height:{{titleBarHeight}}px"></view>
+</view>
+

@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.contentNew}}"><view class="{{style.titleCont2}}"><view class="{{style.active}}" bindtap="anonymousFunc0">返现记录</view></view><cash-list compid="{{$compid__250}}"></cash-list></view></block>

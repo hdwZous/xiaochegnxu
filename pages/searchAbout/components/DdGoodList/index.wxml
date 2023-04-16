@@ -1,0 +1,13 @@
+<view class='list-wrapper' wx:if="{{goodList && goodList.length > 0}}">
+  <block wx:for="{{goodList}}" wx:key="index" wx:for-item="item">
+    <view class="good-contanier">
+        <DdStoreGoodListItem 
+          info="{{item}}"
+          traceId='{{traceId}}'
+          keyword="{{keyword}}"
+          recommendObj="{{recommendObj}}"
+        />
+    </view>
+  </block>
+  <view class='text-bottom' wx:if="{{!hasNextPage}}" style="height: 300rpx">已经到底啦</view>
+</view>

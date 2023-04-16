@@ -1,0 +1,6 @@
+@import "/common/css/global.wxss";
+@import "/common/css/regular.wxss";
+@import "/common/css/light.wxss";
+.default_wrap {
+  padding-top: 200rpx;
+}

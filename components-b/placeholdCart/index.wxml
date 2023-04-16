@@ -1,0 +1,13 @@
+<view class="mini_cart">
+  <view class="footer">
+    <image class="background" src="https://storage.360buyimg.com/wximg/storewin/cart-gray.png" />
+    <view class="middle">
+      <view class="none">购物车是空的</view>
+    </view>
+    <button class="log-car-button flex-none right">
+      <view class="button-txt">
+        <text>去结算</text>
+      </view>
+    </button>
+  </view>
+</view>

@@ -1,0 +1,62 @@
+<wxs module="tool" src="../../common/util/tools.wxs"></wxs>
+<view class='self-pick-wrap'>
+    <view class='bg' 
+          wx:if="{{pageSource == 'home'}}"
+          style="background-image: url({{floorBgImg || ''}});background-position:no-repeat; background-size: 100% 100%"></view>
+    <view class='bg'
+          wx:else
+          style="background: linear-gradient(to bottom,  {{bgColor || '#FF3939'}}, #f8f8f8);"></view>
+    <view aria-label="{{floorTitle}}.{{subTitle}}" aria-role="text">
+      <view class='tag-title-wrap'>
+        <view class='tag'
+              wx:if="{{tag}}"
+              style="background: linear-gradient(360deg, #FFDDDC 0%, #FFF4F4 100%);color: #FF3534;">
+              {{tag}}
+        </view>
+        <view class='title' aria-hidden="true">{{floorTitle}}</view>
+      </view> 
+      <view class='sub-title' aria-hidden="true">{{subTitle}}</view>
+    </view>
+    <scroll-view class="sku-list" scroll-x="{{true}}" >
+        <block wx:for="{{skuList}}"
+               wx:key="index"
+               wx:for-item="item"
+               aria-role='list'>
+            <view class="sku-item ep_self-buy" 
+                  style="margin-right: {{skuList.length > 3 ? '16rpx' : '26rpx'}}"
+                  data-floor="{{floor}}"
+                  data-item="{{item}}"
+                  bindtap="clickSku"
+                  data-user-action="{{item.userAction}}"
+                  data-trace-id="{{traceId}}"
+                  data-page-id="{{buriedObj.pageIdFirstPage}}"
+                  data-current-page-name="{{buriedObj.currentPageName}}"
+                  data-pre-page-name="{{buriedObj.prePageName}}"
+                  aria-role='link'
+                  aria-label="{{item.skuName}}.{{item.majorPrice.price}}元.已抢{{item.percentage}}%.点击去结算">
+                <view class='sku-img' aria-hidden="true">
+                    <view class="sku-img-mask" wx:if="{{item.stockCount === 0}}">
+                        <image src="https://storage.360buyimg.com/wximg/common/noCount.png" />
+                    </view>
+                    <view class="mask"></view>
+                    <image class='img-url'  src="{{item.imgUrl}}" />
+                    <image class='store-logo' src="{{item.storeLogo}}" wx:if="{{item.storeLogo}}" />
+                </view>
+                <view class='sku-name ellipsis2'>
+                  {{item.skuName}}
+                </view>
+                <view class='price'
+                      aria-hidden="true"
+                      style="background-image: url({{item.stockCount > 0 ? 'https://storage.360buyimg.com/wximg/common/self-price-normal.png' : 'https://storage.360buyimg.com/wximg/common/self-price-unused.png'}});background-position:no-repeat; background-size: 100% 100%">
+                    <view class='price-left'>
+                        <view class='font28'>¥</view>
+                        <view class='font36'>{{tool.turnPrice(item.majorPrice.price)[0]}}</view>
+                        <view class='font28' wx:if="{{tool.turnPrice(item.majorPrice.price).length > 1}}">.{{tool.turnPrice(item.majorPrice.price)[1]}}</view>
+                    </view>
+                    <view class='price-right'
+                          style="color: {{item.stockCount === 0 ? '#fff' : '#FF1E19'}}">抢</view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</view>

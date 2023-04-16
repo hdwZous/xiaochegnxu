@@ -1,0 +1,177 @@
+<view class="myCollectionDetail">
+    <!--拼团成功提示栏-->
+    <view class="noticeMsg" wx:if="{{orderData.roleType == 1 && orderData.status == 3}}" bindtap="toMyOrderList">
+        系统已为您生成新订单，相关操作请到我的订单
+        <image src="https://storage.360buyimg.com/wximg/groupbuy/next-step.png"></image>
+    </view>
+    <view class="box">
+        <view class="orderStatus">
+            <block wx:if="{{orderData.status == 1}}">
+                <text class="waitForPay">待付款</text>
+                <view class="unitTime">
+                      <view class='left-time'> 剩余付款时间：{{timeObj.hour || '00'}}:{{timeObj.minute || '00'}}:{{timeObj.second ||
+                          '00'}} </view>
+                </view>
+            </block>
+            <!--待成团-->
+            <block wx:if="{{orderData.status == 2}}">
+                <text class="redNotice">待成团</text>
+                <view class="group-11 flex-row align-center">
+                    <view class="left-members">还差<text class="left-members-text">{{orderData.leftMembers}}</text>人</view>
+                    <view class="mid-line"></view>
+                    <view class="left-time">成团剩余时间：{{timeObj.hour || '00'}}:{{timeObj.minute || '00'}}:{{timeObj.second || '00'}}</view>
+                </view>
+            </block>
+            <block wx:if="{{orderData.status == 3}}">
+                <text style="font-weight: bold;color:#333333">拼团成功</text>
+            </block>
+            <block wx:if="{{orderData.status == 4}}">
+                <text class="redNotice" style="color:#333333">拼团失败</text>
+            </block>
+        </view>
+        <view class='divider'></view>
+        <view class="storeName">
+            {{orderData.storeName}}
+        </view>
+        <view class='divider'></view>
+        <view class="goodsBox" bindtap="toGoodsDeta">
+            <view class="leftBox">
+                <view class="group_tips">{{orderData.totalMembers}}人团</view>
+                <image src="{{orderData.skuImgUrl}}" mode="aspectFit"></image>
+            </view>
+            <view class="rightBox">
+                <view class="des">{{orderData.skuName}}</view>
+                <view class="type presale" wx:if="{{orderData.deliveryType == 3}}">预售团</view>
+                <view class="type to_leader" wx:if="{{orderData.groupMode == 1}}">团长代收</view>
+                <view class="price">
+                    <view class="activityPrice">
+                        ￥
+                        <text>{{orderData.groupPrice}}</text>
+                    </view>
+                    <view class="basicPrice">
+                        ￥{{orderData.basicPrice}}
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='divider'></view>
+        <view class="goodsMoney">
+            <view>商品金额</view>
+            <view>
+                <text>￥</text>
+                {{orderData.goodsMoney}}
+            </view>
+        </view>
+        <view class="freightMoney">
+            <view>配送费</view>
+            <view>
+                <text>￥</text>
+                {{orderData.freightMoney}}
+            </view>
+        </view>
+        <view class='divider'></view>
+        <view class="realPayMoney">
+            <view class="label">实付金额</view>
+            <view class="payNum">
+                <text>￥</text>
+                {{orderData.payMoney}}
+            </view>
+        </view>
+    </view>
+    <view class="setMsg box">
+        <view class="title">配送信息</view>
+        <view class='divider_'></view>
+        <view class="setTime">
+            <text>送达时间:</text>
+            <block wx:if="{{orderData.groupMode == 0}}">成团即送</block>
+            <block wx:else>{{orderData.deliveryTime}}</block>
+        </view>
+        <view class='divider_'></view>
+        <view class="address">
+            <view class="label">收货地址:</view>
+            <view>
+                <view class="addressDeatil">
+                    <text>{{orderData.buyerName}}</text>
+                    <text>{{orderData.buyerMobile}}</text>
+                </view>
+                <view>{{orderData.buyerFullAddress}}</view>
+            </view>
+        </view>
+        <view class='divider_'></view>
+        <view class="setWay">
+            <text>配送方式:</text>
+            <text>{{orderData.carrierNoName}}</text>
+        </view>
+    </view>
+    <view class="orderMsg box">
+        <view class="orderTitle">订单信息</view>
+        <view class='divider_'></view>
+        <!--拼团成功-->
+        <block wx:if="{{orderData.status == 3}}">
+            <!--团长--->
+            <block wx:if="{{orderData.roleType == 1}}">
+                <view class="grouperOrderId line">团长订单号：{{orderData.orderId}}</view>
+                <view class='divider_'></view>
+                <view class="line" wx:for="{{currentPickCodeList}}" wx:for-item="item"
+                      wx:for-index="index" wx:key="{{index}}" style='border-bottom:1rpx solid #f5f5f5'>
+                    团员{{index + 1}}提货号: {{item}}
+                </view>
+                <view class="orderTime">订单时间: {{orderData.submitDateDesc}}</view>
+            </block>
+            <!--团员-->
+            <block wx:if="{{orderData.roleType != 1}}">
+                <view class="grouperOrderId line">提货号: {{orderData.pickCodeList[0]}}</view>
+                <view class='divider_'></view>
+                <view class="grouperOrderId line">订单号：{{orderData.orderId}}</view>
+                <view class='divider_'></view>
+                <view class="orderTime">订单时间: {{orderData.submitDateDesc}}</view>
+            </block>
+            <view class="loadMore"  wx:if="{{orderData.roleType == 1 &&  isLoadMore}}">
+                <view class="btn" bindtap="loadMore" data-status="{{loadMoreStatus ? 'open' : 'close'}}">
+                    <view>{{btnTxt}}</view>
+                    <view class="icon_arrow {{ loadMoreStatus ? 'icon_arrow_up' : ''}}"></view>
+                </view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="grouperOrderId line">订单号：{{orderData.orderId}}</view>
+            <view class='divider_'></view>
+            <view class="orderTime">订单时间: {{orderData.submitDateDesc}}</view>
+            <view class='divider_'></view>
+            <view class="orderTime">订单备注: {{orderData.orderRemark}}</view>
+        </block>
+    </view>
+    <view class="btnGroup">
+        <!--拼团成功或者失败按钮-->
+        <view class="btnSuccess btnFail noceMore" bindtap="noceMore"
+              wx:if="{{orderData.status == 3 || orderData.status == 4}}">再拼一次
+        </view>
+        <!--待付款-->
+        <view class="btnWaitPay" wx:if="{{orderData.status == 1}}">
+            <view class="btnCandle" bindtap="candleOrder">取消订单</view>
+            <view class="btnPay" bindtap="rePay" data-group-mode="{{orderData.groupMode}}"
+                  data-order-id="{{orderData.orderId}}">立即付款
+            </view>
+        </view>
+        <!--待成团-->
+        <view class="btnWaitUnit" wx:if="{{orderData.status == 2}}">
+            <view class="btnCandle" bindtap="candleOrder">取消订单</view>
+            <view class="btnUnit"
+                  data-sku-id="{{orderData.skuId}}"
+                  data-org-Code="{{orderData.orgCode}}"
+                  data-store-Id="{{orderData.storeId}}"
+                  data-trade-name="{{orderData.skuName}}"
+                  data-order-id="{{orderData.orderId}}"
+                  data-group-id="{{orderData.groupCode}}"
+                  data-index="{{1}}"
+                  catchtap="showShare">邀请好友
+            </view>
+        </view>
+    </view>
+    <!-- 分享到微信弹层 -->
+    <share-to-wx-dialog showDialog="{{showShare2WxDialog}}" bind:share2Moments="share2Moments" buriedObj="{{recommendObj}}" fromPostion="grounpBuy-collection-myCollectionDetail"></share-to-wx-dialog>
+    <!-- 分享到朋友圈弹层 -->
+    <share-to-moments-dialog showDialog="{{showShare2MomentsDialog}}" imgSrc="{{momentsShareImgSrc}}"
+                             otherData="{{savePicDialogReportData}}"
+                              fromPostion="grounpBuy-collection-myCollectionDetail"></share-to-moments-dialog>
+</view>

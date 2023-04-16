@@ -1,0 +1,54 @@
+<view class="grid_wrap flex-row" wx:if="{{data.resources.length && type == 9}}">
+    <view 
+        class="grid_item flex-none exposure d-flex common_gridLittle justify-content-center" 
+        style='background-image:url("{{item.itemBgImg ? item.itemBgImg : none}}");background-size: cover'
+        data-user-action="{{item.userAction}}" 
+        data-trace-id="{{traceId}}"
+        data-page-id="{{buriedObj.pageIdFirstPage}}"
+        data-current-page-name="{{buriedObj.currentPageName}}"
+        data-pre-page-name='{{buriedObj.prePageName}}'
+        data-item="{{item}}" 
+        wx:for="{{data.resources}}" 
+        wx:for-item="item" 
+        wx:for-index="index" 
+        wx:key="item"
+        bind:tap="clickCard"
+        aria-label="{{item.title}}{{item.words}}"
+        aria-role="link">
+        <view aria-hidden="true" class="grid_subitem" hover-class="none" hover-stop-propagation="false">
+            <view class="grid_title ellipsis">{{item.title}}</view>
+            <view class="grid_sub_title ellipsis" style="color:{{item.wordsColor}}">
+                {{item.words}}
+            </view>
+            <view 
+                class="grid_img_case {{item.imgStrokeColor ? 'boder_box' : ''}}" 
+                style="border-width:{{item.imgStrokeColor ?'2rpx':0}};border-radius:{{item.imgStrokeColor ? '8rpx': 0}};border-color:{{item.imgStrokeColor ? item.imgStrokeColor :'none'}};border-style:{{item.imgStrokeColor ? 'solid':'none'}}"
+            >
+                <image class="grid_img" src="{{item.imgUrl}}" />
+            </view>
+        </view>
+    </view>
+</view>
+<view 
+    class="grid_wrap_4  type10" 
+    wx:if="{{data.resources.length >= 4 && type == 10}}"
+    style='background-image:url("{{data.floorBgImg ? data.floorBgImg : none}}");background-size: 100%'>
+    <view class="grid_box_4">
+        <view class="grid_img_case_4 flex-none exposure common_gridLittle"
+            data-user-action="{{item.userAction}}" 
+            data-page-id="{{buriedObj.pageId}}"
+            data-current-page-name="{{buriedObj.currentPageName}}"
+            data-pre-page-name='{{buriedObj.prePageName}}'
+            bind:tap="clickCard" 
+            data-item="{{item}}" 
+            data-trace-id="{{traceId}}"
+            wx:for="{{data.resources}}" 
+            wx:for-item="item" 
+            wx:for-index="index" 
+            wx:key="item"
+            aria-role="link"
+            aria-label="{{item.title}}{{item.words}}">
+            <image aria-role="button" class="grid_img_4" src="{{item.imgUrl}}" />
+        </view>
+    </view>
+</view>

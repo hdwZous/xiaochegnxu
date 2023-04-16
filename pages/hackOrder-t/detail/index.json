@@ -1,0 +1,33 @@
+{
+  "usingComponents": {
+    "prize-draw": "../components/prizeDraw/index",
+    "order-task": "../components/orderTask/index",
+    "marquee": "../components/Marquee/index",
+    "bargain-target-new": "../components/barginTargetNew/index",
+    "coupon-source-new": "./components/couponSourceNew/index",
+    "order-task-ball": "../components/orderTaskBall/index",
+    "task": "../components/task/index",
+    "source-new": "../components/sourceNew/index",
+    "record-list": "../components/recordList/index",
+    "sec-kill-goods": "./components/seckillGoods/index",
+    "rule-pop": "../components/rulePop/index",
+    "record-pop": "./components/recordPop/index",
+    "task-pop": "../components/taskPop/index",
+    "helper-pop": "../components/helperPop/index",
+    "self-pop": "../components/selfPop/index",
+    "with-draw-list": "../components/withDrawList/index",
+    "with-draw-rule": "../components/withDrawRule/index",
+    "order-task-pop": "../components/orderTaskPop/index",
+    "auth-pop": "../components/authPop/index",
+    "qr-code-pop": "../components/qrCodePop/index",
+    "record-list-tab": "../components/recordListTab/index",
+    "cash-list": "../components/cashList/index",
+    "return-cash-strategy": "../components/returnCashStrategy/index",
+    "default": "../commonComponents/Default/index",
+    "location-default": "/components-b/locationDefault/index",
+    "back-to-app": "/components/backToApp/index"
+  },
+  "navigationBarTitleText": "砍订单",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

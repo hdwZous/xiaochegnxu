@@ -1,0 +1,13 @@
+<block wx:if="{{ showState==0|| showState==2 || showState==5 }}">
+    <view class="add_btn" aria-role="text" aria-label="{{showStateName}}">{{showStateName}}</view>
+</block>
+<block wx:else>
+  <view class="add-min-wrap">
+    <!-- 减车 -->
+    <view class="min {{count ==1 ? 'disabled' : ''}}" catchtap="min"  aria-role='button' aria-label="减车"></view>
+    <!-- 数量 -->
+    <view class="num"  aria-role='text' aria-label="{{count}}">{{count}}</view>
+    <!-- 加车 -->
+    <view class="add" catchtap="add"  aria-role='button' aria-label="加车"></view>
+  </view>
+</block>

@@ -1,0 +1,29 @@
+@import "/common/css/global.wxss";
+.login_default {
+    padding-top: 40%;
+}
+.login_default_img {
+    display: block;
+    margin: 0 auto;
+    width: 320rpx;
+    height: 320rpx;
+}
+.login_default_tips {
+    margin: 40rpx;
+    color: #666666;
+    font-size: 28rpx;
+    text-align: center;
+}
+.login_default_btns {
+    padding: 0 50rpx;
+}
+.login_default_btn {
+    margin: 0 50rpx;
+    height: 66rpx;
+    line-height: 66rpx;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 28rpx;
+    background: #3AB549;
+    border-radius:2px;
+}

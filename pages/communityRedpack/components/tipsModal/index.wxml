@@ -1,0 +1,16 @@
+<view class="tips-modal" bind:tap="closeModal" catchtouchmove='true'>
+    <view class="tips-wrapper" catchtap="stopBubble">
+        <view class="tips-title">
+            11点开抢
+        </view>
+        <view class="tips-text">
+            越早越大，最高<view class="tips-number">2</view>元
+        </view>
+        <view class="close-button-wrapper" bindtap="closeModal">
+            <view class="dj_icon ts_close close-button"></view>
+        </view>
+        <view wx:if="{{isFirstStart && timeStatus != 2}}" class="tips-button" bind:tap="subscribeMsg"></view>
+        <view wx:else class="tips-button disable-button" bindtap="closeModal"></view>
+    </view>
+</view>
+  

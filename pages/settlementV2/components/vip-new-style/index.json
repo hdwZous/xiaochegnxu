@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "vplus-discount-style": "../../../asyncPackage/compontents/vplus-discount-style/index",
+    "tip-dialog": "../tipDialog/index"
+  },
+  "componentPlaceholder": {
+    "vplus-discount-style": "view"
+  }
+}

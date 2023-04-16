@@ -1,0 +1,17 @@
+<view class="success-modal" bindtap="closeModal">
+    <view class="amount-wrapper" catchtap="stopBubble">
+        <view class="amount-money">
+            <view class="unit">¥</view>
+            <view class="amount">{{amount}}</view>
+        </view>
+        <view class="amount-tips">
+           现金红包可提现 
+        </view>
+        <view wx:if="{{isFirstEnd}}" class="amount-button" bindtap="subscribeMsg"></view>
+        <view wx:else class="amount-button desable-button" bindtap="closeModal"></view>
+        <view class="close-button-wrapper" bindtap="closeModal">
+            <view class="dj_icon ts_close close-button"></view>
+        </view>
+    </view>
+</view>
+  

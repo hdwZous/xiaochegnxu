@@ -1,0 +1,11 @@
+{
+    "navigationBarTextStyle": "white",
+    "usingComponents": {
+        "store-list": "../../asyncPackage/compontents/storeItem/index",
+        "new-default": "/components/newDefault/index",
+        "newDefault": "/components/newDefaultV2/index"
+    },
+    "componentPlaceholder": {
+      "store-list": "view"
+    }
+}

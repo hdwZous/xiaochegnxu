@@ -1,0 +1,82 @@
+page {
+    background: #f6f6f6;
+    padding-bottom: 212rpx;
+}
+
+.product_case {
+  padding-bottom: 280rpx;
+}
+
+.header_wrap {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.detail_header {
+    padding-bottom: 10px;
+    opacity: 0;
+    background: #ffffff;
+}
+
+.detail_header1 {
+    padding-bottom: 10px;
+    background: #ffffff;
+}
+
+.head_title {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav_close {
+    position: absolute;
+    top: 50%;
+    left: 20rpx;
+    width: 56rpx;
+    height: 56rpx;
+    transform: translateY(-50%);
+    background: url("https://s.360buyimg.com/wximg/common/close_black.png") no-repeat center;
+    background-size: 44rpx 44rpx;
+    -webkit-background-size: 44rpx 44rpx;
+    border-radius: 50%;
+}
+
+.close_active {
+    position: absolute;
+    left: 20rpx;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56rpx;
+    height: 56rpx;
+    background: rgba(0, 0, 0, 0.3) url("https://s.360buyimg.com/wximg/common/close_white.png") no-repeat center;
+    background-size: 44rpx 44rpx;
+    -webkit-background-size: 44rpx 44rpx;
+    border-radius: 50%;
+}
+
+.details__bottom {
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    height: 120rpx;
+    align-items: center;
+    padding-bottom: 68rpx;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 -2rpx 10rpx 0 rgba(0,0,0,0.02);
+}
+
+.details__buy {
+    width: 702rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 40rpx;
+    background: linear-gradient(90deg, #FF6461, #FF2A26);
+    color: #fff;
+    font-size: 28rpx;
+    font-weight: 500;
+}

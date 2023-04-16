@@ -1,0 +1,28 @@
+@import "/common/css/iconfont.wxss";
+.wrap {
+    background: #f8f8f8;
+    padding-top: 96rpx;
+}
+.title_wrap{
+    display: flex;
+    justify-content: space-between;
+}
+.title {
+    font-size: 36rpx;
+    font-weight: 500;
+    margin-left: 24rpx;
+    color: #333333;
+}
+.title_more{
+    font-size: 24rpx;
+    color: #333333;
+}
+
+.store-item {
+  width: 702rpx;
+  margin: 0 auto;
+  margin-top: 24rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+

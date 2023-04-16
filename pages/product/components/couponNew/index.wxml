@@ -1,0 +1,141 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+<view class="product_coupon_wrap" wx:if="{{item.couponLabel}}">
+    <!-- 标题 -->
+    <view class="product_coupon_title flex-row"
+          aria-role="text"
+          aria-label="{{item.couponLabel}}{{item.couponSubLabel ?  '注释：' + item.couponSubLabel : ''}}">
+        <view class="product_coupon_left flex-none" 
+              wx:if="{{item.couponLabel}}"
+              aria-hidden="true">
+            {{item.couponLabel}}
+        </view>
+        <view class="product_coupon_right flex-auto" 
+              wx:if="{{item.couponSubLabel}}"
+              aria-hidden="true">
+            {{item.couponSubLabel}}
+        </view>
+    </view>
+    <!-- 单张券 -->
+    <block wx:if="{{item.couponList.length == 1}}">
+        <view class="product_coupon_one  flex-row" 
+            data-sku-id="{{item.skuId}}" 
+            data-coupon-id="{{item.couponId}}" 
+            data-activity-code="{{item.activityCode}}"  
+            data-act-type="{{item.couponButton.title}}"  
+            data-user-action="{{item.userAction}}"
+            data-store-id="{{storeId}}"
+            data-coupin-type="{{item.couponType}}"
+            bind:tap="clickCoupon" 
+            data-item="{{item}}" 
+            wx:for="{{item.couponList}}" 
+            wx:for-item="item" 
+            wx:for-index="index" 
+            wx:key="item"
+            aria-label="{{item.couponTitle}}.{{item.price}}元{{item.couponLimit}}"
+            aria-role="button">
+            <view aria-hidden="true" class="product_coupon_one_left flex-none flex-row">
+                <view class="product_coupon_one_symbol">¥</view>
+                <view class="product_coupon_one_price">{{item.price}}</view>
+            </view>
+            <view aria-hidden="true" class="product_coupon_one_mid flex-auto">
+                <view class="product_coupon_one_mid_title" wx:if="{{item.couponTitle}}">
+                    {{item.couponTitle}}
+                </view>
+                <view class="product_coupon_one_mid_sub_title flex-row">
+                    <view class="product_coupon_one_mid_sub_title_txt flex-none" wx:if="{{item.couponLimit}}">
+                        {{item.couponLimit}}
+                    </view>
+                    <!-- 券标 -->
+                    <view wx:if="{{item.couponSigns && item.couponSigns.length || item.styles && item.styles.couponContentStyle && item.styles.couponLabelStyle.length}}"
+                          class="coupon-wrap">
+                       <block wx:for="{{item.couponSigns || item.styles.couponLabelStyle}}" 
+                              wx:for-index="tagIndex" 
+                              wx:for-item="tagItem" 
+                              wx:key="subItem">
+                         <view class="product_coupon_item_info_tag flex-none" 
+                               style="color: {{tagItem.titleColor || '#fff'}}; background: {{tool.changeColor(tagItem.bgOpacity || 0.15, tagItem.bgColor || '#ffffff') || '#ffffff27'}}">
+                           {{tagItem.title}}
+                         </view>
+                       </block>
+                    </view>
+                </view>
+            </view>
+            <view  aria-hidden="true" class="product_coupon_one_right flex-none">
+                <view class="product_coupon_one_right_btn" wx:if="{{item.markState == 2}}">
+                    {{item.couponButton.title}}
+                </view>
+                <view class="product_coupon_one_right_btn_active" wx:elif="{{item.markState == 3}}">
+                    {{item.couponButton.title}}
+                </view>
+                <view class="product_coupon_one_right_btn_disable" wx:else>
+                    {{item.couponButton.title}}
+                </view>
+            </view>
+        </view>
+    </block>
+    <!-- 多张券 -->
+    <view class="product_coupon_more" wx:if="{{item.couponList.length >1}}">
+        <scroll-view class="product_scroll" scroll-x="true">
+            <view class="product_coupon_list flex-row">
+                <view class="product_coupon_item  flex-none" 
+                    data-sku-id="{{item.skuId}}" 
+                    data-store-id="{{item.storeId}}"  
+                    data-coupon-id="{{item.couponId}}"  
+                    data-activity-code="{{item.activityCode}}"  
+                    data-act-type="{{item.couponButton.title}}"  
+                    data-user-action="{{item.userAction}}" 
+                    bind:tap="clickCoupon" 
+                    data-index="{{index}}" 
+                    data-item="{{item}}" 
+                    wx:for="{{item.couponList}}"  
+                    wx:for-item="item" 
+                    wx:for-index="index" 
+                    wx:key="item"
+                    aria-label="{{item.couponTitle}}.{{item.price}}元.{{item.couponLimit}}"
+                    aria-role="button">
+                    <!-- 第一行 -->
+                    <view aria-hidden="true" class="product_coupon_item_price flex-row">
+                        <view class="product_coupon_item_price_case flex-auto flex-row">
+                            <view class="product_coupon_item_symbol flex-none">¥</view>
+                            <view class="product_coupon_item_num flex-auto">{{item.price}}</view>
+                        </view>
+                        <view class="product_coupon_btn flex-none" wx:if="{{item.markState == 2}}">
+                            {{item.couponButton.title}}
+                        </view>
+                        <view class="product_coupon_btn_active flex-none" wx:elif="{{item.markState == 3}}">
+                            {{item.couponButton.title}}
+                        </view>
+                        <view class="product_coupon_btn_disable flex-none" wx:else>
+                            {{item.couponButton.title}}
+                        </view>
+                    </view>
+                    <!-- 第二行 -->
+                    <view  aria-hidden="true" class="product_coupon_item_info flex-row">
+                        <view class="product_coupon_item_info_txt flex-none" wx:if="{{item.couponLimit}}">
+                            {{item.couponLimit}}
+                        </view>
+                        <!-- 券标 -->
+                        <block  wx:if="{{item.couponSigns && item.couponSigns.length || item.styles && item.styles.couponContentStyle && item.styles.couponLabelStyle.length}}">
+                          <block wx:for="{{item.couponSigns || item.styles.couponLabelStyle}}" 
+                                wx:for-index="tagIndex" 
+                                wx:for-item="tagItem" 
+                                wx:key="subItem">
+                              <view class="product_coupon_item_info_tag flex-none"
+                                    style="color: {{tagItem.titleColor || '#fff'}}; background: {{tool.changeColor(tagItem.bgOpacity || 0.15, tagItem.bgColor || '#ffffff') || '#ffffff27'}}">
+                                  {{tagItem.title}}
+                              </view>
+                          </block>
+                        </block>
+                    </view>
+                    <!-- 第三行 -->
+                    <view  aria-hidden="true" class="product_coupon_item_line"></view>
+                    <!-- 第四行 -->
+                    <view  aria-hidden="true" class="product_coupon_item_name ellipsis" wx:if="{{item.couponTitle}}">
+                        {{item.couponTitle}}
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="disabled-test" wx:if="{{item.couponBottomLabel}}">{{item.couponBottomLabel}}</view>
+</view>

@@ -1,0 +1,40 @@
+<wxs module="tool" src="../../../../../common/util/tools.wxs"></wxs>
+<view class="case">
+    <view class="wrap flex-row"
+          aria-label="{{info.couponTitle}}.{{info.price}}元.{{info.couponLimit}}"
+          aria-role='text'>
+        <view class="left flex-none" aria-hidden="true">
+            <view class="price_case">
+                <text class="symbol">¥</text>
+                <text class="price">{{info.uperPrice || info.price}}</text>
+                <text class="low-price" wx:if="{{info.lowPrice}}">.{{info.lowPrice}}</text>
+            </view>
+            <view class="sub ellipsis">{{info.couponLimit}}</view>
+        </view>
+        <view class="middle flex-auto" aria-hidden="true">
+            <view class="title ellipsis">{{info.couponTitle}}</view>
+            <view class='mix-tag-wrap' 
+                  wx:if="{{info.styles && info.styles.couponLabelStyle && info.styles.couponLabelStyle.length}}">
+              <block wx:for="{{info.styles.couponLabelStyle}}"
+                    wx:for-item="tag"
+                    wx:key="index">
+                <view class='cp-yhy-tag'
+                      wx:if="{{tag.title && index < 2}}" 
+                      style="color: {{tag.titleColor}}">
+                  <view class="cp-yhy-tag-text">{{tag.title}}</view>
+                  <view class="cp-yhy-tag-border" style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+                </view>
+              </block>
+            </view>
+            <view class="time ellipsis" wx:if="{{info.showCountDown}}">{{countDownStr}}</view>
+            <view class="time ellipsis" wx:else>{{info.couponExpire}}</view>
+        </view>
+        <view class='dashed' aria-hidden="true"></view>
+        <view class="right flex-none" aria-hidden="true">
+            <view class="btn">已领取</view>
+            <view class="tag" wx:if="{{info.couponRightIcon}}">
+                <image class="img" src="{{info.couponRightIcon}}" />
+            </view>
+        </view>
+    </view>
+</view>

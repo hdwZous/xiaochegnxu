@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "new-default": "/components/newDefault/index",
+    "webp-img": "/components/webpImg/index"
+  }
+}
