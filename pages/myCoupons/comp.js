@@ -1,1 +1,0 @@
-require("./runtime"),require("./vendors"),(wx["webpackJsonp/pages/myCoupons/"]=wx["webpackJsonp/pages/myCoupons/"]||[]).push([[6],{143:function(e,n,o){"use strict";o.r(n);var p=o(8);Component(Object(p.createRecursiveComponentConfig)())}},[[143,0,5]]]);

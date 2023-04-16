@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "coupon-layer": "../coupon-layer/index",
-    "text-list": "../text-list/index"
-  }
-}

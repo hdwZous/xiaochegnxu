@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "exchange-layer-for-sign-in": "../../../common-mp/components/ExchangeLayerForSignIn/index",
-    "exchange-detail-for-sign-in": "../../../common-mp/components/ExchangeDetailForSignIn/index"
-  },
-  "navigationBarTitleText": "新人福利"
-}

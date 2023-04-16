@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "我的红包",
-  "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "card": "../components/card/index",
-    "newDefault": "/components/newDefaultV2/index",
-    "default": "/components/default/index"
-  }
-}

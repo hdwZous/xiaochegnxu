@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "rp-list": "../rpList/index",
-    "none-data": "../none/index"
-  }
-}

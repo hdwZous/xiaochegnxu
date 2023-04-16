@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "tabs": "./components/tabs/index",
-    "list": "./components/list/index"
-  }
-}

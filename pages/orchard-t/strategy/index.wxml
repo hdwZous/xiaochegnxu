@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view><image mode="widthFix" src="{{strategyPic}}" class="{{style.strategyPic}}"></image></view></block>

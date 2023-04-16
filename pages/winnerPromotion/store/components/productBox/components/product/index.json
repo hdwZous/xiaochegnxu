@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "add-cart-controller": "../../../../../components/addCartController/index"
-  }
-}

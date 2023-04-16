@@ -1,9 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "sky-yhe-one": "../../../../asyncPackageSku/compontents/SkuYheOne/index"
-  },
-  "componentPlaceholder": {
-    "sky-yhe-one": "/components/placeholdSkyYheOne/index"
-  }
-}

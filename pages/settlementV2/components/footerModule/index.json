@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "remark-dialog": "../confirmDialog/index",
-    "lack-good": "../lackgood/index"
-  }
-}

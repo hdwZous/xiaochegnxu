@@ -1,3 +1,0 @@
-<view class="evaluate__wrapper">
-    <floor-layout title="{{title}}" moreText="{{moreText}}" bindMoreEvent="toH5MoreEvaluate" />
-</view>

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "guide-box-shadow": "../subComponents/guideBoxShadow/index"
-  },
-  "navigationBarTitleText": ""
-}

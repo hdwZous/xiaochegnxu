@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "default": "/components/default/index",
-    "half-screen": "../halfScreen/index"
-  }
-}

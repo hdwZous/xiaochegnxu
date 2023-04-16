@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{style.couponLimit}}" style="{{anonymousState__temp}}">{{couponLimit}}</view></block>

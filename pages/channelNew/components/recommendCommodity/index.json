@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "meeting-three": "../meetingThree/index",
-    "meeting-four": "../meetingFour/index"
-  }
-}

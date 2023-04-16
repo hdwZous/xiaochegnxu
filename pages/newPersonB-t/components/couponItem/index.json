@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "coupon-main": "./couponMain/index",
-    "coupon-disable": "./couponDisable/index"
-  }
-}

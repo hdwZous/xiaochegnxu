@@ -1,7 +1,0 @@
-{
-  "compontent": true,
-  "usingComponents": {
-    "coupon-yhe-one": "../coupon-yhe-one/index",
-    "coupon-yhe-two": "../coupon-yhe-two/index"
-  }
-}

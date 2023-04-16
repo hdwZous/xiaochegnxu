@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "text-list": "../text-list/index",
-    "red-packet-layer": "../red-packet-layer/index"
-  }
-}

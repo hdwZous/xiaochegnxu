@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><block><view class="{{'' + style.ruleDiaMask}}" bindtap="anonymousFunc0"></view><view class="{{style.ruleDiaContentBox}}"><view class="{{style.ruleDiaTitle}}">活动规则</view><view class="{{style.ruleDiaContent}}">{{rule}}</view><view class="{{style.closeRuleDiaButton}}" bindtap="anonymousFunc1"></view></view></block></block>

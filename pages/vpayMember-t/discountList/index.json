@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "default": "../commonComponents/Default/index",
-    "red-pack-cont": "../components/redPackComponent/index"
-  },
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "会员抵扣红包"
-}

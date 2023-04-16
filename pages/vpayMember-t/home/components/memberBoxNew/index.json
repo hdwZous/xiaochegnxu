@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "marquee-vip": "../VipMarquee/index"
-  }
-}

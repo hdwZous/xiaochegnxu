@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "loading": "../components/Loading/index",
-    "pop-ex": "./components/popEx/index",
-    "pop": "../../../common-mp/components/Pop/index"
-  },
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black"
-}

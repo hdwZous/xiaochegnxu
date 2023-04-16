@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "自助收银结算",
-  "usingComponents": {
-    "selfGoPaySuccess": "plugin://easyGoPlugin/selfGoPaySuccess"
-  }
-}

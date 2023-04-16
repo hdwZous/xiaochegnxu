@@ -1,8 +1,0 @@
-{
-    "navigationStyle": "custom",
-    "usingComponents": {
-        "navigation": "./components/navigation/index",
-        "sku-item": "./components/skuItem/index",
-        "default": "/components/default/index"
-    }
-}

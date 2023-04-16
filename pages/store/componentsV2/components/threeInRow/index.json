@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "three-item": "../threeItem/index",
-    "category": "./category/index"
-  }
-}

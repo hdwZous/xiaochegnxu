@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "text-list": "../text-list/index",
-    "jd-beans-layer": "../jd-beans-layer/index"
-  }
-}

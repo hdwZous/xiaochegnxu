@@ -1,8 +1,0 @@
-{
-  "compontent": true,
-  "usingComponents": {
-    "coupon-item": "/components/couponItem/index"
-  },
-  "componentPlaceholder": {
-  }
-}

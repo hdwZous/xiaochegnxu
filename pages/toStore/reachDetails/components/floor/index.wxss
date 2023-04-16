@@ -1,7 +1,0 @@
-.floor-item {
-    margin-bottom: 24rpx;
-}
-
-.floor-item:first-of-type {
-    margin-bottom: 0;
-}

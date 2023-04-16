@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var getWxCode=exports.getWxCode=function(){return new Promise(function(o,t){wx.login({success:function(e){e.code?(o(e.code),wx.setStorageSync("JDHasUseLogin",!0)):t()}})})};

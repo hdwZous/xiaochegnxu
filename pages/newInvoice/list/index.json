@@ -1,9 +1,0 @@
-{
-  "navigationBarBackgroundColor": "#46cc5c",
-  "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "发票",
-  "usingComponents": {
-    "new-default": "/components/newDefaultV2/index",
-    "tip-dialog": "../components/tipDialog/index"
-  }
-}

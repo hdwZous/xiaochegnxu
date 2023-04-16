@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{'' + style.none}}"><view class="{{'' + style.iconDog}}"></view><view class="{{'' + style.text}}">下次再来吧~</view></view></block>

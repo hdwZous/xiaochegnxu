@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var isWeapp=!0,setClipboardData=exports.setClipboardData=function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{data:data,success:success,complete:complete,fail:fail},a=e.data;e.success,e.complete,e.fail,a&&wx.setClipboardData(e)};

@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "default": "./commonComponents/Default/index",
-    "subscribe-message": "../../common-mp/components/subscribeMessage/index",
-    "pop": "./commonComponents/Pop/index"
-  },
-  "navigationBarTitleText": "到家会员"
-}

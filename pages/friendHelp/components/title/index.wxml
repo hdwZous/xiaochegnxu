@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{[style.titleCont, 'flex-row']}}"><image class="{{style.icon}}" src="https://storage.360buyimg.com/wximg/friendhelp/title_icon_left.png" alt="说明图"></image><view>{{titleName}}</view><image class="{{style.icon}}" src="https://storage.360buyimg.com/wximg/friendhelp/title_icon_right.png" alt="说明图"></image></view></block>

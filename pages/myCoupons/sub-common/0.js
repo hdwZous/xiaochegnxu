@@ -1,1 +1,0 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[4],{31:function(n,o,i){"use strict";i.d(o,"b",(function(){return t})),i.d(o,"a",(function(){return e}));i(18);var t=function isLogin(){return new Promise((function(n,o){(wx.getStorageSync("login_info")||{}).o2o_m_h5_sid||""?n(!0):o(!1)}))},e=function goToLogin(n){wx.navigateTo({url:"/pages/newLogin/login/login"})}}}]);

@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "pop": "../../commonComponents/Pop/index",
-    "store-list-pop": "../StoreListPop/index",
-    "lost-coupon": "../lostCoupon/index"
-  }
-}

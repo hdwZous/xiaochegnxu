@@ -1,9 +1,0 @@
-<view class="rating-wrapper">
-  <block
-    wx:for="{{starList}}"
-    wx:for-item="starItem"
-    wx:for-index="starIndex"
-    wx:key="item">
-    <view class="rating" style="width: {{size}}px; height: {{size}}px; {{starItem}}; background-size: {{size*5}}px;"></view>
-  </block>
-</view>

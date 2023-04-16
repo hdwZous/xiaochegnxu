@@ -1,6 +1,0 @@
-{
-  "compontent": true,
-  "usingComponents": {
-    "left-icon-coupon": "/components/leftIcon-coupon/index"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "default": "/components/newDefault/index",
-    "good-item": "../goodItem/index"
-  }
-}

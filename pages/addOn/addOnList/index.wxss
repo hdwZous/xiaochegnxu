@@ -1,5 +1,0 @@
-@import "../common/index.wxss";
-
-.add_top_sticky {
-    z-index: 0;
-}

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "module-title": "../moduleTitle/index",
-    "sku-yhs-exp": "../../widgets/SkuYhsExp/index"
-  }
-}

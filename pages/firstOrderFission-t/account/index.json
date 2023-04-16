@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "auth-pop": "./components/authPop/index"
-  },
-  "navigationBarTitleText": "我的提现",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black",
-  "onReachBottomDistance": 50
-}

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "rating": "/components/rating/index",
-    "storeBrandLogo": "../storeBrandLogo/index"
-  }
-}

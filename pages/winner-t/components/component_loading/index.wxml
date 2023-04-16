@@ -1,5 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="{{styles.loadingComponent}}">
-        <image class="{{styles.image}}" src="https://storage.360buyimg.com/wximg/signIn_new/loadingN.gif"></image>
-    </view>
-</block>

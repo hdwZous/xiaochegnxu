@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "notice-dialog": "../noticeDialog/index",
-    "delivery-discount": "../deliveryDiscount/index",
-    "freight-pop": "../freightPop/index"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "usingComponents": {
-    "newperson-pop": "../../asyncPackage/compontents/newPersonPop/index"
-  },
-  "componentPlaceholder": {
-    "newperson-pop": "view"
-  }
-}

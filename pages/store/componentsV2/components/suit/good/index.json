@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "freeze-tag": "/components/freezeTag/index",
-    "webp-img": "/components/webpImg/index"
-  }
-}

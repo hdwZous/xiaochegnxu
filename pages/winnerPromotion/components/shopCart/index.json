@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "add-cart-controller": "../addCartController/index",
-    "scan-pop": "../scanPop/index"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "items": "../items/index",
-    "webp-img": "/components/webpImg/index"
-  }
-}

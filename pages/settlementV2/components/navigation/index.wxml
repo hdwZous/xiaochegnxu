@@ -1,9 +1,0 @@
-<view class="nav_box" style="height:{{capsule.top + capsule.height + 10}}px">
-  <!--状态栏高度-->
-  <view class="status_bar" style="height:{{capsule.top+2}}px"></view>
-  <!--导航 与 标题-->
-  <view class="nav_bar d-flex flex-row align-items-center justify-content-center" style="height:{{capsule.height}}px" bindtap="goBack">
-    <view class="back_white" aria-role='button' aria-label='返回'></view>
-    <view class="nav-title">确认订单</view>
-  </view>
-</view>

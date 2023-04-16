@@ -1,9 +1,0 @@
-<block wx:if="{{item.rankType === 1}}">
-    <rank-search searchFloor="{{item}}" />
-</block>
-<block wx:elif="{{item.rankType === 2}}">
-    <rank-store searchFloor="{{item}}" />
-</block>
-<block wx:elif="{{item.rankType === 3}}">
-    <rank-shop searchFloor="{{item}}" />
-</block>

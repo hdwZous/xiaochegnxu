@@ -1,8 +1,0 @@
-<view class="filter-subitem"
-      data-user-action="{{subItem.userAction}}"
-      data-trace-id="{{traceId}}"
-      data-page-id='{{pageId}}'
-      data-current-page-name='{{currentPageName}}'
-      data-pre-page-name='{{prePageName}}'>
-        {{subItem.itemName}}
-</view>

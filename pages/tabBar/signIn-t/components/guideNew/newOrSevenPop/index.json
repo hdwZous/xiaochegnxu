@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "guide-hand": "../subComponents/guideHand/index"
-  }
-}

@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{style.image_case}}"></view></block>

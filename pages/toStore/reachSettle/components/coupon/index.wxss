@@ -1,7 +1,0 @@
-.cou_left {
-  font-size: 28rpx;
-  font-family: 'regular';
-  font-weight: 400;
-  color: #FF5757;
-  line-height: 36rpx;
-}

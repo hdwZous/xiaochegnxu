@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{'' + style.getMore}}" bindtap="getMoreList" data-e-tap-so="this"><view class="{{'' + style.moreText}}">查看更多</view><view class="{{'' + style.moreIcon}}"></view></view></block>

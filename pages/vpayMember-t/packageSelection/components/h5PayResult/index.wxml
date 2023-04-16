@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{style.h5PayResult}}"><view class="{{style.result}}"><view class="{{style.title}}">请确认微信支付是否已经完成</view><view class="{{style.btn}}"><view class="{{style.finish}}" bindtap="finishPay" data-e-tap-so="this">已完成支付</view><view class="{{style.noFinish}}" bindtap="payResult" data-e-tap-so="this">重新支付</view></view></view></view></block>

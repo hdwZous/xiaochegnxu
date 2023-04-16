@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view class="{{styles['tip-wrap'] + ' ' + customClass}}" style="{{anonymousState__temp}}"><view class="{{styles['tip-box']}}"><view class="{{styles['tip-icon'] + ' ' + styles['tip-icon-' + type]}}"></view><view class="{{styles['tip-message']}}">{{msg || "网络开小差，请稍后再试哦~"}}</view><tip-btn compid="{{$compid__271}}"></tip-btn></view></view></block>

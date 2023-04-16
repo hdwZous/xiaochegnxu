@@ -1,9 +1,0 @@
-<view class="tag-box">
-  <view aria-role="text" aria-label="{{text}}" class="tag {{tagCls}}" style="{{tagStyle}}">
-    <text class="tag__text">{{text}}</text>
-    <block wx:if="{{isCoupon}}">
-      <view class="coupon__round__before" style="{{couponStyle}}" />
-      <view class="coupon__round__after" style="{{couponStyle}}" />
-    </block>
-  </view>  
-</view>

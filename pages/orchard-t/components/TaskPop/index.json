@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "open-sys-push-pop": "../openSysPushPop/index"
-  }
-}

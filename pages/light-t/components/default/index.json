@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "top-banner": "../TopBanner/index",
-    "process-comp": "../ProcessComp/index"
-  }
-}

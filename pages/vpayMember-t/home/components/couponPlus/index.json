@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "coupon-cute": "./couponCute",
-    "coupon": "../../../components/coupon/index"
-  }
-}

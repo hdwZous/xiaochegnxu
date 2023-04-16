@@ -1,3 +1,0 @@
-<include src="coupon.wxml" />
-<view class='push-tip'>{{tip}}</view>
-<button class="push-to" style="background: {{isEnable ? '#ff5757' : '#ff5757'}};" catchtap='toUse'>去使用</button>

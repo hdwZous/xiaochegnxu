@@ -1,5 +1,0 @@
-<view class='mask' wx:if="{{title}}" catchtouchmove="true">
-  <view class='text-wrap'>  
-    <view class='text'>{{title}}</view>
-  </view>
-</view>

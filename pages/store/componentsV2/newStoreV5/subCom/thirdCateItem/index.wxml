@@ -1,8 +1,0 @@
-<view class="ep_third-cate-item flex-none ellipsis sub_cate_item {{checked ? 'sub_cate_item_checked' : ''}}" 
-     data-user-action="{{thirdItem.user_action}}"  
-     data-trace-id="{{traceId}}"
-     data-page-id="{{buriedObj.pageIdFirstPage}}"
-     data-current-page-name="{{buriedObj.currentPageName}}"
-     data-pre-page-name="{{buriedObj.prePageName}}">
-  {{thirdItem.title}}
-</view>

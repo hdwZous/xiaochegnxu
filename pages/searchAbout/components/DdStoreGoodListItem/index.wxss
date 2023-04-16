@@ -1,4 +1,0 @@
-.dd_store_list_box{
-  width: 100%;
-  min-height: 300rpx;
-}

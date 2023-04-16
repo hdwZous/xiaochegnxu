@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><view><block wx:if="{{showMyExchangeCard}}"><view catchtap="onClosePop" class="{{style.pop}}"><view class="{{style.content}}" catchtap="onClosePopContent"><view class="{{style.close}}" catchtap="onClosePop"></view><view class="{{style.num}}">×{{num || 0}}</view></view></view></block></view></block>

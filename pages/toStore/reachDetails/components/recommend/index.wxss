@@ -1,7 +1,0 @@
-.my-class {
-  padding: 0 !important;
-}
-
-.recommend__content {
-  padding-bottom: 24rpx;
-}

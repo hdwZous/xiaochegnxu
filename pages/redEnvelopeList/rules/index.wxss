@@ -1,6 +1,0 @@
-.wrap {
-    padding: 40rpx 30rpx;
-}
-.txt {
-    font-size: 28rpx;
-}

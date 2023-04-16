@@ -1,7 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="{{styles.slider}}">
-        <view id="{{'' + item.$original.categoryId}}" wx:key="categoryId" data-product="{{item.$original}}" class="{{item.$loopState__temp2}}" bindtap="anonymousFunc0" wx:for="{{loopArray12}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
-            <view class="{{styles.title}}">{{item.$original.categoryName}}</view>
-        </view>
-    </view>
-</block>

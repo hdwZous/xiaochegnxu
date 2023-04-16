@@ -1,1 +1,0 @@
-<block wx:if="{{$taroCompReady}}"><image id="{{id}}" class="{{className}}" name="{{name}}" style="{{anonymousState__temp}}" mode="{{mode}}" lazy-load="{{lazyLoad}}" wx:key="key" hidden="{{hidden}}" src="{{webpsrc}}" animation="{{animation}}" alt="{{alt}}" width="{{width}}" height="{{height}}" webp="{{webp}}"></image></block>

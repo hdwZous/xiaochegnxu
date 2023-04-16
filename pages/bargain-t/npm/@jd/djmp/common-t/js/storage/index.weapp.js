@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var getStorage=exports.getStorage=function(o){return new Promise(function(e,t){var r=wx.getStorageSync(o);r&&e(r),t(r)})},getStorageSync=exports.getStorageSync=function(e){return wx.getStorageSync(e)},setStorageSync=exports.setStorageSync=function(e,t){try{wx.setStorageSync(e,t)}catch(e){}};

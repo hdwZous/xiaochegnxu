@@ -1,7 +1,0 @@
-<view class="tostore-qualification-wrap">
-  <block wx:for="{{list}}"
-         wx:for-item="item"
-         wx:key="index">
-    <image mode="widthFix" class="tostore-qualification-img" src="{{item.imgUrl}}" />
-  </block>
-</view>

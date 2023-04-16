@@ -1,7 +1,0 @@
-<!--pages/tabBar/orderlist/components/countDown/index.wxml-->
-<text wx:if="{{type==2}}" style="color:{{initStyle.color}}">
-   <text>{{minute}}</text>:<text></text><text>{{seconds}}</text>
-</text>
-<block wx:if="{{type==1}}" style="color:{{initStyle.color}}">
-   <text wx:if="{{day > 0}}">{{day}}天</text><text wx:if="{{hour > 0}}">{{hour}}:</text><text>{{minute}}</text>:<text></text><text>{{seconds}}</text>
-</block>

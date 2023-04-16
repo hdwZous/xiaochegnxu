@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "loading": "../components/Loading/index",
-    "default": "../commonComponents/Default/index"
-  },
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "V+会员津贴明细"
-}

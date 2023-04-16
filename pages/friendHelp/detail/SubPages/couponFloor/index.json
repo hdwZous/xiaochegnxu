@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "subscribe-message": "../../../../../common-mp/components/subscribeMessage/index"
-  }
-}

@@ -1,4 +1,0 @@
-<view class="wrap">
-     <rich-text nodes="{{microTip}}"></rich-text>
-</view>
-  

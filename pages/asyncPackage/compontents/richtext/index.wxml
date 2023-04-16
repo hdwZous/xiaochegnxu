@@ -1,3 +1,0 @@
-<block wx:if="{{data}}">
-    <rich-text class="rich_text" nodes="{{data}}"></rich-text>
-</block>

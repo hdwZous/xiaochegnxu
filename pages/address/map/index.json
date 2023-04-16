@@ -1,7 +1,0 @@
-{
-    "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "定位地址",
-    "usingComponents": {
-        "default": "/components/default/index"
-    }
-}

@@ -1,9 +1,0 @@
-{
-    "component": true,
-    "usingComponents": {
-        "freeze-tag": "/components/freezeTag/index",
-        "coupon-go-tag": "/components-b/couponGoTag/index",
-        "coupon-price": "/components-b/couponPrice/index",
-        "add-min-controller": "/components-b/addMinControllerV1/index"
-    }
-}
