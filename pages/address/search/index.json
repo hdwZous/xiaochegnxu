@@ -1,0 +1,7 @@
+{
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "搜索地址",
+    "usingComponents": {
+        "default": "/components/default/index"
+    }
+}

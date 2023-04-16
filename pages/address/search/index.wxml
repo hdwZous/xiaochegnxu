@@ -1,0 +1,130 @@
+<!-- 搜索 -->
+<view hidden="{{showCities}}" class="search" catchtap="elementTracker">
+    <!-- 输入框 -->
+    <view class="case">
+        <view class="position log_chooseCity" 
+              bindtap="chooseCity"
+              aria-role='link' 
+              aria-label="{{city}}.点击切换城市">
+            <view class="name" aria-hidden="true">{{city}}</view>
+            <view class="icon_arrow" aria-hidden="true"></view>
+        </view>
+        <view class="input_case">
+            <view class="icon_search" aria-hidden="true"></view>
+            <view class="input">
+                <input type="text" 
+                        placeholder="小区、写字楼、学校" 
+                        value="{{inputVal}}" 
+                        bindinput="searchAddress" bindfocus="searchFocus"
+                        aria-role="input"
+                        aria-label="{{inputVal || '点击输入地址'}}" />
+            </view>
+            <view class="clear" hidden="{{hideClear}}" catchtap="clearInput" aria-label="清空输入框" aria-role="button"></view>
+        </view>
+    </view>
+    <!--地理位置授权-->
+    <view class="map log_goToSetting"
+          bindtap="goToSetting"
+          wx:if="{{from === 'locationDefault'}}"
+    >
+        <view class="icon icon_location"></view>
+        <view class="txt">直接授权定位</view>
+        <view class="icon_arrow"></view>
+    </view>
+    <!-- 内容框 -->
+    <view class="section">
+        <!-- 历史记录 -->
+        <scroll-view class="scroll" scroll-y wx:if="isShowHistory">
+            <view wx:if='{{searchList.length<1}}' class="title" aria-role="text" aria-label="历史记录">历史记录</view>
+            <block wx:if="{{addressHistoryData.length>0 && searchList.length<1}}">
+                <block  wx:for="{{addressHistoryData}}" 
+                      wx:for-item="item" 
+                      wx:for-index="index" 
+                      wx:key="item" 
+                      wx:if="{{item.title}}">
+                <view class="item" 
+                      bindtap="clickHistoryItem" 
+                      data-city-id="{{item.cityCode}}" 
+                      data-city-name="{{item.city}}" 
+                      data-county-name="{{item.district}}" 
+                      data-latitude="{{item.location.lat}}" 
+                      data-longitude="{{item.location.lng}}" 
+                      data-poi="{{item.title}}"
+                      aria-role="link"
+                      aria-label="{{item.title}}.{{item.address}}" >
+                    <view aria-hidden="true" class="icon dj_icon ts_address icon_location" ></view>
+                    <view class="info" aria-hidden="true">
+                        <view class="name">{{item.title}}</view>
+                        <view class="address">{{item.address}}</view>
+                    </view>
+                </view>
+                <view class='line'></view>
+                </block>
+                <view class="clear_btn" catchtap="clearHistory">
+                    <view class="clear_history" 
+                          aria-role="button"
+                          aria-label="清除搜索历史">清除搜索历史</view>
+                </view>
+            </block>
+            <block wx:else >
+                <block wx:if="{{!showEmpty && searchList.length<1}}">
+                    <image src="https://storage.360buyimg.com/wximg/common/errorbar_icon_nothingV2.png"
+                           class="no_history_img"
+                           aria-role="text" 
+                           aria-label="暂无历史记录哦"
+                    ></image>
+                    <view class="no_history" aria-role="text" aria-label="暂无历史记录哦">暂无历史记录哦～</view>
+                </block>
+                <block wx:else>
+                    <default fromPositon='address-search' type="{{type}}" btnText="{{btnText}}" tips="{{tips}}" src="{{src}}" buriedObj="{{recommendObj}}" bind:defaultBtnEvent="onDefaultBtnEvent"></default>
+                </block>
+            </block>
+        </scroll-view>
+        <!-- 搜索联系词儿 -->
+        <scroll-view class="scroll up" scroll-y hidden="{{searchList.length === 0}}">
+            <view class="item" 
+                  wx:for="{{searchList}}" 
+                  wx:for-item="item" 
+                  wx:for-index="index" 
+                  wx:key="item" 
+                  bindtap="clickHistoryItem" 
+                  data-city-id="{{item.cityCode}}" 
+                  data-city-name="{{item.city}}" 
+                  data-county-name="{{item.district}}" 
+                  data-latitude="{{item.location.lat}}" 
+                  data-longitude="{{item.location.lng}}" 
+                  data-poi="{{item.title}}" 
+                  data-history="{{item}}" 
+                  data-from="search"
+                  aria-role="link"
+                  aria-label="{{item.title}}.{{item.address}}">
+                <view class="icon dj_icon ts_address icon_location" aria-hidden="true"></view>
+                <view class="info" aria-hidden="true">
+                    <view class="name">{{item.title}}</view>
+                    <view class="address">{{item.address}}</view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+<!-- 城市列表 -->
+<view class="cities" hidden="{{!showCities}}">
+    <view class="case" aria-role="text" aria-label="已开通城市">
+        <view class="title">已开通城市</view>
+    </view>
+    <view class="wrap" wx:if="{{cities.length > 0}}">
+        <view class="item" 
+              wx:for="{{cities}}" 
+              wx:for-item="item" 
+              wx:for-index="index" 
+              wx:key="item">
+            <view class="text" 
+                  bindtap="clickCity" 
+                  data-city="{{item.areaName}}"
+                  aria-role="button"
+                  aria-label="{{item.areaName}}">
+                {{item.areaName}}
+            </view>
+        </view>
+    </view>
+</view>
