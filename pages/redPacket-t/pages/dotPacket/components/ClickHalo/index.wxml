@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.click_box}}"><view class="{{style.click_bg}}" style="{{item.$loopState__temp2}}" wx:for="{{loopArray28}}" wx:for-item="item" wx:for-index="_anonIdx2"><image src="https://storage.360buyimg.com/wximg/redPacket/click_bg.png" class="{{style.click_img}}"></image></view></view></block>

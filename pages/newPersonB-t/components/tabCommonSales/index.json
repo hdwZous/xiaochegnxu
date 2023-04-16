@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tab": "./tab",
+    "common-sales": "../commonSales/index"
+  }
+}

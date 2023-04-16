@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+        "goods": "/components/goods/index",
+        "pic-swiper": "/components/swiper/index",
+        "hot-store": "/components/hotStore/index",
+        "strategy-little": "/components/strategyLittle/index",
+        "local-goods": "/components/localGoods/index"
+    }
+}

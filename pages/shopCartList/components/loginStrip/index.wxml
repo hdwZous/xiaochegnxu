@@ -1,0 +1,6 @@
+<view class="loginStrip">
+    <view class="login">
+        登录后将同步购物车中的商品
+        <view class="login_btn" bindtap="toLogin">登录</view>
+    </view>
+</view>

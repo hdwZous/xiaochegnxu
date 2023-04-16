@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-pop": "../../../../components/Dialogs/Coupon",
+    "prize-popup": "../PrizePopup/index"
+  }
+}

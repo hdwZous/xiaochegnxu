@@ -1,0 +1,20 @@
+module.exports = {
+  "dialog_box": "index-module__dialog_box____kYsx",
+  "render_dialog": "index-module__render_dialog___1S5Up",
+  "dialog_animation": "index-module__dialog_animation___2CnMs",
+  "top_animation": "index-module__top_animation___2TujC",
+  "btn_animation": "index-module__btn_animation___3RlGW",
+  "bottom_animation": "index-module__bottom_animation___2UyOj",
+  "dialog_top": "index-module__dialog_top___8vhKR",
+  "dialog_top_text1": "index-module__dialog_top_text1___2kVqm",
+  "dialog_top_text2": "index-module__dialog_top_text2___21mpz",
+  "dialog_top_subtext": "index-module__dialog_top_subtext____3JU2",
+  "dialog_cancel": "index-module__dialog_cancel___2_nhH",
+  "dialog_btn": "index-module__dialog_btn___30-n4",
+  "dialog_bottom": "index-module__dialog_bottom___uhhEg",
+  "prize_popup": "index-module__prize_popup___3vogY",
+  "prize_animation": "index-module__prize_animation___23FcI",
+  "hand_jiao": "index-module__hand_jiao___3TZFt",
+  "share_btn": "index-module__share_btn___2I0TN",
+  "breaths": "index-module__breaths___zPfLe"
+};

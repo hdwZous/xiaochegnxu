@@ -1,0 +1,72 @@
+<view id="globalshopCart" wx:if="{{!pageError.showError}}">
+  <block wx:if="{{resourceRequestFinished && !currentCartsList.length && !otherCartsList.length}}">
+    <new-default type="{{noCartError.type}}" defaultObj="{{noCartError.obj}}" imgSize="80" topMargin="12" binddefaultBtnEvent="onDefaultBtnEvent"></new-default>
+  </block>
+  <view class="shopCart">
+    <view class="v-floor d-flex flex-row align-items-center" wx:if="{{vfloor}}" style="background:linear-gradient(180deg, {{vfloor.startBgColor}} 0%, {{vfloor.endBgColor}} 100%);">
+      <image class="vf-logo" src="{{vfloor.logoUrl||'https://storage.360buyimg.com/wximg/storewin/shopcart-v-logo.png'}}" />
+      <view class="vfd d-flex flex-row align-items-baseline">
+        <block wx:for="{{vfloor.vplusTextStyleList}}" wx:key="items">
+          <text class="{{item.type==2?'vfd_num':''}}" style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};font-family:{{item.type==2?'regular':'PingFangSC-Regular'}}">{{item.text}}</text>
+        </block>
+      </view>
+      <view class="vf-bt d-flex flex-row align-items-center justify-content-end" bindtap="goVplus" data-to="{{vfloor.to}}" data-params="{{vfloor.params}}">
+        <view class="vfb" style="color:{{vfloor.buttonTextStyle.fontColor}};font-size:{{vfloor.buttonTextStyle.fontSize*2}}rpx;font-weight:{{vfloor.buttonTextStyle.fontWeight==1?'bold':vfloor.buttonTextStyle.fontWeight==2?'lighter':'normal'}};">{{vfloor.buttonTextStyle.text}}</view>
+        <text class="vf-arrow dj_icon ts_next" />
+      </view>
+    </view>
+    <!-- 当前位置购物车暂无商品 -->
+    <block wx:if="{{resourceRequestFinished && !currentCartsList.length && otherCartsList.length}}">
+      <view class="locationEmpty">
+        <image class="locationIcon" src="https://storage.360buyimg.com/wximg/cart/mark.png" />
+        当前位置购物车暂无商品
+      </view>
+    </block>
+    <!-- 当前位置门店 -->
+    <block wx:if="{{currentCartsList.length}}">
+      <block wx:for="{{currentCartsList}}" wx:for-item="items" wx:key="items">
+        <cart-items id="cart_items" wx:if="{{items}}" result="{{items}}" showGoods="{{showGoods}}" shopType="current" subIndex="{{index}}" traceId="{{traceId}}" pullDownFlag="{{pullDownFlag}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" pageSource="{{recommendObj.pageSource}}"
+          refPageSource="{{recommendObj.refPageSource}}" buriedObj="{{recommendObj}}" bindnoticeRemove="noticeRemove" bindupdateInfos="updateInfos" bindshowPopUp="showPopUp"></cart-items>
+      </block>
+    </block>
+    <!-- 其他位置门店 -->
+    <block wx:if="{{otherCartsList.length}}">
+      <!-- 其他位置 -->
+      <view class="restPos">
+        <image class="restPosIcon" src="https://static-o2o.360buyimg.com/activity/images/fe/loc_global_cart_location.png" />
+        其他位置
+      </view>
+      <block wx:for="{{otherCartsList}}" wx:for-item="items" wx:key="items">
+        <cart-items id="cart_items" wx:if="{{items}}" result="{{items}}" showGoods="{{showGoods}}" shopType="other" subIndex="{{index}}" traceId="{{traceId}}" pullDownFlag="{{pullDownFlag}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" pageSource="{{recommendObj.pageSource}}"
+          refPageSource="{{recommendObj.refPageSource}}" buriedObj="{{recommendObj}}" bindnoticeRemove="noticeRemove" bindupdateInfos="updateInfos" bindshowPopUp="showPopUp"></cart-items>
+      </block>
+    </block>
+    <!-- 查看我的全部购物车 -->
+    <block wx:if="{{allBtFlag}}">
+      <view class="allShopCart" bindtap="lookAllCart">
+        <view class="text">查看我的全部购物车</view>
+        <view class="triangle ts_down dj_icon"></view>
+      </view>
+    </block>
+  </view>
+  <!-- 商品推荐 -->
+  <feeds wx:if="{{feedsShow && feedFlag}}" feedsShow="{{feedsShow}}" feedFlag="{{feedFlag}}" pageReachBottom="{{pageReachBottom}}" pageId="{{recommendObj.pageIdFirstPage}}" currentPageName="{{recommendObj.currentPageName}}" prePageName="{{recommendObj.prePageName}}" buriedObj="{{recommendObj}}" bindfeedsShopId="feedsShopId" bindonPageHeight="onPageHeight" />
+  <!-- 回到顶部 -->
+  <back-top hideBackTop='{{hideBackTop}}' pageMoving='{{pageMoving}}'></back-top>
+  <!-- 底部登录条 -->
+  <block wx:if="{{resourceRequestFinished && !isLogin}}">
+    <login-strip buriedObj="{{recommendObj}}"></login-strip>
+  </block>
+  <!-- 必选弹窗 -->
+  <authory-dialog 
+    showDialog="{{isShowAuthoryDialog}}" 
+    titleText="{{popupWindow.title}}"
+    contentText="{{authoryDialogContent}}"
+    popupWindow="{{popupWindow}}" 
+    bindclickCancel="clickCancel" 
+    bindclickConfirm="clickConfirm" 
+  />
+</view>
+<block wx:else>
+  <new-default type="{{pageError.type}}" defaultObj="{{pageError.obj}}" binddefaultBtnEvent="onDefaultBtnEvent"></new-default>
+</block>

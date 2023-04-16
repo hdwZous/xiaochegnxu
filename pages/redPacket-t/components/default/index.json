@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "top-banner": "../TopBanner/index",
+    "hour-red": "../HourRed/index",
+    "friend-help-comp": "../FriendHelpComp/index"
+  }
+}

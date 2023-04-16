@@ -1,0 +1,1 @@
+(wx.webpackJsonp=wx.webpackJsonp||[]).push([[12],{147:function(_,e,o){_.exports={ch_top:"index-module__ch_top___3NOrD",tobar:"index-module__tobar___1RhOH",back:"index-module__back___M_57p",left_custom_class:"index-module__left_custom_class___1r5KW",title:"index-module__title___3MOZ3"}}}]);
