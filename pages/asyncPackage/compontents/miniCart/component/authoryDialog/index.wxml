@@ -1,0 +1,24 @@
+<view wx:if="{{showDialog}}" class="dialog_bg {{refresh?'dialog_trans_show':'dialog_trans_hide'}}">
+  <view class="dialog_body " style="width: {{width}}rpx">
+    <view class="title">{{titleText||"提示"}}</view>
+    <scroll-view class='dialog_content_container' scroll-y>
+      <view class="dialog_content">
+        <text class="dialog_text">{{contentText || popupWindow.content}}</text>
+      </view>
+    </scroll-view>
+    <view class="dialog_btns flex-row">
+      <block wx:for="{{popupWindow.buttons}}" wx:key="items">
+        <view 
+          class="dialog_btn {{popupWindow.buttons.length==2&&index==0?'left':''}}" 
+          style="width:{{popupWindow.buttons.length==2?'50%':'100%'}}"
+          data-type="{{item.type}}"
+          data-to='{{item.to}}'
+          data-param='{{item.param}}'
+          bindtap="clickBtn" 
+        >
+          {{item.title}}
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

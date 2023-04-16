@@ -1,0 +1,40 @@
+ <view 
+    class="line_one flex-row" 
+    data-store-item="{{storeItem}}" 
+    aria-label="进店"
+    aria-role='link'
+    bind:tap="goToStore">
+    <view class="line_one_left flex-auto flex-row">
+      <!-- 生鲜好店 -->
+        <block wx:if="{{storeItem.storeBrandLogo}}">
+          <storeBrandLogo storeBrandLogo="{{storeItem.storeBrandLogo}}" />
+          <view style="margin-right:10rpx;"></view>
+        </block>
+        <block wx:elif="{{storeItem.tagList && storeItem.tagList.length > 0}}">
+          <image  wx:for="{{storeItem.tagList}}" 
+                  wx:for-item="tagLogoItem" 
+                  wx:for-index="tagLogoIndex" 
+                  wx:key="tagLogoItem"
+                  class="store_badge" 
+                  src="{{tagLogoItem.tagLogoUrl || ''}}">
+          </image>
+        </block>
+        <block wx:if="{{storeItem.storeStar}}">
+            <rating rating="{{storeItem.storeStar}}" size="{{12}}" />
+            <view class="star_number flex-none">{{storeItem.scoreAvg}}</view>
+        </block>
+        <view 
+            aria-label="暂无评价"
+            aria-role='text'
+            wx:else class="star_txt">
+            暂无评价
+        </view>
+        <view wx:if="{{storeItem.monthSale}}" class="sale_number flex-none">{{storeItem.monthSale}}</view>
+        <text  
+            wx:if="{{storeItem.storeBusinessType!=2&&storeItem.deliveryFirst&&!storeItem.closeTip&&!storeItem.businessTag}}"
+            aria-role='text'
+            class="line_one_right"
+            style="margin-left: 8rpx;" 
+            aria-label="{{storeItem.deliveryFirst}}">{{storeItem.deliveryFirst}}</text>
+    </view>
+</view>

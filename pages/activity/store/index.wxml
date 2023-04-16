@@ -1,0 +1,42 @@
+<block wx:if="{{showDefault}}">
+  <!-- 默认页 -->
+  <new-default
+    wx:if="{{showDefault}}"
+    type="{{type}}"
+    tips="{{tips}}"
+    btnText="{{btnText}}"
+    bind:defaultBtnEvent="onDefaultBtnEvent"
+  />
+</block>
+<block wx:else>
+  <view
+    wx:if="{{activityData}}"
+    catchtap="elementTracker"
+    class="store-container">
+    <view class="container">
+      <floor
+        id="floor"
+        pageFrom="store"
+        biPageName="activity"
+        list="{{activityData}}"
+        lastPage="{{lastPage}}"
+        traceId="{{traceId}}"
+        pageConfig="{{pageConfig}}"
+        bind:onShareMsg="onShareMsg"
+        imgLazyLoad="{{imgLazyLoad}}"
+        upDateGoods="{{upDateGoods}}"
+        recommendObj="{{recommendObj}}"
+        longitude="{{addressInfo.longitude}}"
+        latitude="{{addressInfo.latitude}}"
+      />
+      <!-- 返回顶部 -->
+      <view
+        class="{{ isIphoneX ? 'back_top_IphoneX back_top' : 'back_top'}} {{ pageMoving ? 'moveIn' : 'moveOut'}}"
+        hidden="{{hideBackTop}}"
+        bind:tap="clickBackTop"
+        style="bottom: {{pageConfig.storeInfo ? 240 : 116}}rpx">
+        <image class="back_top_img" src="https://static-o2o.360buyimg.com/daojia/react/images/backToTop.4de3f77b.png" />
+      </view>
+    </view>
+  </view>
+</block>

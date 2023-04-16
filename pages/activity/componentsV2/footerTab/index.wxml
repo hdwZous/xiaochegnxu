@@ -1,0 +1,25 @@
+<view
+  class="footer-tab d-flex flex-row justify-content-around"
+  style="padding-bottom: {{isIphoneX ? 64 : 8}}rpx">
+  <block wx:for="{{info}}" wx:key="index">
+    <!-- <image class="exposure tab-img" mode="widthFix"  bindtap="clickImg"  src="{{item.imgUrl}}" data-to="{{item.to}}" data-params="{{item.params}}" data-user-action="{{item.userAction}}" /> -->
+    <view
+      class="exposure activity_comp_ep"
+      bindtap="clickImg"
+      data-to="{{item.to}}"
+      data-params="{{item.params}}"
+      data-trace-id="{{traceId}}"
+      data-user-action="{{item.userAction}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name='{{prePageName}}'>
+      <webp-img
+        skuName="底部菜单栏，点击跳转"
+        webp-img="tab-img"
+        mode="widthFix"
+        src="{{item.imgUrl}}" />
+    </view>
+  </block>
+</view>
+   
+ 

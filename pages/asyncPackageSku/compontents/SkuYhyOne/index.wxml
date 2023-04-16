@@ -1,0 +1,115 @@
+
+<!-- 单个商品 -->
+<view
+  class="good-item"
+  data-user-action="{{item.userActionSku}}"
+  data-page-id='{{pageId}}'
+  data-current-page-name='{{currentPageName}}'
+  data-pre-page-name='{{prePageName}}'
+  data-trace-id="{{traceId}}">
+  <!-- 左侧 -->
+  <view class="good-pic">
+    <image src="{{item.imgUrl}}" aria-role='link'
+      aria-label="{{item.skuName}}{{item.skuDesc ?  '.' + item.skuDesc : ''}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}.现价{{item.majorPrice.price}}元，{{item.toHandPrice && item.toHandPrice.rightText ? item.toHandPrice.rightText + '.' + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' :  item.minorPrice &&  item.minorPrice.price ? '原价' + item.minorPrice.price + '元' : ''}},{{item.couponVOList.length && item.couponVOList[0]['couponTagVOMap']['2'].iconText}}" />
+    <view class="logo-layer"></view>
+    <!-- 预估到手价 与仅剩X件 互斥 -->
+    <view class="to_hand_price_820" wx:if="{{item.bottomCornerTag && item.bottomCornerTag.type}}">
+      <bottomCornerTag infos="{{item.bottomCornerTag}}" moduleId="SkuYhySearch" showHandle="{{true}}"/>
+    </view>
+    <block wx:else>
+      <view wx:if="{{!item.fixedStatus && item.skuType != 1}}" class="store_stockCount_tag">已下架</view>
+      <view wx:if="{{item.stockCount === 0 && item.skuType != 1}}" class="store_stockCount_tag">已抢光</view>
+      <view wx:if="{{item.stockCount <= 3 && item.stockCount>0 && item.skuType != 1}}" 
+            aria-label='仅剩{{item.stockCount}}件'
+            aria-role='text'
+            class="store-sku-remain">
+        仅剩
+        <text>{{item.stockCount}}</text>
+        件
+      </view>
+    </block>
+    <!-- 冷冻or冷藏 -->
+    <view class='freeze-wrap'>
+      <freeze-tag topLeftCornerTag="{{item.topLeftCornerTag}}" />
+    </view>
+  </view>
+  <!-- 右侧 -->
+  <view class="good-content">
+      <view  aria-role='link'
+            aria-label="{{item.skuName}}{{item.skuDesc ?  '.' + item.skuDesc : ''}}月售{{item.monthSales}}.{{item.highOpinion}}{{item.tags.length >=2 ? item.tags[0].iconText + '.' + item.tags[1].iconText :  item.tags.length > 0 ?  item.tags[0].iconText : ''}}.现价{{item.majorPrice.price}}元.{{item.toHandPrice ? item.toHandPrice.rightText  + item.toHandPrice.leftText : item.minorPrice && item.minorPrice.price && (item.minorPrice.priceType == 3 || item.minorPrice.priceType == 4 || item.minorPrice.priceType == 10) ? '会员价' + item.minorPrice.price + '元' : '原价' + item.minorPrice.price + '元'}},{{item.couponVOList.length && item.couponVOList[0]['couponTagVOMap']['2'].iconText}}">
+          <view class='sku-name' aria-hidden="true">
+            <view class="sku-tag" wx:if="{{item.skuNameTag}}" style="color: {{item.skuNameTag.iconTextColorCode}};background: linear-gradient(135deg, {{item.skuNameTag.startColorCode}} 0%, {{item.skuNameTag.endColorCode}} 100%);">
+            {{item.skuNameTag.iconText}}
+            </view>
+            {{item.skuName}}
+          </view>
+          <!-- 月售、好评 -->
+          <view class='sku-info' aria-hidden="true">
+            <view class='month-sale-high-opinion'>
+            <!-- 月售 -->
+            <view class='month-sale'>月售{{item.monthSales}}</view>
+            </view>
+            <!-- 分界线 -->
+            <view class="divide" wx:if="{{item.skuDesc}}"></view>
+            <!-- 副标题 -->
+            <view class='description-old ellipsis' wx:if="{{item.skuDesc}}">
+            <image class='desc-icon' wx:if="{{item.skuDescIcon}}" src="{{item.skuDescIcon}}" />{{item.skuDesc}}
+            </view>
+          </view>
+          <view wx:if="{{item.personlizedCateAttritemList}}" aria-hidden="true">
+              <goods-attribute info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+          </view>
+          <view style="flex: 1;min-height: 24rpx" aria-hidden="true"></view>
+          <!-- 价格 -->
+          <view class="flex-row price_case">
+            <view class="flex-auto">
+              <view
+                class="price-flex-row"
+                aria-hidden="true">
+                <!-- major-price -->
+                <coupon-price
+                  majorPrice="{{item.majorPrice}}"
+                  majorPriceFz="36rpx"
+                  majorPriceWhFz="24rpx"
+                  intervalPrice="{{item.intervalPrice}}"
+                ></coupon-price>
+                <!-- minor-price -->
+                <coupon-price minorPrice="{{item.minorPrice}}"/>
+              </view>
+            </view>
+          </view>
+          <!-- 标签 -->
+          <view class="flex-row" style="align-items:center;  margin-top: 8rpx;" wx:if="{{item.couponVOList[0] || item.tags.length > 0}}">
+            <view class='flex-none tag-wrapper' wx:if="{{item.tags.length > 0}}">
+              <view
+                class='tag' 
+                aria-role="text"
+                aria-label="{{subItem.iconText}}"
+                wx:for="{{item.tags}}" 
+                wx:key="index" 
+                wx:for-item="subItem" 
+                style="color: {{subItem.strokeNameColorCode}};border: solid 2rpx {{subItem.strokeNameColorCode}}">
+                  {{subItem.iconText}}
+              </view>
+            </view>
+            <view class="flex-none d-flex" aria-hidden="true" style="line-height: 30rpx">
+              <disabled-tag></disabled-tag>
+              <coupon-go-tag
+                data="{{item.couponVOList[0]}}"
+                sku-id="{{item.skuId || ''}}"
+                org-code="{{item.orgCode || ''}}"
+                store-id="{{item.storeId || ''}}"
+                from="storeListByKey"
+                user-action="{{item.userActionSku}}"
+              ></coupon-go-tag>
+            </view>
+          </view>
+          <!-- 买赠说明 -->
+          <view class="gift-info ellipsis" wx:if="{{item.giftInfo}}">{{item.giftInfo}}</view>
+          <!-- 排行榜 -->
+          <view style="margin-top: 8rpx;display:inline-view;" wx:if="{{item.recWordsVO}}" aria-hidden="true">
+            <ranking-list info="{{item.recWordsVO}}"></ranking-list>
+          </view>
+      </view>
+  </view>
+</view>

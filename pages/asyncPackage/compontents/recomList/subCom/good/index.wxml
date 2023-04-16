@@ -1,0 +1,63 @@
+ <view class="{{length <= 3 ? 'store-rec-item' : 'store-rec-item1'}} log_recom_item ep_recom-list" 
+      data-item="{{item}}" 
+      data-sku-id="{{item.skuId}}" 
+      data-store-id="{{item.storeId}}" 
+      data-tab-name="{{item.tabName}}" 
+      bindtap="jump" 
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{buriedObj.pageIdFirstPage}}"
+      data-current-page-name="{{buriedObj.currentPageName}}"
+      data-pre-page-name="{{buriedObj.prePageName}}">
+   <view class='store-rec-img-box' aria-label="{{item.skuName}}" aria-role='link'>
+     <image aria-hidden="true" class='store-rec-img-1' src="{{item.imgUrl}}" />
+     <view aria-hidden="true" class='ellipsis  store-rec-tag-1' style="background:linear-gradient(to right, {{item.tags[0].startColorCode}} 0%, {{item.tags[0].endColorCode}} 100%);" wx:if="{{item.tags && item.tags.length > 0}}">
+       {{item.tags[0].iconText}}
+     </view>
+     <!-- 冷冻or冷藏 -->
+     <view wx:if="{{item.topLeftCornerTag}}" class='store-rec-freeze-wrap' aria-hidden="true">
+       <image wx:if="{{item.topLeftCornerTag.imageTag}}" class="store-rec-image-tag" src="{{item.topLeftCornerTag.imageTag}}"></image>
+       <view class='store-rec-component-tag' wx:elif="{{item.topLeftCornerTag.componentTag}}" style="color: {{item.topLeftCornerTag.componentTag.iconTextColorCode}}; background: linear-gradient(to right, {{item.topLeftCornerTag.componentTag.startColorCode}} 0%,  {{item.topLeftCornerTag.componentTag.endColorCode}} 100%);">
+         <image class='store-rec-freeze-icon' src="{{item.topLeftCornerTag.componentTag.iconUrl}}" />
+         <text>{{item.topLeftCornerTag.componentTag.iconText}}</text>
+       </view>
+     </view>
+   </view>
+   <view class='store-rec-sku-name ellipsis2' aria-label="{{item.skuName}}" aria-role="link">
+     {{item.skuName}}
+   </view>
+   <view class='store-rec-price' style="color: {{item.majorPrice.priceColor}}" aria-role='link' aria-label="{{item.majorPrice.price}}元">
+     ¥{{item.majorPrice.price}}
+   </view>
+   <view class='store-rec-add-cart'>
+     <add-min-controller 
+        count="{{item.showModel ? item.spuCartCount :  item.incartCount}}" 
+        skuId="{{item.skuId}}" 
+        spuId="{{item.spuId}}" 
+        orgCode="{{item.orgCode}}" 
+        storeId="{{item.storeId}}" 
+        isAddCart="{{item.isAddCart}}"
+        showModel="{{item.showModel}}"  
+        floorName="recomBuy" 
+        showType="{{3}}" 
+        width="{{36}}" 
+        height="{{36}}" 
+        weighting="{{item.weighting}}" 
+        weight="{{item.cartWeight}}" 
+        tabName="storeGoods" 
+        userAction="{{item.userAction}}"  
+        pageId="{{buriedObj.pageIdFirstPage}}" 
+        currentPageName="{{buriedObj.currentPageName}}" 
+        prePageName="{{buriedObj.prePageName}}"
+        traceId="{{traceId}}"
+        biPageName="storeinfo"
+        bind:addMinControllerChange='addMinControllerChange'
+        iconType="{{item.iconType}}" 
+        transmitData="{{item.transmitData}}"
+        to="{{item.to}}"
+        params="{{item.params}}"
+        tabName="{{tabName}}"
+        showModel="{{iten.showModel}}"
+      ></add-min-controller>
+   </view>
+ </view>

@@ -1,0 +1,148 @@
+.floor_wrap {
+    background: #f6f6f6;
+    font-size: 0;
+}
+.share_pop {
+    z-index: 101;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.share_case {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 60rpx 0;
+    background: #ffffff;
+    z-index: 101;
+}
+
+.img_case {
+    height: 108rpx;
+    width: 108rpx;
+    margin: 0 auto;
+}
+
+.img_case .img {
+    width: 100%;
+    height: 100%;
+}
+
+.share_case .txt {
+    font-size: 24rpx;
+    color: #666666;
+    margin-top: 20rpx;
+    text-align: center;
+}
+
+/* 底部提示语 */
+
+.page_bottom {
+    padding: 60rpx 0;
+    font-size: 24rpx;
+    color: rgb(51, 51, 51);
+    text-align: center;
+}
+
+.store_page_bottom {
+    padding: 60rpx 0;
+    font-size: 24rpx;
+    color: rgb(73, 186, 70);
+    text-align: center;
+}
+
+/* 去掉button按钮默认样式 */
+
+.button {
+    padding: 0;
+    margin: 0;
+    background: #fff;
+}
+
+.button::after {
+    border: none;
+    outline: none;
+}
+
+button {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+button:after {
+    border: 0;
+}
+
+.tab-wrap {
+    position: sticky;
+    position: -webkit-sticky;
+    padding: 0 10px;
+    z-index: 9;
+}
+
+.tab-wrap.tabFixd {
+    padding-left: 0;
+    padding-right: 0;
+    background: #fff !important;
+}
+
+.store_list_case {
+    padding: 10rpx 20rpx;
+}
+
+.store_list_content {
+    background: #ffffff;
+    border-radius: 12rpx;
+}
+
+.more_list_case {
+    justify-content: center;
+    align-items: center;
+}
+
+.more_list_txt {
+    color: #666666;
+    font-size: 24rpx;
+    padding: 30rpx 0;
+    align-items: center;
+}
+
+.arrow_right_icon {
+    color: #666666;
+    font-size: 20rpx;
+    position: relative;
+    top: 2px;
+    margin-left: 4rpx;
+}
+
+.bttom_tip_case {
+    padding: 60rpx 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.bttom_tip_txt {
+    font-size: 24rpx;
+    color: rgb(0, 207, 55);
+}
+
+.bttom_tip_icon {
+    font-size: 20rpx;
+    color: rgb(0, 207, 55);
+    margin-left: 4rpx;
+}
+
+.minicart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transition: All 0.2s ease;
+    -webkit-transition: All 0.2s ease;
+}

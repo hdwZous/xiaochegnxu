@@ -1,0 +1,28 @@
+<!--买一赠一 -->
+<block wx:if="{{subItem.giftMap && subItem.giftMap.length}}" wx:for="{{subItem.giftMap}}" wx:key="giftmap" wx:for-item="giftItem">
+  <view class="gift-item d-flex flex-row">
+    <!--勾选框-->
+    <view class="check_box flex-none">
+      <view class="gift-dashed"></view>
+      <view class="check-toggle-box">
+        <view class="gift-dot"></view>
+      </view>  
+    </view>
+    <!--商品详情-->
+    <view class="flex-auto product_hidden">
+      <product-detail 
+        mode="gift" 
+        subItem="{{giftItem}}" 
+        traceId="{{traceId}}" 
+        pullDownFlag="{{pullDownFlag}}"
+        pageId="{{pageId}}" 
+        currentPageName="{{currentPageName}}" 
+        prePageName="{{prePageName}}"
+        noNeedExposure="{{noNeedExposure}}"
+        pageSource="{{pageSource}}"
+        refPageSource="{{refPageSource}}"
+      >
+      </product-detail>
+    </view>
+  </view>
+</block>

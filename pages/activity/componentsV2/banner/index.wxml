@@ -1,0 +1,27 @@
+<view class="active_banner wrap floor_relative" data-index="{{item.index}}" id="f{{item.index}}" style="background: {{item.floorConfig.bgColorVal}};">
+  <!-- <block wx:if="{{hookLazy}}"> -->
+    <swiper class="swiper" style="height: {{imgHeight}};width:{{edge?'710rpx':'750rpx'}};" circular="{{true}}" indicator-dots="{{false}}" autoplay="{{autoplay}}" bindchange="swiperChange">
+      <block wx:for="{{item.data}}" wx:for-index="index" wx:for-item="item" wx:key="item">
+        <swiper-item>
+          <view
+            class="swiper-item activity_comp_ep log-banner-new" bind:tap="clickBanner"
+            data-user-action="{{item.userAction}}"
+            data-item="{{item}}"
+            data-trace-id="{{traceId}}"
+            data-page-id="{{pageId}}"
+            data-current-page-name="{{currentPageName}}"
+            data-pre-page-name='{{prePageName}}'>
+            <image class="img" style="width:{{edge?'710rpx':'750rpx'}};height: {{imgHeight}};border-radius:{{edge ? '20rpx':''}}" src="{{item.imgUrl}}" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 焦点 -->
+    <view class="dot flex-row">
+      <view class="item flex-none {{current === index ? 'active':''}}" wx:for="{{item.data}}" wx:for-index="index" wx:for-item="item" wx:key="item"></view>
+    </view>
+  <!-- </block>
+  <block wx:else>
+    <view class="cp-lazy-skeleton" style="height: {{imgHeight}}"></view>
+  </block> -->
+</view>

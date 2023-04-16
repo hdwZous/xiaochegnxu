@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "count-down": "../countDown/index",
+    "process-box": "../processBox/index"
+  }
+}

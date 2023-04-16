@@ -1,0 +1,161 @@
+<view class="content {{show ? 'show_cont':''}} container"  
+      catchtouchmove="true">
+  <!-- title -->
+  <view class="header">
+    商家服务
+    <view
+      class="icon_close icon dj_icon ts_close"
+      bindtap="hidePop"
+      aria-label="关闭弹窗"
+      aria-role='text'
+    ></view>
+  </view>
+
+  <!-- 门店信息 -->
+  <view  class="flex-col sale_box fade-out">
+    <view
+      class="sale_title store_title_head"
+      aria-label="门店信息"
+      aria-role='text'
+    >门店信息</view>
+
+    <view class="service-card">
+      <view
+        class="flex-col" 
+        wx:if="{{storeInfo.inSaleNum && storeInfo.storeBusinessType != 2}}"
+        aria-label="商品数量：{{storeInfo.inSaleNum}}"
+        aria-role='text'>
+        <view class="flex-row store_info_wrap" aria-hidden="true">
+          <view class="flex-none ">商品数量：</view>
+          <view class="flex-auto">{{storeInfo.inSaleNum}}件</view>
+        </view>
+      </view>
+      <view
+        class="flex-col" 
+        wx:if="{{storeInfo.monthSaleNum && storeInfo.storeBusinessType != 2}}"
+        aria-label="月销单量：{{storeInfo.monthSaleNum}}"
+        aria-role='text'>
+        <view class="flex-row store_info_wrap" aria-hidden="true">
+          <view class="flex-none ">月销单量：</view>
+          <view class="flex-auto">{{storeInfo.monthSaleNum}}</view>
+        </view>
+      </view>
+      <view
+        class="flex-col" 
+        wx:if="{{storeInfo.followNo && storeInfo.storeBusinessType != 2}}"
+        aria-label="关注人数：{{storeInfo.followNo}}">
+        <view class="flex-row store_info_wrap" aria-hidden="true">
+          <view class="flex-none">关注人数：</view>
+          <view class="flex-auto">{{storeInfo.followNo}}</view>
+        </view>
+      </view>
+      <view
+        class="flex-col" 
+        wx:if="{{storeInfo.serviceTimes.length}}"
+        aria-label="营业时间：{{storeInfo.serviceTimes[0].startTime}}-{{storeInfo.serviceTimes[0].endTime}}"
+        aria-role='text'>
+        <view class="flex-row store_info_wrap" aria-hidden="true">
+          <view class="flex-none ">营业时间：</view>
+          <view class="flex-auto">
+            <view wx:for="{{storeInfo.serviceTimes}}"
+                  wx:key='index'
+                  wx:for-item="item"
+                  class="service-time">
+                  {{item.startTime}}-{{item.endTime}}<text wx:if="{{storeInfo.serviceTimes.length > 1 && (index+1 != storeInfo.serviceTimes.length)}}">；</text>
+            </view>
+            
+          </view>
+        </view>
+      </view>
+      <view
+        class="flex-col" 
+        wx:if="{{storeInfo.storeAddress}}"
+        aria-label="地址{{storeInfo.storeAddress}}"
+        aria-role='text'>
+        <view class="flex-row store_info_wrap" aria-hidden="true">
+          <view class="flex-none">门店地址：</view>
+          <view class="flex-auto" 
+                style="color: {{storeInfo.storeDistance ? '#2486ff' : '#000'}}"
+                bindtap="jumpNav">
+            {{storeInfo.storeAddress}}{{storeInfo.storeDistance ? '（' + storeInfo.storeDistance + '）' : ''}}
+          </view>
+        </view>
+      </view>
+      <view
+        class="flex-col" 
+        wx:if="{{storeInfo.storePhone && storeInfo.storePhone.length}}"
+        aria-label="门店电话：{{storeInfo.storeTel}}"
+        aria-role="button">
+        <view class="flex-row store_info_wrap" aria-hidden="true">
+          <view class="flex-none ">门店电话：</view>
+          <view class="flex-auto" 
+               style="color:#2486ff">
+            <view wx:for="{{storeInfo.storePhone}}"
+                  wx:key="index"
+                  wx:for-item="phone"
+                  style="margin-right: 6rpx; display: inline-block"
+                  data-phone="{{phone}}" 
+                  bindtap="makePhone">
+              {{phone}}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view
+        class="flex-col" 
+        wx:if="{{storeInfo.storeCertificateUrl || (storeInfo.qualificationList && storeInfo.qualificationList.length)}}"
+        aria-label="商家资质" 
+        aria-role="text">
+        <view class="flex-row store_info_wrap">
+          <view class="flex-none ">商家资质：</view>
+          <view class="flex-auto" 
+                style="color:#2486ff" 
+                data-url="{{storeInfo.storeCertificateUrl}}"
+                data-qualification-list="{{storeInfo.qualificationList}}" 
+                catchtap="goToCondition">
+            去看看
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{storeInfo.storeBusinessType == 2}}" class="flex-col sale_box fade-out">
+    <view
+      class="sale_title store_title_head"
+      aria-label="店铺评分"
+      aria-role='text'
+    >店铺评分</view>
+    <view class="service-card1" wx:if="{{storeCommentVO.showTotalCount}}">
+      <view class="store-comment">
+        <view class='store-comment-left' 
+              wx:if="{{storeCommentVO.scoreAvg}}"
+              aria-label="综合评分{{storeCommentVO.scoreAvg}}"
+              aria-role='text'>
+          <view class='store-comment-text' aria-hidden="true">{{storeCommentVO.scoreAvg}}</view>
+          <view class='store-comment-title' aria-hidden="true">综合评分</view>
+        </view>
+        <view class='store-comment-line' wx:if="{{storeCommentVO.scoreAvg && storeCommentVO.totalCount > 0}}"></view>
+        <view class='store-comment-right' 
+              wx:if="{{storeCommentVO.totalCount && storeCommentVO.totalCount > 0 && storeCommentVO.totalFuzzyNum != ''}}"
+              aria-label="评论条数{{storeCommentVO.totalFuzzyNum}}"
+              aria-role='text'>
+          <view class='store-comment-text' aria-hidden="true">{{storeCommentVO.totalFuzzyNum}}</view>
+          <view class='store-comment-title' aria-hidden="true">评论条数</view>
+        </view>
+      </view>
+      <view wx:if="{{storeCommentVO.totalCount && storeCommentVO.totalCount > 0 && storeCommentVO.totalFuzzyNum != ''}}"
+            class='store-comment-showmore'
+            bindtap="jumpComment"
+            aria-label="查看全部评价"
+            aria-role='link' >
+        查看全部评价<image aria-hidden="true" class='store-comment-showmore-arrow' src="https://storage.360buyimg.com/wximg/common/head-store-icon.png" />
+      </view>
+    </view>
+    <view wx:else class="store-comment-blank">该商家近期暂无评价，无法给出评价参考</view>
+  </view>
+</view>
+<!-- 背景 -->
+<view class="gray gray-bg" 
+      bindtap="hidePop" 
+      wx:if="{{show}}" 
+      catchtouchmove="true"></view>

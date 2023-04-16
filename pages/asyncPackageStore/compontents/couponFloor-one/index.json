@@ -1,0 +1,9 @@
+{
+  "compontent": true,
+  "usingComponents": {
+    "coupon-yhy-one": "../coupon-yhy-one/index"
+  },
+  "componentPlaceholder": {
+    "coupon-yhy-one": "view"
+  }
+}

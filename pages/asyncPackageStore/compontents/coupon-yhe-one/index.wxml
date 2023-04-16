@@ -1,0 +1,82 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+<view class="lazy-load-wrap ep_yhe_one_coupon"
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name="{{prePageName}}">
+<view wx:if="{{hookLazy}}"
+      class="cp-yhe-one-wrap">
+  <left-icon-coupon wx:if="{{couponItem.leftTopIconList.length && couponItem.leftTopIconList.length}}"
+                    list="{{couponItem.leftTopIconList}}" />
+  <view class="cp-yhe-left-one"
+        style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);"
+        aria-label="{{couponItem.couponTitle}},{{couponItem.couponExpire}},{{couponItem.price}}{{couponItem.priceUnit==1 ? '元' : '折'}},{{couponItem.couponLimit}}" 
+        aria-role='text'>
+    <view class="cp-yhe-price-one" 
+          style="color: {{couponItem.priceColor}}" 
+          aria-hidden="true">
+      <view class="yhe-price-unit-one"
+            style="line-height: {{couponItem.price.length >=4 ? '48rpx' : '32rpx'}}"
+            wx:if="{{couponItem.priceUnit == 1}}">
+        ¥
+      </view>
+      <view class="yhe-price-value-one"
+            style="font-size: {{couponItem.price.length >=4 ? '40rpx' : '56rpx'}};line-height: {{couponItem.price.length >=4 ? '56rpx' : 1}}">
+        {{couponItem.price}}
+      </view>
+    </view>
+    <view class="cp-yhe-limit-one"
+          wx:if="{{couponItem.couponExpire}}" 
+          style="color: {{couponItem.couponLimitColor}}"
+          aria-hidden="true">
+      {{couponItem.couponLimit}}
+    </view>
+  </view>
+  <view class="cp-yhe-center-one"
+        style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);"
+        aria-label="{{couponItem.couponTitle}},{{couponItem.couponExpire}},{{couponItem.price}}{{couponItem.priceUnit==1 ? '元' : '折'}},{{couponItem.couponLimit}}" 
+        aria-role='text'>
+    <view class="cp-yhe-title-one ellipsis"
+          style="color: {{couponItem.couponTitleColor}}"
+          aria-hidden="true">
+      {{couponItem.couponTitle}}
+    </view>
+    <view class="cp-yhe-tags-one" 
+          wx:if="{{couponItem.couponSigns && couponItem.couponSigns.length}}"
+          aria-hidden="true">
+      <view class='ellipsis cp-yhe-tag-one' 
+            wx:for="{{couponItem.couponSigns}}" 
+            wx:key="subIndex" 
+            wx:for-item="tag" 
+            style="color: {{tag.titleColor}}">
+        <view class="cp-yhy-tag-text-one">{{tag.title}}</view>
+        <view class="cp-yhy-tag-border-one" style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+      </view>
+    </view>
+    <view class="cp-yhe-time-one ellipsis2"
+          wx:if="{{couponItem.couponExpire}}"
+          style="color: {{couponItem.couponExpireColor}}"
+          aria-hidden="true">
+      {{couponItem.couponExpire}}
+    </view>
+  </view>
+  <view class="cp-yhe-line" aria-hidden="true"></view>
+  <view class="cp-yhe-right-one ellipsis"
+        style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);"
+        bindtap="clickCoupon"
+        data-item="{{couponItem}}"
+        data-user-action="{{item.userAction}}"
+        data-trace-id="{{traceId}}"
+        aria-role="button"
+        aria-label="{{couponItem.couponButton.title}}">
+    <view class="cp-yhe-button-one"
+          wx:if="{{couponItem.couponButton && couponItem.couponButton.title}}"
+          style="color: {{couponItem.couponButton.titleColor}};"
+          aria-hidden="true">
+      {{couponItem.couponButton.title}}
+    </view>
+  </view>
+</view>
+<view wx:else class="item-content-gray-one"></view>
+</view>

@@ -1,0 +1,1 @@
+var g="undefined"!=typeof window&&window.Math===Math?window:"object"==typeof global?global:this;g.Promise||(g.Promise=require("./npm/promise-polyfill/lib/index.js")),g.regeneratorRuntime||(g.regeneratorRuntime=require("./npm/regenerator-runtime/runtime.js"));

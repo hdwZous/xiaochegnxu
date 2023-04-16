@@ -1,0 +1,351 @@
+<wxs src="../../../../../../common/util/tools.wxs" module="tools" />
+<block wx:if="{{mode == 'origin'}}">
+  <!--商品详情-->
+  <view class="case_min d-flex flex-row flex-auto cartgoods_ep" data-user-action="{{subItem.userAction}}" data-trace-id="{{traceId}}" data-page-id="{{pageId}}" data-current-page-name="{{currentPageName}}" data-pre-page-name="{{prePageName}}" data-no-need-exposure="{{noNeedExposure}}">
+    <!--商品图片-->
+    <view class="image">
+      <webp-img webp-img="img" src="{{subItem.imageUrl}}" needOverlay="{{true}}"></webp-img>
+      <view class="case-skuStateName ellipsis" wx:if="{{subItem.skuStateName}}">{{subItem.skuStateName}}</view>
+      <view class="left-tags" wx:if="{{subItem.leftTagsVO}}" style="background: linear-gradient(135deg, {{subItem.leftTagsVO.startColorCode}} 0%, {{subItem.leftTagsVO.endColorCode}} 100%);">{{subItem.leftTagsVO.iconText}}</view>
+    </view>
+    <!--商品信息-->
+    <view class="info flex-auto">
+      <view class="name ellipsis" aria-role="text" aria-label="{{(subItem.skuNameTag.iconText||'')+subItem.skuName}}">
+        <view wx:if="{{subItem.skuNameTag}}" class="info-tags" style="color: #fff;background: linear-gradient(135deg, {{tools.checkColor(subItem.skuNameTag.startColorCode)}} 0%, {{tools.checkColor(subItem.skuNameTag.endColorCode)}} 100%);">{{subItem.skuNameTag.iconText}}</view>
+        {{subItem.skuName}}
+      </view>
+      <view class="desc" wx:if="{{subItem.saleAttrValueIdDecode}}" aria-role="text" aria-label="{{subItem.saleAttrValueIdDecode}}">{{subItem.saleAttrValueIdDecode}}</view>
+      <view class="time-promise d-flex flex-row align-items-center" wx:if="{{subItem.promiseText}}" aria-role="text" aria-label="{{subItem.promiseText}}">
+        <image class="time-promise-icon" src="{{subItem.promiseIcon}}" />
+        <text class="time-promise-text">{{subItem.promiseText}}</text>
+      </view>
+      <view class="info-tag-wrap" wx:if="{{!subItem.multiPriceVO && subItem.tags.length}}">
+        <block wx:for="{{subItem.tags}}" wx:for-item="tagsItem" wx:key="tagsItem">
+          <view class="shin-border-wrap" aria-role="text" aria-label="{{tagsItem.iconText}}">
+              <text class="info-tags" style="color: {{tools.checkColor(tagsItem.strokeNameColorCode)}}">{{tagsItem.iconText}}</text>
+              <view class="shin-border-box" style="border-color: {{tools.checkColor(tagsItem.strokeColorCode)}};border-radius: 8rpx 2rpx 8rpx 2rpx;"></view>
+          </view>
+        </block>
+      </view>
+      <view class="function-wrap-content">
+        <view class="function-wrap d-flex flex-row justify-content-between align-items-end">
+          <view class="price-box">
+              <view class="multiPrice-detail" wx:if="{{subItem.multiPriceVO}}">
+                <view class="first-multiPrice d-flex flex-row align-items-center" aria-role="text"
+                  aria-label="{{subItem.multiPriceVO.firstTag.iconText+(!subItem.weighting?(subItem.multiPriceVO.firstPrice+'元乘'+subItem.multiPriceVO.firstNum+(subItem.multiPriceVO.firstToHandPrice?subItem.multiPriceVO.firstToHandPrice.leftText+subItem.multiPriceVO.firstToHandPrice.rightText:'')):(subItem.multiPriceVO.firstTotalPriceInfoVO.totalPrice+'元'+subItem.multiPriceVO.firstTotalPriceInfoVO.totalPriceSuffix))}}"
+                >
+                  <view class="shin-border-wrap">
+                    <text class="info-tags" wx:if="{{subItem.multiPriceVO.firstTag}}" style="color: {{tools.checkColor(subItem.multiPriceVO.firstTag.strokeNameColorCode)}}">{{subItem.multiPriceVO.firstTag.iconText}}</text>
+                    <view class="shin-border-box" style="border-color: {{tools.checkColor(subItem.multiPriceVO.firstTag.strokeColorCode)}};border-radius: 8rpx 2rpx 8rpx 2rpx;"></view>
+                  </view>
+                  <block wx:if="{{!subItem.weighting}}">
+                    <text class="first-multiPrice-price" style="color: {{subItem.multiPriceVO.firstColor || '#FF1E19'}}">¥{{subItem.multiPriceVO.firstPrice}}</text>
+                    <text class="first-multiPrice-num">x{{subItem.multiPriceVO.firstNum}}</text>
+                    <estimate-price info="{{subItem.multiPriceVO.firstToHandPrice}}" wx:if="{{subItem.multiPriceVO.firstToHandPrice}}" style="margin-left: 8rpx"></estimate-price>
+                  </block>
+                  <block wx:else>
+                    <text class="f-regular first-multiPrice-price">¥{{subItem.multiPriceVO.firstTotalPriceInfoVO.totalPrice}}</text>
+                    <text class="weight-fuffix">{{subItem.multiPriceVO.firstTotalPriceInfoVO.totalPriceSuffix}}</text>
+                    <estimate-price info="{{subItem.multiPriceVO.firstToHandPrice}}" wx:if="{{subItem.multiPriceVO.firstToHandPrice}}" style="margin-left: 8rpx"></estimate-price>
+                  </block>
+                </view>
+                <view class="second-multiPrice d-flex flex-row align-items-center" aria-role="text" 
+                  aria-label="{{subItem.multiPriceVO.secondTag.iconText+(!subItem.weighting?(subItem.multiPriceVO.secondPrice+'元乘'+subItem.multiPriceVO.secondNum+(subItem.multiPriceVO.secondToHandPrice?subItem.multiPriceVO.secondToHandPrice.leftText+subItem.multiPriceVO.secondToHandPrice.rightText:'')):(subItem.multiPriceVO.secondTotalPriceInfoVO.totalPrice+'元'+subItem.multiPriceVO.secondTotalPriceInfoVO.totalPriceSuffix))}}"
+                >
+                  <view class="shin-border-wrap">
+                    <text class="info-tags" wx:if="{{subItem.multiPriceVO.secondTag}}" style="color: {{tools.checkColor(subItem.multiPriceVO.secondTag.strokeNameColorCode)}}">{{subItem.multiPriceVO.secondTag.iconText}}</text>
+                    <view class="shin-border-box" style="border-color: {{tools.checkColor(subItem.multiPriceVO.secondTag.strokeColorCode)}};border-radius: 8rpx 2rpx 8rpx 2rpx;"></view>
+                  </view>
+                  <block wx:if="{{!subItem.weighting}}">
+                    <text class="second-multiPrice-price" style="color: {{subItem.multiPriceVO.secondColor || '#FF1E19'}}">¥{{subItem.multiPriceVO.secondPrice}}</text>
+                    <text class="second-multiPrice-num">x{{subItem.multiPriceVO.secondNum}}</text>
+                    <estimate-price info="{{subItem.multiPriceVO.secondToHandPrice}}" wx:if="{{subItem.multiPriceVO.secondToHandPrice}}" style="margin-left: 8rpx"></estimate-price>
+                  </block>
+                  <block wx:else>
+                    <text class="f-regular second-multiPrice-price">¥{{subItem.multiPriceVO.secondTotalPriceInfoVO.totalPrice}}</text>
+                    <text class="weight-fuffix">{{subItem.multiPriceVO.secondTotalPriceInfoVO.totalPriceSuffix}}</text>
+                    <estimate-price info="{{subItem.multiPriceVO.secondToHandPrice}}" wx:if="{{subItem.multiPriceVO.secondToHandPrice}}" style="margin-left: 8rpx"></estimate-price>
+                  </block>
+                </view>
+              </view>
+              <view class="memberPrice" wx:elif="{{subItem.memberPriceVO}}">
+                <block wx:if="{{!subItem.weighting}}">
+                  <text class="normalPrice-price" style="color: {{subItem.memberPriceVO.priceColor || '#FF1E19'}}">¥{{subItem.memberPriceVO.memberPrice}}</text>
+                  <estimate-price info="{{subItem.memberPriceVO.toHandPrice}}" wx:if="{{subItem.memberPriceVO.toHandPrice}}" style="margin-left: 8rpx"></estimate-price>
+                </block>
+                <block wx:else>
+                  <view class="weight-price-info" style="color: {{subItem.memberPriceVO.priceColor || '#FF1E19'}}">
+                    <text class="f-regular">¥{{subItem.memberPriceVO.totalMemberPriceVO.totalPrice}}</text><text class="weight-fuffix">{{subItem.memberPriceVO.totalMemberPriceVO.totalPriceSuffix}}</text>
+                  </view>
+                  <estimate-price info="{{subItem.toHandPrice}}" wx:if="{{subItem.toHandPrice}}" style="margin-left: 8rpx"></estimate-price>                                
+                </block>
+              </view>
+              <view class="normalPrice-detail d-flex flex-row align-items-center" wx:else aria-role="text" 
+                aria-label="{{(!subItem.weighting?(subItem.price+'元'+(subItem.basePrice && subItem.basePrice != subItem.price?'原价'+subItem.basePrice+'元':'')):(subItem.totalPriceInfoVO.totalPrice+'元'+subItem.totalPriceInfoVO.totalPriceSuffix+(subItem.totalBasePriceInfoVO.totalPrice&&subItem.totalBasePriceInfoVO.totalPrice != subItem.totalPriceInfoVO.totalPrice?'原价'+subItem.totalBasePriceInfoVO.totalPrice+'元':'')))+(subItem.toHandPrice?subItem.toHandPrice.leftText+subItem.toHandPrice.rightText:'')}}"
+              >
+                <block wx:if="{{!subItem.weighting}}">
+                  <text class="normalPrice-price" style="color: {{subItem.priceColor || '#FF1E19'}}">¥{{subItem.price}}</text>
+                  <text class="normalPrice-basePrice delete" wx:if="{{subItem.basePrice && subItem.basePrice != subItem.price}}">¥{{subItem.basePrice}}</text>
+                  <estimate-price info="{{subItem.toHandPrice}}" wx:if="{{subItem.toHandPrice}}" style="margin-left: 8rpx"></estimate-price>
+                </block>
+                <block wx:else>
+                  <view class="weight-price-info" style="color: {{subItem.totalPriceInfoVO.priceColor}}">
+                    <text class="f-regular">¥{{subItem.totalPriceInfoVO.totalPrice}}</text><text class="weight-fuffix">{{subItem.totalPriceInfoVO.totalPriceSuffix}}</text>
+                  </view>
+                  <text class="weight-baseprice-info f-light" wx:if="{{subItem.totalBasePriceInfoVO && subItem.totalBasePriceInfoVO.totalPrice && subItem.totalBasePriceInfoVO.totalPrice != subItem.totalPriceInfoVO.totalPrice}}" style="text-decoration-line: {{subItem.totalBasePriceInfoVO.deleteLine ? 'line-through' : 'none'}}">¥{{subItem.totalBasePriceInfoVO.totalPrice}}</text>
+                  <estimate-price info="{{subItem.toHandPrice}}" wx:if="{{subItem.toHandPrice}}" style="margin-left: 8rpx"></estimate-price>                                
+                </block>
+              </view>
+              <view class="compare_before_price" wx:if="{{subItem.comparePriceText}}" aria-role="text" aria-label="{{subItem.comparePriceText}}">{{subItem.comparePriceText}}</view>
+              <view class="tips_pro ellipsis2" wx:if="{{subItem.skuTip.length}}" style="max-width:{{fromMinicart?'350':'300'}}rpx;">
+                <block wx:for="{{subItem.skuTip}}" wx:key="items">
+                  <text space="ensp" style="color:{{item.fontColor}}">{{item.text}}</text>
+                </block>
+              </view>
+          </view>
+          <!--加减车-->
+          <view class="select_case_min">
+            <add-min-controller showType="4" count="{{subItem.cartNum}}" skuId="{{subItem.skuId}}"
+              spuId="{{subItem.spuId || ''}}" tags="{{subItem.tags || []}}" orgCode="{{orgCode}}"
+              storeId="{{storeId}}"
+              pageSource="{{pageSource}}" 
+              refPageSource="{{refPageSource}}"
+              userAction="{{subItem.userAction}}"
+              couponId="{{couponId}}"
+              limitFlag="{{limitFlag}}"
+              weighting="{{subItem.weighting}}"
+              weight="{{subItem.showInfoOnChangeNum}}"
+              bindaddMinControllerChange="addMinControllerChange"
+              fromMinicart="{{fromMinicart}}"
+              cartType="{{cartType}}"
+              pageId="{{pageId}}" 
+              currentPageName="{{currentPageName}}" 
+              prePageName="{{prePageName}}"
+              biPageName="{{biPageName}}"
+              bindshowModify="onShowModify"
+              refPar="{{refPar}}"
+              prescriptionFlowMark="{{prescriptionFlowMark}}"
+              subItem="{{subItem}}">
+            </add-min-controller>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{subItem.valueAddedServiceList}}" style="margin-top: 24rpx;padding-right: 20rpx"><add-service service="{{subItem.valueAddedServiceList}}"></add-service></view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{mode == 'gift'}}">
+  <!--商品详情-->
+  <view class="case_min d-flex flex-row cartgoods_ep" data-user-action="{{subItem.userAction}}" data-trace-id="{{traceId}}" data-page-id="{{pageId}}" data-current-page-name="{{currentPageName}}" data-pre-page-name="{{prePageName}}" data-no-need-exposure="{{noNeedExposure}}">
+    <!--商品图片-->
+    <view class="image">
+      <webp-img webp-img="img" src="{{subItem.imageUrl}}" needOverlay="{{true}}"></webp-img>
+      <view class="case-skuStateName ellipsis" wx:if="{{subItem.skuStateName}}">{{subItem.skuStateName}}</view>
+      <view class="left-tags" wx:if="{{subItem.leftTagsVO}}" style="background: linear-gradient(135deg, {{subItem.leftTagsVO.startColorCode}} 0%, {{subItem.leftTagsVO.endColorCode}} 100%);">{{subItem.leftTagsVO.iconText}}</view>
+    </view>
+    <!--商品信息-->
+    <view class="info flex-auto">
+      <view class="name ellipsis" aria-role="text" aria-label="{{(subItem.skuNameTag.iconText||'')+subItem.skuName}}">
+        <view wx:if="{{subItem.skuNameTag}}" class="info-tags" style="color: #fff;background: linear-gradient(135deg, {{tools.checkColor(subItem.skuNameTag.startColorCode)}} 0%, {{tools.checkColor(subItem.skuNameTag.endColorCode)}} 100%);">{{subItem.skuNameTag.iconText}}</view>
+        {{subItem.skuName}}
+      </view>
+      <view class="desc" wx:if="{{subItem.saleAttrValueIdDecode}}" aria-role="text" aria-label="{{subItem.saleAttrValueIdDecode}}">{{subItem.saleAttrValueIdDecode}}</view>
+      <view class="time-promise d-flex flex-row align-items-center" wx:if="{{subItem.promiseText}}" aria-role="text" aria-label="{{subItem.promiseText}}">
+        <image class="time-promise-icon" src="{{subItem.promiseIcon}}" />
+        <text class="time-promise-text">{{subItem.promiseText}}</text>
+      </view>
+      <view class="info-tag-wrap">
+        <block wx:for="{{subItem.tags}}" wx:for-item="tagsItem" wx:key="tagsItem">
+          <view class="shin-border-wrap" aria-role="text" aria-label="{{tagsItem.iconText}}">
+            <text class="info-tags" style="color: {{tools.checkColor(tagsItem.strokeNameColorCode)}}">{{tagsItem.iconText}}</text>
+            <view class="shin-border-box" style="border-color: {{tools.checkColor(tagsItem.strokeColorCode)}};border-radius: 8rpx 2rpx 8rpx 2rpx;"></view>
+          </view>
+        </block>
+      </view>
+      <view class="function-wrap d-flex flex-row justify-content-between align-items-end">
+        <view class="price-box">
+          <view class="normalPrice-detail" aria-role="text" aria-label="{{subItem.basePrice+'元乘'+subItem.skuCount}}">
+              <text class="normalPrice-price normalPrice-gift-basePrice delete" style="color: {{subItem.totalBasePriceInfoVO.priceColor||'#FF1E19'}}">¥{{subItem.basePrice}}</text>
+              <text class="gift-num">x{{subItem.skuCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>        
+  </view>
+</block>
+<block wx:if="{{mode == 'exchange'}}">
+  <!--商品详情-->
+  <view class="case_min d-flex flex-row flex-auto cartgoods_ep" data-user-action="{{subItem.userAction}}" data-trace-id="{{traceId}}" data-page-id="{{pageId}}" data-current-page-name="{{currentPageName}}" data-pre-page-name="{{prePageName}}" data-no-need-exposure="{{noNeedExposure}}">
+    <!--商品图片-->
+    <view class="image">
+      <webp-img webp-img="img" src="{{subItem.imageUrl}}" needOverlay="{{true}}"></webp-img>
+      <view class="case-skuStateName ellipsis" wx:if="{{subItem.skuStateName}}">{{subItem.skuStateName}}</view>
+      <view class="left-tags" wx:if="{{subItem.leftTagsVO}}" style="background: linear-gradient(135deg, {{subItem.leftTagsVO.startColorCode}} 0%, {{subItem.leftTagsVO.endColorCode}} 100%);">{{subItem.leftTagsVO.iconText}}</view>
+    </view>
+    <!--商品信息-->
+    <view class="info flex-auto">
+      <view class="name ellipsis" aria-role="text" aria-label="{{(subItem.skuNameTag.iconText||'')+subItem.skuName}}">
+        <view wx:if="{{subItem.skuNameTag}}" class="info-tags" style="color: #fff;background: linear-gradient(135deg, {{tools.checkColor(subItem.skuNameTag.startColorCode)}} 0%, {{tools.checkColor(subItem.skuNameTag.endColorCode)}} 100%);">{{subItem.skuNameTag.iconText}}</view>
+        {{subItem.skuName}}
+      </view>
+      <view class="desc" wx:if="{{subItem.saleAttrValueIdDecode}}" aria-role="text" aria-label="{{subItem.saleAttrValueIdDecode}}">{{subItem.saleAttrValueIdDecode}}</view>
+      <view class="time-promise d-flex flex-row align-items-center" wx:if="{{subItem.promiseText}}" aria-role="text" aria-label="{{subItem.promiseText}}">
+        <image class="time-promise-icon" src="{{subItem.promiseIcon}}" />
+        <text class="time-promise-text">{{subItem.promiseText}}</text>
+      </view>
+      <view class="info-tag-wrap" wx:if="{{!subItem.multiPriceVO && subItem.tags.length}}">
+        <block wx:for="{{subItem.tags}}" wx:for-item="tagsItem" wx:key="tagsItem">
+          <view class="shin-border-wrap" aria-role="text" aria-label="{{tagsItem.iconText}}">
+            <text class="info-tags" style="color: {{tools.checkColor(tagsItem.strokeNameColorCode)}}">{{tagsItem.iconText}}</text>
+            <view class="shin-border-box" style="border-color: {{tools.checkColor(tagsItem.strokeColorCode)}};border-radius: 8rpx 2rpx 8rpx 2rpx;"></view>
+          </view>
+        </block>
+      </view>
+      <view class="function-wrap d-flex flex-row justify-content-between align-items-end">
+        <view class="price-box" aria-role="text" aria-label="{{subItem.price+'元'+(subItem.basePrice && subItem.basePrice != subItem.price?'原价'+subItem.basePrice+'元':'')}}">
+          <view class="normalPrice-detail">
+            <text class="normalPrice-price" style="color: {{subItem.priceColor || '#FF1E19'}}">¥{{subItem.price}}</text>
+            <text class="normalPrice-basePrice delete" wx:if="{{subItem.basePrice && subItem.basePrice != subItem.price}}">¥{{subItem.basePrice}}</text>
+            <estimate-price info="{{subItem.toHandPrice}}" wx:if="{{subItem.toHandPrice}}" style="margin-left: 8rpx"></estimate-price>
+          </view>
+          <view class="tips_pro ellipsis2" wx:if="{{subItem.skuTip.length}}" style="max-width:{{fromMinicart?'350':'300'}}rpx;">
+            <block wx:for="{{subItem.skuTip}}" wx:key="items">
+              <text space="ensp" style="color:{{item.fontColor}}">{{item.text}}</text>
+            </block>
+          </view>
+        </view>
+        <!--加减车-->
+        <view class="select_case_min">
+          <add-min-controller showType="4" count="{{subItem.skuNum}}" skuId="{{subItem.skuId}}"
+            activityId="{{activityId}}" fromMinicart="{{fromMinicart}}" suitType="gift" weighting="{{subItem.weighting}}"
+            weight="{{subItem.showInfoOnChangeNum}}"
+            biPageName="{{biPageName}}" userAction="{{subItem.userAction || ''}}" cartType="{{cartType}}"
+            spuId="{{subItem.spuId || ''}}" tags="{{subItem.tags || []}}" orgCode="{{orgCode}}"
+            storeId="{{storeId}}" bindaddMinControllerChange="addMinControllerChange" refPar="{{refPar}}"
+            pageId="{{pageId}}" currentPageName="{{currentPageName}}" prePageName="{{prePageName}}"
+            forbiddenAdd="{{true}}" pageSource="{{pageSource}}" refPageSource="{{refPageSource}}" 
+            prescriptionFlowMark="{{prescriptionFlowMark}}" subItem="{{subItem}}">
+          </add-min-controller>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{mode == 'combination'}}">
+  <!--商品详情-->
+  <view class="case_min d-flex flex-row flex-auto cartgoods_ep" data-user-action="{{subItem.userAction}}" data-trace-id="{{traceId}}" data-page-id="{{pageId}}" data-current-page-name="{{currentPageName}}" data-pre-page-name="{{prePageName}}" data-no-need-exposure="{{noNeedExposure}}">
+    <!--商品图片-->
+    <view class="image">
+      <webp-img webp-img="img" src="{{subItem.imageUrl}}" needOverlay="{{true}}"></webp-img>
+      <view class="{{(subItem.skuState == 0 || subItem.skuState == 2) ? 'remove_text' : 'case-skuStateName'}} ellipsis" wx:if="{{subItem.skuStateName}}">{{subItem.skuStateName}}</view>
+      <view class="left-tags" wx:if="{{subItem.leftTagsVO}}" style="background: linear-gradient(135deg, {{subItem.leftTagsVO.startColorCode}} 0%, {{subItem.leftTagsVO.endColorCode}} 100%);">{{subItem.leftTagsVO.iconText}}</view>
+    </view>
+    <!--商品信息-->
+    <view class="info flex-auto">
+      <view class="name ellipsis" aria-role="text" aria-label="{{(subItem.skuNameTag.iconText||'')+subItem.skuName}}">
+        <view wx:if="{{subItem.skuNameTag}}" class="info-tags" style="vertical-align:4rpx;border-radius: 4rpx;color: #fff;background: linear-gradient(135deg, {{tools.checkColor(subItem.skuNameTag.startColorCode)}} 0%, {{tools.checkColor(subItem.skuNameTag.endColorCode)}} 100%);">{{subItem.skuNameTag.iconText}}</view>
+        {{subItem.skuName}}
+      </view>
+      <view class="desc" wx:if="{{subItem.saleAttrValueIdDecode}}" aria-role="text" aria-label="{{subItem.saleAttrValueIdDecode}}">{{subItem.saleAttrValueIdDecode}}</view>
+      <view class="time-promise d-flex flex-row align-items-center" wx:if="{{subItem.promiseText}}" aria-role="text" aria-label="{{subItem.promiseText}}">
+        <image class="time-promise-icon" src="{{subItem.promiseIcon}}" />
+        <text class="time-promise-text">{{subItem.promiseText}}</text>
+      </view>
+      <view class="info-tag-wrap" wx:if="{{subItem.tags.length}}">
+        <block wx:for="{{subItem.tags}}" wx:for-item="tagsItem" wx:key="tagsItem">
+          <view class="shin-border-wrap" aria-role="text" aria-label="{{tagsItem.iconText}}">
+              <text class="info-tags" style="color: {{tools.checkColor(tagsItem.strokeNameColorCode)}}">{{tagsItem.iconText}}</text>
+              <view class="shin-border-box" style="border-color: {{tools.checkColor(tagsItem.strokeColorCode)}};border-radius: 8rpx 2rpx 8rpx 2rpx;"></view>
+          </view>
+        </block>
+      </view>
+      <view class="function-wrap d-flex flex-row justify-content-between align-items-end">
+        <view class="price-box" aria-role="text" aria-label="{{subItem.basePrice+'元乘'+subItem.cartNum}}">
+          <view class="normalPrice-detail">
+            <text class="normalPrice-basePrice normalPrice-combination delete">¥{{subItem.basePrice}}</text>
+            <text class="combination-num">x{{subItem.cartNum}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="tips_pro ellipsis2" wx:if="{{subItem.skuTip.length}}">
+        <block wx:for="{{subItem.skuTip}}" wx:key="items">
+          <text space="ensp" style="color:{{item.fontColor}}">{{item.text}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{mode == 'failure'}}">
+  <view class="case_min flex-auto d-flex flex-row cartgoods_ep" data-user-action="{{subItem.userAction}}" data-trace-id="{{traceId}}" data-page-id="{{pageId}}" data-current-page-name="{{currentPageName}}" data-pre-page-name="{{prePageName}}" data-no-need-exposure="{{noNeedExposure}}">
+    <!--商品图片-->
+    <view class="image flex-none" style="margin: 0" aria-role="text" aria-label="{{subItem.skuStateName||'已下架'}}">
+      <view class="remove_text">{{subItem.skuStateName || '已下架'}}</view>
+      <image class="img" src="{{subItem.imageUrl}}" />
+    </view>
+    <!-- 相似推荐 -->
+    <view class="similar_recom d-flex flex-row align-items-center" wx:if="{{subItem.similartyStyle && subItem.similartyStyle === 1 && subItem.similaritySkuVOList.length}}">
+      <text class="similar_recom_title" aria-role="text" aria-label="相似推荐">相似推荐</text>
+      <block wx:for="{{subItem.similaritySkuVOList}}" wx:for-item="slItem" wx:for-index="slIndex" wx:key="slItem">
+        <view class="slItem {{subItem.similaritySkuVOList.length > 1 ? '' : 'short'}}" wx:if="{{slIndex < 3}}" data-items="{{slItem}}" bindtap="goToProduct" aria-role="link" aria-label="{{slItem.majorPrice.price+'元'}}">
+          <webp-img webp-img="slItem_img" src="{{slItem.imgUrl}}" needOverlay="{{true}}"></webp-img>
+          <view class="slItem_price" wx:if="{{subItem.similaritySkuVOList.length > 1}}">¥{{slItem.majorPrice.price}}</view>
+        </view>
+      </block>
+      <view class="similar_more" wx:if="{{subItem.similaritySkuVOList.length > 3}}" data-items="{{subItem.similartyButton}}" data-user-action="{{subItem.userAction}}" bindtap="gofailure" aria-role="button" aria-label="更多">
+        <text class="similar_more_txt">更多</text>
+        <image src="https://storage.360buyimg.com/wximg/storewin/mini_simlar.png" class="similar_arrow" />
+      </view>
+      <view class="similar_one_style d-flex flex-column justify-content-center" wx:if="{{subItem.similaritySkuVOList.length == 1}}" data-items="{{subItem.similaritySkuVOList[0]}}" bindtap="goToProduct" aria-role="link" aria-label="{{subItem.similaritySkuVOList[0].skuName+subItem.similaritySkuVOList[0].majorPrice.price+'元'}}">
+        <text class="similar_one_style_title ellipsis">{{subItem.similaritySkuVOList[0].skuName}}</text>
+        <text class="similar_one_style_price">¥{{subItem.similaritySkuVOList[0].majorPrice.price}}</text>                     
+      </view>
+    </view>
+    <!--商品信息-->
+    <view class="info invalid_info flex-auto font_grey d-flex flex-column justify-content-between" wx:else>
+      <view class="name ellipsis" aria-role="text" aria-label="{{subItem.skuName}}">
+        <view wx:if="{{subItem.skuNameTag}}" class="info-tags" style="vertical-align:4rpx;border-radius: 4rpx;color: #fff;background: linear-gradient(135deg, {{tools.checkColor(subItem.skuNameTag.startColorCode)}} 0%, {{tools.checkColor(subItem.skuNameTag.endColorCode)}} 100%);">{{subItem.skuNameTag.iconText}}</view>
+        {{subItem.skuName}}
+      </view>
+      <view class="desc" wx:if="{{subItem.saleAttrValueIdDecode}}" aria-role="text" aria-label="{{subItem.saleAttrValueIdDecode}}">{{subItem.saleAttrValueIdDecode}}</view>
+      <view class="time-promise d-flex flex-row align-items-center" wx:if="{{subItem.promiseText}}">
+        <image class="time-promise-icon" src="{{subItem.promiseIcon}}" />
+        <text class="time-promise-text">{{subItem.promiseText}}</text>
+      </view>
+      <view class="con d-flex flex-row align-items-end justify-content-between">
+        <view class="price d-flex flex-row" aria-role="text" aria-label="{{subItem.price+'元'}}">
+          <view class="symbol flex-none">¥</view>
+          <view class="flex-auto">{{subItem.price}}</view>
+        </view>
+        <view class="find_sample" wx:if="{{subItem.similartyButton}}" data-items="{{subItem.similartyButton}}" data-user-action="{{subItem.userAction}}" bindtap="gofailure" aria-role="button" aria-label="找相似">
+          {{subItem.similartyButton.title}}
+          <view class="shin-border-box"></view>
+        </view>
+        <!--加减车-->
+        <view class="select_case_min" wx:if="{{subItem.skuState == 2 && !subItem.similartyButton}}">
+          <add-min-controller showType="4" count="{{subItem.cartNum}}" skuId="{{subItem.skuId}}"
+            spuId="{{subItem.spuId || ''}}" orgCode="{{orgCode}}"
+            storeId="{{storeId}}"
+            pageSource="{{pageSource}}"
+            refPageSource="{{refPageSource}}" 
+            userAction="{{subItem.userAction}}"
+            suitType = "invalidate"
+            weighting="{{subItem.weighting}}"
+            weight="{{subItem.showInfoOnChangeNum}}"
+            bindaddMinControllerChange="addMinControllerChange"
+            fromMinicart="{{fromMinicart}}"
+            cartType="{{cartType}}"
+            forbiddenAdd="{{true}}"
+            pageId="{{pageId}}" 
+            currentPageName="{{currentPageName}}" 
+            prePageName="{{prePageName}}"
+            biPageName="{{biPageName}}"
+            refPar="{{refPar}}"
+            prescriptionFlowMark="{{prescriptionFlowMark}}"
+            subItem="{{subItem}}">
+          </add-min-controller>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+                  

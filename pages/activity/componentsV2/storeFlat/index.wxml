@@ -1,0 +1,51 @@
+<view
+  class="flat-wrap d-flex flex-column align-items-center"
+  animation="{{animationData}}">
+  <view
+    class="flat-tips d-flex flex-column align-items-center"
+    wx:if="{{flatList.length > 1 && isTips}}">
+    <view class="tips-detail d-flex flex-row align-items-center">
+      <view>点击可查看各门店活动商品</view>
+      <view class="close" bindtap="tipClose">
+        <text class="dj_icon ts_close"></text>
+      </view>
+    </view>
+    <view class="down-box"></view>
+  </view>
+  <view class="scroll-wrap" style="width: {{sWidth}}">
+    <scroll-view scroll-x scroll-with-animation="true" scroll-into-view="{{currentView}}">
+      <view class="flat-box d-flex flex-row align-items-center flex-nowrap">
+        <block wx:for="{{flatList}}" wx:key="flat">
+          <view
+            bindtap="goStore"
+            data-info="{{item}}"
+            class="activity_comp_ep"
+            data-trace-id="{{traceId}}"
+            data-page-id="{{recommendObj.pageIdFirstPage}}"
+            data-current-page-name="{{recommendObj.currentPageName}}"
+            data-pre-page-name='{{recommendObj.prePageName}}'
+            data-user-action="{{userAction}}">
+            <webp-img
+              webp-img="store_icon"
+              src="{{item.storeLogo}}"
+              id="A{{item.storeId}}"
+            />
+          </view>
+          <view
+            class="detail ellipsis3"
+            bindtap="goStore"
+            data-info="{{item}}"
+            wx:if="{{flatList.length == 1}}">
+            {{flatCarText[0] || '已加购'}}
+            <text class="green">{{item.storeName}}</text>
+            {{flatCarText[1] || '商品，购买同店活动商品更省运费'}}
+            <text class="green">{{flatCarText[2] || '查看本店活动商品'}}</text>
+            <text class="green dj_icon ts_next"></text>
+          </view>
+          <view class="shin-bottom" wx:if="{{index != flatList.length - 1}}"></view>
+          <view class="mg-block" wx:if="{{index === flatList.length - 1 && index !== 0 && index > 4}}"></view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</view>

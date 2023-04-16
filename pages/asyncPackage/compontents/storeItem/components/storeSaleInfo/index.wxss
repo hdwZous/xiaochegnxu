@@ -1,0 +1,31 @@
+.line_one {
+  margin-top: 8rpx;
+  align-items: center;
+}
+.line_one_left {
+  align-items: center;
+}
+.store_badge {
+  width: 40rpx;
+  height: 40rpx;
+}
+.star_number {
+  margin-left: 4rpx;
+  color: #FF6632;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+.star_txt {
+  color: #999999;
+  font-size: 20rpx;
+}
+.sale_number {
+  margin-left: 16rpx;
+  color: #666666ff;
+  font-size: 22rpx;
+}
+.line_one_right {
+  text-align: right;
+  color: #666666ff;
+  font-size: 22rpx;
+}

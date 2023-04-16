@@ -1,0 +1,164 @@
+<wxs src="../../../../common/util/tools.wxs" module="tools" />
+<view class='sort-filter'>
+  <view class='sort-wrapper marL24'>
+    <view
+      class="sort-item marR48 {{(item.value == curValue || (item.value == 2 && curValue == 3)) ? 'selected' : ''}}"
+      wx:for="{{sortList}}"
+      wx:key="index"
+      wx:for-item="item"
+      id="{{index}}"
+      data-store-id="{{storeId}}"
+      data-coupon-id="{{couponId}}"
+      data-order-type="{{priceType ? 'asc' : 'desc'}}"
+      data-sort-type="{{item.value}}"
+      data-sort-text="{{item.text}}"
+      aria-role="button"
+      aria-label="{{item.title}}"
+      bindtap="clickSort">
+        {{item.title}}
+        <block wx:if="{{item.value == '2' ||  item.value == '3'}}">
+          <view class="price-triangle">
+            <view 
+              class='triangle-up' 
+              style="border-bottom-color: {{curValue == 2 && priceType ? '#00CF37' : '#999'}}">
+            </view>
+            <view 
+              class='triangle-down'
+              style="border-top-color: {{curValue == 3 && !priceType ? '#00CF37' : '#999'}}">
+            </view>
+          </view>
+        </block>
+    </view>
+  </view>
+  <view
+    wx:if="{{filterFloor.length > 0}}"
+    class="sort-item marR24  {{filterCount ? 'selected' : ''}}"
+    aria-role="button"
+    aria-label="点击展开筛选弹层"
+    bindtap="clickFilter">
+      筛选
+      <image wx:if="{{!filterCount}}" src="https://s.360buyimg.com/wximg/searchAbout/filter.png" />
+      <view wx:else class='filter-selected-count'>{{filterCount}}</view>
+  </view>
+</view>
+
+<view class="content-wrapper"  wx:if="{{sortModal}}">
+  <scroll-view scroll-y
+              scroll-with-animation 
+              scroll-into-view="{{'_' + currentIndex}}"
+              catchtouchmove="catchtouchmove" 
+              class='filter-wrapper' 
+              style="padding-bottom: {{isIpx ? 150 : 100}}rpx; margin-top: {{(capsule.top || 0) + (capsule.height || 0)}}rpx"  
+              wx:if="{{filterFloor.length > 0}}">
+    <view class="filter-floor"
+      wx:for="{{filterFloor}}"
+      wx:for-item="item"
+      wx:key="index"
+      id="{{'_' + index}}"
+      wx:if="{{(item.itemList &&  item.itemList.length >= 1) || item.bizType == 'price' }}"
+    >
+      <view
+        class='fitler-name filter-category'
+        data-index="{{index}}" 
+        bindtap="switch"
+        aria-role="button"
+        aria-label="{{item.filterName}}{{item.selectNames?',目前已选'+tools.arrToStr(item.selectNames):''}}"
+      >
+        <view style="display: flex; align-items: flex-end; flex-shrink: 0;">
+          <view>
+            {{item.filterName}}
+          </view>
+          <view wx:if="{{item.bizType != 'price'}}" class="filter-type">
+            {{item.filterFloorText}}
+          </view>
+        </view>
+        <view class="filter-right">
+          <view class='selected-filter'>{{tools.arrToStr(item.selectNames)}}</view>
+          <view class="arrow-area" wx:if="{{item.itemList.length > 12 || index > 2}}">
+            <view class="arrow_icon {{item.showAll ? 'arrow_icon_up' : ''}}"></view>
+          </view>
+        </view>
+      </view>
+      <view 
+        wx:if="{{item.bizType == 'price'}}"
+        class="filter-price-wrapper"
+      >
+        <input
+          class="price-item log-filter-item"
+          type="number"
+          placeholder='最低价'
+          placeholder-style="font-size: 24rpx"
+          value="{{minValItem.itemValue}}"
+          data-item='{{item.itemList[0]}}'
+          data-type="min"
+          data-store-id="{{storeId}}"
+          data-coupon-id="{{couponId}}"
+          data-user-action="{{item.itemList[0].userAction}}"
+          bindinput="priceChange"
+          aria-role="button"
+          aria-label="点击输入最低价"
+        />
+        <view class="price-icon">-</view>
+        <input
+          class="price-item log-filter-item"
+          type="number"
+          placeholder='最高价'
+          placeholder-style="font-size: 24rpx"
+          value="{{maxValItem.itemValue}}"
+          data-item='{{item.itemList[1]}}'
+          data-type="max"
+          data-store-id="{{storeId}}"
+          data-coupon-id="{{couponId}}"
+          data-user-action="{{item.itemList[1].userAction}}"
+          bindinput="priceChange"
+          aria-role="button"
+          aria-label="点击输入最高价"
+        />
+      </view>
+      <view class='filter-items' wx:else>
+        <view wx:for="{{item.itemList}}" 
+              wx:for-item="subItem" 
+              wx:for-index="subIndex"
+              wx:key="subIndex"
+              class="filter-item {{subItem.status ? 'filter-select' : ''}}" 
+              hidden="{{subIndex >= item.firstScreenCount && !item.showAll}}" 
+              data-item="{{subItem}}"
+              data-selection="{{subItem}}"
+              data-index="{{index}}"
+              data-sub-index="{{subIndex}}"
+              data-user-action="{{subItem.userAction}}"
+              data-father-filter-name="{{item.filterName}}"
+              data-multi="{{item.multi}}"
+              bindtap="clickFilterFloor"
+              aria-role="button"
+              aria-label="{{subItem.itemName}}">
+          {{subItem.itemName}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view wx:else class="no-filter" catchtouchmove="catchtouchmove" aria-role="text" aria-label="没有更多筛选条件了">没有更多筛选条件了</view>
+
+  <view class='btns' style="bottom: {{isIpx ? '50rpx' : '0'}}">
+    <view class="reset {{(cateList.length || otherfilterList.length) ? 'reset-yes' : 'reset-no'}}" 
+          data-store-id="{{storeId}}"
+          data-coupon-id="{{couponId}}"
+          data-element="filter"
+          bindtap="reset"
+          aria-role="button"
+          aria-label="重置筛选条件">
+      重置
+    </view>
+    <view class="check check-yes"
+          data-store-id="{{storeId}}"
+          data-coupon-id="{{couponId}}"
+          data-filterList="{{totalFilterList}}"
+          data-element="filter"
+          aria-role="button"
+          aria-label="确定筛选条件"
+          bindtap="confirm">查看</view>
+  </view>
+  <view wx:if="{{isIpx}}" class='ipx'></view>
+</view>
+
+<view class='mask' wx:if="{{sortModal}}" catchtouchmove="catchtouchmove" catchtap="hideFilter"></view>

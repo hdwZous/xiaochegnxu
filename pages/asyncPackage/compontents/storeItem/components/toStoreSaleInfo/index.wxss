@@ -1,0 +1,30 @@
+.line_one {
+  margin-top: 8rpx;
+  align-items: center;
+}
+.line_one_left {
+  align-items: center;
+}
+
+.star_number {
+  margin-left: 4rpx;
+  color: #FF6632;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+.star_txt {
+  color: #999999;
+  font-size: 20rpx;
+}
+.sale_number {
+  color: #666666;
+  font-size: 22rpx;
+}
+.line_one_right {
+  text-align: right;
+  color: #666666ff;
+  font-size: 22rpx;
+}
+.mgr8 {
+  margin-right: 8rpx;
+}

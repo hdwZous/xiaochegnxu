@@ -1,0 +1,32 @@
+<wxs module="tool" src="./tools.wxs"></wxs>
+<view 
+    class="line_two flex-row" 
+    data-store-item="{{storeItem}}" 
+    aria-label="进店"
+    aria-role='link'
+    bindtap="goToStore">
+    <view class="line_two_left flex-auto d-flex">
+      <!-- 起送信息 -->
+      <view class="d-flex" wx:if="{{storeItem.freightWords}}" aria-role='text' aria-label="{{storeItem.freightWords}}">
+        <view>{{tool.parseWords(storeItem.freightWords)[0]}}</view>
+        <block wx:if="{{tool.parseWords(storeItem.freightWords).length==2}}">
+          <view class="split">|</view>
+          <view>{{tool.parseWords(storeItem.freightWords)[1]}}</view>
+        </block>
+      </view>
+      <block wx:if="{{storeItem.distance&&storeItem.storeBusinessType!=2}}">
+        <text wx:if="{{storeItem.freightWords}}" class="split">|</text>
+        <text 
+            class="line_one_right"
+            aria-role='text' 
+            aria-label="{{storeItem.distance}}">{{storeItem.distance}}</text>
+      </block>
+        <!-- 达达快送标 -->
+      <block wx:if="{{storeItem.storeBusinessType!=2&&storeItem.carrierTag}}">
+        <text wx:if="{{storeItem.distance}}" class="split">|</text>
+        <text class="line_one_right">{{storeItem.carrierTag.iconText}}</text>
+      </block>
+      <!-- 减免运费价格 -->
+      <!-- <text class="freightforLine" wx:if="{{storeItem.freightDescForLine}}">{{storeItem.freightDescForLine}}</text> -->
+    </view>
+</view>

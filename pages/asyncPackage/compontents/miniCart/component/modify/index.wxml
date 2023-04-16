@@ -1,0 +1,15 @@
+<view class="modify">
+  <view class="modify_content">
+    <view class="modify_title" aria-role="text" aria-label="修改商品数量">修改商品数量</view>
+    <view class="modify-box d-flex flex-row">
+      <view class="modify-jian" bindtap="minus" aria-role="button" aria-label="点击减车"></view>
+      <input class="modify-number" aria-role="button" aria-label="{{'数量' + number + '点击修改'}}" type="number" value="{{number}}" maxlength="3" focus="{{isFocus}}" bindinput="obInput"></input>
+      <view class="modify-add" bindtap="add" aria-role="button" aria-label="点击加车"></view>
+    </view>
+    <view class="btn-box d-flex flex-row">
+      <view class="btn_left btn" bindtap="close" aria-role="button" aria-label="取消">取消</view>
+      <view class="btn_line"></view>
+      <view class="btn_right btn" bindtap="agreement" aria-role="button" aria-label="确认">确认</view>
+    </view>
+  </view>
+</view>

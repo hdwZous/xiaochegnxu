@@ -1,0 +1,25 @@
+<view
+  class="row_one"
+  wx:if="{{goodList.length>0}}"
+  style="border-radius:{{isShowStoreEnter?'0 0 12rpx 12rpx':'12rpx'}}">
+  <block
+    wx:for="{{goodList}}"
+    wx:for-item="item"
+    wx:for-index="index"
+    wx:key="skuId">
+    <lists
+      info="{{item}}"
+      traceId="{{traceId}}"
+      biPageName="{{biPageName}}"
+      biActivityId="{{biActivityId}}"
+      recommendObj="{{recommendObj}}"
+    ></lists>
+  </block>
+  <view
+    class="door"
+    wx:if="{{isShowStoreEnter}}"
+    data-activity-id="{{activityId}}"
+    data-params="{{data[0].params}}"
+    bindtap="goToStoreHome"
+  >进店逛逛</view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-price":"/components-b/couponPrice/index",
+    "bottom-corner-tag": "/components/bottomCornerTag/index",
+	"subscribe": "/components/subscribe/index",
+	"dialog": "/components/dialog/index"
+  }
+}

@@ -1,0 +1,19 @@
+<view
+  bind:tap="clickToStore"
+  class="bttom_tip_case activity_comp_ep"
+  data-item="{{pageConfig.foot}}"
+  data-trace-id="{{traceId}}"
+  data-user-action="{{pageConfig.foot.userAction}}"
+  data-page-id="{{pageId}}"
+  data-current-page-name="{{currentPageName}}"
+  data-pre-page-name='{{prePageName}}'
+  wx:if="{{pageConfig.foot && pageConfig.foot.title}}">
+  <view class="bttom_tip_txt">{{pageConfig.foot.title}}</view>
+  <view class="bttom_tip_icon icon dj_icon ts_next"></view>
+</view>
+<block wx:else>
+  <view class="store_page_bottom" wx:if="{{pageFrom == 'store'}}" bindtap="goBackStore">
+  更多商品，进店凑单
+  </view>
+  <view class="page_bottom" wx:else>我们是有底线的</view>
+</block>

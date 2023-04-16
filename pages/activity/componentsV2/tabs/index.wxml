@@ -1,0 +1,64 @@
+<view class="exposure classify d-flex flex-row align-items-center {{tabFixd ? 'tabFixd' : ''}}" data-user-action="{{tabInfo.userAction}}">
+  <view class="scroll-wrap">
+    <scroll-view
+      scroll-x="true"
+      scroll-into-view="A{{currentView}}"
+      scroll-with-animation="{{ainmation}}">
+      <view class="tabs-box d-flex flex-row flex-nowrap {{!fillUp ? 'justify-content-around' : ''}}">
+        <block wx:for="{{tabInfo}}" wx:key="index">
+          <view
+            class="tabs-items d-flex flex-row align-items-center activity_comp_ep {{ activeTab == item.index ? 'actived' : '' }}"
+            style="color:{{activeTab == item.index ? floorConfig.checkedFontColorVal ? floorConfig.checkedFontColorVal : floorConfig.bgColorVal : '#666'}}"
+            id="A{{item.index}}"
+            data-ids="{{index}}"
+            data-active="{{item.index}}"
+            data-name="{{item.title}}"
+            data-trace-id="{{traceId}}"
+            data-user-action="{{item.userAction}}"
+            data-page-id="{{pageId}}"
+            data-current-page-name="{{currentPageName}}"
+            data-pre-page-name='{{prePageName}}'
+            catchtap="clickTab">
+            <view
+              class="location"
+              wx:if="{{activeTab == item.index}}"
+              style="background: {{floorConfig.checkedFontColorVal ? floorConfig.checkedFontColorVal : floorConfig.bgColorVal ? floorConfig.bgColorVal : '#bfbfbf'}}">
+              <image src="https://storage.360buyimg.com/wximg/activity/fangwei.png" class="location-img" />
+            </view>
+            <text class="tabs-item-txt" wx:if="{{item.title}}">{{item.title}}</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="tabs-right" wx:if="{{fillUp}}">
+    <image class="ty-icon" src="https://storage.360buyimg.com/wximg/activity/tab-yiny.png" />
+    <view class="flei-icon" bindtap="showPop"></view>
+  </view>
+  <view class="popup {{tabFixd ? 'yetTop' : ''}}" wx:if="{{popup}}" catchtouchmove="true">
+    <view class="head d-flex flex-row justify-content-between align-items-center">
+      <text class="title">全部目录</text>
+      <text class="ts-up" bindtap="hidePop"></text>
+    </view>
+    <view class="contain d-flex flex-row flex-wrap">
+      <block wx:for="{{tabInfo}}" wx:key="index">
+        <view
+          data-from="pop"
+          data-ids="{{index}}"
+          catchtap="clickTab"
+          data-name="{{item.title}}"
+          data-trace-id="{{traceId}}"
+          data-active="{{item.index}}"
+          data-page-id="{{pageId}}"
+          data-current-page-name="{{currentPageName}}"
+          data-pre-page-name='{{prePageName}}'
+          data-user-action="{{item.userAction}}"
+          class="category activity_comp_ep {{ activeTab == item.index ? 'actived' : '' }}"
+          style="color:{{activeTab == item.index ? floorConfig.checkedFontColorVal ? floorConfig.checkedFontColorVal : floorConfig.bgColorVal : '#666'}}">
+          <text class="category_txt ellipsis">{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="bg" wx:if="{{popup}}" bindtap="hidePop" catchtouchmove="true"></view>
+</view>

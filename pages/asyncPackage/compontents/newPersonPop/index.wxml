@@ -1,0 +1,24 @@
+<view wx:if="{{showPop}}" class="pop-Con" data-name="blank" bindtap="hidePop"></view>
+<view wx:if="{{showPop}}" class="coupon-img flex-col">
+    <!-- popNewCoupon -->
+    <form wx:if="{{popData&&popData.imgUrl}}" bindsubmit="clickCoupon" data-name="homePop" report-submit="true" data-jump="{{popData.jump}}" data-link-url="{{popData.linkUrl}}" data-title="{{popData.title}}" data-need-login="{{popData.needLogin}}" data-function-id="{{popData.functionId}}" data-need-push-msg="{{popData.needPushMsg}}" data-jump-param="{{popData.jumpParam}}">
+        <button formType="submit" class="img_case" open-type="{{popData.jump=='p29'?'share':''}}">
+            <image class="coupon" src="{{popData.imgUrl}}"></image>
+        </button>
+    </form>
+    <!--专属助力券-->
+    <view wx:elif="{{popData.homePageUrl}}"
+          class="exclusive_coupon"
+          bindtap="goToCouponList"
+    >
+        <image class="coupon" src="{{popData.homePageUrl}}"></image>
+        <view class="text_case">
+            <view class="price"><text class="symbol">￥</text>{{popData.price}}</view>
+            <view class="tips">{{popData.subName}}</view>
+        </view>
+    </view>
+    <!--新人弹层图-->
+    <image wx:else data-name="newCoupon" class="coupon" src="{{isLogin?toUseUrl:toGetUrl}}" bindtap="clickCoupon" />
+    <!--关闭按钮-->
+    <image class="hide-btn" data-name="button" src="https://storage.360buyimg.com/wximg/newPeopleCoupon/cancel.png" bindtap="hidePop" />
+</view>

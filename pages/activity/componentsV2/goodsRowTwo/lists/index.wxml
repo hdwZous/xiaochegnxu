@@ -1,0 +1,111 @@
+<view
+  class="row_two_list activity_comp_ep"
+  data-trace-id="{{traceId}}"
+  data-user-action="{{item.userAction}}"
+  data-page-id="{{recommendObj.pageIdFirstPage}}"
+  data-current-page-name="{{recommendObj.currentPageName}}"
+  data-pre-page-name='{{recommendObj.prePageName}}'>
+  <block wx:if="{{hookLazy}}">
+    <view class="item-wrapper">
+      <!-- 产品图 -->
+      <view class="image">
+        <webp-img webp-img="img" src="{{item.imgUrl}}" />
+        <bottom-corner-tag
+          wx:if="{{item.bottomCornerTag && item.bottomCornerTag.type}}"
+          infos="{{item.bottomCornerTag}}"
+          moduleId="SkuYheOne"
+          showHandle="{{true}}"
+        ></bottom-corner-tag>
+        <block wx:else>
+          <view
+            class="tag  {{item.topLeftCornerTag.componentTag.iconText ? 'has_frozentag' : 'regular'}}"
+            wx:if="{{item.tags[0].iconText}}"
+            style="background: linear-gradient(135deg,{{item.tags[0].startColorCode}} 0%, {{item.tags[0].endColorCode}} 100%);}">
+            {{item.tags[0].iconText}}
+          </view>
+        </block>
+        <!-- 冷冻or冷藏 -->
+        <!-- <block wx:if="{{item.topLeftCornerTag}}">
+          <view class='freeze-wrap'>
+            <freeze-tag topLeftCornerTag="{{item.topLeftCornerTag}}" />
+          </view>
+        </block> -->
+        <view class="dj_tag" wx:if="{{item.businessTag}}">
+          <biz-tag bizType="horizontal" businessTag="{{item.businessTag}}"/>
+        </view>
+      </view>
+      <view class="info">
+        <view
+          class="name {{item.personlizedCateAttritemList && item.personlizedCateAttritemList.length ? 'ellipsis' : 'ellipsis2 max'}} ">
+          <!-- <view
+            class="name-tag"
+            wx:if="{{item.skuNameTag && item.skuNameTag.iconText}}"
+            style="background: linear-gradient(90deg, {{item.skuNameTag.startColorCode}} 0%, {{item.skuNameTag.endColorCode}} 100%);color: {{item.skuNameTag.iconTextColorCode}}">
+            {{item.skuNameTag.iconText}}
+          </view> -->
+          <sku-name-tag wx:if="{{item.skuNameTag}}" infos="{{item.skuNameTag}}"></sku-name-tag>
+          {{item.skuName}}
+        </view>
+        <view
+          style="margin-top: 8rpx"
+          wx:if="{{item.personlizedCateAttritemList && item.personlizedCateAttritemList.length}}">
+          <goods-attribute buriedObj="{{recommendObj}}" info="{{item.personlizedCateAttritemList}}"></goods-attribute>
+        </view>
+        <view class="location" wx:if="{{item.storeName && locationId=='signIn'}}" style="background-color:{{bgColor}}||'#F6F6F6';margin-top:5rpx;padding:5rpx 0 5rpx 0rpx;">
+          <view class="icon_home"></view>
+          <view class="text">{{item.storeName}}</view>
+        </view>
+        <view class="sub d-flex flex-row justify-content-between align-items-center">
+          <!-- 促销价 -->
+          <view class='price-group'>
+            <coupon-price majorPrice="{{item.majorPrice}}" majorPriceFz="36rpx" majorPriceWhFz="24rpx" intervalPrice="{{item.intervalPrice}}"></coupon-price>
+            <coupon-price minorPrice="{{item.minorPrice}}"></coupon-price>
+          </view>
+          <view class="sub-select">
+            <!-- <view
+              wx:if="{{item.iconType == 7}}"
+              class="go-buy"
+              data-to="{{item.to}}"
+              data-user-action="{{item.userAction}}"
+              data-type='store'
+              data-params="{{item.params}}"
+              data-iconType="{{item.iconType}}"
+              data-skuType="{{item.skuType}}"
+              catchtap="goToStore">
+              购买
+            </view> -->
+            <add-min-controller
+              showType="1"
+              iconType="{{item.iconType || 0}}"
+              transmitData="{{item.transmitData}}"
+              skuId="{{item.skuId}}"
+              spuId="{{item.spuId}}"
+              to="{{item.to}}"
+              params="{{item.params}}"
+              orgCode="{{item.orgCode}}"
+              storeId="{{item.storeId}}"
+              weight="{{item.cartWeight}}"
+              biPageName="{{biPageName}}"
+              showModel="{{item.showModel}}"
+              userAction="{{item.userAction}}"
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+              biActivityId="{{biActivityId}}"
+              weighting="{{item.weighting}}"
+              bind:addMinControllerChange="onAddMinControllerChange"
+              count="{{item.showModel ? item.spuCartCount : item.incartCount}}"
+            ></add-min-controller>
+          </view>
+        </view>
+        <view class="location" wx:if="{{item.storeName && locationId!='signIn'}}">
+          <view class="icon_home"></view>
+          <view class="text">{{item.storeName}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="cp-lazy-skeleton" style="height: 594rpx"></view>
+  </block>
+</view>

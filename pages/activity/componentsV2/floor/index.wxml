@@ -1,0 +1,307 @@
+<view class="floor_wrap">
+  <!-- 顶部门店信息 -->
+  <store-info
+    pageFrom="{{pageFrom}}"
+    traceId="{{traceId}}"
+    info="{{pageConfig.storeInfo}}"
+    wx:if="{{pageConfig.storeInfo}}"
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    currentPageName="{{recommendObj.currentPageName}}"
+    prePageName="{{recommendObj.prePageName}}"
+    recommendObj="{{recommendObj}}"
+  ></store-info>
+  <view style="height: 60px" wx:if="{{pageConfig.storeInfo}}"></view>
+  <block
+    wx:key="item"
+    wx:for="{{list}}"
+    wx:for-item="item"
+    wx:for-index="index">
+    <block
+      wx:key="subItem"
+      wx:for="{{item}}"
+      wx:for-item="subItem"
+      wx:for-index="subids">
+      <!-- 活动图楼层 -->
+      <ads-act
+        wx:if="{{subItem.floorStyle === 'newAct'}}"
+        traceId="{{traceId}}"
+        imgData="{{subItem}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}"
+        prePageName="{{recommendObj.prePageName}}"
+        recommendObj="{{recommendObj}}"
+      ></ads-act>
+      <!-- 优惠券楼层 -->
+      <coupon
+        idx="{{index}}"
+        item="{{subItem}}"
+        subidx="{{subids}}"
+        traceId="{{traceId}}"
+        bind:onCouponEvent="onCouponEvent"
+        storeInfo="{{pageConfig.storeInfo}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}"
+        prePageName="{{recommendObj.prePageName}}"
+        recommendObj="{{recommendObj}}"
+        wx:if="{{subItem.floorStyle === 'coupon'}}"
+      ></coupon>
+      <!-- 签到楼层 -->
+      <view style="background: {{subItem.floorConfig.bgColorVal}}">
+        <sign-in
+          signData="{{subItem}}"
+          traceId="{{traceId}}"
+          pageId="{{recommendObj.pageIdFirstPage}}"
+          currentPageName="{{recommendObj.currentPageName}}"
+          prePageName="{{recommendObj.prePageName}}"
+          recommendObj="{{recommendObj}}"
+          floor-id="sign_{{index}}_{{subids}}"
+          wx:if="{{subItem.floorStyle === 'signIn'}}"
+        ></sign-in>
+      </view>
+      <!-- 轮播楼层 -->
+      <banner
+        wx:if="{{subItem.floorStyle === 'floorBanner'}}"
+        traceId="{{traceId}}"
+        item="{{subItem}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}"
+        prePageName="{{recommendObj.prePageName}}"
+        recommendObj="{{recommendObj}}"
+      ></banner>
+      <!-- 活动图组件 act后面的数字代表已配置图片的个数 -->
+      <block wx:if="{{subItem.floorStyle === 'act1' || subItem.floorStyle === 'act2' || subItem.floorStyle === 'act3' || subItem.floorStyle === 'act4'}}">
+        <pic
+          traceId="{{traceId}}"
+          floorData="{{subItem}}"
+          pageId="{{recommendObj.pageIdFirstPage}}"
+          currentPageName="{{recommendObj.currentPageName}}"
+          prePageName="{{recommendObj.prePageName}}"
+          recommendObj="{{recommendObj}}"
+        ></pic>
+      </block>
+      <!-- 倒计时组件 -->
+      <count-down
+        traceId="{{traceId}}"
+        wx:if="{{subItem.floorStyle === 'countDown'}}"
+        item="{{subItem}}"
+        pageId="{{recommendObj.pageIdFirstPage}}"
+        currentPageName="{{recommendObj.currentPageName}}"
+        prePageName="{{recommendObj.prePageName}}"
+      ></count-down>
+      <!-- 视频组件 -->
+      <video-box
+        traceId="{{traceId}}"
+        wx:if="{{subItem.floorStyle === 'video'}}"
+        item="{{subItem}}"
+        recommendObj="{{recommendObj}}"
+      ></video-box>
+      <!-- 商品组件 -->
+      <product
+        item="{{subItem}}"
+        traceId="{{traceId}}"
+        pageFrom="{{pageFrom}}"
+        biPageName="{{biPageName}}"
+        pageConfig="{{pageConfig}}"
+        updateInfo="{{upDateGoods}}"
+        storeId="{{storeId}}"
+        recommendObj="{{recommendObj}}"
+        activityId="{{pageConfig.activityId}}"
+        wx:if="{{subItem.floorStyle === 'product5'}}"
+        bind:onAddMinControllerChange="onAddMinControllerChange"
+      ></product>
+      <!-- 爆品组件 -->
+      <!-- hotProduct：SkuYhyNine -->
+      <view
+        wx:if="{{subItem.floorStyle === 'hotProduct'}}"
+        style="background: {{subItem.floorConfig.bgColorVal}};padding: 10rpx 0">
+        <hot-goods
+          activityId="{{pageConfig.activityId}}"
+          data="{{subItem}}"
+          traceId="{{traceId}}"
+          recommendObj="{{recommendObj}}"
+          bind:toggleSpuSelector="toggleSpuSelector"
+        ></hot-goods>
+      </view>
+      <!-- tabs导航 -->
+      <!-- 在有门店时展开tab需要隐藏购物车，但是tab-wrap的层级高于门店头的话，tab-wrap的上padding在相交时就会传过门店头，所以tab-wrap不能写上padding -->
+      <block wx:if="{{subItem.floorStyle === 'navigation' && subItem.data.length}}">
+        <view wx:if="{{tabIndex}}" style="background: {{subItem.floorConfig.bgColorVal}};padding-top: 5px"></view>
+        <view
+          class="tab-wrap {{tabFixd ? 'tabFixd' : ''}}"
+          wx:if="{{subItem.floorStyle === 'navigation' && subItem.data.length}}"
+          style="background: {{subItem.floorConfig.bgColorVal}};top: {{tabTop}}px;z-index: {{tabs_index}}">
+          <tabs
+            traceId="{{traceId}}"
+            tabFixd="{{tabFixd}}"
+            bindmodifyZ="modifyZ"
+            tabInfo="{{subItem.data}}"
+            relativeIds="{{relativeIds}}"
+            floorConfig="{{subItem.floorConfig}}"
+            relativeDirection="{{relativeDirection}}"
+            pageId="{{recommendObj.pageIdFirstPage}}"
+            currentPageName="{{recommendObj.currentPageName}}"
+            prePageName="{{recommendObj.prePageName}}"
+          ></tabs>
+        </view>
+        <view wx:if="{{tabIndex}}" style="background: {{subItem.floorConfig.bgColorVal}};padding-top: 5px"></view>
+      </block>
+      <!-- 门店列表 -->
+      <view
+        id="f{{subItem.index}}"
+        data-index="{{item.index}}"
+        class="store_list_case floor_relative"
+        style="background: {{subItem.floorConfig.bgColorVal}};"
+        wx:if="{{subItem.floorStyle === 'storeList' && subItem.styleTpl === 'tpl1'}}">
+        <view class="store_list_content">
+          <!-- 门店列表组件 -->
+          <block
+            wx:key="item"
+            wx:for-item="item"
+            wx:for-index="index"
+            wx:for="{{subItem.data[0].slideStoreList}}">
+            <storeListBox
+              traceId="{{traceId}}"
+              info="{{item}}"
+              recommendObj="{{recommendObj}}"
+            ></storeListBox>
+          </block>
+          <block wx:if="{{subItem.data[0].moreBtnDesc}}">
+            <more-store-list
+              traceId="{{traceId}}"
+              item="{{subItem.data[0]}}"
+              pageId="{{recommendObj.pageIdFirstPage}}"
+              currentPageName="{{recommendObj.currentPageName}}"
+              prePageName="{{recommendObj.prePageName}}"
+              recommendObj="{{recommendObj}}"
+              userAction="{{subItem.data[0].userAction}}"
+            ></more-store-list>
+          </block>
+        </view>
+      </view>
+      <!-- 门店列表 横滑 -->
+      <store-three
+        activityId="{{activityId}}"
+        traceId="{{traceId}}"
+        recommendObj="{{recommendObj}}"
+        wx:if="{{subItem.floorStyle === 'storeList' && subItem.styleTpl === 'tpl2'}}"
+        item="{{subItem}}"
+      ></store-three>
+    </block>
+  </block>
+  <!-- 底部导航 -->
+  <footer-tab
+    info="{{activityBtNavigaInfo.data}}"
+    traceId="{{traceId}}"
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    currentPageName="{{recommendObj.currentPageName}}"
+    prePageName="{{recommendObj.prePageName}}"
+    recommendObj="{{recommendObj}}"
+    wx:if="{{activityBtNavigaInfo && activityBtNavigaInfo.data && activityBtNavigaInfo.data.length}}"
+  ></footer-tab>
+  <!-- vip红包兑换弹层 -->
+  <block wx:if="{{vip}}">
+    <vip-pop
+      vip="{{vip}}"
+      coupon="{{coupon}}"
+      recommendObj="{{recommendObj}}"
+      bind:onConvertCouponEvent="onConvertCouponEvent"
+    ></vip-pop>
+  </block>
+  <!-- 券包弹层 -->
+  <block wx:if="{{couponList.length}}">
+    <coupon-pop
+      list="{{couponList}}"
+      traceId="{{traceId}}"
+      pageId="{{recommendObj.pageIdFirstPage}}"
+      currentPageName="{{recommendObj.currentPageName}}"
+      prePageName="{{recommendObj.prePageName}}"
+      storeInfo="{{pageConfig.storeInfo}}"
+      recommendObj="{{recommendObj}}"
+    ></coupon-pop>
+  </block>
+  <!-- 分享到微信弹层 -->
+  <view class="share_pop" wx:if="{{showShare}}" bind:tap="clickShareBg"></view>
+  <view class="share_case" wx:if="{{showShare}}">
+    <button class="button" open-type="share" data-from="helpCoupon">
+      <view class="img_case">
+        <image class="img" src="https://storage.360buyimg.com/wximg/lottery/ic_share_2_chat.png" />
+      </view>
+      <view class="txt">微信小程序</view>
+    </button>
+  </view>
+  <!-- 到底部提示 -->
+  <view
+    wx:if="{{lastPage}}"
+    style="padding-bottom: {{(activityBtNavigaInfo && activityBtNavigaInfo.data && activityBtNavigaInfo.data.length) || pageConfig.storeInfo ? isIpx ? '240' : '160' : isIpx ? '68' : 0}}rpx">
+    <bottom-tips
+      traceId="{{traceId}}"
+      pageFrom="{{pageFrom}}"
+      pageConfig="{{pageConfig}}"
+      pageId="{{recommendObj.pageIdFirstPage}}"
+      currentPageName="{{recommendObj.currentPageName}}"
+      prePageName="{{recommendObj.prePageName}}"
+      recommendObj="{{recommendObj}}"
+    ></bottom-tips>
+  </view>
+  <!-- 迷你购物车 -->
+  <view
+    class="minicart"
+    wx:if="{{pageName == 'store' ? pageConfig.isCart : pageConfig.showMiniCart}}">
+    <mini-cart
+      id="minicart"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      catAnimation="{{catAnimation}}"
+      activityId="{{pageConfig.activityId}}"
+      store-id="{{pageConfig.storeInfo.storeId}}"
+      org-code="{{pageConfig.storeInfo.orgCode}}"
+      refreshMiniCartData="{{refreshMiniCartData}}"
+      pageId="{{recommendObj.pageIdFirstPage}}"
+      preBuried="{{recommendObj}}"
+      prePageId="{{recommendObj.pageIdFirstPage}}"
+      currentPageName="{{recommendObj.currentPageName}}"
+      prePageName="{{recommendObj.prePageName}}"
+      pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+      refPar="{{refPar}}"
+      biPageName="{{pageFrom == 'home' ? 'active' : 'storeactivity'}}"
+      bind:miniCartWidgetEvent="onMiniCartWidgetEvent"
+      pageSource="{{pageFrom == 'home' ? 'activityDetail' : 'storeActDetail'}}"
+      refPageSource="{{pageFrom == 'home' ? 'home' : 'store'}}"
+      biPageName="{{pageFrom == 'home' ? 'active' : 'storeactivity'}}"
+    ></mini-cart>
+  </view>
+  <spu-selector
+    toggle="{{toggle}}"
+    refPar="{{refPar}}"
+    skuId="{{spuData.skuId}}"
+    spuId="{{spuData.spuId}}"
+    orgCode="{{spuData.orgCode}}"
+    storeId="{{spuData.storeId}}"
+    pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}"
+    pageId="{{recommendObj.pageIdFirstPage}}"
+    buriedObj="{{recommendObj}}"
+    userAction="{{spuData.userAction && spuData.userAction ||  ' '}}"
+    bind:spuSelectorEvent="onSpuSelectorEvent"
+    id="spu-selector"
+    transmitData="{{spuData.transmitData}}"
+    biPageName="{{pageFrom == 'home' ? 'active' : 'storeactivity'}}"
+    pageIsGetInfoOnShow="{{pageIsGetInfoOnShow}}" 
+    carNumber="{{spuData.cartNum}}"
+    showModel="{{spuData.showModel}}"
+    weighting="{{spuData.weighting}}"
+  ></spu-selector>
+  <!-- 返回app -->
+  <back-to-app />
+  <!-- 扁平化购物路径 -->
+  <store-flat
+    traceId="{{traceId}}"
+    flatList="{{flatList}}"
+    userAction="{{userAction}}"
+    moveHide="{{pageMoving}}"
+    hasFooterTab="{{hasFooterTab}}"
+    flatPageHide="{{flatPageHide}}"
+    recommendObj="{{recommendObj}}"
+    flatCarText="{{flatCarInfo.flatCarTextArray}}"
+    wx:if="{{pageFrom == 'home' && pageConfig.isShowCart}}"
+  />
+</view>

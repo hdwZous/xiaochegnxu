@@ -1,0 +1,96 @@
+.modify {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 120;
+}
+
+.modify_content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  -webkit-transform: translate(-50%, -45%);
+  width: 540rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  text-align: center;
+}
+
+.modify_content .modify_title {
+  padding: 40rpx 0;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  line-height: 44rpx;
+}
+
+.modify-box {
+  width: 260rpx;
+  height: 72rpx;
+  margin: 0 auto;
+  border-radius: 100rpx;
+  border: 1px solid #eee;
+  margin-bottom: 40rpx;
+}
+
+.modify-box .modify-jian {
+  width: 70rpx;
+  border-right: 1px solid #eee;
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/modify_jian.png");
+  background-size: 24rpx 24rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.modify-box .modify-number {
+  flex: 1;
+  height: 72rpx;
+  text-align: center;
+  line-height: 72rpx;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.modify-box .modify-add {
+  width: 70rpx;
+  border-left: 1px solid #eee;
+  background-image: url("https://storage.360buyimg.com/wximg/storewin/modify_add.png");
+  background-size: 24rpx 24rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.modify_content .btn-box {
+  border-top: 1px solid #F5F5F5;
+  height: 100rpx;
+}
+
+.btn-box .btn_line {
+  width: 1px;
+  height: 100rpx;
+  background: #F5F5F5;
+}
+
+.btn-box .btn {
+  flex: 1;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.btn-box .btn_left {
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #999999;
+}
+
+.btn-box .btn_right {
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #00CF30;
+}

@@ -1,0 +1,160 @@
+.goodsListCont {
+    padding-left: 10rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-bottom: 18rpx;
+    padding-top: 30rpx;
+    margin: 0 16rpx;
+    background-color: #FFFFFF;
+}
+
+.goodsCont {
+    padding-right: 14rpx;
+    box-sizing: border-box;
+}
+
+.goodItem {
+    background: #fff;
+    padding-bottom: 20rpx;
+    margin-bottom: 18rpx;
+    height: 562rpx;
+    position: relative;
+}
+
+.goodItem .goodImg {
+    width: 100%;
+    position: relative;
+    border-radius: 8rpx;
+    overflow: hidden;
+}
+
+.goodItem .goodImg .img_class {
+    width: 100%;
+    display: block;
+}
+
+.goodItem .goodImg .goodFlag {
+    max-width: 95%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #ff5959;
+    color: #fff;
+    font-size: 20rpx;
+    padding: 6rpx;
+    border-top-right-radius: 8rpx;
+}
+
+.goodItem .goodImg .goodFlag.regular {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.goodItem .goodImg .goodFlag.has_frozentag {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.goodItem .freeze-wrap {
+    position: absolute;
+    left: 4rpx;
+    top: 4rpx;
+}
+
+.goodItem .goodDetail {
+    margin-top: 10rpx;
+    padding: 0 10rpx;
+}
+
+.goodItem .goodDetail .goodName {
+    color: #666;
+    font-size: 28rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 34rpx;
+    height: 68rpx;
+}
+
+.goodItem .goodDetail .nowPrice {
+    color: #ff5757;
+    font-size: 26rpx;
+}
+
+.goodItem .goodDetail .nowPrice text {
+    font-size: 36rpx;
+}
+
+.goodItem .goodDetail .vipPrice {
+    color: #1a68bc;
+    font-size: 26rpx;
+}
+
+.goodItem .goodDetail .vipPrice .vipflag {
+    margin-left: 12rpx;
+    width: 62rpx;
+    height: 19rpx;
+}
+
+.goodItem .goodDetail .oldPrice {
+    color: #999;
+    font-size: 26rpx;
+    text-decoration: line-through;
+}
+
+.goodItem .goodOperate {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 14rpx;
+}
+
+.goodItem .goodOperate .goodNum {
+    padding: 0 20rpx;
+    line-height: 50rpx;
+}
+
+/* .goodItem .goodOperate image {
+    width: 52rpx;
+    height: 50rpx;
+} */
+
+.select {
+    position: absolute;
+    bottom: 14rpx;
+    left: 0;
+    right: 0;
+}
+
+.cart_ball {
+    z-index: 999;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 20px;
+    position: fixed;
+}
+
+.name-tag {
+    display: inline-block;
+    font-size: 20rpx;
+    height: 28rpx;
+    line-height: 28rpx;
+    padding: 0 8rpx;
+    white-space: nowrap;
+    border-radius: 4rpx;
+}
+
+.go-buy {
+    background-image: linear-gradient(135deg, rgb(69, 220, 109) 0%, rgb(0, 207, 55) 100%);
+    border-radius: 24rpx;
+    font-size: 24rpx;
+    padding: 6rpx 12rpx;
+    color: #FFFFFF;
+}

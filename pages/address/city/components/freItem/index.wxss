@@ -1,0 +1,11 @@
+.fre-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F8F8F8;
+    color: #333333;
+    margin-right: 10px;
+    margin-top: 5px;
+    font-size: 12px;
+    padding: 9px 0; 
+  }

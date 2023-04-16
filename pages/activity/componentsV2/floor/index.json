@@ -1,0 +1,32 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon": "../coupon/index",
+    "vip-pop": "../vipPop/index",
+    "coupon-pop": "../couponPop/index",
+    "banner": "../banner/index",
+    "pic": "../pic/index",
+    "sign-in": "../signIn/index",
+    "product": "../product/index",
+    "tabs": "../tabs/index",
+    "hot-goods": "../hotGoods/index",
+    "store-list": "../storeList/index",
+    "storeListBox": "../storeListBox/index",
+    "footer-tab": "../footerTab/index",
+    "count-down": "../countDown/index",
+    "store-info": "../storeInfo/index",
+    "store-three": "../storeThree/index",
+    "mini-cart": "../../../asyncPackage/compontents/miniCart/index",
+    "video-box": "../videoBox/index",
+    "spu-selector": "../../../asyncPackage/compontents/spuSelector/index",
+    "ads-act": "../adsAct/index",
+    "back-to-app": "/components/backToApp/index",
+    "store-flat": "../storeFlat/index",
+    "bottom-tips": "../bottomTips/index",
+    "more-store-list": "../moreStoreList/index"
+  },
+  "componentPlaceholder": {
+    "spu-selector": "view",
+    "mini-cart": "/components-b/placeholdCart/index"
+  }
+}

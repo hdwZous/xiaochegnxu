@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "message-board": "../../components/MessageBoard/index",
+    "marquee-bean": "../../components/MarqueeBean/index",
+    "pop-up": "../../components/popUp/index",
+    "browse-store-coupon-pop": "../../../../common-mp/components/BrowseStoreCouponPop/index",
+    "teams-layer": "../../components/teamsLayer/index",
+    "subscribe-message": "../../../../common-mp/components/subscribeMessage/index",
+    "super-order-task-pop": "../../../../common-mp/components/SignInSuperOrderTaskPop/index"
+  }
+}

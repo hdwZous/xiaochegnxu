@@ -1,0 +1,43 @@
+<view
+  class="dd_goods_row_three content {{styles == 'tpl12' ? 'banner' : ''}};"
+  wx:if="{{goodList.length>=3}}"
+  style="border-radius:{{isShowStoreEnter?'0 0 12rpx 12rpx':'12rpx'}};height: {{isShowStoreEnter ? '280rpx' : '460rpx'}};padding-top: {{isShowStoreEnter ? '0' : '20rpx'}}">
+  <block wx:if="{{hookLazy}}">
+    <scroll-view
+      class="wrap flex-row"
+      scroll-x="{{goodList.length==3?false:true}}"
+      enable-flex='{{true}}'
+      scroll-with-animation="{{true}}">
+      <view style="padding-left: 20rpx" wx:if="{{styles == 'tpl12'}}"></view>
+      <block
+        wx:for="{{goodList}}"
+        wx:for-item="item"
+        wx:for-index="index"
+        wx:key="skuId">
+        <dd-sku-yhs-one
+          item="{{item}}"
+          styles="{{styles}}"
+          traceId="{{traceId}}"
+          biPageName="{{biPageName}}"
+          recommendObj="{{recommendObj}}"
+          biActivityId="{{biActivityId}}"
+          isShowStoreEnter="{{isShowStoreEnter}}"
+        ></dd-sku-yhs-one>
+      </block>
+      <view
+        class="log-good-three-store door-cont flex-row"
+        wx:if="{{goodList.length>3&&isShowStoreEnter}}"
+        data-params="{{data[0].params}}"
+        data-data="{{data[0]}}"
+        data-to="{{data[0].to}}"
+        data-user-action="{{data[0].userAction}}"
+        bindtap="goToStoreHome">
+        <image class="arrow" src="https://storage.360buyimg.com/wximg/activity/left_circle_arrow.png?1" alt="" />
+        <view class="door">进店逛逛</view>
+      </view>
+    </scroll-view>
+  </block>
+  <view wx:else class="skeleton-box">
+    <view class="cp-lazy-skeleton" style="height: {{styles == 'tpl12' ? 368 : 394}}rpx"></view>
+  </view>
+</view>

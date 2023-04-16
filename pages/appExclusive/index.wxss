@@ -1,0 +1,130 @@
+@import '../../common/css/regular.wxss';
+
+.appExclusive {
+  background-image: url("https://s.360buyimg.com/wximg/detention/app.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-color: #D41700;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0;
+}
+
+.appExclusive .congratulations {
+  width: 604rpx;
+  height: 98rpx;
+  margin-top: 44rpx;
+}
+
+.appExclusive .down {
+  width: 438rpx;
+  height: 108rpx;
+  margin-top: 20rpx;
+}
+
+.appExclusive .contain {
+  width: 716rpx;
+  height: 798rpx;
+  background-image: url("https://s.360buyimg.com/wximg/detention/contain.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appExclusive .contain .title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 200rpx;
+}
+
+.appExclusive .contain .title .space {
+  width: 40rpx;
+  height: 1px;
+  background: #A15900;
+}
+
+.appExclusive .contain .title .text {
+  margin: 0 5px;
+  font-size: 40rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color: #A15900;
+}
+
+.appExclusive .contain .money {
+  font-family: regular;
+  font-weight:400;
+  margin-top: 40rpx;
+  color: #F44B1D;
+}
+
+.appExclusive .contain .money .icon {
+  font-size: 60rpx;
+}
+
+.appExclusive .contain .money .num {
+  font-size: 120rpx;
+}
+
+.appExclusive .contain .times {
+  margin-top: 10rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular,PingFang SC;
+  font-weight: 400;
+  color: #F44B1D;
+}
+
+.appExclusive .contain .btn {
+  width: 584rpx;
+  height: 100rpx;
+  background-image: url("https://s.360buyimg.com/wximg/detention/button.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 40rpx;
+  font-weight: 500;
+  font-family: PingFangSC-Medium, PingFang SC;
+  color: #FFFAE8;
+  text-shadow: 0px 2rpx 4rpx rgba(85,0,0,0.17);
+  margin-top: 90rpx;
+}
+
+.appExclusive .contain .tip {
+  font-size: 28rpx;
+  font-family: PingFangSC-Light,PingFang SC;
+  font-weight: 300;
+  color: #A15900;
+  line-height: 34rpx;
+  margin-top: 22rpx;
+}
+
+.appExclusive .logo {
+  width: 288rpx;
+  height: 66rpx;
+  margin-top: 25rpx;
+}
+
+button {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+button:after {
+  border: none;
+}
+
+button[plain] {
+  border: 0
+}
+
+button.button-hover {
+  background-color: transparent;
+}
