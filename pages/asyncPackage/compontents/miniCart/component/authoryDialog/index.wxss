@@ -1,0 +1,138 @@
+@import "/common/css/global.wxss";
+
+.dialog_bg {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(0);
+  -webkit-transform: scale(0);
+}
+
+.dialog_trans_hide {
+  transition: all ease 300ms;
+  -webkit-transition: all ease 300ms;
+}
+
+.dialog_trans_show {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  transition: all ease 300ms;
+  -webkit-transition: all ease 300ms;
+}
+
+.dialog_body {
+  background: white;
+  border-radius: 24rpx;
+  -webkit-border-radius: 24rpx;
+  position: relative;
+}
+
+.dialog_body .title {
+  text-align: center;
+  font-size: 36rpx;
+  color: rgba(3, 3, 3, 1);
+  line-height: 50rpx;
+  margin-top: 40rpx;
+}
+
+.dialog_body .dialog_content_container {
+  max-height: 438rpx;
+  box-sizing: border-box;
+  padding: 20rpx 5rpx;
+}
+
+.dialog_body .dialog_content {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+}
+
+.dialog_body .dialog_text {
+  text-align: left;
+  font-size: 28rpx;
+  color: #030303;
+  height: 100%;
+}
+
+.dialog_bg .dialog_btns {
+  width: 100%;
+  border-top: 1rpx solid #e8e8e8;
+}
+
+.dialog_btn {
+  height: 90rpx;
+  font-size: 34rpx;
+  color: rgba(71, 179, 79, 1);
+  line-height: 90rpx;
+  text-align: center;
+}
+
+.dialog_btn.left {
+  color: rgba(153, 153, 153, 1);
+  border-right: 1rpx solid #e8e8e8;
+}
+
+
+.tableWarePopUp {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 21;
+}
+.tableWarePopUp_content {
+  width: 540rpx;
+  height: 314rpx;
+  border-radius: 24rpx;
+  background-color: #ffffff;
+}
+.tableWarePopUp_title {
+  font-family: 'Regular';
+  color: #333333;
+  text-align: center;
+  font-size: 36rpx;
+  padding-top: 80rpx;
+  padding-bottom: 80rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.tableWarePopUp_btns {
+  display: flex;
+}
+.tableWarePopUp_btn1 {
+  border-right: 1rpx solid #f5f5f5;
+}
+.tableWarePopUp_line {
+  height: 104rpx;
+  width: 2rpx;
+  background-color: #f5f5f5;
+}
+.tableWarePopUp_btn1 {
+  flex: 1;
+  height: 104rpx;
+  line-height: 104rpx;
+  text-align: center;
+  color: #999999;
+  font-family: 'Regular';
+  font-size: 36rpx;
+}
+.tableWarePopUp_btn2 {
+  color: #00CF37;
+  font-family: PingFangSC-Medium, PingFang SC;
+}

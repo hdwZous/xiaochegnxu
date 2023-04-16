@@ -1,0 +1,18 @@
+<view class="store_sku">
+  <block wx:for="{{infos}}" wx:key="items">
+    <view class="store_items d-flex flex-row align-items-center" catchtap="jump" data-items="{{item}}">
+      <view class="store_item_img flex-none" wx:if="{{item.skuNameTag}}" style="background: linear-gradient(90deg, {{item.skuNameTag.startColorCode}} 0%, {{item.skuNameTag.endColorCode}} 100%);color:{{item.skuNameTag.iconTextColorCode}}">{{item.skuNameTag.iconText}}</view>
+      <view class="coupon_price_wrap flex-none">
+        <coupon-price wx:if="{{item.majorPrice}}" majorPrice="{{item.majorPrice}}" majorPriceFz="26rpx"></coupon-price>
+      </view>
+      <view class="store_items_tag flex-none" wx:if="{{item.tags&&item.tags.length}}" style="color:{{item.tags[0].strokeNameColorCode}};">
+        {{item.tags[0].iconText}}
+        <view class="shin-border-box" style="border-radius:8rpx;border-color:{{item.tags[0].strokeColorCode}}"></view>
+      </view>
+      <view class="coupon_price_wrap flex-none" style="margin-right:8rpx;">
+        <coupon-price wx:if="{{item.minorPrice}}" minorPrice="{{item.minorPrice}}" minorPriceFz="26rpx"></coupon-price>  
+      </view>
+      <view class="store_items_name ellipsis" wx:if="{{item.skuName}}">{{item.skuName}}</view>
+    </view>
+  </block>
+</view>

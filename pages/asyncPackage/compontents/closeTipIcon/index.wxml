@@ -1,0 +1,15 @@
+<view class="store_book_case">
+  <view class="store_book flex-row" 
+        style="border:1px solid {{closeTip.startColor || '#4C9CFF'}}">
+    <view class="store_book_left" 
+          style="background:{{closeTip.startColor || '#4C9CFF'}}" 
+          wx:if="{{closeTip.reserveText}}">
+      {{closeTip.reserveText}}
+    </view>
+    <view class="store_book_right" 
+          style="color:{{closeTip.startColor || '#4C9CFF'}}" 
+          wx:if="{{closeTip.timeText}}">
+      {{closeTip.timeText}}
+    </view>
+  </view>
+</view>

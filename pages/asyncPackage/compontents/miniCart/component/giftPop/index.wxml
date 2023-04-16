@@ -1,0 +1,87 @@
+<view class="cart_gift_container {{visible?'showCont':''}}">
+    <view class="header" style="border-bottom:{{initData.discountTips&&0}}">
+        <text>{{initData.giftAdWords}}</text>
+        <view class="close_wrap" bind:tap="close">
+          <image class="close" src="https://storage.360buyimg.com/wximg/cart/cancle_icon.png" mode="widthFix" />
+        </view>
+    </view>
+    <view class="notice d-flex flex-row justify-content-center" bind:tap="goToLandpage" wx:if="{{initData.discountTips}}">
+        <view class="notice_text ellipsis">
+            <block wx:for="{{initData.discountTips}}" wx:key="index">
+                <text style="color:{{item.color?'#'+item.color:'#713F00'}}">{{item.desc}}</text>
+            </block>
+        </view>
+        <view wx:if="{{initData.tradePieceOffDesc}}" class="go_add">
+            <text style="color:#ff5757">{{initData.tradePieceOffDesc}}</text>
+            <image class="red_arrow" src="https://storage.360buyimg.com/wximg/store_2.0/red_arrow.png" />
+        </view>
+    </view>
+    <scroll-view class="scroll-content" scroll-y catchtouchmove="true">
+        <view class="conetent">
+            <view class="select_item" wx:for="{{initData.giftList}}" wx:key="index" bind:tap="handleSelect" data-item="{{item}}" data-index="{{index}}">
+                <view class="ratio_btn {{item.checkStatus=='checked'?'checked':item.checkStatus=='unchecked'?'unchecked':'disabled'}}"></view>
+                <view class="product_item" style="border-top:{{index==0&&0}}">
+                    <view class="left">
+                        <image class="product_img" src="{{item.imageUrl}}" mode="widthFix" />
+                        <view class="ladder ellipsis" wx:if="{{item.ladderName}}">
+                            {{item.ladderName}}
+                        </view>
+                        <view class="sold_out" wx:if="{{item.skuState!=1}}">
+                            {{item.skuStateName}}
+                        </view>
+                        <view class="left-tags" wx:if="{{item.leftTagsVO}}" style="background: linear-gradient(135deg, {{item.leftTagsVO.startColorCode}} 0%, {{item.leftTagsVO.endColorCode}} 100%);">
+                            {{item.leftTagsVO.iconText}}
+                        </view>
+                    </view>
+                    <view class="right">
+                        <view class="product_name {{item.skuState!=1&&'color999'}}">
+                            <view wx:if="{{item.skuNameTag}}" class="info-tags" style="color: #fff;background: linear-gradient(135deg, {{item.skuNameTag.startColorCode}} 0%, {{item.skuNameTag.endColorCode}} 100%);">{{item.skuNameTag.iconText}}</view>
+                            {{item.skuName}}
+                        </view>
+                        <view class="price_num">
+                            <view class="d-flex">
+                                <block wx:if="{{!item.weighting}}">
+                                    <view class="real_price {{item.skuState!=1&&'color999'}}" wx:if="{{item.price}}">
+                                        ¥{{item.price}}
+                                    </view>
+                                    <view class="origin_price {{item.skuState!=1&&'color999'}}" wx:if="{{item.basePrice}}">
+                                        ¥{{item.basePrice}}
+                                    </view>
+                                </block>
+                                <block wx:else>
+                                    <view class="weight-price-info d-flex flex-row" style="color: {{item.totalPriceInfoVO.priceColor}}">
+                                        <view class="real_price f-regular">
+                                            ¥{{item.totalPriceInfoVO.totalPrice}}
+                                        </view>
+                                        <view class="weight-fuffix">
+                                            {{item.totalPriceInfoVO.totalPriceSuffix}}
+                                        </view>
+                                    </view>
+                                    <view class="origin_price f-light" style="color: {{item.totalBasePriceInfoVO.priceColor}};text-decoration-line: {{item.totalBasePriceInfoVO.deleteLine ? 'line-through' : 'none'}}">
+                                        ¥{{item.totalBasePriceInfoVO.totalPrice}}
+                                    </view>
+                                </block>
+                            </view>
+                            <view class="num {{item.skuState!=1&&'color999'}}">
+                                x {{item.skuNum || 1}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="footer" wx:if="{{visible}}">
+        <view class="footer_left">
+            <text>已选</text>
+            <text class="choosed_num {{checkedData.length>0&&'red'}}">{{checkedData.length}}</text>
+            <text>/</text>
+            <text>{{initData.giftCanChooseNum || '0'}}</text>
+        </view>
+        <view class="footer_right {{initData.giftCanChooseNum > 0 ? 'active' : false}}" data-btn-flag="{{initData.giftCanChooseNum > 0 ? true : false}}" bind:tap="handleAddGift">
+            确定
+        </view>
+    </view>
+    <view style="height:40rpx" wx:if="{{isIpx}}"></view>
+</view>
+<view class="mask" bind:tap="close" wx:if="{{visible}}" catchtouchmove="true"></view>

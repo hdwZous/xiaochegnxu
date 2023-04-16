@@ -1,0 +1,262 @@
+<wxs src="../../../../common/util/tools.wxs" module="tools" />
+<view class="mini_cart {{hasCouponsTips || bottomDiff.length ? 'mini_cart_has_coupon' : ''}} {{isHideCartInfo ? 'mini_cart_hide_cart' : ''}}" style="padding-bottom: {{isIphoneX ? 64 : 0}}rpx">
+  <!--购物车信息-->
+  <!-- layer -->
+  <view class="fix_bg" wx-if="{{isHideCartInfo === false}}" bind:touchstart="hideCartInfo" aria-role="button" aria-label="收起购物车"></view>
+
+  <!-- 新手指引气泡 -->
+  <image class="newer-guid {{showNewGuid ? 'show' : ''}}" style="bottom: {{isIphoneX ? 154 : 90}}rpx" wx:if="{{showNewGuid}}" bindtap="hideNewGuid" src="https://storage.360buyimg.com/wximg/storewin/minicart-newer-guids.png" />
+  <!-- 未选商品时出现 -->
+  <view class="sales-coupon d-flex flex-row align-items-center justify-content-center" wx:if="{{data.initPromotionTipInfo}}" style="background-image: url('{{data.initPromotionTipInfo.bgImg || 'https://storage.360buyimg.com/wximg/storewin/minicart-dog-bg.png'}}')">
+    <view class="d-flex flex-row align-items-end" style="height: 100%;">
+      <image class="sc-icon flex-none" src="{{data.initPromotionTipInfo.leftImg || 'https://storage.360buyimg.com/wximg/storewin/minicart-dog.png'}}" />
+    </view>
+    <view class="identity flex-none" wx:if="{{data.initPromotionTipInfo.identityBubble.desc}}" style="color:{{data.initPromotionTipInfo.identityBubble.color||'#fff'}}" aria-role="text" aria-label="{{data.initPromotionTipInfo.identityBubble.desc}}">
+      {{tools.checkStr(data.initPromotionTipInfo.identityBubble.desc,5)}}
+      <view class="shin-border-box" style="border-color:{{tools.changeColor(0.57, data.initPromotionTipInfo.identityBubble.borderColor||'#FFFFFF')}};border-radius:40rpx 40rpx 40rpx 0;"></view>
+    </view>
+    <view class="sc-detail-wrap d-flex flex-row flex-wrap align-items-center justify-content-start">
+      <text class="sc-title" wx:if="{{data.initPromotionTipInfo.tipTitle}}" style="color:{{data.initPromotionTipInfo.tipTitle.color||'#fff'}};" aria-role="text" aria-label="{{data.initPromotionTipInfo.tipTitle.desc}}" >{{data.initPromotionTipInfo.tipTitle.desc}}</text>
+      <view class="sc-detail ellipsis" wx:if="{{data.initPromotionTipInfo.tipDescList}}">
+        <block wx:for="{{data.initPromotionTipInfo.tipDescList}}" wx:key="toplist">
+          <text style="color:{{item.color||'#fff'}}" aria-role="text" aria-label="{{item.desc}}" >{{item.desc}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- V+会员弹层 -->
+  <vplus-member
+    showVlayer="{{showVlayer}}"
+    vlayerInfo="{{vlayerInfo}}"
+    storeId="{{storeId}}"
+    pageId="{{pageId}}"
+    currentPageName="{{currentPageName}}" 
+    prePageName="{{prePageName}}"
+    bind:vschange="vschange"
+    bind:showVM="showVM"
+    bind:selectSeat="selectSeat"
+  ></vplus-member>
+  
+  <view class="section" id="section" animation="{{animationData}}" style="padding-bottom: {{ data.discountPromptMsg ? 68 : 0 }}rpx" aria-hidden="{{isShowCouponPop}}" aria-live="{{isHideCartInfo == false?'polite':'off'}}">
+  
+    <!-- 展开购物车小三角 8.6修改购物车动画暂时隐藏 勿删 以防后期再次修改 -->
+    <!-- <view class="white-triangle" hidden="{{isHideCartInfo}}"></view> -->
+    <!-- 气泡 -->
+    <!-- <view class="bubble" wx:if="{{couponDesc && !isHideCartInfo}}">
+      <view class="bubble-des">{{couponDesc}}</view>
+      <text class="arrow-down"></text>
+    </view> -->
+
+    <!-- 神券小黄条 -->
+    <block wx:if="{{isGodStamps}}">
+      <view class="add_on_tips" wx:if="{{bottomDiff.length}}">
+      <block wx:for="{{bottomDiff}}" wx:key="desc">
+          <text style="color: {{item.color}};">{{item.desc}}</text>
+      </block>
+      </view>
+    </block>
+    <!-- 凑单tips 门店商详页小黄条 -->
+    <block wx:else>
+      <view class="add_on_tips d-flex flex-row align-items-center {{discountTipInfo.style && discountTipInfo.style == 1 ? 'newStyle' : ''}}  {{discountTipInfo.style && discountTipInfo.style == 1 && discountTipInfo.helperImgUrl && discountTipInfo.tradePieceOffDesc ? ' justify-content-start ' : 'justify-content-center'}}" wx:if="{{hasCouponsTips}}" bindtap="goToAddOn">
+        <view class="img_box" wx:if="{{discountTipInfo.style && discountTipInfo.style == 1}}">
+          <image class="add_on_img" wx:if="{{discountTipInfo.helperImgUrl}}" src="{{discountTipInfo.helperImgUrl}}" />
+        </view>
+        <view class="tips_box ellipsis2 " aria-role="text" aria-label="{{discountTipStr}}" >
+          <block wx:for="{{discountTipInfo.discountTips}}" wx:for-item="item" wx:for-index="index" wx:key="discountTipsKey">
+            <text style="color: {{item.color}};">{{item.desc}}</text>
+          </block>
+        </view>
+        <view class="go_add_on_btn_container " hidden="{{!discountTipInfo.tradePieceOffDesc}}" aria-role="button" aria-label="{{discountTipInfo.tradePieceOffDesc}}">
+            <text class="go_add_on_btn" style="color:{{discountTipInfo.style && discountTipInfo.style == 1 ? discountTipInfo.tradePieceOffDescColor : ''}}">{{discountTipInfo.tradePieceOffDesc}}</text>
+            <text class="arrow"></text>
+        </view>
+      </view>
+    </block>
+    <view aria-hidden="{{isHideCartInfo==false?false:true}}">
+      <!-- 底部黄色小条 -->
+      <view class="promptMsg ellipsis" wx:if="{{data.discountPromptMsg && !isHideCartInfo}}" aria-role="text" aria-label="{{data.discountPromptMsg}}">{{data.discountPromptMsg}}</view>
+      <!-- 商品操作栏 -->
+      <view class="d-flex flex-row header border-bottom" wx-if="{{!hideRemoveAllGoodsEntryFlag}}" aria-label="{{'全选' + data.numWeightDesc}}">
+        <view class="flex-auto d-flex flex-row select_all log_miniCart_selectAll" data-all="{{isSelectAll}}">
+          <view class="icon_select {{isSelectAllDisabled ? 'select_all_disabled' : (isSelectAll ? 'icon_select_active' : '')}}" 
+            bindtap="selectAllToggle"
+            aria-role="button"
+            aria-label="{{isSelectAllDisabled?'全部禁止选择':(isSelectAll?'全部已选中':'未全部选中')}}"
+          >
+          </view>
+          <view class="d-flex flex-row align-items-cneter" aria-role="text" aria-label="{{'全选'+(data.numWeightDesc||'')}}">
+            <text class="select" bindtap="selectAllToggle">全选</text>
+            <text class="tips" wx:if="{{data.numWeightDesc}}">{{data.numWeightDesc}}</text>
+          </view>
+        </view>
+        <view class="cancel_case d-flex flex-row align-items-center">
+          <view class="icon_coupon log_getcoupon" wx:if="{{data.grabCouponEntrance}}" bindtap="getCoupon" aria-role="button" aria-label="优惠券"></view>
+          <view class="space-line" wx:if="{{data.grabCouponEntrance && !hideRemoveAllGoodsEntryFlag}}"></view>
+          <view bindtap="removeAllGoods" class="d-flex flex-row align-items-center log_removeallgoods" aria-role="button" aria-label="清空购物车">
+            <image wx:if="{{!data.grabCouponEntrance}}" class="cancel-delete" src="https://storage.360buyimg.com/wximg/store_2.0/delete.png" />
+            <text class="cancel">清空购物车</text>
+          </view>
+        </view>
+      </view>
+      <scroll-view class="content" style="max-height: 60vh;" scroll-y catchtouchmove="catchtouchmove">
+        <cart-good-section 
+          infos="{{data}}" 
+          invalidData="{{invalidData}}"
+          latitude="{{latitude}}"
+          longitude="{{longitude}}"
+          orgCode="{{orgCode}}"
+          storeId="{{storeId}}"
+          limitFlag="{{limitFlag}}"
+          pageSource="{{pageSource}}"
+          refPageSource="{{refPageSource}}"
+          biPageName="mini_shopcar"
+          fromMinicart="{{true}}"
+          pageId="{{pageId}}"
+          currentPageName="{{currentPageName}}" 
+          prePageName="{{prePageName}}"
+          noNeedExposure="{{true}}"
+          refPar="{{refPar}}"
+          buriedObj="{{recommendObj}}"
+          bindrefreshCart="onRefreshCart"
+          bindgoDosomething="goDosomething"
+          bindonAddMinControllerChange="onAddMinControllerChange"
+          bindshowModify="onShowModify"
+          bind:isPrescriptions="handlePrescriptions"
+        >
+        </cart-good-section>
+        <!--推荐商品-->
+        <recommend-goods
+          wx:if="{{data.recommendSkus && data.recommendSkus.length}}"
+          infos="{{data.recommendSkus}}" 
+          recommendSkusTitle="{{data.recommendSkusTitle}}"
+          orgCode="{{orgCode}}"
+          storeId="{{storeId}}"
+          pageSource="{{pageSource}}"
+          refPageSource="{{refPageSource}}"
+          fromMinicart="{{true}}"
+          traceId="{{traceId}}"
+          pageId="{{pageId}}" 
+          currentPageName="{{currentPageName}}" 
+          prePageName="{{prePageName}}"
+          buriedObj="{{recommendObj}}"
+          isHideCartInfo="{{isHideCartInfo}}"
+          refPar="{{refPar}}"
+          bindonAddMinControllerChange="onAddMinControllerChange"
+        >
+        </recommend-goods>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!--结算-->
+  <view class="footer flex-row" style="padding-bottom: {{isIphoneX ? 64 : 0}}rpx" aria-hidden="{{isShowCouponPop}}">
+    <view class="log-car-icon flex-none left car-image log_cartToggle" data-store-id="{{data.storeId}}" data-activity-id="{{data.activityId || ''}}" data-money="{{data.payMoneyPriceValue || ''}}" data-total-num="{{data.totalNum || ''}}"  bindtap="cartToggle" animation="{{carAnimationData}}" aria-role="button" aria-label="{{isHideCartInfo == false?'收起购物车':'展开购物车'}}">
+      <view class="image {{scaleAble ? 'scale' : ''}}" data-scale="{{scaleAble}}" style="border: {{pageSource === 'activityDetail' ? '1px solid rgba(0, 0, 0, 0.08)' : 'none'}};background: {{pageSource === 'activityDetail' ? '#fff' : 'none'}}">
+        <block wx:if="{{pageSource === 'activityDetail'}}">
+          <image class="background" src="{{data.storeImgUrl}}" />
+        </block>
+        <block wx:else>
+          <image wx:if="{{data.itemList}}" class="background" src="https://storage.360buyimg.com/wximg/storewin/cart-light.png" />
+          <image wx:else class="background" src="https://storage.360buyimg.com/wximg/storewin/cart-gray.png" />
+        </block>
+        <view class="num {{data.totalNum > 99 ? 'pad' : ''}}" hidden="{{!data.totalNum}}">{{data.totalNum > 99 ? '99+' :data.totalNum}}</view>
+        <view wx:if="{{pageSource === 'activityDetail'}}" class="logo-cart" style="background-position: {{data.itemList ? 'left bottom' : 'left top'}}"></view>
+      </view>
+    </view>
+    <view class="middle price log_cart_open_member" 
+        data-open="{{data.estimatedPriceVo && data.estimatedPriceVo.openMemberShipStyleVo ? true : false}}" 
+        data-to="{{data.estimatedPriceVo && data.estimatedPriceVo.openMemberShipStyleVo ? data.estimatedPriceVo.openMemberShipStyleVo.to : ''}}" 
+        data-params="{{data.estimatedPriceVo && data.estimatedPriceVo.openMemberShipStyleVo ? data.estimatedPriceVo.openMemberShipStyleVo.params : ''}}" 
+        data-free-member="{{data.estimatedPriceVo && data.estimatedPriceVo.freeMember}}"
+        bindtap="openMembers" animation="{{priceAnimationData}}"
+    >
+      <block wx:if="{{data.itemList}}">
+        <view class="d-flex marginb2 {{data.cartButtonList.length > 1 ? 'flex-column' : 'flex-row align-items-baseline'}}" aria-role="text" aria-label="{{'现价'+data.payMoneyPriceValue+(data.promptContent?'原价'+data.promptContent.iconText:'')}}">
+          <text class="price_title" wx:if="{{data.priceTitle && data.cartButtonList.length == 1}}">{{data.priceTitle}}</text>
+          <text class="money" style="color: {{data.payMoneyPriceValueColor || '#333'}};">¥{{data.priceTitleValue ? data.priceTitleValue : data.payMoneyPriceValue}}</text>
+          <text class="dis ellipsis" wx:if="{{data.promptContent}}">{{data.promptContent.iconText}}</text>
+          <!-- 8230 -->
+          <view class="freight online ellipsis  {{!data.promptContent ? 'nodis' : ''}}" wx:if="{{data.bottomBarFreight && data.bottomBarFreight.length > 0 && data.vplusEstimatedPriceVo && data.estimatedStrategy == 1}}">
+            <block wx:for="{{data.bottomBarFreight}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+              <text style="color: {{item.fontColor}};" class="text {{item.scribe == 1 ? 'line' :''}}">{{item.text}}</text>
+            </block>
+          </view>
+        </view>
+        <!-- 8230 -->
+        <view class="freight" wx:if="{{data.bottomBarFreight && data.bottomBarFreight.length > 0 && !data.vplusEstimatedPriceVo || (data.bottomBarFreight && data.bottomBarFreight.length > 0 && data.vplusEstimatedPriceVo && data.estimatedStrategy != 1)}}">
+          <block wx:for="{{data.bottomBarFreight}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+            <text style="color: {{item.fontColor}};" class="text {{item.scribe == 1 ? 'line' :''}}">{{item.text}}</text>
+          </block>
+        </view>
+        <view class="members-box" wx:if="{{data.estimatedPriceVo && data.estimatedStrategy == 2}}" aria-role="button" aria-label="{{(data.estimatedPriceVo.payMoneyPriceTitleStyleVo.iconText||'')+(data.estimatedPriceVo.payMoneyPriceValueStyleVo.iconText||'')+(data.estimatedPriceVo.openMemberShipStyleVo.iconText||'')}}">
+          <view class="members d-flex flex-row align-items-center">
+            <text class="title-txt ellipsis" wx:if="{{data.estimatedPriceVo.payMoneyPriceTitleStyleVo.iconText}}" style="color: {{data.estimatedPriceVo.payMoneyPriceTitleStyleVo.iconTextColorCode}}">{{data.estimatedPriceVo.payMoneyPriceTitleStyleVo.iconText}}</text>
+            <text wx:if="{{data.estimatedPriceVo.payMoneyPriceValueStyleVo.iconText}}" class="members-price" style="color: {{data.estimatedPriceVo.payMoneyPriceValueStyleVo.iconTextColorCode}}">{{data.estimatedPriceVo.payMoneyPriceValueStyleVo.iconText}}</text>
+            <text class="members-space-line" wx:if="{{data.estimatedPriceVo.openMemberShipStyleVo}}" style="background: {{data.estimatedPriceVo.openMemberShipStyleVo.iconTextColorCode}}"></text>
+            <text wx:if="{{data.estimatedPriceVo.openMemberShipStyleVo}}" style="color: {{data.estimatedPriceVo.openMemberShipStyleVo.iconTextColorCode}}">{{data.estimatedPriceVo.openMemberShipStyleVo.iconText}}</text>
+            <text wx:if="{{data.estimatedPriceVo.openMemberShipStyleVo}}" class="member-arrow" style="border-color: {{data.estimatedPriceVo.openMemberShipStyleVo.iconTextColorCode}}" />
+          </view>
+        </view>
+        <view class="v-members-box" wx:if="{{data.vplusEstimatedPriceVo && data.estimatedStrategy == 1}}" catchtap="showVM">
+          <view class="v-members d-flex flex-row align-items-center" style="background:linear-gradient(90deg, {{data.vplusEstimatedPriceVo.estimatedPriceTitleStyleVo.startColorCode}} 0%, {{data.vplusEstimatedPriceVo.estimatedPriceTitleStyleVo.endColorCode}} 100%);">
+            <image class="v-m-icon" src="{{data.vplusEstimatedPriceVo.logoUrl||'https://storage.360buyimg.com/wximg/storewin/minicart_v_icon.png'}}" />
+            <text class="v-txt" style="color:{{data.vplusEstimatedPriceVo.estimatedPriceTitleStyleVo.iconTextColorCode}}">{{data.vplusEstimatedPriceVo.estimatedPriceTitleStyleVo.iconText}}</text>
+            <text class="v-m-arrow dj_icon ts_next {{showVlayer?'show':''}}" />
+          </view>
+        </view>
+      </block>
+      <view class="none" wx:else aria-role="text" aria-label="购物车是空的">
+        <view class="" hover-class="none" hover-stop-propagation="false">
+          购物车是空的
+        </view>
+        <!-- 8230 -->
+        <view class="freight online ellipsis noleft" wx:if="{{data.bottomBarFreight && data.bottomBarFreight.length > 0}}">
+          <block wx:for="{{data.bottomBarFreight}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+            <text style="color: {{item.fontColor}};" class="text {{item.scribe == 1 ? 'line' :''}}">{{item.text}}</text>
+          </block>
+        </view>
+      </view>
+    </view>
+    <block wx:for="{{data.cartButtonList}}" wx:key="buttonType">
+      <view bindtap="handleClickBt" 
+        data-button-type="{{item.buttonType}}" 
+        data-button-state="{{item.buttonState}}" 
+        data-button-name="{{(item.buttonName||'')+(item.buttonSubName||'')}}"
+        class="log-car-button flex-none right" 
+        style="color: {{item.buttonNameColor}}; background: linear-gradient(135deg, {{tools.checkColor(item.startColorCode)}} 0%, {{tools.checkColor(item.endColorCode)}} 100%);width: {{item.buttonType == 12 ? '300rpx': ''}}"
+        aria-role="button" aria-label="{{item.buttonName + (item.buttonSubName || '')}}"
+      >
+        <view class="button-txt d-flex flex-column justify-content-center align-items-center {{item.buttonType == 12?'yy_btn':''}}" aria-live="true">
+          <view wx:if="{{item.buttonSubName}}" class="mini_btn_o button-txt-money ellipsis">{{item.buttonSubName}}</view>
+          <view class="mini_btn_o {{item.buttonSubName?'small_btname':'ellipsis'}}">{{item.buttonName}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!--处方药授权弹窗-->
+  <authory-dialog 
+    showDialog="{{isShowAuthoryDialog}}" 
+    titleText="{{popupWindow.title}}"
+    contentText="{{authoryDialogContent}}"
+    popupWindow="{{popupWindow}}" 
+    bindclickCancel="clickCancel" 
+    bindclickConfirm="clickConfirm" 
+  />
+  <!-- 优惠券弹层 -->
+  <coupon-pop id="mini_pop" storeId="{{storeId}}" orgCode='{{orgCode}}' couponListReuqestParam="{{couponListReuqestParam}}" showPop="{{isShowCouponPop}}"
+    bind:hideCouponPop="handleHideCouponPop" fromMini="{{true}}" refPar="{{refPar}}" biPageName="{{biPageName}}" preBuried="{{preBuried}}"></coupon-pop>
+  <!-- 赠品换购等弹层 -->
+  <gift-pop allData="{{data}}" type="{{giftPopType}}" visible="{{showGiftPop}}" fromMinicart="{{true}}" pageId="{{pageId}}" currentPageName="{{currentPageName}}" prePageName="{{prePageName}}" pageSource="{{pageSource}}" refPageSource="{{refPageSource}}" bindclose="giftPopClose" bindaddGiftSuccess="addGiftSuccess" buriedObj="{{isHideCartInfo==false?recommendObj:preBuried}}"></gift-pop>
+  <!-- 一键开通会员弹层 -->
+  <open-member-dialog fromPositon="minicart" show="{{oneKeyOpen}}" storeId="{{storeId}}" info="{{data.estimatedPriceVo.memberBenefitInfo}}" fromMinicart="{{true}}" bindmemberToastopen="memberToastopen"  pageId="{{pageId}}" currentPageName="{{currentPageName}}" prePageName="{{prePageName}}" buriedObj="{{isHideCartInfo==false?recommendObj:preBuried}}" ></open-member-dialog>
+  <!-- 修改数量弹层 -->
+  <modify wx:if="{{showModify}}"  bind:isPrescriptions="handlePrescriptions" infos="{{modifyGoodsInfo}}" pageId="{{pageId}}" currentPageName="{{currentPageName}}" prePageName="{{prePageName}}" pageSource="{{pageSource}}" refPageSource="{{refPageSource}}" refPar="{{refPar}}" bindcloseModify="closeModify"></modify>
+
+  <!-- 处方药弹层 -->
+  <drug-sku-pop wx:if="{{showDrugSkuPop}}" drugSkuPopData="{{drugSkuPopData}}"  bind:closeDrugSkuPop="closeDrugSkuPop" bind:buyTogether="buyTogether" bind:confirmChangeSku="confirmChangeSku" bind:confirmDelSku="confirmDelSku"/>
+
+</view>
+
+

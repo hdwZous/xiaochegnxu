@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{styles.container2}}"><view wx:for="{{loopArray97}}" wx:for-item="item" wx:for-index="index"><barrage-item wx:for="{{item.$anonymousCallee__8}}" wx:for-item="value" wx:for-index="innerIndex" compid="{{value.$compid__262}}"></barrage-item></view></view></block>

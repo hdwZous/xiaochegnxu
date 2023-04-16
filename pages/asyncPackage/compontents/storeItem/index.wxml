@@ -1,0 +1,232 @@
+<view class="ep_store-item wrap"
+      data-user-action="{{item.userAction}}" 
+      data-trace-id="{{traceId}}"  
+      data-page-id="{{buriedObj.pageIdFirstPage}}"
+      data-current-page-name="{{buriedObj.currentPageName}}"
+      data-pre-page-name='{{buriedObj.prePageName}}'
+      data-no-need-exposure="{{noNeedExposure}}">
+    <view class="store_case flex-row">
+        <view class="store_left flex-none exposure" 
+              data-store-item="{{storeItem}}" 
+              data-user-action="{{storeItem.userAction}}" 
+              aria-label="进店"
+              aria-role='link'
+              bind:tap="goToStore">
+            <view class="store_logo">
+              <image class="store_img" 
+                    aria-label="图片"
+                    aria-role='img'
+                    webp="true"
+                    binderror="imageError"
+                    src="{{img_load_error||!storeItem.imgUrl ? 'https://storage.360buyimg.com/peibanjia/dj_wx/store_item_default.png' : storeItem.imgUrl}}" />
+              <!-- 左上角 关注标 -->
+              <storeLeftTopIcon wx:if="{{leftTopIconType}}" type="{{leftTopIconType}}" />
+              <!-- 购物车数量 -->
+              <view wx:if="{{storeItem.inCartNum>0}}" 
+                    aria-label="数量：{{storeItem.inCartNum}}"
+                    aria-role='text'
+                    class="{{storeItem.inCartNum >99 ? 'store_num_more':'store_num'}}">
+                  {{storeItem.inCartNum}}
+              </view>
+              <!-- 门店休息中 -->
+              <view wx:if="{{storeItem.closeStatus==1}}" 
+                    aria-label="门店休息中"
+                    aria-role='text'
+                    class="rest_tag">
+                门店休息中
+              </view>
+            </view>
+        </view>
+        <view class="store_right flex-auto">
+          <view class="d-flew flex-row align-items-start marR20">
+            <view class="right_top_left_wrap">
+              <!-- 进店 -->
+              <view 
+                  class="go_store_btn" 
+                  data-store-item="{{storeItem}}"
+                  aria-label="进店"
+                  aria-role='link'
+                  bind:tap="goToStore"
+                  wx:if="{{storeItem.guidance}}">
+                  进店
+              </view>
+              <!-- 门店名称 -->
+              <view class="flex-row store_name_case">
+                  <view 
+                      class="store_name ellipsis flex-auto" 
+                      aria-label="进店"
+                      aria-role='link'
+                      data-store-item="{{storeItem}}" 
+                      bind:tap="goToStore">
+                      {{storeItem.name||storeItem.storeName}}
+                  </view>
+              </view>
+              <!-- 接受预定 -->
+              <view class="close-tip-wrap"
+                    wx:if="{{storeItem.closeTip}}" 
+                    data-store-item="{{storeItem}}" 
+                    aria-label="进店"
+                    aria-role='link'
+                    bindtap="goToStore">
+                  <close-tip closeTip="{{storeItem.closeTip}}"></close-tip>
+              </view>
+              <!-- 到家销售相关信息 -->
+              <block wx:if="{{storeItem.storeBusinessType!=2}}">
+                <store-sale-info storeItem="{{storeItem}}"></store-sale-info>
+              </block>
+              <block wx:else>
+                <to-store-sale-info storeItem="{{storeItem}}"></to-store-sale-info>
+              </block>
+            </view>
+            <!-- 右上角的标 -->
+            <view class="flex-none flex-row marL16">
+              <!-- 业务标 -->
+              <biz-tag bizType="vertical" wx:if="{{storeItem.businessTag}}" businessTag="{{storeItem.businessTag}}"></biz-tag>
+            </view>
+          </view>
+          <!-- 到家配送相关信息 -->
+          <view wx:if="{{storeItem.storeBusinessType!=2}}" class="marR20">
+            <freight-info storeItem="{{storeItem}}"></freight-info>
+          </view>
+          <view wx:else class="marR20">
+            <to-store-area-info storeItem="{{storeItem}}"></to-store-area-info>
+          </view>
+          <!-- 券、促销信息、膨胀券相关信息 -->
+          <view class="coupon-and-tags-wrapper marR20" 
+                wx:if="{{storeItem.coupons || storeItem.tags ||  storeItem.ExpansionCoupon}}">
+            <view class="coupon-and-tags">
+              <!-- 券标签相关信息 -->
+              <view class="line_three coupon-in-one-line"
+                    wx:if="{{storeItem.coupons && storeItem.coupons.length}}" 
+                    style="height: {{!storeItem.couponAndTagArrowDown ? storeItem.couponHeight * 2 : '34'}}rpx">
+                <view class="flex-row coupon-wrap">
+                    <view 
+                        class="coupon_tag_case" 
+                        wx:for="{{storeItem.coupons}}" 
+                        wx:for-index="index" 
+                        wx:for-item="couponItem" 
+                        wx:key="couponItem" 
+                        data-store-item="{{storeItem}}"
+                        aria-label="进店"
+                        aria-role='link' 
+                        bind:tap="goToStore">
+                        <view class="coupon_tag" 
+                              style="background-color:{{couponItem.backgroundColor || ''}} ;color: {{couponItem.frontColor}};border:2rpx solid {{couponItem.outLineColor}}">
+                            {{couponItem.words}}
+                            <block wx:if="{{couponItem.couponMode != 4}}">
+                                <view class="left_radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+                                <view class="right_radio" style="border:1px solid {{couponItem.outLineColor}}"></view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+              </view>
+              <!-- 膨胀券 -->
+              <view wx:if="{{storeItem.expansionCoupon && storeItem.expansionCoupon.iconText}}" 
+                    style="background: linear-gradient(270deg, {{storeItem.expansionCoupon.endColorCode ?  storeItem.expansionCoupon.endColorCode : '#FF4141'}} 0%, {{storeItem.expansionCoupon.startColorCode ?  storeItem.expansionCoupon.startColorCode : '#FF4141'}} 100%);" 
+                    class="expasion line_six" 
+                    data-item="{{storeItem.expansionCoupon}}" 
+                    bindtap="clickExpandCoupon" 
+                    aria-label="{{storeItem.expansionCoupon.iconText}}{{storeItem.expansionCoupon.price}}" 
+                    aria-role="button">
+                <image class="titile_img" src="{{storeItem.expansionCoupon.iconUrl}}" aria-hidden="true"></image>
+                <view class="expasion_text ellipsis" aria-hidden="true">
+                  {{storeItem.expansionCoupon.iconText}}
+                </view>
+                <view class="expasion_price" aria-hidden="true">
+                  {{storeItem.expansionCoupon.price}}
+                </view>
+              </view>
+              <!-- 促销标签相关信息 -->
+              <view class="line_four" 
+                    wx:if="{{storeItem.tags.length && isShowTag || !storeItem.expansionCoupon && storeItem.tags.length}}"
+                    aria-label="进店" 
+                    aria-role='link' 
+                    data-store-item="{{storeItem}}" 
+                    bindtap="goToStore">
+                <block  wx:for="{{storeItem.tags}}" 
+                        wx:for-index="index" 
+                        wx:for-item="tagItem" 
+                        wx:key="tagItem">
+                  <storePromotionTag wx:if="{{tagItem.show}}" tagItem="{{tagItem}}" />
+                </block>
+              </view>
+            </view>
+            <!-- 优惠券或者促销信息的展开更多箭头 (到店的仅展示一行)-->
+            <block wx:if="{{storeItem.storeBusinessType!=2}}">
+              <view wx:if="{{(storeItem.couponHeight > (storeItem.couponInOneHeight + 5) && storeItem.coupons.length > 2) || (storeItem.tags && storeItem.tags.length > 1)}}" 
+                    class="coupon-and-tags_icon icon dj_icon {{storeItem.couponAndTagArrowDown ? 'ts_down':'ts_up'}}" 
+                    aria-label="{{storeItem.couponAndTagArrowDown ? '展开':'收起'}}" 
+                    aria-role='button' 
+                    data-icon-down="{{storeItem.couponAndTagArrowDown}}" 
+                    bind:tap="clickCouponArrowIcon">
+              </view>
+            </block>
+          </view>
+          <view 
+            wx:if="{{(storeItem.storeBusinessType!=2&&storeItem.brosStore&&storeItem.brosStore.length)||(storeItem.storeBusinessType==2&&storeItem.skus&&storeItem.skus.length)}}"
+            class="store_item_space_line">
+          </view>
+          <view wx:if="{{storeItem.storeBusinessType!=2}}" class="marR20">
+            <!-- 附近门店相关信息 -->
+            <view class="line_five" wx:if="{{storeItem.brosStore && storeItem.brosStore.length}}">
+                <view 
+                    class="line_five_head flex-row" 
+                    aria-label="进店"
+                    aria-role='link'
+                    data-store-item="{{storeItem}}" 
+                    bind:tap="goToStore">
+                    <view class="line_five_icon icon dj_icon ts_shop"></view>
+                    <view 
+                        aria-label="附近还有{{storeItem.brosStore.length}}家"
+                        aria-role='text'
+                        class="line_five_title">
+                        附近还有{{storeItem.brosStore.length}}家
+                    </view>
+                </view>
+                <block wx:if="{{!storeItem.storeArrowDown}}">
+                    <view 
+                        class="nearby_store flex-row" 
+                        style="border:{{index == 0 ? 'none':''}}" 
+                        wx:for="{{storeItem.brosStore}}" 
+                        wx:for-index="index" 
+                        wx:for-item="storeItem" 
+                        wx:key="storeItem" 
+                        data-store-item="{{storeItem}}" 
+                        aria-label="进店"
+                        aria-role='link'
+                        bind:tap="goToStore">
+                        <view 
+                            aria-label="{{storeItem.name}}"
+                            aria-role='text'
+                            class="flex-auto ellipsis nearby_store_name">
+                            {{storeItem.name}}
+                        </view>
+                        <view 
+                            aria-label="{{storeItem.distance}}"
+                            aria-role='text'
+                            class="flex-none nearby_store_distance" 
+                            wx:if="{{storeItem.distance}}">
+                            {{storeItem.distance}}
+                        </view>
+                    </view>
+                </block>
+                <view wx:if="{{storeItem.brosStore.length > 1}}" 
+                    class="line_three_icon icon dj_icon {{storeItem.storeArrowDown ? 'ts_down':'ts_up'}}" 
+                    aria-label="排序"
+                    aria-role='button'
+                    data-icon-down="{{storeItem.storeArrowDown}}" bind:tap="clickStoreArrowIcon"></view>
+            </view>
+          </view>
+          <view wx:else class="marR20">
+            <to-store-sku-list 
+              infos="{{storeItem.skus}}"
+              buriedObj="{{buriedObj}}"
+              traceId="{{traceId}}"
+              userAction="{{storeItem.userAction}}"
+            >
+            </to-store-sku-list>
+          </view>
+        </view>
+    </view>
+</view>

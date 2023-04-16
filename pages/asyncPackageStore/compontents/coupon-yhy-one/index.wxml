@@ -1,0 +1,120 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+<view class="lazy-load-wrap ep_yhy_one_coupon"
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name="{{prePageName}}"
+      data-no-need-exposure="{{noNeedExposure}}">
+  <view wx:if="{{hookLazy}}"
+        class="cp-yhy-wrap"
+        style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);{{couponItem.couponBgIShadowColor?'box-shadow: inset 0rpx 2rpx 6rpx 0rpx '+tool.changeColor(couponItem.couponBgIShadowOpacity || 0, couponItem.couponBgIShadowColor):''}};">
+    <left-icon-coupon 
+      wx:if="{{couponItem.leftTopIconList.length}}" 
+      type="1" 
+      list="{{couponItem.leftTopIconList}}"
+      use="{{couponItem.use}}"
+      bindtap="{{couponItem.use=='UNAVAILABLE'?'handleLeftIconClick':''}}"
+    />
+    <view class="cp-yhy-left flex-none"
+          aria-label="{{couponItem.couponTitle}},{{couponItem.couponExpire}},{{couponItem.price}}{{couponItem.priceUnit==1 ? '元' : '折'}},{{couponItem.couponLimit}}" 
+          aria-role='text'>
+      <view class="cp-yhy-price"
+            style="color: {{couponItem.priceColor}}"
+            aria-hidden="true">
+        <view class="yhy-price-unit" wx:if="{{couponItem.priceUnit == 1}}">
+          ¥
+        </view>
+        <view class="yhy-price-value">
+          {{couponItem.price}}
+        </view>
+        <view class="yhy-price-unit" wx:if="{{couponItem.priceUnit == 2}}">折</view>
+      </view>
+      <view class="cp-yhy-limit ellipsis"
+            wx:if="{{couponItem.couponLimit}}"
+            style="color: {{couponItem.couponLimitColor}}"
+            aria-hidden="true">
+        {{couponItem.couponLimit}}
+      </view>
+    </view>
+    <!--  style="background-image: linear-gradient({{couponItem.couponBgMDottedLine || '#ddd'}} 6rpx, rgba(0, 0, 0, 0) 6rpx);" -->
+    <view class="cp-yhy-line d-flex flex-column flex-none" 
+          aria-hidden="true">
+      <view wx:for="{{9}}"
+            wx:key="index"
+            wx:for-item="lineItem"
+            class="cp-yhy-line-item" 
+            style="background: {{couponItem.couponBgMDottedLine || '#ddd'}}"></view>
+    </view>
+    <view class="cp-yhy-center"
+          aria-label="{{couponItem.couponTitle}},{{couponItem.couponExpire}},{{couponItem.price}}{{couponItem.priceUnit==1 ? '元' : '折'}},{{couponItem.couponLimit}}" 
+          aria-role='text' >
+      <view class="cp-yhy-title ellipsis" 
+            style="color: {{couponItem.couponTitleColor}}"
+            aria-hidden="true">
+        {{couponItem.couponTitle}}
+      </view>
+      <view class="cp-yhy-tags "
+            wx:if="{{couponItem.couponSigns &&  couponItem.couponSigns.length }}"
+            aria-hidden="true">
+        <view class='ellipsis cp-yhy-tag'
+              wx:for="{{couponItem.couponSigns}}"
+              wx:key="subIndex"
+              wx:for-item="tag"
+              style="color: {{tag.titleColor}};">
+          <view class="cp-yhy-tag-text">{{tag.title}}</view>
+          <view class="cp-yhy-tag-border" style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+        </view>
+      </view>
+      <view class="cp-yhy-time ellipsis2"
+            wx:if="{{couponItem.couponExpire}}"
+            style="color: {{couponItem.couponExpireColor}}"
+            aria-hidden="true">
+        {{couponItem.couponExpire}}
+      </view>
+    </view>
+    <block wx:if="{{fromWhere == 'settle'}}">
+      <view class="cp-right-bt d-flex flex-row align-items-center" bindtap="handleCheck" data-infos="{{couponItem}}">
+        <view class="cp-yhy-uncheck-box" wx:if="{{couponItem.selectedState==10}}"></view>
+        <view class="cp-yhy-checked-box" wx:elif="{{couponItem.selectedState==20}}"></view>
+        <view class="cp-yhy-forbidden-check-box" wx:elif="{{couponItem.selectedState==30}}"></view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="cp-yhy-right ellipsis flex-none"
+            bindtap="clickCoupon"
+            data-item="{{couponItem}}"
+            data-trace-id="{{traceId}}"
+            data-user-action="{{couponItem.userAction}}"
+            aria-role="button"
+            aria-label="{{couponItem.couponButton.title}}">
+        <view class="cp-yhy-button"
+              wx:if="{{couponItem.couponButton && couponItem.couponButton.title}}"
+              style="color: {{couponItem.couponButton.titleColor}};background: linear-gradient(to right, {{couponItem.couponButton.startColor}} 0%, {{couponItem.couponButton.endColor}} 100%);border-color: {{couponItem.couponButton.borderColor || 'none'}};"
+              aria-hidden="true">
+          {{couponItem.couponButton.title}}
+        </view>
+        <view wx:if="{{couponItem.allowanceTitle}}" class="cp-yhy-coupon-tips">{{couponItem.allowanceTitle}}</view>
+      </view>
+     </block>
+  </view>
+  <view wx:else class="cp-yhy-item-content-gray"></view>
+</view>
+<view class="cp-yhy-mask" bind:tap="handleMaskClick" wx:if="{{showTips}}" catchtouchmove="true">
+  <block wx:if="{{bgType==2&&couponItem.couponUnusableReason.unusableReasonText}}">
+    <view class="cp-yhy-tips-wrap {{isFirst?'isFirst':'normal'}}" style="left:{{left}}px;{{isFirst?'top:'+top+'px':'bottom:'+bottom+'px'}}">
+      <scroll-view class="cp-yhy-tips" scroll-y>
+        <view class="cp-yhy-tips_title">不可用原因</view> 
+        <text class="cp-yhy-tips_content">{{couponItem.couponUnusableReason.unusableReasonText}}</text>
+      </scroll-view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="cp-yhy-tips-wrap {{isFirst?'isFirst':'normal'}}" wx:if="{{couponItem.unusableReason}}" style="left:{{left}}px;{{isFirst?'top:'+top+'px':'bottom:'+bottom+'px'}}">
+      <scroll-view class="cp-yhy-tips" scroll-y>
+        <view class="cp-yhy-tips_title">不可用原因</view> 
+        <text class="cp-yhy-tips_content">{{couponItem.unusableReason}}</text>
+      </scroll-view>
+    </view>
+  </block>
+</view>

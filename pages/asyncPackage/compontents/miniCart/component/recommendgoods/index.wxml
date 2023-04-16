@@ -1,0 +1,50 @@
+<view class="recommend-goods">
+  <view class="recommend-title">{{recommendSkusTitle||'相关商品'}}</view>
+  <view class="recommend-content d-flex flex-row flex-wrap">
+    <block wx:for="{{infos}}" wx:key="skuId" wx:for-item="recommendItem" wx:for-index="recommendIds">
+      <view class="recommend-sku-box flex-column" bindtap="goToDetail" data-item="{{recommendItem}}" data-trace-id="{{traceId}}" data-user-action="{{recommendItem.userAction}}" data-page-id="{{pageId}}" data-current-page-name="mini_shopcar" data-pre-page-name="{{prePageName}}" data-no-need-exposure="{{isHideCartInfo===false?false:true}}">
+        <view class="recommend-sku-imgbox">
+          <webp-img webp-img="recommend-sku-image" src="{{recommendItem.imgUrl}}" needOverlay="{{true}}"></webp-img>
+          <view class="recommend-sku-tags" style="background: linear-gradient(135deg, {{recommendItem.tags[0].startColorCode}} 0%, {{recommendItem.tags[0].endColorCode}} 100%);" wx:if="{{recommendItem.tags && recommendItem.tags.length}}">{{recommendItem.tags[0].iconText}}</view>
+          <view class="left-tags" wx:if="{{recommendItem.leftTagsVO}}" style="background: linear-gradient(135deg, {{recommendItem.leftTagsVO.startColorCode}} 0%, {{recommendItem.leftTagsVO.endColorCode}} 100%);">{{recommendItem.leftTagsVO.iconText}}</view>
+        </view>
+        <view class="recommend-sku-name {{recommendItem.personlizedCateAttritemList.length?'one ellipsis':'ellipsis2'}}">
+          <sku-name-tag wx:if="{{recommendItem.skuNameTag}}" infos="{{recommendItem.skuNameTag}}"></sku-name-tag>
+          {{recommendItem.skuName}}
+        </view>
+        <view class="recommend-sku-cate d-flex flex-row flex-wrap" wx:if="{{recommendItem.personlizedCateAttritemList.length}}">
+          <block wx:for="{{recommendItem.personlizedCateAttritemList}}" wx:key="items">
+            <view class="rsc_item" style="color:{{item.fontColor}};background:{{item.backGroundColor}}">{{item.cateAttrValue}}</view>
+          </block>
+        </view>
+        <view class="recommend-sku-bottom d-flex flex-row justify-content-between align-items-center">
+          <view class="recommend-price d-flex flex-column">
+            <!-- major-price -->
+            <coupon-price 
+              wx:if="{{recommendItem.majorPrice}}"
+              majorPrice="{{recommendItem.majorPrice}}" 
+              majorPriceFz="28rpx" 
+              majorPriceWhFz="24rpx" 
+              intervalPrice="{{recommendItem.intervalPrice}}" 
+            />
+            <!-- minor-price  预估到手价 -->
+            <coupon-price 
+              wx:if="{{recommendItem.minorPrice}}"
+              minorPrice="{{recommendItem.minorPrice}}"
+              toHandPrice="{{recommendItem.toHandPrice}}" 
+            />
+          </view>
+          <add-min-controller showType="3" skuId="{{recommendItem.skuId}}"
+            spuId="{{recommendItem.spuId || ''}}" orgCode="{{orgCode}}"
+            userAction="{{recommendItem.userAction}}" fromMinicart="{{true}}"
+            biPageName="mini_shopcar" pageSource="{{pageSource}}"
+            width="46" height="46" traceId="{{traceId}}"
+            pageSource="{{pageSource}}" refPageSource="{{refPageSource}}"
+            pageId="{{pageId}}" currentPageName="{{currentPageName}}" prePageName="{{prePageName}}"
+            storeId="{{storeId}}" bindaddMinControllerChange="addMinControllerChange" refPar="{{refPar}}">
+          </add-min-controller>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

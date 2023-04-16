@@ -1,0 +1,13 @@
+<view class="pop-wrapper" wx:if="{{show}}">
+  <view class="pop-container"
+        style="background-image: url({{popInfo.backgroundUrl}});background-position:  no-repeat;background-size: 100% 100%;">
+    <view class='vip-button'
+          style="color: {{popInfo.buttonWordColor || '#FFEBB9'}};background: linear-gradient(90deg, {{popInfo.buttonColorStart || '#2B2E35'}} 0%,  {{popInfo.buttonColorEnd || '#2E3139'}} 100%);"
+          data-url="{{popInfo.buttonJumpUrl || ''}}"
+          bindtap="clickButton">
+      {{popInfo.buttonWord}}
+    </view>
+  </view>
+  <image class="close" bindtap="close" mode="widthFix" lazy-load="true" src="https://s.360buyimg.com/wximg/detention/close.png"></image>
+</view>
+<view class="mask" wx:if="{{show}}"></view>

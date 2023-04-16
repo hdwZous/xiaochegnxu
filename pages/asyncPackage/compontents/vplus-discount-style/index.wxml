@@ -1,0 +1,52 @@
+<block wx:if="{{vpType==3}}">
+  <block wx:if="{{from=='minicart'}}">
+    <view class="vlm_subsidy d-flex" style="background-image:url({{'https://storage.360buyimg.com/peibanjia/dj_wx/828_v_mini.png'}})">
+      <view class="vls_left">{{exchangeStyle.text}}</view>
+      <view class="flex-auto"></view>
+      <view class="vls_right">
+        <view class="d-flex flex-row align-items-baseline justify-content-center vlsr_top">
+          <block wx:for="{{left}}" wx:key="items">
+            <block wx:if="{{item.type == 2}}">
+              <view class="vlmss_num" style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};">{{item.text}}</view>
+            </block>
+            <block wx:if="{{item.type == 1}}">
+              <view class="vlmss_unit" style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};">{{item.text}}</view>
+            </block>
+          </block>
+        </view>
+        <view class="vlsr" style="color:{{right.fontColor}};font-size:{{right.fontSize*2}}rpx;font-weight:{{right.fontWeight==1?'bold':right.fontWeight==2?'lighter':'normal'}};">{{right.text}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{from=='settle'}}">
+    <view class="vlm_subsidy_settle d-flex">
+      <view class="vls_left" style="margin-left:16rpx;">{{allowance.leftText}}</view>
+      <view class="flex-auto"></view>
+       <view class="vls_right">
+        <view class="d-flex flex-row align-items-baseline justify-content-center vlsr_top">
+          <view class="vlmss_num">{{allowance.price}}</view>
+          <view class="vlmss_unit">{{allowance.priceUnit}}</view>
+        </view>
+        <view class="vlsr">{{allowance.rightText}}</view>
+       </view>
+    </view>
+  </block>
+</block>
+<block wx:else>
+  <view class="vlm-r d-flex flex-row align-items-center" style="background-image:url({{bgimg||'https://storage.360buyimg.com/wximg/storewin/mini-v-redb.png'}})">
+    <view class="vlmr-l d-flex flex-row align-items-baseline ellipsis" style="margin-left:{{leftMl}}">
+      <block wx:for="{{left}}" wx:key="items">
+        <block wx:if="{{item.type == 2}}">
+          <text class="vlmrllp-num" style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};">{{item.text}}</text>
+        </block>
+        <block wx:if="{{item.type == 1}}">
+          <text class="vlmrllp-sym" style="color:{{item.fontColor}};font-size:{{item.fontSize*2}}rpx;font-weight:{{item.fontWeight==1?'bold':item.fontWeight==2?'lighter':'normal'}};">{{item.text}}</text>
+        </block>
+        <block wx:if="{{item.type == 3}}">
+          <image class="vlmrl-icon {{from+'_vds'}} flex-none" src="{{item.url||'https://storage.360buyimg.com/wximg/storewin/mini-v-redb-x.png'}}" />
+        </block>
+      </block>
+    </view>
+    <view class="vlmr-r ellipsis" style="width:{{rightWd}};color:{{right.fontColor}};font-size:{{right.fontSize*2}}rpx;font-weight:{{right.fontWeight==1?'bold':right.fontWeight==2?'lighter':'normal'}};">{{right.text}}</view>
+  </view>
+</block>

@@ -1,0 +1,48 @@
+<view class="ep_couponfloor-one floor-container" 
+      wx:if="{{floor.couponList && floor.couponList.length}}"
+      style="background: linear-gradient(180deg, {{floor.floorStyle == 'recommend' ? floor.bgStartColor : 'transparent'}} 0%, {{floor.floorStyle == 'recommend' ? floor.bgEndColor : 'transparent'}} 100%);">
+  <view class="floor-title-wrap"
+        aria-role='text'
+        aria-label="{{floor.floorTitle}}">
+    <view class="floot-title-url" wx:if="{{floor.titleUrl}}">
+      <image src="{{floor.titleUrl}}" />
+    </view>
+    <view class="floor-title" wx:else>{{floor.floorTitle}}</view>
+  </view>
+  <view 
+    class="floor-coupon-wrap"
+    wx:for="{{couponList}}"
+    wx:key="index"
+    wx:for-item="item"
+    hidden="{{index >= (floor.foldSize || 2) && floor.pull && !showAll}}">
+    <coupon-yhy-one 
+      item="{{item}}" 
+      isFollow="{{isFollow}}"
+      storeId="{{storeId}}"
+      orgCode="{{orgCode}}"
+      fromWhere="store"
+      traceId="{{traceId}}"
+      pageId="{{pageId}}"
+      currentPageName="{{currentPageName}}"
+      prePageName="{{prePageName}}"
+      bind:rightBtnClick="rightBtnClick"
+      fromPosition="store-couponFloor-one"
+      optionsPos="{{options}}"
+      buriedObj="{{buriedObj}}"/>
+  </view>
+  <view class='ep_show-more show-more' 
+        wx:if="{{floor.pull}}" 
+        bindtap="showAll"
+        data-trace-id="{{traceId}}"
+        data-user-action="{{floor.userAction}}"
+        data-page-id="{{pageId}}"
+        data-current-page-name="{{currentPageName}}"
+        data-pre-page-name="{{prePageName}}"
+        aria-role='button'
+        aria-label="{{showAll ? floor.foldText :  floor.unFoldText}}">
+    <view class="show-more-title" aria-hidden="true">
+      {{showAll ? floor.foldText :  floor.unFoldText}}
+    </view>
+    <view class="flex-none icon dj_icon ts_next show-more-arrow {{showAll ? 'rotate1' : 'rotate'}}" aria-hidden="true"></view>
+  </view>
+</view>

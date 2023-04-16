@@ -1,0 +1,25 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+<view wx:if="{{floor.promotionList.length}}" class='manjian'>
+  <view class="title gap">{{floor.promotionTitle}}</view>
+  <view class="flex-none flex-row  sale_item" 
+        wx:for="{{floor.promotionList}}" 
+        wx:key="index" 
+        wx:for-item="tag" 
+        hidden="{{(index + 1) > floor.foldSize && !showAllTags}}">
+    <view class="flex-none" aria-hidden="true">
+      <view class="sale_item_tag" style="color: {{tag.colorCode}}; border-color: {{tool.changeColor(tag.strokeColorOpacity, tag.strokeColorCode || '#FF1E19')}}">
+        {{tag.iconText}}
+      </view>
+    </view>
+    <view class="sale_item_msg ellipsis2 flex-auto" aria-role="text" aria-label="{{tags.words}}">
+      {{tool.repChart(tag.words, '###', '，')}}
+    </view>
+  </view>
+  <!-- 查看更多 -->
+  <view class="more flex-row align-items-center" 
+        wx:if="{{floor.pull}}" 
+        bindtap="showAllTags">
+    <view class="flex-none">{{showAllTags ? floor.foldText :  floor.unFoldText}}</view>
+    <view class="flex-none icon dj_icon ts_next {{showAllTags ? 'rotate1' : 'rotate'}}"></view>
+  </view>
+</view>

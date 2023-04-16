@@ -1,0 +1,4 @@
+.tag-img {
+  display: block;
+  height: 24rpx;
+}

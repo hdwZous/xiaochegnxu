@@ -1,0 +1,21 @@
+ <view 
+    class="line_one flex-row" 
+    data-store-item="{{storeItem}}" 
+    aria-label="进店"
+    aria-role='link'
+    bind:tap="goToStore">
+    <view class="line_one_left flex-auto flex-row">
+        <block wx:if="{{storeItem.scoreAvg&&storeItem.scoreAvg>0&&storeItem.scoreAvg<=5}}">
+            <rating rating="{{storeItem.scoreAvg}}" size="{{12}}" />
+            <view class="star_number flex-none mgr8">{{storeItem.scoreAvg}}</view>
+        </block>
+        <view 
+            aria-label="暂无评价"
+            aria-role='text'
+            wx:elif="{{storeItem.scoreAvg==0||!storeItem.scoreAvg}}" class="star_txt mgr8">
+            暂无评价
+        </view>
+        <view class="sale_number mgr8" wx:if="{{storeItem.businessTimeStatus}}">{{storeItem.businessTimeStatus}}</view>
+        <view class="sale_number" wx:if="{{storeItem.distance&&!storeItem.businessTag}}">{{storeItem.distance}}</view>
+    </view>
+</view>

@@ -1,0 +1,153 @@
+<wxs src="../../../../../../common/util/tools.wxs" module="tools" />
+<view class="cart_good_section section">
+  <!--今日加购按钮-->
+  <view class="today-add-bt" style="color: {{infos.checkTodayPurchase.buttonNameColor}};background: {{infos.checkTodayPurchase.startColorCode}}" bindtap="addTodayGoods" data-status="{{infos.checkTodayPurchase.buttonState}}" wx:if="{{infos.checkTodayPurchase}}" aria-role="button" aria-label="{{infos.checkTodayPurchase.buttonName}}">{{infos.checkTodayPurchase.buttonName}}</view>
+  <view id="goods">
+    <view class="haved-goods" wx:if="{{infos.itemList.length}}">
+      <block wx:for="{{infos.itemList}}" wx:for-item="item" wx:for-index="index" wx:key="itemListKey">
+        <view wx:if="{{item.suitType !== 'invalidate'}}" class="suit-wrap">
+          <view class="shin-bottom-border"></view>
+          <!--套装-->
+          <block wx:if="{{item.suitType == 'combination'}}">
+            <include src="./promotion/combination.wxml" />
+          </block>
+          <block wx:else>
+            <!--  满赠/减/折/全场换购/单品换购/全场满赠/全场满减 头部标签  -->
+            <view class="d-flex flex-row align-items-center header-tag {{item.suitType == 'wholestoreexchange' ? 'wholeExchange' : item.suitType == 'wholestoregift' ? 'wholestoregift' : item.suitType == 'wholestoresuit' ? 'wholestoresuit' : ''}}" wx:if="{{item.suitType == 'suit' || item.suitType == 'fullpiecediscount' || item.suitType == 'fullpiecesales' || item.suitType == 'bundleddiscount' || item.suitType == 'wholestoreexchange' || item.suitType == 'exchange' || item.suitType == 'wholestoregift' || item.suitType == 'wholestoresuit' || item.suitType == 'gift'}}">
+              <view class="tagname" aria-role="text" aria-label="{{item.suitName}}">
+                <view style="position: relative">
+                    <text class="tagname-name ellipsis" style="color: {{tools.checkColor(item.strokeNameColorCode)}}">{{item.suitName}}</text>
+                    <view class="shin-border-box" style="border-color: {{tools.checkColor(item.strokeColorCode)}};border-radius: 8rpx 2rpx 8rpx 2rpx;"></view>
+                </view>
+              </view>
+              <view class="tag-dashed-box" wx:if="{{item.suitType != 'wholestoreexchange' && item.suitType != 'wholestoregift' && item.suitType != 'wholestoresuit'}}"><view class="dashed"></view></view>
+              <view class="flex-auto title_txt ellipsis2" aria-role="text" aria-label="{{item.suitDescrip}}">{{item.suitDescrip}}</view>
+              <view style="flex: 1"></view>
+              <block  wx:if="{{item.suitType == 'wholestoreexchange' || item.suitType == 'exchange' || item.suitType == 'wholestoregift' || item.suitType == 'gift'}}">
+                <view class="title-bt d-flex flex-row align-items-center flex-none" wx:if="{{item.button}}" catchtap="goDosomething" data-text="{{item.button}}" data-suitType="{{item.suitType}}" data-params="{{item.params}}" aria-role="button" aria-label="{{item.button}}">
+                  <text class="title-bt-txt">{{item.button}}</text>
+                  <image class="title-bt-icon" mode="widthFix" src="https://storage.360buyimg.com/wximg/storewin/member-arrow.png" />
+                </view>
+              </block>
+              <block wx:else>
+                <view class="title-bt d-flex flex-row align-items-center flex-none" wx:if="{{item.tradePieceOffDesc}}" catchtap="goDosomething" data-suitType="{{item.suitType}}" data-params="{{item.params}}" data-to="{{item.to}}" aria-role="button" aria-label="{{item.tradePieceOffDesc}}">
+                  <text class="title-bt-txt">{{item.tradePieceOffDesc}}</text>
+                  <image class="title-bt-icon" mode="widthFix" src="https://storage.360buyimg.com/wximg/storewin/member-arrow.png" />
+                </view>
+              </block>
+            </view>
+            <!--换购商品-->
+            <block wx:if="{{item.giftList && item.giftList.length}}" wx:for="{{item.giftList}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="skuid">
+              <include src="./promotion/exchange.wxml" />
+            </block>
+            <block wx:for="{{item.skuList}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="skuListKey">
+                <view class="one-sku-box {{subItem.showTodayPurchaseSkuInfo ? 'today-add' : ''}} cartgoods_ep {{(item.suitType=='suit'||item.suitType=='fullpiecediscount'||item.suitType=='fullpiecesales'||item.suitType=='bundleddiscount'||item.suitType == 'wholestoreexchange'||item.suitType=='exchange'||item.suitType == 'gift')&&subIndex!==item.skuList.length-1?'gifts':'normal'}}" data-user-action="{{subItem.userAction}}">
+                  <view class="skuCard" style="background:{{!subItem.skuTopRightIcon && subItem.prescriptionTag ? '#F9F9F9' : null}}">
+                    <!-- 处方药标题 -->
+                    <drug-sku-title wx:if="{{subItem.prescriptionTag}}" subItem="{{subItem.prescriptionTag}}" isToday="{{!!subItem.skuTopRightIcon}}"></drug-sku-title>
+                    <!-- 今日加购图标 -->
+                    <image src="{{subItem.skuTopRightIcon}}" wx:if="{{subItem.skuTopRightIcon}}" class="today-add-icon" />
+                    <!--商品-->
+                    <view class="item carts_items d-flex flex-row log_checkToggle {{subItem.checkType === 2 ? 'disabled' : ''}}" bindtap="checkToggle"
+                      data-sku-id="{{subItem.skuId}}"
+                      data-is-add="{{subItem.checkType !== 2 ? (subItem.checkType === 1 ? false : true) : ''}}"
+                      data-checked="{{infos.isAdd}}">
+                      <!--勾选框-->
+                      <view class="check_box flex-none">
+                        <view wx:if="{{subItem.giftMap || item.suitType == 'suit' || item.suitType == 'fullpiecediscount' || item.suitType == 'fullpiecesales' || item.suitType == 'bundleddiscount' || item.suitType == 'exchange' || item.suitType == 'gift'}}" 
+                          class="dashed {{ (item.suitType == 'single' || item.suitType == 'wholestoregift') && subItem.giftMap ? 'single' : 'normal' }}">
+                        </view>
+                        <view class="check-toggle-box">
+                          <view class="check {{subItem.checkType === 1 ? 'checked' : ''}} {{subItem.checkType === 2 ? 'check_disabled' : ''}}" aria-role="button" aria-label="{{subItem.checkType===1?'已选中':subItem.checkType===2?'':'未选中'}}" ></view>
+                        </view>  
+                      </view>
+                      <!--商品详情-->
+                      <view class="flex-auto product_hidden">
+                        <product-detail 
+                          mode="origin" 
+                          subItem="{{subItem}}"
+                          orgCode="{{orgCode}}"
+                          storeId="{{storeId}}"
+                          pageSource="{{pageSource}}"
+                          refPageSource="{{refPageSource}}"
+                          fromMinicart="{{fromMinicart}}"
+                          cartType="{{cartType}}"
+                          limitFlag="{{limitFlag}}"
+                          biPageName="{{biPageName}}"
+                          traceId="{{traceId}}"
+                          pullDownFlag="{{pullDownFlag}}"
+                          pageId="{{pageId}}" 
+                          noNeedExposure="{{noNeedExposure}}"
+                          currentPageName="{{currentPageName}}" 
+                          prePageName="{{prePageName}}"
+                          refPar="{{refPar}}"
+                          buriedObj="{{buriedObj}}"
+                          bindshowModify="onShowModify"
+                          prescriptionFlowMark="{{infos.prescriptionFlowMark}}"
+                        >
+                        </product-detail>
+                      </view>
+                    </view>
+                    <!-- 赠品 -->
+                    <include src="./promotion/gift.wxml" />
+                  </view>
+                </view>
+            </block>
+          </block>
+        </view>
+      </block>
+    </view>
+    <!--失效商品-->
+    <view wx:if="{{invalidData.length}}" class="invalid-goods border-bottom">
+      <!-- 失效商品栏 -->
+      <view class="d-flex flex-row justify-content-between align-items-center header border-bottom">
+        <text class="tips">失效商品</text>
+        <view class="cancel_case d-flex flex-row align-items-center" bindtap="removeAllFailureGoods" aria-role="button" aria-label="清空失效商品">
+          <image class="cancel_delete_image" src="https://storage.360buyimg.com/wximg/storewin/mini_cancle_dele.png" />
+          <text class="cancel">清空失效商品</text>
+        </view>
+      </view>
+      <block wx:for="{{infos.itemList}}" wx:key="suitName">
+        <block wx:if="{{item.suitType == 'invalidate'}}">
+          <block wx:if="{{item.suitName == '套装'}}">
+            <include src="./promotion/combination.wxml" />
+          </block>
+          <block wx:else>
+            <block wx:for="{{item.skuList}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="skuListKey1">
+              <!--商品-->
+              <view class="item d-flex flex-row">
+                <view class="check_box flex-none">
+                  <view class="check failure-goods-icon"></view>
+                </view>
+                <!--商品失效icon-->
+                <view class="flex-auto product_hidden">
+                  <product-detail 
+                    mode="failure" 
+                    subItem="{{subItem}}"
+                    orgCode="{{orgCode}}"
+                    storeId="{{storeId}}"
+                    pageSource="{{pageSource}}"
+                    refPageSource="{{refPageSource}}"
+                    fromMinicart="{{fromMinicart}}"
+                    cartType="{{cartType}}"
+                    limitFlag="{{limitFlag}}"
+                    biPageName="{{biPageName}}"
+                    traceId="{{traceId}}"
+                    pullDownFlag="{{pullDownFlag}}"
+                    pageId="{{pageId}}" 
+                    currentPageName="{{currentPageName}}" 
+                    prePageName="{{prePageName}}"
+                    noNeedExposure="{{noNeedExposure}}"
+                    refPar="{{refPar}}"
+                    buriedObj="{{buriedObj}}"
+                  >
+                  </product-detail>
+                </view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>

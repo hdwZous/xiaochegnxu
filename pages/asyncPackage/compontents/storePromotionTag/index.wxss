@@ -1,0 +1,15 @@
+.promotion_tag {
+  align-items: center;
+}
+.line_four_tag {
+  min-width: 52rpx;
+  text-align: center;
+  margin-right: 10rpx;
+  color: #ffffff;
+  font-size: 20rpx;
+  border-radius: 8rpx 2rpx 8rpx 2rpx;
+}
+.line_four_txt {
+  color: #333333ff;
+  font-size: 22rpx;
+}

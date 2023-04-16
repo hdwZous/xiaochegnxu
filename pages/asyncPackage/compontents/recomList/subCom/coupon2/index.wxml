@@ -1,0 +1,138 @@
+<wxs module="tool" src="../../../../../../common/util/tools.wxs"></wxs>
+<view class="recom-list-coupon-wrapper">
+    <view class='rec-title' aria-role='text' aria-label="{{title}}">{{title}}</view>
+    <view class="container_case ep_recom-coupon"
+          data-user-action="{{originUserAction}}"
+          data-trace-id="{{traceId}}"
+          data-page-id="{{buriedObj.pageIdFirstPage}}"
+          data-current-page-name="{{buriedObj.currentPageName}}"
+          data-pre-page-name="{{buriedObj.prePageName}}" >
+        <view wx:if="{{couponData.styles && couponData.styles.couponBgStyle}}"
+              class='recom-list-coupon-container flex-row' 
+              style="background-color: {{couponData.styles.couponBgStyle.couponBgColor}};">
+            <!-- 价格 -->
+            <view class='left flex-none'  aria-role='text' aria-label="{{couponData.couponTitle}}.{{couponData.price}}{{couponData.priceUnit == 2 ? '折' : '元'}}.{{couponData.couponTitle}}">
+                <view aria-hidden="true" class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon24'}}" style="color: {{couponData.styles.couponContentStyle.priceColor}}" wx:if="{{couponData.priceUnit == 1}}">
+                    ¥
+                </view>
+                <view  aria-hidden="true" class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon44'}}" style="color: {{couponData.styles.couponContentStyle.priceColor}}">
+                    {{tool.turnPrice(couponData.price)[0]}}
+                </view>
+                <view  aria-hidden="true" class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon24'}}" style="color: {{couponData.styles.couponContentStyle.priceColor}}" wx:if="{{tool.turnPrice(couponData.price).length > 1}}">
+                    .{{tool.turnPrice(couponData.price)[1]}}
+                </view>
+                <view  aria-hidden="true" class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon24'}}" style="color: {{couponData.styles.couponContentStyle.priceColor}}" wx:if="{{couponData.priceUnit == 2}}">
+                    折
+                </view>
+            </view>
+            <!-- 券信息 -->
+            <view class='center flex-auto' aria-role='text' aria-label="{{couponData.couponTitle}}.{{couponData.price}}{{couponData.priceUnit == 2 ? '折' : '元'}}.{{couponData.couponTitle}}">
+                <!-- 券名称 -->
+                <view aria-hidden="true" class='coupon-title ellipsis' style="color: {{couponData.styles.couponContentStyle.couponTitleColor}}">
+                    {{couponData.couponTitle}}
+                </view>
+                <!-- 券标  优先取styles couponsigns作为兜底 -->
+                <view wx:if="{{couponData.styles && couponData.styles.couponLabelStyle.length > 0}}"     
+                      aria-hidden="true" 
+                      class="tag-wrap">
+                  <view class='cp-yhy-tag' 
+                        wx:for="{{couponData.styles.couponLabelStyle}}" 
+                        wx:for-item="tag" 
+                        wx:key="index">
+                    <view class="cp-yhy-tag-text" style="color: {{tag.titleColor}};">{{tag.title}}</view>
+                    <view class="cp-yhy-tag-border" 
+                          style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+                  </view>
+                </view>
+                <view wx:elif="{{couponData.couponSigns && couponData.couponSigns.length > 0}}"
+                      aria-hidden="true" 
+                      class="tag-wrap">
+                  <view class='cp-yhy-tag' 
+                        wx:for="{{couponData.couponSigns}}" 
+                        wx:for-item="tag" 
+                        wx:key="index">
+                    <view class="cp-yhy-tag-text" style="color: {{tag.titleColor}};">
+                      {{tag.title}}
+                    </view>
+                    <view class="cp-yhy-tag-border" style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+                  </view>
+                </view>
+                <!-- 券使用条件 -->
+                <view aria-hidden="true" class='coupon-rules' style="color: {{couponData.styles.couponContentStyle.couponExpireColor || couponData.styles.couponContentStyle.couponLimitColor}}">
+                    {{couponData.couponLimit}}
+                </view>
+            </view>
+            <!-- 券按钮 -->
+            <view class='recom-right flex-none flex-row' 
+                  bindtap="rightBtnClick" 
+                  data-item="{{couponData}}"
+                  aria-role='button'
+                  aria-label="couponData.styles.couponButStyle.title">
+                <view aria-hidden="true" class='right-icon flex-none' wx:if="{{couponData.couponRightIcon}}">
+                    <image class='img' src="{{couponData.couponRightIcon}}" />
+                </view>
+                <view class='btn flex-none' style=" color: {{couponData.styles.couponButStyle.titleColor}};  background: linear-gradient(to right, {{couponData.styles.couponButStyle.startColor}} 0%,  {{couponData.styles.couponButStyle.endColor}} 100%);">
+                    {{couponData.styles.couponButStyle.title}}
+                </view>
+            </view>
+        </view>
+        <view wx:else class='recom-list-coupon-container flex-row' style="background-color: {{couponData.couponBgColor}};">
+            <view class='left flex-none'>
+                <view class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon24'}}" style="color: {{couponData.priceColor}}" wx:if="{{couponData.priceUnit == 1}}">
+                    ¥
+                </view>
+                <view class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon44'}}" style="color: {{couponData.priceColor}}">
+                    {{tool.turnPrice(couponData.price)[0]}}
+                </view>
+                <view class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon24'}}" style="color: {{couponData.priceColor}}" wx:if="{{tool.turnPrice(couponData.price).length > 1}}">
+                    .{{tool.turnPrice(couponData.price)[1]}}
+                </view>
+                <view class="left_item {{couponData.price.length >= 6 ? 'fon26' : 'fon24'}}" style="color: {{couponData.priceColor}}" wx:if="{{couponData.priceUnit == 2}}">
+                    折
+                </view>
+            </view>
+            <view class='center flex-auto'>
+              <!-- 券名称 -->
+                <view class='coupon-title ellipsis' style="color: {{couponData.couponTitleColor}}">
+                    {{couponData.couponTitle}}
+                </view>
+                <!-- 券标  优先取styles couponsigns作为兜底 -->
+                <view wx:if="{{couponData.styles && couponData.styles.couponLabelStyle.length > 0}}" aria-hidden="true" class="tag-wrap">
+                  <view class='cp-yhy-tag' 
+                        wx:for="{{couponData.couponSigns}}" 
+                        wx:for-item="tag" 
+                        wx:key="index">
+                    <view class="cp-yhy-tag-text" style="color: {{tag.titleColor}};">
+                      {{tag.title}}
+                    </view>
+                    <view class="cp-yhy-tag-border" style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+                  </view>
+                </view>
+                <view wx:elif="{{couponData.couponSigns && couponData.couponSigns.length > 0}}" aria-hidden="true" class="tag-wrap">
+                  <view class='cp-yhy-tag' 
+                        wx:for="{{couponData.couponSigns}}" 
+                        wx:for-item="tag" 
+                        wx:key="index">
+                    <view class="cp-yhy-tag-text" style="color: {{tag.titleColor}};">
+                      {{tag.title}}
+                    </view>
+                    <view class="cp-yhy-tag-border" style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+                  </view>
+                </view>
+
+                <!-- 券使用条件 -->
+                <view class='coupon-rules' style="color: {{couponData.couponExpireColor || couponData.couponLimitColor}}">
+                    {{couponData.couponLimit}}
+                </view>
+            </view>
+            <view class='recom-right flex-none flex-row' bindtap="rightBtnClick" data-item="{{couponData}}">
+                <view class='right-icon' wx:if="{{couponData.couponRightIcon}}">
+                    <image class='img' src="{{couponData.couponRightIcon}}" />
+                </view>
+                <view class='btn' style="border-color: {{couponData.couponButton.borderColor}}; color: {{couponData.couponButton.titleColor}};  background: linear-gradient(to right, {{couponData.couponButton.startColor}} 0%,  {{couponData.couponButton.endColor}} 100%);">
+                    {{couponData.couponButton.title}}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

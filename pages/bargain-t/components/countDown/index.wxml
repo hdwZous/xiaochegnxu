@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.countDown}}"><span>{{d > 0 ? d + '天' : ""}}</span>{{h}}:{{m}}:{{s}}后结束</view></block>

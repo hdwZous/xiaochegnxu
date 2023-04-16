@@ -1,0 +1,79 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+<view class="lazy-load-wrap ep_yhe_member_coupon"
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name="{{prePageName}}">
+  <view wx:if="{{hookLazy}}"
+        class="cp-yhe-member-wrap">
+    <left-icon-coupon wx:if="{{couponItem.leftTopIconList.length && couponItem.leftTopIconList.length}}" 
+                      list="{{couponItem.leftTopIconList}}" />
+    <view class="cp-yhe-member-left"
+          style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);">
+      <view class="cp-yhe-price-member" 
+            style="color: {{couponItem.priceColor}}"
+            aria-hidden="true">
+        <view class="yhe-price-unit-member"
+              style="line-height: {{couponItem.price.length >=4 ? '48rpx' : '32rpx'}}"
+              wx:if="{{couponItem.priceUnit == 1}}">
+          ¥
+        </view>
+        <view class="yhe-price-value-member"
+              style="font-size: {{couponItem.price.length >=4 ? '40rpx' : '56rpx'}};line-height: {{couponItem.price.length >=4 ? '56rpx' : 1}}">
+          {{couponItem.price}}
+        </view>
+      </view>
+      <view class="cp-yhe-limit-member"
+            wx:if="{{couponItem.couponExpire}}" 
+            style="color: {{couponItem.couponLimitColor}}"
+            aria-hidden="true">
+        {{couponItem.couponLimit}}
+      </view>
+    </view>
+    <view class="cp-yhe-member-center"
+          style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);">
+      <view class="cp-yhe-title-member ellipsis"
+            style="color: {{couponItem.couponTitleColor}}"
+            aria-hidden="true">
+        {{couponItem.couponTitle}}
+      </view>
+      <view class="cp-yhe-tags-member" 
+            wx:if="{{couponItem.couponSigns && couponItem.couponSigns.length}}"
+            aria-hidden="true">
+        <view class='ellipsis cp-yhe-tag-member' 
+              wx:for="{{couponItem.couponSigns}}" 
+              wx:key="subIndex" 
+              wx:for-item="tag" 
+              style="color: {{tag.titleColor}};">
+          <view class="cp-yhy-tag-text-member">{{tag.title}}</view>
+          <view class="cp-yhy-tag-border-member" style="color: {{tag.titleColor}};border-color:{{tool.changeColor(tag.borderOpacity || 0.3,  tag.borderColor || '#999999') || '#999'}};border-style:solid;border-width: 1px;"></view>
+        </view>
+      </view>
+      <view class="cp-yhe-time-member ellipsis2"
+            wx:if="{{couponItem.couponExpire}}"
+            style="color: {{couponItem.couponExpireColor}}"
+            aria-hidden="true">
+        {{couponItem.couponExpire}}
+      </view>
+    </view>
+    <view class="cp-yhe-line" aria-hidden="true"></view>
+    <view class="cp-yhe-member-right ellipsis"
+          style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);"
+          bindtap="clickCoupon"
+          data-item="{{couponItem}}"
+          data-user-action="{{item.userAction}}"
+          data-trace-id="{{traceId}}"
+          data-page-id="{{pageId}}"
+          data-current-page-name="{{currentPageName}}"
+          data-pre-page-name="{{prePageName}}">
+      <view class="cp-yhe-button-member"
+            wx:if="{{couponItem.couponButton && couponItem.couponButton.title}}"
+            style="color: {{couponItem.couponButton.titleColor}};"
+            aria-hidden="true">
+        {{couponItem.couponButton.title}}
+      </view>
+    </view>
+  </view>
+  <view wx:else class="item-content-gray-member"></view>
+</view>

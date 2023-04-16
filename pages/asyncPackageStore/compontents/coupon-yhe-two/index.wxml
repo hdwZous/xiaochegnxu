@@ -1,0 +1,42 @@
+<wxs module="tool" src="../../../../common/util/tools.wxs"></wxs>
+<view class="lazy-load-wrap ep_yhe_two_coupon"
+      data-user-action="{{item.userAction}}"
+      data-trace-id="{{traceId}}"
+      data-page-id="{{pageId}}"
+      data-current-page-name="{{currentPageName}}"
+      data-pre-page-name="{{prePageName}}">
+<view wx:if="{{hookLazy}}"
+      class="cp-yhe-wrap-two"
+      style="background: linear-gradient(90deg, {{couponItem.couponBgColor}} 0%,  {{couponItem.couponBgEndColor}} 100%);" 
+      bindtap="jump"
+      data-item="{{couponItem}}"
+      data-trace-id="{{traceId}}"
+      data-user-action="{{couponItem.userAction}}">
+  <left-icon-coupon  wx:if="{{couponItem.leftTopIconList.length && couponItem.leftTopIconList.length}}" 
+                     list="{{couponItem.leftTopIconList}}" />
+  <view class="cp-yhe-center-two"
+        aria-label="{{couponItem.couponTitle}}.{{couponItem.couponLimit}}"
+        aria-role="text">
+    <view class="cp-yhe-limit-two ellipsis" 
+          style="color: {{couponItem.couponLimitColor}}" 
+          aria-hidden="true">
+      {{couponItem.limitRuleShow}}
+    </view>
+   <view class="cp-yhe-title-two ellipsis"
+         style="color: {{couponItem.couponTitleColor}}"
+         aria-hidden="true">
+    {{couponItem.couponTitle}}
+   </view>
+  </view>
+  <view class="cp-yhe-left-two">
+    <image class="product-url-two" src="{{couponItem.storeSku.skuPrimeImage}}" aria-label="{{couponItem.couponTitle}}.{{couponItem.couponLimit}}" aria-role="text" />
+    <view class="coupon-overlay-two"></view>
+  </view>
+  <view class="cp-yhe-right-two"
+        aria-role="link"
+        aria-label="点击跳转到商品详情页">
+    <image class="cp-yhe-arrow-two" src="https://storage.360buyimg.com/wximg/common/coupon/cp-yhe-two-arrow.png"  aria-hidden="true" />
+  </view>
+</view>
+<view wx:else class="item-content-gray-two"></view>
+</view>

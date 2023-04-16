@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "vplus-discount-style": "../../../vplus-discount-style/index"
+    }
+}

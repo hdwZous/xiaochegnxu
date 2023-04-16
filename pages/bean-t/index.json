@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "barrage-move-view": "./components/barrageView/index",
+    "default": "./commonComponents/Default/index",
+    "guide": "./components/guide/index",
+    "previous": "./subPages/previous/index",
+    "current": "./subPages/current/index",
+    "next": "./subPages/next/index",
+    "subscribe-message": "../../common-mp/components/subscribeMessage/index"
+  },
+  "navigationBarTitleText": "鲜豆庄园"
+}

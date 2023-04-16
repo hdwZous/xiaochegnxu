@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "default": "../commonComponents/Default/index"
+  },
+  "navigationBarTitleText": "我的兑换",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black"
+}

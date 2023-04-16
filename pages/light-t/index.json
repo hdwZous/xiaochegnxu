@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "default": "./components/default/index",
+    "friend-help": "./components/FriendHelpDialog/index",
+    "top-banner": "./components/TopBanner/index",
+    "process-comp": "./components/ProcessComp/index",
+    "swiper-scale": "./components/SwiperScale/index",
+    "task-dialog": "./components/TaskDialog/index",
+    "common-lottery": "./components/CommonLottery/index",
+    "treasure-box-lottery": "./components/TreasureBoxLottery/index",
+    "edit-info": "./components/EditInfo/index",
+    "city-card": "./components/CityCard/index"
+  },
+  "navigationBarTitleText": "点亮游戏",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "onReachBottomDistance": 50
+}
