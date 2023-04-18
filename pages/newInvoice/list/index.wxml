@@ -1,0 +1,66 @@
+<view class="invoice d-flex flex-column" wx:if="{{!pageError.showError}}">
+  <view class="invoice_detail">
+    <view class="header">
+      <view class="hd_t d-flex flex-row align-items-center justify-content-between">
+        <view class="hdt_name">{{invoiceInfo.invoiceTile}}</view>
+        <view class="hdt_tip" wx:if="{{invoiceInfo.invoiceDeclareList.length}}" bindtap="showRule">发票须知</view>
+      </view>
+      <view class="hd_m d-flex flex-row align-items-baseline">
+        <view class="hdm_num">{{invoiceInfo.invoiceMoney}}</view>
+        <view class="hdm_tip" wx:if="{{invoiceInfo.invoiceETip}}">{{invoiceInfo.invoiceETip}}</view>
+      </view>
+      <view class="hd_b">{{invoiceInfo.invoiceStoreRemark}}</view>
+      <view class="hd_b product">{{invoiceInfo.productInvoiceTitle}}</view>
+      <view class="space-dottom-line" wx:if="{{invoiceInfo.freightFeeInvoiceTitle||invoiceInfo.serviceInvoiceTitle}}"></view>
+      <view class="freight-box d-flex flex-row" wx:if="{{invoiceInfo.freightFeeInvoiceTitle}}">
+        <view class="check-box flex-none {{distributionFee?'select':''}}" bindtap="checkBox" data-types="freightFee" data-status="{{distributionFee}}"></view>
+        <view class="freight-detail">{{invoiceInfo.freightFeeInvoiceTitle}}</view>
+      </view>
+      <view class="freight-box d-flex flex-row" wx:if="{{invoiceInfo.serviceInvoiceTitle}}">
+        <view class="check-box flex-none {{distributionService?'select':''}}" bindtap="checkBox" data-types="service" data-status="{{distributionService}}"></view>
+        <view class="freight-detail">{{invoiceInfo.serviceInvoiceTitle}}</view>
+      </view>
+    </view>
+    <view class="content">
+      <view class="nouse d-felx flex-row align-items-center" bindtap="selectItem" wx:if="{{supportShowNoNeedInvoice}}">
+        <image class="check_img" src="{{selectedId?'https://storage.360buyimg.com/wximg/settleV2/check-false.png':'https://storage.360buyimg.com/wximg/settleV2/check-true-green.png'}}" />
+        <text class="fs28">不需要发票</text>
+      </view>
+      <view class="supportInvoiceTitle" wx:if="{{invoiceData.supportInvoiceTitle}}">{{invoiceData.supportInvoiceTitle}}</view>
+      <block wx:for="{{invoiceInfoVOList}}" wx:key="items">
+        <view class="invoice_items d-flex flex-row align-items-center justify-content-between" bindtap="selectItem" data-ids="{{item.invoiceId}}" data-title-type="{{item.titleType}}" >
+          <view class="ivi_left d-flex flex-row align-items-start">
+            <image class="check_img flex-none" wx:if="{{!(item.checkButton===false)}}" style="margin-top:5rpx;" src="{{selectedId==item.invoiceId?'https://storage.360buyimg.com/wximg/settleV2/check-true-green.png':'https://storage.360buyimg.com/wximg/settleV2/check-false.png'}}" />
+            <view class="ivilr">
+              <view class="ivilr_t">
+                <view class="ivilr_flag_content">
+                  <view class="ivifc_left" style="background:{{item.titleFlagColor}}">{{item.titleFlagLeft}}</view>
+                  <view class="ivifc_right" style="color:{{item.titleFlagColor}};border-color:{{item.titleFlagColor}}">{{item.titleFlagRight}}</view>
+                </view>
+                <text class="fs28">{{item.titleContent}}</text>
+              </view>
+              <view style="margin-top: 20rpx;">
+                <view class="ivilr_b" wx:if="{{item.taxNum}}">税号：{{item.taxNum}}</view>
+                <view class="ivilr_b">邮箱：{{item.userEmail}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="ivi_edit" catchtap="goEdit" data-type="edit" data-info="{{item}}"></view>
+        </view>
+      </block>
+    </view>
+    <block wx:if="{{supportNewInvoice}}">
+      <view class="add d-flex flex-row align-items-center justify-content-between" bindtap="goEdit" data-type="newset">
+        <view class="add_l">新增发票抬头</view>
+        <view class="add_r dj_icon ts_next"></view>
+      </view>
+    </block>
+  </view>
+  <view class="bottom flex-none">
+    <view class="btn" bindtap="confirm">确定</view>
+  </view>
+</view>
+<block wx:else>
+  <new-default type="{{pageError.type}}" defaultObj="{{pageError.obj}}" binddefaultBtnEvent="onDefaultBtnEvent"></new-default>
+</block>
+<tip-dialog types="1" show="{{tipShow}}" readmeList="{{invoiceInfo.invoiceDeclareList}}" bindtipClose="showRule"></tip-dialog>

@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "new-default": "/components/newDefaultV2/index",
+    "tip-dialog": "../components/tipDialog/index"
+  }
+}
