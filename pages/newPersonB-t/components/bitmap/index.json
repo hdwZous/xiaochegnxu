@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "coupon-item": "../couponItem/index",
+    "inflate-coupon": "../inflateCoupon/index",
+    "rule-dia": "../ruleDia/index"
+  }
+}

@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{styles.bullets}}"><view class="{{styles.bullet_chat}}"><view class="{{styles.text_img}}" style="{{item.$loopState__temp2}}" wx:for="{{loopArray21}}" wx:for-item="item" wx:for-index="index"><text>{{item.$original.text}}</text></view></view></view></block>

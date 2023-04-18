@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{styles.top_banner}}" style="{{anonymousState__temp}}"><view class="{{styles.prize_button}}" bindtap="anonymousFunc0"></view></view></block>

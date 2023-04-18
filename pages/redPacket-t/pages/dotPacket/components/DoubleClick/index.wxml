@@ -1,0 +1,1 @@
+<block wx:if="{{$taroCompReady}}"><view class="{{style.setout}}"><view class="{{style.double_hit}}" style="{{anonymousState__temp}}"><view class="{{style.double_count}}">{{doubleHitCount}}</view><view class="{{style.double_text}}">连击</view></view></view></block>
